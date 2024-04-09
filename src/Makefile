@@ -28,10 +28,10 @@
 
 # Add your application here:
 
-APPLICATION = darkshell
+#APPLICATION = darkshell
 #APPLICATION = coremark
 #APPLICATION = badapple
-#APPLICATION = mandelbrot
+APPLICATION = mandelbrot
 
 # un-select SMALL for coremark!
 export SMALL = 1# uncomment for smaller firmware
@@ -45,7 +45,7 @@ endif
 
 ifndef CROSS
 
-    export ARCH = rv32e
+    export ARCH = rv32imac_zicsr
     #ARCH = rv32i
     
     export ABI = ilp32e
@@ -55,15 +55,16 @@ ifndef CROSS
     #ENDIAN = _le # gcc for little-endian
     #ENDIAN = _be # gcc for big-endian
 
-    #export CROSS = riscv32-unknown-elf
-    export CROSS = riscv32-embedded$(ENDIAN)-elf
+    export CROSS = riscv32-unknown-elf
+    #export CROSS = riscv32-embedded$(ENDIAN)-elf
+#	export CROSS = riscv32-unknown$(ENDIAN)-elf
     #CROSS = riscv-elf
     #CROSS = riscv32-unknown-elf
     #CROSS = riscv32-embedded-elf
     
     #export CCPATH = /opt/riscv/bin
-    export CCPATH = /usr/local/share/gcc-$(CROSS)/bin/
-    #CCPATH = /usr/local/share/toolchain-$(CROSS)/bin
+    export CCPATH = /usr/local/share/gcc-$(CROSS)/bin
+#    export CCPATH = /usr/local/share/toolchain-$(CROSS)/bin
     #HARVARD = 1
 endif
 
