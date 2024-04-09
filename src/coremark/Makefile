@@ -45,9 +45,9 @@ ifndef CROSS
     #ENDIAN = _le # gcc for little-endian
     #ENDIAN = _be # gcc for big-endian
 
-    CROSS = riscv32-embedded$(ENDIAN)-elf
+    #CROSS = riscv32-embedded$(ENDIAN)-elf
     #CROSS = riscv-elf
-    #CROSS = riscv32-unknown-elf
+    CROSS = riscv32-unknown-elf
     #CROSS = riscv32-embedded-elf
     
     CCPATH = /usr/local/share/gcc-$(CROSS)/bin/
