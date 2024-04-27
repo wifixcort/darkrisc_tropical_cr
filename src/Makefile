@@ -31,7 +31,8 @@
 #APPLICATION = darkshell
 #APPLICATION = coremark
 #APPLICATION = badapple
-APPLICATION = mandelbrot
+#APPLICATION = mandelbrot
+APPLICATION = hello_world
 
 # un-select SMALL for coremark!
 export SMALL = 1# uncomment for smaller firmware
