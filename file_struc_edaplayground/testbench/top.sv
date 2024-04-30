@@ -1,51 +1,39 @@
 module top();
-//   reg _clk = 0;
-//   initial // clock generator
-//   forever #5 _clk = ~_clk;
-   
-    reg CLK = 0;
-    
-    reg RES = 1;
-
-    initial while(1) #(500e6/`BOARD_CK) CLK = !CLK; // clock generator w/ freq defined by config.vh
   
-	integer i;
+   // external clk generator
+  reg clk = 0;
+  initial while(1) #(500e6/`BOARD_CK) clk = !clk; // clock generator w/ freq defined by config.vh
   
-  // Interface
-   ifc_mem ifc_mem();
-
-  wire TX;
-  wire RX = 1;
+   // Interface
+  intf_soc intf(clk);
 
   
   // DUT connection	
-	darksocv soc0
-    (
-        .XCLK(CLK),
-        .XRES(|RES),
-        .UART_RXD(RX),
-      	.MEM2(ifc_mem.memory_bus),
-        .UART_TXD(TX)
-    );
+  darksocv soc0(
+    .XCLK(clk),
+    .XRES(intf.rst),
+    .UART_RXD(intf.uart_rx),
+    .UART_TXD(intf.uart_tx),
+    .LED(led),
+    .DEBUG(debug)
+  );
+
   
+  // .vcd generator
+  integer i;
   initial begin
-    `ifdef __ICARUS__
-            $dumpfile("darksocv.vcd");
-            $dumpvars();
-
-        `ifdef __REGDUMP__
-            for(i=0;i!=`RLEN;i=i+1)
-            begin
-                $dumpvars(0,soc0.core0.REGS[i]);
-            end
-        `endif
-    `endif
-      
-        $display("reset (startup)");
-        #1e3    RES = 0;            // wait 1us in reset state
+      $dumpfile("darksocv.vcd");
+      $dumpvars();
+      for(i=0;i!=`RLEN;i=i+1) begin
+          $dumpvars(0,soc0.core0.REGS[i]);
+      end
+      //$display("reset (startup)");
+      //#1e3    intf.rst = 0;            // wait 1us in reset state
   end
+  
 
+  
   //Test case
-  testcase test(ifc_mem);
+  testcase test(intf);
 
 endmodule

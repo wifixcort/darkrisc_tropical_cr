@@ -1,17 +1,18 @@
 class environment;
-  mem_driver mem_driver;
+  driver drvr;
   //scoreboard sb;
   //monitor mntr;
-  virtual ifc_mem ifc_mem;
-           
-  function new(virtual ifc_mem ifc_mem);
+  virtual intf_soc intf;           
+  
+  // constructor
+  function new(virtual intf_soc intf);
     $display("Creating environment");
-    this.ifc_mem = ifc_mem;
+    this.intf = intf;
     //sb = new();
-    mem_driver = new(this.ifc_mem);
-    //mntr = new(this.ifc_mem,sb);
+    drvr = new(intf); //,sb);
+    //mntr = new(intf,sb);
     //fork 
-      //Checker
+    //  mntr.check();
     //join_none
   endfunction
            

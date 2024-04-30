@@ -1,32 +1,53 @@
-class mem_driver;
-//             reg [31:0] int_memspace [0:2**`MLEN/4-1]; //We use this memspace to hot-swap etc information.
-            virtual ifc_mem mem_int;                  //(Virtual=Pointer) Output to mem to directly drive the CPU array.
-
-    //====================================================================
-    //========================= Metodos ==================================
-    //====================================================================
-    // Construct driver
-    function new(virtual ifc_mem mem_ext);
-//       
-        mem_int = mem_ext;  // Local variable receives "the pointer"
-    endfunction //new()
+class driver;
+  //stimulus sti;
+  //scoreboard sb;
+  virtual intf_soc intf;
+     
+  // Constructor
+  function new(virtual intf_soc intf); //,scoreboard sb);
+    this.intf = intf;
+    //this.sb = sb;
+  endfunction
     
+  // Reset method 
+  task reset();  
+    $display("Executing Reset\n");
+    intf.rst = 0;
+    intf.uart_rx = 0;
+    intf.uart_tx = 0;
+    intf.rst = 1; ///////
+    @ (negedge intf.clk);
+    intf.rst = 0;
+  endtask
+   
+  /*
+  task write(input integer iteration);
+    repeat(iteration)
+    begin
+      sti = new();
+      @ (negedge intf.clk);
+      if(sti.randomize()) // Generate stimulus
+        $display("Driving 0x%h value in the DUT\n", sti.value);
+        intf.data_in = sti.value; // Drive to DUT
+        intf.wr_en = 1;
+        //intf.wr_cs = 1;
+        sb.store.push_front(sti.value);// Cal exp value and store in Scoreboard
+    end
+    @ (negedge intf.clk);
+    intf.wr_en = 0;
+    //intf.wr_cs = 0;
+  endtask
   
-    // Reset memspace
-    function mem_reset();
-        for (int i=0; i!=2**`MLEN/4; i++)begin
-          mem_int.memory_bus[i] = 0;       // Local variable sets 0's
-        end
-    endfunction
-
-    // Load values
-    function mem_load();
-//         for (int i=0; i!=2**`MLEN/4; i++)begin //Copy from memspace to interface that coms to MEM array 
-          $readmemh("darksocv.mem", mem_int.memory_bus, 0); //Temporal memspace receives .a code
-//           mem_int.memory_bus = int_memspace; //NO NECESSARY A FOR, but used it so the code looks the same
-//         end      							   // :D <3
-    endfunction
-    
-endclass //className
-
-//Good reference: https://blogs.sw.siemens.com/verificationhorizons/2022/08/21/systemverilog-what-is-a-virtual-interface/
+  task read(input integer iteration);
+    repeat(iteration)
+    begin
+       @ (negedge intf.clk);
+       intf.rd_en = 1;
+       //intf.rd_cs = 1;
+    end
+    @ (negedge intf.clk);
+    intf.rd_en = 0;
+    //intf.rd_cs = 0;
+  endtask
+  */
+endclass
