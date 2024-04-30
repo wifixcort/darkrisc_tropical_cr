@@ -37,9 +37,6 @@ module darksocv
     input        XRES,      // external reset
 
     input        UART_RXD,  // UART receive line
-
-    input reg [31:0] MEM2[0:2**`MLEN/4-1],
-  
     output       UART_TXD,  // UART transmit line
 
     output [3:0] LED,       // on-board leds
@@ -51,7 +48,7 @@ module darksocv
     darkpll darkpll0(.XCLK(XCLK),.XRES(XRES),.CLK(CLK),.RES(RES));
 
     // ro/rw memories
-      
+
 `ifdef __HARVARD__
 
     reg [31:0] ROM [0:2**`MLEN/4-1]; // ro memory
@@ -74,26 +71,26 @@ module darksocv
         $readmemh("darksocv.rom.mem",ROM);
         $readmemh("darksocv.ram.mem",RAM);
     `else
-        $readmemh("darksocv.rom.mem",ROM);
-        $readmemh("darksocv.ram.mem",RAM);
+        $readmemh("../src/darksocv.rom.mem",ROM);
+        $readmemh("../src/darksocv.ram.mem",RAM);
     `endif
     end
 
 `else
 
+
     reg [31:0] MEM [0:2**`MLEN/4-1]; // ro memory
-	    // memory initialization
+
+    // memory initialization
 
     integer i;
     initial
     begin
-      
-
 `ifdef SIMULATION
+
         for(i=0;i!=2**`MLEN/4;i=i+1)
         begin
-          #3
-          MEM[i] = MEM2[i];
+            MEM[i] = 32'd0;
         end
 `endif
 
@@ -102,10 +99,9 @@ module darksocv
     `ifdef XILINX_SIMULATOR
         $readmemh("darksocv.mem",MEM);
 	 `elsif MODEL_TECH
-		  $readmemh("../../../../src/darksocv.mem",MEM);
+		  $readmemh("darksocv.mem",MEM);
     `else
-//       $display("Hola Dennis, jueves de fiesta!!!");
-//         $readmemh("darksocv.mem",MEM,0);
+        $readmemh("darksocv.mem",MEM,0);
     `endif
     end
 

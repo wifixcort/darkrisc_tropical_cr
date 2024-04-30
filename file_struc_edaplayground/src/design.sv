@@ -4,5 +4,3 @@
 `include "darkriscv.v"
 `include "darkuart.v"
 `include "darkpll.v"
-
-      

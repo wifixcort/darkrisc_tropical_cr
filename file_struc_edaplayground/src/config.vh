@@ -54,7 +54,7 @@
 // The difference between the RV32I and RV32E regarding the logic space is
 // minimal in typical applications with modern 5 or 6 input LUT based FPGAs,
 // but the RV32E is better with old 4 input LUT based FPGAs.
-//`define __RV32E__
+`define __RV32E__
 
 // muti-threading support:
 //
@@ -133,7 +133,7 @@
 // access via the stdin, in a way that is possible type interactive commands,
 // which will make your simulator crazy! unfortunately, it works only with
 // iverilog... at least, Xilinx ISIM does not liket the $fgetc()
-`define __INTERACTIVE__
+//`define __INTERACTIVE__
 
 // performance measurement:
 //
@@ -180,8 +180,8 @@
 `ifdef __HARVARD__
     `define MLEN 13 // MEM[12:0] ->  8KBytes LENGTH = 0x2000
 `else
-    //`define MLEN 12 // MEM[12:0] -> 4KBytes LENGTH = 0x1000
-    `define MLEN 15 // MEM[12:0] -> 32KBytes LENGTH = 0x8000 for coremark!
+    `define MLEN 12 // MEM[12:0] -> 4KBytes LENGTH = 0x1000
+    //`define MLEN 15 // MEM[12:0] -> 32KBytes LENGTH = 0x8000 for coremark!
 `endif
 
 // read-modify-write cycle:
@@ -215,7 +215,8 @@
 //`define QMTECH_SDRAM_LX16
 
 // the following defines are automatically defined:
-`define __ICARUS__
+
+`define __ICARUS__ //hack for run in VCS
 
 `ifdef __ICARUS__
     `define SIMULATION 1
