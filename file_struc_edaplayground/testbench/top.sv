@@ -24,7 +24,6 @@ module top();
         .XCLK(CLK),
         .XRES(|RES),
         .UART_RXD(RX),
-      	.MEM2(ifc_mem.memory_bus),
         .UART_TXD(TX)
     );
   
