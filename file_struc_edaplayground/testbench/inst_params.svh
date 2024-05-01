@@ -50,7 +50,7 @@ localparam LB           =34;         //Start of I-Load
 localparam LH           =35;
 localparam LW           =36;
 localparam LBU          =37;
-localparam LHU          =38
+localparam LHU          =38;
 
 /////////////////////////////////////////////////////////
 //Instruction R-type available funct3
