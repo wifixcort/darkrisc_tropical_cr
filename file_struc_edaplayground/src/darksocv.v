@@ -101,7 +101,7 @@ module darksocv
 	 `elsif MODEL_TECH
 		  $readmemh("../../../../src/darksocv.mem",MEM);
     `else
-        //$readmemh("darksocv.mem",MEM,0);
+        $readmemh("darksocv.mem",MEM,0);
     `endif
     end
 
