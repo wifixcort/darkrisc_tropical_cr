@@ -12,7 +12,6 @@ module top();
 	integer i;
   
   // Interface
-   ifc_mem ifc_mem();
 
   wire TX;
   wire RX = 1;
@@ -43,8 +42,9 @@ module top();
         $display("reset (startup)");
         #1e3    RES = 0;            // wait 1us in reset state
   end
-
+  
   //Test case
-  testcase test(ifc_mem);
+  
+  testcase test();
 
 endmodule

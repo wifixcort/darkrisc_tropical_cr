@@ -1,4 +1,3 @@
-`include "ifc_mem.sv"
 // `include "stimulus.sv"
 // `include "scoreboard.sv"
 `include "mem_driver.sv"
