@@ -5,10 +5,10 @@ package instructions_data_struc;
   localparam I_L_TYPE    = 7'b00000_11; //Immediate-load
   localparam S_TYPE      = 7'b01000_11;
   localparam S_B_TYPE    = 7'b11000_11; //S-Branch
-  localparam J_TYPE      = 7'b11011_11; //S-Branch
-  localparam I_JALR_TYPE = 7'b11001_11; //S-Branch
-  localparam LUI_TYPE    = 7'b01101_11;
-  localparam AUIPC_TYPE  = 7'b00101_11;
+  localparam J_TYPE      = 7'b11011_11; 
+  localparam I_JALR_TYPE = 7'b11001_11; 
+  localparam LUI_TYPE    = 7'b01101_11; //U-Type, but it has its own OPCODE
+  localparam AUIPC_TYPE  = 7'b00101_11; //U-Type, but it has its own OPCODE
 
 
   localparam OPCODE_SIZE = 7;
@@ -81,13 +81,13 @@ package instructions_data_struc;
   //R type FC3 codes
   //=============================
   localparam ADD_o_SUB_FC  = 0;
-  // localparam SUB_FC     = 0;
+  localparam SUB_FC        = 0; //Special case. Uses funct7=0x20
   localparam XOR_FC        = 4;
   localparam OR_FC         = 6;
   localparam AND_FC        = 7;
   localparam SLL_FC        = 1;
   localparam SRL_o_SRA_FC  = 5;
-  // localparam SRA_FC     = 5; 
+  localparam SRA_FC        = 5; //Special case. Uses funct7=0x20
   localparam SLT_FC        = 2;
   localparam SLTU_FC       = 3;
 
@@ -98,8 +98,8 @@ package instructions_data_struc;
   localparam XORI_FC       =4;
   localparam ORI_FC        =6;
   localparam ANDI_FC       =7;
-  localparam SLLI_FC       =1; //Special case
-  localparam SRLI_FC       =5; //Special case
+  localparam SLLI_FC       =1; //Uses IMM=0x00
+  localparam SRLI_FC       =5; //Uses IMM=0x00
   localparam SRAI_FC       =5; //Special case only if IMM= 0x20
   localparam SLTI_FC       =2;
   localparam SLTIU_FC      =3;
@@ -133,13 +133,19 @@ package instructions_data_struc;
   //=============================
   //J type FC3 codes
   //=============================
-  //localparam JAL_FC        =0;
+  localparam JAL_FC        =0; //In the spec is not defined
   localparam JALR_C        =0;
 
   //=============================
   //U type FC3 codes
   //=============================
-  //localparam LUI_FC        =4;
-  //localparam AUIPC_FC      =5;
+  localparam LUI_FC        =0; //In the spec is not defined
+  localparam AUIPC_FC      =0; //In the spec is not defined
+
+  /////////////////////////////////////////////////////////
+  //Instruction available funct7. 
+  // This field is mostly used to distinguish if functions
+  // use the same fct3 for example: ADD-SUB, SRL-SRA.
+  /////////////////////////////////////////////////////////  
 
 endpackage
