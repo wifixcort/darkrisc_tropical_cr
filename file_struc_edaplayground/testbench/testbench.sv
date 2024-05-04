@@ -1,3 +1,4 @@
+`include "instructions_data_struc.sv"
 // `include "stimulus.sv"
 // `include "scoreboard.sv"
 `include "mem_driver.sv"
