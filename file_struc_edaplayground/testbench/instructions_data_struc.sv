@@ -148,4 +148,10 @@ package instructions_data_struc;
   // use the same fct3 for example: ADD-SUB, SRL-SRA.
   /////////////////////////////////////////////////////////  
 
+  //=============================
+  // FC7 codes
+  //=============================
+  localparam h00_FC7		=7'h00;
+  localparam h20_FC7		=7'h20;
+
 endpackage
