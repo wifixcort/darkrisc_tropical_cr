@@ -2,6 +2,7 @@
 `include "../src/config.vh"
 // `include "stimulus.sv"
 // `include "scoreboard.sv"
+`include "../testbench/monitor2.sv"
 `include "../testbench/mem_driver.sv"
 // `include "monitor.sv"
 `include "../testbench/env.sv"

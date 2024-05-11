@@ -6,7 +6,7 @@ work_dir: .
 design_root_dir: ..\..
 simulations:
   - name: riscv-sim
-    options: ' -timescale 1ns/1ps -top TB.top -L DUT -L TB +acc+b -waves darksocv.mxd'
+    options: '-timescale 1ns/1ps -top TB.top -L DUT -L TB +acc+b -waves darksocv.mxd'
 source_files:
   - language: verilog
     path: ../src/config.vh
@@ -55,6 +55,9 @@ source_files:
     library_name: TB
   - language: verilog
     path: ../testbench/scoreboard.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/monitor2.sv
     library_name: TB
   - language: verilog
     path: ../testbench/top.sv
