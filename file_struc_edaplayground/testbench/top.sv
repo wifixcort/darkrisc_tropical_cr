@@ -23,6 +23,14 @@ module top();
         assign reg_dmpd = soc0.core0.REGS[q];
     end
   endgenerate
+  
+  genvar inst;
+  generate
+    for(inst=0; inst<32; inst=inst+1)begin
+        logic [31:0] inst_dmpd;
+        assign inst_dmpd = soc0.MEM[inst];
+    end
+  endgenerate
 
   
   // DUT connection	
