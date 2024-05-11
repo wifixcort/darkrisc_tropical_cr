@@ -10,4 +10,5 @@ boards/*/darksocv.hw
 boards/*/darksocv.ip_user_files
 boards/*/darksocv.sim
 fusesoc.conf
+file_struc_edaplayground/sim/dsim_work/sfe/*
 build

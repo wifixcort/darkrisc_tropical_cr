@@ -240,6 +240,11 @@ class monitor2;
                   SH_FC:begin //sh
 `ifdef __DB_ENABLE__ 
 					 $display("-> func: SH <-");
+					 $display("-> func: store halfword <-");
+					 $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", 0, top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[19:15], top.soc0.core0.XIDATA[24:20], {top.soc0.core0.XIDATA[31:25],top.soc0.core0.XIDATA[11:7]});
+					 $display("                               | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", sb.rx_funct, sb.rs1_val, sb.rs2_val, sb.imm_val);
+					 $display("REG = %h , S1REG = %h", sb.riscv_ref_model.REGS[sb.rs1_val], top.soc0.core0.S1REG);
+					 $display("-----------------------------------------------------------------------------------------------");
 `endif
                   end
                   SW_FC:begin //sw

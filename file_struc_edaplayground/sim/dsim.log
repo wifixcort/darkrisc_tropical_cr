@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-11 10:05:21 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-11 10:05:22 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-11 13:44:58 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-11 13:44:58 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -32,66 +32,61 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [1/7] module $root: 192 functions, 428 basic blocks
-  [3/7] CU scope $unit: 32 functions, 676 basic blocks
-  [4/7] module top: 92 functions, 1749 basic blocks
-  [5/7] package std: 24 functions, 66 basic blocks
-  [7/7] program testcase: 3 functions, 13 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
 Creating environment
 Creating monitor 2
 Instruction number=  0 | op=0100011  |  rs1= 5  |  rs2=21  |  rd=19 |  imm= 216
-Instruction number=  1 | op=0010011  |  rs1=13  |  rs2= 8  |  rd=31 |  imm= 326
-Instruction number=  2 | op=0010011  |  rs1=21  |  rs2=16  |  rd=31 |  imm=3880
-Instruction number=  3 | op=0010011  |  rs1= 5  |  rs2=17  |  rd= 2 |  imm=3488
-Instruction number=  4 | op=0100011  |  rs1=27  |  rs2=11  |  rd=21 |  imm=1968
-Instruction number=  5 | op=0000011  |  rs1=27  |  rs2=10  |  rd= 7 |  imm= 208
-Instruction number=  6 | op=0010011  |  rs1=26  |  rs2=28  |  rd=31 |  imm= 409
-Instruction number=  7 | op=0010011  |  rs1=25  |  rs2= 7  |  rd=11 |  imm= 903
-Instruction number=  8 | op=0100011  |  rs1=26  |  rs2=24  |  rd=16 |  imm=3152
-Instruction number=  9 | op=0000011  |  rs1=10  |  rs2=16  |  rd=14 |  imm=2736
-Instruction number= 10 | op=0100011  |  rs1=27  |  rs2=27  |  rd= 3 |  imm= 608
-Instruction number= 11 | op=0000011  |  rs1=26  |  rs2=20  |  rd= 7 |  imm=2992
-Instruction number= 12 | op=0100011  |  rs1=29  |  rs2=28  |  rd=14 |  imm=3552
-Instruction number= 13 | op=0100011  |  rs1= 7  |  rs2= 3  |  rd= 8 |  imm=3936
-Instruction number= 14 | op=0100011  |  rs1=31  |  rs2=16  |  rd= 5 |  imm=1904
-Instruction number= 15 | op=0000011  |  rs1=18  |  rs2=12  |  rd=26 |  imm=1696
-Instruction number= 16 | op=0100011  |  rs1=27  |  rs2= 8  |  rd=26 |  imm=1504
-Instruction number= 17 | op=0010011  |  rs1=11  |  rs2=28  |  rd= 8 |  imm=2501
-Instruction number= 18 | op=0100011  |  rs1= 1  |  rs2=13  |  rd=25 |  imm= 640
-Instruction number= 19 | op=0100011  |  rs1= 8  |  rs2=28  |  rd=23 |  imm=1696
-Instruction number= 20 | op=0100011  |  rs1=18  |  rs2= 7  |  rd=27 |  imm=2512
-Instruction number= 21 | op=0000011  |  rs1=31  |  rs2=15  |  rd= 7 |  imm=2544
-Instruction number= 22 | op=0000011  |  rs1=11  |  rs2=20  |  rd= 8 |  imm=3984
-Instruction number= 23 | op=0000011  |  rs1=23  |  rs2= 1  |  rd= 7 |  imm=1824
-Instruction number= 24 | op=0000011  |  rs1= 8  |  rs2=24  |  rd=29 |  imm=3832
-Instruction number= 25 | op=0100011  |  rs1=20  |  rs2=16  |  rd=16 |  imm=1232
-Instruction number= 26 | op=0000011  |  rs1=28  |  rs2=18  |  rd=20 |  imm=2624
-Instruction number= 27 | op=0010011  |  rs1= 4  |  rs2=15  |  rd= 4 |  imm=1435
-Instruction number= 28 | op=0000011  |  rs1=12  |  rs2=25  |  rd= 4 |  imm=3840
-Instruction number= 29 | op=0100011  |  rs1= 1  |  rs2=16  |  rd=10 |  imm=  32
-Instruction number= 30 | op=0010011  |  rs1= 8  |  rs2= 3  |  rd=31 |  imm=3672
-Instruction number= 31 | op=0010011  |  rs1=30  |  rs2=18  |  rd=27 |  imm= 715
-Instruction number= 32 | op=0100011  |  rs1= 7  |  rs2= 2  |  rd=27 |  imm= 200
-Instruction number= 33 | op=0000011  |  rs1=30  |  rs2=25  |  rd=27 |  imm= 832
-Instruction number= 34 | op=0000011  |  rs1=10  |  rs2= 4  |  rd=15 |  imm= 512
-Instruction number= 35 | op=0010011  |  rs1= 3  |  rs2=22  |  rd=29 |  imm=1270
-Instruction number= 36 | op=0010011  |  rs1= 4  |  rs2= 6  |  rd=22 |  imm= 989
-Instruction number= 37 | op=0010011  |  rs1=25  |  rs2= 5  |  rd= 4 |  imm=2916
-Instruction number= 38 | op=0010011  |  rs1=27  |  rs2= 4  |  rd=16 |  imm=2122
-Instruction number= 39 | op=0100011  |  rs1=26  |  rs2=31  |  rd=15 |  imm=4000
-Instruction number= 40 | op=0000011  |  rs1=13  |  rs2= 2  |  rd=18 |  imm= 608
-Instruction number= 41 | op=0100011  |  rs1=13  |  rs2= 8  |  rd= 1 |  imm=3200
-Instruction number= 42 | op=0000011  |  rs1=13  |  rs2=27  |  rd=15 |  imm=1344
-Instruction number= 43 | op=0100011  |  rs1=23  |  rs2= 1  |  rd= 7 |  imm= 608
-Instruction number= 44 | op=0000011  |  rs1=25  |  rs2=24  |  rd=24 |  imm= 768
-Instruction number= 45 | op=0000011  |  rs1= 9  |  rs2=10  |  rd= 2 |  imm=4032
-Instruction number= 46 | op=0100011  |  rs1=15  |  rs2=21  |  rd=15 |  imm=2656
-Instruction number= 47 | op=0100011  |  rs1= 1  |  rs2=21  |  rd=26 |  imm=1952
-Instruction number= 48 | op=0010011  |  rs1=26  |  rs2=22  |  rd=20 |  imm=3365
-Instruction number= 49 | op=0000011  |  rs1=22  |  rs2= 1  |  rd= 3 |  imm= 128
+Instruction number=  1 | op=0000011  |  rs1= 4  |  rs2=10  |  rd=27 |  imm=1232
+Instruction number=  2 | op=0110011  |  rs1=17  |  rs2=15  |  rd= 2 |  imm=          0
+Instruction number=  3 | op=0100011  |  rs1=31  |  rs2= 1  |  rd=26 |  imm=3536
+Instruction number=  4 | op=0110011  |  rs1=17  |  rs2=21  |  rd= 2 |  imm=          0
+Instruction number=  5 | op=0000011  |  rs1=24  |  rs2=16  |  rd=27 |  imm=2384
+Instruction number=  6 | op=0010011  |  rs1=30  |  rs2=25  |  rd=30 |  imm=2552
+Instruction number=  7 | op=0110011  |  rs1=24  |  rs2=25  |  rd=29 |  imm=          0
+Instruction number=  8 | op=0010011  |  rs1=12  |  rs2= 6  |  rd=20 |  imm=2389
+Instruction number=  9 | op=0100011  |  rs1=28  |  rs2=22  |  rd= 7 |  imm=3184
+Instruction number= 10 | op=0010011  |  rs1= 1  |  rs2=22  |  rd=31 |  imm=  27
+Instruction number= 11 | op=0010011  |  rs1= 2  |  rs2=10  |  rd=12 |  imm= 295
+Instruction number= 12 | op=0100011  |  rs1=31  |  rs2=28  |  rd=19 |  imm= 160
+Instruction number= 13 | op=0110011  |  rs1= 2  |  rs2=26  |  rd=10 |  imm=          0
+Instruction number= 14 | op=0000011  |  rs1=24  |  rs2=19  |  rd=20 |  imm=1472
+Instruction number= 15 | op=0000011  |  rs1= 9  |  rs2= 8  |  rd= 4 |  imm= 160
+Instruction number= 16 | op=0100011  |  rs1=13  |  rs2=25  |  rd=28 |  imm=2224
+Instruction number= 17 | op=0010011  |  rs1=18  |  rs2=28  |  rd=15 |  imm=   1
+Instruction number= 18 | op=0010011  |  rs1=31  |  rs2=17  |  rd=17 |  imm=1032
+Instruction number= 19 | op=0010011  |  rs1= 1  |  rs2=16  |  rd= 8 |  imm=3823
+Instruction number= 20 | op=0100011  |  rs1= 6  |  rs2=23  |  rd=25 |  imm=1008
+Instruction number= 21 | op=0110011  |  rs1=18  |  rs2=30  |  rd= 6 |  imm=          0
+Instruction number= 22 | op=0110011  |  rs1=18  |  rs2=12  |  rd= 4 |  imm=          0
+Instruction number= 23 | op=0110011  |  rs1=30  |  rs2=16  |  rd= 9 |  imm=          0
+Instruction number= 24 | op=0100011  |  rs1=15  |  rs2=30  |  rd=29 |  imm=3488
+Instruction number= 25 | op=0010011  |  rs1=20  |  rs2= 2  |  rd= 6 |  imm=1324
+Instruction number= 26 | op=0100011  |  rs1=27  |  rs2=11  |  rd=19 |  imm=2816
+Instruction number= 27 | op=0000011  |  rs1= 7  |  rs2=27  |  rd=16 |  imm=2656
+Instruction number= 28 | op=0000011  |  rs1=10  |  rs2= 8  |  rd=10 |  imm=2064
+Instruction number= 29 | op=0000011  |  rs1= 3  |  rs2=12  |  rd= 4 |  imm=1616
+Instruction number= 30 | op=0000011  |  rs1= 5  |  rs2=14  |  rd=19 |  imm= 192
+Instruction number= 31 | op=0110011  |  rs1=27  |  rs2=10  |  rd=11 |  imm=          0
+Instruction number= 32 | op=0000011  |  rs1=29  |  rs2=16  |  rd=24 |  imm=3168
+Instruction number= 33 | op=0100011  |  rs1=31  |  rs2= 1  |  rd=10 |  imm=1792
+Instruction number= 34 | op=0010011  |  rs1=20  |  rs2=15  |  rd= 4 |  imm=1032
+Instruction number= 35 | op=0100011  |  rs1= 9  |  rs2=14  |  rd=24 |  imm=1440
+Instruction number= 36 | op=0100011  |  rs1= 3  |  rs2=12  |  rd=25 |  imm= 112
+Instruction number= 37 | op=0010011  |  rs1=31  |  rs2=10  |  rd=16 |  imm=   7
+Instruction number= 38 | op=0110011  |  rs1=23  |  rs2=27  |  rd= 6 |  imm=          0
+Instruction number= 39 | op=0100011  |  rs1=14  |  rs2= 2  |  rd=19 |  imm=2176
+Instruction number= 40 | op=0010011  |  rs1= 8  |  rs2=29  |  rd= 5 |  imm=4087
+Instruction number= 41 | op=0000011  |  rs1= 9  |  rs2=24  |  rd=26 |  imm=3816
+Instruction number= 42 | op=0100011  |  rs1= 3  |  rs2=14  |  rd=25 |  imm= 304
+Instruction number= 43 | op=0010011  |  rs1= 8  |  rs2=11  |  rd= 8 |  imm=  10
+Instruction number= 44 | op=0010011  |  rs1=18  |  rs2=22  |  rd= 7 |  imm=1048
+Instruction number= 45 | op=0110011  |  rs1=28  |  rs2=30  |  rd=21 |  imm=          0
+Instruction number= 46 | op=0000011  |  rs1=13  |  rs2= 1  |  rd=24 |  imm=3104
+Instruction number= 47 | op=0100011  |  rs1= 6  |  rs2=30  |  rd= 2 |  imm=1360
+Instruction number= 48 | op=0100011  |  rs1=21  |  rs2=20  |  rd=18 |  imm=2592
+Instruction number= 49 | op=0110011  |  rs1= 5  |  rs2= 4  |  rd=19 |  imm=          0
 =N:[dumpMXD] preparing MXD dump to 'darksocv.mxd'.
 =N:[dump] Dump started at time 0
 =N:Starting event scheduler...
@@ -103,29 +98,35 @@ reset (startup)
 -> S_TYPE: 0100011 <-
 -> func3 = 000 <-
 -> func: SB <-
--> I_TYPE: 0010011 <-
--> func3 = 111 <-
--> func: ANDI <-
--> I_TYPE: 0010011 <-
--> func3 = 111 <-
--> func: ANDI <-
--> I_TYPE: 0010011 <-
--> func3 = 100 <-
--> func: XORI <-
--> S_TYPE: 0100011 <-
--> func3 = 001 <-
--> func: SH <-
 -> I_L_TYPE: 0000011 <-
--> func3 = 101 <-
--> func: LHU <-
+-> func3 = 001 <-
+-> func: LH <-
+-> R : 000004d0<-
+-> I_L_TYPE: 0000011 <-
+-> func3 = 001 <-
+-> func: LH <-
+-> R : 000004d0<-
+-> R_TYPE: 0110011 <-
+-> func3 func7 = 0000000000 <-
+-> func: ADD <-
+-> R : xxxxxxxx<-
+-> S_TYPE: 0100011 <-
+-> func3 = 000 <-
+-> func: SB <-
+-> R_TYPE: 0110011 <-
+-> func3 func7 = 0000000001 <-
+-> func: SLL <-
+-> I_L_TYPE: 0000011 <-
+-> func3 = 001 <-
+-> func: LH <-
 -> R : xxxxxxxx<-
 -> I_L_TYPE: 0000011 <-
--> func3 = 101 <-
--> func: LHU <-
+-> func3 = 001 <-
+-> func: LH <-
 -> R : xxxxxxxx<-
 invalid DATAI@xxxxxxxx at 00000014
 =N:[dumpMXD] closing MXD dump
-=T:Simulation terminated by $stop at time 3655000 (../src/darkriscv.v:540);
+=T:Simulation terminated by $stop at time 3665000 (../src/darkriscv.v:540);
 Run directory: /home/ricardo/Documents/UCR/2024/Verif/darkriscv/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
   Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
