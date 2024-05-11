@@ -23,7 +23,7 @@ class instruction_generator;
         (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
         (opcode == I_TYPE)   -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
         (opcode == I_L_TYPE) -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
-      	(opcode == S_TYPE)	 -> full_inst == {imm[11:0],rs1,funct3,imm[4:0],opcode};
+        (opcode == S_TYPE)	 -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
     }
   
     constraint opcode_cases {
@@ -125,13 +125,25 @@ endclass
           
 class stimulus;
   reg [31:0] MEM [0:2**`MLEN/4-1];
+  logic [7:0] debug_counter;
   
   // fulling the MEM array
-  function void mem_generate();
+  function void mem_generate(logic DBG_HIGH_VERBOSITY=0);
     instruction_generator inst_gen;
     inst_gen = new;
+    debug_counter = 0;
     foreach(MEM[i]) begin
       inst_gen.randomize();
+	    if (DBG_HIGH_VERBOSITY && debug_counter<50) begin //Print only n-instructions
+        // Due to RISCV management of signed numbers, these displays ALWAYS (I think) print positive numbers
+        if (inst_gen.opcode==R_TYPE)begin
+          $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  |  rd=%d |  imm=%d", debug_counter, inst_gen.opcode, inst_gen.rs1, inst_gen.rs2, inst_gen.rd, 0);
+        end
+        else if (inst_gen.opcode==I_TYPE || inst_gen.opcode==I_L_TYPE || inst_gen.opcode==S_TYPE)begin
+          $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  |  rd=%d |  imm=%d", debug_counter, inst_gen.opcode, inst_gen.rs1, inst_gen.rs2, inst_gen.rd, inst_gen.imm[11:0]);
+        end  
+        debug_counter=debug_counter+1;
+      end
       MEM[i] = inst_gen.full_inst;
     end
     //return MEM;
@@ -152,7 +164,7 @@ endclass
   module tb;
     initial begin
       stimulus sti = new();
-      sti.mem_generate();
+      sti.mem_generate(1);
       $display("**************************/n");
       $display("MEM size = %d\n",$size(sti.MEM));
       for (int i = 0 ; i < 50; i++) begin
