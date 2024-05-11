@@ -3,12 +3,16 @@ class mem_driver;
     //====================================================================
     //========================= Metodos ==================================
     //====================================================================
-    reg [31:0] MEM2 [0:2**`MLEN/4-1]; // ro memory 
+    stimulus sti;
+  
+  function new(stimulus sti);
+        this.sti = sti;
+    endfunction
   
     // Load values from .mem file
     task mem_load();
-      $readmemh("darksocv2.mem", MEM2,0); //Esto simula que el estímulo nos creó el arreglo.
-      $writememh("darksocv.mem", MEM2);
+      #2
+      $writememh("darksocv.mem", this.sti.MEM);
       $readmemh("darksocv.mem", top.soc0.MEM,0);      
     endtask
   
