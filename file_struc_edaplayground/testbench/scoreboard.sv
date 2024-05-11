@@ -41,7 +41,7 @@ class scoreboard;
   
   // Function to get values from the queue and procces instruction in our model
   function process_inst();
-    if (!decoded_inst_q.empty()) begin
+    if (decoded_inst_q.size()!=0) begin
       
       // Assign values to internal signals
       decoded_inst_x = decoded_inst_q.pop_front();      

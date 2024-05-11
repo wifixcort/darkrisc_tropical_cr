@@ -17,6 +17,22 @@ module top();
 
   wire TX;
   wire RX = 1;
+  
+  genvar q;
+  generate
+    for(q=0; q<32; q=q+1)begin
+    	logic [31:0] reg_dmpd;
+        assign reg_dmpd = soc0.core0.REGS[q];
+    end
+  endgenerate
+  
+  genvar inst;
+  generate
+    for(inst=0; inst<32; inst=inst+1)begin
+        logic [31:0] inst_dmpd;
+        assign inst_dmpd = soc0.MEM[inst];
+    end
+  endgenerate
 
   
   // DUT connection	
@@ -27,18 +43,23 @@ module top();
         .UART_RXD(RX),
         .UART_TXD(TX)
     );
-  
+  reg [31:0][31:0] REGS_DUMP; //Si no funciona, usar
   initial begin
     `ifdef __ICARUS__
             // $dumpfile("darksocv.vcd"); //Now in dsim simulation config 
             $dumpvars();
 
-        // `ifdef __REGDUMP__
-        //     // for(i=0;i!=`RLEN;i=i+1)
-        //     // begin
-        //     //     $dumpvars(0,soc0.core0.REGS[i]);
-        //     // end
-        // `endif
+        `ifdef __REGDUMP__
+            
+            for(i=0; i<32; i=i+1)
+            begin
+              assign REGS_DUMP = soc0.core0.REGS[i];
+            end    
+//             for(i=0;i!=`RLEN;i=i+1)
+//             begin
+//                 $dumpvars(0,soc0.core0.REGS[i]);
+//             end
+        `endif
     `endif
       
         $display("reset (startup)");

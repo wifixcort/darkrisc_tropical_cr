@@ -33,22 +33,16 @@ source_files:
     path: ../testbench/instructions_data_struc.sv
     library_name: TB
   - language: verilog
-    path: ../testbench/mem_driver.sv
-    library_name: TB
-  - language: verilog
-    path: ../testbench/testbench.sv
-    library_name: TB
-  - language: verilog
-    path: ../testbench/env.sv
-    library_name: TB
-  - language: verilog
-    path: ../testbench/test_case_n.sv
+    path: ../testbench/instr_monitor.sv
     library_name: TB
   - language: verilog
     path: ../testbench/stimulus.sv
     library_name: TB
   - language: verilog
-    path: ../testbench/instr_monitor.sv
+    path: ../testbench/mem_driver.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/test_case_n.sv
     library_name: TB
   - language: verilog
     path: ../testbench/riscv_ref_model.sv
@@ -57,7 +51,13 @@ source_files:
     path: ../testbench/scoreboard.sv
     library_name: TB
   - language: verilog
+    path: ../testbench/env.sv
+    library_name: TB
+  - language: verilog
     path: ../testbench/monitor2.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/testbench.sv
     library_name: TB
   - language: verilog
     path: ../testbench/top.sv
