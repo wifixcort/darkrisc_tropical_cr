@@ -1,16 +1,20 @@
 class environment;
   mem_driver mem_driver;
-  //scoreboard sb;
-  //monitor mntr;
+  stimulus sti;
+  monitor2 mntr2;
   
   function new();
     $display("Creating environment");
     //sb = new();
-    mem_driver = new();
-    //mntr = new(this.ifc_mem,sb);
-    //fork 
-      //Checker
-    //join_none
+    sti = new();
+    mem_driver = new(sti);
+    mntr2 = new();
+    fork
+      sti.mem_generate(1);
+      mem_driver.mem_load();
+      
+      mntr2.check();
+    join_none
   endfunction
            
 endclass
