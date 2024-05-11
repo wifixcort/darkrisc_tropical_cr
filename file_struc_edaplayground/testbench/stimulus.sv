@@ -132,6 +132,10 @@ class stimulus;
     instruction_generator inst_gen;
     inst_gen = new;
     debug_counter = 0;
+    for(int i=0;i!=2**`MLEN/4;i=i+1)
+    begin
+        MEM[i] = 32'd0; //This is completely necessary, otherwise there are x's in the RAM 
+    end
     foreach(MEM[i]) begin
       inst_gen.randomize();
 	    if (DBG_HIGH_VERBOSITY && debug_counter<50) begin //Print only n-instructions
