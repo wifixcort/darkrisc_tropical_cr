@@ -148,7 +148,7 @@ endclass
 
 //Unselect next line for test
 //`define stimulus_tb
-//`ifdef stimulus_tb
+`ifdef stimulus_tb
   module tb;
     initial begin
       stimulus sti = new();
