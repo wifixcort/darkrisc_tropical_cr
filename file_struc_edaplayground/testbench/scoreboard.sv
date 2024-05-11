@@ -1,4 +1,3 @@
-`include "riscv_ref_model.sv"
 class scoreboard;
 
   // Queue for STORING decoded instructions from Monitor

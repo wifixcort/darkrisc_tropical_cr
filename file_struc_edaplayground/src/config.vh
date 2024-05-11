@@ -149,7 +149,7 @@
 // bank because icarus does not dump arrays by default. However, it is possible
 // activate this special option in order to dump the register bank. This
 // makes no effect in other simulators, but it appears as a warning.
-//`define __REGDUMP__
+`define __REGDUMP__
 
 // full harvard architecture:
 //

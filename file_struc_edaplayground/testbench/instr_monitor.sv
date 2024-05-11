@@ -1,5 +1,3 @@
-`include "config.vh"
-//`include "inst_params.svh"
 import instructions_data_struc::*;
 
 class instr_monitor;

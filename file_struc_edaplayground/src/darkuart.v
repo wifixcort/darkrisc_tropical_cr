@@ -29,7 +29,7 @@
  */
 
 `timescale 1ns / 1ps
-`include "config.vh"
+`include "../src/config.vh"
 
 // the following defines are automatically defined:
 /*

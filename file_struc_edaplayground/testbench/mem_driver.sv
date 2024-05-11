@@ -1,3 +1,4 @@
+`include "../src/config.vh"
 class mem_driver;
 
     //====================================================================
@@ -7,9 +8,9 @@ class mem_driver;
   
     // Load values from .mem file
     task mem_load();
-      $readmemh("darksocv2.mem", MEM2,0); //Esto simula que el estímulo nos creó el arreglo.
-      $writememh("darksocv.mem", MEM2);
-      $readmemh("darksocv.mem", top.soc0.MEM,0);      
+      $readmemh("../src/darksocv2.mem", MEM2,0); //Esto simula que el estímulo nos creó el arreglo.
+      $writememh("../src/darksocv.mem", MEM2);
+      $readmemh("../src/darksocv.mem", top.soc0.MEM,0);      
     endtask
   
 endclass 

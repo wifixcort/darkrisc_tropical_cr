@@ -1,3 +1,4 @@
+`include "../testbench/testbench.sv"    
 module top();
 //   reg _clk = 0;
 //   initial // clock generator
@@ -6,9 +7,10 @@ module top();
     reg CLK = 0;
     
     reg RES = 1;
-
-    initial while(1) #(500e6/`BOARD_CK) CLK = !CLK; // clock generator w/ freq defined by config.vh
-  
+    // initial while(1) #(500e6/`BOARD_CK) CLK = !CLK; // clock generator w/ freq defined by config.vh
+    always begin
+        #(500e6/`BOARD_CK) CLK = !CLK;
+    end 
 	integer i;
   
   // Interface
@@ -28,15 +30,15 @@ module top();
   
   initial begin
     `ifdef __ICARUS__
-            $dumpfile("darksocv.vcd");
+            // $dumpfile("darksocv.vcd"); //Now in dsim simulation config 
             $dumpvars();
 
-        `ifdef __REGDUMP__
-            for(i=0;i!=`RLEN;i=i+1)
-            begin
-                $dumpvars(0,soc0.core0.REGS[i]);
-            end
-        `endif
+        // `ifdef __REGDUMP__
+        //     // for(i=0;i!=`RLEN;i=i+1)
+        //     // begin
+        //     //     $dumpvars(0,soc0.core0.REGS[i]);
+        //     // end
+        // `endif
     `endif
       
         $display("reset (startup)");

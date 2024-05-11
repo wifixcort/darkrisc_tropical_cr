@@ -1,6 +1,6 @@
 import instructions_data_struc::*;
 
-`include "config.vh"
+`include "../src/config.vh"
 
 class riscv_ref_model;
   // Signals that store predicted value
