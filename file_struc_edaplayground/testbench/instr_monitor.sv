@@ -150,7 +150,7 @@ class instr_monitor;
             IDATA = `IDATA_PATH;
             if (IADDR!==IADDR_old)begin
                 decodify_instruction(IADDR, IDATA, 0);
-                this.sb.push_instruction(rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
+                this.sb.push_instruction(IADDR, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
                 if (DBG_HIGH_VERBOSITY) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
                     $display("================================");
                     $display("Change on IADDR detected %h", IADDR);
