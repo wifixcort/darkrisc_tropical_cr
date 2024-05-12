@@ -64,7 +64,7 @@ class scoreboard;
       //rx_funct 
     end else begin
       // Queue is empty, handle the case 
-      $display("Queue is empty!");
+      // $display("Queue is empty!");
     end
   endfunction
 endclass

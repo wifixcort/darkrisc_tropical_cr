@@ -2,13 +2,14 @@ import instructions_data_struc::*;
 
 `define __DB_ENABLE__ 1
 class monitor2;
-   //   scoreboard sb;
+    scoreboard sb = new();
    //   virtual intf_cnt intf;
 
-   //   logic [7:0] sb_value;
+   logic [7:0] inst_counter = 0;
    int err_count;
+   int display_one = 1;
 
-   localparam DEBUG_ENABLED = 0;
+   `define __DEBUG_ENABLED__ 0
    function new(); //scoreboard sb
       $display("Creating monitor 2");
 	  //     this.intf = intf;
@@ -16,77 +17,66 @@ class monitor2;
    endfunction
 
    task check();
+	
       err_count = 0;
+	  	
       forever
 		@ (posedge top.CLK) begin
+			sb.process_inst();
+			if(display_one)begin
+				$display("Instrucction number | Instruction |  DUT REG  |  SB REG   | STATUS ");
+				display_one = 0;
+			end
            case (top.soc0.core0.XIDATA[6:0])
              R_TYPE: begin
 `ifdef __DB_ENABLE__
-               	$display("-> R_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-              	$display("-> func3 func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]});
+               	// $display("-> R_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+              	// $display("-> func3 func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.FCT3});
 `endif
-				case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
+				case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.FCT3})
                   9'h000: begin //add
-`ifdef __DB_ENABLE__
-                  	 $display("-> func: ADD <-");
-                  	 $display("-> R : %h<-", top.soc0.core0.DADDR);
-`endif
+                  	//  $display("-> func: ADD <-");
+					cp_mem_w("add", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   9'h100: begin //sub 
-`ifdef __DB_ENABLE__
-                  	 $display("-> func: SUB <-");
-`endif
-					 //                   if(sb.procec.rx_func == SUB)begin
-					 //                     if(sb.rd == ADDDR)begin
-					 //                       ok
-					 //                     end else begin
-					 //                       $display("Error FX code R_TYPE SUB");
-					 //                     end
-					 //                   end
+                  	//  $display("-> func: SUB <-");
+					cp_mem_w("sbu", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   SLL_FC: begin //sll
-`ifdef __DB_ENABLE__
-                     $display("-> func: SLL <-");
-`endif
+                    //  $display("-> func: SLL <-");
+					cp_mem_w("sll", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   SLT_FC: begin //slt
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: SLT <-");
-`endif
+					//  $display("-> func: SLT <-");
+					cp_mem_w("slt", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   SLTU_FC: begin //sltu
-`ifdef __DB_ENABLE__
-					 $display("-> func: SLTU <-");
-`endif
+					//  $display("-> func: SLTU <-");
+					cp_mem_w("sltu", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   XOR_FC: begin //xor
-`ifdef __DB_ENABLE__
-					 $display("-> func: XOR <-");
-`endif
+					//  $display("-> func: XOR <-");
+					cp_mem_w("xor", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   9'h005: begin //srl
-`ifdef __DB_ENABLE__
-					 $display("-> func: SRL <-");
-`endif
+					//  $display("-> func: SRL <-");
+					cp_mem_w("srl", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   9'h105: begin //sra
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: SRA <-");
-`endif
+					//  $display("-> func: SRA <-");
+					cp_mem_w("sra", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   OR_FC: begin //or
-`ifdef __DB_ENABLE__
-                 	 $display("-> func: OR <-");
-`endif
+                 	//  $display("-> func: OR <-");
+					cp_mem_w("or", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   AND_FC: begin //and
-`ifdef __DB_ENABLE__
-					 $display("-> func: AND <-");
-`endif
+					//  $display("-> func: AND <-");
+					cp_mem_w("and", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   default: begin
 `ifdef __DB_ENABLE__ 
-					 $display("**** Instruccion type R not found");
+					 $display("**** Instruccion type R not found = %b****", top.soc0.core0.XIDATA);
 `endif
 					 err_count++;
                   end
@@ -94,67 +84,57 @@ class monitor2;
              end
              I_TYPE: begin                  
 `ifdef __DB_ENABLE__ 
-				$display("-> I_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> I_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
 `endif
-				if(top.soc0.core0.XIDATA[14:12] == 3'b101) begin
+				if(top.soc0.core0.FCT3 == 3'b101) begin
                    case(top.soc0.core0.XIDATA[31:25])
 					 9'h000: begin //srli
-`ifdef __DB_ENABLE__ 
-						$display("-> func3 + func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]});
-						$display("-> func: SRLI <-");
-`endif
+						// $display("-> func3 + func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.FCT3});
+						// $display("-> func: SRLI <-");
+						cp_mem_w("srli", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 9'h020: begin //srai
-`ifdef __DB_ENABLE__ 
-						$display("-> func3 + func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]});
-						$display("-> func: SRAI <-");
-`endif
+						// $display("-> func3 + func7 = %b <-", {top.soc0.core0.XIDATA[31:25], top.soc0.core0.FCT3});
+						// $display("-> func: SRAI <-");
+						cp_mem_w("srai", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 default: begin
 `ifdef __DB_ENABLE__ 
-						$display("**** Instruccion type I not found ****");
+						$display("**** Instruccion type I not found = %b****", top.soc0.core0.XIDATA);
 `endif
 						err_count++;
 					 end
                    endcase
 				end else begin
-`ifdef __DB_ENABLE__ 
-				   $display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
-`endif
-                   case(top.soc0.core0.XIDATA[14:12])
+                   case(top.soc0.core0.FCT3)
 					 ADDI_FC:begin //addi
-`ifdef __DB_ENABLE__ 
-						$display("-> func: ADDI <-");
-`endif
+						// rd = rs1 + imm
+						// Check and print Add Intermediate instrucction
+						cp_mem_w("addi", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 SLTI_FC:begin //slti
-`ifdef __DB_ENABLE__ 
-						$display("-> func: SLTI <-");
-`endif
+						// $display("-> func: SLTI <-");
+						cp_mem_bb("slti", top.soc0.core0.REGS[top.soc0.core0.DPTR][0], sb.ref_model.REGS[sb.rdd_val][0]);
 					 end
 					 SLTIU_FC:begin //sltiu
-`ifdef __DB_ENABLE__ 
-						$display("-> func: SLTIU <-");
-`endif                       
+						cp_mem_bb("sltiu", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
+						// $display("-> func: SLTIU <-");
 					 end
 					 XORI_FC:begin //xori
-`ifdef __DB_ENABLE__ 
-						$display("-> func: XORI <-");
-`endif
+						// $display("-> func: XORI <-");
+						cp_mem_w("xori", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 ORI_FC:begin //ori
-`ifdef __DB_ENABLE__ 
-						$display("-> func: ORI <-");
-`endif
+						// $display("-> func: ORI <-");
+						cp_mem_w("ori", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 ANDI_FC:begin //andi
-`ifdef __DB_ENABLE__ 
-						$display("-> func: ANDI <-");
-`endif
+						// $display("-> func: ANDI <-");
+						cp_mem_w("andi", top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
 					 end
 					 default: begin
 `ifdef __DB_ENABLE__ 
-						$display("**** Instruccion type I not found ****");
+						$display("**** Instruccion type I not found = %b****", top.soc0.core0.XIDATA);
 `endif
 						err_count++;
 					 end
@@ -165,43 +145,39 @@ class monitor2;
              end	
              I_L_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> I_L_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-				$display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
+				// $display("-> I_L_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> func3 = %b <-", top.soc0.core0.FCT3);
 `endif
-				case(top.soc0.core0.XIDATA[14:12])
+				case(top.soc0.core0.FCT3)
                   LB_FC: begin //lb
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: LB <-");
-					 $display("-> R : %h<-", top.soc0.core0.DADDR);
-`endif
+					//  $display("-> func: LB <-");
+					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
+					 cp_mem_b("lb" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][7:0], sb.ref_model.REGS[sb.rdd_val][7:0]);
                   end
                   LH_FC: begin //lh
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: LH <-");
-					 $display("-> R : %h<-", top.soc0.core0.DADDR);
-`endif
+					//  $display("-> func: LH <-");
+					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
+					cp_mem_h("lh" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][15:0], sb.ref_model.REGS[sb.rdd_val][15:0]);
                   end
                   LW_FC: begin //lw
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: LW <-");
-					 $display("-> R : %h<-", top.soc0.core0.DADDR);
-`endif
+					//  $display("-> func: LW <-");
+					 cp_mem_w("lw" ,top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
                   end
                   LBU_FC: begin //lbu
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: LBU <-");
-					 $display("-> R : %h<-", top.soc0.core0.DADDR);
+					//  $display("-> func: LBU <-");
+					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
 `endif
                   end
                   LHU_FC: begin //lhu
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: LHU <-");
-					 $display("-> R : %h<-", top.soc0.core0.DADDR);
+					//  $display("-> func: LHU <-");
+					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
 `endif
                   end
                   default: begin
 `ifdef __DB_ENABLE__ 
-					 $display("**** Instruccion type I_L not found ****");
+					 $display("**** Instruccion type I_L not found = %b****", top.soc0.core0.XIDATA);
 `endif
 					 err_count++;
                   end
@@ -209,18 +185,18 @@ class monitor2;
              end
              I_JALR_TYPE: begin //jalr
 `ifdef __DB_ENABLE__ 
-				$display("-> I_JALR_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-				$display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
+				// $display("-> I_JALR_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> func3 = %b <-", top.soc0.core0.FCT3);
 `endif
-				case(top.soc0.core0.XIDATA[14:12])
+				case(top.soc0.core0.FCT3)
                   JALR_C: begin 
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: JALR <-");
+					//  $display("-> func: JALR <-");
 `endif
                   end
                   default: begin
 `ifdef __DB_ENABLE__ 
-					 $display("**** Instruccion type I_JALR not found ****");
+					 $display("**** Instruccion type I_JALR not found = %b****", top.soc0.core0.XIDATA);
 `endif
 					 err_count++;
                   end
@@ -228,33 +204,30 @@ class monitor2;
              end	
              S_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> S_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-				$display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
+				// $display("-> S_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> func3 = %b <-", top.soc0.core0.FCT3);
 `endif
-                case(top.soc0.core0.XIDATA[14:12])
+                case(top.soc0.core0.FCT3)
                   SB_FC:begin //sb
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: SB <-");
-`endif
+					//  s_and_b_print(0, top.soc0.core0.XIDATA[6:0], top.soc0.core0.S1PTR, 
+					 			// top.soc0.core0.S2PTR, 0, {top.soc0.core0.XIDATA[31:25],top.soc0.core0.XIDATA[11:7]});
+					//  $display("                               | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", sb.rx_funct, sb.rs1_val, sb.rs2_val, sb.imm_val);
+					// Check and print Store Byte instrucction
+					cp_mem_b("sb", top.soc0.core0.DATAO[7:0], sb.ref_model.DATAO[7:0]);					 
                   end
                   SH_FC:begin //sh
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: SH <-");
-					 $display("-> func: store halfword <-");
-					 $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", 0, top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[19:15], top.soc0.core0.XIDATA[24:20], {top.soc0.core0.XIDATA[31:25],top.soc0.core0.XIDATA[11:7]});
-					 $display("                               | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", sb.rx_funct, sb.rs1_val, sb.rs2_val, sb.imm_val);
-					 $display("REG = %h , S1REG = %h", sb.riscv_ref_model.REGS[sb.rs1_val], top.soc0.core0.S1REG);
-					 $display("-----------------------------------------------------------------------------------------------");
-`endif
-                  end
+					// Check and print Store halfword instrucction 
+					// cp_mem_h("sh", top.soc0.core0.REGS[{top.soc0.core0.XIDATA[31:25],top.soc0.core0.XIDATA[11:7]}+top.soc0.core0.S1REG][15:0], sb.ref_model.REGS[sb.imm_val+sb.rs1_val][15:0]);
+					cp_mem_h("sh", top.soc0.core0.DATAO[15:0], sb.ref_model.DATAO[15:0]);
+					
+				end
                   SW_FC:begin //sw
-`ifdef __DB_ENABLE__ 
-					 $display("-> func: SW <-");
-`endif
+					// Check and print Store word instrucction
+					cp_mem_w("sw", top.soc0.core0.DATAO, sb.ref_model.DATAO);
                   end
                   default: begin
 `ifdef __DB_ENABLE__ 
-					 $display("**** Instrucciontype S not found ****");
+					 $display("**** Instrucciontype S not found = %b****", top.soc0.core0.XIDATA);
 `endif
                      err_count++;
                   end
@@ -262,43 +235,43 @@ class monitor2;
              end	
              S_B_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> S_B_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-				$display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
+				// $display("-> S_B_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> func3 = %b <-", top.soc0.core0.FCT3);
 `endif
-				case(top.soc0.core0.XIDATA[14:12])
+				case(top.soc0.core0.FCT3)
                   BEQ_FC: begin //beq
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BEQ <-");
+					//  $display("-> func: BEQ <-");
 `endif
                   end
                   BNE_FC: begin //bne
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BNE <-");
+					//  $display("-> func: BNE <-");
 `endif
                   end
                   BLT_FC: begin //blt
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BLT <-");
+					//  $display("-> func: BLT <-");
 `endif
                   end
                   BGE_FC: begin //beg
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BEG <-");
+					//  $display("-> func: BEG <-");
 `endif
                   end
                   BLTU_FC: begin //bltu
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BLTU <-");
+					//  $display("-> func: BLTU <-");
 `endif
                   end
                   BGEU_FC: begin //bgeu
 `ifdef __DB_ENABLE__ 
-					 $display("-> func: BGEU <-");
+					//  $display("-> func: BGEU <-");
 `endif
                   end
                   default: begin
 `ifdef __DB_ENABLE__ 
-					 $display("**** Instruccion type S_B not found ****");
+					 $display("**** Instruccion type S_B not found = %b****", top.soc0.core0.XIDATA);
 `endif
 					 err_count++;
                   end
@@ -306,23 +279,21 @@ class monitor2;
              end	
              J_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> J_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
-				$display("-> func3 = %b <-", top.soc0.core0.XIDATA[14:12]);
-				$display("-> func: JAL <-");
+				// $display("-> J_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> func3 = %b <-", top.soc0.core0.FCT3);
+				// $display("-> func: JAL <-");
 `endif
              end
              LUI_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> LUI_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> LUI_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
 `endif
              end	
              AUIPC_TYPE: begin
 `ifdef __DB_ENABLE__ 
-				$display("-> AUIPC_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
+				// $display("-> AUIPC_TYPE: %b <-", top.soc0.core0.XIDATA[6:0]);
 `endif
              end	
-             
-           	 //2'b01: out = b;
              
              default: begin
 				if(top.soc0.core0.XIDATA != 0) begin
@@ -334,28 +305,57 @@ class monitor2;
 				end
              end
            endcase     
-		   //       begin
-		   //         @ (posedge top.CLK)
-           
-		   //         if (top.soc0.core0.XIDATA[6:0] == I_TYPE)
-		   //         begin
-		   //           `ifdef __DB_ENABLE__ 
-		   //		   $display("-> OPCODE: %h == %h <-", top.soc0.core0.OPCODE, top.soc0.core0.XIDATA[6:0]);
-		   //		   $display("PC: %h", top.soc0.core0.REGS[1]);
-		   // `endif
-		   //         sb_value = sb.store.pop_back();
-		   //           if( sb_value != intf.data_out) begin // Get expected value from scoreboard and compare with DUT output
-		   //             `ifdef __DB_ENABLE__ 
-		   //		   $display(" * ERROR * DUT data is %b :: SB data is %b ", intf.data_out,sb_value );
-		   //`endif
-		   //             err_count++;
-		   //           end
-		   //           else begin
-		   //             `ifdef __DB_ENABLE__ 
-		   //		   $display(" * PASS * DUT data is %b :: SB data is %b ", intf.data_out,sb_value );
-		   //`endif
-		   //           end
-		   //         end
 		end
    endtask
+   task s_and_b_print(input logic [7:0]num, input logic [6:0]opcode, input logic [4:0]rs1, input logic [4:0]rs2, input logic [4:0]rd, input logic [20:0]imm);
+	$display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", num, opcode, rs1, rs2, imm);
+	$display("-----------------------------------------------------------------------------------------------");
+   endtask
+
+    task cp_mem_b(string inst ,input logic [7:0] risc_mem, input logic [7:0] sb_mem);
+		if(risc_mem != sb_mem)begin
+			$display("        %d         |      %s     |    %h     |    %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+			// $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			err_count++;
+		end else begin
+			// $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s     |    %h     |    %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		end
+		inst_counter++;
+	endtask 	
+	task cp_mem_h(string inst ,input logic [15:0] risc_mem, input logic [15:0] sb_mem);
+		if(risc_mem != sb_mem)begin
+			// $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s     |   %h    |   %h    | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+			err_count++;
+		end else begin
+			// $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s     |   %h    |   %h    | %s , %h", inst_counter, inst, risc_mem, sb_mem, "PASS", top.soc0.core0.DPTR);
+		end
+		inst_counter++;
+	endtask
+	task cp_mem_bb( string inst,input logic risc_mem, input logic sb_mem);
+		if(risc_mem != sb_mem)begin
+			// $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s     |   %h   |   %h   | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+			err_count++;
+		end else begin
+			// $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s     |   %h   |   %h   | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		end
+		inst_counter++;
+	endtask
+	task cp_mem_w( string inst,input logic [32:0] risc_mem, input logic [32:0] sb_mem);
+		if(risc_mem != sb_mem)begin
+			// $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s    | %h | %h | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+			err_count++;
+		end else begin
+			// $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
+			$display("        %d         |      %s    | %h | %h | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		end
+		inst_counter++;
+		
+	endtask
+
 endclass
