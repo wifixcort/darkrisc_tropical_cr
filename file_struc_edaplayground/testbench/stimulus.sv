@@ -5,7 +5,7 @@ import instructions_data_struc::*;
 
 class instruction_generator;
   	
-	rand bit [31:0] full_inst;
+    rand bit [31:0] full_inst;
     rand bit [6:0]  opcode;
     rand bit [4:0]  rs1;
     rand bit [4:0]  rs2;
@@ -23,7 +23,7 @@ class instruction_generator;
         (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
         (opcode == I_TYPE)   -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
         (opcode == I_L_TYPE) -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
-        (opcode == S_TYPE)	 -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
+        (opcode == S_TYPE)   -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
     }
   
     constraint opcode_cases {
@@ -90,11 +90,16 @@ class instruction_generator;
         }
     }
   
-  	// x0 is always 0
-    constraint no_reg_x0 {
-        rs1 != 0;
+  	// x0 is always 0. 
+  	// regs for use -> 1 to 15
+    constraint regs {
+      	solve rs1, rs2, rd before full_inst;
+      	rs1 != 0;
         rs2 != 0;
-        rd  != 0;
+      	rd  != 0;
+        rs1 < 16;
+        rs2 < 16;
+        rd  < 16;
     }
 
     // offset should be multiple of data size of operand
