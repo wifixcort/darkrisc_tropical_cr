@@ -152,16 +152,19 @@ class monitor2;
                   LB_FC: begin //lb
 					//  $display("-> func: LB <-");
 					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
-					 cp_mem_b("lb" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][7:0], sb.ref_model.REGS[sb.rdd_val][7:0]);
+					//  cp_mem_b("lb" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][7:0], sb.ref_model.REGS[sb.rdd_val][7:0]);
+					cp_mem_b("lb" ,top.soc0.core0.DATAI[7:0], sb.ref_model.DATAI[7:0]);
                   end
                   LH_FC: begin //lh
 					//  $display("-> func: LH <-");
 					//  $display("-> R : %h<-", top.soc0.core0.DADDR);
-					cp_mem_h("lh" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][15:0], sb.ref_model.REGS[sb.rdd_val][15:0]);
+					// cp_mem_h("lh" ,top.soc0.core0.REGS[top.soc0.core0.DPTR][15:0], sb.ref_model.REGS[sb.rdd_val][15:0]);
+					cp_mem_h("lh" ,top.soc0.core0.DATAI[15:0], sb.ref_model.DATAI[15:0]);
                   end
                   LW_FC: begin //lw
 					//  $display("-> func: LW <-");
-					 cp_mem_w("lw" ,top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
+					// cp_mem_w("lw" ,top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.ref_model.REGS[sb.rdd_val]);
+					cp_mem_w("lw" ,top.soc0.core0.DATAI, sb.ref_model.DATAI);
                   end
                   LBU_FC: begin //lbu
 `ifdef __DB_ENABLE__ 
