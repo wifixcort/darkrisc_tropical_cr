@@ -239,6 +239,7 @@ class riscv_ref_model;
     
     // Update Predicted Values
     pc_val_upd  = pc_val;
+
     rs1_val_upd = rs1_val;
     rs2_val_upd = rs2_val;
     rdd_val_upd = rdd_val;
