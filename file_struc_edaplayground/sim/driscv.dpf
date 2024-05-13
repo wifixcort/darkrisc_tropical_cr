@@ -9,6 +9,9 @@ simulations:
     options: '-timescale 1ns/1ps -top TB.top -L DUT -L TB +acc+b -waves darksocv.mxd'
 source_files:
   - language: verilog
+    path: ../testbench/testbench.sv
+    library_name: TB
+  - language: verilog
     path: ../src/config.vh
     library_name: DUT
   - language: verilog
@@ -33,9 +36,6 @@ source_files:
     path: ../testbench/instructions_data_struc.sv
     library_name: TB
   - language: verilog
-    path: ../testbench/instr_monitor.sv
-    library_name: TB
-  - language: verilog
     path: ../testbench/stimulus.sv
     library_name: TB
   - language: verilog
@@ -51,13 +51,13 @@ source_files:
     path: ../testbench/scoreboard.sv
     library_name: TB
   - language: verilog
+    path: ../testbench/instr_monitor.sv
+    library_name: TB
+  - language: verilog
     path: ../testbench/env.sv
     library_name: TB
   - language: verilog
     path: ../testbench/monitor2.sv
-    library_name: TB
-  - language: verilog
-    path: ../testbench/testbench.sv
     library_name: TB
   - language: verilog
     path: ../testbench/top.sv

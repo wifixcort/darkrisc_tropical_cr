@@ -3,6 +3,7 @@
 `include "../testbench/stimulus.sv"
 `include "../testbench/riscv_ref_model.sv"
 `include "../testbench/scoreboard.sv"
+`include "../testbench/instr_monitor.sv"
 `include "../testbench/monitor2.sv"
 `include "../testbench/mem_driver.sv"
 // `include "monitor.sv"

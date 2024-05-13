@@ -29,7 +29,7 @@ module top();
   genvar inst;
   generate
     // for(inst=(2**`MLEN/4)-5; inst<(2**`MLEN/4); inst=inst+1)begin
-    for(inst=0; inst<10; inst=inst+1)begin
+    for(inst=0; inst<20; inst=inst+1)begin
         logic [31:0] inst_dmpd;
         assign inst_dmpd = soc0.MEM[inst];
     end
