@@ -23,7 +23,8 @@ class riscv_ref_model;
   
   // Constructor
   function new();
-    //pc_val_upd  = '0;
+    pc_val_upd  = '0;
+    pc_val_in   = '0;
     rs1_val_upd = '0;
     rs2_val_upd = '0;
     rdd_val_upd = '0;
