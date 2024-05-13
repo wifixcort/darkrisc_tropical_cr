@@ -5,6 +5,7 @@ import instructions_data_struc::*;
 class riscv_ref_model;
   // Signals that store predicted value
   logic [31:0] pc_val_upd;
+  logic [31:0] pc_val_in;
   logic [4:0] rs1_val_upd;
   logic [4:0] rs2_val_upd;
   logic [4:0] rdd_val_upd;
@@ -23,7 +24,8 @@ class riscv_ref_model;
   
   // Constructor
   function new();
-    //pc_val_upd  = '0;
+    pc_val_upd  = '0;
+    pc_val_in   = '0;
     rs1_val_upd = '0;
     rs2_val_upd = '0;
     rdd_val_upd = '0;
