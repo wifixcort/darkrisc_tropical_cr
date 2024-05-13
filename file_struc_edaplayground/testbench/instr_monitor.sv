@@ -1,6 +1,8 @@
-`include "config.vh"
-//`include "inst_params.svh"
 import instructions_data_struc::*;
+
+`define IDATA_PATH top.soc0.core0.IDATA
+`define IADDR_PATH top.soc0.core0.IADDR
+`define CLK_PATH top.soc0.core0.CLK
 
 class instr_monitor;
 
@@ -14,13 +16,18 @@ class instr_monitor;
     logic [6:0]     opcode;
 
     logic [2:0]     fct3;
-    logic [6:0]     fct7;  
+    logic [6:0]     fct7;
+  
+    logic [31:0]    IADDR, IADDR_old;
+    logic [31:0]    IDATA;
+
+    scoreboard      sb;
 
     //====================================================================
     //========================= Metodos ==================================
     //====================================================================
     // Construct driver
-    function new();
+    function new(scoreboard sb);
         rx_funct = '0;
         pc_val  = '0;
         imm_val = '0;
@@ -31,10 +38,7 @@ class instr_monitor;
         opcode  = '0;
         fct3    = '0;
         fct7    = '0;
-    endfunction
-
-    function test_printer();
-        $display("Test_printer");
+        this.sb = sb;
     endfunction
 
     function decodify_instruction(reg [31:0] rx_pc_val, reg [31:0] rx_instruction, reg DBG_HIGH_VERBOSITY=0);
@@ -51,14 +55,14 @@ class instr_monitor;
         //Build immediate value, which may be used for instruction decoding.
         case (opcode)
             R_TYPE      : imm_val = '0;
-            I_TYPE      : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
-            I_L_TYPE    : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
-            I_JALR_TYPE : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
-            S_TYPE      : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:25] , rx_instruction[11:7]}; //Concatenates sign, imm[11:5] and imm[4:0]
-            S_B_TYPE    : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31] , rx_instruction[7] , rx_instruction[30:25] , rx_instruction[11:8] , 1'b0}; //Concatenates: imm[12], imm[11], imm[10:5] imm[4:1]
-            LUI_TYPE    : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:12]}; //The program sees this as correct, but consider that U types 12 LSB set to 0
-            AUIPC_TYPE  : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31:12]}; //The program sees this as correct, but consider that U types 12 LSB set to 0
-            J_TYPE      : imm_val = {(rx_instruction[31])? '1 : '0, rx_instruction[31], rx_instruction[19:12], rx_instruction[20] , rx_instruction[30:21] , 1'b0}; //Concatenates imm[20], imm[19:12], imm[11], imm[10:1]
+            I_TYPE      : imm_val = { { 9{(rx_instruction[31])}} , rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
+            I_L_TYPE    : imm_val = { { 9{(rx_instruction[31])}} , rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
+            I_JALR_TYPE : imm_val = { { 9{(rx_instruction[31])}} , rx_instruction[31:20]}; //Concatenates sign, imm[11:0]
+            S_TYPE      : imm_val = { { 9{(rx_instruction[31])}} , rx_instruction[31:25] , rx_instruction[11:7]}; //Concatenates sign, imm[11:5] and imm[4:0]
+            S_B_TYPE    : imm_val = { { 8{(rx_instruction[31])}} , rx_instruction[31] , rx_instruction[7] , rx_instruction[30:25] , rx_instruction[11:8] , 1'b0}; //Concatenates: imm[12], imm[11], imm[10:5] imm[4:1]
+            LUI_TYPE    : imm_val = { { 1{(rx_instruction[31])}} , rx_instruction[31:12]}; //The program sees this as correct, but consider that U types 12 LSB set to 0
+            AUIPC_TYPE  : imm_val = { { 1{(rx_instruction[31])}} , rx_instruction[31:12]}; //The program sees this as correct, but consider that U types 12 LSB set to 0
+            J_TYPE      : imm_val = { { 1{(rx_instruction[31])}} , rx_instruction[31], rx_instruction[19:12], rx_instruction[20] , rx_instruction[30:21] , 1'b0}; //Concatenates imm[20], imm[19:12], imm[11], imm[10:1]
             default     : imm_val = '0;
         endcase
 
@@ -138,6 +142,26 @@ class instr_monitor;
         end
 
     endfunction //decodify_instruction
+
+  task automatic check (logic DBG_HIGH_VERBOSITY=1);
+        forever begin
+            @(posedge `CLK_PATH);
+            IADDR = `IADDR_PATH;
+            IDATA = `IDATA_PATH;
+            if (IADDR!==IADDR_old)begin
+                decodify_instruction(IADDR, IDATA, 0);
+                this.sb.push_instruction(IADDR, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
+                if (DBG_HIGH_VERBOSITY) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
+                    $display("================================");
+                    $display("Change on IADDR detected %h", IADDR);
+                    $display("Current IADDR %h", IADDR);
+                    $display("Previous IADDR %h", IADDR_old);
+                    $display("================================");
+                end
+            end
+            IADDR_old = IADDR;
+        end
+    endtask //automatic
     
 endclass //className
 
