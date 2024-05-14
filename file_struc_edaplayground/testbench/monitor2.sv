@@ -216,33 +216,39 @@ class monitor2;
 		   case(top.soc0.core0.FCT3)
              BEQ_FC: begin //beq
 				// inst_counter++;
+				$display("*********************ALERTA**********************     BEQ    ");
              end
              BNE_FC: begin //bne
 `ifdef __DB_ENABLE__ 
 				//  $display("-> func: BNE <-");
+				$display("*********************ALERTA**********************     BNE    ");
 `endif
              end
              BLT_FC: begin //blt
 `ifdef __DB_ENABLE__ 
 				//  $display("-> func: BLT <-");
+				$display("*********************ALERTA**********************     BLT    ");
 `endif
 				// inst_counter++;
              end
              BGE_FC: begin //beg
 `ifdef __DB_ENABLE__ 
 				//  $display("-> func: BEG <-");
+				$display("*********************ALERTA**********************     BEG    ");
 `endif
 				// inst_counter++;
              end
              BLTU_FC: begin //bltu
 `ifdef __DB_ENABLE__ 
 				//  $display("-> func: BLTU <-");
+				$display("*********************ALERTA**********************     BLTU   ");
 `endif
 				// inst_counter++;
              end
              BGEU_FC: begin //bgeu
 `ifdef __DB_ENABLE__ 
 				//  $display("-> func: BGEU <-");
+				$display("*********************ALERTA**********************     BGEU    ");
 `endif
 				// inst_counter++;
              end
@@ -257,12 +263,15 @@ class monitor2;
         end	
         J_TYPE: begin
 		   // inst_counter++;
+			$display("*********************ALERTA**********************     J_TYPE    ");
         end
         LUI_TYPE: begin
 		   // inst_counter++;
+			$display("*********************ALERTA**********************     LUI    ");
         end	
         AUIPC_TYPE: begin
 		   // inst_counter++;
+			$display("*********************ALERTA**********************     AUIPC    ");
         end	
         
         default: begin
@@ -281,21 +290,21 @@ class monitor2;
 endtask
 
    task s_and_b_print(input logic [7:0]num, input logic [6:0]opcode, input logic [4:0]rs1, input logic [4:0]rs2, input logic [4:0]rd, input logic [20:0]imm);
-	  $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", num, opcode, rs1, rs2, imm);
+	  $display("RISC PC | SB PC VAL IN | SB PC |Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", num, opcode, rs1, rs2, imm);
 	  $display("-----------------------------------------------------------------------------------------------");
    endtask
 
    task cp_mem_b(string inst ,input logic [7:0] risc_mem, input logic [7:0] sb_mem);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
-		 $display("        %d         |      %s     |    %h     |    %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |       %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
-		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+		 $display("rc_pc = %h, rc_rd_p =%h, rc_sr1_p =%h, rc_rs1_val =%d, rc_rs2_p =%h rc_rs2_val =%d | sb_pc = %h, sb_rd_p =%h, sb_sr1_p =%h, sb_rs1_val =%d, sb_rs2_p =%h sb_rs2_val =%d", top.soc0.core0.PC, top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.pc_val, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
 `endif
 		 err_count++;
 	  end else begin
-		 $display("        %d         |      %s     |    %h     |    %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 	  inst_counter++;
    endtask
@@ -304,7 +313,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     |   %h    |   %h    | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -312,7 +321,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     |   %h    |   %h    | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 
 	  inst_counter++;
@@ -322,7 +331,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     |     %h     |     %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -330,7 +339,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     |     %h     |     %h     | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 	  inst_counter++;
    endtask
@@ -339,7 +348,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     | %h  | %h  | %s ", inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -347,7 +356,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display("        %d         |      %s     | %h  | %h  | %s ", inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 	  inst_counter++;
    endtask
