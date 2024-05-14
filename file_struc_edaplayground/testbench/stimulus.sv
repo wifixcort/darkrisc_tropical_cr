@@ -1,7 +1,9 @@
-import instructions_data_struc::*;
+//Version Funcional
 
+import instructions_data_struc::*;
+`include "config.vh"
 // for test
-`define MLEN 14
+//`define MLEN 10
 
 class instruction_generator;
   // random values 
@@ -230,6 +232,11 @@ class stimulus;
     //se llena el 32 tambien para no afectar posterior ejecucion de opt_addr()
     inst_gen1.randomize() with {opcode==I_TYPE;};
     MEM[32] = inst_gen1.full_inst;
+    
+    //force loop in the final instruction
+    MEM[$size(MEM)-2] = 32'b00000000000000000000000010010111; //auipc x1, 0
+    MEM[$size(MEM)-1] = 32'b00000000000000001000000001100111; //jalr x0, 0(x1) puede ser necesario meter -4 de offset
+    
   endfunction
   
 
@@ -288,7 +295,7 @@ endclass
 // testbench
 //*************************************88
 //Unselect next line for test
-`define stimulus_tb
+//`define stimulus_tb
 `ifdef stimulus_tb
   module tb;
     initial begin
@@ -298,7 +305,7 @@ endclass
       sti.opt_addr();
       $display("**************************/n");
       $display("MEM size = %d\n",$size(sti.MEM));
-      for (int i = 0 ; i < 200; i++) begin
+      for (int i = 0 ; i < $size(sti.MEM); i++) begin
         $display("%d instruction  %h     op: %b", i, sti.MEM[i], sti.MEM[i][6:0]);
       end
       $display(".\n.\n.\n");
