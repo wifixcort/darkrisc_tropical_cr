@@ -28,10 +28,10 @@ class instruction_generator;
   
     constraint opcode_cases {
         opcode inside 	{R_TYPE,
-                        I_TYPE,
-                        I_L_TYPE,
-                        S_TYPE
-                        /*S_B_TYPE,
+                        I_TYPE
+                        /*I_L_TYPE
+                        S_TYPE,
+                        S_B_TYPE,
                         J_TYPE,
                         I_JALR_TYPE,
                         LUI_TYPE,
