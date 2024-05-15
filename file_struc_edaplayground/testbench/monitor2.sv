@@ -10,7 +10,11 @@ class monitor2;
    int			err_count = 0;
    int			display_one = 1;
    logic [31:0] sinc_count = 0;
-	string rx_funct_str = "";
+
+   logic        old_pc, old2_pc;
+
+   int			debug_counter_num_inst = 0;
+   string rx_funct_str = "";
    //    function new(); //scoreboard sb
    function new(scoreboard sb); //
       $display("Creating monitor 2");
@@ -18,32 +22,19 @@ class monitor2;
 	  this.sb = sb;
    endfunction
 
-   task check();
-	  
-      forever
-		@ (posedge top.CLK) begin
-		// @ (posedge top.soc0.core0.PC) begin
-		// @ (posedge top.soc0.core0.XLUI, top.soc0.core0.XAUIPC, top.soc0.core0.XJAL, top.soc0.core0.XJALR, top.soc0.core0.XBCC, top.soc0.core0.XLCC, top.soc0.core0.XSCC, top.soc0.core0.XMCC, top.soc0.core0.XRCC, top.soc0.core0.XCUS, top.soc0.core0.XCCC) begin			
-			// if(sinc_count < 8)begin
-			// 	$display("Count = %d", sinc_count);
-			// 	sinc_count++;
-				
-			// end else begin
-			if((top.soc0.core0.OPCODE != 0)&&(top.soc0.core0.OPCODE != 0))begin 
-				//if(top.soc0.core0.OPCODE != 0)begin
-					sb.process_inst();
-		
-					`ifdef __DB_ENABLE__
-					if(display_one)begin
-					   $display("Instrucction number | Instruction |  DUT REG  |  SB REG   | STATUS ");
-					   display_one = 0;
-					end
-			  `endif
-					case (top.soc0.core0.XIDATA[6:0])
-					  R_TYPE: begin
+task check();
+	debug_counter_num_inst = 0;
+	forever begin
+		@ (posedge top.CLK);
+		old_pc = top.soc0.core0.IADDR; //Take PC (1 clock in the future, actually)
+		if (top.soc0.core0.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
+			if(top.soc0.core0.OPCODE != 0 )begin 				//Ricardos Sync
+				if (debug_counter_num_inst==0) sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
+				sb.process_inst();								//Pop scoreboard info to compare it against actual instruction.
+				case (top.soc0.core0.XIDATA[6:0])
+					R_TYPE: begin
 						 case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
 						   10'h0: begin //add
-							$sformatf(rx_funct_str, "FUNC ERROR %d", sb.rx_funct);
 							  cp_mem_w("add", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
 						   end
 						   10'b0100000000: begin //sub 
@@ -84,6 +75,7 @@ class monitor2;
 						   end
 						 endcase
 					  end
+/*
 					  I_TYPE: begin
 						 if(top.soc0.core0.FCT3 == 3'b101) begin
 							case(top.soc0.core0.XIDATA[31:25])
@@ -279,24 +271,23 @@ class monitor2;
 					  end	
 					  AUIPC_TYPE: begin
 						 // inst_counter++;
-						  $display("*********************ALERTA**********************     AUIPC    ");
+						//   $display("*********************ALERTA**********************     AUIPC    ");
 					  end	
-					  
+**/
 					  default: begin
 						 if(top.soc0.core0.XIDATA != 0) begin
 			  `ifdef __DB_ENABLE__ 
-							$display("**** Instruccion not found ****");
-							$display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+							// $display("**** Instruccion not found ****");
+							// $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 			  `endif
 							err_count++; 
-							// inst_counter++;
-						 end
-						 
-					  end
-					endcase     
-				 end					
-				end
-	
+						end
+					end
+				endcase
+				debug_counter_num_inst = debug_counter_num_inst+1;     
+			end
+		end//Work out of reset
+	end
 endtask
 
    task s_and_b_print(input logic [7:0]num, input logic [6:0]opcode, input logic [4:0]rs1, input logic [4:0]rs2, input logic [4:0]rd, input logic [20:0]imm);
@@ -307,14 +298,14 @@ endtask
    task cp_mem_b(string inst ,input logic [7:0] risc_mem, input logic [7:0] sb_mem);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
-		 $display(" %h | %h |       %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |       %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_pc = %h, rc_rd_p =%h, rc_sr1_p =%h, rc_rs1_val =%d, rc_rs2_p =%h rc_rs2_val =%d | sb_pc = %h, sb_rd_p =%h, sb_sr1_p =%h, sb_rs1_val =%d, sb_rs2_p =%h sb_rs2_val =%d", top.soc0.core0.PC, top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.pc_val, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
 `endif
 		 err_count++;
 	  end else begin
-		 $display(" %h | %h |        %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 	  inst_counter++;
    endtask
@@ -323,7 +314,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ", top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ", top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -331,7 +322,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |   %h    |   %h    | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 
 	  inst_counter++;
@@ -341,7 +332,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  old_pc, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -349,7 +340,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
 	  end
 	  inst_counter++;
    endtask
@@ -358,7 +349,7 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -366,7 +357,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 	  end
 	  inst_counter++;
    endtask
