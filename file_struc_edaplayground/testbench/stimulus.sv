@@ -1,46 +1,59 @@
 import instructions_data_struc::*;
 `include "../src/config.vh"
 // for test
-`define MLEN 15
+`define MLEN 10
 
 class instruction_generator;
-  	
-    rand bit [31:0] full_inst;
-    rand bit [6:0]  opcode;
-    rand bit [4:0]  rs1;
-    rand bit [4:0]  rs2;
-    rand bit [4:0]  rd;
-    rand bit [6:0]  funct7;
-    rand bit [2:0]  funct3;
-    rand bit [31:0] imm;
+  // random values 
+  rand bit [31:0] full_inst;
+  rand bit [6:0]  opcode;
+  rand bit [4:0]  rs1;
+  rand bit [4:0]  rs2;
+  rand bit [4:0]  rd;
+  rand bit [6:0]  funct7;
+  rand bit [2:0]  funct3;
+  rand bit [11:0] imm;
+  // operation values
+  logic opt_addr_select = 1'b0; //optimize for generate address
 
-    //=============================
-    //Constraints
-    //=============================
+  //=============================
+  //Constraints
+  //=============================
+ 
+  // Generate the full instruction in last contraint solver
+  //********************************************************
+  constraint construct_full_inst{
+    solve opcode,rd,rs1,rs2,funct7,funct3,imm before full_inst;
+    //if (opt_addr_select){
+      // force to ADDI
+    //  full_inst == {imm,5'h00,ADDI_FC,rd,I_TYPE};
+    //} else{
+    (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
+    (opcode == I_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
+    (opcode == I_L_TYPE) -> full_inst == {imm,rs1,funct3,rd,opcode};
+    (opcode == S_TYPE)   -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
+    //} 
+    
+  }
   
-    constraint construct_full_inst{
-    	solve opcode,rs1,rs2,funct7,funct3,imm before full_inst;
-        (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
-        (opcode == I_TYPE)   -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
-        (opcode == I_L_TYPE) -> full_inst == {imm[11:0],rs1,funct3,rd,opcode};
-        (opcode == S_TYPE)   -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
-    }
-  
-    constraint opcode_cases {
+  // opcode
+  //********************************************************
+  constraint opcode_cases{
         opcode inside 	{R_TYPE,
                         I_TYPE
-                        /*I_L_TYPE
-                        S_TYPE,
+                        /*I_L_TYPE,
+                        S_TYPE
                         S_B_TYPE,
                         J_TYPE,
                         I_JALR_TYPE,
                         LUI_TYPE,
                         AUIPC_TYPE */
                         };
-  }
-  
-    // No necessary because in 3 bits are the 8 possible combinations
-    // Is util for deselect the possibilities
+       
+    }
+      
+    // funct3
+    //********************************************************
     constraint funct3_cases{
         solve opcode before funct3;
         (opcode == R_TYPE) -> funct3 inside {ADD_o_SUB_FC,
@@ -73,15 +86,19 @@ class instruction_generator;
                                               SW_FC};
     }
   
+    // for R_TYPE and some I_TYPE instructions
+    //********************************************************
     constraint func7_cases{
         solve funct3 before funct7;
-
         if (opcode == R_TYPE) {
-      		(funct3 == (ADD_o_SUB_FC || SRL_o_SRA_FC )) -> funct7 inside {h00_FC7,
-                                                                         h20_FC7};
-          	(funct3 != (ADD_o_SUB_FC || SRL_o_SRA_FC )) -> funct7 ==      h00_FC7; 
+                            //fix ||
+      	  (funct3 == ADD_o_SUB_FC) -> funct7 inside {h00_FC7,
+                                                      h20_FC7};
+          (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
+                                                      h20_FC7};
+          (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
+          (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
         } 
-
         //special cases of I_TYPE instructions
         if (opcode == I_TYPE) { 
            	(funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
@@ -90,95 +107,176 @@ class instruction_generator;
         }
     }
   
-  	// x0 is always 0. 
-  	// regs for use -> 1 to 15
+  	// special cases for regs
+    //************************
     constraint regs {
-      	solve rs1, rs2, rd before full_inst;
-      	rs1 != 0;
-        rs2 != 0;
-      	rd  != 0;
-        rs1 < 16;
-        rs2 < 16;
-        rd  < 16;
+      (opcode == S_TYPE) -> rs1 !=0;  
     }
-
-    // offset should be multiple of data size of operand
-   	constraint offset_imm_load_store {
-      	solve funct3 before imm;
-    	if (opcode == I_L_TYPE){
-          //si se hace con ||, es como si no existiera el constraint para ese funct3 ¿por que? no lo se.
-          /*(funct3 == (LB_FC || LBU_FC)) -> 	imm[2:0] == 3'b000;
-          (funct3 == (LH_FC || LHU_FC)) ->	imm[3:0] == 4'b0000;*/
-          (funct3 == LB_FC) 	-> 	imm[2:0] == 3'b000;
-          (funct3 == LBU_FC) 	-> 	imm[2:0] == 3'b000;
-          (funct3 == LH_FC) 	->	imm[3:0] == 4'b0000;
-          (funct3 == LHU_FC) 	->	imm[3:0] == 4'b0000;
-          (funct3 == LW_FC) 	->	imm[4:0] == 5'b00000;
-      	}
-          
-        if (opcode == S_TYPE){
-          (funct3 == SB_FC) 	-> 	imm[2:0] == 3'b000;
-          (funct3 == SH_FC) 	->	imm[3:0] == 4'b0000;
-          (funct3 == SW_FC) 	->	imm[4:0] == 5'b00000;
-      	}
+	
+    // Offseft for calc effective direction should be aligned
+    //*******************************************************
+   	constraint offset_load_store {
+      solve funct3 before imm;
+      if (!opt_addr_select) {     
+          if (opcode == I_L_TYPE){
+            (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
+            (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
+            (funct3 == LW_FC) 	->	imm[1:0] == 2'b00;
+          }       
+          else if (opcode == S_TYPE){
+            (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
+            (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
+          }
+          // acotadores a +127 -127
+          if(imm[11] == 0){
+            //pos sign extend
+            imm[10:8] == 3'b000;
+          } else if (imm[11] == 1){
+            //neg sign extend
+            imm[10:8] == 3'b111;
+          }
+      }
     } 
       
 endclass
   
           
-
-          
+//`define DBG_HIGH_VERBOSITY        
 class stimulus;
   reg [31:0] MEM [0:2**`MLEN/4-1];
-  logic [7:0] debug_counter;
+  logic [4:0] reg_addr;
+  logic [31:0] effective_addr = 32'h00000000;
+  
   
   // fulling the MEM array
-  function void mem_generate(logic DBG_HIGH_VERBOSITY=0);
-    instruction_generator inst_gen;
-    inst_gen = new;
-    debug_counter = 0;
-    for(int i=0;i!=2**`MLEN/4;i=i+1)
-    begin
+  //**********************************************************
+  function  mem_generate(logic DBG_HIGH_VERBOSITY=0); // si no se pone el parametro de entrada no compila, en algun lugar se le está pasando algo
+    instruction_generator inst_gen0; 
+    inst_gen0 = new; 
+    $display("\n********************************************************************************");
+    $display("Stimulus: Invoked mem_generate() -> proced to generate random instructions array");
+    $display("********************************************************************************");
+    // inicializate MEM to 0
+    for(int i=0;i!=2**`MLEN/4;i=i+1) begin
         MEM[i] = 32'd0; //This is completely necessary, otherwise there are x's in the RAM 
+                        // En el siguiente for ya se llenan ¿?
     end
+    // set instructions in MEM
     foreach(MEM[i]) begin
-      inst_gen.randomize();
-	    if (DBG_HIGH_VERBOSITY && debug_counter<50) begin //Print only n-instructions
-        // Due to RISCV management of signed numbers, these displays ALWAYS (I think) print positive numbers
-        if (inst_gen.opcode==R_TYPE)begin
-          $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  |  rd=%d |  imm=%d", debug_counter, inst_gen.opcode, inst_gen.rs1, inst_gen.rs2, inst_gen.rd, 0);
-        end
-        else if (inst_gen.opcode==I_TYPE || inst_gen.opcode==I_L_TYPE || inst_gen.opcode==S_TYPE)begin
-          $display("Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  |  rd=%d |  imm=%d", debug_counter, inst_gen.opcode, inst_gen.rs1, inst_gen.rs2, inst_gen.rd, inst_gen.imm[11:0]);
-        end  
-        debug_counter=debug_counter+1;
+      inst_gen0.randomize();
+      MEM[i] = inst_gen0.full_inst;
+      //Verbosity for each instruction
+      if (DBG_HIGH_VERBOSITY)
+        $display("Instruction generated #%d:\t%h\topcode: %b ", i[15:0], inst_gen0.full_inst, inst_gen0.opcode);
       end
-      MEM[i] = inst_gen.full_inst;
-    end
-    //return MEM;
   endfunction
   
-  // TO DO: función para generar instrucciones anteriores a loads que tengan sentido para estos
-  //	fuente de la idea: https://riscv.org/wp-content/uploads/2018/12/14.25-Tao-Liu-Richard-Ho-UVM-based-RISC-V-Processor-Verification-Platform.pdf
-  // filminas 8 y 9
+
+  //Setea los registros en las primeras 31 instrucciones
+  //Ultima instruccion debe ser bra *
+  //*****************************************************
+  function  set_program_format(logic DBG_HIGH_VERBOSITY=0);
+  	instruction_generator inst_gen1;
+    inst_gen1 = new;
+    $display("\n********************************************************************************");
+    $display("Stimulus: Invoked set_program_format()) -> set first and last instructions");
+    $display("********************************************************************************");
+    // recorrer los 32 registros, el 0 no surtirá efecto
+    for(int i=1; i<=31; i=i+1) begin 
+      inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==i;}; //&& funct3==ADDI_FC && rs1==5'h00 && rd==i;};
+      MEM[i-1] = inst_gen1.full_inst;
+      if (DBG_HIGH_VERBOSITY)
+        $display("(inicializate reg x%d) Instruction fixed #%d:\t\tnew instruction:%h\tnew opcode: %b ",inst_gen1.rd, i[15:0]-1'b1, inst_gen1.full_inst, inst_gen1.opcode);
+    end
+    
+    //forzar I_TYPE en instruccion 31 para no afectar posterior ejecucion de opt_addr()
+    inst_gen1.randomize() with {opcode==I_TYPE;};
+    MEM[32] = inst_gen1.full_inst;
+    if (DBG_HIGH_VERBOSITY)
+       $display("(force I_TYPE) Instruction fixed          #%d:\t\tnew instruction:%h\tnew opcode: %b ", 16'd31, inst_gen1.full_inst, inst_gen1.opcode);
+    
+    //force loop in the final instruction
+    MEM[$size(MEM)-2] = 32'b00000000000000000000000010010111; //auipc x1, 0
+    MEM[$size(MEM)-1] = 32'b00000000000000001000000001100111; //jalr x0, 0(x1) puede ser necesario meter -4 de offset
+    if (DBG_HIGH_VERBOSITY) begin
+        $display("(force auipc x1,0)      Instruction fixed #%d\t\tnew instruction: 0x%h", $size(MEM)-2'd2, 32'h0000_0097);
+        $display("(force jalr x0, 0(x1))  Instruction fixed #%d\t\tnew instruction: 0x%h", $size(MEM)-1'd1, 32'h0000_0097);
+    end
+    
+  endfunction
   
+
+  //insert address with sense in the pointer register before store and load instruction 
+  //************************************************************************************
+  function opt_addr(logic DBG_HIGH_VERBOSITY=0);
+    instruction_generator inst_gen2;
+    inst_gen2 = new;
+    $display("\n******************************************************************************************");
+    $display("Stimulus: Invoked opt_addr() -> set instructions before load/storage for force valid address");
+    $display("******************************************************************************************");
+    inst_gen2.opt_addr_select = 1'b1;
+    foreach(MEM[i]) begin
+      if (MEM[i][6:0] == S_TYPE) begin         
+          reg_addr = MEM[i][19:15]; // reg where store going to search
+
+          // loop if effective_addr out of range
+          do begin
+          inst_gen2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm <= 1023 && imm >= 512;};
+          effective_addr = inst_gen2.imm + MEM[i][31:20] ;
+          end while( (effective_addr < 512) && (effective_addr > 1023));  //ACOTADORES
+          
+          //addres should be aligned
+          if (MEM[i][14:12]==SW_FC) 
+            MEM[i-1] = {inst_gen2.full_inst[31:22], 2'b00, inst_gen2.full_inst[19:0]};
+          else if(MEM[i][14:12]==SH_FC)
+            MEM[i-1] = {inst_gen2.full_inst[31:21], 1'b0, inst_gen2.full_inst[19:0]};  
+          
+          if (DBG_HIGH_VERBOSITY) begin
+            $display("(force ADDI for set base addrress before store)\tInstruction fixed #%d\t\tnew instruction:%h\tbase address:%h", i[15:0]-1'b1, MEM[i-1], MEM[i-1][31:20]);
+    	  end
+      end 
+      // TODO: other if for I_L_TYPE insructions
+    end
+    inst_gen2.opt_addr_select = 1'b0;
+  endfunction
+
+  function print_mem(logic DBG_HIGH_VERBOSITY=0);  //el argumento no se usa en esta función, se pone para que todas las funciones lo tengan
+    $display("\n******************************************************************************************");
+    $display("Stimulus: Invoked print_mem() -> print the actual state of MEM");
+    $display("******************************************************************************************");
+    foreach (MEM[i]) begin
+      $display("Instruction #%d:\t%h\topcode: %b ", i[15:0], MEM[i], MEM[i][6:0] );
+    end   
+  endfunction
+  //referencia: https://riscv.org/wp-content/uploads/2018/12/14.25-Tao-Liu-Richard-Ho-UVM-based-RISC-V-Processor-Verification-Platform.pdf
+  // filminas 8 y 9
+   
 endclass
 
  
-////////////////////////// 
-
+// testbench
+//*************************************88
 //Unselect next line for test
 //`define stimulus_tb
 `ifdef stimulus_tb
   module tb;
     initial begin
       stimulus sti = new();
+      
+      // Uso de la clase stimulus
+      // El parametro que se le pasa a las funciones es para imprimir detalles de ejcucion (On = 1)
+      //*************************
       sti.mem_generate(1);
-      $display("**************************/n");
+      sti.set_program_format(1);
+      sti.opt_addr(1);
+      sti.print_mem();
+      //
+
+      $display("**************************");
       $display("MEM size = %d\n",$size(sti.MEM));
-      for (int i = 0 ; i < 50; i++) begin
-        $display("instruction: %h     op: %b",sti.MEM[i], sti.MEM[i][6:0]);
-      end
+      //for (int i = 0 ; i < $size(sti.MEM); i++) begin
+      //  $display("%d instruction  %h     op: %b", i[7:0], sti.MEM[i], sti.MEM[i][6:0]);
+      //end
       $display(".\n.\n.\n");
     end
   endmodule

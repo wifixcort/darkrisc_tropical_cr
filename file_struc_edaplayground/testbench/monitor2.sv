@@ -29,7 +29,7 @@ class monitor2;
 			// 	sinc_count++;
 				
 			// end else begin
-			if((top.soc0.core0.PC!= 0) && (top.soc0.core0.OPCODE != 0 ))begin 
+			if(top.soc0.core0.OPCODE != 0 )begin 
 				//if(top.soc0.core0.OPCODE != 0)begin
 					sb.process_inst();
 		
