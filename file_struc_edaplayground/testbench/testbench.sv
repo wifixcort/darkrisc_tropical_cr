@@ -5,7 +5,7 @@
 `include "../testbench/scoreboard.sv"
 `include "../testbench/instr_monitor.sv"
 `include "../testbench/monitor2.sv"
-`include "../testbench/mem_driver.sv"
+`include "../testbench/driver.sv"
 // `include "monitor.sv"
 `include "../testbench/env.sv"
 `include "../testbench/test_case_n.sv"

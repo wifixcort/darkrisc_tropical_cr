@@ -4,20 +4,25 @@ module top();
 //   initial // clock generator
 //   forever #5 _clk = ~_clk;
    
-    reg CLK = 0;
-    
-    reg RES = 1;
-    // initial while(1) #(500e6/`BOARD_CK) CLK = !CLK; // clock generator w/ freq defined by config.vh
-    always begin
-        #(500e6/`BOARD_CK) CLK = !CLK;
-    end 
-	integer i;
+  // external clk generator
+  reg CLK = 0;
+  always begin
+    #(500e6/`BOARD_CK) CLK = !CLK;
+  end 
   
   // Interface
+  intf_soc intf(CLK);
+   
+  // DUT connection	
+    darksocv soc0 (
+	    .XCLK(CLK),
+	    .XRES(intf.rst),
+	    .UART_RXD(intf.uart_rx),
+	    .UART_TXD(intf_uart_tx),
+	    .LED(intf.leds),
+	    .DEBUG(intf.debug));
 
-  wire TX;
-  wire RX = 1;
-  
+  // generate dumps
   genvar q;
   generate
     for(q=0; q<32; q=q+1)begin
@@ -35,16 +40,19 @@ module top();
     end
   endgenerate
 
+  // .vcd generator
+  integer i;
+  initial begin
+      $dumpfile("darksocv.vcd");
+      $dumpvars();
+
+  end
   
-  // DUT connection	
-	darksocv soc0
-    (
-        .XCLK(CLK),
-        .XRES(|RES),
-        .UART_RXD(RX),
-        .UART_TXD(TX)
-    );
-  reg [31:0][31:0] REGS_DUMP; //Si no funciona, usar
+   //Test case
+  testcase test(intf);
+  
+  // Esto queda del top pasado, por si acaso tiene una utilidad que desocnozco lo dejo comentado ATTE: jesus xd
+  /*reg [31:0][31:0] REGS_DUMP; //Si no funciona, usar
   initial begin
     `ifdef __ICARUS__
             // $dumpfile("darksocv.vcd"); //Now in dsim simulation config 
@@ -65,10 +73,5 @@ module top();
       
         $display("reset (startup)");
         #1e3    RES = 0;            // wait 1us in reset state
-  end
-  
-  //Test case
-  
-  testcase test();
-
+  end */
 endmodule

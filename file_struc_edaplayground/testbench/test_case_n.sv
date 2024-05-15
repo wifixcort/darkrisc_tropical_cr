@@ -1,14 +1,9 @@
-program testcase();
-  environment env = new();
+program testcase(intf_soc intf);
+  environment env = new(intf);
 
-  initial
-    begin
-    //env.drvr.reset();
-    //env.drvr.write(10);
-    //env.drvr.read(10);
-		//env.mem_driver.mem_reset();
-    env.mem_driver.mem_load();
-    #1000000;
-      
-    end
+  initial begin
+    env.drvr.reset();
+    env.drvr.mem_load();
+    #10000000;  
+  end
 endprogram

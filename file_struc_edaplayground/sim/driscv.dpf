@@ -41,7 +41,7 @@ source_files:
     path: ../testbench/stimulus.sv
     library_name: TB
   - language: verilog
-    path: ../testbench/mem_driver.sv
+    path: ../testbench/driver.sv
     library_name: TB
   - language: verilog
     path: ../testbench/test_case_n.sv
@@ -63,6 +63,9 @@ source_files:
     library_name: TB
   - language: verilog
     path: ../testbench/top.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/intf_soc.sv
     library_name: TB
 library_search_paths:
   - $STD_LIBS/ieee93

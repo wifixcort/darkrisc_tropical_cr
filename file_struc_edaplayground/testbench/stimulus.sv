@@ -1,7 +1,7 @@
 import instructions_data_struc::*;
 `include "../src/config.vh"
 // for test
-`define MLEN 10
+//`define MLEN 10
 
 class instruction_generator;
   // random values 
@@ -36,19 +36,19 @@ class instruction_generator;
     
   }
   
-  // opcode
+  // opcode. todo: adjust probabilities
   //********************************************************
   constraint opcode_cases{
-        opcode inside 	{R_TYPE,
-                        I_TYPE
-                        /*I_L_TYPE,
-                        S_TYPE
-                        S_B_TYPE,
-                        J_TYPE,
-                        I_JALR_TYPE,
-                        LUI_TYPE,
-                        AUIPC_TYPE */
-                        };
+        opcode dist 	{R_TYPE :/ 44,
+                      I_TYPE  :/ 44,
+                      //I_L_TYPE,
+                      S_TYPE  :/ 12
+                      /*S_B_TYPE,
+                      J_TYPE,
+                      I_JALR_TYPE,
+                      LUI_TYPE,
+                      AUIPC_TYPE */
+                      };
        
     }
       
@@ -127,7 +127,7 @@ class instruction_generator;
             (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
             (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
           }
-          // acotadores a +127 -127
+          //ACOTADORES de offset a +127 -127
           if(imm[11] == 0){
             //pos sign extend
             imm[10:8] == 3'b000;
@@ -141,12 +141,20 @@ class instruction_generator;
 endclass
   
           
-//`define DBG_HIGH_VERBOSITY        
+//===============================================================
+//===============================================================
+//
+//  Clase generadora de memoria y programa aleatorio a utilizar
+//
+//  min_data_addr  2**`MLEN/(4*2)  |  max_data_addr 2**`MLEN/4-1
+//
+//***************************************************************     
 class stimulus;
-  reg [31:0] MEM [0:2**`MLEN/4-1];
+  logic [31:0] MEM [0:2**`MLEN/4-1];
   logic [4:0] reg_addr;
   logic [31:0] effective_addr = 32'h00000000;
-  
+  int min_data_addr = 2**`MLEN/(4*2);
+  int max_data_addr = 2**`MLEN/4-1;
   
   // fulling the MEM array
   //**********************************************************
@@ -162,7 +170,7 @@ class stimulus;
                         // En el siguiente for ya se llenan ¿?
     end
     // set instructions in MEM
-    foreach(MEM[i]) begin
+    for (int i=0;i!=2**`MLEN/(4*2);i=i+1) begin
       inst_gen0.randomize();
       MEM[i] = inst_gen0.full_inst;
       //Verbosity for each instruction
@@ -196,11 +204,11 @@ class stimulus;
        $display("(force I_TYPE) Instruction fixed          #%d:\t\tnew instruction:%h\tnew opcode: %b ", 16'd31, inst_gen1.full_inst, inst_gen1.opcode);
     
     //force loop in the final instruction
-    MEM[$size(MEM)-2] = 32'b00000000000000000000000010010111; //auipc x1, 0
-    MEM[$size(MEM)-1] = 32'b00000000000000001000000001100111; //jalr x0, 0(x1) puede ser necesario meter -4 de offset
+    MEM[2**`MLEN/(4*2)-2] = 32'b00000000000000000000000010010111; //auipc x1, 0
+    MEM[2**`MLEN/(4*2)-1] = 32'b00000000000000001000000001100111; //jalr x0, 0(x1) puede ser necesario meter -4 de offset
     if (DBG_HIGH_VERBOSITY) begin
-        $display("(force auipc x1,0)      Instruction fixed #%d\t\tnew instruction: 0x%h", $size(MEM)-2'd2, 32'h0000_0097);
-        $display("(force jalr x0, 0(x1))  Instruction fixed #%d\t\tnew instruction: 0x%h", $size(MEM)-1'd1, 32'h0000_0097);
+        $display("(force auipc x1,0)      Instruction fixed #%d\t\tnew instruction: 0x%h", 2**`MLEN/(4*2)-2, 32'h0000_0097);
+        $display("(force jalr x0, 0(x1))  Instruction fixed #%d\t\tnew instruction: 0x%h", 2**`MLEN/(4*2)-1, 32'h0000_0097);
     end
     
   endfunction
@@ -215,15 +223,15 @@ class stimulus;
     $display("Stimulus: Invoked opt_addr() -> set instructions before load/storage for force valid address");
     $display("******************************************************************************************");
     inst_gen2.opt_addr_select = 1'b1;
-    foreach(MEM[i]) begin
+    for (int i=0;i!=2**`MLEN/(4*2);i=i+1) begin
       if (MEM[i][6:0] == S_TYPE) begin         
-          reg_addr = MEM[i][19:15]; // reg where store going to search
+          reg_addr = MEM[i][19:15]; // reg where store going to search adrress
 
           // loop if effective_addr out of range
-          do begin
+          do begin                                                                                //ACOTADORES de base_address
           inst_gen2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm <= 1023 && imm >= 512;};
-          effective_addr = inst_gen2.imm + MEM[i][31:20] ;
-          end while( (effective_addr < 512) && (effective_addr > 1023));  //ACOTADORES
+          effective_addr = inst_gen2.imm + {MEM[i][31:25], MEM[i][11:7]} ;
+          end while( (effective_addr < 512) && (effective_addr > 1023));  //ACOTADORES effective_address
           
           //addres should be aligned
           if (MEM[i][14:12]==SW_FC) 
@@ -235,6 +243,29 @@ class stimulus;
             $display("(force ADDI for set base addrress before store)\tInstruction fixed #%d\t\tnew instruction:%h\tbase address:%h", i[15:0]-1'b1, MEM[i-1], MEM[i-1][31:20]);
     	  end
       end 
+      else if (MEM[i][6:0] == I_L_TYPE) begin 
+          if (MEM[i][6:0] == S_TYPE) begin         
+          reg_addr = MEM[i][19:15]; // reg where load going to search address
+
+          // loop if effective_addr out of range
+          do begin                                                                                     //ACOTADORES de base_address
+          inst_gen2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm <= 1023 && imm >= 512;};
+          effective_addr = inst_gen2.imm + MEM[i][31:20];
+          end while( (effective_addr < 512) && (effective_addr > 1023));  //ACOTADORES de effective_address
+          
+          //addres should be aligned. Puede no ser necesario
+          if (MEM[i][14:12]==LH_FC) 
+            MEM[i-1] = {inst_gen2.full_inst[31:21], 1'b0, inst_gen2.full_inst[19:0]};
+          else if(MEM[i][14:12]==LHU_FC)
+            MEM[i-1] = {inst_gen2.full_inst[31:21], 1'b0, inst_gen2.full_inst[19:0]}; 
+          else if(MEM[i][14:12]==LW_FC)
+            MEM[i-1] = {inst_gen2.full_inst[31:22], 2'b00, inst_gen2.full_inst[19:0]};  
+          
+          if (DBG_HIGH_VERBOSITY) begin
+            $display("(force ADDI for set base addrress before store)\tInstruction fixed #%d\t\tnew instruction:%h\tbase address:%h", i[15:0]-1'b1, MEM[i-1], MEM[i-1][31:20]);
+    	  end
+      end 
+      end
       // TODO: other if for I_L_TYPE insructions
     end
     inst_gen2.opt_addr_select = 1'b0;

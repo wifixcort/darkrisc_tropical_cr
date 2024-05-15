@@ -1,21 +1,19 @@
 class environment;
-  mem_driver mem_driver;
+  driver drvr;
   stimulus sti;
+  virtual intf_soc intf;
   scoreboard sb;
   monitor2 mntr2;
   instr_monitor mntr1;
-  
-  function new();
+  function new(virtual intf_soc in_intf);
     $display("Creating environment");
+    intf = in_intf;
+    sti  = new();
+    drvr = new(intf, sti);
     sb = new();
-    sti = new();
-    mem_driver = new(sti);
     mntr2 = new(sb);
     mntr1 = new(sb);
     fork
-      sti.mem_generate(1);
-      mem_driver.mem_load();
-      
       mntr2.check();
       mntr1.check(0); //Debug-ability : No=0, Yes=1
     join_none
