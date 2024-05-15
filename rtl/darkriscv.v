@@ -530,7 +530,7 @@ module darkriscv
         
         if(!FLUSH && IDATA===32'dx)
         begin
-            $display("invalid IDATA at %x",PC);
+            $display("invalid IDATA:%x at PC:%x",IDATA, PC);
             $stop();  
         end
         

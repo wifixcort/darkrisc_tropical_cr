@@ -1,0 +1,73 @@
+---
+# Note: The contents of this file are automatically generated.
+# Any changes made by hand may be overwritten.
+version: '0.2'
+work_dir: .
+design_root_dir: ..\..
+simulations:
+  - name: riscv-sim
+    options: >-
+      -timescale  1ns/1ps -sv_seed 2342  -top TB.top -L DUT -L TB +acc+b -waves
+      darksocv.mxd
+  - name: stimulus
+    options: '-timescale 1ns/1ps  -top TB.sti_tb   -L TB +acc+b'
+source_files:
+  - language: verilog
+    path: ../testbench/testbench.sv
+    library_name: TB
+  - language: verilog
+    path: ../rtl/config.vh
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/design.sv
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkuart.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkpll.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkcache.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkriscv.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darksocv.v
+    library_name: DUT
+  - language: verilog
+    path: ../testbench/instructions_data_struc.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/stimulus.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/driver.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/test_case_n.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/riscv_ref_model.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/scoreboard.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/instr_monitor.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/env.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/monitor2.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/top.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/intf_soc.sv
+    library_name: TB
+library_search_paths:
+  - $STD_LIBS/ieee93
