@@ -10,7 +10,7 @@ class monitor2;
    int			err_count = 0;
    int			display_one = 1;
    logic [31:0] sinc_count = 0;
-
+	string rx_funct_str = "";
    //    function new(); //scoreboard sb
    function new(scoreboard sb); //
       $display("Creating monitor 2");
@@ -29,7 +29,7 @@ class monitor2;
 			// 	sinc_count++;
 				
 			// end else begin
-			if(top.soc0.core0.OPCODE != 0 )begin 
+			if((top.soc0.core0.OPCODE != 0)&&(top.soc0.core0.OPCODE != 0))begin 
 				//if(top.soc0.core0.OPCODE != 0)begin
 					sb.process_inst();
 		
@@ -43,34 +43,35 @@ class monitor2;
 					  R_TYPE: begin
 						 case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
 						   10'h0: begin //add
-							  cp_mem_w("add", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							$sformatf(rx_funct_str, "FUNC ERROR %d", sb.rx_funct);
+							  cp_mem_w("add", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
 						   end
 						   10'b0100000000: begin //sub 
-							  cp_mem_w("sbu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("sbu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SUB)?"SUB":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   SLL_FC: begin //sll
-							  cp_mem_w("sll", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("sll", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SLL)?"SLL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   SLT_FC: begin //slt
-							  cp_mem_w("slt", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("slt", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SLT)?"SLT":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   SLTU_FC: begin //sltu
-							  cp_mem_w("sltu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("sltu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SLTU)?"SLTU":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   XOR_FC: begin //xor
-							  cp_mem_w("xor", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("xor", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==XOR)?"XOR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   9'h005: begin //srl
-							  cp_mem_w("srl", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("srl", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SRL)?"SRL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   9'h105: begin //sra
-							  cp_mem_w("sra", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("sra", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SRA)?"SRA":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   OR_FC: begin //or
-							  cp_mem_w("or", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("or", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==OR)?"OR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   AND_FC: begin //and
-							  cp_mem_w("and", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+							  cp_mem_w("and", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==AND)?"AND":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 						   end
 						   default: begin
 			  `ifdef __DB_ENABLE__ 
@@ -87,10 +88,10 @@ class monitor2;
 						 if(top.soc0.core0.FCT3 == 3'b101) begin
 							case(top.soc0.core0.XIDATA[31:25])
 							  10'h000: begin //srli
-								 cp_mem_w("srli", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("srli", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SRLI)?"SRLI":"FUNC ERROR");
 							  end
 							  10'h020: begin //srai
-								 cp_mem_w("srai", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("srai", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SRAI)?"SRAI":"FUNC ERROR");
 							  end
 							  default: begin
 			  `ifdef __DB_ENABLE__ 
@@ -104,7 +105,7 @@ class monitor2;
 						 end else if(top.soc0.core0.FCT3 == 3'b001)begin
 						  case(top.soc0.core0.XIDATA[31:25])
 							  10'h000: begin //srli
-								 cp_mem_w("slli", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("slli", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==SLLI)?"SLLI":"FUNC ERROR");
 							  end
 							  default: begin
 			  `ifdef __DB_ENABLE__ 
@@ -118,22 +119,22 @@ class monitor2;
 						 end else begin
 							case(top.soc0.core0.FCT3)
 							  ADDI_FC:begin //addi
-								 cp_mem_w("addi", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("addi", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR");
 							  end
 							  SLTI_FC:begin //slti
-								 cp_mem_bb("slti", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);					 
+								 cp_mem_bb("slti", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);//, (sb.rx_funct==SLTI)?"SLTI":sb.rx_funct);					 
 							  end
 							  SLTIU_FC:begin //sltiu
-								 cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);//, (sb.rx_funct==SLTIU)?"SLTIU":sb.rx_funct);
 							  end
 							  XORI_FC:begin //xori
-								 cp_mem_w("xori", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("xori", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
 							  end
 							  ORI_FC:begin //ori
-								 cp_mem_w("ori", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("ori", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==ORI)?"ORI":"FUNC ERROR");
 							  end
 							  ANDI_FC:begin //andi
-								 cp_mem_w("andi", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val]);
+								 cp_mem_w("andi", top.soc0.core0.RMDATA, sb.ref_model.REGS[sb.rdd_val], (sb.rx_funct==ANDI)?"ANDI":"FUNC ERROR");
 							  end
 							  default: begin
 			  `ifdef __DB_ENABLE__ 
@@ -159,15 +160,15 @@ class monitor2;
 							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
 						   LW_FC: begin //lw
-							  cp_mem_w("lw" ,top.soc0.core0.LDATA, sb.DATAI);
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
+							  cp_mem_w("lw" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LW)?"LW":"FUNC ERROR");
+							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);
 						   end
 						   LBU_FC: begin //lbu
-							  cp_mem_w("lbu" ,top.soc0.core0.LDATA, sb.DATAI);
+							  cp_mem_w("lbu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LBU)?"LBU":"FUNC ERROR");
 							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
 						   LHU_FC: begin //lhu
-							  cp_mem_w("lhu" ,top.soc0.core0.LDATA, sb.DATAI);
+							  cp_mem_w("lhu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LHU)?"LHU":"FUNC ERROR");
 							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
 						   default: begin
@@ -206,7 +207,7 @@ class monitor2;
 							  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);			
 						   end
 						   SW_FC:begin //sw
-							  cp_mem_w("sw", top.soc0.core0.SDATA, sb.DATAO);
+							  cp_mem_w("sw", top.soc0.core0.SDATA, sb.DATAO, (sb.rx_funct==SW)?"SW":"FUNC ERROR");
 							  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);
 						   end
 						   default: begin
@@ -353,11 +354,11 @@ endtask
 	  inst_counter++;
    endtask
 
-   task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem);
+   task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -365,7 +366,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s ",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
+		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.PC, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 	  end
 	  inst_counter++;
    endtask
