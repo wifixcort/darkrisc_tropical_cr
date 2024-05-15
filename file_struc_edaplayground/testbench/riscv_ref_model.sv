@@ -13,6 +13,7 @@ class riscv_ref_model;
   logic [31:0] DATAO;
   logic [31:0] DADDR;
   logic [3:0] BE;
+  logic bt;
   // For debug
   logic [31:0] pc_val_in;
   // General Purpose 32x32 bit registers 
@@ -41,7 +42,8 @@ class riscv_ref_model;
   endfunction
   
   function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1_val,logic [4:0] rs2_val,logic [4:0] rdd_val);
-    // L/S: DADDR[31] debe ser 0 para ejecutar esto, de lo contario se accede a I/O de los perifericos.
+    // L/S: DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
+    // All instructions shouldnt be allowed to modify register 0 value
     pc_val_in = pc_val; // Copy of the input PC for debug
     case (rx_funct)
       // R Type
@@ -85,7 +87,7 @@ class riscv_ref_model;
         REGS[rdd_val] = (REGS[rs1_val] < REGS[rs2_val]) ? 1'b1 : 1'b0;
         pc_val = pc_val + 4;
       end
-      // I Type
+      // I Type 
       ADDI : begin //This Operation is always signed
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
         REGS[rdd_val] = (REGS[rs1_val]) + (imm_val_sign_ext);
@@ -131,7 +133,7 @@ class riscv_ref_model;
         REGS[rdd_val] = (REGS[rs1_val] < $unsigned(imm_val_sign_ext)) ? 1'b1 : 1'b0;
         pc_val = pc_val + 4;
       end
-      // I-L(load)Type
+      // I-L(load) Type - DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
       LB   : begin
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         DADDR = REGS[rs1_val] + imm_val_sign_ext;
@@ -208,7 +210,7 @@ class riscv_ref_model;
         REGS[rdd_val] = DATAI;
         pc_val = pc_val + 4;
       end 
-      // S-Type
+      // S-Type - DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
       SB   : begin 
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
         DADDR = REGS[rs1_val] + imm_val_sign_ext;
@@ -265,20 +267,60 @@ class riscv_ref_model;
         MEM[DADDR[`MLEN-1:2]] = DATAO;
         pc_val = pc_val + 4;
       end
-      /*
-      // S-B-Type
-      BEQ  : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-      BNE  : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-      BLT  : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-      BGE  : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-      BLTU : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
-      BGEU : imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
-      */
-      // J-Type // JAL with rd = 0x is a plian jump
-      JAL  : begin // max jump ±1 MiB range based on the extended sign imm 
+      // S-B-Type // Stimulus should have a constrain of making imm 4 bit multiple -> 2 LSB=0, for memory alignment
+      BEQ  : begin
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
+        bt = REGS[rs1_val] == REGS[rs2_val];
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      BNE  : begin 
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
+        bt = REGS[rs1_val] != REGS[rs2_val];
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      BLT  : begin 
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
+        bt = $signed(REGS[rs1_val]) < $signed(REGS[rs2_val]);
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      BGE  : begin 
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
+        bt = $signed(REGS[rs1_val]) >= $signed(REGS[rs2_val]);
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      BLTU : begin 
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
+        bt = REGS[rs1_val] < REGS[rs2_val];
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      BGEU : begin 
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
+        bt = REGS[rs1_val] >= REGS[rs2_val];
+        case(bt)
+          0 : pc_val = pc_val + 4;
+          1 : pc_val = pc_val + imm_val_sign_ext;
+        endcase
+      end
+      // J-Type // Stimulus should have a constrain of making imm 4 bit multiple -> 2 LSB=0, for memory alignment
+      JAL  : begin  // JAL with rd = 0x is a plain jump
       	imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         REGS[rdd_val] = pc_val+4;
-        pc_val = pc_val + imm_val_sign_ext; // LSB = 0? I think the two LSB should be 0 to align bytes, wire [31:0] JVAL = JALR ? DADDR : PCSIMM; // SIMM + (JALR ? U1REG : PC);
+        pc_val = pc_val + imm_val_sign_ext;  
       end 
       JALR : begin 
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
@@ -287,10 +329,12 @@ class riscv_ref_model;
       end
       // U-Type
       LUI  : begin 
-        imm_val_sign_ext = {imm_val[20:0], '0}; //rd = (sll) imm << 12 or {imm,,{12{1'b0}}} 
+        imm_val_sign_ext = {imm_val[20:0], {12{1'b0}}}; 
+        REGS[rdd_val] = imm_val_sign_ext;
       end 
       AUIPC: begin 
-        imm_val_sign_ext = {imm_val[20:0], '0}; //rd = PC + (imm << 12), 12 lower bits to 0
+        imm_val_sign_ext = {imm_val[20:0], {12{1'b0}}}; 
+        REGS[rdd_val] = pc_val + imm_val_sign_ext;
       end
     endcase
     
