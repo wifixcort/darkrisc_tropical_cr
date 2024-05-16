@@ -353,8 +353,8 @@ endtask
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
-		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
+		 $display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",   inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
+		 $display("riscv_opcode %h", top.soc0.core0.OPCODE);
 		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
 `ifdef __DB_ENABLE__
 		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -362,7 +362,7 @@ endtask
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
+		 $display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",  inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
 		//  $display("FUNCT 7 = %b , FUNC 3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
 	  end

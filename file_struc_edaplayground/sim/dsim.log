@@ -1,8 +1,2463 @@
-=N:[UsageMeter (2024-05-16 12:44:08 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=W:[UsageMeter (2024-05-16 12:44:23 -0600)] Not retryable
-=W:[UsageMeter (2024-05-16 12:44:23 -0600)] cannot communicate with usage server for new session, num session retries left:2
-=W:[UsageMeter (2024-05-16 12:44:44 -0600)] Not retryable
-=W:[UsageMeter (2024-05-16 12:44:44 -0600)] cannot communicate with usage server for new session, num session retries left:1
-=W:[UsageMeter (2024-05-16 12:45:14 -0600)] Not retryable
-=W:[UsageMeter (2024-05-16 12:45:14 -0600)] cannot communicate with usage server for new session, num session retries left:0
-=F:[UsageMeter (2024-05-16 12:45:14 -0600)] retries exhausted, exiting
+=N:[UsageMeter (2024-05-16 16:07:49 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-16 16:07:50 -0600)] usage server initial connection
+=N:[License] 
+Licensed for Metrics Design Automation.
+=N:[License] New lease granted.
+Analyzing...
+Elaborating...
+  Top-level modules:
+    $unit
+    top
+=W:[ExprStmtNotVoid]:
+    The following expressions used as statements do not have void type:    
+
+    ../testbench/stimulus.sv:170:7                  int    
+    Included from ../testbench/testbench.sv:3:10           
+    Included from ../testbench/top.sv:1:10                 
+
+    ../testbench/stimulus.sv:190:7                  int    
+    Included from ../testbench/testbench.sv:3:10           
+
+    ../testbench/stimulus.sv:197:5                  int    
+    Included from ../testbench/testbench.sv:3:10           
+
+    ../testbench/stimulus.sv:228:11                 int    
+    Included from ../testbench/testbench.sv:3:10           
+
+    ../testbench/stimulus.sv:248:11                 int    
+    Included from ../testbench/testbench.sv:3:10           
+
+  Found 10 unique specialization(s) of 10 design element(s).
+=W:[MissingTimescale]:
+    It is illegal for some design elements to have time specifications    
+    while others don't.  A complete time specification includes           
+    both a time unit and time precision.                                  
+
+        Have complete time spec    Have no/incomplete time spec    
+
+        darkpll                    instructions_data_struc         
+        darkriscv                  intf_soc                        
+        darksocv                   testcase                        
+        darkuart                   top                             
+
+Optimizing...
+Building models...
+PLI/VPI access: +b 
+Simulation time precision is 1ps.
+  [3/9] CU scope $unit: 51 functions, 1865 basic blocks
+Linking image.so...
+Using default typical min/typ/max.
+=S:Begin run-time elaboration and static initialization...
+Creating environment
+Creating monitor 2
+=N:[dumpMXD] preparing MXD dump to 'darksocv.mxd'.
+=N:[dump] Dump started at time 0
+=N:Starting event scheduler...
+=W:[dump] ../testbench/top.sv:46: $dumpfile() called, but dump already enabled.
+=W:[dump] ../testbench/top.sv:47: $dumpvars() called after dumping started.
+
+******************************************************************************************
+driver: Invoked reset() -> send RESET signal to SoC
+******************************************************************************************
+instrucción=  X, rs1= x, rs2= x, rdd= x, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción xxxxxxxx
+
+******************************************************************************************
+driver: Invoked mem_loadt() -> load MEM to SoC
+******************************************************************************************
+
+********************************************************************************
+Stimulus: Invoked mem_generate() -> proced to generate random instructions array
+********************************************************************************
+
+********************************************************************************
+Stimulus: Invoked set_program_format()) -> set first and last instructions
+********************************************************************************
+
+******************************************************************************************
+Stimulus: Invoked opt_addr() -> set instructions before load/storage for force valid address
+******************************************************************************************
+
+******************************************************************************************
+Stimulus: Invoked print_mem() -> print the actual state of MEM
+******************************************************************************************
+Instruction #    0:	0eb48093	opcode: 0010011 
+Instruction #    1:	0f280113	opcode: 0010011 
+Instruction #    2:	fb9b8193	opcode: 0010011 
+Instruction #    3:	02940213	opcode: 0010011 
+Instruction #    4:	0bcd0293	opcode: 0010011 
+Instruction #    5:	07648313	opcode: 0010011 
+Instruction #    6:	fbaf8393	opcode: 0010011 
+Instruction #    7:	f8540413	opcode: 0010011 
+Instruction #    8:	fbbe0493	opcode: 0010011 
+Instruction #    9:	01758513	opcode: 0010011 
+Instruction #   10:	056e0593	opcode: 0010011 
+Instruction #   11:	0b770613	opcode: 0010011 
+Instruction #   12:	0f7e0693	opcode: 0010011 
+Instruction #   13:	f56b8713	opcode: 0010011 
+Instruction #   14:	f1f50793	opcode: 0010011 
+Instruction #   15:	04d90813	opcode: 0010011 
+Instruction #   16:	03c20893	opcode: 0010011 
+Instruction #   17:	0f468913	opcode: 0010011 
+Instruction #   18:	0cef8993	opcode: 0010011 
+Instruction #   19:	06410a13	opcode: 0010011 
+Instruction #   20:	fdc60a93	opcode: 0010011 
+Instruction #   21:	0b738b13	opcode: 0010011 
+Instruction #   22:	09e90b93	opcode: 0010011 
+Instruction #   23:	f7540c13	opcode: 0010011 
+Instruction #   24:	ffd70c93	opcode: 0010011 
+Instruction #   25:	fa3e8d13	opcode: 0010011 
+Instruction #   26:	ffea8d93	opcode: 0010011 
+Instruction #   27:	05b20e13	opcode: 0010011 
+Instruction #   28:	f6050e93	opcode: 0010011 
+Instruction #   29:	0cbf8f13	opcode: 0010011 
+Instruction #   30:	0da38f93	opcode: 0010011 
+Instruction #   31:	fcd57b93	opcode: 0010011 
+Instruction #   32:	006fdb93	opcode: 0010011 
+Instruction #   33:	ff727d93	opcode: 0010011 
+Instruction #   34:	002a0fb3	opcode: 0110011 
+Instruction #   35:	02b8a313	opcode: 0010011 
+Instruction #   36:	0e087e13	opcode: 0010011 
+Instruction #   37:	f8c98193	opcode: 0010011 
+Instruction #   38:	009371b3	opcode: 0110011 
+Instruction #   39:	0094fdb3	opcode: 0110011 
+Instruction #   40:	0018e4b3	opcode: 0110011 
+Instruction #   41:	fb872f93	opcode: 0010011 
+Instruction #   42:	01201b13	opcode: 0010011 
+Instruction #   43:	001f1f93	opcode: 0010011 
+Instruction #   44:	f6d3a193	opcode: 0010011 
+Instruction #   45:	00fb76b3	opcode: 0110011 
+Instruction #   46:	00ab4333	opcode: 0110011 
+Instruction #   47:	0952e413	opcode: 0010011 
+Instruction #   48:	0197eeb3	opcode: 0110011 
+Instruction #   49:	006e27b3	opcode: 0110011 
+Instruction #   50:	faeee193	opcode: 0010011 
+Instruction #   51:	fe057013	opcode: 0010011 
+Instruction #   52:	01a7bbb3	opcode: 0110011 
+Instruction #   53:	f775ad93	opcode: 0010011 
+Instruction #   54:	00438f33	opcode: 0110011 
+Instruction #   55:	0c84a693	opcode: 0010011 
+Instruction #   56:	01f9d213	opcode: 0010011 
+Instruction #   57:	004d4eb3	opcode: 0110011 
+Instruction #   58:	fa838d93	opcode: 0010011 
+Instruction #   59:	0b7ec513	opcode: 0010011 
+Instruction #   60:	02217193	opcode: 0010011 
+Instruction #   61:	fb2c6293	opcode: 0010011 
+Instruction #   62:	01ef7e33	opcode: 0110011 
+Instruction #   63:	00c0fb33	opcode: 0110011 
+Instruction #   64:	0d9b3393	opcode: 0010011 
+Instruction #   65:	01405013	opcode: 0010011 
+Instruction #   66:	004e49b3	opcode: 0110011 
+Instruction #   67:	002d5033	opcode: 0110011 
+Instruction #   68:	015bd793	opcode: 0010011 
+Instruction #   69:	0e848013	opcode: 0010011 
+Instruction #   70:	02c9f313	opcode: 0010011 
+Instruction #   71:	00a11233	opcode: 0110011 
+Instruction #   72:	005f4433	opcode: 0110011 
+Instruction #   73:	04414e93	opcode: 0010011 
+Instruction #   74:	010728b3	opcode: 0110011 
+Instruction #   75:	012e1713	opcode: 0010011 
+Instruction #   76:	07e62893	opcode: 0010011 
+Instruction #   77:	00dac4b3	opcode: 0110011 
+Instruction #   78:	00961b33	opcode: 0110011 
+Instruction #   79:	01eb9833	opcode: 0110011 
+Instruction #   80:	01f06f33	opcode: 0110011 
+Instruction #   81:	017154b3	opcode: 0110011 
+Instruction #   82:	fe6ec213	opcode: 0010011 
+Instruction #   83:	01a91eb3	opcode: 0110011 
+Instruction #   84:	017aecb3	opcode: 0110011 
+Instruction #   85:	f8c26013	opcode: 0010011 
+Instruction #   86:	09772a93	opcode: 0010011 
+Instruction #   87:	03ac8013	opcode: 0010011 
+Instruction #   88:	f3a0a613	opcode: 0010011 
+Instruction #   89:	00960833	opcode: 0110011 
+Instruction #   90:	00b83db3	opcode: 0110011 
+Instruction #   91:	fc977213	opcode: 0010011 
+Instruction #   92:	00d21193	opcode: 0010011 
+Instruction #   93:	018ba7b3	opcode: 0110011 
+Instruction #   94:	f5a3b813	opcode: 0010011 
+Instruction #   95:	01d5c7b3	opcode: 0110011 
+Instruction #   96:	01df0c33	opcode: 0110011 
+Instruction #   97:	08657c13	opcode: 0010011 
+Instruction #   98:	01525813	opcode: 0010011 
+Instruction #   99:	01e4d893	opcode: 0010011 
+Instruction #  100:	00fb6133	opcode: 0110011 
+Instruction #  101:	00d19433	opcode: 0110011 
+Instruction #  102:	004ec1b3	opcode: 0110011 
+Instruction #  103:	01909713	opcode: 0010011 
+Instruction #  104:	0c896b93	opcode: 0010011 
+Instruction #  105:	078f4b93	opcode: 0010011 
+Instruction #  106:	014f9bb3	opcode: 0110011 
+Instruction #  107:	0611c413	opcode: 0010011 
+Instruction #  108:	00770433	opcode: 0110011 
+Instruction #  109:	00727033	opcode: 0110011 
+Instruction #  110:	00ec5793	opcode: 0010011 
+Instruction #  111:	004b26b3	opcode: 0110011 
+Instruction #  112:	013d8bb3	opcode: 0110011 
+Instruction #  113:	01bbe533	opcode: 0110011 
+Instruction #  114:	0031f833	opcode: 0110011 
+Instruction #  115:	018a3db3	opcode: 0110011 
+Instruction #  116:	0702e013	opcode: 0010011 
+Instruction #  117:	0aed3e13	opcode: 0010011 
+Instruction #  118:	0d82cf13	opcode: 0010011 
+Instruction #  119:	0036a833	opcode: 0110011 
+Instruction #  120:	05c84d93	opcode: 0010011 
+Instruction #  121:	0457b693	opcode: 0010011 
+Instruction #  122:	00189693	opcode: 0010011 
+Instruction #  123:	011e9e93	opcode: 0010011 
+Instruction #  124:	01cecab3	opcode: 0110011 
+Instruction #  125:	00fcdab3	opcode: 0110011 
+Instruction #  126:	00e398b3	opcode: 0110011 
+Instruction #  127:	01d2d993	opcode: 0010011 
+Instruction #  128:	0035a433	opcode: 0110011 
+Instruction #  129:	01cf27b3	opcode: 0110011 
+Instruction #  130:	fcaaa613	opcode: 0010011 
+Instruction #  131:	0090ee33	opcode: 0110011 
+Instruction #  132:	0186fcb3	opcode: 0110011 
+Instruction #  133:	f42b6793	opcode: 0010011 
+Instruction #  134:	01950f33	opcode: 0110011 
+Instruction #  135:	018bf233	opcode: 0110011 
+Instruction #  136:	0071f633	opcode: 0110011 
+Instruction #  137:	0ffae993	opcode: 0010011 
+Instruction #  138:	01ff1213	opcode: 0010011 
+Instruction #  139:	01782e93	opcode: 0010011 
+Instruction #  140:	face0593	opcode: 0010011 
+Instruction #  141:	003fa333	opcode: 0110011 
+Instruction #  142:	006f8033	opcode: 0110011 
+Instruction #  143:	f9b5ce93	opcode: 0010011 
+Instruction #  144:	f262f893	opcode: 0010011 
+Instruction #  145:	f59d4213	opcode: 0010011 
+Instruction #  146:	02b2f893	opcode: 0010011 
+Instruction #  147:	f5f8ad93	opcode: 0010011 
+Instruction #  148:	00700233	opcode: 0110011 
+Instruction #  149:	01799613	opcode: 0010011 
+Instruction #  150:	019adab3	opcode: 0110011 
+Instruction #  151:	0286c213	opcode: 0010011 
+Instruction #  152:	00b35813	opcode: 0010011 
+Instruction #  153:	008451b3	opcode: 0110011 
+Instruction #  154:	00311693	opcode: 0010011 
+Instruction #  155:	00cb23b3	opcode: 0110011 
+Instruction #  156:	000600b3	opcode: 0110011 
+Instruction #  157:	00415233	opcode: 0110011 
+Instruction #  158:	09f6be93	opcode: 0010011 
+Instruction #  159:	01241c13	opcode: 0010011 
+Instruction #  160:	0119d3b3	opcode: 0110011 
+Instruction #  161:	f8a3c393	opcode: 0010011 
+Instruction #  162:	015f24b3	opcode: 0110011 
+Instruction #  163:	f8e06793	opcode: 0010011 
+Instruction #  164:	0350b593	opcode: 0010011 
+Instruction #  165:	0cde8d13	opcode: 0010011 
+Instruction #  166:	00271193	opcode: 0010011 
+Instruction #  167:	014906b3	opcode: 0110011 
+Instruction #  168:	01cc9913	opcode: 0010011 
+Instruction #  169:	00495f93	opcode: 0010011 
+Instruction #  170:	01123393	opcode: 0010011 
+Instruction #  171:	01c38993	opcode: 0010011 
+Instruction #  172:	00b30133	opcode: 0110011 
+Instruction #  173:	0039c333	opcode: 0110011 
+Instruction #  174:	01bd86b3	opcode: 0110011 
+Instruction #  175:	00d527b3	opcode: 0110011 
+Instruction #  176:	0003b193	opcode: 0010011 
+Instruction #  177:	000698b3	opcode: 0110011 
+Instruction #  178:	00c726b3	opcode: 0110011 
+Instruction #  179:	017ec433	opcode: 0110011 
+Instruction #  180:	002eda33	opcode: 0110011 
+Instruction #  181:	015f4633	opcode: 0110011 
+Instruction #  182:	019bf333	opcode: 0110011 
+Instruction #  183:	019be0b3	opcode: 0110011 
+Instruction #  184:	00781033	opcode: 0110011 
+Instruction #  185:	0be6c693	opcode: 0010011 
+Instruction #  186:	fcf6e193	opcode: 0010011 
+Instruction #  187:	00540c33	opcode: 0110011 
+Instruction #  188:	fa64f493	opcode: 0010011 
+Instruction #  189:	01527bb3	opcode: 0110011 
+Instruction #  190:	01490133	opcode: 0110011 
+Instruction #  191:	09ee2213	opcode: 0010011 
+Instruction #  192:	f9a7ea13	opcode: 0010011 
+Instruction #  193:	f3516913	opcode: 0010011 
+Instruction #  194:	050a8613	opcode: 0010011 
+Instruction #  195:	01fa72b3	opcode: 0110011 
+Instruction #  196:	0a5e6993	opcode: 0010011 
+Instruction #  197:	01624233	opcode: 0110011 
+Instruction #  198:	01e2b333	opcode: 0110011 
+Instruction #  199:	0c533a93	opcode: 0010011 
+Instruction #  200:	00bf74b3	opcode: 0110011 
+Instruction #  201:	011a1bb3	opcode: 0110011 
+Instruction #  202:	094ab213	opcode: 0010011 
+Instruction #  203:	002d5c93	opcode: 0010011 
+Instruction #  204:	047c4693	opcode: 0010011 
+Instruction #  205:	0197e133	opcode: 0110011 
+Instruction #  206:	00017eb3	opcode: 0110011 
+Instruction #  207:	017f8633	opcode: 0110011 
+Instruction #  208:	00639833	opcode: 0110011 
+Instruction #  209:	f2f3bc93	opcode: 0010011 
+Instruction #  210:	010d08b3	opcode: 0110011 
+Instruction #  211:	00f260b3	opcode: 0110011 
+Instruction #  212:	049db093	opcode: 0010011 
+Instruction #  213:	003915b3	opcode: 0110011 
+Instruction #  214:	00a10b33	opcode: 0110011 
+Instruction #  215:	fe5c3713	opcode: 0010011 
+Instruction #  216:	001cadb3	opcode: 0110011 
+Instruction #  217:	0a4b6a13	opcode: 0010011 
+Instruction #  218:	f6a67013	opcode: 0010011 
+Instruction #  219:	fedac913	opcode: 0010011 
+Instruction #  220:	fd37e693	opcode: 0010011 
+Instruction #  221:	01dbc9b3	opcode: 0110011 
+Instruction #  222:	01531893	opcode: 0010011 
+Instruction #  223:	f8c34393	opcode: 0010011 
+Instruction #  224:	012516b3	opcode: 0110011 
+Instruction #  225:	0e68e193	opcode: 0010011 
+Instruction #  226:	0d48f313	opcode: 0010011 
+Instruction #  227:	00accab3	opcode: 0110011 
+Instruction #  228:	00075c93	opcode: 0010011 
+Instruction #  229:	00466d33	opcode: 0110011 
+Instruction #  230:	ffed7293	opcode: 0010011 
+Instruction #  231:	015cba33	opcode: 0110011 
+Instruction #  232:	00903fb3	opcode: 0110011 
+Instruction #  233:	016b5c93	opcode: 0010011 
+Instruction #  234:	00961b13	opcode: 0010011 
+Instruction #  235:	f4327593	opcode: 0010011 
+Instruction #  236:	f7fefc13	opcode: 0010011 
+Instruction #  237:	00b87033	opcode: 0110011 
+Instruction #  238:	009e0bb3	opcode: 0110011 
+Instruction #  239:	00b62db3	opcode: 0110011 
+Instruction #  240:	01959733	opcode: 0110011 
+Instruction #  241:	009075b3	opcode: 0110011 
+Instruction #  242:	ffefe693	opcode: 0010011 
+Instruction #  243:	00d59813	opcode: 0010011 
+Instruction #  244:	feafb913	opcode: 0010011 
+Instruction #  245:	00f71e93	opcode: 0010011 
+Instruction #  246:	00567f33	opcode: 0110011 
+Instruction #  247:	01440733	opcode: 0110011 
+Instruction #  248:	0bfbae93	opcode: 0010011 
+Instruction #  249:	01db10b3	opcode: 0110011 
+Instruction #  250:	014ed613	opcode: 0010011 
+Instruction #  251:	010e1313	opcode: 0010011 
+Instruction #  252:	01bed313	opcode: 0010011 
+Instruction #  253:	00db1593	opcode: 0010011 
+Instruction #  254:	0005d393	opcode: 0010011 
+Instruction #  255:	0f4d8393	opcode: 0010011 
+Instruction #  256:	01679c33	opcode: 0110011 
+Instruction #  257:	01bde7b3	opcode: 0110011 
+Instruction #  258:	004bcd33	opcode: 0110011 
+Instruction #  259:	012dba13	opcode: 0010011 
+Instruction #  260:	00a5fd93	opcode: 0010011 
+Instruction #  261:	0066a733	opcode: 0110011 
+Instruction #  262:	f3846f13	opcode: 0010011 
+Instruction #  263:	019f99b3	opcode: 0110011 
+Instruction #  264:	014e41b3	opcode: 0110011 
+Instruction #  265:	00a5a233	opcode: 0110011 
+Instruction #  266:	014357b3	opcode: 0110011 
+Instruction #  267:	013deb33	opcode: 0110011 
+Instruction #  268:	01a793b3	opcode: 0110011 
+Instruction #  269:	01ba2b33	opcode: 0110011 
+Instruction #  270:	0080e1b3	opcode: 0110011 
+Instruction #  271:	01e82f93	opcode: 0010011 
+Instruction #  272:	0162f333	opcode: 0110011 
+Instruction #  273:	f7602b13	opcode: 0010011 
+Instruction #  274:	0c2f0193	opcode: 0010011 
+Instruction #  275:	0b894c93	opcode: 0010011 
+Instruction #  276:	00b8deb3	opcode: 0110011 
+Instruction #  277:	fa218913	opcode: 0010011 
+Instruction #  278:	f1056a93	opcode: 0010011 
+Instruction #  279:	01d8d813	opcode: 0010011 
+Instruction #  280:	005ec8b3	opcode: 0110011 
+Instruction #  281:	fea4ac93	opcode: 0010011 
+Instruction #  282:	01fd6733	opcode: 0110011 
+Instruction #  283:	016c5113	opcode: 0010011 
+Instruction #  284:	0000f533	opcode: 0110011 
+Instruction #  285:	01aeba33	opcode: 0110011 
+Instruction #  286:	00ca3733	opcode: 0110011 
+Instruction #  287:	f97f8b93	opcode: 0010011 
+Instruction #  288:	00e7e633	opcode: 0110011 
+Instruction #  289:	06b50e13	opcode: 0010011 
+Instruction #  290:	f18afa13	opcode: 0010011 
+Instruction #  291:	003d2c33	opcode: 0110011 
+Instruction #  292:	012dd413	opcode: 0010011 
+Instruction #  293:	00be2333	opcode: 0110011 
+Instruction #  294:	01f69a33	opcode: 0110011 
+Instruction #  295:	01e8ddb3	opcode: 0110011 
+Instruction #  296:	f88da813	opcode: 0010011 
+Instruction #  297:	019be833	opcode: 0110011 
+Instruction #  298:	00db29b3	opcode: 0110011 
+Instruction #  299:	faf24793	opcode: 0010011 
+Instruction #  300:	014569b3	opcode: 0110011 
+Instruction #  301:	0136fb33	opcode: 0110011 
+Instruction #  302:	07b44c13	opcode: 0010011 
+Instruction #  303:	ffe5a293	opcode: 0010011 
+Instruction #  304:	01223733	opcode: 0110011 
+Instruction #  305:	00e12eb3	opcode: 0110011 
+Instruction #  306:	011d44b3	opcode: 0110011 
+Instruction #  307:	003e12b3	opcode: 0110011 
+Instruction #  308:	fbd9c693	opcode: 0010011 
+Instruction #  309:	01f330b3	opcode: 0110011 
+Instruction #  310:	f2304913	opcode: 0010011 
+Instruction #  311:	f8fc6793	opcode: 0010011 
+Instruction #  312:	009a4a33	opcode: 0110011 
+Instruction #  313:	ffed8f93	opcode: 0010011 
+Instruction #  314:	013356b3	opcode: 0110011 
+Instruction #  315:	00a1eab3	opcode: 0110011 
+Instruction #  316:	01876db3	opcode: 0110011 
+Instruction #  317:	f9c76993	opcode: 0010011 
+Instruction #  318:	00e551b3	opcode: 0110011 
+Instruction #  319:	07f54393	opcode: 0010011 
+Instruction #  320:	00eea9b3	opcode: 0110011 
+Instruction #  321:	00ec9093	opcode: 0010011 
+Instruction #  322:	f8eb3c93	opcode: 0010011 
+Instruction #  323:	f56e8413	opcode: 0010011 
+Instruction #  324:	fdc80493	opcode: 0010011 
+Instruction #  325:	00929d13	opcode: 0010011 
+Instruction #  326:	00cb3c33	opcode: 0110011 
+Instruction #  327:	00749813	opcode: 0010011 
+Instruction #  328:	016f9e93	opcode: 0010011 
+Instruction #  329:	fe99f613	opcode: 0010011 
+Instruction #  330:	ff680f13	opcode: 0010011 
+Instruction #  331:	00edd3b3	opcode: 0110011 
+Instruction #  332:	017edc33	opcode: 0110011 
+Instruction #  333:	01a95593	opcode: 0010011 
+Instruction #  334:	00eda6b3	opcode: 0110011 
+Instruction #  335:	09e73613	opcode: 0010011 
+Instruction #  336:	01d09f93	opcode: 0010011 
+Instruction #  337:	01f02433	opcode: 0110011 
+Instruction #  338:	017d2133	opcode: 0110011 
+Instruction #  339:	02eff613	opcode: 0010011 
+Instruction #  340:	0162e9b3	opcode: 0110011 
+Instruction #  341:	01e52033	opcode: 0110011 
+Instruction #  342:	00398933	opcode: 0110011 
+Instruction #  343:	00e577b3	opcode: 0110011 
+Instruction #  344:	014a9c13	opcode: 0010011 
+Instruction #  345:	fa46bd93	opcode: 0010011 
+Instruction #  346:	01a446b3	opcode: 0110011 
+Instruction #  347:	07c1f713	opcode: 0010011 
+Instruction #  348:	01fe1db3	opcode: 0110011 
+Instruction #  349:	00612733	opcode: 0110011 
+Instruction #  350:	004e6933	opcode: 0110011 
+Instruction #  351:	0039e3b3	opcode: 0110011 
+Instruction #  352:	01fba933	opcode: 0110011 
+Instruction #  353:	00e0e433	opcode: 0110011 
+Instruction #  354:	0118bbb3	opcode: 0110011 
+Instruction #  355:	01aa4633	opcode: 0110011 
+Instruction #  356:	011ee033	opcode: 0110011 
+Instruction #  357:	002f3633	opcode: 0110011 
+Instruction #  358:	01c127b3	opcode: 0110011 
+Instruction #  359:	01de9a33	opcode: 0110011 
+Instruction #  360:	07abf213	opcode: 0010011 
+Instruction #  361:	0ca70613	opcode: 0010011 
+Instruction #  362:	01e87ab3	opcode: 0110011 
+Instruction #  363:	0ace7193	opcode: 0010011 
+Instruction #  364:	0138de13	opcode: 0010011 
+Instruction #  365:	fb79e513	opcode: 0010011 
+Instruction #  366:	00ff3733	opcode: 0110011 
+Instruction #  367:	012fe0b3	opcode: 0110011 
+Instruction #  368:	07658393	opcode: 0010011 
+Instruction #  369:	0e7c0593	opcode: 0010011 
+Instruction #  370:	0dd70213	opcode: 0010011 
+Instruction #  371:	01996233	opcode: 0110011 
+Instruction #  372:	017874b3	opcode: 0110011 
+Instruction #  373:	013d4d33	opcode: 0110011 
+Instruction #  374:	00069013	opcode: 0010011 
+Instruction #  375:	0f7ecd93	opcode: 0010011 
+Instruction #  376:	00609333	opcode: 0110011 
+Instruction #  377:	0149abb3	opcode: 0110011 
+Instruction #  378:	01e81933	opcode: 0110011 
+Instruction #  379:	00dc1d93	opcode: 0010011 
+Instruction #  380:	fa35ae13	opcode: 0010011 
+Instruction #  381:	08577393	opcode: 0010011 
+Instruction #  382:	0082df93	opcode: 0010011 
+Instruction #  383:	01d46433	opcode: 0110011 
+Instruction #  384:	0d4d0493	opcode: 0010011 
+Instruction #  385:	00071993	opcode: 0010011 
+Instruction #  386:	0838a993	opcode: 0010011 
+Instruction #  387:	f8bba713	opcode: 0010011 
+Instruction #  388:	0c77a913	opcode: 0010011 
+Instruction #  389:	ffcdf813	opcode: 0010011 
+Instruction #  390:	01970533	opcode: 0110011 
+Instruction #  391:	015f4bb3	opcode: 0110011 
+Instruction #  392:	01717833	opcode: 0110011 
+Instruction #  393:	01b48a33	opcode: 0110011 
+Instruction #  394:	047dfd93	opcode: 0010011 
+Instruction #  395:	f41cad93	opcode: 0010011 
+Instruction #  396:	01a97a33	opcode: 0110011 
+Instruction #  397:	021e2e13	opcode: 0010011 
+Instruction #  398:	01f12e33	opcode: 0110011 
+Instruction #  399:	012d1413	opcode: 0010011 
+Instruction #  400:	0b5f3293	opcode: 0010011 
+Instruction #  401:	0cc50c93	opcode: 0010011 
+Instruction #  402:	00dce913	opcode: 0010011 
+Instruction #  403:	005787b3	opcode: 0110011 
+Instruction #  404:	01528c33	opcode: 0110011 
+Instruction #  405:	010e06b3	opcode: 0110011 
+Instruction #  406:	f5af7c13	opcode: 0010011 
+Instruction #  407:	00866533	opcode: 0110011 
+Instruction #  408:	f7c6f113	opcode: 0010011 
+Instruction #  409:	00c52c33	opcode: 0110011 
+Instruction #  410:	00af29b3	opcode: 0110011 
+Instruction #  411:	00243b33	opcode: 0110011 
+Instruction #  412:	00da83b3	opcode: 0110011 
+Instruction #  413:	0d063b93	opcode: 0010011 
+Instruction #  414:	00e9de93	opcode: 0010011 
+Instruction #  415:	0100ad33	opcode: 0110011 
+Instruction #  416:	00339b13	opcode: 0010011 
+Instruction #  417:	f5892c93	opcode: 0010011 
+Instruction #  418:	003feb33	opcode: 0110011 
+Instruction #  419:	001d0533	opcode: 0110011 
+Instruction #  420:	011609b3	opcode: 0110011 
+Instruction #  421:	0003a833	opcode: 0110011 
+Instruction #  422:	00ae9433	opcode: 0110011 
+Instruction #  423:	015b40b3	opcode: 0110011 
+Instruction #  424:	009566b3	opcode: 0110011 
+Instruction #  425:	f068c093	opcode: 0010011 
+Instruction #  426:	015f3493	opcode: 0010011 
+Instruction #  427:	f024ee93	opcode: 0010011 
+Instruction #  428:	019de8b3	opcode: 0110011 
+Instruction #  429:	012775b3	opcode: 0110011 
+Instruction #  430:	07603993	opcode: 0010011 
+Instruction #  431:	01052c33	opcode: 0110011 
+Instruction #  432:	f498b213	opcode: 0010011 
+Instruction #  433:	010ca7b3	opcode: 0110011 
+Instruction #  434:	00ee8193	opcode: 0010011 
+Instruction #  435:	00d1d413	opcode: 0010011 
+Instruction #  436:	f315bc13	opcode: 0010011 
+Instruction #  437:	0181c433	opcode: 0110011 
+Instruction #  438:	035f6793	opcode: 0010011 
+Instruction #  439:	019a51b3	opcode: 0110011 
+Instruction #  440:	019e78b3	opcode: 0110011 
+Instruction #  441:	001316b3	opcode: 0110011 
+Instruction #  442:	01482333	opcode: 0110011 
+Instruction #  443:	f0dab213	opcode: 0010011 
+Instruction #  444:	005572b3	opcode: 0110011 
+Instruction #  445:	017924b3	opcode: 0110011 
+Instruction #  446:	01ceddb3	opcode: 0110011 
+Instruction #  447:	00e4eb33	opcode: 0110011 
+Instruction #  448:	f4442113	opcode: 0010011 
+Instruction #  449:	00a84bb3	opcode: 0110011 
+Instruction #  450:	00819093	opcode: 0010011 
+Instruction #  451:	01ad85b3	opcode: 0110011 
+Instruction #  452:	004be4b3	opcode: 0110011 
+Instruction #  453:	0198e5b3	opcode: 0110011 
+Instruction #  454:	008c0533	opcode: 0110011 
+Instruction #  455:	fa550993	opcode: 0010011 
+Instruction #  456:	01715593	opcode: 0010011 
+Instruction #  457:	00ed4393	opcode: 0010011 
+Instruction #  458:	004f5e33	opcode: 0110011 
+Instruction #  459:	00757433	opcode: 0110011 
+Instruction #  460:	0d8d7213	opcode: 0010011 
+Instruction #  461:	01bed233	opcode: 0110011 
+Instruction #  462:	01d1fe33	opcode: 0110011 
+Instruction #  463:	005573b3	opcode: 0110011 
+Instruction #  464:	01982f33	opcode: 0110011 
+Instruction #  465:	009431b3	opcode: 0110011 
+Instruction #  466:	01091f13	opcode: 0010011 
+Instruction #  467:	0e068393	opcode: 0010011 
+Instruction #  468:	0070ffb3	opcode: 0110011 
+Instruction #  469:	01ac8033	opcode: 0110011 
+Instruction #  470:	00e6cfb3	opcode: 0110011 
+Instruction #  471:	0091c4b3	opcode: 0110011 
+Instruction #  472:	01575d13	opcode: 0010011 
+Instruction #  473:	00edda13	opcode: 0010011 
+Instruction #  474:	018026b3	opcode: 0110011 
+Instruction #  475:	045bc393	opcode: 0010011 
+Instruction #  476:	00f85893	opcode: 0010011 
+Instruction #  477:	002672b3	opcode: 0110011 
+Instruction #  478:	01798db3	opcode: 0110011 
+Instruction #  479:	01d2c2b3	opcode: 0110011 
+Instruction #  480:	00150533	opcode: 0110011 
+Instruction #  481:	01835233	opcode: 0110011 
+Instruction #  482:	0f81f493	opcode: 0010011 
+Instruction #  483:	0134a2b3	opcode: 0110011 
+Instruction #  484:	00195693	opcode: 0010011 
+Instruction #  485:	005a9713	opcode: 0010011 
+Instruction #  486:	01334e33	opcode: 0110011 
+Instruction #  487:	f53bf413	opcode: 0010011 
+Instruction #  488:	00ff47b3	opcode: 0110011 
+Instruction #  489:	05324313	opcode: 0010011 
+Instruction #  490:	01adee93	opcode: 0010011 
+Instruction #  491:	f33db393	opcode: 0010011 
+Instruction #  492:	0176d993	opcode: 0010011 
+Instruction #  493:	00fc3db3	opcode: 0110011 
+Instruction #  494:	01207c33	opcode: 0110011 
+Instruction #  495:	00a15513	opcode: 0010011 
+Instruction #  496:	01805693	opcode: 0010011 
+Instruction #  497:	00235893	opcode: 0010011 
+Instruction #  498:	017264b3	opcode: 0110011 
+Instruction #  499:	00368133	opcode: 0110011 
+Instruction #  500:	fc68c113	opcode: 0010011 
+Instruction #  501:	0007b3b3	opcode: 0110011 
+Instruction #  502:	04c3e413	opcode: 0010011 
+Instruction #  503:	00b68ab3	opcode: 0110011 
+Instruction #  504:	f26cb613	opcode: 0010011 
+Instruction #  505:	f5aae393	opcode: 0010011 
+Instruction #  506:	f791fb93	opcode: 0010011 
+Instruction #  507:	012ef5b3	opcode: 0110011 
+Instruction #  508:	01980a33	opcode: 0110011 
+Instruction #  509:	03554113	opcode: 0010011 
+Instruction #  510:	00000097	opcode: 0010111 
+Instruction #  511:	00008067	opcode: 1100111 
+Instruction #  512:	00000000	opcode: 0000000 
+Instruction #  513:	00000000	opcode: 0000000 
+Instruction #  514:	00000000	opcode: 0000000 
+Instruction #  515:	00000000	opcode: 0000000 
+Instruction #  516:	00000000	opcode: 0000000 
+Instruction #  517:	00000000	opcode: 0000000 
+Instruction #  518:	00000000	opcode: 0000000 
+Instruction #  519:	00000000	opcode: 0000000 
+Instruction #  520:	00000000	opcode: 0000000 
+Instruction #  521:	00000000	opcode: 0000000 
+Instruction #  522:	00000000	opcode: 0000000 
+Instruction #  523:	00000000	opcode: 0000000 
+Instruction #  524:	00000000	opcode: 0000000 
+Instruction #  525:	00000000	opcode: 0000000 
+Instruction #  526:	00000000	opcode: 0000000 
+Instruction #  527:	00000000	opcode: 0000000 
+Instruction #  528:	00000000	opcode: 0000000 
+Instruction #  529:	00000000	opcode: 0000000 
+Instruction #  530:	00000000	opcode: 0000000 
+Instruction #  531:	00000000	opcode: 0000000 
+Instruction #  532:	00000000	opcode: 0000000 
+Instruction #  533:	00000000	opcode: 0000000 
+Instruction #  534:	00000000	opcode: 0000000 
+Instruction #  535:	00000000	opcode: 0000000 
+Instruction #  536:	00000000	opcode: 0000000 
+Instruction #  537:	00000000	opcode: 0000000 
+Instruction #  538:	00000000	opcode: 0000000 
+Instruction #  539:	00000000	opcode: 0000000 
+Instruction #  540:	00000000	opcode: 0000000 
+Instruction #  541:	00000000	opcode: 0000000 
+Instruction #  542:	00000000	opcode: 0000000 
+Instruction #  543:	00000000	opcode: 0000000 
+Instruction #  544:	00000000	opcode: 0000000 
+Instruction #  545:	00000000	opcode: 0000000 
+Instruction #  546:	00000000	opcode: 0000000 
+Instruction #  547:	00000000	opcode: 0000000 
+Instruction #  548:	00000000	opcode: 0000000 
+Instruction #  549:	00000000	opcode: 0000000 
+Instruction #  550:	00000000	opcode: 0000000 
+Instruction #  551:	00000000	opcode: 0000000 
+Instruction #  552:	00000000	opcode: 0000000 
+Instruction #  553:	00000000	opcode: 0000000 
+Instruction #  554:	00000000	opcode: 0000000 
+Instruction #  555:	00000000	opcode: 0000000 
+Instruction #  556:	00000000	opcode: 0000000 
+Instruction #  557:	00000000	opcode: 0000000 
+Instruction #  558:	00000000	opcode: 0000000 
+Instruction #  559:	00000000	opcode: 0000000 
+Instruction #  560:	00000000	opcode: 0000000 
+Instruction #  561:	00000000	opcode: 0000000 
+Instruction #  562:	00000000	opcode: 0000000 
+Instruction #  563:	00000000	opcode: 0000000 
+Instruction #  564:	00000000	opcode: 0000000 
+Instruction #  565:	00000000	opcode: 0000000 
+Instruction #  566:	00000000	opcode: 0000000 
+Instruction #  567:	00000000	opcode: 0000000 
+Instruction #  568:	00000000	opcode: 0000000 
+Instruction #  569:	00000000	opcode: 0000000 
+Instruction #  570:	00000000	opcode: 0000000 
+Instruction #  571:	00000000	opcode: 0000000 
+Instruction #  572:	00000000	opcode: 0000000 
+Instruction #  573:	00000000	opcode: 0000000 
+Instruction #  574:	00000000	opcode: 0000000 
+Instruction #  575:	00000000	opcode: 0000000 
+Instruction #  576:	00000000	opcode: 0000000 
+Instruction #  577:	00000000	opcode: 0000000 
+Instruction #  578:	00000000	opcode: 0000000 
+Instruction #  579:	00000000	opcode: 0000000 
+Instruction #  580:	00000000	opcode: 0000000 
+Instruction #  581:	00000000	opcode: 0000000 
+Instruction #  582:	00000000	opcode: 0000000 
+Instruction #  583:	00000000	opcode: 0000000 
+Instruction #  584:	00000000	opcode: 0000000 
+Instruction #  585:	00000000	opcode: 0000000 
+Instruction #  586:	00000000	opcode: 0000000 
+Instruction #  587:	00000000	opcode: 0000000 
+Instruction #  588:	00000000	opcode: 0000000 
+Instruction #  589:	00000000	opcode: 0000000 
+Instruction #  590:	00000000	opcode: 0000000 
+Instruction #  591:	00000000	opcode: 0000000 
+Instruction #  592:	00000000	opcode: 0000000 
+Instruction #  593:	00000000	opcode: 0000000 
+Instruction #  594:	00000000	opcode: 0000000 
+Instruction #  595:	00000000	opcode: 0000000 
+Instruction #  596:	00000000	opcode: 0000000 
+Instruction #  597:	00000000	opcode: 0000000 
+Instruction #  598:	00000000	opcode: 0000000 
+Instruction #  599:	00000000	opcode: 0000000 
+Instruction #  600:	00000000	opcode: 0000000 
+Instruction #  601:	00000000	opcode: 0000000 
+Instruction #  602:	00000000	opcode: 0000000 
+Instruction #  603:	00000000	opcode: 0000000 
+Instruction #  604:	00000000	opcode: 0000000 
+Instruction #  605:	00000000	opcode: 0000000 
+Instruction #  606:	00000000	opcode: 0000000 
+Instruction #  607:	00000000	opcode: 0000000 
+Instruction #  608:	00000000	opcode: 0000000 
+Instruction #  609:	00000000	opcode: 0000000 
+Instruction #  610:	00000000	opcode: 0000000 
+Instruction #  611:	00000000	opcode: 0000000 
+Instruction #  612:	00000000	opcode: 0000000 
+Instruction #  613:	00000000	opcode: 0000000 
+Instruction #  614:	00000000	opcode: 0000000 
+Instruction #  615:	00000000	opcode: 0000000 
+Instruction #  616:	00000000	opcode: 0000000 
+Instruction #  617:	00000000	opcode: 0000000 
+Instruction #  618:	00000000	opcode: 0000000 
+Instruction #  619:	00000000	opcode: 0000000 
+Instruction #  620:	00000000	opcode: 0000000 
+Instruction #  621:	00000000	opcode: 0000000 
+Instruction #  622:	00000000	opcode: 0000000 
+Instruction #  623:	00000000	opcode: 0000000 
+Instruction #  624:	00000000	opcode: 0000000 
+Instruction #  625:	00000000	opcode: 0000000 
+Instruction #  626:	00000000	opcode: 0000000 
+Instruction #  627:	00000000	opcode: 0000000 
+Instruction #  628:	00000000	opcode: 0000000 
+Instruction #  629:	00000000	opcode: 0000000 
+Instruction #  630:	00000000	opcode: 0000000 
+Instruction #  631:	00000000	opcode: 0000000 
+Instruction #  632:	00000000	opcode: 0000000 
+Instruction #  633:	00000000	opcode: 0000000 
+Instruction #  634:	00000000	opcode: 0000000 
+Instruction #  635:	00000000	opcode: 0000000 
+Instruction #  636:	00000000	opcode: 0000000 
+Instruction #  637:	00000000	opcode: 0000000 
+Instruction #  638:	00000000	opcode: 0000000 
+Instruction #  639:	00000000	opcode: 0000000 
+Instruction #  640:	00000000	opcode: 0000000 
+Instruction #  641:	00000000	opcode: 0000000 
+Instruction #  642:	00000000	opcode: 0000000 
+Instruction #  643:	00000000	opcode: 0000000 
+Instruction #  644:	00000000	opcode: 0000000 
+Instruction #  645:	00000000	opcode: 0000000 
+Instruction #  646:	00000000	opcode: 0000000 
+Instruction #  647:	00000000	opcode: 0000000 
+Instruction #  648:	00000000	opcode: 0000000 
+Instruction #  649:	00000000	opcode: 0000000 
+Instruction #  650:	00000000	opcode: 0000000 
+Instruction #  651:	00000000	opcode: 0000000 
+Instruction #  652:	00000000	opcode: 0000000 
+Instruction #  653:	00000000	opcode: 0000000 
+Instruction #  654:	00000000	opcode: 0000000 
+Instruction #  655:	00000000	opcode: 0000000 
+Instruction #  656:	00000000	opcode: 0000000 
+Instruction #  657:	00000000	opcode: 0000000 
+Instruction #  658:	00000000	opcode: 0000000 
+Instruction #  659:	00000000	opcode: 0000000 
+Instruction #  660:	00000000	opcode: 0000000 
+Instruction #  661:	00000000	opcode: 0000000 
+Instruction #  662:	00000000	opcode: 0000000 
+Instruction #  663:	00000000	opcode: 0000000 
+Instruction #  664:	00000000	opcode: 0000000 
+Instruction #  665:	00000000	opcode: 0000000 
+Instruction #  666:	00000000	opcode: 0000000 
+Instruction #  667:	00000000	opcode: 0000000 
+Instruction #  668:	00000000	opcode: 0000000 
+Instruction #  669:	00000000	opcode: 0000000 
+Instruction #  670:	00000000	opcode: 0000000 
+Instruction #  671:	00000000	opcode: 0000000 
+Instruction #  672:	00000000	opcode: 0000000 
+Instruction #  673:	00000000	opcode: 0000000 
+Instruction #  674:	00000000	opcode: 0000000 
+Instruction #  675:	00000000	opcode: 0000000 
+Instruction #  676:	00000000	opcode: 0000000 
+Instruction #  677:	00000000	opcode: 0000000 
+Instruction #  678:	00000000	opcode: 0000000 
+Instruction #  679:	00000000	opcode: 0000000 
+Instruction #  680:	00000000	opcode: 0000000 
+Instruction #  681:	00000000	opcode: 0000000 
+Instruction #  682:	00000000	opcode: 0000000 
+Instruction #  683:	00000000	opcode: 0000000 
+Instruction #  684:	00000000	opcode: 0000000 
+Instruction #  685:	00000000	opcode: 0000000 
+Instruction #  686:	00000000	opcode: 0000000 
+Instruction #  687:	00000000	opcode: 0000000 
+Instruction #  688:	00000000	opcode: 0000000 
+Instruction #  689:	00000000	opcode: 0000000 
+Instruction #  690:	00000000	opcode: 0000000 
+Instruction #  691:	00000000	opcode: 0000000 
+Instruction #  692:	00000000	opcode: 0000000 
+Instruction #  693:	00000000	opcode: 0000000 
+Instruction #  694:	00000000	opcode: 0000000 
+Instruction #  695:	00000000	opcode: 0000000 
+Instruction #  696:	00000000	opcode: 0000000 
+Instruction #  697:	00000000	opcode: 0000000 
+Instruction #  698:	00000000	opcode: 0000000 
+Instruction #  699:	00000000	opcode: 0000000 
+Instruction #  700:	00000000	opcode: 0000000 
+Instruction #  701:	00000000	opcode: 0000000 
+Instruction #  702:	00000000	opcode: 0000000 
+Instruction #  703:	00000000	opcode: 0000000 
+Instruction #  704:	00000000	opcode: 0000000 
+Instruction #  705:	00000000	opcode: 0000000 
+Instruction #  706:	00000000	opcode: 0000000 
+Instruction #  707:	00000000	opcode: 0000000 
+Instruction #  708:	00000000	opcode: 0000000 
+Instruction #  709:	00000000	opcode: 0000000 
+Instruction #  710:	00000000	opcode: 0000000 
+Instruction #  711:	00000000	opcode: 0000000 
+Instruction #  712:	00000000	opcode: 0000000 
+Instruction #  713:	00000000	opcode: 0000000 
+Instruction #  714:	00000000	opcode: 0000000 
+Instruction #  715:	00000000	opcode: 0000000 
+Instruction #  716:	00000000	opcode: 0000000 
+Instruction #  717:	00000000	opcode: 0000000 
+Instruction #  718:	00000000	opcode: 0000000 
+Instruction #  719:	00000000	opcode: 0000000 
+Instruction #  720:	00000000	opcode: 0000000 
+Instruction #  721:	00000000	opcode: 0000000 
+Instruction #  722:	00000000	opcode: 0000000 
+Instruction #  723:	00000000	opcode: 0000000 
+Instruction #  724:	00000000	opcode: 0000000 
+Instruction #  725:	00000000	opcode: 0000000 
+Instruction #  726:	00000000	opcode: 0000000 
+Instruction #  727:	00000000	opcode: 0000000 
+Instruction #  728:	00000000	opcode: 0000000 
+Instruction #  729:	00000000	opcode: 0000000 
+Instruction #  730:	00000000	opcode: 0000000 
+Instruction #  731:	00000000	opcode: 0000000 
+Instruction #  732:	00000000	opcode: 0000000 
+Instruction #  733:	00000000	opcode: 0000000 
+Instruction #  734:	00000000	opcode: 0000000 
+Instruction #  735:	00000000	opcode: 0000000 
+Instruction #  736:	00000000	opcode: 0000000 
+Instruction #  737:	00000000	opcode: 0000000 
+Instruction #  738:	00000000	opcode: 0000000 
+Instruction #  739:	00000000	opcode: 0000000 
+Instruction #  740:	00000000	opcode: 0000000 
+Instruction #  741:	00000000	opcode: 0000000 
+Instruction #  742:	00000000	opcode: 0000000 
+Instruction #  743:	00000000	opcode: 0000000 
+Instruction #  744:	00000000	opcode: 0000000 
+Instruction #  745:	00000000	opcode: 0000000 
+Instruction #  746:	00000000	opcode: 0000000 
+Instruction #  747:	00000000	opcode: 0000000 
+Instruction #  748:	00000000	opcode: 0000000 
+Instruction #  749:	00000000	opcode: 0000000 
+Instruction #  750:	00000000	opcode: 0000000 
+Instruction #  751:	00000000	opcode: 0000000 
+Instruction #  752:	00000000	opcode: 0000000 
+Instruction #  753:	00000000	opcode: 0000000 
+Instruction #  754:	00000000	opcode: 0000000 
+Instruction #  755:	00000000	opcode: 0000000 
+Instruction #  756:	00000000	opcode: 0000000 
+Instruction #  757:	00000000	opcode: 0000000 
+Instruction #  758:	00000000	opcode: 0000000 
+Instruction #  759:	00000000	opcode: 0000000 
+Instruction #  760:	00000000	opcode: 0000000 
+Instruction #  761:	00000000	opcode: 0000000 
+Instruction #  762:	00000000	opcode: 0000000 
+Instruction #  763:	00000000	opcode: 0000000 
+Instruction #  764:	00000000	opcode: 0000000 
+Instruction #  765:	00000000	opcode: 0000000 
+Instruction #  766:	00000000	opcode: 0000000 
+Instruction #  767:	00000000	opcode: 0000000 
+Instruction #  768:	00000000	opcode: 0000000 
+Instruction #  769:	00000000	opcode: 0000000 
+Instruction #  770:	00000000	opcode: 0000000 
+Instruction #  771:	00000000	opcode: 0000000 
+Instruction #  772:	00000000	opcode: 0000000 
+Instruction #  773:	00000000	opcode: 0000000 
+Instruction #  774:	00000000	opcode: 0000000 
+Instruction #  775:	00000000	opcode: 0000000 
+Instruction #  776:	00000000	opcode: 0000000 
+Instruction #  777:	00000000	opcode: 0000000 
+Instruction #  778:	00000000	opcode: 0000000 
+Instruction #  779:	00000000	opcode: 0000000 
+Instruction #  780:	00000000	opcode: 0000000 
+Instruction #  781:	00000000	opcode: 0000000 
+Instruction #  782:	00000000	opcode: 0000000 
+Instruction #  783:	00000000	opcode: 0000000 
+Instruction #  784:	00000000	opcode: 0000000 
+Instruction #  785:	00000000	opcode: 0000000 
+Instruction #  786:	00000000	opcode: 0000000 
+Instruction #  787:	00000000	opcode: 0000000 
+Instruction #  788:	00000000	opcode: 0000000 
+Instruction #  789:	00000000	opcode: 0000000 
+Instruction #  790:	00000000	opcode: 0000000 
+Instruction #  791:	00000000	opcode: 0000000 
+Instruction #  792:	00000000	opcode: 0000000 
+Instruction #  793:	00000000	opcode: 0000000 
+Instruction #  794:	00000000	opcode: 0000000 
+Instruction #  795:	00000000	opcode: 0000000 
+Instruction #  796:	00000000	opcode: 0000000 
+Instruction #  797:	00000000	opcode: 0000000 
+Instruction #  798:	00000000	opcode: 0000000 
+Instruction #  799:	00000000	opcode: 0000000 
+Instruction #  800:	00000000	opcode: 0000000 
+Instruction #  801:	00000000	opcode: 0000000 
+Instruction #  802:	00000000	opcode: 0000000 
+Instruction #  803:	00000000	opcode: 0000000 
+Instruction #  804:	00000000	opcode: 0000000 
+Instruction #  805:	00000000	opcode: 0000000 
+Instruction #  806:	00000000	opcode: 0000000 
+Instruction #  807:	00000000	opcode: 0000000 
+Instruction #  808:	00000000	opcode: 0000000 
+Instruction #  809:	00000000	opcode: 0000000 
+Instruction #  810:	00000000	opcode: 0000000 
+Instruction #  811:	00000000	opcode: 0000000 
+Instruction #  812:	00000000	opcode: 0000000 
+Instruction #  813:	00000000	opcode: 0000000 
+Instruction #  814:	00000000	opcode: 0000000 
+Instruction #  815:	00000000	opcode: 0000000 
+Instruction #  816:	00000000	opcode: 0000000 
+Instruction #  817:	00000000	opcode: 0000000 
+Instruction #  818:	00000000	opcode: 0000000 
+Instruction #  819:	00000000	opcode: 0000000 
+Instruction #  820:	00000000	opcode: 0000000 
+Instruction #  821:	00000000	opcode: 0000000 
+Instruction #  822:	00000000	opcode: 0000000 
+Instruction #  823:	00000000	opcode: 0000000 
+Instruction #  824:	00000000	opcode: 0000000 
+Instruction #  825:	00000000	opcode: 0000000 
+Instruction #  826:	00000000	opcode: 0000000 
+Instruction #  827:	00000000	opcode: 0000000 
+Instruction #  828:	00000000	opcode: 0000000 
+Instruction #  829:	00000000	opcode: 0000000 
+Instruction #  830:	00000000	opcode: 0000000 
+Instruction #  831:	00000000	opcode: 0000000 
+Instruction #  832:	00000000	opcode: 0000000 
+Instruction #  833:	00000000	opcode: 0000000 
+Instruction #  834:	00000000	opcode: 0000000 
+Instruction #  835:	00000000	opcode: 0000000 
+Instruction #  836:	00000000	opcode: 0000000 
+Instruction #  837:	00000000	opcode: 0000000 
+Instruction #  838:	00000000	opcode: 0000000 
+Instruction #  839:	00000000	opcode: 0000000 
+Instruction #  840:	00000000	opcode: 0000000 
+Instruction #  841:	00000000	opcode: 0000000 
+Instruction #  842:	00000000	opcode: 0000000 
+Instruction #  843:	00000000	opcode: 0000000 
+Instruction #  844:	00000000	opcode: 0000000 
+Instruction #  845:	00000000	opcode: 0000000 
+Instruction #  846:	00000000	opcode: 0000000 
+Instruction #  847:	00000000	opcode: 0000000 
+Instruction #  848:	00000000	opcode: 0000000 
+Instruction #  849:	00000000	opcode: 0000000 
+Instruction #  850:	00000000	opcode: 0000000 
+Instruction #  851:	00000000	opcode: 0000000 
+Instruction #  852:	00000000	opcode: 0000000 
+Instruction #  853:	00000000	opcode: 0000000 
+Instruction #  854:	00000000	opcode: 0000000 
+Instruction #  855:	00000000	opcode: 0000000 
+Instruction #  856:	00000000	opcode: 0000000 
+Instruction #  857:	00000000	opcode: 0000000 
+Instruction #  858:	00000000	opcode: 0000000 
+Instruction #  859:	00000000	opcode: 0000000 
+Instruction #  860:	00000000	opcode: 0000000 
+Instruction #  861:	00000000	opcode: 0000000 
+Instruction #  862:	00000000	opcode: 0000000 
+Instruction #  863:	00000000	opcode: 0000000 
+Instruction #  864:	00000000	opcode: 0000000 
+Instruction #  865:	00000000	opcode: 0000000 
+Instruction #  866:	00000000	opcode: 0000000 
+Instruction #  867:	00000000	opcode: 0000000 
+Instruction #  868:	00000000	opcode: 0000000 
+Instruction #  869:	00000000	opcode: 0000000 
+Instruction #  870:	00000000	opcode: 0000000 
+Instruction #  871:	00000000	opcode: 0000000 
+Instruction #  872:	00000000	opcode: 0000000 
+Instruction #  873:	00000000	opcode: 0000000 
+Instruction #  874:	00000000	opcode: 0000000 
+Instruction #  875:	00000000	opcode: 0000000 
+Instruction #  876:	00000000	opcode: 0000000 
+Instruction #  877:	00000000	opcode: 0000000 
+Instruction #  878:	00000000	opcode: 0000000 
+Instruction #  879:	00000000	opcode: 0000000 
+Instruction #  880:	00000000	opcode: 0000000 
+Instruction #  881:	00000000	opcode: 0000000 
+Instruction #  882:	00000000	opcode: 0000000 
+Instruction #  883:	00000000	opcode: 0000000 
+Instruction #  884:	00000000	opcode: 0000000 
+Instruction #  885:	00000000	opcode: 0000000 
+Instruction #  886:	00000000	opcode: 0000000 
+Instruction #  887:	00000000	opcode: 0000000 
+Instruction #  888:	00000000	opcode: 0000000 
+Instruction #  889:	00000000	opcode: 0000000 
+Instruction #  890:	00000000	opcode: 0000000 
+Instruction #  891:	00000000	opcode: 0000000 
+Instruction #  892:	00000000	opcode: 0000000 
+Instruction #  893:	00000000	opcode: 0000000 
+Instruction #  894:	00000000	opcode: 0000000 
+Instruction #  895:	00000000	opcode: 0000000 
+Instruction #  896:	00000000	opcode: 0000000 
+Instruction #  897:	00000000	opcode: 0000000 
+Instruction #  898:	00000000	opcode: 0000000 
+Instruction #  899:	00000000	opcode: 0000000 
+Instruction #  900:	00000000	opcode: 0000000 
+Instruction #  901:	00000000	opcode: 0000000 
+Instruction #  902:	00000000	opcode: 0000000 
+Instruction #  903:	00000000	opcode: 0000000 
+Instruction #  904:	00000000	opcode: 0000000 
+Instruction #  905:	00000000	opcode: 0000000 
+Instruction #  906:	00000000	opcode: 0000000 
+Instruction #  907:	00000000	opcode: 0000000 
+Instruction #  908:	00000000	opcode: 0000000 
+Instruction #  909:	00000000	opcode: 0000000 
+Instruction #  910:	00000000	opcode: 0000000 
+Instruction #  911:	00000000	opcode: 0000000 
+Instruction #  912:	00000000	opcode: 0000000 
+Instruction #  913:	00000000	opcode: 0000000 
+Instruction #  914:	00000000	opcode: 0000000 
+Instruction #  915:	00000000	opcode: 0000000 
+Instruction #  916:	00000000	opcode: 0000000 
+Instruction #  917:	00000000	opcode: 0000000 
+Instruction #  918:	00000000	opcode: 0000000 
+Instruction #  919:	00000000	opcode: 0000000 
+Instruction #  920:	00000000	opcode: 0000000 
+Instruction #  921:	00000000	opcode: 0000000 
+Instruction #  922:	00000000	opcode: 0000000 
+Instruction #  923:	00000000	opcode: 0000000 
+Instruction #  924:	00000000	opcode: 0000000 
+Instruction #  925:	00000000	opcode: 0000000 
+Instruction #  926:	00000000	opcode: 0000000 
+Instruction #  927:	00000000	opcode: 0000000 
+Instruction #  928:	00000000	opcode: 0000000 
+Instruction #  929:	00000000	opcode: 0000000 
+Instruction #  930:	00000000	opcode: 0000000 
+Instruction #  931:	00000000	opcode: 0000000 
+Instruction #  932:	00000000	opcode: 0000000 
+Instruction #  933:	00000000	opcode: 0000000 
+Instruction #  934:	00000000	opcode: 0000000 
+Instruction #  935:	00000000	opcode: 0000000 
+Instruction #  936:	00000000	opcode: 0000000 
+Instruction #  937:	00000000	opcode: 0000000 
+Instruction #  938:	00000000	opcode: 0000000 
+Instruction #  939:	00000000	opcode: 0000000 
+Instruction #  940:	00000000	opcode: 0000000 
+Instruction #  941:	00000000	opcode: 0000000 
+Instruction #  942:	00000000	opcode: 0000000 
+Instruction #  943:	00000000	opcode: 0000000 
+Instruction #  944:	00000000	opcode: 0000000 
+Instruction #  945:	00000000	opcode: 0000000 
+Instruction #  946:	00000000	opcode: 0000000 
+Instruction #  947:	00000000	opcode: 0000000 
+Instruction #  948:	00000000	opcode: 0000000 
+Instruction #  949:	00000000	opcode: 0000000 
+Instruction #  950:	00000000	opcode: 0000000 
+Instruction #  951:	00000000	opcode: 0000000 
+Instruction #  952:	00000000	opcode: 0000000 
+Instruction #  953:	00000000	opcode: 0000000 
+Instruction #  954:	00000000	opcode: 0000000 
+Instruction #  955:	00000000	opcode: 0000000 
+Instruction #  956:	00000000	opcode: 0000000 
+Instruction #  957:	00000000	opcode: 0000000 
+Instruction #  958:	00000000	opcode: 0000000 
+Instruction #  959:	00000000	opcode: 0000000 
+Instruction #  960:	00000000	opcode: 0000000 
+Instruction #  961:	00000000	opcode: 0000000 
+Instruction #  962:	00000000	opcode: 0000000 
+Instruction #  963:	00000000	opcode: 0000000 
+Instruction #  964:	00000000	opcode: 0000000 
+Instruction #  965:	00000000	opcode: 0000000 
+Instruction #  966:	00000000	opcode: 0000000 
+Instruction #  967:	00000000	opcode: 0000000 
+Instruction #  968:	00000000	opcode: 0000000 
+Instruction #  969:	00000000	opcode: 0000000 
+Instruction #  970:	00000000	opcode: 0000000 
+Instruction #  971:	00000000	opcode: 0000000 
+Instruction #  972:	00000000	opcode: 0000000 
+Instruction #  973:	00000000	opcode: 0000000 
+Instruction #  974:	00000000	opcode: 0000000 
+Instruction #  975:	00000000	opcode: 0000000 
+Instruction #  976:	00000000	opcode: 0000000 
+Instruction #  977:	00000000	opcode: 0000000 
+Instruction #  978:	00000000	opcode: 0000000 
+Instruction #  979:	00000000	opcode: 0000000 
+Instruction #  980:	00000000	opcode: 0000000 
+Instruction #  981:	00000000	opcode: 0000000 
+Instruction #  982:	00000000	opcode: 0000000 
+Instruction #  983:	00000000	opcode: 0000000 
+Instruction #  984:	00000000	opcode: 0000000 
+Instruction #  985:	00000000	opcode: 0000000 
+Instruction #  986:	00000000	opcode: 0000000 
+Instruction #  987:	00000000	opcode: 0000000 
+Instruction #  988:	00000000	opcode: 0000000 
+Instruction #  989:	00000000	opcode: 0000000 
+Instruction #  990:	00000000	opcode: 0000000 
+Instruction #  991:	00000000	opcode: 0000000 
+Instruction #  992:	00000000	opcode: 0000000 
+Instruction #  993:	00000000	opcode: 0000000 
+Instruction #  994:	00000000	opcode: 0000000 
+Instruction #  995:	00000000	opcode: 0000000 
+Instruction #  996:	00000000	opcode: 0000000 
+Instruction #  997:	00000000	opcode: 0000000 
+Instruction #  998:	00000000	opcode: 0000000 
+Instruction #  999:	00000000	opcode: 0000000 
+Instruction # 1000:	00000000	opcode: 0000000 
+Instruction # 1001:	00000000	opcode: 0000000 
+Instruction # 1002:	00000000	opcode: 0000000 
+Instruction # 1003:	00000000	opcode: 0000000 
+Instruction # 1004:	00000000	opcode: 0000000 
+Instruction # 1005:	00000000	opcode: 0000000 
+Instruction # 1006:	00000000	opcode: 0000000 
+Instruction # 1007:	00000000	opcode: 0000000 
+Instruction # 1008:	00000000	opcode: 0000000 
+Instruction # 1009:	00000000	opcode: 0000000 
+Instruction # 1010:	00000000	opcode: 0000000 
+Instruction # 1011:	00000000	opcode: 0000000 
+Instruction # 1012:	00000000	opcode: 0000000 
+Instruction # 1013:	00000000	opcode: 0000000 
+Instruction # 1014:	00000000	opcode: 0000000 
+Instruction # 1015:	00000000	opcode: 0000000 
+Instruction # 1016:	00000000	opcode: 0000000 
+Instruction # 1017:	00000000	opcode: 0000000 
+Instruction # 1018:	00000000	opcode: 0000000 
+Instruction # 1019:	00000000	opcode: 0000000 
+Instruction # 1020:	00000000	opcode: 0000000 
+Instruction # 1021:	00000000	opcode: 0000000 
+Instruction # 1022:	00000000	opcode: 0000000 
+Instruction # 1023:	00000000	opcode: 0000000 
+instrucción= 11, rs1= 9, rs2=11, rdd= 1, imm=     235, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0eb48093
+ Counter:     0         |      addi      | riscv_mem:000000eb  | sb_mem:000000eb  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0eb48093
+instrucción= 11, rs1=16, rs2=18, rdd= 2, imm=     242, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0f280113
+ Counter:     1         |      addi      | riscv_mem:000000f2  | sb_mem:000000f2  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0f280113
+instrucción= 11, rs1=23, rs2=25, rdd= 3, imm=     -71, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fb9b8193
+ Counter:     2         |      addi      | riscv_mem:ffffffb9  | sb_mem:ffffffb9  | PASS | rx_f:ADDI
+Instruction Decode/Execute fb9b8193
+instrucción= 11, rs1= 8, rs2= 9, rdd= 4, imm=      41, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 02940213
+ Counter:     3         |      addi      | riscv_mem:00000029  | sb_mem:00000029  | PASS | rx_f:ADDI
+Instruction Decode/Execute 02940213
+instrucción= 11, rs1=26, rs2=28, rdd= 5, imm=     188, testing_imm[11:5]=05
+Monitor 1 reportando instrucción 0bcd0293
+ Counter:     4         |      addi      | riscv_mem:000000bc  | sb_mem:000000bc  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0bcd0293
+instrucción= 11, rs1= 9, rs2=22, rdd= 6, imm=     118, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 07648313
+ Counter:     5         |      addi      | riscv_mem:00000076  | sb_mem:00000076  | PASS | rx_f:ADDI
+Instruction Decode/Execute 07648313
+instrucción= 11, rs1=31, rs2=26, rdd= 7, imm=     -70, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fbaf8393
+ Counter:     6         |      addi      | riscv_mem:ffffffba  | sb_mem:ffffffba  | PASS | rx_f:ADDI
+Instruction Decode/Execute fbaf8393
+instrucción= 11, rs1= 8, rs2= 5, rdd= 8, imm=    -123, testing_imm[11:5]=7c
+Monitor 1 reportando instrucción f8540413
+ Counter:     7         |      addi      | riscv_mem:ffffff85  | sb_mem:ffffff85  | PASS | rx_f:ADDI
+Instruction Decode/Execute f8540413
+instrucción= 11, rs1=28, rs2=27, rdd= 9, imm=     -69, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fbbe0493
+ Counter:     8         |      addi      | riscv_mem:ffffffbb  | sb_mem:ffffffbb  | PASS | rx_f:ADDI
+Instruction Decode/Execute fbbe0493
+instrucción= 11, rs1=11, rs2=23, rdd=10, imm=      23, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01758513
+ Counter:     9         |      addi      | riscv_mem:00000017  | sb_mem:00000017  | PASS | rx_f:ADDI
+Instruction Decode/Execute 01758513
+instrucción= 11, rs1=28, rs2=22, rdd=11, imm=      86, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 056e0593
+ Counter:    10         |      addi      | riscv_mem:00000056  | sb_mem:00000056  | PASS | rx_f:ADDI
+Instruction Decode/Execute 056e0593
+instrucción= 11, rs1=14, rs2=23, rdd=12, imm=     183, testing_imm[11:5]=05
+Monitor 1 reportando instrucción 0b770613
+ Counter:    11         |      addi      | riscv_mem:000000b7  | sb_mem:000000b7  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0b770613
+instrucción= 11, rs1=28, rs2=23, rdd=13, imm=     247, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0f7e0693
+ Counter:    12         |      addi      | riscv_mem:000000f7  | sb_mem:000000f7  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0f7e0693
+instrucción= 11, rs1=23, rs2=22, rdd=14, imm=    -170, testing_imm[11:5]=7a
+Monitor 1 reportando instrucción f56b8713
+ Counter:    13         |      addi      | riscv_mem:ffffff56  | sb_mem:ffffff56  | PASS | rx_f:ADDI
+Instruction Decode/Execute f56b8713
+instrucción= 11, rs1=10, rs2=31, rdd=15, imm=    -225, testing_imm[11:5]=78
+Monitor 1 reportando instrucción f1f50793
+ Counter:    14         |      addi      | riscv_mem:ffffff36  | sb_mem:ffffff36  | PASS | rx_f:ADDI
+Instruction Decode/Execute f1f50793
+instrucción= 11, rs1=18, rs2=13, rdd=16, imm=      77, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 04d90813
+ Counter:    15         |      addi      | riscv_mem:0000004d  | sb_mem:0000004d  | PASS | rx_f:ADDI
+Instruction Decode/Execute 04d90813
+instrucción= 11, rs1= 4, rs2=28, rdd=17, imm=      60, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 03c20893
+ Counter:    16         |      addi      | riscv_mem:00000065  | sb_mem:00000065  | PASS | rx_f:ADDI
+Instruction Decode/Execute 03c20893
+instrucción= 11, rs1=13, rs2=20, rdd=18, imm=     244, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0f468913
+ Counter:    17         |      addi      | riscv_mem:000001eb  | sb_mem:000001eb  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0f468913
+instrucción= 11, rs1=31, rs2=14, rdd=19, imm=     206, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0cef8993
+ Counter:    18         |      addi      | riscv_mem:000000ce  | sb_mem:000000ce  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0cef8993
+instrucción= 11, rs1= 2, rs2= 4, rdd=20, imm=     100, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 06410a13
+ Counter:    19         |      addi      | riscv_mem:00000156  | sb_mem:00000156  | PASS | rx_f:ADDI
+Instruction Decode/Execute 06410a13
+instrucción= 11, rs1=12, rs2=28, rdd=21, imm=     -36, testing_imm[11:5]=7e
+Monitor 1 reportando instrucción fdc60a93
+ Counter:    20         |      addi      | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:ADDI
+Instruction Decode/Execute fdc60a93
+instrucción= 11, rs1= 7, rs2=23, rdd=22, imm=     183, testing_imm[11:5]=05
+Monitor 1 reportando instrucción 0b738b13
+ Counter:    21         |      addi      | riscv_mem:00000071  | sb_mem:00000071  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0b738b13
+instrucción= 11, rs1=18, rs2=30, rdd=23, imm=     158, testing_imm[11:5]=04
+Monitor 1 reportando instrucción 09e90b93
+ Counter:    22         |      addi      | riscv_mem:00000289  | sb_mem:00000289  | PASS | rx_f:ADDI
+Instruction Decode/Execute 09e90b93
+instrucción= 11, rs1= 8, rs2=21, rdd=24, imm=    -139, testing_imm[11:5]=7b
+Monitor 1 reportando instrucción f7540c13
+ Counter:    23         |      addi      | riscv_mem:fffffefa  | sb_mem:fffffefa  | PASS | rx_f:ADDI
+Instruction Decode/Execute f7540c13
+instrucción= 11, rs1=14, rs2=29, rdd=25, imm=      -3, testing_imm[11:5]=7f
+Monitor 1 reportando instrucción ffd70c93
+ Counter:    24         |      addi      | riscv_mem:ffffff53  | sb_mem:ffffff53  | PASS | rx_f:ADDI
+Instruction Decode/Execute ffd70c93
+instrucción= 11, rs1=29, rs2= 3, rdd=26, imm=     -93, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fa3e8d13
+ Counter:    25         |      addi      | riscv_mem:ffffffa3  | sb_mem:ffffffa3  | PASS | rx_f:ADDI
+Instruction Decode/Execute fa3e8d13
+instrucción= 11, rs1=21, rs2=30, rdd=27, imm=      -2, testing_imm[11:5]=7f
+Monitor 1 reportando instrucción ffea8d93
+ Counter:    26         |      addi      | riscv_mem:00000091  | sb_mem:00000091  | PASS | rx_f:ADDI
+Instruction Decode/Execute ffea8d93
+instrucción= 11, rs1= 4, rs2=27, rdd=28, imm=      91, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 05b20e13
+ Counter:    27         |      addi      | riscv_mem:00000084  | sb_mem:00000084  | PASS | rx_f:ADDI
+Instruction Decode/Execute 05b20e13
+instrucción= 11, rs1=10, rs2= 0, rdd=29, imm=    -160, testing_imm[11:5]=7b
+Monitor 1 reportando instrucción f6050e93
+ Counter:    28         |      addi      | riscv_mem:ffffff77  | sb_mem:ffffff77  | PASS | rx_f:ADDI
+Instruction Decode/Execute f6050e93
+instrucción= 11, rs1=31, rs2=11, rdd=30, imm=     203, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0cbf8f13
+ Counter:    29         |      addi      | riscv_mem:000000cb  | sb_mem:000000cb  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0cbf8f13
+instrucción= 11, rs1= 7, rs2=26, rdd=31, imm=     218, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0da38f93
+ Counter:    30         |      addi      | riscv_mem:00000094  | sb_mem:00000094  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0da38f93
+instrucción= 14, rs1=10, rs2=13, rdd=23, imm=     -51, testing_imm[11:5]=7e
+Monitor 1 reportando instrucción fcd57b93
+ Counter:    31         |      andi      | riscv_mem:00000005  | sb_mem:00000005  | PASS | rx_f:ANDI
+Instruction Decode/Execute fcd57b93
+instrucción= 16, rs1=31, rs2= 6, rdd=23, imm=       6, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 006fdb93
+pc_val: 00000088, rx_f: 10, imm: 000000000000000000110, rs1: 1f, rs2: 06, rdd: 17
+ Counter:    32         |      srli      | riscv_mem:00000002  | sb_mem:00000002  | PASS | rx_f:SRLI
+Instruction Decode/Execute 006fdb93
+instrucción= 14, rs1= 4, rs2=23, rdd=27, imm=      -9, testing_imm[11:5]=7f
+Monitor 1 reportando instrucción ff727d93
+ Counter:    33         |      andi      | riscv_mem:00000021  | sb_mem:00000021  | PASS | rx_f:ANDI
+Instruction Decode/Execute ff727d93
+instrucción=  1, rs1=20, rs2= 2, rdd=31, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 002a0fb3
+ Counter:    34         |      add       | riscv_mem:00000248  | sb_mem:00000248  | PASS | rx_f:ADD
+Instruction Decode/Execute 002a0fb3
+instrucción= 18, rs1=17, rs2=11, rdd= 6, imm=      43, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 02b8a313
+ 00000094 | 00000094 |           35         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute 02b8a313
+instrucción= 14, rs1=16, rs2= 0, rdd=28, imm=     224, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0e087e13
+ Counter:    36         |      andi      | riscv_mem:00000040  | sb_mem:00000040  | PASS | rx_f:ANDI
+Instruction Decode/Execute 0e087e13
+instrucción= 11, rs1=19, rs2=12, rdd= 3, imm=    -116, testing_imm[11:5]=7c
+Monitor 1 reportando instrucción f8c98193
+ Counter:    37         |      addi      | riscv_mem:0000005a  | sb_mem:0000005a  | PASS | rx_f:ADDI
+Instruction Decode/Execute f8c98193
+instrucción=  5, rs1= 6, rs2= 9, rdd= 3, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 009371b3
+ Counter:    38         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 009371b3
+instrucción=  5, rs1= 9, rs2= 9, rdd=27, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0094fdb3
+ Counter:    39         |      and       | riscv_mem:ffffffbb  | sb_mem:ffffffbb  | PASS | rx_f:AND
+Instruction Decode/Execute 0094fdb3
+instrucción=  4, rs1=17, rs2= 1, rdd= 9, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0018e4b3
+ Counter:    40         |      or        | riscv_mem:000000ef  | sb_mem:000000ef  | PASS | rx_f:OR
+Instruction Decode/Execute 0018e4b3
+instrucción= 18, rs1=14, rs2=24, rdd=31, imm=     -72, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fb872f93
+ 000000ac | 000000ac |           41         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute fb872f93
+instrucción= 15, rs1= 0, rs2=18, rdd=22, imm=      18, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01201b13
+ Counter:    42         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01201b13
+instrucción= 15, rs1=30, rs2= 1, rdd=31, imm=       1, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 001f1f93
+ Counter:    43         |      slli      | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:SLLI
+Instruction Decode/Execute 001f1f93
+instrucción= 18, rs1= 7, rs2=13, rdd= 3, imm=    -147, testing_imm[11:5]=7b
+Monitor 1 reportando instrucción f6d3a193
+ 000000b8 | 000000b8 |           44         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f6d3a193
+instrucción=  5, rs1=22, rs2=15, rdd=13, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00fb76b3
+ Counter:    45         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00fb76b3
+instrucción=  3, rs1=22, rs2=10, rdd= 6, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00ab4333
+ Counter:    46         |      xor       | riscv_mem:00000017  | sb_mem:00000017  | PASS | rx_f:XOR
+Instruction Decode/Execute 00ab4333
+instrucción= 13, rs1= 5, rs2=21, rdd= 8, imm=     149, testing_imm[11:5]=04
+Monitor 1 reportando instrucción 0952e413
+ Counter:    47         |      ori       | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:ORI
+Instruction Decode/Execute 0952e413
+instrucción=  4, rs1=15, rs2=25, rdd=29, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0197eeb3
+ Counter:    48         |      or        | riscv_mem:ffffff77  | sb_mem:ffffff77  | PASS | rx_f:OR
+Instruction Decode/Execute 0197eeb3
+instrucción=  9, rs1=28, rs2= 6, rdd=15, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 006e27b3
+ Counter:    49         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 006e27b3
+instrucción= 13, rs1=29, rs2=14, rdd= 3, imm=     -82, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción faeee193
+ Counter:    50         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
+Instruction Decode/Execute faeee193
+instrucción= 14, rs1=10, rs2= 0, rdd= 0, imm=     -32, testing_imm[11:5]=7f
+Monitor 1 reportando instrucción fe057013
+ Counter:    51         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute fe057013
+instrucción= 10, rs1=15, rs2=26, rdd=23, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01a7bbb3
+ Counter:    52         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 01a7bbb3
+instrucción= 18, rs1=11, rs2=23, rdd=27, imm=    -137, testing_imm[11:5]=7b
+Monitor 1 reportando instrucción f775ad93
+ 000000dc | 000000dc |           53         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f775ad93
+instrucción=  1, rs1= 7, rs2= 4, rdd=30, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00438f33
+ Counter:    54         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
+Instruction Decode/Execute 00438f33
+instrucción= 18, rs1= 9, rs2= 8, rdd=13, imm=     200, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0c84a693
+ 000000e4 | 000000e4 |           55         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute 0c84a693
+instrucción= 16, rs1=19, rs2=31, rdd= 4, imm=      31, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01f9d213
+pc_val: 000000e8, rx_f: 10, imm: 000000000000000011111, rs1: 13, rs2: 1f, rdd: 04
+ Counter:    56         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01f9d213
+instrucción=  3, rs1=26, rs2= 4, rdd=29, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 004d4eb3
+ Counter:    57         |      xor       | riscv_mem:ffffffa3  | sb_mem:ffffffa3  | PASS | rx_f:XOR
+Instruction Decode/Execute 004d4eb3
+instrucción= 11, rs1= 7, rs2= 8, rdd=27, imm=     -88, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fa838d93
+ Counter:    58         |      addi      | riscv_mem:ffffff62  | sb_mem:ffffff62  | PASS | rx_f:ADDI
+Instruction Decode/Execute fa838d93
+instrucción= 12, rs1=29, rs2=23, rdd=10, imm=     183, testing_imm[11:5]=05
+Monitor 1 reportando instrucción 0b7ec513
+ Counter:    59         |      xori      | riscv_mem:ffffff14  | sb_mem:ffffff14  | PASS | rx_f:XORI
+Instruction Decode/Execute 0b7ec513
+instrucción= 14, rs1= 2, rs2= 2, rdd= 3, imm=      34, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 02217193
+ Counter:    60         |      andi      | riscv_mem:00000022  | sb_mem:00000022  | PASS | rx_f:ANDI
+Instruction Decode/Execute 02217193
+instrucción= 13, rs1=24, rs2=18, rdd= 5, imm=     -78, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción fb2c6293
+ Counter:    61         |      ori       | riscv_mem:fffffffa  | sb_mem:fffffffa  | PASS | rx_f:ORI
+Instruction Decode/Execute fb2c6293
+instrucción=  5, rs1=30, rs2=30, rdd=28, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01ef7e33
+ Counter:    62         |      and       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:AND
+Instruction Decode/Execute 01ef7e33
+instrucción=  5, rs1= 1, rs2=12, rdd=22, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00c0fb33
+ Counter:    63         |      and       | riscv_mem:000000a3  | sb_mem:000000a3  | PASS | rx_f:AND
+Instruction Decode/Execute 00c0fb33
+instrucción= 19, rs1=22, rs2=25, rdd= 7, imm=     217, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0d9b3393
+ 00000108 | 00000108 |           64         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 0d9b3393
+instrucción= 16, rs1= 0, rs2=20, rdd= 0, imm=      20, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01405013
+pc_val: 0000010c, rx_f: 10, imm: 000000000000000010100, rs1: 00, rs2: 14, rdd: 00
+ Counter:    65         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01405013
+instrucción=  3, rs1=28, rs2= 4, rdd=19, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 004e49b3
+ Counter:    66         |      xor       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:XOR
+Instruction Decode/Execute 004e49b3
+instrucción=  7, rs1=26, rs2= 2, rdd= 0, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 002d5033
+ Counter:    67         |      srl       | riscv_mem:00003fff  | sb_mem:00003fff  | PASS | rx_f:SRL
+Instruction Decode/Execute 002d5033
+instrucción= 16, rs1=23, rs2=21, rdd=15, imm=      21, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 015bd793
+pc_val: 00000118, rx_f: 10, imm: 000000000000000010101, rs1: 17, rs2: 15, rdd: 0f
+ Counter:    68         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 015bd793
+instrucción= 11, rs1= 9, rs2= 8, rdd= 0, imm=     232, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0e848013
+ Counter:    69         |      addi      | riscv_mem:000001d7  | sb_mem:000001d7  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0e848013
+instrucción= 14, rs1=19, rs2=12, rdd= 6, imm=      44, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 02c9f313
+ Counter:    70         |      andi      | riscv_mem:00000020  | sb_mem:00000020  | PASS | rx_f:ANDI
+Instruction Decode/Execute 02c9f313
+instrucción=  6, rs1= 2, rs2=10, rdd= 4, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00a11233
+ Counter:    71         |      sll       | riscv_mem:0f200000  | sb_mem:0f200000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00a11233
+instrucción=  3, rs1=30, rs2= 5, rdd= 8, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 005f4433
+ Counter:    72         |      xor       | riscv_mem:00000019  | sb_mem:00000019  | PASS | rx_f:XOR
+Instruction Decode/Execute 005f4433
+instrucción= 12, rs1= 2, rs2= 4, rdd=29, imm=      68, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 04414e93
+ Counter:    73         |      xori      | riscv_mem:000000b6  | sb_mem:000000b6  | PASS | rx_f:XORI
+Instruction Decode/Execute 04414e93
+instrucción=  9, rs1=14, rs2=16, rdd=17, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 010728b3
+ Counter:    74         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 010728b3
+instrucción= 15, rs1=28, rs2=18, rdd=14, imm=      18, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 012e1713
+ Counter:    75         |      slli      | riscv_mem:ff8c0000  | sb_mem:ff8c0000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 012e1713
+instrucción= 18, rs1=12, rs2=30, rdd=17, imm=     126, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 07e62893
+ 00000138 | 00000138 |           76         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute 07e62893
+instrucción=  3, rs1=21, rs2=13, rdd= 9, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00dac4b3
+ Counter:    77         |      xor       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:XOR
+Instruction Decode/Execute 00dac4b3
+instrucción=  6, rs1=12, rs2= 9, rdd=22, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00961b33
+ Counter:    78         |      sll       | riscv_mem:05b80000  | sb_mem:05b80000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00961b33
+instrucción=  6, rs1=23, rs2=30, rdd=16, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01eb9833
+ Counter:    79         |      sll       | riscv_mem:00000008  | sb_mem:00000008  | PASS | rx_f:SLL
+Instruction Decode/Execute 01eb9833
+instrucción=  4, rs1= 0, rs2=31, rdd=30, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01f06f33
+ Counter:    80         |      or        | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:OR
+Instruction Decode/Execute 01f06f33
+instrucción=  7, rs1= 2, rs2=23, rdd= 9, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 017154b3
+ Counter:    81         |      srl       | riscv_mem:00000079  | sb_mem:00000079  | PASS | rx_f:SRL
+Instruction Decode/Execute 017154b3
+instrucción= 12, rs1=29, rs2= 6, rdd= 4, imm=     -26, testing_imm[11:5]=7f
+Monitor 1 reportando instrucción fe6ec213
+ Counter:    82         |      xori      | riscv_mem:ffffff50  | sb_mem:ffffff50  | PASS | rx_f:XORI
+Instruction Decode/Execute fe6ec213
+instrucción=  6, rs1=18, rs2=26, rdd=29, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01a91eb3
+ Counter:    83         |      sll       | riscv_mem:00000f58  | sb_mem:00000f58  | PASS | rx_f:SLL
+Instruction Decode/Execute 01a91eb3
+instrucción=  4, rs1=21, rs2=23, rdd=25, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 017aecb3
+ Counter:    84         |      or        | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:OR
+Instruction Decode/Execute 017aecb3
+instrucción= 13, rs1= 4, rs2=12, rdd= 0, imm=    -116, testing_imm[11:5]=7c
+Monitor 1 reportando instrucción f8c26013
+ Counter:    85         |      ori       | riscv_mem:ffffffdc  | sb_mem:ffffffdc  | PASS | rx_f:ORI
+Instruction Decode/Execute f8c26013
+instrucción= 18, rs1=14, rs2=23, rdd=21, imm=     151, testing_imm[11:5]=04
+Monitor 1 reportando instrucción 09772a93
+ 00000160 | 00000160 |           86         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 09772a93
+instrucción= 11, rs1=25, rs2=26, rdd= 0, imm=      58, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 03ac8013
+ Counter:    87         |      addi      | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADDI
+Instruction Decode/Execute 03ac8013
+instrucción= 18, rs1= 1, rs2=26, rdd=12, imm=    -198, testing_imm[11:5]=79
+Monitor 1 reportando instrucción f3a0a613
+ 00000168 | 00000168 |           88         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f3a0a613
+instrucción=  1, rs1=12, rs2= 9, rdd=16, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00960833
+ Counter:    89         |      add       | riscv_mem:00000079  | sb_mem:00000079  | PASS | rx_f:ADD
+Instruction Decode/Execute 00960833
+instrucción= 10, rs1=16, rs2=11, rdd=27, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00b83db3
+ Counter:    90         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00b83db3
+instrucción= 14, rs1=14, rs2= 9, rdd= 4, imm=     -55, testing_imm[11:5]=7e
+Monitor 1 reportando instrucción fc977213
+ Counter:    91         |      andi      | riscv_mem:ff8c0000  | sb_mem:ff8c0000  | PASS | rx_f:ANDI
+Instruction Decode/Execute fc977213
+instrucción= 15, rs1= 4, rs2=13, rdd= 3, imm=      13, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00d21193
+ Counter:    92         |      slli      | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00d21193
+instrucción=  9, rs1=23, rs2=24, rdd=15, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 018ba7b3
+ Counter:    93         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 018ba7b3
+instrucción= 19, rs1= 7, rs2=26, rdd=16, imm=    -166, testing_imm[11:5]=7a
+Monitor 1 reportando instrucción f5a3b813
+ 00000180 | 00000180 |           94         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute f5a3b813
+instrucción=  3, rs1=11, rs2=29, rdd=15, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01d5c7b3
+ Counter:    95         |      xor       | riscv_mem:00000f0e  | sb_mem:00000f0e  | PASS | rx_f:XOR
+Instruction Decode/Execute 01d5c7b3
+instrucción=  1, rs1=30, rs2=29, rdd=24, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01df0c33
+ Counter:    96         |      add       | riscv_mem:000010ee  | sb_mem:000010ee  | PASS | rx_f:ADD
+Instruction Decode/Execute 01df0c33
+instrucción= 14, rs1=10, rs2= 6, rdd=24, imm=     134, testing_imm[11:5]=04
+Monitor 1 reportando instrucción 08657c13
+ Counter:    97         |      andi      | riscv_mem:00000004  | sb_mem:00000004  | PASS | rx_f:ANDI
+Instruction Decode/Execute 08657c13
+instrucción= 16, rs1= 4, rs2=21, rdd=16, imm=      21, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01525813
+pc_val: 00000190, rx_f: 10, imm: 000000000000000010101, rs1: 04, rs2: 15, rdd: 10
+ Counter:    98         |      srli      | riscv_mem:000007fc  | sb_mem:000007fc  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01525813
+instrucción= 16, rs1= 9, rs2=30, rdd=17, imm=      30, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01e4d893
+pc_val: 00000194, rx_f: 10, imm: 000000000000000011110, rs1: 09, rs2: 1e, rdd: 11
+ Counter:    99         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01e4d893
+instrucción=  4, rs1=22, rs2=15, rdd= 2, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00fb6133
+ Counter:   100         |      or        | riscv_mem:05b80f0e  | sb_mem:05b80f0e  | PASS | rx_f:OR
+Instruction Decode/Execute 00fb6133
+instrucción=  6, rs1= 3, rs2=13, rdd= 8, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00d19433
+ Counter:   101         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00d19433
+instrucción=  3, rs1=29, rs2= 4, rdd= 3, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 004ec1b3
+ Counter:   102         |      xor       | riscv_mem:ff8c0f58  | sb_mem:ff8c0f58  | PASS | rx_f:XOR
+Instruction Decode/Execute 004ec1b3
+instrucción= 15, rs1= 1, rs2=25, rdd=14, imm=      25, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01909713
+ Counter:   103         |      slli      | riscv_mem:d6000000  | sb_mem:d6000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01909713
+instrucción= 13, rs1=18, rs2= 8, rdd=23, imm=     200, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0c896b93
+ Counter:   104         |      ori       | riscv_mem:000001eb  | sb_mem:000001eb  | PASS | rx_f:ORI
+Instruction Decode/Execute 0c896b93
+instrucción= 12, rs1=30, rs2=24, rdd=23, imm=     120, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 078f4b93
+ Counter:   105         |      xori      | riscv_mem:000001ee  | sb_mem:000001ee  | PASS | rx_f:XORI
+Instruction Decode/Execute 078f4b93
+instrucción=  6, rs1=31, rs2=20, rdd=23, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 014f9bb3
+ Counter:   106         |      sll       | riscv_mem:65800000  | sb_mem:65800000  | PASS | rx_f:SLL
+Instruction Decode/Execute 014f9bb3
+instrucción= 12, rs1= 3, rs2= 1, rdd= 8, imm=      97, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 0611c413
+ Counter:   107         |      xori      | riscv_mem:ff8c0f39  | sb_mem:ff8c0f39  | PASS | rx_f:XORI
+Instruction Decode/Execute 0611c413
+instrucción=  1, rs1=14, rs2= 7, rdd= 8, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00770433
+ Counter:   108         |      add       | riscv_mem:d6000001  | sb_mem:d6000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 00770433
+instrucción=  5, rs1= 4, rs2= 7, rdd= 0, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00727033
+ Counter:   109         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00727033
+instrucción= 16, rs1=24, rs2=14, rdd=15, imm=      14, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00ec5793
+pc_val: 000001c0, rx_f: 10, imm: 000000000000000001110, rs1: 18, rs2: 0e, rdd: 0f
+ Counter:   110         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00ec5793
+instrucción=  9, rs1=22, rs2= 4, rdd=13, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 004b26b3
+ Counter:   111         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 004b26b3
+instrucción=  1, rs1=27, rs2=19, rdd=23, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 013d8bb3
+ Counter:   112         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
+Instruction Decode/Execute 013d8bb3
+instrucción=  4, rs1=23, rs2=27, rdd=10, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01bbe533
+ Counter:   113         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
+Instruction Decode/Execute 01bbe533
+instrucción=  5, rs1= 3, rs2= 3, rdd=16, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0031f833
+ Counter:   114         |      and       | riscv_mem:ff8c0f58  | sb_mem:ff8c0f58  | PASS | rx_f:AND
+Instruction Decode/Execute 0031f833
+instrucción= 10, rs1=20, rs2=24, rdd=27, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 018a3db3
+ Counter:   115         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 018a3db3
+instrucción= 13, rs1= 5, rs2=16, rdd= 0, imm=     112, testing_imm[11:5]=03
+Monitor 1 reportando instrucción 0702e013
+ Counter:   116         |      ori       | riscv_mem:fffffffa  | sb_mem:fffffffa  | PASS | rx_f:ORI
+Instruction Decode/Execute 0702e013
+instrucción= 19, rs1=26, rs2=14, rdd=28, imm=     174, testing_imm[11:5]=05
+Monitor 1 reportando instrucción 0aed3e13
+ 000001dc | 000001dc |          117         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 0aed3e13
+instrucción= 12, rs1= 5, rs2=24, rdd=30, imm=     216, testing_imm[11:5]=06
+Monitor 1 reportando instrucción 0d82cf13
+ Counter:   118         |      xori      | riscv_mem:ffffff22  | sb_mem:ffffff22  | PASS | rx_f:XORI
+Instruction Decode/Execute 0d82cf13
+instrucción=  9, rs1=13, rs2= 3, rdd=16, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0036a833
+ Counter:   119         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 0036a833
+instrucción= 12, rs1=16, rs2=28, rdd=27, imm=      92, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 05c84d93
+ Counter:   120         |      xori      | riscv_mem:0000005c  | sb_mem:0000005c  | PASS | rx_f:XORI
+Instruction Decode/Execute 05c84d93
+instrucción= 19, rs1=15, rs2= 5, rdd=13, imm=      69, testing_imm[11:5]=02
+Monitor 1 reportando instrucción 0457b693
+ 000001ec | 000001ec |          121         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 0457b693
+instrucción= 15, rs1=17, rs2= 1, rdd=13, imm=       1, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00189693
+ Counter:   122         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00189693
+instrucción= 15, rs1=29, rs2=17, rdd=29, imm=      17, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 011e9e93
+ Counter:   123         |      slli      | riscv_mem:1eb00000  | sb_mem:1eb00000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 011e9e93
+instrucción=  3, rs1=29, rs2=28, rdd=21, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01cecab3
+ Counter:   124         |      xor       | riscv_mem:1eb00000  | sb_mem:1eb00000  | PASS | rx_f:XOR
+Instruction Decode/Execute 01cecab3
+instrucción=  7, rs1=25, rs2=15, rdd=21, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00fcdab3
+ Counter:   125         |      srl       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:SRL
+Instruction Decode/Execute 00fcdab3
+instrucción=  6, rs1= 7, rs2=14, rdd=17, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 00e398b3
+ Counter:   126         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
+Instruction Decode/Execute 00e398b3
+instrucción= 16, rs1= 5, rs2=29, rdd=19, imm=      29, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01d2d993
+pc_val: 00000204, rx_f: 10, imm: 000000000000000011101, rs1: 05, rs2: 1d, rdd: 13
+ Counter:   127         |      srli      | riscv_mem:00000007  | sb_mem:00000007  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01d2d993
+instrucción=  9, rs1=11, rs2= 3, rdd= 8, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0035a433
+ Counter:   128         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 0035a433
+instrucción=  9, rs1=30, rs2=28, rdd=15, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01cf27b3
+ Counter:   129         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 01cf27b3
+instrucción= 18, rs1=21, rs2=10, rdd=12, imm=     -54, testing_imm[11:5]=7e
+Monitor 1 reportando instrucción fcaaa613
+ 00000210 | 00000210 |          130         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute fcaaa613
+instrucción=  4, rs1= 1, rs2= 9, rdd=28, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0090ee33
+ Counter:   131         |      or        | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:OR
+Instruction Decode/Execute 0090ee33
+instrucción=  5, rs1=13, rs2=24, rdd=25, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0186fcb3
+ Counter:   132         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 0186fcb3
+instrucción= 13, rs1=22, rs2= 2, rdd=15, imm=    -190, testing_imm[11:5]=7a
+Monitor 1 reportando instrucción f42b6793
+ Counter:   133         |      ori       | riscv_mem:ffffff42  | sb_mem:ffffff42  | PASS | rx_f:ORI
+Instruction Decode/Execute f42b6793
+instrucción=  1, rs1=10, rs2=25, rdd=30, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01950f33
+ Counter:   134         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
+Instruction Decode/Execute 01950f33
+instrucción=  5, rs1=23, rs2=24, rdd= 4, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 018bf233
+ Counter:   135         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 018bf233
+instrucción=  5, rs1= 3, rs2= 7, rdd=12, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 0071f633
+ Counter:   136         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 0071f633
+instrucción= 13, rs1=21, rs2=31, rdd=19, imm=     255, testing_imm[11:5]=07
+Monitor 1 reportando instrucción 0ffae993
+ Counter:   137         |      ori       | riscv_mem:000000ff  | sb_mem:000000ff  | PASS | rx_f:ORI
+Instruction Decode/Execute 0ffae993
+instrucción= 15, rs1=30, rs2=31, rdd= 4, imm=      31, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01ff1213
+ Counter:   138         |      slli      | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01ff1213
+instrucción= 18, rs1=16, rs2=23, rdd=29, imm=      23, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 01782e93
+ 00000234 | 00000234 |          139         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 01782e93
+instrucción= 11, rs1=28, rs2=12, rdd=11, imm=     -84, testing_imm[11:5]=7d
+Monitor 1 reportando instrucción face0593
+ Counter:   140         |      addi      | riscv_mem:000000a7  | sb_mem:000000a7  | PASS | rx_f:ADDI
+Instruction Decode/Execute face0593
+instrucción=  9, rs1=31, rs2= 3, rdd= 6, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 003fa333
+ Counter:   141         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 003fa333
+instrucción=  1, rs1=31, rs2= 6, rdd= 0, imm=       0, testing_imm[11:5]=00
+Monitor 1 reportando instrucción 006f8033
+ Counter:   142         |      add       | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:ADD
+Instruction Decode/Execute 006f8033
+instrucción= 12, rs1=11, rs2=27, rdd=29, imm=    -101, testing_imm[11:5]=7c
+Monitor 1 reportando instrucción f9b5ce93
+ Counter:   143         |      xori      | riscv_mem:ffffff3c  | sb_mem:ffffff3c  | PASS | rx_f:XORI
+Instruction Decode/Execute f9b5ce93
+instrucción= 14, rs1= 5, rs2= 6, rdd=17, imm=    -218, testing_imm[11:5]=79
+Monitor 1 reportando instrucción f262f893
+ Counter:   144         |      andi      | riscv_mem:ffffff22  | sb_mem:ffffff22  | PASS | rx_f:ANDI
+Instruction Decode/Execute f262f893
+instrucción= 12, rs1=26, rs2=25, rdd= 4, imm=    -167, testing_imm[11:5]=7a
+Monitor 1 reportando instrucción f59d4213
+ Counter:   145         |      xori      | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XORI
+Instruction Decode/Execute f59d4213
+instrucción= 14, rs1= 5, rs2=11, rdd=17, imm=      43, testing_imm[11:5]=01
+Monitor 1 reportando instrucción 02b2f893
+ Counter:   146         |      andi      | riscv_mem:0000002a  | sb_mem:0000002a  | PASS | rx_f:ANDI
+Instruction Decode/Execute 02b2f893
+instrucción= 18, rs1=17, rs2=31, rdd=27, imm=    -161, testing_imm[11:5]=7a
+Monitor 1 reportando instrucción f5f8ad93
+ 00000254 | 00000254 |          147         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f5f8ad93
+instrucción=  1, rs1= 0, rs2= 7, rdd= 4, imm=       0, testing_imm[11:5]=00
+ Counter:   148         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 00700233
+ Counter:   149         |      slli      | riscv_mem:7f800000  | sb_mem:7f800000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01799613
+ Counter:   150         |      srl       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:SRL
+Instruction Decode/Execute 019adab3
+ Counter:   151         |      xori      | riscv_mem:00000028  | sb_mem:00000028  | PASS | rx_f:XORI
+Instruction Decode/Execute 0286c213
+pc_val: 00000268, rx_f: 10, imm: 000000000000000001011, rs1: 06, rs2: 0b, rdd: 10
+ Counter:   152         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00b35813
+ Counter:   153         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 008451b3
+ Counter:   154         |      slli      | riscv_mem:2dc07870  | sb_mem:2dc07870  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00311693
+ Counter:   155         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00cb23b3
+ Counter:   156         |      add       | riscv_mem:7f800000  | sb_mem:7f800000  | PASS | rx_f:ADD
+Instruction Decode/Execute 000600b3
+ Counter:   157         |      srl       | riscv_mem:0005b80f  | sb_mem:0005b80f  | PASS | rx_f:SRL
+Instruction Decode/Execute 00415233
+ 00000280 | 00000280 |          158         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 09f6be93
+ Counter:   159         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01241c13
+ Counter:   160         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 0119d3b3
+ Counter:   161         |      xori      | riscv_mem:ffffff8a  | sb_mem:ffffff8a  | PASS | rx_f:XORI
+Instruction Decode/Execute f8a3c393
+ Counter:   162         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 015f24b3
+ Counter:   163         |      ori       | riscv_mem:ffffff8e  | sb_mem:ffffff8e  | PASS | rx_f:ORI
+Instruction Decode/Execute f8e06793
+ 00000298 | 00000298 |          164         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 0350b593
+ Counter:   165         |      addi      | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0cde8d13
+ Counter:   166         |      slli      | riscv_mem:58000000  | sb_mem:58000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00271193
+ Counter:   167         |      add       | riscv_mem:00000341  | sb_mem:00000341  | PASS | rx_f:ADD
+Instruction Decode/Execute 014906b3
+ Counter:   168         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01cc9913
+pc_val: 000002ac, rx_f: 10, imm: 000000000000000000100, rs1: 12, rs2: 04, rdd: 1f
+ Counter:   169         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00495f93
+ 000002b0 | 000002b0 |          170         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 01123393
+ Counter:   171         |      addi      | riscv_mem:0000001c  | sb_mem:0000001c  | PASS | rx_f:ADDI
+Instruction Decode/Execute 01c38993
+ Counter:   172         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 00b30133
+ Counter:   173         |      xor       | riscv_mem:5800001c  | sb_mem:5800001c  | PASS | rx_f:XOR
+Instruction Decode/Execute 0039c333
+ Counter:   174         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 01bd86b3
+ Counter:   175         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00d527b3
+ 000002c8 | 000002c8 |          176         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 0003b193
+ Counter:   177         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 000698b3
+ Counter:   178         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00c726b3
+ Counter:   179         |      xor       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:XOR
+Instruction Decode/Execute 017ec433
+ Counter:   180         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 002eda33
+ Counter:   181         |      xor       | riscv_mem:ffffff70  | sb_mem:ffffff70  | PASS | rx_f:XOR
+Instruction Decode/Execute 015f4633
+ Counter:   182         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 019bf333
+ Counter:   183         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
+Instruction Decode/Execute 019be0b3
+ Counter:   184         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00781033
+ Counter:   185         |      xori      | riscv_mem:000000bf  | sb_mem:000000bf  | PASS | rx_f:XORI
+Instruction Decode/Execute 0be6c693
+ Counter:   186         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
+Instruction Decode/Execute fcf6e193
+ Counter:   187         |      add       | riscv_mem:ffffffdd  | sb_mem:ffffffdd  | PASS | rx_f:ADD
+Instruction Decode/Execute 00540c33
+ Counter:   188         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute fa64f493
+ Counter:   189         |      and       | riscv_mem:00000003  | sb_mem:00000003  | PASS | rx_f:AND
+Instruction Decode/Execute 01527bb3
+ Counter:   190         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 01490133
+ 00000304 | 00000304 |          191         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute 09ee2213
+ Counter:   192         |      ori       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:ORI
+Instruction Decode/Execute f9a7ea13
+ Counter:   193         |      ori       | riscv_mem:ffffff35  | sb_mem:ffffff35  | PASS | rx_f:ORI
+Instruction Decode/Execute f3516913
+ Counter:   194         |      addi      | riscv_mem:000000e3  | sb_mem:000000e3  | PASS | rx_f:ADDI
+Instruction Decode/Execute 050a8613
+ Counter:   195         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 01fa72b3
+ Counter:   196         |      ori       | riscv_mem:000000ff  | sb_mem:000000ff  | PASS | rx_f:ORI
+Instruction Decode/Execute 0a5e6993
+ Counter:   197         |      xor       | riscv_mem:05b80000  | sb_mem:05b80000  | PASS | rx_f:XOR
+Instruction Decode/Execute 01624233
+ Counter:   198         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 01e2b333
+ 00000324 | 00000324 |          199         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 0c533a93
+ Counter:   200         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00bf74b3
+ Counter:   201         |      sll       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:SLL
+Instruction Decode/Execute 011a1bb3
+ 00000330 | 00000330 |          202         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 094ab213
+pc_val: 00000334, rx_f: 10, imm: 000000000000000000010, rs1: 1a, rs2: 02, rdd: 19
+ Counter:   203         |      srli      | riscv_mem:00000033  | sb_mem:00000033  | PASS | rx_f:SRLI
+Instruction Decode/Execute 002d5c93
+ Counter:   204         |      xori      | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:XORI
+Instruction Decode/Execute 047c4693
+ Counter:   205         |      or        | riscv_mem:00000033  | sb_mem:00000033  | PASS | rx_f:OR
+Instruction Decode/Execute 0197e133
+ Counter:   206         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00017eb3
+ Counter:   207         |      add       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:ADD
+Instruction Decode/Execute 017f8633
+ Counter:   208         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00639833
+ 0000034c | 0000034c |          209         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute f2f3bc93
+ Counter:   210         |      add       | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADD
+Instruction Decode/Execute 010d08b3
+ Counter:   211         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
+Instruction Decode/Execute 00f260b3
+ 00000358 | 00000358 |          212         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 049db093
+ Counter:   213         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 003915b3
+ Counter:   214         |      add       | riscv_mem:00000016  | sb_mem:00000016  | PASS | rx_f:ADD
+Instruction Decode/Execute 00a10b33
+ 00000364 | 00000364 |          215         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute fe5c3713
+ Counter:   216         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 001cadb3
+ Counter:   217         |      ori       | riscv_mem:000000b6  | sb_mem:000000b6  | PASS | rx_f:ORI
+Instruction Decode/Execute 0a4b6a13
+ Counter:   218         |      andi      | riscv_mem:ffffff0a  | sb_mem:ffffff0a  | PASS | rx_f:ANDI
+Instruction Decode/Execute f6a67013
+ Counter:   219         |      xori      | riscv_mem:ffffffec  | sb_mem:ffffffec  | PASS | rx_f:XORI
+Instruction Decode/Execute fedac913
+ Counter:   220         |      ori       | riscv_mem:ffffffd3  | sb_mem:ffffffd3  | PASS | rx_f:ORI
+Instruction Decode/Execute fd37e693
+ Counter:   221         |      xor       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:XOR
+Instruction Decode/Execute 01dbc9b3
+ Counter:   222         |      slli      | riscv_mem:00200000  | sb_mem:00200000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01531893
+ Counter:   223         |      xori      | riscv_mem:ffffff8d  | sb_mem:ffffff8d  | PASS | rx_f:XORI
+Instruction Decode/Execute f8c34393
+ Counter:   224         |      sll       | riscv_mem:fffe3000  | sb_mem:fffe3000  | PASS | rx_f:SLL
+Instruction Decode/Execute 012516b3
+ Counter:   225         |      ori       | riscv_mem:002000e6  | sb_mem:002000e6  | PASS | rx_f:ORI
+Instruction Decode/Execute 0e68e193
+ Counter:   226         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 0d48f313
+ Counter:   227         |      xor       | riscv_mem:ffffffe2  | sb_mem:ffffffe2  | PASS | rx_f:XOR
+Instruction Decode/Execute 00accab3
+pc_val: 00000398, rx_f: 10, imm: 000000000000000000000, rs1: 0e, rs2: 00, rdd: 19
+ Counter:   228         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00075c93
+ Counter:   229         |      or        | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:OR
+Instruction Decode/Execute 00466d33
+ Counter:   230         |      andi      | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:ANDI
+Instruction Decode/Execute ffed7293
+ Counter:   231         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 015cba33
+ Counter:   232         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00903fb3
+pc_val: 000003ac, rx_f: 10, imm: 000000000000000010110, rs1: 16, rs2: 16, rdd: 19
+ Counter:   233         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 016b5c93
+ Counter:   234         |      slli      | riscv_mem:ffff3600  | sb_mem:ffff3600  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00961b13
+ Counter:   235         |      andi      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ANDI
+Instruction Decode/Execute f4327593
+ Counter:   236         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute f7fefc13
+ Counter:   237         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00b87033
+ Counter:   238         |      add       | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:ADD
+Instruction Decode/Execute 009e0bb3
+ Counter:   239         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00b62db3
+ Counter:   240         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
+Instruction Decode/Execute 01959733
+ Counter:   241         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 009075b3
+ Counter:   242         |      ori       | riscv_mem:fffffffe  | sb_mem:fffffffe  | PASS | rx_f:ORI
+Instruction Decode/Execute ffefe693
+ Counter:   243         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00d59813
+ 000003d8 | 000003d8 |          244         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute feafb913
+ Counter:   245         |      slli      | riscv_mem:00008000  | sb_mem:00008000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00f71e93
+ Counter:   246         |      and       | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:AND
+Instruction Decode/Execute 00567f33
+ Counter:   247         |      add       | riscv_mem:ffffffe4  | sb_mem:ffffffe4  | PASS | rx_f:ADD
+Instruction Decode/Execute 01440733
+ 000003e8 | 000003e8 |          248         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute 0bfbae93
+ Counter:   249         |      sll       | riscv_mem:ffff3600  | sb_mem:ffff3600  | PASS | rx_f:SLL
+Instruction Decode/Execute 01db10b3
+pc_val: 000003f0, rx_f: 10, imm: 000000000000000010100, rs1: 1d, rs2: 14, rdd: 0c
+ Counter:   250         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 014ed613
+ Counter:   251         |      slli      | riscv_mem:00fb0000  | sb_mem:00fb0000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 010e1313
+pc_val: 000003f8, rx_f: 10, imm: 000000000000000011011, rs1: 1d, rs2: 1b, rdd: 06
+ Counter:   252         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01bed313
+ Counter:   253         |      slli      | riscv_mem:e6c00000  | sb_mem:e6c00000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00db1593
+pc_val: 00000400, rx_f: 10, imm: 000000000000000000000, rs1: 0b, rs2: 00, rdd: 07
+ Counter:   254         |      srli      | riscv_mem:e6c00000  | sb_mem:e6c00000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 0005d393
+ Counter:   255         |      addi      | riscv_mem:000000f5  | sb_mem:000000f5  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0f4d8393
+ Counter:   256         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
+Instruction Decode/Execute 01679c33
+ Counter:   257         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
+Instruction Decode/Execute 01bde7b3
+ Counter:   258         |      xor       | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XOR
+Instruction Decode/Execute 004bcd33
+ 00000414 | 00000414 |          259         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 012dba13
+ Counter:   260         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 00a5fd93
+ Counter:   261         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 0066a733
+ Counter:   262         |      ori       | riscv_mem:fffffffb  | sb_mem:fffffffb  | PASS | rx_f:ORI
+Instruction Decode/Execute f3846f13
+ Counter:   263         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 019f99b3
+ Counter:   264         |      xor       | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XOR
+Instruction Decode/Execute 014e41b3
+ Counter:   265         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00a5a233
+ Counter:   266         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 014357b3
+ Counter:   267         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 013deb33
+ Counter:   268         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 01a793b3
+ Counter:   269         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01ba2b33
+ Counter:   270         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
+Instruction Decode/Execute 0080e1b3
+ 00000444 | 00000444 |          271         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 01e82f93
+ Counter:   272         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 0162f333
+ 0000044c | 0000044c |          273         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f7602b13
+ Counter:   274         |      addi      | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0c2f0193
+ Counter:   275         |      xori      | riscv_mem:000000b9  | sb_mem:000000b9  | PASS | rx_f:XORI
+Instruction Decode/Execute 0b894c93
+ Counter:   276         |      srl       | riscv_mem:00200000  | sb_mem:00200000  | PASS | rx_f:SRL
+Instruction Decode/Execute 00b8deb3
+ Counter:   277         |      addi      | riscv_mem:0000005f  | sb_mem:0000005f  | PASS | rx_f:ADDI
+Instruction Decode/Execute fa218913
+ Counter:   278         |      ori       | riscv_mem:fffffff3  | sb_mem:fffffff3  | PASS | rx_f:ORI
+Instruction Decode/Execute f1056a93
+pc_val: 00000464, rx_f: 10, imm: 000000000000000011101, rs1: 11, rs2: 1d, rdd: 10
+ Counter:   279         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01d8d813
+ Counter:   280         |      xor       | riscv_mem:ffdfff9a  | sb_mem:ffdfff9a  | PASS | rx_f:XOR
+Instruction Decode/Execute 005ec8b3
+ 0000046c | 0000046c |          281         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute fea4ac93
+ Counter:   282         |      or        | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:OR
+Instruction Decode/Execute 01fd6733
+pc_val: 00000474, rx_f: 10, imm: 000000000000000010110, rs1: 18, rs2: 16, rdd: 02
+ Counter:   283         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 016c5113
+ Counter:   284         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 0000f533
+ Counter:   285         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 01aeba33
+ Counter:   286         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00ca3733
+ Counter:   287         |      addi      | riscv_mem:ffffff98  | sb_mem:ffffff98  | PASS | rx_f:ADDI
+Instruction Decode/Execute f97f8b93
+ Counter:   288         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 00e7e633
+ Counter:   289         |      addi      | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:ADDI
+Instruction Decode/Execute 06b50e13
+ Counter:   290         |      andi      | riscv_mem:ffffff10  | sb_mem:ffffff10  | PASS | rx_f:ANDI
+Instruction Decode/Execute f18afa13
+ Counter:   291         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 003d2c33
+pc_val: 00000498, rx_f: 10, imm: 000000000000000010010, rs1: 1b, rs2: 12, rdd: 08
+ Counter:   292         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 012dd413
+ Counter:   293         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00be2333
+ Counter:   294         |      sll       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:SLL
+Instruction Decode/Execute 01f69a33
+ Counter:   295         |      srl       | riscv_mem:0000001f  | sb_mem:0000001f  | PASS | rx_f:SRL
+Instruction Decode/Execute 01e8ddb3
+ 000004a8 | 000004a8 |          296         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f88da813
+ Counter:   297         |      or        | riscv_mem:ffffff98  | sb_mem:ffffff98  | PASS | rx_f:OR
+Instruction Decode/Execute 019be833
+ Counter:   298         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00db29b3
+ Counter:   299         |      xori      | riscv_mem:ffffffae  | sb_mem:ffffffae  | PASS | rx_f:XORI
+Instruction Decode/Execute faf24793
+ Counter:   300         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
+Instruction Decode/Execute 014569b3
+ Counter:   301         |      and       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:AND
+Instruction Decode/Execute 0136fb33
+ Counter:   302         |      xori      | riscv_mem:0000007b  | sb_mem:0000007b  | PASS | rx_f:XORI
+Instruction Decode/Execute 07b44c13
+ 000004c4 | 000004c4 |          303         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute ffe5a293
+ Counter:   304         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 01223733
+ Counter:   305         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00e12eb3
+ Counter:   306         |      xor       | riscv_mem:ffdfff60  | sb_mem:ffdfff60  | PASS | rx_f:XOR
+Instruction Decode/Execute 011d44b3
+ Counter:   307         |      sll       | riscv_mem:60000000  | sb_mem:60000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 003e12b3
+ Counter:   308         |      xori      | riscv_mem:00000041  | sb_mem:00000041  | PASS | rx_f:XORI
+Instruction Decode/Execute fbd9c693
+ Counter:   309         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 01f330b3
+ Counter:   310         |      xori      | riscv_mem:ffffff23  | sb_mem:ffffff23  | PASS | rx_f:XORI
+Instruction Decode/Execute f2304913
+ Counter:   311         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
+Instruction Decode/Execute f8fc6793
+ Counter:   312         |      xor       | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XOR
+Instruction Decode/Execute 009a4a33
+ Counter:   313         |      addi      | riscv_mem:0000001d  | sb_mem:0000001d  | PASS | rx_f:ADDI
+Instruction Decode/Execute ffed8f93
+ Counter:   314         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 013356b3
+ Counter:   315         |      or        | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:OR
+Instruction Decode/Execute 00a1eab3
+ Counter:   316         |      or        | riscv_mem:0000007b  | sb_mem:0000007b  | PASS | rx_f:OR
+Instruction Decode/Execute 01876db3
+ Counter:   317         |      ori       | riscv_mem:ffffff9d  | sb_mem:ffffff9d  | PASS | rx_f:ORI
+Instruction Decode/Execute f9c76993
+ Counter:   318         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 00e551b3
+ Counter:   319         |      xori      | riscv_mem:0000007f  | sb_mem:0000007f  | PASS | rx_f:XORI
+Instruction Decode/Execute 07f54393
+ Counter:   320         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00eea9b3
+ Counter:   321         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00ec9093
+ 00000510 | 00000510 |          322         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute f8eb3c93
+ Counter:   323         |      addi      | riscv_mem:ffffff57  | sb_mem:ffffff57  | PASS | rx_f:ADDI
+Instruction Decode/Execute f56e8413
+ Counter:   324         |      addi      | riscv_mem:ffffff74  | sb_mem:ffffff74  | PASS | rx_f:ADDI
+Instruction Decode/Execute fdc80493
+ Counter:   325         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00929d13
+ Counter:   326         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00cb3c33
+ Counter:   327         |      slli      | riscv_mem:ffffba00  | sb_mem:ffffba00  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00749813
+ Counter:   328         |      slli      | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 016f9e93
+ Counter:   329         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute fe99f613
+ Counter:   330         |      addi      | riscv_mem:ffffb9f6  | sb_mem:ffffb9f6  | PASS | rx_f:ADDI
+Instruction Decode/Execute ff680f13
+ Counter:   331         |      srl       | riscv_mem:0000003d  | sb_mem:0000003d  | PASS | rx_f:SRL
+Instruction Decode/Execute 00edd3b3
+ Counter:   332         |      srl       | riscv_mem:00000007  | sb_mem:00000007  | PASS | rx_f:SRL
+Instruction Decode/Execute 017edc33
+pc_val: 0000053c, rx_f: 10, imm: 000000000000000011010, rs1: 12, rs2: 1a, rdd: 0b
+ Counter:   333         |      srli      | riscv_mem:0000003f  | sb_mem:0000003f  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01a95593
+ Counter:   334         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00eda6b3
+ 00000544 | 00000544 |          335         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 09e73613
+ Counter:   336         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01d09f93
+ Counter:   337         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01f02433
+ Counter:   338         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 017d2133
+ Counter:   339         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 02eff613
+ Counter:   340         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
+Instruction Decode/Execute 0162e9b3
+ Counter:   341         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01e52033
+ Counter:   342         |      add       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:ADD
+Instruction Decode/Execute 00398933
+ Counter:   343         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 00e577b3
+ Counter:   344         |      slli      | riscv_mem:0bd00000  | sb_mem:0bd00000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 014a9c13
+ 0000056c | 0000056c |          345         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute fa46bd93
+ Counter:   346         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
+Instruction Decode/Execute 01a446b3
+ Counter:   347         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 07c1f713
+ Counter:   348         |      sll       | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:SLL
+Instruction Decode/Execute 01fe1db3
+ Counter:   349         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00612733
+ Counter:   350         |      or        | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:OR
+Instruction Decode/Execute 004e6933
+ Counter:   351         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
+Instruction Decode/Execute 0039e3b3
+ Counter:   352         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 01fba933
+ Counter:   353         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 00e0e433
+ Counter:   354         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 0118bbb3
+ Counter:   355         |      xor       | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XOR
+Instruction Decode/Execute 01aa4633
+ Counter:   356         |      or        | riscv_mem:ffdfff9a  | sb_mem:ffdfff9a  | PASS | rx_f:OR
+Instruction Decode/Execute 011ee033
+ Counter:   357         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 002f3633
+ Counter:   358         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 01c127b3
+ Counter:   359         |      sll       | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:SLL
+Instruction Decode/Execute 01de9a33
+ Counter:   360         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 07abf213
+ Counter:   361         |      addi      | riscv_mem:000000ca  | sb_mem:000000ca  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0ca70613
+ Counter:   362         |      and       | riscv_mem:ffffb800  | sb_mem:ffffb800  | PASS | rx_f:AND
+Instruction Decode/Execute 01e87ab3
+ Counter:   363         |      andi      | riscv_mem:00000028  | sb_mem:00000028  | PASS | rx_f:ANDI
+Instruction Decode/Execute 0ace7193
+pc_val: 000005b8, rx_f: 10, imm: 000000000000000010011, rs1: 11, rs2: 13, rdd: 1c
+ Counter:   364         |      srli      | riscv_mem:00001ffb  | sb_mem:00001ffb  | PASS | rx_f:SRLI
+Instruction Decode/Execute 0138de13
+ Counter:   365         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
+Instruction Decode/Execute fb79e513
+ Counter:   366         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00ff3733
+ Counter:   367         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
+Instruction Decode/Execute 012fe0b3
+ Counter:   368         |      addi      | riscv_mem:000000b5  | sb_mem:000000b5  | PASS | rx_f:ADDI
+Instruction Decode/Execute 07658393
+ Counter:   369         |      addi      | riscv_mem:0bd000e7  | sb_mem:0bd000e7  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0e7c0593
+ Counter:   370         |      addi      | riscv_mem:000000dd  | sb_mem:000000dd  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0dd70213
+ Counter:   371         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
+Instruction Decode/Execute 01996233
+ Counter:   372         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 017874b3
+ Counter:   373         |      xor       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:XOR
+Instruction Decode/Execute 013d4d33
+ Counter:   374         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00069013
+ Counter:   375         |      xori      | riscv_mem:074000f7  | sb_mem:074000f7  | PASS | rx_f:XORI
+Instruction Decode/Execute 0f7ecd93
+ Counter:   376         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
+Instruction Decode/Execute 00609333
+ Counter:   377         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 0149abb3
+ Counter:   378         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 01e81933
+ Counter:   379         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00dc1d93
+ 000005f8 | 000005f8 |          380         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute fa35ae13
+ Counter:   381         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 08577393
+pc_val: 00000600, rx_f: 10, imm: 000000000000000001000, rs1: 05, rs2: 08, rdd: 1f
+ Counter:   382         |      srli      | riscv_mem:00600000  | sb_mem:00600000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 0082df93
+ Counter:   383         |      or        | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:OR
+Instruction Decode/Execute 01d46433
+ Counter:   384         |      addi      | riscv_mem:000000d0  | sb_mem:000000d0  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0d4d0493
+ Counter:   385         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00071993
+ 00000610 | 00000610 |          386         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 0838a993
+ 00000614 | 00000614 |          387         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f8bba713
+ 00000618 | 00000618 |          388         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 0c77a913
+ Counter:   389         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute ffcdf813
+ Counter:   390         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 01970533
+ Counter:   391         |      xor       | riscv_mem:000001f6  | sb_mem:000001f6  | PASS | rx_f:XOR
+Instruction Decode/Execute 015f4bb3
+ Counter:   392         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 01717833
+ Counter:   393         |      add       | riscv_mem:000000d0  | sb_mem:000000d0  | PASS | rx_f:ADD
+Instruction Decode/Execute 01b48a33
+ Counter:   394         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 047dfd93
+ 00000634 | 00000634 |          395         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f41cad93
+ Counter:   396         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 01a97a33
+ 0000063c | 0000063c |          397         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute 021e2e13
+ Counter:   398         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 01f12e33
+ Counter:   399         |      slli      | riscv_mem:fff00000  | sb_mem:fff00000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 012d1413
+ 00000648 | 00000648 |          400         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 0b5f3293
+ Counter:   401         |      addi      | riscv_mem:000000cc  | sb_mem:000000cc  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0cc50c93
+ Counter:   402         |      ori       | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ORI
+Instruction Decode/Execute 00dce913
+ Counter:   403         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 005787b3
+ Counter:   404         |      add       | riscv_mem:ffffb800  | sb_mem:ffffb800  | PASS | rx_f:ADD
+Instruction Decode/Execute 01528c33
+ Counter:   405         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 010e06b3
+ Counter:   406         |      andi      | riscv_mem:ffffb952  | sb_mem:ffffb952  | PASS | rx_f:ANDI
+Instruction Decode/Execute f5af7c13
+ Counter:   407         |      or        | riscv_mem:fff000ca  | sb_mem:fff000ca  | PASS | rx_f:OR
+Instruction Decode/Execute 00866533
+ Counter:   408         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute f7c6f113
+ Counter:   409         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 00c52c33
+ Counter:   410         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 00af29b3
+ Counter:   411         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00243b33
+ Counter:   412         |      add       | riscv_mem:ffffb801  | sb_mem:ffffb801  | PASS | rx_f:ADD
+Instruction Decode/Execute 00da83b3
+ 0000067c | 0000067c |          413         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 0d063b93
+pc_val: 00000680, rx_f: 10, imm: 000000000000000001110, rs1: 13, rs2: 0e, rdd: 1d
+ Counter:   414         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00e9de93
+ Counter:   415         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 0100ad33
+ Counter:   416         |      slli      | riscv_mem:fffdc008  | sb_mem:fffdc008  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00339b13
+ 0000068c | 0000068c |          417         |      slti      |     0     |     0     | PASS | SLTI 
+Instruction Decode/Execute f5892c93
+ Counter:   418         |      or        | riscv_mem:00600028  | sb_mem:00600028  | PASS | rx_f:OR
+Instruction Decode/Execute 003feb33
+ Counter:   419         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 001d0533
+ Counter:   420         |      add       | riscv_mem:ffe00064  | sb_mem:ffe00064  | PASS | rx_f:ADD
+Instruction Decode/Execute 011609b3
+ Counter:   421         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 0003a833
+ Counter:   422         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 00ae9433
+ Counter:   423         |      xor       | riscv_mem:ff9fb828  | sb_mem:ff9fb828  | PASS | rx_f:XOR
+Instruction Decode/Execute 015b40b3
+ Counter:   424         |      or        | riscv_mem:000000d1  | sb_mem:000000d1  | PASS | rx_f:OR
+Instruction Decode/Execute 009566b3
+ Counter:   425         |      xori      | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XORI
+Instruction Decode/Execute f068c093
+ 000006b0 | 000006b0 |          426         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute 015f3493
+ Counter:   427         |      ori       | riscv_mem:ffffff02  | sb_mem:ffffff02  | PASS | rx_f:ORI
+Instruction Decode/Execute f024ee93
+ Counter:   428         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 019de8b3
+ Counter:   429         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 012775b3
+ 000006c0 | 000006c0 |          430         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute 07603993
+ Counter:   431         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01052c33
+ 000006c8 | 000006c8 |          432         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute f498b213
+ Counter:   433         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 010ca7b3
+ Counter:   434         |      addi      | riscv_mem:ffffff10  | sb_mem:ffffff10  | PASS | rx_f:ADDI
+Instruction Decode/Execute 00ee8193
+pc_val: 000006d4, rx_f: 10, imm: 000000000000000001101, rs1: 03, rs2: 0d, rdd: 08
+ Counter:   435         |      srli      | riscv_mem:0007ffff  | sb_mem:0007ffff  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00d1d413
+ 000006d8 | 000006d8 |          436         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute f315bc13
+ Counter:   437         |      xor       | riscv_mem:ffffff11  | sb_mem:ffffff11  | PASS | rx_f:XOR
+Instruction Decode/Execute 0181c433
+ Counter:   438         |      ori       | riscv_mem:ffffb9f7  | sb_mem:ffffb9f7  | PASS | rx_f:ORI
+Instruction Decode/Execute 035f6793
+ Counter:   439         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 019a51b3
+ Counter:   440         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 019e78b3
+ Counter:   441         |      sll       | riscv_mem:10000000  | sb_mem:10000000  | PASS | rx_f:SLL
+Instruction Decode/Execute 001316b3
+ Counter:   442         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01482333
+ 000006f4 | 000006f4 |          443         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute f0dab213
+ Counter:   444         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 005572b3
+ Counter:   445         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 017924b3
+ Counter:   446         |      srl       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:SRL
+Instruction Decode/Execute 01ceddb3
+ Counter:   447         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 00e4eb33
+ 00000708 | 00000708 |          448         |      slti      |     1     |     1     | PASS | SLTI 
+Instruction Decode/Execute f4442113
+ Counter:   449         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
+Instruction Decode/Execute 00a84bb3
+ Counter:   450         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 00819093
+ Counter:   451         |      add       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:ADD
+Instruction Decode/Execute 01ad85b3
+ Counter:   452         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 004be4b3
+ Counter:   453         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 0198e5b3
+ Counter:   454         |      add       | riscv_mem:ffffff12  | sb_mem:ffffff12  | PASS | rx_f:ADD
+Instruction Decode/Execute 008c0533
+ Counter:   455         |      addi      | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:ADDI
+Instruction Decode/Execute fa550993
+pc_val: 00000728, rx_f: 10, imm: 000000000000000010111, rs1: 02, rs2: 17, rdd: 0b
+ Counter:   456         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01715593
+ Counter:   457         |      xori      | riscv_mem:0000000e  | sb_mem:0000000e  | PASS | rx_f:XORI
+Instruction Decode/Execute 00ed4393
+ Counter:   458         |      srl       | riscv_mem:ffffb9f6  | sb_mem:ffffb9f6  | PASS | rx_f:SRL
+Instruction Decode/Execute 004f5e33
+ Counter:   459         |      and       | riscv_mem:00000002  | sb_mem:00000002  | PASS | rx_f:AND
+Instruction Decode/Execute 00757433
+ Counter:   460         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 0d8d7213
+ Counter:   461         |      srl       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:SRL
+Instruction Decode/Execute 01bed233
+ Counter:   462         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 01d1fe33
+ Counter:   463         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 005573b3
+ Counter:   464         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 01982f33
+ Counter:   465         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 009431b3
+ Counter:   466         |      slli      | riscv_mem:00cd0000  | sb_mem:00cd0000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 01091f13
+ Counter:   467         |      addi      | riscv_mem:100000e0  | sb_mem:100000e0  | PASS | rx_f:ADDI
+Instruction Decode/Execute 0e068393
+ Counter:   468         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 0070ffb3
+ Counter:   469         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 01ac8033
+ Counter:   470         |      xor       | riscv_mem:10000000  | sb_mem:10000000  | PASS | rx_f:XOR
+Instruction Decode/Execute 00e6cfb3
+ Counter:   471         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
+Instruction Decode/Execute 0091c4b3
+pc_val: 00000768, rx_f: 10, imm: 000000000000000010101, rs1: 0e, rs2: 15, rdd: 1a
+ Counter:   472         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01575d13
+pc_val: 0000076c, rx_f: 10, imm: 000000000000000001110, rs1: 1b, rs2: 0e, rdd: 14
+ Counter:   473         |      srli      | riscv_mem:0001ffff  | sb_mem:0001ffff  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00edda13
+ Counter:   474         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
+Instruction Decode/Execute 018026b3
+ Counter:   475         |      xori      | riscv_mem:00000045  | sb_mem:00000045  | PASS | rx_f:XORI
+Instruction Decode/Execute 045bc393
+pc_val: 00000778, rx_f: 10, imm: 000000000000000001111, rs1: 10, rs2: 0f, rdd: 11
+ Counter:   476         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00f85893
+ Counter:   477         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 002672b3
+ Counter:   478         |      add       | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:ADD
+Instruction Decode/Execute 01798db3
+ Counter:   479         |      xor       | riscv_mem:ffffff02  | sb_mem:ffffff02  | PASS | rx_f:XOR
+Instruction Decode/Execute 01d2c2b3
+ Counter:   480         |      add       | riscv_mem:ffffff12  | sb_mem:ffffff12  | PASS | rx_f:ADD
+Instruction Decode/Execute 00150533
+ Counter:   481         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
+Instruction Decode/Execute 01835233
+ Counter:   482         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute 0f81f493
+ Counter:   483         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
+Instruction Decode/Execute 0134a2b3
+pc_val: 00000798, rx_f: 10, imm: 000000000000000000001, rs1: 12, rs2: 01, rdd: 0d
+ Counter:   484         |      srli      | riscv_mem:00000066  | sb_mem:00000066  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00195693
+ Counter:   485         |      slli      | riscv_mem:fff70000  | sb_mem:fff70000  | PASS | rx_f:SLLI
+Instruction Decode/Execute 005a9713
+ Counter:   486         |      xor       | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:XOR
+Instruction Decode/Execute 01334e33
+ Counter:   487         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute f53bf413
+ Counter:   488         |      xor       | riscv_mem:ff32b9f7  | sb_mem:ff32b9f7  | PASS | rx_f:XOR
+Instruction Decode/Execute 00ff47b3
+ Counter:   489         |      xori      | riscv_mem:00000053  | sb_mem:00000053  | PASS | rx_f:XORI
+Instruction Decode/Execute 05324313
+ Counter:   490         |      ori       | riscv_mem:fffffebf  | sb_mem:fffffebf  | PASS | rx_f:ORI
+Instruction Decode/Execute 01adee93
+ 000007b4 | 000007b4 |          491         |      sltiu     |     0     |     0     | PASS | SLTIU 
+Instruction Decode/Execute f33db393
+pc_val: 000007b8, rx_f: 10, imm: 000000000000000010111, rs1: 0d, rs2: 17, rdd: 13
+ Counter:   492         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 0176d993
+ Counter:   493         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
+Instruction Decode/Execute 00fc3db3
+ Counter:   494         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
+Instruction Decode/Execute 01207c33
+pc_val: 000007c4, rx_f: 10, imm: 000000000000000001010, rs1: 02, rs2: 0a, rdd: 0a
+ Counter:   495         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00a15513
+pc_val: 000007c8, rx_f: 10, imm: 000000000000000011000, rs1: 00, rs2: 18, rdd: 0d
+ Counter:   496         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
+Instruction Decode/Execute 01805693
+pc_val: 000007cc, rx_f: 10, imm: 000000000000000000010, rs1: 06, rs2: 02, rdd: 11
+ Counter:   497         |      srli      | riscv_mem:00000014  | sb_mem:00000014  | PASS | rx_f:SRLI
+Instruction Decode/Execute 00235893
+ Counter:   498         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
+Instruction Decode/Execute 017264b3
+ Counter:   499         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 00368133
+ Counter:   500         |      xori      | riscv_mem:ffffffd2  | sb_mem:ffffffd2  | PASS | rx_f:XORI
+Instruction Decode/Execute fc68c113
+ Counter:   501         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
+Instruction Decode/Execute 0007b3b3
+ Counter:   502         |      ori       | riscv_mem:0000004c  | sb_mem:0000004c  | PASS | rx_f:ORI
+Instruction Decode/Execute 04c3e413
+ Counter:   503         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
+Instruction Decode/Execute 00b68ab3
+ 000007e8 | 000007e8 |          504         |      sltiu     |     1     |     1     | PASS | SLTIU 
+Instruction Decode/Execute f26cb613
+ Counter:   505         |      ori       | riscv_mem:ffffff5a  | sb_mem:ffffff5a  | PASS | rx_f:ORI
+Instruction Decode/Execute f5aae393
+ Counter:   506         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
+Instruction Decode/Execute f791fb93
+ Counter:   507         |      and       | riscv_mem:0000008d  | sb_mem:0000008d  | PASS | rx_f:AND
+Instruction Decode/Execute 012ef5b3
+ Counter:   508         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
+Instruction Decode/Execute 01980a33
+ Counter:   509         |      xori      | riscv_mem:00000035  | sb_mem:00000035  | PASS | rx_f:XORI
+Instruction Decode/Execute 03554113
+=N:[dumpMXD] closing MXD dump
+=T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
+Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
+  System timescale is 1ps / 1ps
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
+  Random seed: 14492301493598
