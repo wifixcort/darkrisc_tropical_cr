@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-16 01:03:55 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-16 01:03:55 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-16 09:25:39 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-16 09:25:39 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -44,6 +44,13 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
+  [1/9] module $root: 207 functions, 458 basic blocks
+  [3/9] CU scope $unit: 51 functions, 1871 basic blocks
+  [4/9] module top: 57 functions, 222 basic blocks
+  [6/9] package instructions_data_struc: 1 functions, 2 basic blocks
+  [7/9] interface intf_soc: 1 functions, 2 basic blocks
+  [8/9] module darksocv: 68 functions, 1439 basic blocks
+  [9/9] program testcase: 3 functions, 17 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -1844,8 +1851,10 @@ Instruction Decode/Execute 049db093
 Instruction Decode/Execute 003915b3
  00000360 | 00000360 |          214         |      add       | 00000016  | 00000016  | PASS | ADD
 Instruction Decode/Execute 00a10b33
- 00000364 | 00000364 |          215         |      sltiu     |     0     |     0     | PASS | SLTIU 
+ 00000364 | 00000364 |          215         |      sltiu     |     0     |     1     | X | SLTIU 
 Instruction Decode/Execute fe5c3713
+riscv_opcode 13, riscv_pc 0000035c, sb_pc 00000364
+rc_rd_p =14, rc_sr1_p =24, rc_rs1_val =        -35, rc_rs2_p = 5 rc_rs2_val =          0, rc_imm = 00000000000000000000111111100101 | sb_rd_p =14, sb_sr1_p =24, sb_rs1_val =4294967261, sb_rs2_p = 5 sb_rs2_val =         0, sb_imm = 11111111111111111111111111100101 
  00000368 | 00000368 |          216         |      slt       | 00000000  | 00000000  | PASS | SLT
 Instruction Decode/Execute 001cadb3
  0000036c | 0000036c |          217         |      ori       | 000000b6  | 000000b6  | PASS | ORI
@@ -1871,8 +1880,10 @@ Instruction Decode/Execute 0d48f313
  00000394 | 00000394 |          227         |      xor       | ffffffe2  | ffffffe2  | PASS | XOR
 Instruction Decode/Execute 00accab3
 pc_val: 00000398, rx_f: 10, imm: 000000000000000000000, rs1: 0e, rs2: 00, rdd: 19
- 00000398 | 00000398 |          228         |      srli      | 00000000  | 00000000  | PASS | SRLI
+ 00000398 | 00000398 |          228         |      srli      | 00000000  | 00000001  | X | SRLI
+riscv_opcode 13, riscv_pc 00000390, sb_pc 00000398
 Instruction Decode/Execute 00075c93
+rc_rd_p =25, rc_sr1_p =14, rc_rs1_val =          0, rc_rs2_p = 0 rc_rs2_val =          0| sb_rd_p =25, sb_sr1_p =14, sb_rs1_val =         1, sb_rs2_p = 0 sb_rs2_val =         0
  0000039c | 0000039c |          229         |      or        | ffffff9b  | ffffff9b  | PASS | OR
 Instruction Decode/Execute 00466d33
  000003a0 | 000003a0 |          230         |      andi      | ffffff9a  | ffffff9a  | PASS | ANDI
@@ -2313,8 +2324,10 @@ Instruction Decode/Execute 019e78b3
 Instruction Decode/Execute 001316b3
  000006f0 | 000006f0 |          442         |      slt       | 00000000  | 00000000  | PASS | SLT
 Instruction Decode/Execute 01482333
- 000006f4 | 000006f4 |          443         |      sltiu     |     0     |     0     | PASS | SLTIU 
+ 000006f4 | 000006f4 |          443         |      sltiu     |     0     |     1     | X | SLTIU 
 Instruction Decode/Execute f0dab213
+riscv_opcode 13, riscv_pc 000006ec, sb_pc 000006f4
+rc_rd_p = 4, rc_sr1_p =21, rc_rs1_val =     -18432, rc_rs2_p =13 rc_rs2_val =  268435456, rc_imm = 00000000000000000000111100001101 | sb_rd_p = 4, sb_sr1_p =21, sb_rs1_val =4294948864, sb_rs2_p =13 sb_rs2_val = 268435456, sb_imm = 11111111111111111111111100001101 
  000006f8 | 000006f8 |          444         |      and       | 00000000  | 00000000  | PASS | AND
 Instruction Decode/Execute 005572b3
  000006fc | 000006fc |          445         |      slt       | 00000000  | 00000000  | PASS | SLT
@@ -2331,8 +2344,10 @@ Instruction Decode/Execute 00a84bb3
 Instruction Decode/Execute 00819093
  00000714 | 00000714 |          451         |      add       | 7fffff81  | 7fffff81  | PASS | ADD
 Instruction Decode/Execute 01ad85b3
- 00000718 | 00000718 |          452         |      or        | 00000000  | 00000000  | PASS | OR
+ 00000718 | 00000718 |          452         |      or        | 00000000  | 00000001  | X | OR
+riscv_opcode 33, riscv_pc 00000710, sb_pc 00000718
 Instruction Decode/Execute 004be4b3
+rc_rd_p = 9, rc_sr1_p =23, rc_rs1_val =          0, rc_rs2_p = 4 rc_rs2_val =          0| sb_rd_p = 9, sb_sr1_p =23, sb_rs1_val =         0, sb_rs2_p = 4 sb_rs2_val =         1
  0000071c | 0000071c |          453         |      or        | 00000000  | 00000000  | PASS | OR
 Instruction Decode/Execute 0198e5b3
  00000720 | 00000720 |          454         |      add       | ffffff12  | ffffff12  | PASS | ADD
@@ -2344,8 +2359,10 @@ pc_val: 00000728, rx_f: 10, imm: 000000000000000010111, rs1: 02, rs2: 17, rdd: 0
 Instruction Decode/Execute 01715593
  0000072c | 0000072c |          457         |      xori      | 0000000e  | 0000000e  | PASS | XORI
 Instruction Decode/Execute 00ed4393
- 00000730 | 00000730 |          458         |      srl       | ffffb9f6  | ffffb9f6  | PASS | SRL
+ 00000730 | 00000730 |          458         |      srl       | ffffb9f6  | 7fffdcfb  | X | SRL
+riscv_opcode 33, riscv_pc 00000728, sb_pc 00000730
 Instruction Decode/Execute 004f5e33
+rc_rd_p =28, rc_sr1_p =30, rc_rs1_val =     -17930, rc_rs2_p = 4 rc_rs2_val =          0| sb_rd_p =28, sb_sr1_p =30, sb_rs1_val =4294949366, sb_rs2_p = 4 sb_rs2_val =         1
  00000734 | 00000734 |          459         |      and       | 00000002  | 00000002  | PASS | AND
 Instruction Decode/Execute 00757433
  00000738 | 00000738 |          460         |      andi      | 00000000  | 00000000  | PASS | ANDI
@@ -2370,8 +2387,10 @@ Instruction Decode/Execute 0070ffb3
 Instruction Decode/Execute 01ac8033
  00000760 | 00000760 |          470         |      xor       | 10000000  | 10000000  | PASS | XOR
 Instruction Decode/Execute 00e6cfb3
- 00000764 | 00000764 |          471         |      xor       | 00000000  | 00000000  | PASS | XOR
+ 00000764 | 00000764 |          471         |      xor       | 00000000  | 00000001  | X | XOR
+riscv_opcode 33, riscv_pc 0000075c, sb_pc 00000764
 Instruction Decode/Execute 0091c4b3
+rc_rd_p = 9, rc_sr1_p = 3, rc_rs1_val =          0, rc_rs2_p = 9 rc_rs2_val =          0| sb_rd_p = 9, sb_sr1_p = 3, sb_rs1_val =         0, sb_rs2_p = 9 sb_rs2_val =         1
 pc_val: 00000768, rx_f: 10, imm: 000000000000000010101, rs1: 0e, rs2: 15, rdd: 1a
  00000768 | 00000768 |          472         |      srli      | 00000000  | 00000000  | PASS | SRLI
 Instruction Decode/Execute 01575d13
@@ -2414,8 +2433,10 @@ Instruction Decode/Execute 00ff47b3
 Instruction Decode/Execute 05324313
  000007b0 | 000007b0 |          490         |      ori       | fffffebf  | fffffebf  | PASS | ORI
 Instruction Decode/Execute 01adee93
- 000007b4 | 000007b4 |          491         |      sltiu     |     0     |     0     | PASS | SLTIU 
+ 000007b4 | 000007b4 |          491         |      sltiu     |     0     |     1     | X | SLTIU 
 Instruction Decode/Execute f33db393
+riscv_opcode 13, riscv_pc 000007ac, sb_pc 000007b4
+rc_rd_p = 7, rc_sr1_p =27, rc_rs1_val =       -329, rc_rs2_p =19 rc_rs2_val =       -329, rc_imm = 00000000000000000000111100110011 | sb_rd_p = 7, sb_sr1_p =27, sb_rs1_val =4294966967, sb_rs2_p =19 sb_rs2_val =4294966967, sb_imm = 11111111111111111111111100110011 
 pc_val: 000007b8, rx_f: 10, imm: 000000000000000010111, rs1: 0d, rs2: 17, rdd: 13
  000007b8 | 000007b8 |          492         |      srli      | 00000000  | 00000000  | PASS | SRLI
 Instruction Decode/Execute 0176d993
@@ -2458,7 +2479,7 @@ Instruction Decode/Execute 01980a33
 Instruction Decode/Execute 03554113
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
-Run directory: /home/ricardo/Documents/UCR/2024/Verif/darkriscv/file_struc_edaplayground/sim
+Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
   Random seed: 14492301493598

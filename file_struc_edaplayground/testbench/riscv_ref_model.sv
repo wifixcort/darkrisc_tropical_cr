@@ -132,8 +132,8 @@ class riscv_ref_model;
         pc_val = pc_val + 4;
       end
       SLTIU: begin 
-        imm_val_sign_ext = {{11{1'b0}}, imm_val[20:0]}; 
-        REGS[rdd_val] = (REGS[rs1_val] < imm_val_sign_ext) ? 1'b1 : 1'b0;
+        imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
+        REGS[rdd_val] = (REGS[rs1_val] < $unsigned(imm_val_sign_ext)) ? 1'b1 : 1'b0;
         pc_val = pc_val + 4;
       end
       // I-L(load) Type - DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
