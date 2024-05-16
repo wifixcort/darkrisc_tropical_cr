@@ -118,13 +118,13 @@ class riscv_ref_model;
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         REGS[rdd_val] = REGS[rs1_val] >> (imm_val_sign_ext[4:0]); 
         pc_val = pc_val + 4;
-        $display("pc_val: %h, rx_f: %h, imm: %b, rs1: %h, rs2: %h, rdd: %h", pc_val, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
+        //$display("pc_val: %h, rx_f: %h, imm: %b, rs1: %h, rs2: %h, rdd: %h", pc_val, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
       end
       SRAI : begin 
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         REGS[rdd_val] = $signed(REGS[rs1_val]) >>> (imm_val_sign_ext[4:0]);
         pc_val = pc_val + 4;
-        $display("xd",pc_val, rx_funct, imm_val,rs1_val, rs2_val, rdd_val);
+        //$display("xd",pc_val, rx_funct, imm_val,rs1_val, rs2_val, rdd_val);
       end
       SLTI : begin
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 

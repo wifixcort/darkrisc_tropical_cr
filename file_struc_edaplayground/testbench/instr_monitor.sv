@@ -143,7 +143,7 @@ class instr_monitor;
         if (counter_inst < 150) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
 //            $display("Function: %d, r1=%d, r2=%d, rd=%d, imm=%d, imm_binary=%b", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val_ext_full);
             // $display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d", rx_funct, rs1_val, rs2_val, rdd_val, imm_val);
-            $display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d, testing_imm[11:5]=%h", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val[11:5]);
+            //$display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d, testing_imm[11:5]=%h", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val[11:5]);
         end
 
     endfunction //decodify_instruction
@@ -158,7 +158,7 @@ class instr_monitor;
                 this.sb.push_instruction(IADDR, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
                 counter_inst++;
                 if(counter_inst < 150) begin
-                    $display("Monitor 1 reportando instrucción %h", IDATA);
+                   // $display("Monitor 1 reportando instrucción %h", IDATA);
                 end
                 if (DBG_HIGH_VERBOSITY) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
                     $display("================================");
