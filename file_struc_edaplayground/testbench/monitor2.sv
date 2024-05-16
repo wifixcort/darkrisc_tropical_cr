@@ -8,7 +8,7 @@ class monitor2;
 
    logic [15:0] inst_counter = 0;
    int			err_count = 0;
-   int			display_one = 1;
+   logic [15:0]	display_one;
    logic [31:0] sinc_count = 0;
    logic [31:0] reg_rd_value;
 
@@ -21,10 +21,12 @@ class monitor2;
       $display("Creating monitor 2");
 	  //     this.intf = intf;
 	  this.sb = sb;
+	  this.display_one = 1;
    endfunction
 
 task check();
 	debug_counter_num_inst = 0;
+	// this.display_one = 1;
 	forever begin
 		@ (posedge top.CLK);
 		old_pc = top.soc0.core0.IADDR; //Take PC (1 clock in the future, actually)
@@ -32,6 +34,10 @@ task check();
 			if(top.soc0.core0.OPCODE != 0 )begin 				//Ricardos Sync
 				if (debug_counter_num_inst==0) sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
 				sb.process_inst();								//Pop scoreboard info to compare it against actual instruction.
+				if(this.display_one == 1)begin
+					$display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
+					this.display_one = 0;
+				end
 				reg_rd_value = (top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd_val];
 				case (top.soc0.core0.XIDATA[6:0])
 					R_TYPE: begin
@@ -352,18 +358,21 @@ endtask
    task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
+		//$display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
 		 //$display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",   inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
-		 $display("riscv_opcode %h", top.soc0.core0.OPCODE);
-		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
+		$display(" %d | %h | %s | %s | %h | %h | %s", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "X");
+		 //--$display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",   inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
+		 //--$display("riscv_opcode %h", top.soc0.core0.OPCODE);
+		 //--$display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
 `ifdef __DB_ENABLE__
-		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+		 //$display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
 `endif
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",  inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
-		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
+		 //--$display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",  inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
+		 //--$display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
+		$display(" %d | %h | %s | %s | %h | %h | %s", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "PASS");
 		//  $display("FUNCT 7 = %b , FUNC 3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
 	  end
 	  inst_counter++;

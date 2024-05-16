@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-16 16:34:46 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-16 16:34:56 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-16 17:28:45 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-16 17:28:45 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -44,7 +44,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/9] CU scope $unit: 51 functions, 1767 basic blocks
+  [3/9] CU scope $unit: 51 functions, 1769 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -1103,923 +1103,467 @@ Instruction # 1020:	00000000	opcode: 0000000
 Instruction # 1021:	00000000	opcode: 0000000 
 Instruction # 1022:	00000000	opcode: 0000000 
 Instruction # 1023:	00000000	opcode: 0000000 
- Counter:     0         |      addi      | riscv_mem:000000eb  | sb_mem:000000eb  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0eb48093
- Counter:     1         |      addi      | riscv_mem:000000f2  | sb_mem:000000f2  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0f280113
- Counter:     2         |      addi      | riscv_mem:ffffffb9  | sb_mem:ffffffb9  | PASS | rx_f:ADDI
-Instruction Decode/Execute fb9b8193
- Counter:     3         |      addi      | riscv_mem:00000029  | sb_mem:00000029  | PASS | rx_f:ADDI
-Instruction Decode/Execute 02940213
- Counter:     4         |      addi      | riscv_mem:000000bc  | sb_mem:000000bc  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0bcd0293
- Counter:     5         |      addi      | riscv_mem:00000076  | sb_mem:00000076  | PASS | rx_f:ADDI
-Instruction Decode/Execute 07648313
- Counter:     6         |      addi      | riscv_mem:ffffffba  | sb_mem:ffffffba  | PASS | rx_f:ADDI
-Instruction Decode/Execute fbaf8393
- Counter:     7         |      addi      | riscv_mem:ffffff85  | sb_mem:ffffff85  | PASS | rx_f:ADDI
-Instruction Decode/Execute f8540413
- Counter:     8         |      addi      | riscv_mem:ffffffbb  | sb_mem:ffffffbb  | PASS | rx_f:ADDI
-Instruction Decode/Execute fbbe0493
- Counter:     9         |      addi      | riscv_mem:00000017  | sb_mem:00000017  | PASS | rx_f:ADDI
-Instruction Decode/Execute 01758513
- Counter:    10         |      addi      | riscv_mem:00000056  | sb_mem:00000056  | PASS | rx_f:ADDI
-Instruction Decode/Execute 056e0593
- Counter:    11         |      addi      | riscv_mem:000000b7  | sb_mem:000000b7  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0b770613
- Counter:    12         |      addi      | riscv_mem:000000f7  | sb_mem:000000f7  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0f7e0693
- Counter:    13         |      addi      | riscv_mem:ffffff56  | sb_mem:ffffff56  | PASS | rx_f:ADDI
-Instruction Decode/Execute f56b8713
- Counter:    14         |      addi      | riscv_mem:ffffff36  | sb_mem:ffffff36  | PASS | rx_f:ADDI
-Instruction Decode/Execute f1f50793
- Counter:    15         |      addi      | riscv_mem:0000004d  | sb_mem:0000004d  | PASS | rx_f:ADDI
-Instruction Decode/Execute 04d90813
- Counter:    16         |      addi      | riscv_mem:00000065  | sb_mem:00000065  | PASS | rx_f:ADDI
-Instruction Decode/Execute 03c20893
- Counter:    17         |      addi      | riscv_mem:000001eb  | sb_mem:000001eb  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0f468913
- Counter:    18         |      addi      | riscv_mem:000000ce  | sb_mem:000000ce  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0cef8993
- Counter:    19         |      addi      | riscv_mem:00000156  | sb_mem:00000156  | PASS | rx_f:ADDI
-Instruction Decode/Execute 06410a13
- Counter:    20         |      addi      | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:ADDI
-Instruction Decode/Execute fdc60a93
- Counter:    21         |      addi      | riscv_mem:00000071  | sb_mem:00000071  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0b738b13
- Counter:    22         |      addi      | riscv_mem:00000289  | sb_mem:00000289  | PASS | rx_f:ADDI
-Instruction Decode/Execute 09e90b93
- Counter:    23         |      addi      | riscv_mem:fffffefa  | sb_mem:fffffefa  | PASS | rx_f:ADDI
-Instruction Decode/Execute f7540c13
- Counter:    24         |      addi      | riscv_mem:ffffff53  | sb_mem:ffffff53  | PASS | rx_f:ADDI
-Instruction Decode/Execute ffd70c93
- Counter:    25         |      addi      | riscv_mem:ffffffa3  | sb_mem:ffffffa3  | PASS | rx_f:ADDI
-Instruction Decode/Execute fa3e8d13
- Counter:    26         |      addi      | riscv_mem:00000091  | sb_mem:00000091  | PASS | rx_f:ADDI
-Instruction Decode/Execute ffea8d93
- Counter:    27         |      addi      | riscv_mem:00000084  | sb_mem:00000084  | PASS | rx_f:ADDI
-Instruction Decode/Execute 05b20e13
- Counter:    28         |      addi      | riscv_mem:ffffff77  | sb_mem:ffffff77  | PASS | rx_f:ADDI
-Instruction Decode/Execute f6050e93
- Counter:    29         |      addi      | riscv_mem:000000cb  | sb_mem:000000cb  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0cbf8f13
- Counter:    30         |      addi      | riscv_mem:00000094  | sb_mem:00000094  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0da38f93
- Counter:    31         |      andi      | riscv_mem:00000005  | sb_mem:00000005  | PASS | rx_f:ANDI
-Instruction Decode/Execute fcd57b93
- Counter:    32         |      srli      | riscv_mem:00000002  | sb_mem:00000002  | PASS | rx_f:SRLI
-Instruction Decode/Execute 006fdb93
- Counter:    33         |      andi      | riscv_mem:00000021  | sb_mem:00000021  | PASS | rx_f:ANDI
-Instruction Decode/Execute ff727d93
- Counter:    34         |      add       | riscv_mem:00000248  | sb_mem:00000248  | PASS | rx_f:ADD
-Instruction Decode/Execute 002a0fb3
- Counter:    36         |      andi      | riscv_mem:00000040  | sb_mem:00000040  | PASS | rx_f:ANDI
-Instruction Decode/Execute 0e087e13
- Counter:    37         |      addi      | riscv_mem:0000005a  | sb_mem:0000005a  | PASS | rx_f:ADDI
-Instruction Decode/Execute f8c98193
- Counter:    38         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 009371b3
- Counter:    39         |      and       | riscv_mem:ffffffbb  | sb_mem:ffffffbb  | PASS | rx_f:AND
-Instruction Decode/Execute 0094fdb3
- Counter:    40         |      or        | riscv_mem:000000ef  | sb_mem:000000ef  | PASS | rx_f:OR
-Instruction Decode/Execute 0018e4b3
- Counter:    42         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01201b13
- Counter:    43         |      slli      | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:SLLI
-Instruction Decode/Execute 001f1f93
- Counter:    45         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00fb76b3
- Counter:    46         |      xor       | riscv_mem:00000017  | sb_mem:00000017  | PASS | rx_f:XOR
-Instruction Decode/Execute 00ab4333
- Counter:    47         |      ori       | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:ORI
-Instruction Decode/Execute 0952e413
- Counter:    48         |      or        | riscv_mem:ffffff77  | sb_mem:ffffff77  | PASS | rx_f:OR
-Instruction Decode/Execute 0197eeb3
- Counter:    49         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 006e27b3
- Counter:    50         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
-Instruction Decode/Execute faeee193
- Counter:    51         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute fe057013
- Counter:    52         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 01a7bbb3
- Counter:    54         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
-Instruction Decode/Execute 00438f33
- Counter:    56         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01f9d213
- Counter:    57         |      xor       | riscv_mem:ffffffa3  | sb_mem:ffffffa3  | PASS | rx_f:XOR
-Instruction Decode/Execute 004d4eb3
- Counter:    58         |      addi      | riscv_mem:ffffff62  | sb_mem:ffffff62  | PASS | rx_f:ADDI
-Instruction Decode/Execute fa838d93
- Counter:    59         |      xori      | riscv_mem:ffffff14  | sb_mem:ffffff14  | PASS | rx_f:XORI
-Instruction Decode/Execute 0b7ec513
- Counter:    60         |      andi      | riscv_mem:00000022  | sb_mem:00000022  | PASS | rx_f:ANDI
-Instruction Decode/Execute 02217193
- Counter:    61         |      ori       | riscv_mem:fffffffa  | sb_mem:fffffffa  | PASS | rx_f:ORI
-Instruction Decode/Execute fb2c6293
- Counter:    62         |      and       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:AND
-Instruction Decode/Execute 01ef7e33
- Counter:    63         |      and       | riscv_mem:000000a3  | sb_mem:000000a3  | PASS | rx_f:AND
-Instruction Decode/Execute 00c0fb33
- Counter:    65         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01405013
- Counter:    66         |      xor       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:XOR
-Instruction Decode/Execute 004e49b3
- Counter:    67         |      srl       | riscv_mem:00003fff  | sb_mem:00003fff  | PASS | rx_f:SRL
-Instruction Decode/Execute 002d5033
- Counter:    68         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 015bd793
- Counter:    69         |      addi      | riscv_mem:000001d7  | sb_mem:000001d7  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0e848013
- Counter:    70         |      andi      | riscv_mem:00000020  | sb_mem:00000020  | PASS | rx_f:ANDI
-Instruction Decode/Execute 02c9f313
- Counter:    71         |      sll       | riscv_mem:0f200000  | sb_mem:0f200000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00a11233
- Counter:    72         |      xor       | riscv_mem:00000019  | sb_mem:00000019  | PASS | rx_f:XOR
-Instruction Decode/Execute 005f4433
- Counter:    73         |      xori      | riscv_mem:000000b6  | sb_mem:000000b6  | PASS | rx_f:XORI
-Instruction Decode/Execute 04414e93
- Counter:    74         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 010728b3
- Counter:    75         |      slli      | riscv_mem:ff8c0000  | sb_mem:ff8c0000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 012e1713
- Counter:    77         |      xor       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:XOR
-Instruction Decode/Execute 00dac4b3
- Counter:    78         |      sll       | riscv_mem:05b80000  | sb_mem:05b80000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00961b33
- Counter:    79         |      sll       | riscv_mem:00000008  | sb_mem:00000008  | PASS | rx_f:SLL
-Instruction Decode/Execute 01eb9833
- Counter:    80         |      or        | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:OR
-Instruction Decode/Execute 01f06f33
- Counter:    81         |      srl       | riscv_mem:00000079  | sb_mem:00000079  | PASS | rx_f:SRL
-Instruction Decode/Execute 017154b3
- Counter:    82         |      xori      | riscv_mem:ffffff50  | sb_mem:ffffff50  | PASS | rx_f:XORI
-Instruction Decode/Execute fe6ec213
- Counter:    83         |      sll       | riscv_mem:00000f58  | sb_mem:00000f58  | PASS | rx_f:SLL
-Instruction Decode/Execute 01a91eb3
- Counter:    84         |      or        | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:OR
-Instruction Decode/Execute 017aecb3
- Counter:    85         |      ori       | riscv_mem:ffffffdc  | sb_mem:ffffffdc  | PASS | rx_f:ORI
-Instruction Decode/Execute f8c26013
- Counter:    87         |      addi      | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADDI
-Instruction Decode/Execute 03ac8013
- Counter:    89         |      add       | riscv_mem:00000079  | sb_mem:00000079  | PASS | rx_f:ADD
-Instruction Decode/Execute 00960833
- Counter:    90         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00b83db3
- Counter:    91         |      andi      | riscv_mem:ff8c0000  | sb_mem:ff8c0000  | PASS | rx_f:ANDI
-Instruction Decode/Execute fc977213
- Counter:    92         |      slli      | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00d21193
- Counter:    93         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 018ba7b3
- Counter:    95         |      xor       | riscv_mem:00000f0e  | sb_mem:00000f0e  | PASS | rx_f:XOR
-Instruction Decode/Execute 01d5c7b3
- Counter:    96         |      add       | riscv_mem:000010ee  | sb_mem:000010ee  | PASS | rx_f:ADD
-Instruction Decode/Execute 01df0c33
- Counter:    97         |      andi      | riscv_mem:00000004  | sb_mem:00000004  | PASS | rx_f:ANDI
-Instruction Decode/Execute 08657c13
- Counter:    98         |      srli      | riscv_mem:000007fc  | sb_mem:000007fc  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01525813
- Counter:    99         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01e4d893
- Counter:   100         |      or        | riscv_mem:05b80f0e  | sb_mem:05b80f0e  | PASS | rx_f:OR
-Instruction Decode/Execute 00fb6133
- Counter:   101         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00d19433
- Counter:   102         |      xor       | riscv_mem:ff8c0f58  | sb_mem:ff8c0f58  | PASS | rx_f:XOR
-Instruction Decode/Execute 004ec1b3
- Counter:   103         |      slli      | riscv_mem:d6000000  | sb_mem:d6000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01909713
- Counter:   104         |      ori       | riscv_mem:000001eb  | sb_mem:000001eb  | PASS | rx_f:ORI
-Instruction Decode/Execute 0c896b93
- Counter:   105         |      xori      | riscv_mem:000001ee  | sb_mem:000001ee  | PASS | rx_f:XORI
-Instruction Decode/Execute 078f4b93
- Counter:   106         |      sll       | riscv_mem:65800000  | sb_mem:65800000  | PASS | rx_f:SLL
-Instruction Decode/Execute 014f9bb3
- Counter:   107         |      xori      | riscv_mem:ff8c0f39  | sb_mem:ff8c0f39  | PASS | rx_f:XORI
-Instruction Decode/Execute 0611c413
- Counter:   108         |      add       | riscv_mem:d6000001  | sb_mem:d6000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 00770433
- Counter:   109         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00727033
- Counter:   110         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00ec5793
- Counter:   111         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 004b26b3
- Counter:   112         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
-Instruction Decode/Execute 013d8bb3
- Counter:   113         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
-Instruction Decode/Execute 01bbe533
- Counter:   114         |      and       | riscv_mem:ff8c0f58  | sb_mem:ff8c0f58  | PASS | rx_f:AND
-Instruction Decode/Execute 0031f833
- Counter:   115         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 018a3db3
- Counter:   116         |      ori       | riscv_mem:fffffffa  | sb_mem:fffffffa  | PASS | rx_f:ORI
-Instruction Decode/Execute 0702e013
- Counter:   118         |      xori      | riscv_mem:ffffff22  | sb_mem:ffffff22  | PASS | rx_f:XORI
-Instruction Decode/Execute 0d82cf13
- Counter:   119         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 0036a833
- Counter:   120         |      xori      | riscv_mem:0000005c  | sb_mem:0000005c  | PASS | rx_f:XORI
-Instruction Decode/Execute 05c84d93
- Counter:   122         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00189693
- Counter:   123         |      slli      | riscv_mem:1eb00000  | sb_mem:1eb00000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 011e9e93
- Counter:   124         |      xor       | riscv_mem:1eb00000  | sb_mem:1eb00000  | PASS | rx_f:XOR
-Instruction Decode/Execute 01cecab3
- Counter:   125         |      srl       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:SRL
-Instruction Decode/Execute 00fcdab3
- Counter:   126         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
-Instruction Decode/Execute 00e398b3
- Counter:   127         |      srli      | riscv_mem:00000007  | sb_mem:00000007  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01d2d993
- Counter:   128         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 0035a433
- Counter:   129         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 01cf27b3
- Counter:   131         |      or        | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:OR
-Instruction Decode/Execute 0090ee33
- Counter:   132         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 0186fcb3
- Counter:   133         |      ori       | riscv_mem:ffffff42  | sb_mem:ffffff42  | PASS | rx_f:ORI
-Instruction Decode/Execute f42b6793
- Counter:   134         |      add       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:ADD
-Instruction Decode/Execute 01950f33
- Counter:   135         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 018bf233
- Counter:   136         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 0071f633
- Counter:   137         |      ori       | riscv_mem:000000ff  | sb_mem:000000ff  | PASS | rx_f:ORI
-Instruction Decode/Execute 0ffae993
- Counter:   138         |      slli      | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01ff1213
- Counter:   140         |      addi      | riscv_mem:000000a7  | sb_mem:000000a7  | PASS | rx_f:ADDI
-Instruction Decode/Execute face0593
- Counter:   141         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 003fa333
- Counter:   142         |      add       | riscv_mem:00000196  | sb_mem:00000196  | PASS | rx_f:ADD
-Instruction Decode/Execute 006f8033
- Counter:   143         |      xori      | riscv_mem:ffffff3c  | sb_mem:ffffff3c  | PASS | rx_f:XORI
-Instruction Decode/Execute f9b5ce93
- Counter:   144         |      andi      | riscv_mem:ffffff22  | sb_mem:ffffff22  | PASS | rx_f:ANDI
-Instruction Decode/Execute f262f893
- Counter:   145         |      xori      | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XORI
-Instruction Decode/Execute f59d4213
- Counter:   146         |      andi      | riscv_mem:0000002a  | sb_mem:0000002a  | PASS | rx_f:ANDI
-Instruction Decode/Execute 02b2f893
- Counter:   148         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 00700233
- Counter:   149         |      slli      | riscv_mem:7f800000  | sb_mem:7f800000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01799613
- Counter:   150         |      srl       | riscv_mem:00000093  | sb_mem:00000093  | PASS | rx_f:SRL
-Instruction Decode/Execute 019adab3
- Counter:   151         |      xori      | riscv_mem:00000028  | sb_mem:00000028  | PASS | rx_f:XORI
-Instruction Decode/Execute 0286c213
- Counter:   152         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00b35813
- Counter:   153         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 008451b3
- Counter:   154         |      slli      | riscv_mem:2dc07870  | sb_mem:2dc07870  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00311693
- Counter:   155         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00cb23b3
- Counter:   156         |      add       | riscv_mem:7f800000  | sb_mem:7f800000  | PASS | rx_f:ADD
-Instruction Decode/Execute 000600b3
- Counter:   157         |      srl       | riscv_mem:0005b80f  | sb_mem:0005b80f  | PASS | rx_f:SRL
-Instruction Decode/Execute 00415233
- Counter:   159         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01241c13
- Counter:   160         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 0119d3b3
- Counter:   161         |      xori      | riscv_mem:ffffff8a  | sb_mem:ffffff8a  | PASS | rx_f:XORI
-Instruction Decode/Execute f8a3c393
- Counter:   162         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 015f24b3
- Counter:   163         |      ori       | riscv_mem:ffffff8e  | sb_mem:ffffff8e  | PASS | rx_f:ORI
-Instruction Decode/Execute f8e06793
- Counter:   165         |      addi      | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0cde8d13
- Counter:   166         |      slli      | riscv_mem:58000000  | sb_mem:58000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00271193
- Counter:   167         |      add       | riscv_mem:00000341  | sb_mem:00000341  | PASS | rx_f:ADD
-Instruction Decode/Execute 014906b3
- Counter:   168         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01cc9913
- Counter:   169         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00495f93
- Counter:   171         |      addi      | riscv_mem:0000001c  | sb_mem:0000001c  | PASS | rx_f:ADDI
-Instruction Decode/Execute 01c38993
- Counter:   172         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 00b30133
- Counter:   173         |      xor       | riscv_mem:5800001c  | sb_mem:5800001c  | PASS | rx_f:XOR
-Instruction Decode/Execute 0039c333
- Counter:   174         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 01bd86b3
- Counter:   175         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00d527b3
- Counter:   177         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 000698b3
- Counter:   178         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00c726b3
- Counter:   179         |      xor       | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:XOR
-Instruction Decode/Execute 017ec433
- Counter:   180         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 002eda33
- Counter:   181         |      xor       | riscv_mem:ffffff70  | sb_mem:ffffff70  | PASS | rx_f:XOR
-Instruction Decode/Execute 015f4633
- Counter:   182         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 019bf333
- Counter:   183         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
-Instruction Decode/Execute 019be0b3
- Counter:   184         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00781033
- Counter:   185         |      xori      | riscv_mem:000000bf  | sb_mem:000000bf  | PASS | rx_f:XORI
-Instruction Decode/Execute 0be6c693
- Counter:   186         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
-Instruction Decode/Execute fcf6e193
- Counter:   187         |      add       | riscv_mem:ffffffdd  | sb_mem:ffffffdd  | PASS | rx_f:ADD
-Instruction Decode/Execute 00540c33
- Counter:   188         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute fa64f493
- Counter:   189         |      and       | riscv_mem:00000003  | sb_mem:00000003  | PASS | rx_f:AND
-Instruction Decode/Execute 01527bb3
- Counter:   190         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 01490133
- Counter:   192         |      ori       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:ORI
-Instruction Decode/Execute f9a7ea13
- Counter:   193         |      ori       | riscv_mem:ffffff35  | sb_mem:ffffff35  | PASS | rx_f:ORI
-Instruction Decode/Execute f3516913
- Counter:   194         |      addi      | riscv_mem:000000e3  | sb_mem:000000e3  | PASS | rx_f:ADDI
-Instruction Decode/Execute 050a8613
- Counter:   195         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 01fa72b3
- Counter:   196         |      ori       | riscv_mem:000000ff  | sb_mem:000000ff  | PASS | rx_f:ORI
-Instruction Decode/Execute 0a5e6993
- Counter:   197         |      xor       | riscv_mem:05b80000  | sb_mem:05b80000  | PASS | rx_f:XOR
-Instruction Decode/Execute 01624233
- Counter:   198         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 01e2b333
- Counter:   200         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00bf74b3
- Counter:   201         |      sll       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:SLL
-Instruction Decode/Execute 011a1bb3
- Counter:   203         |      srli      | riscv_mem:00000033  | sb_mem:00000033  | PASS | rx_f:SRLI
-Instruction Decode/Execute 002d5c93
- Counter:   204         |      xori      | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:XORI
-Instruction Decode/Execute 047c4693
- Counter:   205         |      or        | riscv_mem:00000033  | sb_mem:00000033  | PASS | rx_f:OR
-Instruction Decode/Execute 0197e133
- Counter:   206         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00017eb3
- Counter:   207         |      add       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:ADD
-Instruction Decode/Execute 017f8633
- Counter:   208         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00639833
- Counter:   210         |      add       | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ADD
-Instruction Decode/Execute 010d08b3
- Counter:   211         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
-Instruction Decode/Execute 00f260b3
- Counter:   213         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 003915b3
- Counter:   214         |      add       | riscv_mem:00000016  | sb_mem:00000016  | PASS | rx_f:ADD
-Instruction Decode/Execute 00a10b33
- Counter:   216         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 001cadb3
- Counter:   217         |      ori       | riscv_mem:000000b6  | sb_mem:000000b6  | PASS | rx_f:ORI
-Instruction Decode/Execute 0a4b6a13
- Counter:   218         |      andi      | riscv_mem:ffffff0a  | sb_mem:ffffff0a  | PASS | rx_f:ANDI
-Instruction Decode/Execute f6a67013
- Counter:   219         |      xori      | riscv_mem:ffffffec  | sb_mem:ffffffec  | PASS | rx_f:XORI
-Instruction Decode/Execute fedac913
- Counter:   220         |      ori       | riscv_mem:ffffffd3  | sb_mem:ffffffd3  | PASS | rx_f:ORI
-Instruction Decode/Execute fd37e693
- Counter:   221         |      xor       | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:XOR
-Instruction Decode/Execute 01dbc9b3
- Counter:   222         |      slli      | riscv_mem:00200000  | sb_mem:00200000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01531893
- Counter:   223         |      xori      | riscv_mem:ffffff8d  | sb_mem:ffffff8d  | PASS | rx_f:XORI
-Instruction Decode/Execute f8c34393
- Counter:   224         |      sll       | riscv_mem:fffe3000  | sb_mem:fffe3000  | PASS | rx_f:SLL
-Instruction Decode/Execute 012516b3
- Counter:   225         |      ori       | riscv_mem:002000e6  | sb_mem:002000e6  | PASS | rx_f:ORI
-Instruction Decode/Execute 0e68e193
- Counter:   226         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 0d48f313
- Counter:   227         |      xor       | riscv_mem:ffffffe2  | sb_mem:ffffffe2  | PASS | rx_f:XOR
-Instruction Decode/Execute 00accab3
- Counter:   228         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00075c93
- Counter:   229         |      or        | riscv_mem:ffffff9b  | sb_mem:ffffff9b  | PASS | rx_f:OR
-Instruction Decode/Execute 00466d33
- Counter:   230         |      andi      | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:ANDI
-Instruction Decode/Execute ffed7293
- Counter:   231         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 015cba33
- Counter:   232         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00903fb3
- Counter:   233         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 016b5c93
- Counter:   234         |      slli      | riscv_mem:ffff3600  | sb_mem:ffff3600  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00961b13
- Counter:   235         |      andi      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ANDI
-Instruction Decode/Execute f4327593
- Counter:   236         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute f7fefc13
- Counter:   237         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00b87033
- Counter:   238         |      add       | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:ADD
-Instruction Decode/Execute 009e0bb3
- Counter:   239         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00b62db3
- Counter:   240         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
-Instruction Decode/Execute 01959733
- Counter:   241         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 009075b3
- Counter:   242         |      ori       | riscv_mem:fffffffe  | sb_mem:fffffffe  | PASS | rx_f:ORI
-Instruction Decode/Execute ffefe693
- Counter:   243         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00d59813
- Counter:   245         |      slli      | riscv_mem:00008000  | sb_mem:00008000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00f71e93
- Counter:   246         |      and       | riscv_mem:ffffff9a  | sb_mem:ffffff9a  | PASS | rx_f:AND
-Instruction Decode/Execute 00567f33
- Counter:   247         |      add       | riscv_mem:ffffffe4  | sb_mem:ffffffe4  | PASS | rx_f:ADD
-Instruction Decode/Execute 01440733
- Counter:   249         |      sll       | riscv_mem:ffff3600  | sb_mem:ffff3600  | PASS | rx_f:SLL
-Instruction Decode/Execute 01db10b3
- Counter:   250         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 014ed613
- Counter:   251         |      slli      | riscv_mem:00fb0000  | sb_mem:00fb0000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 010e1313
- Counter:   252         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01bed313
- Counter:   253         |      slli      | riscv_mem:e6c00000  | sb_mem:e6c00000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00db1593
- Counter:   254         |      srli      | riscv_mem:e6c00000  | sb_mem:e6c00000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 0005d393
- Counter:   255         |      addi      | riscv_mem:000000f5  | sb_mem:000000f5  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0f4d8393
- Counter:   256         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
-Instruction Decode/Execute 01679c33
- Counter:   257         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
-Instruction Decode/Execute 01bde7b3
- Counter:   258         |      xor       | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XOR
-Instruction Decode/Execute 004bcd33
- Counter:   260         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 00a5fd93
- Counter:   261         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 0066a733
- Counter:   262         |      ori       | riscv_mem:fffffffb  | sb_mem:fffffffb  | PASS | rx_f:ORI
-Instruction Decode/Execute f3846f13
- Counter:   263         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 019f99b3
- Counter:   264         |      xor       | riscv_mem:000000fa  | sb_mem:000000fa  | PASS | rx_f:XOR
-Instruction Decode/Execute 014e41b3
- Counter:   265         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00a5a233
- Counter:   266         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 014357b3
- Counter:   267         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 013deb33
- Counter:   268         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 01a793b3
- Counter:   269         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01ba2b33
- Counter:   270         |      or        | riscv_mem:ffffffe3  | sb_mem:ffffffe3  | PASS | rx_f:OR
-Instruction Decode/Execute 0080e1b3
- Counter:   272         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 0162f333
- Counter:   274         |      addi      | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0c2f0193
- Counter:   275         |      xori      | riscv_mem:000000b9  | sb_mem:000000b9  | PASS | rx_f:XORI
-Instruction Decode/Execute 0b894c93
- Counter:   276         |      srl       | riscv_mem:00200000  | sb_mem:00200000  | PASS | rx_f:SRL
-Instruction Decode/Execute 00b8deb3
- Counter:   277         |      addi      | riscv_mem:0000005f  | sb_mem:0000005f  | PASS | rx_f:ADDI
-Instruction Decode/Execute fa218913
- Counter:   278         |      ori       | riscv_mem:fffffff3  | sb_mem:fffffff3  | PASS | rx_f:ORI
-Instruction Decode/Execute f1056a93
- Counter:   279         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01d8d813
- Counter:   280         |      xor       | riscv_mem:ffdfff9a  | sb_mem:ffdfff9a  | PASS | rx_f:XOR
-Instruction Decode/Execute 005ec8b3
- Counter:   282         |      or        | riscv_mem:000000fb  | sb_mem:000000fb  | PASS | rx_f:OR
-Instruction Decode/Execute 01fd6733
- Counter:   283         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 016c5113
- Counter:   284         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 0000f533
- Counter:   285         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 01aeba33
- Counter:   286         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00ca3733
- Counter:   287         |      addi      | riscv_mem:ffffff98  | sb_mem:ffffff98  | PASS | rx_f:ADDI
-Instruction Decode/Execute f97f8b93
- Counter:   288         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 00e7e633
- Counter:   289         |      addi      | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:ADDI
-Instruction Decode/Execute 06b50e13
- Counter:   290         |      andi      | riscv_mem:ffffff10  | sb_mem:ffffff10  | PASS | rx_f:ANDI
-Instruction Decode/Execute f18afa13
- Counter:   291         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 003d2c33
- Counter:   292         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 012dd413
- Counter:   293         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00be2333
- Counter:   294         |      sll       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:SLL
-Instruction Decode/Execute 01f69a33
- Counter:   295         |      srl       | riscv_mem:0000001f  | sb_mem:0000001f  | PASS | rx_f:SRL
-Instruction Decode/Execute 01e8ddb3
- Counter:   297         |      or        | riscv_mem:ffffff98  | sb_mem:ffffff98  | PASS | rx_f:OR
-Instruction Decode/Execute 019be833
- Counter:   298         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00db29b3
- Counter:   299         |      xori      | riscv_mem:ffffffae  | sb_mem:ffffffae  | PASS | rx_f:XORI
-Instruction Decode/Execute faf24793
- Counter:   300         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
-Instruction Decode/Execute 014569b3
- Counter:   301         |      and       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:AND
-Instruction Decode/Execute 0136fb33
- Counter:   302         |      xori      | riscv_mem:0000007b  | sb_mem:0000007b  | PASS | rx_f:XORI
-Instruction Decode/Execute 07b44c13
- Counter:   304         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 01223733
- Counter:   305         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00e12eb3
- Counter:   306         |      xor       | riscv_mem:ffdfff60  | sb_mem:ffdfff60  | PASS | rx_f:XOR
-Instruction Decode/Execute 011d44b3
- Counter:   307         |      sll       | riscv_mem:60000000  | sb_mem:60000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 003e12b3
- Counter:   308         |      xori      | riscv_mem:00000041  | sb_mem:00000041  | PASS | rx_f:XORI
-Instruction Decode/Execute fbd9c693
- Counter:   309         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 01f330b3
- Counter:   310         |      xori      | riscv_mem:ffffff23  | sb_mem:ffffff23  | PASS | rx_f:XORI
-Instruction Decode/Execute f2304913
- Counter:   311         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
-Instruction Decode/Execute f8fc6793
- Counter:   312         |      xor       | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XOR
-Instruction Decode/Execute 009a4a33
- Counter:   313         |      addi      | riscv_mem:0000001d  | sb_mem:0000001d  | PASS | rx_f:ADDI
-Instruction Decode/Execute ffed8f93
- Counter:   314         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 013356b3
- Counter:   315         |      or        | riscv_mem:000000bd  | sb_mem:000000bd  | PASS | rx_f:OR
-Instruction Decode/Execute 00a1eab3
- Counter:   316         |      or        | riscv_mem:0000007b  | sb_mem:0000007b  | PASS | rx_f:OR
-Instruction Decode/Execute 01876db3
- Counter:   317         |      ori       | riscv_mem:ffffff9d  | sb_mem:ffffff9d  | PASS | rx_f:ORI
-Instruction Decode/Execute f9c76993
- Counter:   318         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 00e551b3
- Counter:   319         |      xori      | riscv_mem:0000007f  | sb_mem:0000007f  | PASS | rx_f:XORI
-Instruction Decode/Execute 07f54393
- Counter:   320         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00eea9b3
- Counter:   321         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00ec9093
- Counter:   323         |      addi      | riscv_mem:ffffff57  | sb_mem:ffffff57  | PASS | rx_f:ADDI
-Instruction Decode/Execute f56e8413
- Counter:   324         |      addi      | riscv_mem:ffffff74  | sb_mem:ffffff74  | PASS | rx_f:ADDI
-Instruction Decode/Execute fdc80493
- Counter:   325         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00929d13
- Counter:   326         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00cb3c33
- Counter:   327         |      slli      | riscv_mem:ffffba00  | sb_mem:ffffba00  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00749813
- Counter:   328         |      slli      | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 016f9e93
- Counter:   329         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute fe99f613
- Counter:   330         |      addi      | riscv_mem:ffffb9f6  | sb_mem:ffffb9f6  | PASS | rx_f:ADDI
-Instruction Decode/Execute ff680f13
- Counter:   331         |      srl       | riscv_mem:0000003d  | sb_mem:0000003d  | PASS | rx_f:SRL
-Instruction Decode/Execute 00edd3b3
- Counter:   332         |      srl       | riscv_mem:00000007  | sb_mem:00000007  | PASS | rx_f:SRL
-Instruction Decode/Execute 017edc33
- Counter:   333         |      srli      | riscv_mem:0000003f  | sb_mem:0000003f  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01a95593
- Counter:   334         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00eda6b3
- Counter:   336         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01d09f93
- Counter:   337         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01f02433
- Counter:   338         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 017d2133
- Counter:   339         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 02eff613
- Counter:   340         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
-Instruction Decode/Execute 0162e9b3
- Counter:   341         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01e52033
- Counter:   342         |      add       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:ADD
-Instruction Decode/Execute 00398933
- Counter:   343         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 00e577b3
- Counter:   344         |      slli      | riscv_mem:0bd00000  | sb_mem:0bd00000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 014a9c13
- Counter:   346         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
-Instruction Decode/Execute 01a446b3
- Counter:   347         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 07c1f713
- Counter:   348         |      sll       | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:SLL
-Instruction Decode/Execute 01fe1db3
- Counter:   349         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00612733
- Counter:   350         |      or        | riscv_mem:0000006b  | sb_mem:0000006b  | PASS | rx_f:OR
-Instruction Decode/Execute 004e6933
- Counter:   351         |      or        | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:OR
-Instruction Decode/Execute 0039e3b3
- Counter:   352         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 01fba933
- Counter:   353         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 00e0e433
- Counter:   354         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 0118bbb3
- Counter:   355         |      xor       | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XOR
-Instruction Decode/Execute 01aa4633
- Counter:   356         |      or        | riscv_mem:ffdfff9a  | sb_mem:ffdfff9a  | PASS | rx_f:OR
-Instruction Decode/Execute 011ee033
- Counter:   357         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 002f3633
- Counter:   358         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 01c127b3
- Counter:   359         |      sll       | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:SLL
-Instruction Decode/Execute 01de9a33
- Counter:   360         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 07abf213
- Counter:   361         |      addi      | riscv_mem:000000ca  | sb_mem:000000ca  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0ca70613
- Counter:   362         |      and       | riscv_mem:ffffb800  | sb_mem:ffffb800  | PASS | rx_f:AND
-Instruction Decode/Execute 01e87ab3
- Counter:   363         |      andi      | riscv_mem:00000028  | sb_mem:00000028  | PASS | rx_f:ANDI
-Instruction Decode/Execute 0ace7193
- Counter:   364         |      srli      | riscv_mem:00001ffb  | sb_mem:00001ffb  | PASS | rx_f:SRLI
-Instruction Decode/Execute 0138de13
- Counter:   365         |      ori       | riscv_mem:ffffffff  | sb_mem:ffffffff  | PASS | rx_f:ORI
-Instruction Decode/Execute fb79e513
- Counter:   366         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00ff3733
- Counter:   367         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
-Instruction Decode/Execute 012fe0b3
- Counter:   368         |      addi      | riscv_mem:000000b5  | sb_mem:000000b5  | PASS | rx_f:ADDI
-Instruction Decode/Execute 07658393
- Counter:   369         |      addi      | riscv_mem:0bd000e7  | sb_mem:0bd000e7  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0e7c0593
- Counter:   370         |      addi      | riscv_mem:000000dd  | sb_mem:000000dd  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0dd70213
- Counter:   371         |      or        | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:OR
-Instruction Decode/Execute 01996233
- Counter:   372         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 017874b3
- Counter:   373         |      xor       | riscv_mem:fffffffc  | sb_mem:fffffffc  | PASS | rx_f:XOR
-Instruction Decode/Execute 013d4d33
- Counter:   374         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00069013
- Counter:   375         |      xori      | riscv_mem:074000f7  | sb_mem:074000f7  | PASS | rx_f:XORI
-Instruction Decode/Execute 0f7ecd93
- Counter:   376         |      sll       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLL
-Instruction Decode/Execute 00609333
- Counter:   377         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 0149abb3
- Counter:   378         |      sll       | riscv_mem:80000000  | sb_mem:80000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 01e81933
- Counter:   379         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00dc1d93
- Counter:   381         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 08577393
- Counter:   382         |      srli      | riscv_mem:00600000  | sb_mem:00600000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 0082df93
- Counter:   383         |      or        | riscv_mem:07400000  | sb_mem:07400000  | PASS | rx_f:OR
-Instruction Decode/Execute 01d46433
- Counter:   384         |      addi      | riscv_mem:000000d0  | sb_mem:000000d0  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0d4d0493
- Counter:   385         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00071993
- Counter:   389         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute ffcdf813
- Counter:   390         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 01970533
- Counter:   391         |      xor       | riscv_mem:000001f6  | sb_mem:000001f6  | PASS | rx_f:XOR
-Instruction Decode/Execute 015f4bb3
- Counter:   392         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 01717833
- Counter:   393         |      add       | riscv_mem:000000d0  | sb_mem:000000d0  | PASS | rx_f:ADD
-Instruction Decode/Execute 01b48a33
- Counter:   394         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 047dfd93
- Counter:   396         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 01a97a33
- Counter:   398         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 01f12e33
- Counter:   399         |      slli      | riscv_mem:fff00000  | sb_mem:fff00000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 012d1413
- Counter:   401         |      addi      | riscv_mem:000000cc  | sb_mem:000000cc  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0cc50c93
- Counter:   402         |      ori       | riscv_mem:000000cd  | sb_mem:000000cd  | PASS | rx_f:ORI
-Instruction Decode/Execute 00dce913
- Counter:   403         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 005787b3
- Counter:   404         |      add       | riscv_mem:ffffb800  | sb_mem:ffffb800  | PASS | rx_f:ADD
-Instruction Decode/Execute 01528c33
- Counter:   405         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 010e06b3
- Counter:   406         |      andi      | riscv_mem:ffffb952  | sb_mem:ffffb952  | PASS | rx_f:ANDI
-Instruction Decode/Execute f5af7c13
- Counter:   407         |      or        | riscv_mem:fff000ca  | sb_mem:fff000ca  | PASS | rx_f:OR
-Instruction Decode/Execute 00866533
- Counter:   408         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute f7c6f113
- Counter:   409         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 00c52c33
- Counter:   410         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 00af29b3
- Counter:   411         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00243b33
- Counter:   412         |      add       | riscv_mem:ffffb801  | sb_mem:ffffb801  | PASS | rx_f:ADD
-Instruction Decode/Execute 00da83b3
- Counter:   414         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00e9de93
- Counter:   415         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 0100ad33
- Counter:   416         |      slli      | riscv_mem:fffdc008  | sb_mem:fffdc008  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00339b13
- Counter:   418         |      or        | riscv_mem:00600028  | sb_mem:00600028  | PASS | rx_f:OR
-Instruction Decode/Execute 003feb33
- Counter:   419         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 001d0533
- Counter:   420         |      add       | riscv_mem:ffe00064  | sb_mem:ffe00064  | PASS | rx_f:ADD
-Instruction Decode/Execute 011609b3
- Counter:   421         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 0003a833
- Counter:   422         |      sll       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 00ae9433
- Counter:   423         |      xor       | riscv_mem:ff9fb828  | sb_mem:ff9fb828  | PASS | rx_f:XOR
-Instruction Decode/Execute 015b40b3
- Counter:   424         |      or        | riscv_mem:000000d1  | sb_mem:000000d1  | PASS | rx_f:OR
-Instruction Decode/Execute 009566b3
- Counter:   425         |      xori      | riscv_mem:0020009c  | sb_mem:0020009c  | PASS | rx_f:XORI
-Instruction Decode/Execute f068c093
- Counter:   427         |      ori       | riscv_mem:ffffff02  | sb_mem:ffffff02  | PASS | rx_f:ORI
-Instruction Decode/Execute f024ee93
- Counter:   428         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 019de8b3
- Counter:   429         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 012775b3
- Counter:   431         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01052c33
- Counter:   433         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 010ca7b3
- Counter:   434         |      addi      | riscv_mem:ffffff10  | sb_mem:ffffff10  | PASS | rx_f:ADDI
-Instruction Decode/Execute 00ee8193
- Counter:   435         |      srli      | riscv_mem:0007ffff  | sb_mem:0007ffff  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00d1d413
- Counter:   437         |      xor       | riscv_mem:ffffff11  | sb_mem:ffffff11  | PASS | rx_f:XOR
-Instruction Decode/Execute 0181c433
- Counter:   438         |      ori       | riscv_mem:ffffb9f7  | sb_mem:ffffb9f7  | PASS | rx_f:ORI
-Instruction Decode/Execute 035f6793
- Counter:   439         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 019a51b3
- Counter:   440         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 019e78b3
- Counter:   441         |      sll       | riscv_mem:10000000  | sb_mem:10000000  | PASS | rx_f:SLL
-Instruction Decode/Execute 001316b3
- Counter:   442         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01482333
- Counter:   444         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 005572b3
- Counter:   445         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 017924b3
- Counter:   446         |      srl       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:SRL
-Instruction Decode/Execute 01ceddb3
- Counter:   447         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 00e4eb33
- Counter:   449         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
-Instruction Decode/Execute 00a84bb3
- Counter:   450         |      slli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 00819093
- Counter:   451         |      add       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:ADD
-Instruction Decode/Execute 01ad85b3
- Counter:   452         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 004be4b3
- Counter:   453         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 0198e5b3
- Counter:   454         |      add       | riscv_mem:ffffff12  | sb_mem:ffffff12  | PASS | rx_f:ADD
-Instruction Decode/Execute 008c0533
- Counter:   455         |      addi      | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:ADDI
-Instruction Decode/Execute fa550993
- Counter:   456         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01715593
- Counter:   457         |      xori      | riscv_mem:0000000e  | sb_mem:0000000e  | PASS | rx_f:XORI
-Instruction Decode/Execute 00ed4393
- Counter:   458         |      srl       | riscv_mem:ffffb9f6  | sb_mem:ffffb9f6  | PASS | rx_f:SRL
-Instruction Decode/Execute 004f5e33
- Counter:   459         |      and       | riscv_mem:00000002  | sb_mem:00000002  | PASS | rx_f:AND
-Instruction Decode/Execute 00757433
- Counter:   460         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 0d8d7213
- Counter:   461         |      srl       | riscv_mem:7fffff81  | sb_mem:7fffff81  | PASS | rx_f:SRL
-Instruction Decode/Execute 01bed233
- Counter:   462         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 01d1fe33
- Counter:   463         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 005573b3
- Counter:   464         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 01982f33
- Counter:   465         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 009431b3
- Counter:   466         |      slli      | riscv_mem:00cd0000  | sb_mem:00cd0000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 01091f13
- Counter:   467         |      addi      | riscv_mem:100000e0  | sb_mem:100000e0  | PASS | rx_f:ADDI
-Instruction Decode/Execute 0e068393
- Counter:   468         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 0070ffb3
- Counter:   469         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 01ac8033
- Counter:   470         |      xor       | riscv_mem:10000000  | sb_mem:10000000  | PASS | rx_f:XOR
-Instruction Decode/Execute 00e6cfb3
- Counter:   471         |      xor       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:XOR
-Instruction Decode/Execute 0091c4b3
- Counter:   472         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01575d13
- Counter:   473         |      srli      | riscv_mem:0001ffff  | sb_mem:0001ffff  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00edda13
- Counter:   474         |      slt       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLT
-Instruction Decode/Execute 018026b3
- Counter:   475         |      xori      | riscv_mem:00000045  | sb_mem:00000045  | PASS | rx_f:XORI
-Instruction Decode/Execute 045bc393
- Counter:   476         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00f85893
- Counter:   477         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 002672b3
- Counter:   478         |      add       | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:ADD
-Instruction Decode/Execute 01798db3
- Counter:   479         |      xor       | riscv_mem:ffffff02  | sb_mem:ffffff02  | PASS | rx_f:XOR
-Instruction Decode/Execute 01d2c2b3
- Counter:   480         |      add       | riscv_mem:ffffff12  | sb_mem:ffffff12  | PASS | rx_f:ADD
-Instruction Decode/Execute 00150533
- Counter:   481         |      srl       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRL
-Instruction Decode/Execute 01835233
- Counter:   482         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute 0f81f493
- Counter:   483         |      slt       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLT
-Instruction Decode/Execute 0134a2b3
- Counter:   484         |      srli      | riscv_mem:00000066  | sb_mem:00000066  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00195693
- Counter:   485         |      slli      | riscv_mem:fff70000  | sb_mem:fff70000  | PASS | rx_f:SLLI
-Instruction Decode/Execute 005a9713
- Counter:   486         |      xor       | riscv_mem:fffffeb7  | sb_mem:fffffeb7  | PASS | rx_f:XOR
-Instruction Decode/Execute 01334e33
- Counter:   487         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute f53bf413
- Counter:   488         |      xor       | riscv_mem:ff32b9f7  | sb_mem:ff32b9f7  | PASS | rx_f:XOR
-Instruction Decode/Execute 00ff47b3
- Counter:   489         |      xori      | riscv_mem:00000053  | sb_mem:00000053  | PASS | rx_f:XORI
-Instruction Decode/Execute 05324313
- Counter:   490         |      ori       | riscv_mem:fffffebf  | sb_mem:fffffebf  | PASS | rx_f:ORI
-Instruction Decode/Execute 01adee93
- Counter:   492         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 0176d993
- Counter:   493         |      sltu      | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:SLTU
-Instruction Decode/Execute 00fc3db3
- Counter:   494         |      and       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:AND
-Instruction Decode/Execute 01207c33
- Counter:   495         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00a15513
- Counter:   496         |      srli      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SRLI
-Instruction Decode/Execute 01805693
- Counter:   497         |      srli      | riscv_mem:00000014  | sb_mem:00000014  | PASS | rx_f:SRLI
-Instruction Decode/Execute 00235893
- Counter:   498         |      or        | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:OR
-Instruction Decode/Execute 017264b3
- Counter:   499         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 00368133
- Counter:   500         |      xori      | riscv_mem:ffffffd2  | sb_mem:ffffffd2  | PASS | rx_f:XORI
-Instruction Decode/Execute fc68c113
- Counter:   501         |      sltu      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:SLTU
-Instruction Decode/Execute 0007b3b3
- Counter:   502         |      ori       | riscv_mem:0000004c  | sb_mem:0000004c  | PASS | rx_f:ORI
-Instruction Decode/Execute 04c3e413
- Counter:   503         |      add       | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ADD
-Instruction Decode/Execute 00b68ab3
- Counter:   505         |      ori       | riscv_mem:ffffff5a  | sb_mem:ffffff5a  | PASS | rx_f:ORI
-Instruction Decode/Execute f5aae393
- Counter:   506         |      andi      | riscv_mem:00000000  | sb_mem:00000000  | PASS | rx_f:ANDI
-Instruction Decode/Execute f791fb93
- Counter:   507         |      and       | riscv_mem:0000008d  | sb_mem:0000008d  | PASS | rx_f:AND
-Instruction Decode/Execute 012ef5b3
- Counter:   508         |      add       | riscv_mem:00000001  | sb_mem:00000001  | PASS | rx_f:ADD
-Instruction Decode/Execute 01980a33
- Counter:   509         |      xori      | riscv_mem:00000035  | sb_mem:00000035  | PASS | rx_f:XORI
-Instruction Decode/Execute 03554113
+Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS 
+     0 | 0eb48093 | addi  | ADDI | 000000eb | 000000eb | PASS
+     1 | 0f280113 | addi  | ADDI | 000000f2 | 000000f2 | PASS
+     2 | fb9b8193 | addi  | ADDI | ffffffb9 | ffffffb9 | PASS
+     3 | 02940213 | addi  | ADDI | 00000029 | 00000029 | PASS
+     4 | 0bcd0293 | addi  | ADDI | 000000bc | 000000bc | PASS
+     5 | 07648313 | addi  | ADDI | 00000076 | 00000076 | PASS
+     6 | fbaf8393 | addi  | ADDI | ffffffba | ffffffba | PASS
+     7 | f8540413 | addi  | ADDI | ffffff85 | ffffff85 | PASS
+     8 | fbbe0493 | addi  | ADDI | ffffffbb | ffffffbb | PASS
+     9 | 01758513 | addi  | ADDI | 00000017 | 00000017 | PASS
+    10 | 056e0593 | addi  | ADDI | 00000056 | 00000056 | PASS
+    11 | 0b770613 | addi  | ADDI | 000000b7 | 000000b7 | PASS
+    12 | 0f7e0693 | addi  | ADDI | 000000f7 | 000000f7 | PASS
+    13 | f56b8713 | addi  | ADDI | ffffff56 | ffffff56 | PASS
+    14 | f1f50793 | addi  | ADDI | ffffff36 | ffffff36 | PASS
+    15 | 04d90813 | addi  | ADDI | 0000004d | 0000004d | PASS
+    16 | 03c20893 | addi  | ADDI | 00000065 | 00000065 | PASS
+    17 | 0f468913 | addi  | ADDI | 000001eb | 000001eb | PASS
+    18 | 0cef8993 | addi  | ADDI | 000000ce | 000000ce | PASS
+    19 | 06410a13 | addi  | ADDI | 00000156 | 00000156 | PASS
+    20 | fdc60a93 | addi  | ADDI | 00000093 | 00000093 | PASS
+    21 | 0b738b13 | addi  | ADDI | 00000071 | 00000071 | PASS
+    22 | 09e90b93 | addi  | ADDI | 00000289 | 00000289 | PASS
+    23 | f7540c13 | addi  | ADDI | fffffefa | fffffefa | PASS
+    24 | ffd70c93 | addi  | ADDI | ffffff53 | ffffff53 | PASS
+    25 | fa3e8d13 | addi  | ADDI | ffffffa3 | ffffffa3 | PASS
+    26 | ffea8d93 | addi  | ADDI | 00000091 | 00000091 | PASS
+    27 | 05b20e13 | addi  | ADDI | 00000084 | 00000084 | PASS
+    28 | f6050e93 | addi  | ADDI | ffffff77 | ffffff77 | PASS
+    29 | 0cbf8f13 | addi  | ADDI | 000000cb | 000000cb | PASS
+    30 | 0da38f93 | addi  | ADDI | 00000094 | 00000094 | PASS
+    31 | fcd57b93 | andi  | ANDI | 00000005 | 00000005 | PASS
+    32 | 006fdb93 | srli  | SRLI | 00000002 | 00000002 | PASS
+    33 | ff727d93 | andi  | ANDI | 00000021 | 00000021 | PASS
+    34 | 002a0fb3 | add   | ADD | 00000248 | 00000248 | PASS
+    36 | 0e087e13 | andi  | ANDI | 00000040 | 00000040 | PASS
+    37 | f8c98193 | addi  | ADDI | 0000005a | 0000005a | PASS
+    38 | 009371b3 | and   | AND | 00000000 | 00000000 | PASS
+    39 | 0094fdb3 | and   | AND | ffffffbb | ffffffbb | PASS
+    40 | 0018e4b3 | or    | OR | 000000ef | 000000ef | PASS
+    42 | 01201b13 | slli  | SLLI | 00000000 | 00000000 | PASS
+    43 | 001f1f93 | slli  | SLLI | 00000196 | 00000196 | PASS
+    45 | 00fb76b3 | and   | AND | 00000000 | 00000000 | PASS
+    46 | 00ab4333 | xor   | XOR | 00000017 | 00000017 | PASS
+    47 | 0952e413 | ori   | ORI | 000000bd | 000000bd | PASS
+    48 | 0197eeb3 | or    | OR | ffffff77 | ffffff77 | PASS
+    49 | 006e27b3 | slt   | SLT | 00000000 | 00000000 | PASS
+    50 | faeee193 | ori   | ORI | ffffffff | ffffffff | PASS
+    51 | fe057013 | andi  | ANDI | 00000000 | 00000000 | PASS
+    52 | 01a7bbb3 | sltu  | SLTU | 00000001 | 00000001 | PASS
+    54 | 00438f33 | add   | ADD | ffffffe3 | ffffffe3 | PASS
+    56 | 01f9d213 | srli  | SRLI | 00000000 | 00000000 | PASS
+    57 | 004d4eb3 | xor   | XOR | ffffffa3 | ffffffa3 | PASS
+    58 | fa838d93 | addi  | ADDI | ffffff62 | ffffff62 | PASS
+    59 | 0b7ec513 | xori  | XORI | ffffff14 | ffffff14 | PASS
+    60 | 02217193 | andi  | ANDI | 00000022 | 00000022 | PASS
+    61 | fb2c6293 | ori   | ORI | fffffffa | fffffffa | PASS
+    62 | 01ef7e33 | and   | AND | ffffffe3 | ffffffe3 | PASS
+    63 | 00c0fb33 | and   | AND | 000000a3 | 000000a3 | PASS
+    65 | 01405013 | srli  | SRLI | 00000000 | 00000000 | PASS
+    66 | 004e49b3 | xor   | XOR | ffffffe3 | ffffffe3 | PASS
+    67 | 002d5033 | srl   | SRL | 00003fff | 00003fff | PASS
+    68 | 015bd793 | srli  | SRLI | 00000000 | 00000000 | PASS
+    69 | 0e848013 | addi  | ADDI | 000001d7 | 000001d7 | PASS
+    70 | 02c9f313 | andi  | ANDI | 00000020 | 00000020 | PASS
+    71 | 00a11233 | sll   | SLL | 0f200000 | 0f200000 | PASS
+    72 | 005f4433 | xor   | XOR | 00000019 | 00000019 | PASS
+    73 | 04414e93 | xori  | XORI | 000000b6 | 000000b6 | PASS
+    74 | 010728b3 | slt   | SLT | 00000001 | 00000001 | PASS
+    75 | 012e1713 | slli  | SLLI | ff8c0000 | ff8c0000 | PASS
+    77 | 00dac4b3 | xor   | XOR | 00000093 | 00000093 | PASS
+    78 | 00961b33 | sll   | SLL | 05b80000 | 05b80000 | PASS
+    79 | 01eb9833 | sll   | SLL | 00000008 | 00000008 | PASS
+    80 | 01f06f33 | or    | OR | 00000196 | 00000196 | PASS
+    81 | 017154b3 | srl   | SRL | 00000079 | 00000079 | PASS
+    82 | fe6ec213 | xori  | XORI | ffffff50 | ffffff50 | PASS
+    83 | 01a91eb3 | sll   | SLL | 00000f58 | 00000f58 | PASS
+    84 | 017aecb3 | or    | OR | 00000093 | 00000093 | PASS
+    85 | f8c26013 | ori   | ORI | ffffffdc | ffffffdc | PASS
+    87 | 03ac8013 | addi  | ADDI | 000000cd | 000000cd | PASS
+    89 | 00960833 | add   | ADD | 00000079 | 00000079 | PASS
+    90 | 00b83db3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+    91 | fc977213 | andi  | ANDI | ff8c0000 | ff8c0000 | PASS
+    92 | 00d21193 | slli  | SLLI | 80000000 | 80000000 | PASS
+    93 | 018ba7b3 | slt   | SLT | 00000000 | 00000000 | PASS
+    95 | 01d5c7b3 | xor   | XOR | 00000f0e | 00000f0e | PASS
+    96 | 01df0c33 | add   | ADD | 000010ee | 000010ee | PASS
+    97 | 08657c13 | andi  | ANDI | 00000004 | 00000004 | PASS
+    98 | 01525813 | srli  | SRLI | 000007fc | 000007fc | PASS
+    99 | 01e4d893 | srli  | SRLI | 00000000 | 00000000 | PASS
+   100 | 00fb6133 | or    | OR | 05b80f0e | 05b80f0e | PASS
+   101 | 00d19433 | sll   | SLL | 80000000 | 80000000 | PASS
+   102 | 004ec1b3 | xor   | XOR | ff8c0f58 | ff8c0f58 | PASS
+   103 | 01909713 | slli  | SLLI | d6000000 | d6000000 | PASS
+   104 | 0c896b93 | ori   | ORI | 000001eb | 000001eb | PASS
+   105 | 078f4b93 | xori  | XORI | 000001ee | 000001ee | PASS
+   106 | 014f9bb3 | sll   | SLL | 65800000 | 65800000 | PASS
+   107 | 0611c413 | xori  | XORI | ff8c0f39 | ff8c0f39 | PASS
+   108 | 00770433 | add   | ADD | d6000001 | d6000001 | PASS
+   109 | 00727033 | and   | AND | 00000000 | 00000000 | PASS
+   110 | 00ec5793 | srli  | SRLI | 00000000 | 00000000 | PASS
+   111 | 004b26b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   112 | 013d8bb3 | add   | ADD | ffffffe3 | ffffffe3 | PASS
+   113 | 01bbe533 | or    | OR | ffffffe3 | ffffffe3 | PASS
+   114 | 0031f833 | and   | AND | ff8c0f58 | ff8c0f58 | PASS
+   115 | 018a3db3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   116 | 0702e013 | ori   | ORI | fffffffa | fffffffa | PASS
+   118 | 0d82cf13 | xori  | XORI | ffffff22 | ffffff22 | PASS
+   119 | 0036a833 | slt   | SLT | 00000000 | 00000000 | PASS
+   120 | 05c84d93 | xori  | XORI | 0000005c | 0000005c | PASS
+   122 | 00189693 | slli  | SLLI | 00000000 | 00000000 | PASS
+   123 | 011e9e93 | slli  | SLLI | 1eb00000 | 1eb00000 | PASS
+   124 | 01cecab3 | xor   | XOR | 1eb00000 | 1eb00000 | PASS
+   125 | 00fcdab3 | srl   | SRL | 00000093 | 00000093 | PASS
+   126 | 00e398b3 | sll   | SLL | 00000001 | 00000001 | PASS
+   127 | 01d2d993 | srli  | SRLI | 00000007 | 00000007 | PASS
+   128 | 0035a433 | slt   | SLT | 00000000 | 00000000 | PASS
+   129 | 01cf27b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   131 | 0090ee33 | or    | OR | 000000fb | 000000fb | PASS
+   132 | 0186fcb3 | and   | AND | 00000000 | 00000000 | PASS
+   133 | f42b6793 | ori   | ORI | ffffff42 | ffffff42 | PASS
+   134 | 01950f33 | add   | ADD | ffffffe3 | ffffffe3 | PASS
+   135 | 018bf233 | and   | AND | 00000000 | 00000000 | PASS
+   136 | 0071f633 | and   | AND | 00000000 | 00000000 | PASS
+   137 | 0ffae993 | ori   | ORI | 000000ff | 000000ff | PASS
+   138 | 01ff1213 | slli  | SLLI | 80000000 | 80000000 | PASS
+   140 | face0593 | addi  | ADDI | 000000a7 | 000000a7 | PASS
+   141 | 003fa333 | slt   | SLT | 00000000 | 00000000 | PASS
+   142 | 006f8033 | add   | ADD | 00000196 | 00000196 | PASS
+   143 | f9b5ce93 | xori  | XORI | ffffff3c | ffffff3c | PASS
+   144 | f262f893 | andi  | ANDI | ffffff22 | ffffff22 | PASS
+   145 | f59d4213 | xori  | XORI | 000000fa | 000000fa | PASS
+   146 | 02b2f893 | andi  | ANDI | 0000002a | 0000002a | PASS
+   148 | 00700233 | add   | ADD | 00000001 | 00000001 | PASS
+   149 | 01799613 | slli  | SLLI | 7f800000 | 7f800000 | PASS
+   150 | 019adab3 | srl   | SRL | 00000093 | 00000093 | PASS
+   151 | 0286c213 | xori  | XORI | 00000028 | 00000028 | PASS
+   152 | 00b35813 | srli  | SRLI | 00000000 | 00000000 | PASS
+   153 | 008451b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   154 | 00311693 | slli  | SLLI | 2dc07870 | 2dc07870 | PASS
+   155 | 00cb23b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   156 | 000600b3 | add   | ADD | 7f800000 | 7f800000 | PASS
+   157 | 00415233 | srl   | SRL | 0005b80f | 0005b80f | PASS
+   159 | 01241c13 | slli  | SLLI | 00000000 | 00000000 | PASS
+   160 | 0119d3b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   161 | f8a3c393 | xori  | XORI | ffffff8a | ffffff8a | PASS
+   162 | 015f24b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   163 | f8e06793 | ori   | ORI | ffffff8e | ffffff8e | PASS
+   165 | 0cde8d13 | addi  | ADDI | 000000cd | 000000cd | PASS
+   166 | 00271193 | slli  | SLLI | 58000000 | 58000000 | PASS
+   167 | 014906b3 | add   | ADD | 00000341 | 00000341 | PASS
+   168 | 01cc9913 | slli  | SLLI | 00000000 | 00000000 | PASS
+   169 | 00495f93 | srli  | SRLI | 00000000 | 00000000 | PASS
+   171 | 01c38993 | addi  | ADDI | 0000001c | 0000001c | PASS
+   172 | 00b30133 | add   | ADD | 00000000 | 00000000 | PASS
+   173 | 0039c333 | xor   | XOR | 5800001c | 5800001c | PASS
+   174 | 01bd86b3 | add   | ADD | 00000000 | 00000000 | PASS
+   175 | 00d527b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   177 | 000698b3 | sll   | SLL | 00000000 | 00000000 | PASS
+   178 | 00c726b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   179 | 017ec433 | xor   | XOR | ffffffe3 | ffffffe3 | PASS
+   180 | 002eda33 | srl   | SRL | 00000000 | 00000000 | PASS
+   181 | 015f4633 | xor   | XOR | ffffff70 | ffffff70 | PASS
+   182 | 019bf333 | and   | AND | 00000000 | 00000000 | PASS
+   183 | 019be0b3 | or    | OR | ffffffe3 | ffffffe3 | PASS
+   184 | 00781033 | sll   | SLL | 00000000 | 00000000 | PASS
+   185 | 0be6c693 | xori  | XORI | 000000bf | 000000bf | PASS
+   186 | fcf6e193 | ori   | ORI | ffffffff | ffffffff | PASS
+   187 | 00540c33 | add   | ADD | ffffffdd | ffffffdd | PASS
+   188 | fa64f493 | andi  | ANDI | 00000000 | 00000000 | PASS
+   189 | 01527bb3 | and   | AND | 00000003 | 00000003 | PASS
+   190 | 01490133 | add   | ADD | 00000000 | 00000000 | PASS
+   192 | f9a7ea13 | ori   | ORI | ffffff9b | ffffff9b | PASS
+   193 | f3516913 | ori   | ORI | ffffff35 | ffffff35 | PASS
+   194 | 050a8613 | addi  | ADDI | 000000e3 | 000000e3 | PASS
+   195 | 01fa72b3 | and   | AND | 00000000 | 00000000 | PASS
+   196 | 0a5e6993 | ori   | ORI | 000000ff | 000000ff | PASS
+   197 | 01624233 | xor   | XOR | 05b80000 | 05b80000 | PASS
+   198 | 01e2b333 | sltu  | SLTU | 00000001 | 00000001 | PASS
+   200 | 00bf74b3 | and   | AND | 00000000 | 00000000 | PASS
+   201 | 011a1bb3 | sll   | SLL | ffffff9b | ffffff9b | PASS
+   203 | 002d5c93 | srli  | SRLI | 00000033 | 00000033 | PASS
+   204 | 047c4693 | xori  | XORI | ffffff9a | ffffff9a | PASS
+   205 | 0197e133 | or    | OR | 00000033 | 00000033 | PASS
+   206 | 00017eb3 | and   | AND | 00000000 | 00000000 | PASS
+   207 | 017f8633 | add   | ADD | ffffff9b | ffffff9b | PASS
+   208 | 00639833 | sll   | SLL | 00000000 | 00000000 | PASS
+   210 | 010d08b3 | add   | ADD | 000000cd | 000000cd | PASS
+   211 | 00f260b3 | or    | OR | 00000001 | 00000001 | PASS
+   213 | 003915b3 | sll   | SLL | 80000000 | 80000000 | PASS
+   214 | 00a10b33 | add   | ADD | 00000016 | 00000016 | PASS
+   216 | 001cadb3 | slt   | SLT | 00000000 | 00000000 | PASS
+   217 | 0a4b6a13 | ori   | ORI | 000000b6 | 000000b6 | PASS
+   218 | f6a67013 | andi  | ANDI | ffffff0a | ffffff0a | PASS
+   219 | fedac913 | xori  | XORI | ffffffec | ffffffec | PASS
+   220 | fd37e693 | ori   | ORI | ffffffd3 | ffffffd3 | PASS
+   221 | 01dbc9b3 | xor   | XOR | ffffff9b | ffffff9b | PASS
+   222 | 01531893 | slli  | SLLI | 00200000 | 00200000 | PASS
+   223 | f8c34393 | xori  | XORI | ffffff8d | ffffff8d | PASS
+   224 | 012516b3 | sll   | SLL | fffe3000 | fffe3000 | PASS
+   225 | 0e68e193 | ori   | ORI | 002000e6 | 002000e6 | PASS
+   226 | 0d48f313 | andi  | ANDI | 00000000 | 00000000 | PASS
+   227 | 00accab3 | xor   | XOR | ffffffe2 | ffffffe2 | PASS
+   228 | 00075c93 | srli  | SRLI | 00000000 | 00000000 | PASS
+   229 | 00466d33 | or    | OR | ffffff9b | ffffff9b | PASS
+   230 | ffed7293 | andi  | ANDI | ffffff9a | ffffff9a | PASS
+   231 | 015cba33 | sltu  | SLTU | 00000001 | 00000001 | PASS
+   232 | 00903fb3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   233 | 016b5c93 | srli  | SRLI | 00000000 | 00000000 | PASS
+   234 | 00961b13 | slli  | SLLI | ffff3600 | ffff3600 | PASS
+   235 | f4327593 | andi  | ANDI | 00000001 | 00000001 | PASS
+   236 | f7fefc13 | andi  | ANDI | 00000000 | 00000000 | PASS
+   237 | 00b87033 | and   | AND | 00000000 | 00000000 | PASS
+   238 | 009e0bb3 | add   | ADD | 000000fb | 000000fb | PASS
+   239 | 00b62db3 | slt   | SLT | 00000001 | 00000001 | PASS
+   240 | 01959733 | sll   | SLL | 00000001 | 00000001 | PASS
+   241 | 009075b3 | and   | AND | 00000000 | 00000000 | PASS
+   242 | ffefe693 | ori   | ORI | fffffffe | fffffffe | PASS
+   243 | 00d59813 | slli  | SLLI | 00000000 | 00000000 | PASS
+   245 | 00f71e93 | slli  | SLLI | 00008000 | 00008000 | PASS
+   246 | 00567f33 | and   | AND | ffffff9a | ffffff9a | PASS
+   247 | 01440733 | add   | ADD | ffffffe4 | ffffffe4 | PASS
+   249 | 01db10b3 | sll   | SLL | ffff3600 | ffff3600 | PASS
+   250 | 014ed613 | srli  | SRLI | 00000000 | 00000000 | PASS
+   251 | 010e1313 | slli  | SLLI | 00fb0000 | 00fb0000 | PASS
+   252 | 01bed313 | srli  | SRLI | 00000000 | 00000000 | PASS
+   253 | 00db1593 | slli  | SLLI | e6c00000 | e6c00000 | PASS
+   254 | 0005d393 | srli  | SRLI | e6c00000 | e6c00000 | PASS
+   255 | 0f4d8393 | addi  | ADDI | 000000f5 | 000000f5 | PASS
+   256 | 01679c33 | sll   | SLL | 00000001 | 00000001 | PASS
+   257 | 01bde7b3 | or    | OR | 00000001 | 00000001 | PASS
+   258 | 004bcd33 | xor   | XOR | 000000fa | 000000fa | PASS
+   260 | 00a5fd93 | andi  | ANDI | 00000000 | 00000000 | PASS
+   261 | 0066a733 | slt   | SLT | 00000001 | 00000001 | PASS
+   262 | f3846f13 | ori   | ORI | fffffffb | fffffffb | PASS
+   263 | 019f99b3 | sll   | SLL | 00000000 | 00000000 | PASS
+   264 | 014e41b3 | xor   | XOR | 000000fa | 000000fa | PASS
+   265 | 00a5a233 | slt   | SLT | 00000001 | 00000001 | PASS
+   266 | 014357b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   267 | 013deb33 | or    | OR | 00000000 | 00000000 | PASS
+   268 | 01a793b3 | sll   | SLL | 00000000 | 00000000 | PASS
+   269 | 01ba2b33 | slt   | SLT | 00000000 | 00000000 | PASS
+   270 | 0080e1b3 | or    | OR | ffffffe3 | ffffffe3 | PASS
+   272 | 0162f333 | and   | AND | 00000000 | 00000000 | PASS
+   274 | 0c2f0193 | addi  | ADDI | 000000bd | 000000bd | PASS
+   275 | 0b894c93 | xori  | XORI | 000000b9 | 000000b9 | PASS
+   276 | 00b8deb3 | srl   | SRL | 00200000 | 00200000 | PASS
+   277 | fa218913 | addi  | ADDI | 0000005f | 0000005f | PASS
+   278 | f1056a93 | ori   | ORI | fffffff3 | fffffff3 | PASS
+   279 | 01d8d813 | srli  | SRLI | 00000000 | 00000000 | PASS
+   280 | 005ec8b3 | xor   | XOR | ffdfff9a | ffdfff9a | PASS
+   282 | 01fd6733 | or    | OR | 000000fb | 000000fb | PASS
+   283 | 016c5113 | srli  | SRLI | 00000000 | 00000000 | PASS
+   284 | 0000f533 | and   | AND | 00000000 | 00000000 | PASS
+   285 | 01aeba33 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   286 | 00ca3733 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   287 | f97f8b93 | addi  | ADDI | ffffff98 | ffffff98 | PASS
+   288 | 00e7e633 | or    | OR | 00000000 | 00000000 | PASS
+   289 | 06b50e13 | addi  | ADDI | 0000006b | 0000006b | PASS
+   290 | f18afa13 | andi  | ANDI | ffffff10 | ffffff10 | PASS
+   291 | 003d2c33 | slt   | SLT | 00000000 | 00000000 | PASS
+   292 | 012dd413 | srli  | SRLI | 00000000 | 00000000 | PASS
+   293 | 00be2333 | slt   | SLT | 00000000 | 00000000 | PASS
+   294 | 01f69a33 | sll   | SLL | fffffffc | fffffffc | PASS
+   295 | 01e8ddb3 | srl   | SRL | 0000001f | 0000001f | PASS
+   297 | 019be833 | or    | OR | ffffff98 | ffffff98 | PASS
+   298 | 00db29b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   299 | faf24793 | xori  | XORI | ffffffae | ffffffae | PASS
+   300 | 014569b3 | or    | OR | fffffffc | fffffffc | PASS
+   301 | 0136fb33 | and   | AND | fffffffc | fffffffc | PASS
+   302 | 07b44c13 | xori  | XORI | 0000007b | 0000007b | PASS
+   304 | 01223733 | sltu  | SLTU | 00000001 | 00000001 | PASS
+   305 | 00e12eb3 | slt   | SLT | 00000001 | 00000001 | PASS
+   306 | 011d44b3 | xor   | XOR | ffdfff60 | ffdfff60 | PASS
+   307 | 003e12b3 | sll   | SLL | 60000000 | 60000000 | PASS
+   308 | fbd9c693 | xori  | XORI | 00000041 | 00000041 | PASS
+   309 | 01f330b3 | sltu  | SLTU | 00000001 | 00000001 | PASS
+   310 | f2304913 | xori  | XORI | ffffff23 | ffffff23 | PASS
+   311 | f8fc6793 | ori   | ORI | ffffffff | ffffffff | PASS
+   312 | 009a4a33 | xor   | XOR | 0020009c | 0020009c | PASS
+   313 | ffed8f93 | addi  | ADDI | 0000001d | 0000001d | PASS
+   314 | 013356b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   315 | 00a1eab3 | or    | OR | 000000bd | 000000bd | PASS
+   316 | 01876db3 | or    | OR | 0000007b | 0000007b | PASS
+   317 | f9c76993 | ori   | ORI | ffffff9d | ffffff9d | PASS
+   318 | 00e551b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   319 | 07f54393 | xori  | XORI | 0000007f | 0000007f | PASS
+   320 | 00eea9b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   321 | 00ec9093 | slli  | SLLI | 00000000 | 00000000 | PASS
+   323 | f56e8413 | addi  | ADDI | ffffff57 | ffffff57 | PASS
+   324 | fdc80493 | addi  | ADDI | ffffff74 | ffffff74 | PASS
+   325 | 00929d13 | slli  | SLLI | 00000000 | 00000000 | PASS
+   326 | 00cb3c33 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   327 | 00749813 | slli  | SLLI | ffffba00 | ffffba00 | PASS
+   328 | 016f9e93 | slli  | SLLI | 07400000 | 07400000 | PASS
+   329 | fe99f613 | andi  | ANDI | 00000000 | 00000000 | PASS
+   330 | ff680f13 | addi  | ADDI | ffffb9f6 | ffffb9f6 | PASS
+   331 | 00edd3b3 | srl   | SRL | 0000003d | 0000003d | PASS
+   332 | 017edc33 | srl   | SRL | 00000007 | 00000007 | PASS
+   333 | 01a95593 | srli  | SRLI | 0000003f | 0000003f | PASS
+   334 | 00eda6b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   336 | 01d09f93 | slli  | SLLI | 00000000 | 00000000 | PASS
+   337 | 01f02433 | slt   | SLT | 00000000 | 00000000 | PASS
+   338 | 017d2133 | slt   | SLT | 00000000 | 00000000 | PASS
+   339 | 02eff613 | andi  | ANDI | 00000000 | 00000000 | PASS
+   340 | 0162e9b3 | or    | OR | fffffffc | fffffffc | PASS
+   341 | 01e52033 | slt   | SLT | 00000000 | 00000000 | PASS
+   342 | 00398933 | add   | ADD | fffffffc | fffffffc | PASS
+   343 | 00e577b3 | and   | AND | 00000000 | 00000000 | PASS
+   344 | 014a9c13 | slli  | SLLI | 0bd00000 | 0bd00000 | PASS
+   346 | 01a446b3 | xor   | XOR | 00000000 | 00000000 | PASS
+   347 | 07c1f713 | andi  | ANDI | 00000000 | 00000000 | PASS
+   348 | 01fe1db3 | sll   | SLL | 0000006b | 0000006b | PASS
+   349 | 00612733 | slt   | SLT | 00000000 | 00000000 | PASS
+   350 | 004e6933 | or    | OR | 0000006b | 0000006b | PASS
+   351 | 0039e3b3 | or    | OR | fffffffc | fffffffc | PASS
+   352 | 01fba933 | slt   | SLT | 00000001 | 00000001 | PASS
+   353 | 00e0e433 | or    | OR | 00000000 | 00000000 | PASS
+   354 | 0118bbb3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   355 | 01aa4633 | xor   | XOR | 0020009c | 0020009c | PASS
+   356 | 011ee033 | or    | OR | ffdfff9a | ffdfff9a | PASS
+   357 | 002f3633 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   358 | 01c127b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   359 | 01de9a33 | sll   | SLL | 07400000 | 07400000 | PASS
+   360 | 07abf213 | andi  | ANDI | 00000000 | 00000000 | PASS
+   361 | 0ca70613 | addi  | ADDI | 000000ca | 000000ca | PASS
+   362 | 01e87ab3 | and   | AND | ffffb800 | ffffb800 | PASS
+   363 | 0ace7193 | andi  | ANDI | 00000028 | 00000028 | PASS
+   364 | 0138de13 | srli  | SRLI | 00001ffb | 00001ffb | PASS
+   365 | fb79e513 | ori   | ORI | ffffffff | ffffffff | PASS
+   366 | 00ff3733 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   367 | 012fe0b3 | or    | OR | 00000001 | 00000001 | PASS
+   368 | 07658393 | addi  | ADDI | 000000b5 | 000000b5 | PASS
+   369 | 0e7c0593 | addi  | ADDI | 0bd000e7 | 0bd000e7 | PASS
+   370 | 0dd70213 | addi  | ADDI | 000000dd | 000000dd | PASS
+   371 | 01996233 | or    | OR | 00000001 | 00000001 | PASS
+   372 | 017874b3 | and   | AND | 00000000 | 00000000 | PASS
+   373 | 013d4d33 | xor   | XOR | fffffffc | fffffffc | PASS
+   374 | 00069013 | slli  | SLLI | 00000000 | 00000000 | PASS
+   375 | 0f7ecd93 | xori  | XORI | 074000f7 | 074000f7 | PASS
+   376 | 00609333 | sll   | SLL | 00000001 | 00000001 | PASS
+   377 | 0149abb3 | slt   | SLT | 00000001 | 00000001 | PASS
+   378 | 01e81933 | sll   | SLL | 80000000 | 80000000 | PASS
+   379 | 00dc1d93 | slli  | SLLI | 00000000 | 00000000 | PASS
+   381 | 08577393 | andi  | ANDI | 00000000 | 00000000 | PASS
+   382 | 0082df93 | srli  | SRLI | 00600000 | 00600000 | PASS
+   383 | 01d46433 | or    | OR | 07400000 | 07400000 | PASS
+   384 | 0d4d0493 | addi  | ADDI | 000000d0 | 000000d0 | PASS
+   385 | 00071993 | slli  | SLLI | 00000000 | 00000000 | PASS
+   389 | ffcdf813 | andi  | ANDI | 00000000 | 00000000 | PASS
+   390 | 01970533 | add   | ADD | 00000000 | 00000000 | PASS
+   391 | 015f4bb3 | xor   | XOR | 000001f6 | 000001f6 | PASS
+   392 | 01717833 | and   | AND | 00000000 | 00000000 | PASS
+   393 | 01b48a33 | add   | ADD | 000000d0 | 000000d0 | PASS
+   394 | 047dfd93 | andi  | ANDI | 00000000 | 00000000 | PASS
+   396 | 01a97a33 | and   | AND | 00000000 | 00000000 | PASS
+   398 | 01f12e33 | slt   | SLT | 00000001 | 00000001 | PASS
+   399 | 012d1413 | slli  | SLLI | fff00000 | fff00000 | PASS
+   401 | 0cc50c93 | addi  | ADDI | 000000cc | 000000cc | PASS
+   402 | 00dce913 | ori   | ORI | 000000cd | 000000cd | PASS
+   403 | 005787b3 | add   | ADD | 00000001 | 00000001 | PASS
+   404 | 01528c33 | add   | ADD | ffffb800 | ffffb800 | PASS
+   405 | 010e06b3 | add   | ADD | 00000001 | 00000001 | PASS
+   406 | f5af7c13 | andi  | ANDI | ffffb952 | ffffb952 | PASS
+   407 | 00866533 | or    | OR | fff000ca | fff000ca | PASS
+   408 | f7c6f113 | andi  | ANDI | 00000000 | 00000000 | PASS
+   409 | 00c52c33 | slt   | SLT | 00000001 | 00000001 | PASS
+   410 | 00af29b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   411 | 00243b33 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   412 | 00da83b3 | add   | ADD | ffffb801 | ffffb801 | PASS
+   414 | 00e9de93 | srli  | SRLI | 00000000 | 00000000 | PASS
+   415 | 0100ad33 | slt   | SLT | 00000000 | 00000000 | PASS
+   416 | 00339b13 | slli  | SLLI | fffdc008 | fffdc008 | PASS
+   418 | 003feb33 | or    | OR | 00600028 | 00600028 | PASS
+   419 | 001d0533 | add   | ADD | 00000001 | 00000001 | PASS
+   420 | 011609b3 | add   | ADD | ffe00064 | ffe00064 | PASS
+   421 | 0003a833 | slt   | SLT | 00000001 | 00000001 | PASS
+   422 | 00ae9433 | sll   | SLL | 00000000 | 00000000 | PASS
+   423 | 015b40b3 | xor   | XOR | ff9fb828 | ff9fb828 | PASS
+   424 | 009566b3 | or    | OR | 000000d1 | 000000d1 | PASS
+   425 | f068c093 | xori  | XORI | 0020009c | 0020009c | PASS
+   427 | f024ee93 | ori   | ORI | ffffff02 | ffffff02 | PASS
+   428 | 019de8b3 | or    | OR | 00000000 | 00000000 | PASS
+   429 | 012775b3 | and   | AND | 00000000 | 00000000 | PASS
+   431 | 01052c33 | slt   | SLT | 00000000 | 00000000 | PASS
+   433 | 010ca7b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   434 | 00ee8193 | addi  | ADDI | ffffff10 | ffffff10 | PASS
+   435 | 00d1d413 | srli  | SRLI | 0007ffff | 0007ffff | PASS
+   437 | 0181c433 | xor   | XOR | ffffff11 | ffffff11 | PASS
+   438 | 035f6793 | ori   | ORI | ffffb9f7 | ffffb9f7 | PASS
+   439 | 019a51b3 | srl   | SRL | 00000000 | 00000000 | PASS
+   440 | 019e78b3 | and   | AND | 00000000 | 00000000 | PASS
+   441 | 001316b3 | sll   | SLL | 10000000 | 10000000 | PASS
+   442 | 01482333 | slt   | SLT | 00000000 | 00000000 | PASS
+   444 | 005572b3 | and   | AND | 00000000 | 00000000 | PASS
+   445 | 017924b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   446 | 01ceddb3 | srl   | SRL | 7fffff81 | 7fffff81 | PASS
+   447 | 00e4eb33 | or    | OR | 00000000 | 00000000 | PASS
+   449 | 00a84bb3 | xor   | XOR | 00000000 | 00000000 | PASS
+   450 | 00819093 | slli  | SLLI | 00000000 | 00000000 | PASS
+   451 | 01ad85b3 | add   | ADD | 7fffff81 | 7fffff81 | PASS
+   452 | 004be4b3 | or    | OR | 00000000 | 00000000 | PASS
+   453 | 0198e5b3 | or    | OR | 00000000 | 00000000 | PASS
+   454 | 008c0533 | add   | ADD | ffffff12 | ffffff12 | PASS
+   455 | fa550993 | addi  | ADDI | fffffeb7 | fffffeb7 | PASS
+   456 | 01715593 | srli  | SRLI | 00000000 | 00000000 | PASS
+   457 | 00ed4393 | xori  | XORI | 0000000e | 0000000e | PASS
+   458 | 004f5e33 | srl   | SRL | ffffb9f6 | ffffb9f6 | PASS
+   459 | 00757433 | and   | AND | 00000002 | 00000002 | PASS
+   460 | 0d8d7213 | andi  | ANDI | 00000000 | 00000000 | PASS
+   461 | 01bed233 | srl   | SRL | 7fffff81 | 7fffff81 | PASS
+   462 | 01d1fe33 | and   | AND | 00000000 | 00000000 | PASS
+   463 | 005573b3 | and   | AND | 00000000 | 00000000 | PASS
+   464 | 01982f33 | slt   | SLT | 00000000 | 00000000 | PASS
+   465 | 009431b3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   466 | 01091f13 | slli  | SLLI | 00cd0000 | 00cd0000 | PASS
+   467 | 0e068393 | addi  | ADDI | 100000e0 | 100000e0 | PASS
+   468 | 0070ffb3 | and   | AND | 00000000 | 00000000 | PASS
+   469 | 01ac8033 | add   | ADD | 00000000 | 00000000 | PASS
+   470 | 00e6cfb3 | xor   | XOR | 10000000 | 10000000 | PASS
+   471 | 0091c4b3 | xor   | XOR | 00000000 | 00000000 | PASS
+   472 | 01575d13 | srli  | SRLI | 00000000 | 00000000 | PASS
+   473 | 00edda13 | srli  | SRLI | 0001ffff | 0001ffff | PASS
+   474 | 018026b3 | slt   | SLT | 00000001 | 00000001 | PASS
+   475 | 045bc393 | xori  | XORI | 00000045 | 00000045 | PASS
+   476 | 00f85893 | srli  | SRLI | 00000000 | 00000000 | PASS
+   477 | 002672b3 | and   | AND | 00000000 | 00000000 | PASS
+   478 | 01798db3 | add   | ADD | fffffeb7 | fffffeb7 | PASS
+   479 | 01d2c2b3 | xor   | XOR | ffffff02 | ffffff02 | PASS
+   480 | 00150533 | add   | ADD | ffffff12 | ffffff12 | PASS
+   481 | 01835233 | srl   | SRL | 00000000 | 00000000 | PASS
+   482 | 0f81f493 | andi  | ANDI | 00000000 | 00000000 | PASS
+   483 | 0134a2b3 | slt   | SLT | 00000000 | 00000000 | PASS
+   484 | 00195693 | srli  | SRLI | 00000066 | 00000066 | PASS
+   485 | 005a9713 | slli  | SLLI | fff70000 | fff70000 | PASS
+   486 | 01334e33 | xor   | XOR | fffffeb7 | fffffeb7 | PASS
+   487 | f53bf413 | andi  | ANDI | 00000000 | 00000000 | PASS
+   488 | 00ff47b3 | xor   | XOR | ff32b9f7 | ff32b9f7 | PASS
+   489 | 05324313 | xori  | XORI | 00000053 | 00000053 | PASS
+   490 | 01adee93 | ori   | ORI | fffffebf | fffffebf | PASS
+   492 | 0176d993 | srli  | SRLI | 00000000 | 00000000 | PASS
+   493 | 00fc3db3 | sltu  | SLTU | 00000001 | 00000001 | PASS
+   494 | 01207c33 | and   | AND | 00000000 | 00000000 | PASS
+   495 | 00a15513 | srli  | SRLI | 00000000 | 00000000 | PASS
+   496 | 01805693 | srli  | SRLI | 00000000 | 00000000 | PASS
+   497 | 00235893 | srli  | SRLI | 00000014 | 00000014 | PASS
+   498 | 017264b3 | or    | OR | 00000000 | 00000000 | PASS
+   499 | 00368133 | add   | ADD | 00000000 | 00000000 | PASS
+   500 | fc68c113 | xori  | XORI | ffffffd2 | ffffffd2 | PASS
+   501 | 0007b3b3 | sltu  | SLTU | 00000000 | 00000000 | PASS
+   502 | 04c3e413 | ori   | ORI | 0000004c | 0000004c | PASS
+   503 | 00b68ab3 | add   | ADD | 00000000 | 00000000 | PASS
+   505 | f5aae393 | ori   | ORI | ffffff5a | ffffff5a | PASS
+   506 | f791fb93 | andi  | ANDI | 00000000 | 00000000 | PASS
+   507 | 012ef5b3 | and   | AND | 0000008d | 0000008d | PASS
+   508 | 01980a33 | add   | ADD | 00000001 | 00000001 | PASS
+   509 | 03554113 | xori  | XORI | 00000035 | 00000035 | PASS
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
-Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
+Run directory: /home/ricardo/Documents/UCR/2024/Verif/darkriscv/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
   Random seed: 14492301493598
