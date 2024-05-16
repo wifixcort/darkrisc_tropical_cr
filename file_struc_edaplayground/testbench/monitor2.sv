@@ -116,10 +116,10 @@ task check();
 								 cp_mem_w("addi", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR");
 							  end
 							  SLTI_FC:begin //slti
-								 cp_mem_bb("slti", top.soc0.core0.RMDATA, reg_rd_value);//, (sb.rx_funct==SLTI)?"SLTI":sb.rx_funct);					 
+								 cp_mem_bb("slti", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
 							  end
 							  SLTIU_FC:begin //sltiu
-								 cp_mem_bb("sltiu", top.soc0.core0.RMDATA, reg_rd_value);//, (sb.rx_funct==SLTIU)?"SLTIU":sb.rx_funct);
+								 cp_mem_bb("sltiu", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
 							  end
 							  XORI_FC:begin //xori
 								 cp_mem_w("xori", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
@@ -330,20 +330,22 @@ endtask
 	  inst_counter++;
    endtask
 
-   task cp_mem_bb( string inst,input logic risc_mem, input logic sb_mem);
+   task cp_mem_bb( string inst,input logic risc_mem, input logic sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
 		 // $display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  old_pc, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
+		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
 		 $display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
-		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d| sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+		 $display("rc_rd_p =%d, rc_sr1_p =%d, rc_rs1_val =%d, rc_rs2_p =%d rc_rs2_val =%d, rc_imm = %b | sb_rd_p =%d, sb_sr1_p =%d, sb_rs1_val =%d, sb_rs2_p =%d sb_rs2_val =%d, sb_imm = %b ", top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, top.soc0.core0.XUIMM, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val], sb.imm_val_sign_ext);
 `endif			
 		 err_count++;
 	  end else begin
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS");
-	  end
+		 $display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
+		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
+		end
 	  inst_counter++;
    endtask
 
@@ -362,6 +364,7 @@ endtask
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
 		 $display(" %h | %h |        %d         |      %s     | %h  | %h  | %s | %s",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 		 $display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
+		//  $display("FUNCT 7 = %b , FUNC 3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
 	  end
 	  inst_counter++;
    endtask

@@ -7,8 +7,8 @@ design_root_dir: ..\..
 simulations:
   - name: riscv-sim
     options: >-
-      -timescale 1ns/1ps  -sv_seed 4898498497 -top TB.top -L DUT -L TB +acc+b
-      -waves darksocv.mxd
+      -timescale 1ns/1ps  -sv_seed 14492301493598 -top TB.top -L DUT -L TB
+      +acc+b -waves darksocv.mxd
 source_files:
   - language: verilog
     path: ../testbench/testbench.sv
