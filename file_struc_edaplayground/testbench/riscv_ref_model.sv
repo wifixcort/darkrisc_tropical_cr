@@ -132,7 +132,7 @@ class riscv_ref_model;
         pc_val = pc_val + 4;
       end
       SLTIU: begin 
-        imm_val_sign_ext = {{19{1'b0}}, imm_val[11:0]}; 
+        imm_val_sign_ext = {{11{1'b0}}, imm_val[20:0]}; 
         REGS[rdd_val] = (REGS[rs1_val] < imm_val_sign_ext) ? 1'b1 : 1'b0;
         pc_val = pc_val + 4;
       end
