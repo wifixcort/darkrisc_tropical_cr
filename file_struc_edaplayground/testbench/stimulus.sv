@@ -24,10 +24,6 @@ class instruction_generator;
   //********************************************************
   constraint construct_full_inst{
     solve opcode,rd,rs1,rs2,funct7,funct3,imm before full_inst;
-    //if (opt_addr_select){
-      // force to ADDI
-    //  full_inst == {imm,5'h00,ADDI_FC,rd,I_TYPE};
-    //} else{
     (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
     (opcode == I_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
     (opcode == I_L_TYPE) -> full_inst == {imm,rs1,funct3,rd,opcode};
@@ -36,7 +32,7 @@ class instruction_generator;
     
   }
   
-  // opcode. todo: adjust probabilities
+
   //********************************************************
   constraint opcode_cases{
         opcode dist 	{R_TYPE :/ 44,
@@ -190,7 +186,7 @@ class stimulus;
     $display("Stimulus: Invoked set_program_format()) -> set first and last instructions");
     $display("********************************************************************************");
     // recorrer los 32 registros, el 0 no surtirá efecto
-    for(int i=1; i<=32; i=i+1) begin 
+    for(int i=1; i<=31; i=i+1) begin 
       inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==i;}; //&& funct3==ADDI_FC && rs1==5'h00 && rd==i;};
       MEM[i-1] = inst_gen1.full_inst;
       if (DBG_HIGH_VERBOSITY)
