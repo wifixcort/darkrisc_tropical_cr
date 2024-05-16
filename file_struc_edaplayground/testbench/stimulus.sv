@@ -40,9 +40,9 @@ class instruction_generator;
   //********************************************************
   constraint opcode_cases{
         opcode dist 	{R_TYPE :/ 44,
-                      I_TYPE  :/ 44,
+                      I_TYPE  :/ 44
                       //I_L_TYPE,
-                      S_TYPE  :/ 12
+                      //S_TYPE  :/ 12
                       /*S_B_TYPE,
                       J_TYPE,
                       I_JALR_TYPE,
@@ -190,7 +190,7 @@ class stimulus;
     $display("Stimulus: Invoked set_program_format()) -> set first and last instructions");
     $display("********************************************************************************");
     // recorrer los 32 registros, el 0 no surtirá efecto
-    for(int i=1; i<=31; i=i+1) begin 
+    for(int i=1; i<=32; i=i+1) begin 
       inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==i;}; //&& funct3==ADDI_FC && rs1==5'h00 && rd==i;};
       MEM[i-1] = inst_gen1.full_inst;
       if (DBG_HIGH_VERBOSITY)

@@ -41,7 +41,7 @@ module top();
   endgenerate
 
   // .vcd generator
-  integer i;
+  
   initial begin
       $dumpfile("darksocv.vcd");
       $dumpvars();
@@ -50,7 +50,50 @@ module top();
   
    //Test case
   testcase test(intf);
-  
+
+  logic [31:0] scbdreg_dmpd1;
+  logic [31:0] scbdreg_dmpd0;
+  logic [31:0] scbdreg_dmpd2;
+  logic [31:0] scbdreg_dmpd3;
+  logic [31:0] scbdreg_dmpd4;
+  logic [31:0] scbdreg_dmpd5;
+  logic [31:0] scbdreg_dmpd6;
+  logic [31:0] scbdreg_dmpd7;
+  logic [31:0] scbdreg_dmpd8;
+  logic [31:0] scbdreg_dmpd9;
+  logic [31:0] scbdreg_dmpd10;
+  logic [31:0] scbdreg_dmpd11;
+  logic [31:0] scbdreg_dmpd12;
+  logic [31:0] scbdreg_dmpd13;
+  logic [31:0] scbdreg_dmpd14;
+  logic [31:0] scbdreg_dmpd15;
+  logic [31:0] scbdreg_dmpd16;
+  logic [31:0] scbdreg_dmpd17;
+  logic [31:0] scbdreg_dmpd18;
+  logic [31:0] scbdreg_dmpd19;
+  logic [31:0] scbdreg_dmpd20;
+  logic [31:0] scbdreg_dmpd21;
+  logic [31:0] scbdreg_dmpd22;
+  logic [31:0] scbdreg_dmpd23;
+  logic [31:0] scbdreg_dmpd24;
+  logic [31:0] scbdreg_dmpd25;
+  logic [31:0] scbdreg_dmpd26;
+  logic [31:0] scbdreg_dmpd27;
+  logic [31:0] scbdreg_dmpd28;
+  logic [31:0] scbdreg_dmpd29;
+  logic [31:0] scbdreg_dmpd30;
+  logic [31:0] scbdreg_dmpd31;  
+
+
+  /*
+  integer r;
+  for (int r = 0; r < 32; r++) begin
+  logic [31:0] model_regs;
+  //model_regs = test.env.sb.get_ref_model().get_REGS(r); // Assuming appropriate accessor methods
+  end
+  */
+
+
   // Esto queda del top pasado, por si acaso tiene una utilidad que desocnozco lo dejo comentado ATTE: jesus xd
   /*reg [31:0][31:0] REGS_DUMP; //Si no funciona, usar
   initial begin

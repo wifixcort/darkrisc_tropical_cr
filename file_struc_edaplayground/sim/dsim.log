@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-15 13:20:55 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-15 13:20:55 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-15 22:52:28 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-15 22:52:38 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -44,7 +44,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/9] CU scope $unit: 50 functions, 1674 basic blocks
+  [3/9] CU scope $unit: 51 functions, 1849 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -71,6 +71,9 @@ Stimulus: Invoked mem_generate() -> proced to generate random instructions array
 ********************************************************************************
 Stimulus: Invoked set_program_format()) -> set first and last instructions
 ********************************************************************************
+=W:[RndFail] ../testbench/stimulus.sv:194: Randomization failed
+    included from ../testbench/testbench.sv:3
+    included from ../testbench/top.sv:1
 
 ******************************************************************************************
 Stimulus: Invoked opt_addr() -> set instructions before load/storage for force valid address
@@ -110,485 +113,485 @@ Instruction #   27:	ff858e13	opcode: 0010011
 Instruction #   28:	0d758e93	opcode: 0010011 
 Instruction #   29:	0fc30f13	opcode: 0010011 
 Instruction #   30:	02aa0f93	opcode: 0010011 
-Instruction #   31:	00661393	opcode: 0010011 
-Instruction #   32:	22a00e13	opcode: 0010011 
-Instruction #   33:	fa1e1e23	opcode: 0100011 
-Instruction #   34:	36000113	opcode: 0010011 
-Instruction #   35:	f3011823	opcode: 0100011 
-Instruction #   36:	24000713	opcode: 0010011 
-Instruction #   37:	fbe72823	opcode: 0100011 
-Instruction #   38:	fefc06a3	opcode: 0100011 
-Instruction #   39:	20800313	opcode: 0010011 
-Instruction #   40:	fd831523	opcode: 0100011 
-Instruction #   41:	00f9f5b3	opcode: 0110011 
-Instruction #   42:	03ce7b93	opcode: 0010011 
-Instruction #   43:	000cc9b3	opcode: 0110011 
-Instruction #   44:	00a86fb3	opcode: 0110011 
-Instruction #   45:	01759693	opcode: 0010011 
-Instruction #   46:	f6262793	opcode: 0010011 
-Instruction #   47:	00102d33	opcode: 0110011 
-Instruction #   48:	00fa9d33	opcode: 0110011 
-Instruction #   49:	050fac13	opcode: 0010011 
-Instruction #   50:	031ffe13	opcode: 0010011 
-Instruction #   51:	00217bb3	opcode: 0110011 
-Instruction #   52:	0122b3b3	opcode: 0110011 
-Instruction #   53:	2a800213	opcode: 0010011 
-Instruction #   54:	f5422a23	opcode: 0100011 
-Instruction #   55:	30800e93	opcode: 0010011 
-Instruction #   56:	073eac23	opcode: 0100011 
-Instruction #   57:	00315633	opcode: 0110011 
-Instruction #   58:	00725713	opcode: 0010011 
-Instruction #   59:	fe0a2993	opcode: 0010011 
-Instruction #   60:	01581793	opcode: 0010011 
-Instruction #   61:	01c18a33	opcode: 0110011 
-Instruction #   62:	01bbceb3	opcode: 0110011 
-Instruction #   63:	01eb14b3	opcode: 0110011 
-Instruction #   64:	01669293	opcode: 0010011 
-Instruction #   65:	21000393	opcode: 0010011 
-Instruction #   66:	f3d3aa23	opcode: 0100011 
-Instruction #   67:	f4683e13	opcode: 0010011 
-Instruction #   68:	3e200f93	opcode: 0010011 
-Instruction #   69:	09df9d23	opcode: 0100011 
-Instruction #   70:	018970b3	opcode: 0110011 
-Instruction #   71:	01356833	opcode: 0110011 
-Instruction #   72:	f5e3b113	opcode: 0010011 
-Instruction #   73:	00c1e8b3	opcode: 0110011 
-Instruction #   74:	012572b3	opcode: 0110011 
-Instruction #   75:	f1f782a3	opcode: 0100011 
-Instruction #   76:	00e18333	opcode: 0110011 
-Instruction #   77:	01691613	opcode: 0010011 
-Instruction #   78:	0187d433	opcode: 0110011 
-Instruction #   79:	00e41f13	opcode: 0010011 
-Instruction #   80:	0ee47013	opcode: 0010011 
-Instruction #   81:	fccca713	opcode: 0010011 
-Instruction #   82:	38c00313	opcode: 0010011 
-Instruction #   83:	fd131c23	opcode: 0100011 
-Instruction #   84:	00a31ab3	opcode: 0110011 
-Instruction #   85:	0bd60aa3	opcode: 0100011 
-Instruction #   86:	09588193	opcode: 0010011 
-Instruction #   87:	f31c7193	opcode: 0010011 
-Instruction #   88:	018f5c13	opcode: 0010011 
-Instruction #   89:	01593f33	opcode: 0110011 
-Instruction #   90:	01f067b3	opcode: 0110011 
-Instruction #   91:	f847b413	opcode: 0010011 
-Instruction #   92:	0f9df513	opcode: 0010011 
-Instruction #   93:	043cb113	opcode: 0010011 
-Instruction #   94:	0756fc13	opcode: 0010011 
-Instruction #   95:	01989e93	opcode: 0010011 
-Instruction #   96:	f6b2a513	opcode: 0010011 
-Instruction #   97:	0179deb3	opcode: 0110011 
-Instruction #   98:	00484cb3	opcode: 0110011 
-Instruction #   99:	00e1d033	opcode: 0110011 
-Instruction #  100:	01d7bfb3	opcode: 0110011 
-Instruction #  101:	37000b93	opcode: 0010011 
-Instruction #  102:	f0fba623	opcode: 0100011 
-Instruction #  103:	01ac4613	opcode: 0010011 
-Instruction #  104:	018d33b3	opcode: 0110011 
-Instruction #  105:	0058d613	opcode: 0010011 
-Instruction #  106:	f7acee93	opcode: 0010011 
-Instruction #  107:	0017b6b3	opcode: 0110011 
-Instruction #  108:	01fb2b33	opcode: 0110011 
-Instruction #  109:	f82f2013	opcode: 0010011 
-Instruction #  110:	00cc9513	opcode: 0010011 
-Instruction #  111:	01983f33	opcode: 0110011 
-Instruction #  112:	0e45a393	opcode: 0010011 
-Instruction #  113:	24800f93	opcode: 0010011 
-Instruction #  114:	25c00a93	opcode: 0010011 
-Instruction #  115:	074a9923	opcode: 0100011 
-Instruction #  116:	008caf33	opcode: 0110011 
-Instruction #  117:	f13b4213	opcode: 0010011 
-Instruction #  118:	01f65f33	opcode: 0110011 
-Instruction #  119:	00060833	opcode: 0110011 
-Instruction #  120:	004ffab3	opcode: 0110011 
-Instruction #  121:	04feeb93	opcode: 0010011 
-Instruction #  122:	0dcc8823	opcode: 0100011 
-Instruction #  123:	0f9c3413	opcode: 0010011 
-Instruction #  124:	00b1f4b3	opcode: 0110011 
-Instruction #  125:	01d99f93	opcode: 0010011 
-Instruction #  126:	01c86993	opcode: 0010011 
-Instruction #  127:	006c9013	opcode: 0010011 
-Instruction #  128:	f6683693	opcode: 0010011 
-Instruction #  129:	00739393	opcode: 0010011 
-Instruction #  130:	fec1c213	opcode: 0010011 
-Instruction #  131:	0049a6b3	opcode: 0110011 
-Instruction #  132:	0b6af193	opcode: 0010011 
-Instruction #  133:	fb2eaa13	opcode: 0010011 
-Instruction #  134:	fe6e8093	opcode: 0010011 
-Instruction #  135:	014c9493	opcode: 0010011 
-Instruction #  136:	00af6333	opcode: 0110011 
-Instruction #  137:	0518bf13	opcode: 0010011 
-Instruction #  138:	f533f513	opcode: 0010011 
-Instruction #  139:	f6f1ad93	opcode: 0010011 
-Instruction #  140:	01b017b3	opcode: 0110011 
-Instruction #  141:	011e5813	opcode: 0010011 
-Instruction #  142:	f751f513	opcode: 0010011 
-Instruction #  143:	32600313	opcode: 0010011 
-Instruction #  144:	05831823	opcode: 0100011 
-Instruction #  145:	26c00413	opcode: 0010011 
-Instruction #  146:	fc142623	opcode: 0100011 
-Instruction #  147:	09e2fe13	opcode: 0010011 
-Instruction #  148:	f6af8f13	opcode: 0010011 
-Instruction #  149:	001e84b3	opcode: 0110011 
-Instruction #  150:	2cc00093	opcode: 0010011 
-Instruction #  151:	f6e09823	opcode: 0100011 
-Instruction #  152:	f8448893	opcode: 0010011 
-Instruction #  153:	f7980b23	opcode: 0100011 
-Instruction #  154:	04d66413	opcode: 0010011 
-Instruction #  155:	f9f3ea13	opcode: 0010011 
-Instruction #  156:	017dbfb3	opcode: 0110011 
-Instruction #  157:	0097c8b3	opcode: 0110011 
-Instruction #  158:	06c7eb13	opcode: 0010011 
-Instruction #  159:	021f3f13	opcode: 0010011 
-Instruction #  160:	0071fe33	opcode: 0110011 
-Instruction #  161:	00011233	opcode: 0110011 
-Instruction #  162:	fc1ba713	opcode: 0010011 
-Instruction #  163:	005e1c13	opcode: 0010011 
-Instruction #  164:	fe3eb593	opcode: 0010011 
-Instruction #  165:	01195713	opcode: 0010011 
-Instruction #  166:	01c51533	opcode: 0110011 
-Instruction #  167:	0348a613	opcode: 0010011 
-Instruction #  168:	f5d1fc13	opcode: 0010011 
-Instruction #  169:	009e1433	opcode: 0110011 
-Instruction #  170:	01e76f33	opcode: 0110011 
-Instruction #  171:	f20daa13	opcode: 0010011 
-Instruction #  172:	017acd33	opcode: 0110011 
-Instruction #  173:	014efcb3	opcode: 0110011 
-Instruction #  174:	2da00593	opcode: 0010011 
-Instruction #  175:	0a259b23	opcode: 0100011 
-Instruction #  176:	f71bc013	opcode: 0010011 
-Instruction #  177:	01569c33	opcode: 0110011 
-Instruction #  178:	004bccb3	opcode: 0110011 
-Instruction #  179:	3f800c13	opcode: 0010011 
-Instruction #  180:	fe0c2023	opcode: 0100011 
-Instruction #  181:	01c45fb3	opcode: 0110011 
-Instruction #  182:	0a60ae93	opcode: 0010011 
-Instruction #  183:	04a58fa3	opcode: 0100011 
-Instruction #  184:	0e8e3d13	opcode: 0010011 
-Instruction #  185:	00992f33	opcode: 0110011 
-Instruction #  186:	fc1e6893	opcode: 0010011 
-Instruction #  187:	f8ed6493	opcode: 0010011 
-Instruction #  188:	01221413	opcode: 0010011 
-Instruction #  189:	002c4f33	opcode: 0110011 
-Instruction #  190:	01069c13	opcode: 0010011 
-Instruction #  191:	faa5c913	opcode: 0010011 
-Instruction #  192:	33a00b13	opcode: 0010011 
-Instruction #  193:	fddb1923	opcode: 0100011 
-Instruction #  194:	00d8ff33	opcode: 0110011 
-Instruction #  195:	20c00b13	opcode: 0010011 
-Instruction #  196:	051b1e23	opcode: 0100011 
-Instruction #  197:	00e55613	opcode: 0010011 
-Instruction #  198:	06bd4613	opcode: 0010011 
-Instruction #  199:	0023d993	opcode: 0010011 
-Instruction #  200:	2ac00d13	opcode: 0010011 
-Instruction #  201:	f35d2e23	opcode: 0100011 
-Instruction #  202:	31c00e13	opcode: 0010011 
-Instruction #  203:	fd4e1423	opcode: 0100011 
-Instruction #  204:	03b98a23	opcode: 0100011 
-Instruction #  205:	09ba8993	opcode: 0010011 
-Instruction #  206:	ff246113	opcode: 0010011 
-Instruction #  207:	fc3fe593	opcode: 0010011 
-Instruction #  208:	0c0cea93	opcode: 0010011 
-Instruction #  209:	ff607193	opcode: 0010011 
-Instruction #  210:	0109b6b3	opcode: 0110011 
-Instruction #  211:	22c00f93	opcode: 0010011 
-Instruction #  212:	f3ff9923	opcode: 0100011 
-Instruction #  213:	0020d9b3	opcode: 0110011 
-Instruction #  214:	004ef5b3	opcode: 0110011 
-Instruction #  215:	0032d113	opcode: 0010011 
-Instruction #  216:	fdbdc413	opcode: 0010011 
-Instruction #  217:	27800613	opcode: 0010011 
-Instruction #  218:	f1d62823	opcode: 0100011 
-Instruction #  219:	0127e5b3	opcode: 0110011 
-Instruction #  220:	f9a96693	opcode: 0010011 
-Instruction #  221:	fb17aa93	opcode: 0010011 
-Instruction #  222:	fc09f493	opcode: 0010011 
-Instruction #  223:	03d8f413	opcode: 0010011 
-Instruction #  224:	00311613	opcode: 0010011 
-Instruction #  225:	0185df93	opcode: 0010011 
-Instruction #  226:	0030eab3	opcode: 0110011 
-Instruction #  227:	00c05093	opcode: 0010011 
-Instruction #  228:	00481313	opcode: 0010011 
-Instruction #  229:	2c400093	opcode: 0010011 
-Instruction #  230:	0fa0a023	opcode: 0100011 
-Instruction #  231:	03798593	opcode: 0010011 
-Instruction #  232:	01c41613	opcode: 0010011 
-Instruction #  233:	0e553993	opcode: 0010011 
-Instruction #  234:	00388db3	opcode: 0110011 
-Instruction #  235:	3a000393	opcode: 0010011 
-Instruction #  236:	0fb3ac23	opcode: 0100011 
-Instruction #  237:	0677f713	opcode: 0010011 
-Instruction #  238:	085f4c13	opcode: 0010011 
-Instruction #  239:	0018ce13	opcode: 0010011 
-Instruction #  240:	063bf113	opcode: 0010011 
-Instruction #  241:	00125d33	opcode: 0110011 
-Instruction #  242:	25c00793	opcode: 0010011 
-Instruction #  243:	08d7a823	opcode: 0100011 
-Instruction #  244:	0e5ac393	opcode: 0010011 
-Instruction #  245:	f7d6c213	opcode: 0010011 
-Instruction #  246:	08adcb93	opcode: 0010011 
-Instruction #  247:	09964513	opcode: 0010011 
-Instruction #  248:	01c45313	opcode: 0010011 
-Instruction #  249:	00b20c33	opcode: 0110011 
-Instruction #  250:	00ae5113	opcode: 0010011 
-Instruction #  251:	007bb1b3	opcode: 0110011 
-Instruction #  252:	00cd2033	opcode: 0110011 
-Instruction #  253:	0f63ae13	opcode: 0010011 
-Instruction #  254:	08080ca3	opcode: 0100011 
-Instruction #  255:	02967393	opcode: 0010011 
-Instruction #  256:	00bd1e93	opcode: 0010011 
-Instruction #  257:	008ad413	opcode: 0010011 
-Instruction #  258:	f5727613	opcode: 0010011 
-Instruction #  259:	0053f4b3	opcode: 0110011 
-Instruction #  260:	ff328523	opcode: 0100011 
-Instruction #  261:	23000713	opcode: 0010011 
-Instruction #  262:	f0b71823	opcode: 0100011 
-Instruction #  263:	fbbdb713	opcode: 0010011 
-Instruction #  264:	0035e8b3	opcode: 0110011 
-Instruction #  265:	01655c13	opcode: 0010011 
-Instruction #  266:	0903e093	opcode: 0010011 
-Instruction #  267:	fcc04713	opcode: 0010011 
-Instruction #  268:	018e5913	opcode: 0010011 
-Instruction #  269:	0163db93	opcode: 0010011 
-Instruction #  270:	fbd408a3	opcode: 0100011 
-Instruction #  271:	f1018c13	opcode: 0010011 
-Instruction #  272:	0cf9f493	opcode: 0010011 
-Instruction #  273:	fcb0bf93	opcode: 0010011 
-Instruction #  274:	008a79b3	opcode: 0110011 
-Instruction #  275:	0dcf7c13	opcode: 0010011 
-Instruction #  276:	fcc5cf93	opcode: 0010011 
-Instruction #  277:	004d15b3	opcode: 0110011 
-Instruction #  278:	05112b93	opcode: 0010011 
-Instruction #  279:	05f23a93	opcode: 0010011 
-Instruction #  280:	01193b93	opcode: 0010011 
-Instruction #  281:	010129b3	opcode: 0110011 
-Instruction #  282:	036d0513	opcode: 0010011 
-Instruction #  283:	014b1d13	opcode: 0010011 
-Instruction #  284:	01740533	opcode: 0110011 
-Instruction #  285:	01cf1fb3	opcode: 0110011 
-Instruction #  286:	01115833	opcode: 0110011 
-Instruction #  287:	0fe1f693	opcode: 0010011 
-Instruction #  288:	005364b3	opcode: 0110011 
-Instruction #  289:	00b2f5b3	opcode: 0110011 
-Instruction #  290:	f57c7993	opcode: 0010011 
-Instruction #  291:	32a00b13	opcode: 0010011 
-Instruction #  292:	f67b1c23	opcode: 0100011 
-Instruction #  293:	f5000993	opcode: 0010011 
-Instruction #  294:	005dfcb3	opcode: 0110011 
-Instruction #  295:	fa876293	opcode: 0010011 
-Instruction #  296:	01d1acb3	opcode: 0110011 
-Instruction #  297:	24800413	opcode: 0010011 
-Instruction #  298:	25200b13	opcode: 0010011 
-Instruction #  299:	36000193	opcode: 0010011 
-Instruction #  300:	f8c1ac23	opcode: 0100011 
-Instruction #  301:	00dcb9b3	opcode: 0110011 
-Instruction #  302:	0c1b0d93	opcode: 0010011 
-Instruction #  303:	01a61633	opcode: 0110011 
-Instruction #  304:	002a5793	opcode: 0010011 
-Instruction #  305:	0032bcb3	opcode: 0110011 
-Instruction #  306:	3f800213	opcode: 0010011 
-Instruction #  307:	f8022023	opcode: 0100011 
-Instruction #  308:	f953ef13	opcode: 0010011 
-Instruction #  309:	010dd233	opcode: 0110011 
-Instruction #  310:	0028af33	opcode: 0110011 
-Instruction #  311:	003e5b13	opcode: 0010011 
-Instruction #  312:	0013d1b3	opcode: 0110011 
-Instruction #  313:	00e2e733	opcode: 0110011 
-Instruction #  314:	fbeb6d93	opcode: 0010011 
-Instruction #  315:	008a5c33	opcode: 0110011 
-Instruction #  316:	00229b33	opcode: 0110011 
-Instruction #  317:	00bfcb33	opcode: 0110011 
-Instruction #  318:	006cbb33	opcode: 0110011 
-Instruction #  319:	0cde8fa3	opcode: 0100011 
-Instruction #  320:	0015fd33	opcode: 0110011 
-Instruction #  321:	fe6cb893	opcode: 0010011 
-Instruction #  322:	001b1993	opcode: 0010011 
-Instruction #  323:	01bfdab3	opcode: 0110011 
-Instruction #  324:	f267c313	opcode: 0010011 
-Instruction #  325:	00b35033	opcode: 0110011 
-Instruction #  326:	006f48b3	opcode: 0110011 
-Instruction #  327:	01d5a833	opcode: 0110011 
-Instruction #  328:	03a37893	opcode: 0010011 
-Instruction #  329:	0b1bb793	opcode: 0010011 
-Instruction #  330:	013ddcb3	opcode: 0110011 
-Instruction #  331:	0039beb3	opcode: 0110011 
-Instruction #  332:	fbbf2693	opcode: 0010011 
-Instruction #  333:	30e00d93	opcode: 0010011 
-Instruction #  334:	ff0d9d23	opcode: 0100011 
-Instruction #  335:	00e43cb3	opcode: 0110011 
-Instruction #  336:	00ba0cb3	opcode: 0110011 
-Instruction #  337:	f2f86793	opcode: 0010011 
-Instruction #  338:	32000493	opcode: 0010011 
-Instruction #  339:	faa4aa23	opcode: 0100011 
-Instruction #  340:	fb4fe413	opcode: 0010011 
-Instruction #  341:	00f65433	opcode: 0110011 
-Instruction #  342:	f100bd13	opcode: 0010011 
-Instruction #  343:	05c90aa3	opcode: 0100011 
-Instruction #  344:	f7cbbe13	opcode: 0010011 
-Instruction #  345:	0112d033	opcode: 0110011 
-Instruction #  346:	00f5dab3	opcode: 0110011 
-Instruction #  347:	000b1d33	opcode: 0110011 
-Instruction #  348:	0049d993	opcode: 0010011 
-Instruction #  349:	f1aec313	opcode: 0010011 
-Instruction #  350:	010e10b3	opcode: 0110011 
-Instruction #  351:	001f54b3	opcode: 0110011 
-Instruction #  352:	0110a1b3	opcode: 0110011 
-Instruction #  353:	00e68fb3	opcode: 0110011 
-Instruction #  354:	00e27333	opcode: 0110011 
-Instruction #  355:	00a51013	opcode: 0010011 
-Instruction #  356:	0004d893	opcode: 0010011 
-Instruction #  357:	01c36033	opcode: 0110011 
-Instruction #  358:	008e50b3	opcode: 0110011 
-Instruction #  359:	37a00913	opcode: 0010011 
-Instruction #  360:	ff391623	opcode: 0100011 
-Instruction #  361:	f83af113	opcode: 0010011 
-Instruction #  362:	fde92a13	opcode: 0010011 
-Instruction #  363:	00cc9513	opcode: 0010011 
-Instruction #  364:	0ec80723	opcode: 0100011 
-Instruction #  365:	01aeafb3	opcode: 0110011 
-Instruction #  366:	34000e93	opcode: 0010011 
-Instruction #  367:	f6ee9323	opcode: 0100011 
-Instruction #  368:	21200e93	opcode: 0010011 
-Instruction #  369:	0bde9d23	opcode: 0100011 
-Instruction #  370:	014d05b3	opcode: 0110011 
-Instruction #  371:	0c7e2693	opcode: 0010011 
-Instruction #  372:	01e2f2b3	opcode: 0110011 
-Instruction #  373:	01762cb3	opcode: 0110011 
-Instruction #  374:	f5b74a13	opcode: 0010011 
-Instruction #  375:	00aff4b3	opcode: 0110011 
-Instruction #  376:	06d10b13	opcode: 0010011 
-Instruction #  377:	0df9b313	opcode: 0010011 
-Instruction #  378:	00625d33	opcode: 0110011 
-Instruction #  379:	00784db3	opcode: 0110011 
-Instruction #  380:	f029e693	opcode: 0010011 
-Instruction #  381:	006f3a33	opcode: 0110011 
-Instruction #  382:	01fba933	opcode: 0110011 
-Instruction #  383:	008a2533	opcode: 0110011 
-Instruction #  384:	01916933	opcode: 0110011 
-Instruction #  385:	0534bc13	opcode: 0010011 
-Instruction #  386:	fd5fb513	opcode: 0010011 
-Instruction #  387:	009de8b3	opcode: 0110011 
-Instruction #  388:	0026e7b3	opcode: 0110011 
-Instruction #  389:	00879eb3	opcode: 0110011 
-Instruction #  390:	0596e593	opcode: 0010011 
-Instruction #  391:	01ce1713	opcode: 0010011 
-Instruction #  392:	01811613	opcode: 0010011 
-Instruction #  393:	05513f93	opcode: 0010011 
-Instruction #  394:	0a55f893	opcode: 0010011 
-Instruction #  395:	003c74b3	opcode: 0110011 
-Instruction #  396:	00a55333	opcode: 0110011 
-Instruction #  397:	0188d693	opcode: 0010011 
-Instruction #  398:	fae54893	opcode: 0010011 
-Instruction #  399:	03dfcc93	opcode: 0010011 
-Instruction #  400:	fdd78723	opcode: 0100011 
-Instruction #  401:	01c31e93	opcode: 0010011 
-Instruction #  402:	01cce633	opcode: 0110011 
-Instruction #  403:	03d9a313	opcode: 0010011 
-Instruction #  404:	ff010b23	opcode: 0100011 
-Instruction #  405:	013f69b3	opcode: 0110011 
-Instruction #  406:	2ea00d93	opcode: 0010011 
-Instruction #  407:	f48d9323	opcode: 0100011 
-Instruction #  408:	00af67b3	opcode: 0110011 
-Instruction #  409:	00fca433	opcode: 0110011 
-Instruction #  410:	00de38b3	opcode: 0110011 
-Instruction #  411:	00893ab3	opcode: 0110011 
-Instruction #  412:	3d000d93	opcode: 0010011 
-Instruction #  413:	25600b93	opcode: 0010011 
-Instruction #  414:	0d5b9a23	opcode: 0100011 
-Instruction #  415:	01ad5e13	opcode: 0010011 
-Instruction #  416:	00bd86b3	opcode: 0110011 
-Instruction #  417:	00e3ffb3	opcode: 0110011 
-Instruction #  418:	00549233	opcode: 0110011 
-Instruction #  419:	01ec03b3	opcode: 0110011 
-Instruction #  420:	04893693	opcode: 0010011 
-Instruction #  421:	0fdb6293	opcode: 0010011 
-Instruction #  422:	f34c7613	opcode: 0010011 
-Instruction #  423:	006559b3	opcode: 0110011 
-Instruction #  424:	00c705b3	opcode: 0110011 
-Instruction #  425:	00499993	opcode: 0010011 
-Instruction #  426:	02974593	opcode: 0010011 
-Instruction #  427:	0d942113	opcode: 0010011 
-Instruction #  428:	f9fb3893	opcode: 0010011 
-Instruction #  429:	fa176013	opcode: 0010011 
-Instruction #  430:	f656c713	opcode: 0010011 
-Instruction #  431:	053e8013	opcode: 0010011 
-Instruction #  432:	07c2c793	opcode: 0010011 
-Instruction #  433:	f79ebf13	opcode: 0010011 
-Instruction #  434:	2d800613	opcode: 0010011 
-Instruction #  435:	f4962c23	opcode: 0100011 
-Instruction #  436:	0c43f513	opcode: 0010011 
-Instruction #  437:	01b50633	opcode: 0110011 
-Instruction #  438:	0c090013	opcode: 0010011 
-Instruction #  439:	00497f33	opcode: 0110011 
-Instruction #  440:	016aa1b3	opcode: 0110011 
-Instruction #  441:	f738ec13	opcode: 0010011 
-Instruction #  442:	fdc5e413	opcode: 0010011 
-Instruction #  443:	00886133	opcode: 0110011 
-Instruction #  444:	0dee6793	opcode: 0010011 
-Instruction #  445:	fb604b13	opcode: 0010011 
-Instruction #  446:	01f0d213	opcode: 0010011 
-Instruction #  447:	012fb033	opcode: 0110011 
-Instruction #  448:	f5e66d13	opcode: 0010011 
-Instruction #  449:	002cf633	opcode: 0110011 
-Instruction #  450:	014005b3	opcode: 0110011 
-Instruction #  451:	3b600193	opcode: 0010011 
-Instruction #  452:	24200c13	opcode: 0010011 
-Instruction #  453:	0e4c1023	opcode: 0100011 
-Instruction #  454:	00d73913	opcode: 0010011 
-Instruction #  455:	01765933	opcode: 0110011 
-Instruction #  456:	007a2033	opcode: 0110011 
-Instruction #  457:	f1b8f413	opcode: 0010011 
-Instruction #  458:	0002d013	opcode: 0010011 
-Instruction #  459:	fdd42e13	opcode: 0010011 
-Instruction #  460:	0e7af213	opcode: 0010011 
-Instruction #  461:	01f271b3	opcode: 0110011 
-Instruction #  462:	0031cfb3	opcode: 0110011 
-Instruction #  463:	00084333	opcode: 0110011 
-Instruction #  464:	f9608f93	opcode: 0010011 
-Instruction #  465:	0910bb13	opcode: 0010011 
-Instruction #  466:	20e00e13	opcode: 0010011 
-Instruction #  467:	0ece1f23	opcode: 0100011 
-Instruction #  468:	0090fbb3	opcode: 0110011 
-Instruction #  469:	f4f2a293	opcode: 0010011 
-Instruction #  470:	01f8e0b3	opcode: 0110011 
-Instruction #  471:	f574e993	opcode: 0010011 
-Instruction #  472:	0054db93	opcode: 0010011 
-Instruction #  473:	f097a593	opcode: 0010011 
-Instruction #  474:	fcf2e213	opcode: 0010011 
-Instruction #  475:	010d4ab3	opcode: 0110011 
-Instruction #  476:	24c00113	opcode: 0010011 
-Instruction #  477:	f8711d23	opcode: 0100011 
-Instruction #  478:	f234f193	opcode: 0010011 
-Instruction #  479:	00985093	opcode: 0010011 
-Instruction #  480:	00eb7733	opcode: 0110011 
-Instruction #  481:	006699b3	opcode: 0110011 
-Instruction #  482:	00f1ff33	opcode: 0110011 
-Instruction #  483:	006a5033	opcode: 0110011 
-Instruction #  484:	0150dfb3	opcode: 0110011 
-Instruction #  485:	00dc6bb3	opcode: 0110011 
-Instruction #  486:	02610813	opcode: 0010011 
-Instruction #  487:	0ba62b93	opcode: 0010011 
-Instruction #  488:	f7e8f393	opcode: 0010011 
-Instruction #  489:	3b400093	opcode: 0010011 
-Instruction #  490:	fe709f23	opcode: 0100011 
-Instruction #  491:	00d4edb3	opcode: 0110011 
-Instruction #  492:	f1b87613	opcode: 0010011 
-Instruction #  493:	04cb0c13	opcode: 0010011 
-Instruction #  494:	01979a33	opcode: 0110011 
-Instruction #  495:	014df3b3	opcode: 0110011 
-Instruction #  496:	f6a7fe93	opcode: 0010011 
-Instruction #  497:	f4536b13	opcode: 0010011 
-Instruction #  498:	01599933	opcode: 0110011 
-Instruction #  499:	f3522293	opcode: 0010011 
-Instruction #  500:	00ef5313	opcode: 0010011 
-Instruction #  501:	f9f90e93	opcode: 0010011 
-Instruction #  502:	00719493	opcode: 0010011 
-Instruction #  503:	f521fd13	opcode: 0010011 
-Instruction #  504:	35c00b13	opcode: 0010011 
-Instruction #  505:	f8eb2e23	opcode: 0100011 
-Instruction #  506:	007c1933	opcode: 0110011 
-Instruction #  507:	21800413	opcode: 0010011 
-Instruction #  508:	f9f42623	opcode: 0100011 
-Instruction #  509:	01179033	opcode: 0110011 
+Instruction #   31:	02aa0f93	opcode: 0010011 
+Instruction #   32:	0a840413	opcode: 0010011 
+Instruction #   33:	f568b313	opcode: 0010011 
+Instruction #   34:	0163bbb3	opcode: 0110011 
+Instruction #   35:	06770693	opcode: 0010011 
+Instruction #   36:	002978b3	opcode: 0110011 
+Instruction #   37:	00609d13	opcode: 0010011 
+Instruction #   38:	00635893	opcode: 0010011 
+Instruction #   39:	003f6113	opcode: 0010011 
+Instruction #   40:	0194db13	opcode: 0010011 
+Instruction #   41:	01358ab3	opcode: 0110011 
+Instruction #   42:	00e43b33	opcode: 0110011 
+Instruction #   43:	0dd4c613	opcode: 0010011 
+Instruction #   44:	01f2fd33	opcode: 0110011 
+Instruction #   45:	070d6713	opcode: 0010011 
+Instruction #   46:	0174ceb3	opcode: 0110011 
+Instruction #   47:	010d03b3	opcode: 0110011 
+Instruction #   48:	006be133	opcode: 0110011 
+Instruction #   49:	f1a6ce13	opcode: 0010011 
+Instruction #   50:	00dda3b3	opcode: 0110011 
+Instruction #   51:	01bde8b3	opcode: 0110011 
+Instruction #   52:	f3b97913	opcode: 0010011 
+Instruction #   53:	f156c313	opcode: 0010011 
+Instruction #   54:	0822aa13	opcode: 0010011 
+Instruction #   55:	001172b3	opcode: 0110011 
+Instruction #   56:	ff257893	opcode: 0010011 
+Instruction #   57:	00256c33	opcode: 0110011 
+Instruction #   58:	f4477693	opcode: 0010011 
+Instruction #   59:	f848cd13	opcode: 0010011 
+Instruction #   60:	012a01b3	opcode: 0110011 
+Instruction #   61:	00b48fb3	opcode: 0110011 
+Instruction #   62:	012ed2b3	opcode: 0110011 
+Instruction #   63:	fe0a2993	opcode: 0010011 
+Instruction #   64:	01581793	opcode: 0010011 
+Instruction #   65:	01c18a33	opcode: 0110011 
+Instruction #   66:	075ec013	opcode: 0010011 
+Instruction #   67:	0060d0b3	opcode: 0110011 
+Instruction #   68:	005be333	opcode: 0110011 
+Instruction #   69:	019578b3	opcode: 0110011 
+Instruction #   70:	016a49b3	opcode: 0110011 
+Instruction #   71:	f75a4593	opcode: 0010011 
+Instruction #   72:	011c1f93	opcode: 0010011 
+Instruction #   73:	f32dc493	opcode: 0010011 
+Instruction #   74:	01a5b233	opcode: 0110011 
+Instruction #   75:	00e1a533	opcode: 0110011 
+Instruction #   76:	00401033	opcode: 0110011 
+Instruction #   77:	f96b3893	opcode: 0010011 
+Instruction #   78:	f835e113	opcode: 0010011 
+Instruction #   79:	0fdb6493	opcode: 0010011 
+Instruction #   80:	05713693	opcode: 0010011 
+Instruction #   81:	0147b4b3	opcode: 0110011 
+Instruction #   82:	03d7f693	opcode: 0010011 
+Instruction #   83:	010f59b3	opcode: 0110011 
+Instruction #   84:	00831713	opcode: 0010011 
+Instruction #   85:	fe91ba13	opcode: 0010011 
+Instruction #   86:	0011d333	opcode: 0110011 
+Instruction #   87:	f0867393	opcode: 0010011 
+Instruction #   88:	faa3b893	opcode: 0010011 
+Instruction #   89:	00bc1813	opcode: 0010011 
+Instruction #   90:	f05c3a93	opcode: 0010011 
+Instruction #   91:	09588193	opcode: 0010011 
+Instruction #   92:	f31c7193	opcode: 0010011 
+Instruction #   93:	00b95c33	opcode: 0110011 
+Instruction #   94:	00e43bb3	opcode: 0110011 
+Instruction #   95:	0c4f7b93	opcode: 0010011 
+Instruction #   96:	00db8bb3	opcode: 0110011 
+Instruction #   97:	01bb5d93	opcode: 0010011 
+Instruction #   98:	00ca5ab3	opcode: 0110011 
+Instruction #   99:	010b6933	opcode: 0110011 
+Instruction #  100:	0cf30213	opcode: 0010011 
+Instruction #  101:	003733b3	opcode: 0110011 
+Instruction #  102:	00c8d233	opcode: 0110011 
+Instruction #  103:	006f70b3	opcode: 0110011 
+Instruction #  104:	08810513	opcode: 0010011 
+Instruction #  105:	00f93433	opcode: 0110011 
+Instruction #  106:	0055f7b3	opcode: 0110011 
+Instruction #  107:	00e5fc33	opcode: 0110011 
+Instruction #  108:	010c4633	opcode: 0110011 
+Instruction #  109:	018714b3	opcode: 0110011 
+Instruction #  110:	f94ac713	opcode: 0010011 
+Instruction #  111:	f4cdf613	opcode: 0010011 
+Instruction #  112:	004bcd33	opcode: 0110011 
+Instruction #  113:	034ced93	opcode: 0010011 
+Instruction #  114:	00c4e0b3	opcode: 0110011 
+Instruction #  115:	01451433	opcode: 0110011 
+Instruction #  116:	01715b13	opcode: 0010011 
+Instruction #  117:	01cb0db3	opcode: 0110011 
+Instruction #  118:	01ad10b3	opcode: 0110011 
+Instruction #  119:	04d6b313	opcode: 0010011 
+Instruction #  120:	0e45a393	opcode: 0010011 
+Instruction #  121:	0152f233	opcode: 0110011 
+Instruction #  122:	01b5fa33	opcode: 0110011 
+Instruction #  123:	01579ab3	opcode: 0110011 
+Instruction #  124:	00ba5033	opcode: 0110011 
+Instruction #  125:	01fbe533	opcode: 0110011 
+Instruction #  126:	083c8893	opcode: 0010011 
+Instruction #  127:	01be7133	opcode: 0110011 
+Instruction #  128:	08393e93	opcode: 0010011 
+Instruction #  129:	f4690093	opcode: 0010011 
+Instruction #  130:	012dabb3	opcode: 0110011 
+Instruction #  131:	f237b793	opcode: 0010011 
+Instruction #  132:	013d95b3	opcode: 0110011 
+Instruction #  133:	01b687b3	opcode: 0110011 
+Instruction #  134:	008dd493	opcode: 0010011 
+Instruction #  135:	011ca4b3	opcode: 0110011 
+Instruction #  136:	00ba6433	opcode: 0110011 
+Instruction #  137:	01541e93	opcode: 0010011 
+Instruction #  138:	00d44233	opcode: 0110011 
+Instruction #  139:	003041b3	opcode: 0110011 
+Instruction #  140:	09cf6213	opcode: 0010011 
+Instruction #  141:	006d1bb3	opcode: 0110011 
+Instruction #  142:	000e5bb3	opcode: 0110011 
+Instruction #  143:	01a35f33	opcode: 0110011 
+Instruction #  144:	01391613	opcode: 0010011 
+Instruction #  145:	0135d293	opcode: 0010011 
+Instruction #  146:	0665ab93	opcode: 0010011 
+Instruction #  147:	001aea33	opcode: 0110011 
+Instruction #  148:	0ac8f913	opcode: 0010011 
+Instruction #  149:	099d6993	opcode: 0010011 
+Instruction #  150:	006f5713	opcode: 0010011 
+Instruction #  151:	017d0f33	opcode: 0110011 
+Instruction #  152:	01a55393	opcode: 0010011 
+Instruction #  153:	02ae0313	opcode: 0010011 
+Instruction #  154:	0edac493	opcode: 0010011 
+Instruction #  155:	f549ca93	opcode: 0010011 
+Instruction #  156:	f6c66793	opcode: 0010011 
+Instruction #  157:	007845b3	opcode: 0110011 
+Instruction #  158:	001e84b3	opcode: 0110011 
+Instruction #  159:	f75dea13	opcode: 0010011 
+Instruction #  160:	00c15b93	opcode: 0010011 
+Instruction #  161:	0066dd93	opcode: 0010011 
+Instruction #  162:	008675b3	opcode: 0110011 
+Instruction #  163:	0bfe8f93	opcode: 0010011 
+Instruction #  164:	01f41e33	opcode: 0110011 
+Instruction #  165:	0ab4ed13	opcode: 0010011 
+Instruction #  166:	f0656f13	opcode: 0010011 
+Instruction #  167:	00610f13	opcode: 0010011 
+Instruction #  168:	00931e13	opcode: 0010011 
+Instruction #  169:	08b7bd13	opcode: 0010011 
+Instruction #  170:	00c33433	opcode: 0110011 
+Instruction #  171:	00289013	opcode: 0010011 
+Instruction #  172:	00cf9eb3	opcode: 0110011 
+Instruction #  173:	00562ab3	opcode: 0110011 
+Instruction #  174:	fd93b493	opcode: 0010011 
+Instruction #  175:	01d2d113	opcode: 0010011 
+Instruction #  176:	01105113	opcode: 0010011 
+Instruction #  177:	01c45d93	opcode: 0010011 
+Instruction #  178:	f5d1fc13	opcode: 0010011 
+Instruction #  179:	009e1433	opcode: 0110011 
+Instruction #  180:	01e76f33	opcode: 0110011 
+Instruction #  181:	f20daa13	opcode: 0010011 
+Instruction #  182:	017acd33	opcode: 0110011 
+Instruction #  183:	014efcb3	opcode: 0110011 
+Instruction #  184:	fac94d13	opcode: 0010011 
+Instruction #  185:	01f291b3	opcode: 0110011 
+Instruction #  186:	ff0f6593	opcode: 0010011 
+Instruction #  187:	03038093	opcode: 0010011 
+Instruction #  188:	f85ef313	opcode: 0010011 
+Instruction #  189:	00ae5133	opcode: 0110011 
+Instruction #  190:	00b36bb3	opcode: 0110011 
+Instruction #  191:	018d6cb3	opcode: 0110011 
+Instruction #  192:	0a60ae93	opcode: 0010011 
+Instruction #  193:	007ede33	opcode: 0110011 
+Instruction #  194:	0cfd2893	opcode: 0010011 
+Instruction #  195:	01a1c7b3	opcode: 0110011 
+Instruction #  196:	009b9413	opcode: 0010011 
+Instruction #  197:	0043a333	opcode: 0110011 
+Instruction #  198:	0962f013	opcode: 0010011 
+Instruction #  199:	006c56b3	opcode: 0110011 
+Instruction #  200:	01405933	opcode: 0110011 
+Instruction #  201:	00169233	opcode: 0110011 
+Instruction #  202:	00009933	opcode: 0110011 
+Instruction #  203:	f6333213	opcode: 0010011 
+Instruction #  204:	0d638713	opcode: 0010011 
+Instruction #  205:	00dfbab3	opcode: 0110011 
+Instruction #  206:	0090a233	opcode: 0110011 
+Instruction #  207:	017e8533	opcode: 0110011 
+Instruction #  208:	02faed93	opcode: 0010011 
+Instruction #  209:	0cc5ee13	opcode: 0010011 
+Instruction #  210:	00af5493	opcode: 0010011 
+Instruction #  211:	0c638d93	opcode: 0010011 
+Instruction #  212:	f4a6b093	opcode: 0010011 
+Instruction #  213:	005b8233	opcode: 0110011 
+Instruction #  214:	001a9233	opcode: 0110011 
+Instruction #  215:	017a7cb3	opcode: 0110011 
+Instruction #  216:	01c02bb3	opcode: 0110011 
+Instruction #  217:	f17a8413	opcode: 0010011 
+Instruction #  218:	00ff5133	opcode: 0110011 
+Instruction #  219:	01424b93	opcode: 0010011 
+Instruction #  220:	0093ddb3	opcode: 0110011 
+Instruction #  221:	0fcacd13	opcode: 0010011 
+Instruction #  222:	00711e13	opcode: 0010011 
+Instruction #  223:	00f10f33	opcode: 0110011 
+Instruction #  224:	08a50b93	opcode: 0010011 
+Instruction #  225:	fb898313	opcode: 0010011 
+Instruction #  226:	0155a433	opcode: 0110011 
+Instruction #  227:	00281733	opcode: 0110011 
+Instruction #  228:	003ccab3	opcode: 0110011 
+Instruction #  229:	009ddcb3	opcode: 0110011 
+Instruction #  230:	005f5513	opcode: 0010011 
+Instruction #  231:	faf02893	opcode: 0010011 
+Instruction #  232:	041e6c13	opcode: 0010011 
+Instruction #  233:	077f3013	opcode: 0010011 
+Instruction #  234:	09e83993	opcode: 0010011 
+Instruction #  235:	01c60ab3	opcode: 0110011 
+Instruction #  236:	01ab8d33	opcode: 0110011 
+Instruction #  237:	00217f33	opcode: 0110011 
+Instruction #  238:	008ff0b3	opcode: 0110011 
+Instruction #  239:	0030eab3	opcode: 0110011 
+Instruction #  240:	00c05093	opcode: 0010011 
+Instruction #  241:	00499b33	opcode: 0110011 
+Instruction #  242:	f7358793	opcode: 0010011 
+Instruction #  243:	00ba67b3	opcode: 0110011 
+Instruction #  244:	01819e13	opcode: 0010011 
+Instruction #  245:	ffa03813	opcode: 0010011 
+Instruction #  246:	064d4513	opcode: 0010011 
+Instruction #  247:	f7c92213	opcode: 0010011 
+Instruction #  248:	0002a3b3	opcode: 0110011 
+Instruction #  249:	fbd12213	opcode: 0010011 
+Instruction #  250:	01ac8db3	opcode: 0110011 
+Instruction #  251:	01ce38b3	opcode: 0110011 
+Instruction #  252:	01293a33	opcode: 0110011 
+Instruction #  253:	027a0593	opcode: 0010011 
+Instruction #  254:	f64d3313	opcode: 0010011 
+Instruction #  255:	010263b3	opcode: 0110011 
+Instruction #  256:	00ab8f33	opcode: 0110011 
+Instruction #  257:	004a4e33	opcode: 0110011 
+Instruction #  258:	00ec56b3	opcode: 0110011 
+Instruction #  259:	013c8cb3	opcode: 0110011 
+Instruction #  260:	fd21ef93	opcode: 0010011 
+Instruction #  261:	005b7c33	opcode: 0110011 
+Instruction #  262:	0000db93	opcode: 0010011 
+Instruction #  263:	fd8fa813	opcode: 0010011 
+Instruction #  264:	fbd18793	opcode: 0010011 
+Instruction #  265:	0a657a13	opcode: 0010011 
+Instruction #  266:	08f0cc93	opcode: 0010011 
+Instruction #  267:	00b495b3	opcode: 0110011 
+Instruction #  268:	01308c33	opcode: 0110011 
+Instruction #  269:	039d7613	opcode: 0010011 
+Instruction #  270:	f222ff13	opcode: 0010011 
+Instruction #  271:	015b5493	opcode: 0010011 
+Instruction #  272:	01085c33	opcode: 0110011 
+Instruction #  273:	f6867a93	opcode: 0010011 
+Instruction #  274:	008982b3	opcode: 0110011 
+Instruction #  275:	015f4633	opcode: 0110011 
+Instruction #  276:	01cb9793	opcode: 0010011 
+Instruction #  277:	01be5293	opcode: 0010011 
+Instruction #  278:	01ee6433	opcode: 0110011 
+Instruction #  279:	01b75133	opcode: 0110011 
+Instruction #  280:	00385c33	opcode: 0110011 
+Instruction #  281:	08994413	opcode: 0010011 
+Instruction #  282:	018d8033	opcode: 0110011 
+Instruction #  283:	0da4bf13	opcode: 0010011 
+Instruction #  284:	010075b3	opcode: 0110011 
+Instruction #  285:	013195b3	opcode: 0110011 
+Instruction #  286:	0faccc93	opcode: 0010011 
+Instruction #  287:	0f2c6513	opcode: 0010011 
+Instruction #  288:	f6a5c413	opcode: 0010011 
+Instruction #  289:	00242e13	opcode: 0010011 
+Instruction #  290:	04123793	opcode: 0010011 
+Instruction #  291:	01b6c433	opcode: 0110011 
+Instruction #  292:	004adeb3	opcode: 0110011 
+Instruction #  293:	00c92a33	opcode: 0110011 
+Instruction #  294:	0007c4b3	opcode: 0110011 
+Instruction #  295:	009bfdb3	opcode: 0110011 
+Instruction #  296:	0159a093	opcode: 0010011 
+Instruction #  297:	00f4b5b3	opcode: 0110011 
+Instruction #  298:	00921b93	opcode: 0010011 
+Instruction #  299:	007498b3	opcode: 0110011 
+Instruction #  300:	00f215b3	opcode: 0110011 
+Instruction #  301:	00784b33	opcode: 0110011 
+Instruction #  302:	00b65333	opcode: 0110011 
+Instruction #  303:	00818a33	opcode: 0110011 
+Instruction #  304:	016813b3	opcode: 0110011 
+Instruction #  305:	0102d033	opcode: 0110011 
+Instruction #  306:	00be1733	opcode: 0110011 
+Instruction #  307:	0133de33	opcode: 0110011 
+Instruction #  308:	01975b93	opcode: 0010011 
+Instruction #  309:	00d93fb3	opcode: 0110011 
+Instruction #  310:	014e9213	opcode: 0010011 
+Instruction #  311:	0883fc13	opcode: 0010011 
+Instruction #  312:	fe50e113	opcode: 0010011 
+Instruction #  313:	01c71913	opcode: 0010011 
+Instruction #  314:	003da733	opcode: 0110011 
+Instruction #  315:	f25e2313	opcode: 0010011 
+Instruction #  316:	01a5d9b3	opcode: 0110011 
+Instruction #  317:	01114533	opcode: 0110011 
+Instruction #  318:	ff6bc513	opcode: 0010011 
+Instruction #  319:	00939cb3	opcode: 0110011 
+Instruction #  320:	fc782f93	opcode: 0010011 
+Instruction #  321:	081c6313	opcode: 0010011 
+Instruction #  322:	00b01cb3	opcode: 0110011 
+Instruction #  323:	fce1f013	opcode: 0010011 
+Instruction #  324:	015429b3	opcode: 0110011 
+Instruction #  325:	00d3bbb3	opcode: 0110011 
+Instruction #  326:	01c41393	opcode: 0010011 
+Instruction #  327:	ff858413	opcode: 0010011 
+Instruction #  328:	018a49b3	opcode: 0110011 
+Instruction #  329:	01a80233	opcode: 0110011 
+Instruction #  330:	0cc3a393	opcode: 0010011 
+Instruction #  331:	00bfcb33	opcode: 0110011 
+Instruction #  332:	0097f313	opcode: 0010011 
+Instruction #  333:	04b57d93	opcode: 0010011 
+Instruction #  334:	016f1a33	opcode: 0110011 
+Instruction #  335:	011decb3	opcode: 0110011 
+Instruction #  336:	004285b3	opcode: 0110011 
+Instruction #  337:	01d229b3	opcode: 0110011 
+Instruction #  338:	01afb2b3	opcode: 0110011 
+Instruction #  339:	0e1a2613	opcode: 0010011 
+Instruction #  340:	001fff93	opcode: 0010011 
+Instruction #  341:	00035913	opcode: 0010011 
+Instruction #  342:	00ac8d33	opcode: 0110011 
+Instruction #  343:	00f5b033	opcode: 0110011 
+Instruction #  344:	007e2533	opcode: 0110011 
+Instruction #  345:	00d45493	opcode: 0010011 
+Instruction #  346:	0123de13	opcode: 0010011 
+Instruction #  347:	01de1613	opcode: 0010011 
+Instruction #  348:	f89c4b93	opcode: 0010011 
+Instruction #  349:	01b53b33	opcode: 0110011 
+Instruction #  350:	01225c33	opcode: 0110011 
+Instruction #  351:	08fefb93	opcode: 0010011 
+Instruction #  352:	00be9a93	opcode: 0010011 
+Instruction #  353:	000c3c33	opcode: 0110011 
+Instruction #  354:	00dd6513	opcode: 0010011 
+Instruction #  355:	01c5cc33	opcode: 0110011 
+Instruction #  356:	018c5d13	opcode: 0010011 
+Instruction #  357:	f54aed13	opcode: 0010011 
+Instruction #  358:	017e3833	opcode: 0110011 
+Instruction #  359:	00aa8e13	opcode: 0010011 
+Instruction #  360:	007d0533	opcode: 0110011 
+Instruction #  361:	003cdc93	opcode: 0010011 
+Instruction #  362:	010396b3	opcode: 0110011 
+Instruction #  363:	00fe8433	opcode: 0110011 
+Instruction #  364:	0c1a4b93	opcode: 0010011 
+Instruction #  365:	f60cad93	opcode: 0010011 
+Instruction #  366:	017268b3	opcode: 0110011 
+Instruction #  367:	0a7d2013	opcode: 0010011 
+Instruction #  368:	09de3113	opcode: 0010011 
+Instruction #  369:	0183bdb3	opcode: 0110011 
+Instruction #  370:	037be893	opcode: 0010011 
+Instruction #  371:	00e27333	opcode: 0110011 
+Instruction #  372:	00a51013	opcode: 0010011 
+Instruction #  373:	0004d893	opcode: 0010011 
+Instruction #  374:	01c36033	opcode: 0110011 
+Instruction #  375:	008e50b3	opcode: 0110011 
+Instruction #  376:	01e3dd33	opcode: 0110011 
+Instruction #  377:	01e1bfb3	opcode: 0110011 
+Instruction #  378:	025ca513	opcode: 0010011 
+Instruction #  379:	011e03b3	opcode: 0110011 
+Instruction #  380:	007f1933	opcode: 0110011 
+Instruction #  381:	016f1d33	opcode: 0110011 
+Instruction #  382:	00800eb3	opcode: 0110011 
+Instruction #  383:	00fb47b3	opcode: 0110011 
+Instruction #  384:	fbf32813	opcode: 0010011 
+Instruction #  385:	01a27533	opcode: 0110011 
+Instruction #  386:	01a9c333	opcode: 0110011 
+Instruction #  387:	01e0b8b3	opcode: 0110011 
+Instruction #  388:	000c35b3	opcode: 0110011 
+Instruction #  389:	0673cc13	opcode: 0010011 
+Instruction #  390:	00bf1533	opcode: 0110011 
+Instruction #  391:	f8907693	opcode: 0010011 
+Instruction #  392:	00b41533	opcode: 0110011 
+Instruction #  393:	f9637293	opcode: 0010011 
+Instruction #  394:	01e464b3	opcode: 0110011 
+Instruction #  395:	00d31c33	opcode: 0110011 
+Instruction #  396:	00b00b33	opcode: 0110011 
+Instruction #  397:	0e720713	opcode: 0010011 
+Instruction #  398:	008e6ab3	opcode: 0110011 
+Instruction #  399:	025a4393	opcode: 0010011 
+Instruction #  400:	070fe193	opcode: 0010011 
+Instruction #  401:	003daa33	opcode: 0110011 
+Instruction #  402:	07580513	opcode: 0010011 
+Instruction #  403:	00903433	opcode: 0110011 
+Instruction #  404:	009dccb3	opcode: 0110011 
+Instruction #  405:	019d9b33	opcode: 0110011 
+Instruction #  406:	028cf713	opcode: 0010011 
+Instruction #  407:	06c1b593	opcode: 0010011 
+Instruction #  408:	00cf5013	opcode: 0010011 
+Instruction #  409:	0c452d93	opcode: 0010011 
+Instruction #  410:	00995c33	opcode: 0110011 
+Instruction #  411:	0e250a93	opcode: 0010011 
+Instruction #  412:	00461a93	opcode: 0010011 
+Instruction #  413:	0025df33	opcode: 0110011 
+Instruction #  414:	00375093	opcode: 0010011 
+Instruction #  415:	00b891b3	opcode: 0110011 
+Instruction #  416:	06737413	opcode: 0010011 
+Instruction #  417:	01ee94b3	opcode: 0110011 
+Instruction #  418:	0059beb3	opcode: 0110011 
+Instruction #  419:	fd6f8e93	opcode: 0010011 
+Instruction #  420:	006e4433	opcode: 0110011 
+Instruction #  421:	008b4033	opcode: 0110011 
+Instruction #  422:	01a79213	opcode: 0010011 
+Instruction #  423:	00128eb3	opcode: 0110011 
+Instruction #  424:	01fe2033	opcode: 0110011 
+Instruction #  425:	099df693	opcode: 0010011 
+Instruction #  426:	01212d33	opcode: 0110011 
+Instruction #  427:	fedd0293	opcode: 0010011 
+Instruction #  428:	00de38b3	opcode: 0110011 
+Instruction #  429:	01a6a7b3	opcode: 0110011 
+Instruction #  430:	0a9ef813	opcode: 0010011 
+Instruction #  431:	01e89993	opcode: 0010011 
+Instruction #  432:	01cac6b3	opcode: 0110011 
+Instruction #  433:	014123b3	opcode: 0110011 
+Instruction #  434:	000d8c33	opcode: 0110011 
+Instruction #  435:	fe87ee93	opcode: 0010011 
+Instruction #  436:	004c34b3	opcode: 0110011 
+Instruction #  437:	04c1ba93	opcode: 0010011 
+Instruction #  438:	fc93a413	opcode: 0010011 
+Instruction #  439:	01b1deb3	opcode: 0110011 
+Instruction #  440:	0f56b213	opcode: 0010011 
+Instruction #  441:	f2923c13	opcode: 0010011 
+Instruction #  442:	f44eb493	opcode: 0010011 
+Instruction #  443:	003f2433	opcode: 0110011 
+Instruction #  444:	0086fbb3	opcode: 0110011 
+Instruction #  445:	00fcdd13	opcode: 0010011 
+Instruction #  446:	00e92133	opcode: 0110011 
+Instruction #  447:	0e88c493	opcode: 0010011 
+Instruction #  448:	014477b3	opcode: 0110011 
+Instruction #  449:	01485193	opcode: 0010011 
+Instruction #  450:	f3f92913	opcode: 0010011 
+Instruction #  451:	0b3c7d93	opcode: 0010011 
+Instruction #  452:	0157d5b3	opcode: 0110011 
+Instruction #  453:	f190ea93	opcode: 0010011 
+Instruction #  454:	01f36633	opcode: 0110011 
+Instruction #  455:	0089cb33	opcode: 0110011 
+Instruction #  456:	004fda13	opcode: 0010011 
+Instruction #  457:	00f20fb3	opcode: 0110011 
+Instruction #  458:	f3543b13	opcode: 0010011 
+Instruction #  459:	00516eb3	opcode: 0110011 
+Instruction #  460:	00276a33	opcode: 0110011 
+Instruction #  461:	0da63293	opcode: 0010011 
+Instruction #  462:	00626db3	opcode: 0110011 
+Instruction #  463:	01eb2133	opcode: 0110011 
+Instruction #  464:	008c6993	opcode: 0010011 
+Instruction #  465:	f217c913	opcode: 0010011 
+Instruction #  466:	00736113	opcode: 0010011 
+Instruction #  467:	fbd83f93	opcode: 0010011 
+Instruction #  468:	faaab393	opcode: 0010011 
+Instruction #  469:	f47aaa13	opcode: 0010011 
+Instruction #  470:	0f6dff13	opcode: 0010011 
+Instruction #  471:	01d4d533	opcode: 0110011 
+Instruction #  472:	ffd02093	opcode: 0010011 
+Instruction #  473:	011e2d33	opcode: 0110011 
+Instruction #  474:	087c0b13	opcode: 0010011 
+Instruction #  475:	01fd86b3	opcode: 0110011 
+Instruction #  476:	011712b3	opcode: 0110011 
+Instruction #  477:	01de0833	opcode: 0110011 
+Instruction #  478:	016e1413	opcode: 0010011 
+Instruction #  479:	00370e33	opcode: 0110011 
+Instruction #  480:	fa84a713	opcode: 0010011 
+Instruction #  481:	071df293	opcode: 0010011 
+Instruction #  482:	0a27ca93	opcode: 0010011 
+Instruction #  483:	0079cdb3	opcode: 0110011 
+Instruction #  484:	01c21eb3	opcode: 0110011 
+Instruction #  485:	045a7613	opcode: 0010011 
+Instruction #  486:	003a33b3	opcode: 0110011 
+Instruction #  487:	016bb033	opcode: 0110011 
+Instruction #  488:	00f3f3b3	opcode: 0110011 
+Instruction #  489:	00246833	opcode: 0110011 
+Instruction #  490:	000a4ab3	opcode: 0110011 
+Instruction #  491:	f920a613	opcode: 0010011 
+Instruction #  492:	01b4a0b3	opcode: 0110011 
+Instruction #  493:	fcd67513	opcode: 0010011 
+Instruction #  494:	f3f2ba93	opcode: 0010011 
+Instruction #  495:	02f70813	opcode: 0010011 
+Instruction #  496:	0052a3b3	opcode: 0110011 
+Instruction #  497:	009fd213	opcode: 0010011 
+Instruction #  498:	00c57233	opcode: 0110011 
+Instruction #  499:	0210ad13	opcode: 0010011 
+Instruction #  500:	01b79c13	opcode: 0010011 
+Instruction #  501:	01b02ab3	opcode: 0110011 
+Instruction #  502:	f1788513	opcode: 0010011 
+Instruction #  503:	06860c13	opcode: 0010011 
+Instruction #  504:	0bd6c913	opcode: 0010011 
+Instruction #  505:	01971613	opcode: 0010011 
+Instruction #  506:	f960af13	opcode: 0010011 
+Instruction #  507:	f8feb793	opcode: 0010011 
+Instruction #  508:	0119ac33	opcode: 0110011 
+Instruction #  509:	08ebf913	opcode: 0010011 
 Instruction #  510:	00000097	opcode: 0010111 
 Instruction #  511:	00008067	opcode: 1100111 
 Instruction #  512:	00000000	opcode: 0000000 
@@ -1103,332 +1106,1090 @@ Instruction # 1020:	00000000	opcode: 0000000
 Instruction # 1021:	00000000	opcode: 0000000 
 Instruction # 1022:	00000000	opcode: 0000000 
 Instruction # 1023:	00000000	opcode: 0000000 
- 000000ac | 000000ac |            0         |      and       | 00000004  | 00000004  | PASS | AND
- 000000b4 | 000000b4 |            1         |      xor       | 00000046  | 00000046  | PASS | XOR
- 000000b8 | 000000b8 |            2         |      or        | ffffffb7  | ffffffb7  | PASS | OR
- 000000c4 | 000000c4 |            3         |      slt       | 00000000  | 00000000  | PASS | SLT
- 000000c8 | 000000c8 |            4         |      sll       | ffffffd3  | ffffffd3  | PASS | SLL
- 000000d4 | 000000d4 |            5         |      and       | 00000360  | 00000360  | PASS | AND
- 000000d8 | 000000d8 |            6         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 000000ec | 000000ec |            7         |      srl       | 00000000  | 00000000  | PASS | SRL
- 000000fc | 000000fc |            8         |      add       | ffffff46  | ffffff46  | PASS | ADD
- 00000100 | 00000100 |            9         |      xor       | 0000035c  | 0000035c  | PASS | XOR
- 00000104 | 00000104 |           10         |      sll       | eb400000  | eb400000  | PASS | SLL
- 00000120 | 00000120 |           11         |      and       | 00000001  | 00000001  | PASS | AND
- 00000124 | 00000124 |           12         |      or        | ffffffb5  | ffffffb5  | PASS | OR
- 0000012c | 0000012c |           13         |      or        | ffffff15  | ffffff15  | PASS | OR
- 00000130 | 00000130 |           14         |      and       | 00000085  | 00000085  | PASS | AND
- 00000138 | 00000138 |           15         |      add       | ffffff1a  | ffffff1a  | PASS | ADD
- 00000140 | 00000140 |           16         |      srl       | 0b300000  | 0b300000  | PASS | SRL
- 00000158 | 00000158 |           17         |      sll       | 71800000  | 71800000  | PASS | SLL
- 0000016c | 0000016c |           18         |      sltu      | 00000001  | 00000001  | PASS | SLTU
- 00000170 | 00000170 |           19         |      or        | 000003e2  | 000003e2  | PASS | OR
- 0000018c | 0000018c |           20         |      srl       | 00000001  | 00000001  | PASS | SRL
- 00000190 | 00000190 |           21         |      xor       | fffffd1d  | fffffd1d  | PASS | XOR
- 00000194 | 00000194 |           22         |      srl       | 00000000  | 00000000  | PASS | SRL
- 00000198 | 00000198 |           23         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 000001a8 | 000001a8 |           24         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 000001b4 | 000001b4 |           25         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 000001b8 | 000001b8 |           26         |      slt       | 00000001  | 00000001  | PASS | SLT
- 000001c4 | 000001c4 |           27         |      sltu      | 00000000  | 00000000  | PASS | SLTU
-**** Instruccion type R not found = 11111111011100001010111100110011 PC:000001d0, sb_pc:000001d8****
-FC7 = 1111111, FC3 = 010
-sb_rd_p = 1e, sb_rd_val =          1, sb_rs1_p = 01, sb_rs1_val =           1, sb_imm =         114 
- 000001e0 | 000001e0 |           29         |      srl       | 0007ffff  | 00ffffff  | X | SRL
-riscv_opcode 33, riscv_pc 000001d8, sb_pc 000001e0
-rc_rd_p =30, rc_sr1_p =12, rc_rs1_val =  134217720, rc_rs2_p =31 rc_rs2_val =        584| sb_rd_p =30, sb_sr1_p =12, sb_rs1_val =4294967288, sb_rs2_p =31 sb_rs2_val =       584
- 000001e4 | 000001e4 |           30         |      add       | 07fffff8  | fffffff8  | X | ADD
-riscv_opcode 33, riscv_pc 000001dc, sb_pc 000001e4
-rc_rd_p =16, rc_sr1_p =12, rc_rs1_val =  134217720, rc_rs2_p = 0 rc_rs2_val =          0| sb_rd_p =16, sb_sr1_p =12, sb_rs1_val =4294967288, sb_rs2_p = 0 sb_rs2_val =         0
- 000001e8 | 000001e8 |           31         |      and       | 00000200  | 00000200  | PASS | AND
- 00000214 | 00000214 |           32         |      slt       | 00000000  | 00000000  | PASS | SLT
- 00000228 | 00000228 |           33         |      or        | ffd7ffff  | ffd1d200  | X | OR
+ 00000008 | 00000008 |            0         |      addi      | ffffff7e  | ffffff7e  | PASS | ADDI
+Instruction Decode/Execute f7e58093
+ 0000000c | 0000000c |            1         |      addi      | 0000001c  | 0000001c  | PASS | ADDI
+Instruction Decode/Execute 01c88113
+ 00000010 | 00000010 |            2         |      addi      | ffffff15  | ffffff15  | PASS | ADDI
+Instruction Decode/Execute f1580193
+ 00000014 | 00000014 |            3         |      addi      | 000000cb  | 000000cb  | PASS | ADDI
+Instruction Decode/Execute 0cba0213
+ 00000018 | 00000018 |            4         |      addi      | ffffff0d  | ffffff0d  | PASS | ADDI
+Instruction Decode/Execute f0d30293
+ 0000001c | 0000001c |            5         |      addi      | 000000f9  | 000000f9  | PASS | ADDI
+Instruction Decode/Execute 0f9a0313
+ 00000020 | 00000020 |            6         |      addi      | 00000052  | 00000052  | PASS | ADDI
+Instruction Decode/Execute 03610393
+ 00000024 | 00000024 |            7         |      addi      | 000000d3  | 000000d3  | PASS | ADDI
+Instruction Decode/Execute fda30413
+ 00000028 | 00000028 |            8         |      addi      | 0000002e  | 0000002e  | PASS | ADDI
+Instruction Decode/Execute 02e60493
+ 0000002c | 0000002c |            9         |      addi      | ffffffb5  | ffffffb5  | PASS | ADDI
+Instruction Decode/Execute fb500513
+ 00000030 | 00000030 |           10         |      addi      | ffffff50  | ffffff50  | PASS | ADDI
+Instruction Decode/Execute f5068593
+ 00000034 | 00000034 |           11         |      addi      | 0000008a  | 0000008a  | PASS | ADDI
+Instruction Decode/Execute 08ab8613
+ 00000038 | 00000038 |           12         |      addi      | 0000000c  | 0000000c  | PASS | ADDI
+Instruction Decode/Execute 00c00693
+ 0000003c | 0000003c |           13         |      addi      | 000001b5  | 000001b5  | PASS | ADDI
+Instruction Decode/Execute 0ea20713
+ 00000040 | 00000040 |           14         |      addi      | 00000044  | 00000044  | PASS | ADDI
+Instruction Decode/Execute 044b0793
+ 00000044 | 00000044 |           15         |      addi      | 000000b3  | 000000b3  | PASS | ADDI
+Instruction Decode/Execute 06138813
+ 00000048 | 00000048 |           16         |      addi      | 00000002  | 00000002  | PASS | ADDI
+Instruction Decode/Execute fbe78893
+ 0000004c | 0000004c |           17         |      addi      | 00000087  | 00000087  | PASS | ADDI
+Instruction Decode/Execute 087d8913
+ 00000050 | 00000050 |           18         |      addi      | fffffe8c  | fffffe8c  | PASS | ADDI
+Instruction Decode/Execute f7f28993
+ 00000054 | 00000054 |           19         |      addi      | ffffff14  | ffffff14  | PASS | ADDI
+Instruction Decode/Execute f14e0a13
+ 00000058 | 00000058 |           20         |      addi      | ffffffd3  | ffffffd3  | PASS | ADDI
+Instruction Decode/Execute 01e50a93
+ 0000005c | 0000005c |           21         |      addi      | ffffff5a  | ffffff5a  | PASS | ADDI
+Instruction Decode/Execute f5af0b13
+ 00000060 | 00000060 |           22         |      addi      | 00000051  | 00000051  | PASS | ADDI
+Instruction Decode/Execute 07ea8b93
+ 00000064 | 00000064 |           23         |      addi      | ffffff70  | ffffff70  | PASS | ADDI
+Instruction Decode/Execute f2c78c13
+ 00000068 | 00000068 |           24         |      addi      | 00000046  | 00000046  | PASS | ADDI
+Instruction Decode/Execute 01848c93
+ 0000006c | 0000006c |           25         |      addi      | fffffe95  | fffffe95  | PASS | ADDI
+Instruction Decode/Execute f3bb0d13
+ 00000070 | 00000070 |           26         |      addi      | 0000003c  | 0000003c  | PASS | ADDI
+Instruction Decode/Execute 069a8d93
+ 00000074 | 00000074 |           27         |      addi      | ffffff48  | ffffff48  | PASS | ADDI
+Instruction Decode/Execute ff858e13
+ 00000078 | 00000078 |           28         |      addi      | 00000027  | 00000027  | PASS | ADDI
+Instruction Decode/Execute 0d758e93
+ 0000007c | 0000007c |           29         |      addi      | 000001f5  | 000001f5  | PASS | ADDI
+Instruction Decode/Execute 0fc30f13
+ 00000080 | 00000080 |           30         |      addi      | ffffff3e  | ffffff3e  | PASS | ADDI
+Instruction Decode/Execute 02aa0f93
+ 00000084 | 00000084 |           31         |      addi      | ffffff3e  | ffffff3e  | PASS | ADDI
+Instruction Decode/Execute 02aa0f93
+ 00000088 | 00000088 |           32         |      addi      | 0000017b  | 0000017b  | PASS | ADDI
+Instruction Decode/Execute 0a840413
+ 0000008c | 0000008c |           33         |      sltiu     |     1     |     1     | PASS 
+ 00000090 | 00000090 |           34         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 0163bbb3
+ 00000094 | 00000094 |           35         |      addi      | 0000021c  | 0000021c  | PASS | ADDI
+Instruction Decode/Execute 06770693
+ 00000098 | 00000098 |           36         |      and       | 00000004  | 00000004  | PASS | AND
+Instruction Decode/Execute 002978b3
+ 0000009c | 0000009c |           37         |      slli      | ffffdf80  | ffffdf80  | PASS | SLLI
+Instruction Decode/Execute 00609d13
+xd       160 17       6 6 617
+ 000000a0 | 000000a0 |           38         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 00635893
+ 000000a4 | 000000a4 |           39         |      ori       | 000001f7  | 000001f7  | PASS | ORI
+Instruction Decode/Execute 003f6113
+xd       168 17      25 92522
+ 000000a8 | 000000a8 |           40         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 0194db13
+ 000000ac | 000000ac |           41         |      add       | fffffddc  | fffffddc  | PASS | ADD
+Instruction Decode/Execute 01358ab3
+ 000000b0 | 000000b0 |           42         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 00e43b33
+ 000000b4 | 000000b4 |           43         |      xori      | 000000f3  | 000000f3  | PASS | XORI
+Instruction Decode/Execute 0dd4c613
+ 000000b8 | 000000b8 |           44         |      and       | ffffff0c  | ffffff0c  | PASS | AND
+Instruction Decode/Execute 01f2fd33
+ 000000bc | 000000bc |           45         |      ori       | ffffff7c  | ffffff7c  | PASS | ORI
+Instruction Decode/Execute 070d6713
+ 000000c0 | 000000c0 |           46         |      xor       | 0000002f  | 0000002f  | PASS | XOR
+Instruction Decode/Execute 0174ceb3
+ 000000c4 | 000000c4 |           47         |      add       | ffffffbf  | ffffffbf  | PASS | ADD
+Instruction Decode/Execute 010d03b3
+ 000000c8 | 000000c8 |           48         |      or        | 00000001  | 00000001  | PASS | OR
+Instruction Decode/Execute 006be133
+ 000000cc | 000000cc |           49         |      xori      | fffffd06  | fffffd06  | PASS | XORI
+Instruction Decode/Execute f1a6ce13
+ 000000d0 | 000000d0 |           50         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 00dda3b3
+ 000000d4 | 000000d4 |           51         |      or        | 0000003c  | 0000003c  | PASS | OR
+Instruction Decode/Execute 01bde8b3
+ 000000d8 | 000000d8 |           52         |      andi      | 00000003  | 00000003  | PASS | ANDI
+Instruction Decode/Execute f3b97913
+ 000000dc | 000000dc |           53         |      xori      | fffffd09  | fffffd09  | PASS | XORI
+Instruction Decode/Execute f156c313
+ 000000e0 | 000000e0 |           54         |      slti      |     1     |     1     | PASS 
+ 000000e4 | 000000e4 |           55         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 001172b3
+ 000000e8 | 000000e8 |           56         |      andi      | ffffffb0  | ffffffb0  | PASS | ANDI
+Instruction Decode/Execute ff257893
+ 000000ec | 000000ec |           57         |      or        | ffffffb5  | ffffffb5  | PASS | OR
+Instruction Decode/Execute 00256c33
+ 000000f0 | 000000f0 |           58         |      andi      | ffffff44  | ffffff44  | PASS | ANDI
+Instruction Decode/Execute f4477693
+ 000000f4 | 000000f4 |           59         |      xori      | 00000034  | 00000034  | PASS | XORI
+Instruction Decode/Execute f848cd13
+ 000000f8 | 000000f8 |           60         |      add       | 00000004  | 00000004  | PASS | ADD
+Instruction Decode/Execute 012a01b3
+ 000000fc | 000000fc |           61         |      add       | ffffff7e  | ffffff7e  | PASS | ADD
+Instruction Decode/Execute 00b48fb3
+ 00000100 | 00000100 |           62         |      srl       | 00000005  | 00000005  | PASS | SRL
+Instruction Decode/Execute 012ed2b3
+ 00000104 | 00000104 |           63         |      slti      |     0     |     0     | PASS 
+ 00000108 | 00000108 |           64         |      slli      | 16600000  | 16600000  | PASS | SLLI
+Instruction Decode/Execute 01581793
+ 0000010c | 0000010c |           65         |      add       | fffffd0a  | fffffd0a  | PASS | ADD
+Instruction Decode/Execute 01c18a33
+ 00000110 | 00000110 |           66         |      xori      | 0000005a  | 0000005a  | PASS | XORI
+Instruction Decode/Execute 075ec013
+ 00000114 | 00000114 |           67         |      srl       | 007fffff  | 007fffff  | PASS | SRL
+Instruction Decode/Execute 0060d0b3
+ 00000118 | 00000118 |           68         |      or        | 00000005  | 00000005  | PASS | OR
+Instruction Decode/Execute 005be333
+ 0000011c | 0000011c |           69         |      and       | 00000004  | 00000004  | PASS | AND
+Instruction Decode/Execute 019578b3
+ 00000120 | 00000120 |           70         |      xor       | fffffd0b  | fffffd0b  | PASS | XOR
+Instruction Decode/Execute 016a49b3
+ 00000124 | 00000124 |           71         |      xori      | 0000027f  | 0000027f  | PASS | XORI
+Instruction Decode/Execute f75a4593
+ 00000128 | 00000128 |           72         |      slli      | ff6a0000  | ff6a0000  | PASS | SLLI
+Instruction Decode/Execute 011c1f93
+ 0000012c | 0000012c |           73         |      xori      | ffffff0e  | ffffff0e  | PASS | XORI
+Instruction Decode/Execute f32dc493
+ 00000130 | 00000130 |           74         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 01a5b233
+ 00000134 | 00000134 |           75         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 00e1a533
+ 00000138 | 00000138 |           76         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00401033
+ 0000013c | 0000013c |           77         |      sltiu     |     1     |     1     | PASS 
+ 00000140 | 00000140 |           78         |      ori       | ffffffff  | ffffffff  | PASS | ORI
+Instruction Decode/Execute f835e113
+ 00000144 | 00000144 |           79         |      ori       | 000000fd  | 000000fd  | PASS | ORI
+Instruction Decode/Execute 0fdb6493
+ 00000148 | 00000148 |           80         |      sltiu     |     0     |     0     | PASS 
+ 0000014c | 0000014c |           81         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 0147b4b3
+ 00000150 | 00000150 |           82         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 03d7f693
+ 00000154 | 00000154 |           83         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 010f59b3
+ 00000158 | 00000158 |           84         |      slli      | 00000500  | 00000500  | PASS | SLLI
+Instruction Decode/Execute 00831713
+ 0000015c | 0000015c |           85         |      sltiu     |     1     |     1     | PASS 
+ 00000160 | 00000160 |           86         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 0011d333
+ 00000164 | 00000164 |           87         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute f0867393
+ 00000168 | 00000168 |           88         |      sltiu     |     1     |     1     | PASS 
+ 0000016c | 0000016c |           89         |      slli      | fffda800  | fffda800  | PASS | SLLI
+Instruction Decode/Execute 00bc1813
+ 00000170 | 00000170 |           90         |      sltiu     |     0     |     0     | PASS 
+ 00000174 | 00000174 |           91         |      addi      | 00000096  | 00000096  | PASS | ADDI
+Instruction Decode/Execute 09588193
+ 00000178 | 00000178 |           92         |      andi      | ffffff31  | ffffff31  | PASS | ANDI
+Instruction Decode/Execute f31c7193
+ 0000017c | 0000017c |           93         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 00b95c33
+ 00000180 | 00000180 |           94         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 00e43bb3
+ 00000184 | 00000184 |           95         |      andi      | 000000c4  | 000000c4  | PASS | ANDI
+Instruction Decode/Execute 0c4f7b93
+ 00000188 | 00000188 |           96         |      add       | 000000c4  | 000000c4  | PASS | ADD
+Instruction Decode/Execute 00db8bb3
+xd       396 17      27222727
+ 0000018c | 0000018c |           97         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01bb5d93
+ 00000190 | 00000190 |           98         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 00ca5ab3
+ 00000194 | 00000194 |           99         |      or        | fffda801  | fffda801  | PASS | OR
+Instruction Decode/Execute 010b6933
+ 00000198 | 00000198 |          100         |      addi      | 000000cf  | 000000cf  | PASS | ADDI
+Instruction Decode/Execute 0cf30213
+ 0000019c | 0000019c |          101         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 003733b3
+ 000001a0 | 000001a0 |          102         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 00c8d233
+ 000001a4 | 000001a4 |          103         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 006f70b3
+ 000001a8 | 000001a8 |          104         |      addi      | 00000087  | 00000087  | PASS | ADDI
+Instruction Decode/Execute 08810513
+ 000001ac | 000001ac |          105         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00f93433
+ 000001b0 | 000001b0 |          106         |      and       | 00000005  | 00000005  | PASS | AND
+Instruction Decode/Execute 0055f7b3
+ 000001b4 | 000001b4 |          107         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 00e5fc33
+ 000001b8 | 000001b8 |          108         |      xor       | fffda800  | fffda800  | PASS | XOR
+Instruction Decode/Execute 010c4633
+ 000001bc | 000001bc |          109         |      sll       | 00000500  | 00000500  | PASS | SLL
+Instruction Decode/Execute 018714b3
+ 000001c0 | 000001c0 |          110         |      xori      | ffffff94  | ffffff94  | PASS | XORI
+Instruction Decode/Execute f94ac713
+ 000001c4 | 000001c4 |          111         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute f4cdf613
+ 000001c8 | 000001c8 |          112         |      xor       | 000000c4  | 000000c4  | PASS | XOR
+Instruction Decode/Execute 004bcd33
+ 000001cc | 000001cc |          113         |      ori       | 00000076  | 00000076  | PASS | ORI
+Instruction Decode/Execute 034ced93
+ 000001d0 | 000001d0 |          114         |      or        | 00000500  | 00000500  | PASS | OR
+Instruction Decode/Execute 00c4e0b3
+ 000001d4 | 000001d4 |          115         |      sll       | 0000010e  | 0000010e  | PASS | SLL
+Instruction Decode/Execute 01451433
+xd       472 17      23 22322
+ 000001d8 | 000001d8 |          116         |      srli      | 000001ff  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 000001d0, sb_pc 000001d8
+Instruction Decode/Execute 01715b13
+rc_rd_p =22, rc_sr1_p = 2, rc_rs1_val =         -1, rc_rs2_p =23 rc_rs2_val =        196| sb_rd_p =22, sb_sr1_p = 2, sb_rs1_val =4294967295, sb_rs2_p =23 sb_rs2_val =       196
+ 000001dc | 000001dc |          117         |      add       | ffffff05  | fffffd05  | X | ADD
+riscv_opcode 33, riscv_pc 000001d4, sb_pc 000001dc
+Instruction Decode/Execute 01cb0db3
+rc_rd_p =27, rc_sr1_p =22, rc_rs1_val =        511, rc_rs2_p =28 rc_rs2_val =       -762| sb_rd_p =27, sb_sr1_p =22, sb_rs1_val =4294967295, sb_rs2_p =28 sb_rs2_val =4294966534
+ 000001e0 | 000001e0 |          118         |      sll       | 00000c40  | 00000c40  | PASS | SLL
+Instruction Decode/Execute 01ad10b3
+ 000001e4 | 000001e4 |          119         |      sltiu     |     1     |     1     | PASS 
+ 000001e8 | 000001e8 |          120         |      slti      |     0     |     0     | PASS 
+ 000001ec | 000001ec |          121         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 0152f233
+ 000001f0 | 000001f0 |          122         |      and       | 00000205  | 00000005  | X | AND
+riscv_opcode 33, riscv_pc 000001e8, sb_pc 000001f0
+Instruction Decode/Execute 01b5fa33
+rc_rd_p =20, rc_sr1_p =11, rc_rs1_val =        639, rc_rs2_p =27 rc_rs2_val =       -251| sb_rd_p =20, sb_sr1_p =11, sb_rs1_val =       639, sb_rs2_p =27 sb_rs2_val =4294966533
+ 000001f4 | 000001f4 |          123         |      sll       | 00000005  | 00000005  | PASS | SLL
+Instruction Decode/Execute 01579ab3
+ 000001f8 | 000001f8 |          124         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 00ba5033
+ 000001fc | 000001fc |          125         |      or        | ff6a00c4  | ff6a00c4  | PASS | OR
+Instruction Decode/Execute 01fbe533
+ 00000200 | 00000200 |          126         |      addi      | 000000c9  | 000000c9  | PASS | ADDI
+Instruction Decode/Execute 083c8893
+ 00000204 | 00000204 |          127         |      and       | fffffd04  | fffffd04  | PASS | AND
+Instruction Decode/Execute 01be7133
+ 00000208 | 00000208 |          128         |      sltiu     |     0     |     0     | PASS 
+ 0000020c | 0000020c |          129         |      addi      | fffda747  | fffda747  | PASS | ADDI
+Instruction Decode/Execute f4690093
+ 00000210 | 00000210 |          130         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 012dabb3
+ 00000214 | 00000214 |          131         |      sltiu     |     1     |     1     | PASS 
+ 00000218 | 00000218 |          132         |      sll       | ffffff05  | fffffd05  | X | SLL
+riscv_opcode 33, riscv_pc 00000210, sb_pc 00000218
+Instruction Decode/Execute 013d95b3
+rc_rd_p =11, rc_sr1_p =27, rc_rs1_val =       -251, rc_rs2_p =19 rc_rs2_val =          0| sb_rd_p =11, sb_sr1_p =27, sb_rs1_val =4294966533, sb_rs2_p =19 sb_rs2_val =         0
+ 0000021c | 0000021c |          133         |      add       | ffffff05  | fffffd05  | X | ADD
+riscv_opcode 33, riscv_pc 00000214, sb_pc 0000021c
+Instruction Decode/Execute 01b687b3
+rc_rd_p =15, rc_sr1_p =13, rc_rs1_val =          0, rc_rs2_p =27 rc_rs2_val =       -251| sb_rd_p =15, sb_sr1_p =13, sb_rs1_val =         0, sb_rs2_p =27 sb_rs2_val =4294966533
+xd       544 17       827 8 9
+ 00000220 | 00000220 |          134         |      srli      | 00ffffff  | fffffffd  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000218, sb_pc 00000220
+Instruction Decode/Execute 008dd493
+rc_rd_p = 9, rc_sr1_p =27, rc_rs1_val =       -251, rc_rs2_p = 8 rc_rs2_val =        270| sb_rd_p = 9, sb_sr1_p =27, sb_rs1_val =4294966533, sb_rs2_p = 8 sb_rs2_val =       270
+ 00000224 | 00000224 |          135         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 011ca4b3
+ 00000228 | 00000228 |          136         |      or        | ffffff05  | fffffd05  | X | OR
 riscv_opcode 33, riscv_pc 00000220, sb_pc 00000228
-rc_rd_p = 6, rc_sr1_p =30, rc_rs1_val =     524287, rc_rs2_p =10 rc_rs2_val =   -3026944| sb_rd_p = 6, sb_sr1_p =30, sb_rs1_val =       512, sb_rs2_p =10 sb_rs2_val =4291940352
- 00000238 | 00000238 |           34         |      sll       | 00000000  | 00000000  | PASS | SLL
- 0000025c | 0000025c |           35         |      add       | fffffee4  | fffffee4  | PASS | ADD
- 00000278 | 00000278 |           36         |      sltu      | 00000001  | 00000001  | PASS | SLTU
- 0000027c | 0000027c |           37         |      xor       | fffffee4  | fffffee4  | PASS | XOR
- 00000288 | 00000288 |           38         |      and       | 00000000  | 00000000  | PASS | AND
- 0000028c | 0000028c |           39         |      sll       | 00000000  | 00000000  | PASS | SLL
-**** Instruccion type R not found = 11111110001111100000000010110011 PC:00000290, sb_pc:00000298****
-FC7 = 1111111, FC3 = 000
-sb_rd_p = 01, sb_rd_val =          0, sb_rs1_p = 1c, sb_rs1_val =           0, sb_imm =           5 
- 000002a0 | 000002a0 |           41         |      sll       | 00000000  | 00000000  | PASS | SLL
- 000002ac | 000002ac |           42         |      sll       | 00000000  | 00000000  | PASS | SLL
- 000002b0 | 000002b0 |           43         |      or        | 1fffff6a  | 1fffff6a  | PASS | OR
- 000002b8 | 000002b8 |           44         |      xor       | fffffdff  | fffffdff  | PASS | XOR
- 000002bc | 000002bc |           45         |      and       | 00000000  | 00000000  | PASS | AND
- 000002cc | 000002cc |           46         |      sll       | 00000000  | 00000000  | PASS | SLL
- 000002d0 | 000002d0 |           47         |      xor       | ffffffff  | ffffffff  | PASS | XOR
-  000002dc | 000002dc |           48         |      srl       | 00000000  | 00000000  | PASS | SRL
- 000002ec | 000002ec |           49         |      slt       | 00000000  | 00000000  | PASS | SLT
- 000002fc | 000002fc |           50         |      xor       | fffffff5  | fffffff5  | PASS | XOR
- 00000310 | 00000310 |           51         |      and       | 00000000  | 00000000  | PASS | AND
- 00000350 | 00000350 |           52         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 0000035c | 0000035c |           53         |      srl       | 00000000  | 00000000  | PASS | SRL
- 00000360 | 00000360 |           54         |      and       | 00000000  | 00000000  | PASS | AND
- 00000374 | 00000374 |           55         |      or        | fffffd70  | fffffd70  | PASS | OR
- 00000390 | 00000390 |           56         |      or        | 00000000  | fffffff2  | X | OR
-riscv_opcode 33, riscv_pc 00000388, sb_pc 00000390
-rc_rd_p =21, rc_sr1_p = 1, rc_rs1_val =          0, rc_rs2_p = 3 rc_rs2_val =          0| sb_rd_p =21, sb_sr1_p = 1, sb_rs1_val =         0, sb_rs2_p = 3 sb_rs2_val =4294967282
- 000003b0 | 000003a8 |           57         |      add       | ffffffc1  | 000003a8  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 000003a8, sb_pc 000003a8
-rc_rd_p =27, rc_sr1_p =17, rc_rs1_val =        -63, rc_rs2_p = 3 rc_rs2_val =          0| sb_rd_p = 5, sb_sr1_p = 0, sb_rs1_val =       916, sb_rs2_p = 0 sb_rs2_val =       916
- 000003cc | 000003c8 |           58         |      srl       | 00000000  | 00000063  | X | 
-riscv_opcode 33, riscv_pc 000003c4, sb_pc 000003c8
-rc_rd_p =26, rc_sr1_p = 4, rc_rs1_val =          0, rc_rs2_p = 1 rc_rs2_val =        708| sb_rd_p = 2, sb_sr1_p =23, sb_rs1_val =4294967295, sb_rs2_p = 3 sb_rs2_val =4294967282
- 000003ec | 000003e8 |           59         |      add       | 000000be  | 00000000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 000003e4, sb_pc 000003e8
-rc_rd_p =24, rc_sr1_p = 4, rc_rs1_val =        135, rc_rs2_p =11 rc_rs2_val =         55| sb_rd_p = 6, sb_sr1_p = 8, sb_rs1_val =         1, sb_rs2_p =28 sb_rs2_val =4294967232
- 000003f4 | 000003f0 |           60         |      sltu      | 00000000  | ffffffff  | X | 
-riscv_opcode 33, riscv_pc 000003ec, sb_pc 000003f0
-rc_rd_p = 3, rc_sr1_p =23, rc_rs1_val =       -181, rc_rs2_p = 7 rc_rs2_val =        229| sb_rd_p = 2, sb_sr1_p =28, sb_rs1_val =4294967232, sb_rs2_p =10 sb_rs2_val = 268435609
- 000003f8 | 000003f4 |           61         |      slt       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 000003f0, sb_pc 000003f4
-rc_rd_p = 0, rc_sr1_p =26, rc_rs1_val =          0, rc_rs2_p =12 rc_rs2_val =  268435456| sb_rd_p = 3, sb_sr1_p =23, sb_rs1_val =4294967097, sb_rs2_p = 7 sb_rs2_val =4294967063
- 00000414 | 00000410 |           62         |      and       | 00000000  | 00000007  | X | 
-riscv_opcode 33, riscv_pc 0000040c, sb_pc 00000410
-rc_rd_p = 9, rc_sr1_p = 7, rc_rs1_val =          0, rc_rs2_p = 5 rc_rs2_val =        133| sb_rd_p =12, sb_sr1_p = 4, sb_rs1_val =       135, sb_rs2_p =23 sb_rs2_val =4294967097
- 00000428 | 00000424 |           63         |      or        | 00000037  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000420, sb_pc 00000424
-rc_rd_p =17, rc_sr1_p =11, rc_rs1_val =         55, rc_rs2_p = 3 rc_rs2_val =          0| sb_rd_p =14, sb_sr1_p =27, sb_rs1_val =4294967219, sb_rs2_p =27 sb_rs2_val =4294967219
- 00000450 | 0000044c |           64         |      and       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000448, sb_pc 0000044c
-rc_rd_p =19, rc_sr1_p =20, rc_rs1_val =          0, rc_rs2_p = 8 rc_rs2_val =          0| sb_rd_p =31, sb_sr1_p = 1, sb_rs1_val =       144, sb_rs2_p =11 sb_rs2_val =        55
- 0000045c | 00000458 |           65         |      sll       | 00000000  | fffffffb  | X | 
-riscv_opcode 33, riscv_pc 00000454, sb_pc 00000458
-rc_rd_p =11, rc_sr1_p =26, rc_rs1_val =          0, rc_rs2_p = 4 rc_rs2_val =        135| sb_rd_p =31, sb_sr1_p =11, sb_rs1_val =        55, sb_rs2_p =12 sb_rs2_val =         7
- 0000046c | 00000468 |           66         |      slt       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000464, sb_pc 00000468
-rc_rd_p =19, rc_sr1_p = 2, rc_rs1_val =    4194303, rc_rs2_p =16 rc_rs2_val =          0| sb_rd_p =23, sb_sr1_p =18, sb_rs1_val =         0, sb_rs2_p =17 sb_rs2_val =        55
- 00000478 | 00000474 |           67         |      add       | 00000001  | 29a00000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 00000470, sb_pc 00000474
-rc_rd_p =10, rc_sr1_p = 8, rc_rs1_val =          0, rc_rs2_p =23 rc_rs2_val =          1| sb_rd_p =26, sb_sr1_p =22, sb_rs1_val =       666, sb_rs2_p =20 sb_rs2_val =         0
- 0000047c | 00000478 |           68         |      sll       | 00000000  | 00000000  | PASS | 
- 00000480 | 0000047c |           69         |      srl       | 00000000  | 000006d0  | X | 
-riscv_opcode 33, riscv_pc 00000478, sb_pc 0000047c
-rc_rd_p =16, rc_sr1_p = 2, rc_rs1_val =    4194303, rc_rs2_p =17 rc_rs2_val =         55| sb_rd_p =31, sb_sr1_p =30, sb_rs1_val =       872, sb_rs2_p =28 sb_rs2_val =         1
- 00000488 | 00000480 |           70         |      or        | 00000085  | 00000480  | X | 
-riscv_opcode 33, riscv_pc 00000480, sb_pc 00000480
-rc_rd_p = 9, rc_sr1_p = 6, rc_rs1_val =          0, rc_rs2_p = 5 rc_rs2_val =        133| sb_rd_p = 6, sb_sr1_p = 2, sb_rs1_val =4294967295, sb_rs2_p =30 sb_rs2_val =       872
- 0000048c | 00000488 |           71         |      and       | 00000000  | 000007a8  | X | 
-riscv_opcode 33, riscv_pc 00000484, sb_pc 00000488
-rc_rd_p =11, rc_sr1_p = 5, rc_rs1_val =        133, rc_rs2_p =11 rc_rs2_val =          0| sb_rd_p = 9, sb_sr1_p = 6, sb_rs1_val =      1152, sb_rs2_p = 5 sb_rs2_val =       936
- 000004a8 | 000004a4 |           72         |      slt       | 00000000  | ffffffed  | X | 
-riscv_opcode 33, riscv_pc 000004a0, sb_pc 000004a4
-rc_rd_p =25, rc_sr1_p = 3, rc_rs1_val =          0, rc_rs2_p =29 rc_rs2_val =          0| sb_rd_p = 5, sb_sr1_p =14, sb_rs1_val =4294967245, sb_rs2_p = 8 sb_rs2_val =4294967295
- 000004bc | 000004b8 |           73         |      sltu      | 00000001  | 00000048  | X | 
-riscv_opcode 33, riscv_pc 000004b4, sb_pc 000004b8
-rc_rd_p =19, rc_sr1_p =25, rc_rs1_val =          0, rc_rs2_p =13 rc_rs2_val =         -6| sb_rd_p =24, sb_sr1_p = 3, sb_rs1_val =       865, sb_rs2_p =12 sb_rs2_val =         7
- 000004c4 | 000004c0 |           74         |      sll       | 00000007  | 00000314  | X | 
-riscv_opcode 33, riscv_pc 000004bc, sb_pc 000004c0
-rc_rd_p =12, rc_sr1_p =12, rc_rs1_val =          7, rc_rs2_p =26 rc_rs2_val =  549453824| sb_rd_p =27, sb_sr1_p =22, sb_rs1_val =       595, sb_rs2_p = 1 sb_rs2_val =       144
- 000004cc | 000004c8 |           75         |      sltu      | 00000000  | 00000000  | PASS | 
- 000004dc | 000004d8 |           76         |      srl       | 00000313  | ffffff95  | X | 
-riscv_opcode 33, riscv_pc 000004d4, sb_pc 000004d8
-rc_rd_p = 4, rc_sr1_p =27, rc_rs1_val =        787, rc_rs2_p =16 rc_rs2_val =          0| sb_rd_p =30, sb_sr1_p = 7, sb_rs1_val =         0, sb_rs2_p =21 sb_rs2_val =         0
- 000004e0 | 000004dc |           77         |      slt       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 000004d8, sb_pc 000004dc
-rc_rd_p =30, rc_sr1_p =17, rc_rs1_val =         55, rc_rs2_p = 2 rc_rs2_val =    4194303| sb_rd_p = 4, sb_sr1_p =27, sb_rs1_val =       788, sb_rs2_p =16 sb_rs2_val =       511
- 000004e8 | 000004e4 |           78         |      srl       | 00000000  | 00000000  | PASS | 
- 000004ec | 000004e8 |           79         |      or        | ffffffec  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 000004e4, sb_pc 000004e8
-rc_rd_p =14, rc_sr1_p = 5, rc_rs1_val =        -20, rc_rs2_p =14 rc_rs2_val =        -52| sb_rd_p = 3, sb_sr1_p = 7, sb_rs1_val =         0, sb_rs2_p = 1 sb_rs2_val =       144
- 000004f4 | 000004f0 |           80         |      srl       | 00000000  | ffffffbe  | X | 
-riscv_opcode 33, riscv_pc 000004ec, sb_pc 000004f0
-rc_rd_p =24, rc_sr1_p =20, rc_rs1_val =          0, rc_rs2_p = 8 rc_rs2_val =        584| sb_rd_p =27, sb_sr1_p =22, sb_rs1_val =         0, sb_rs2_p =30 sb_rs2_val =         0
- 000004f8 | 000004f4 |           81         |      sll       | 00000000  | 00000000  | PASS | 
- 000004fc | 000004f8 |           82         |      xor       | 00000000  | 80000000  | X | 
-riscv_opcode 33, riscv_pc 000004f4, sb_pc 000004f8
-rc_rd_p =22, rc_sr1_p =31, rc_rs1_val =          0, rc_rs2_p =11 rc_rs2_val =          0| sb_rd_p =22, sb_sr1_p = 5, sb_rs1_val =4294967277, sb_rs2_p = 2 sb_rs2_val =4294967295
- 00000500 | 000004fc |           83         |      sltu      | 00000000  | 0000049c  | X | 
-riscv_opcode 33, riscv_pc 000004f8, sb_pc 000004fc
-rc_rd_p =22, rc_sr1_p =25, rc_rs1_val =          0, rc_rs2_p = 6 rc_rs2_val =          0| sb_rd_p =22, sb_sr1_p =31, sb_rs1_val =      1180, sb_rs2_p =11 sb_rs2_val =         0
- 00000508 | 00000504 |           84         |      and       | 00000000  | 0000049c  | X | 
-riscv_opcode 33, riscv_pc 00000500, sb_pc 00000504
-rc_rd_p =26, rc_sr1_p =11, rc_rs1_val =          0, rc_rs2_p = 1 rc_rs2_val =        144| sb_rd_p =31, sb_sr1_p =29, sb_rs1_val =         0, sb_rs2_p =13 sb_rs2_val =4294967290
- 00000514 | 00000510 |           85         |      srl       | 00000000  | 00000002  | X | 
-riscv_opcode 33, riscv_pc 0000050c, sb_pc 00000510
-rc_rd_p =21, rc_sr1_p =31, rc_rs1_val =          0, rc_rs2_p =27 rc_rs2_val =        -66| sb_rd_p =19, sb_sr1_p =22, sb_rs1_val =         1, sb_rs2_p = 1 sb_rs2_val =       144
- 0000051c | 00000518 |           86         |      srl       | ffffff26  | ffffff26  | PASS | 
- 00000520 | 0000051c |           87         |      xor       | ffffff27  | ffffff26  | X | 
-riscv_opcode 33, riscv_pc 00000518, sb_pc 0000051c
-rc_rd_p =17, rc_sr1_p =30, rc_rs1_val =          1, rc_rs2_p = 6 rc_rs2_val =       -218| sb_rd_p = 0, sb_sr1_p = 6, sb_rs1_val =4294967078, sb_rs2_p =11 sb_rs2_val =         0
- 00000524 | 00000520 |           88         |      slt       | 00000000  | ffffff26  | X | 
-riscv_opcode 33, riscv_pc 0000051c, sb_pc 00000520
-rc_rd_p =16, rc_sr1_p =11, rc_rs1_val =          0, rc_rs2_p =29 rc_rs2_val =          0| sb_rd_p =17, sb_sr1_p =30, sb_rs1_val =         0, sb_rs2_p = 6 sb_rs2_val =4294967078
- 00000530 | 0000052c |           89         |      srl       | ffffffbe  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000528, sb_pc 0000052c
-rc_rd_p =25, rc_sr1_p =27, rc_rs1_val =        -66, rc_rs2_p =19 rc_rs2_val =          0| sb_rd_p =15, sb_sr1_p =23, sb_rs1_val =         1, sb_rs2_p =17 sb_rs2_val =        34
- 00000534 | 00000530 |           90         |      sltu      | 00000000  | 3fffffef  | X | 
-riscv_opcode 33, riscv_pc 0000052c, sb_pc 00000530
-rc_rd_p =29, rc_sr1_p =19, rc_rs1_val =          0, rc_rs2_p = 3 rc_rs2_val =          0| sb_rd_p =25, sb_sr1_p =27, sb_rs1_val =4294967230, sb_rs2_p =19 sb_rs2_val =         2
- 00000544 | 00000540 |           91         |      sltu      | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 0000053c, sb_pc 00000540
-rc_rd_p =25, rc_sr1_p = 8, rc_rs1_val =        584, rc_rs2_p =14 rc_rs2_val =        -20| sb_rd_p =26, sb_sr1_p =27, sb_rs1_val =       564, sb_rs2_p =16 sb_rs2_val =         0
- 00000548 | 00000544 |           92         |      add       | 00000000  | 00000001  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 00000540, sb_pc 00000544
-rc_rd_p =25, rc_sr1_p =20, rc_rs1_val =          0, rc_rs2_p =11 rc_rs2_val =          0| sb_rd_p =25, sb_sr1_p = 8, sb_rs1_val =       585, sb_rs2_p =14 sb_rs2_val =4294967277
- 0000055c | 00000558 |           93         |      srl       | 00000000  | ffffffbc  | X | 
-riscv_opcode 33, riscv_pc 00000554, sb_pc 00000558
-rc_rd_p = 8, rc_sr1_p =12, rc_rs1_val =          7, rc_rs2_p =15 rc_rs2_val =       -209| sb_rd_p = 8, sb_sr1_p =31, sb_rs1_val =      1180, sb_rs2_p =20 sb_rs2_val =         0
- 0000056c | 00000568 |           94         |      srl       | 3ffffffb  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000564, sb_pc 00000568
-rc_rd_p = 0, rc_sr1_p = 5, rc_rs1_val =        -20, rc_rs2_p =17 rc_rs2_val =         34| sb_rd_p =28, sb_sr1_p =23, sb_rs1_val =         1, sb_rs2_p =28 sb_rs2_val =         1
- 00000570 | 0000056c |           95         |      srl       | 00000000  | 3ffffffb  | X | SRL
-riscv_opcode 33, riscv_pc 00000568, sb_pc 0000056c
-rc_rd_p =21, rc_sr1_p =11, rc_rs1_val =          0, rc_rs2_p =15 rc_rs2_val =       -209| sb_rd_p = 0, sb_sr1_p = 5, sb_rs1_val =4294967277, sb_rs2_p =17 sb_rs2_val =        34
- 00000574 | 00000570 |           96         |      sll       | 00000000  | 00000000  | PASS | 
- 00000580 | 0000057c |           97         |      sll       | 00000001  | ffffff1a  | X | 
-riscv_opcode 33, riscv_pc 00000578, sb_pc 0000057c
-rc_rd_p = 1, rc_sr1_p =28, rc_rs1_val =          1, rc_rs2_p =16 rc_rs2_val =          0| sb_rd_p = 6, sb_sr1_p =29, sb_rs1_val =         0, sb_rs2_p =26 sb_rs2_val = 134217728
- 00000584 | 00000580 |           98         |      srl       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 0000057c, sb_pc 00000580
-rc_rd_p = 9, rc_sr1_p =30, rc_rs1_val =          1, rc_rs2_p = 1 rc_rs2_val =          1| sb_rd_p = 1, sb_sr1_p =28, sb_rs1_val =         1, sb_rs2_p =16 sb_rs2_val =         0
- 00000588 | 00000584 |           99         |      slt       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000580, sb_pc 00000584
-rc_rd_p = 3, rc_sr1_p = 1, rc_rs1_val =          1, rc_rs2_p =17 rc_rs2_val =         34| sb_rd_p = 9, sb_sr1_p =30, sb_rs1_val =         0, sb_rs2_p = 1 sb_rs2_val =         1
- 0000058c | 00000588 |          100         |      add       | ffffffec  | 00000001  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 00000584, sb_pc 00000588
-rc_rd_p =31, rc_sr1_p =13, rc_rs1_val =          0, rc_rs2_p =14 rc_rs2_val =        -20| sb_rd_p = 3, sb_sr1_p = 1, sb_rs1_val =         1, sb_rs2_p =17 sb_rs2_val =        34
- 00000590 | 0000058c |          101         |      and       | 00000300  | ffffffed  | X | 
-riscv_opcode 33, riscv_pc 00000588, sb_pc 0000058c
-rc_rd_p = 6, rc_sr1_p = 4, rc_rs1_val =        787, rc_rs2_p =14 rc_rs2_val =        -20| sb_rd_p =31, sb_sr1_p =13, sb_rs1_val =         0, sb_rs2_p =14 sb_rs2_val =4294967277
- 0000059c | 00000598 |          102         |      or        | 00000301  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000594, sb_pc 00000598
-rc_rd_p = 0, rc_sr1_p = 6, rc_rs1_val =        768, rc_rs2_p =28 rc_rs2_val =          1| sb_rd_p =17, sb_sr1_p = 9, sb_rs1_val =         0, sb_rs2_p = 0 sb_rs2_val =         0
- 000005a0 | 0000059c |          103         |      srl       | 00000001  | 00000001  | PASS | 
- 000005bc | 000005b8 |          104         |      slt       | 00000000  | ffffffed  | X | 
-riscv_opcode 33, riscv_pc 000005b4, sb_pc 000005b8
-rc_rd_p =31, rc_sr1_p =29, rc_rs1_val =          0, rc_rs2_p =26 rc_rs2_val =          0| sb_rd_p =14, sb_sr1_p =16, sb_rs1_val =         0, sb_rs2_p =12 sb_rs2_val =         7
- 000005d0 | 000005cc |          105         |      add       | 00000000  | 08000000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 000005c8, sb_pc 000005cc
-rc_rd_p =11, rc_sr1_p =26, rc_rs1_val =          0, rc_rs2_p =20 rc_rs2_val =          0| sb_rd_p =26, sb_sr1_p =29, sb_rs1_val =       531, sb_rs2_p =29 sb_rs2_val =       531
- 000005d8 | 000005d4 |          106         |      and       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 000005d0, sb_pc 000005d4
-rc_rd_p = 5, rc_sr1_p = 5, rc_rs1_val =        -20, rc_rs2_p =30 rc_rs2_val =          1| sb_rd_p =13, sb_sr1_p =28, sb_rs1_val =         1, sb_rs2_p = 7 sb_rs2_val =         0
- 000005dc | 000005d8 |          107         |      slt       | 00000000  | 00000000  | PASS | 
- 000005e4 | 000005e0 |          108         |      and       | 00000000  | 000000b6  | X | 
-riscv_opcode 33, riscv_pc 000005dc, sb_pc 000005e0
-rc_rd_p = 9, rc_sr1_p =31, rc_rs1_val =          0, rc_rs2_p =10 rc_rs2_val =          0| sb_rd_p =20, sb_sr1_p =14, sb_rs1_val =4294967277, sb_rs2_p =27 sb_rs2_val =       564
- 000005f0 | 000005ec |          109         |      srl       | 00000189  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 000005e8, sb_pc 000005ec
-rc_rd_p =26, rc_sr1_p = 4, rc_rs1_val =        787, rc_rs2_p = 6 rc_rs2_val =          1| sb_rd_p = 6, sb_sr1_p =19, sb_rs1_val =         0, sb_rs2_p =31 sb_rs2_val =         1
- 000005f4 | 000005f0 |          110         |      xor       | 00000000  | 00000000  | PASS | 
- 000005fc | 000005f8 |          111         |      sltu      | 00000000  | ffffff02  | X | 
-riscv_opcode 33, riscv_pc 000005f4, sb_pc 000005f8
-rc_rd_p =20, rc_sr1_p =30, rc_rs1_val =          1, rc_rs2_p = 6 rc_rs2_val =          1| sb_rd_p =13, sb_sr1_p =19, sb_rs1_val =         0, sb_rs2_p = 2 sb_rs2_val =         0
- 00000600 | 000005fc |          112         |      slt       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 000005f8, sb_pc 000005fc
-rc_rd_p =18, rc_sr1_p =23, rc_rs1_val =          1, rc_rs2_p =31 rc_rs2_val =          0| sb_rd_p =20, sb_sr1_p =30, sb_rs1_val =         0, sb_rs2_p = 6 sb_rs2_val =         1
- 00000604 | 00000600 |          113         |      slt       | 00000000  | 00000000  | PASS | SLT
- 00000608 | 00000604 |          114         |      or        | 00000000  | 00000000  | PASS | 
- 00000614 | 00000610 |          115         |      or        | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 0000060c, sb_pc 00000610
-rc_rd_p =17, rc_sr1_p =27, rc_rs1_val =          0, rc_rs2_p = 9 rc_rs2_val =          0| sb_rd_p =10, sb_sr1_p =31, sb_rs1_val =         1, sb_rs2_p =21 sb_rs2_val =         0
- 00000618 | 00000614 |          116         |      or        | ffffff02  | 00000000  | X | OR
-riscv_opcode 33, riscv_pc 00000610, sb_pc 00000614
-rc_rd_p =15, rc_sr1_p =13, rc_rs1_val =       -254, rc_rs2_p = 2 rc_rs2_val =          0| sb_rd_p =17, sb_sr1_p =27, sb_rs1_val =         0, sb_rs2_p = 9 sb_rs2_val =         0
- 0000061c | 00000618 |          117         |      sll       | ffffff02  | ffffff02  | PASS | 
- 00000634 | 00000630 |          118         |      and       | 00000001  | 00000001  | PASS | 
- 00000638 | 00000634 |          119         |      srl       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000630, sb_pc 00000634
-rc_rd_p = 6, rc_sr1_p =10, rc_rs1_val =          1, rc_rs2_p =10 rc_rs2_val =          1| sb_rd_p = 9, sb_sr1_p =24, sb_rs1_val =         1, sb_rs2_p = 3 sb_rs2_val =         1
- 00000650 | 0000064c |          120         |      or        | 0000003d  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000648, sb_pc 0000064c
-rc_rd_p =12, rc_sr1_p =25, rc_rs1_val =         60, rc_rs2_p =28 rc_rs2_val =          1| sb_rd_p =29, sb_sr1_p = 6, sb_rs1_val =         0, sb_rs2_p =28 sb_rs2_val =         1
- 0000065c | 00000658 |          121         |      or        | 00000001  | 0000006d  | X | 
-riscv_opcode 33, riscv_pc 00000654, sb_pc 00000658
-rc_rd_p =19, rc_sr1_p =30, rc_rs1_val =          1, rc_rs2_p =19 rc_rs2_val =          0| sb_rd_p =22, sb_sr1_p = 2, sb_rs1_val =         0, sb_rs2_p =16 sb_rs2_val =         0
- 00000668 | 00000664 |          122         |      or        | 00000001  | 00000001  | PASS | 
- 0000066c | 00000668 |          123         |      slt       | 00000000  | 00000001  | X | 
-riscv_opcode 33, riscv_pc 00000664, sb_pc 00000668
-rc_rd_p = 8, rc_sr1_p =25, rc_rs1_val =         60, rc_rs2_p =15 rc_rs2_val =          1| sb_rd_p =15, sb_sr1_p =30, sb_rs1_val =         0, sb_rs2_p =10 sb_rs2_val =         1
- 00000670 | 0000066c |          124         |      sltu      | 00000000  | 00000000  | PASS | 
- 00000674 | 00000670 |          125         |      sltu      | 00000000  | 00000000  | PASS | SLTU
- 00000688 | 00000684 |          126         |      add       | 0000032b  | 00000000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 00000680, sb_pc 00000684
-rc_rd_p =13, rc_sr1_p =27, rc_rs1_val =        976, rc_rs2_p =11 rc_rs2_val =       -165| sb_rd_p =28, sb_sr1_p =26, sb_rs1_val =         0, sb_rs2_p =26 sb_rs2_val =         0
- 0000068c | 00000688 |          127         |      and       | 00000000  | 0000032c  | X | 
-riscv_opcode 33, riscv_pc 00000684, sb_pc 00000688
-rc_rd_p =31, rc_sr1_p = 7, rc_rs1_val =          0, rc_rs2_p =14 rc_rs2_val =  268435456| sb_rd_p =13, sb_sr1_p =27, sb_rs1_val =       977, sb_rs2_p =11 sb_rs2_val =4294967131
- 00000690 | 0000068c |          128         |      sll       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000688, sb_pc 0000068c
-rc_rd_p = 4, rc_sr1_p = 9, rc_rs1_val =          1, rc_rs2_p = 5 rc_rs2_val =          0| sb_rd_p =31, sb_sr1_p = 7, sb_rs1_val =         0, sb_rs2_p =14 sb_rs2_val = 268435456
- 00000694 | 00000690 |          129         |      add       | 00000002  | 00000001  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 0000068c, sb_pc 00000690
-rc_rd_p = 7, rc_sr1_p =24, rc_rs1_val =          1, rc_rs2_p =30 rc_rs2_val =          1| sb_rd_p = 4, sb_sr1_p = 9, sb_rs1_val =         1, sb_rs2_p = 5 sb_rs2_val =         0
- 000006a4 | 000006a0 |          130         |      srl       | 00000000  | 00000000  | PASS | 
- 000006a8 | 000006a4 |          131         |      add       | 10000000  | 00000000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 000006a0, sb_pc 000006a4
-rc_rd_p =11, rc_sr1_p =14, rc_rs1_val =  268435456, rc_rs2_p =12 rc_rs2_val =          0| sb_rd_p =19, sb_sr1_p =10, sb_rs1_val =         1, sb_rs2_p = 6 sb_rs2_val =         1
- 000006dc | 000006d8 |          132         |      add       | 000003d0  | 00000000  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 000006d4, sb_pc 000006d8
-rc_rd_p =12, rc_sr1_p =10, rc_rs1_val =          0, rc_rs2_p =27 rc_rs2_val =        976| sb_rd_p =10, sb_sr1_p = 7, sb_rs1_val =         1, sb_rs2_p = 4 sb_rs2_val =         1
- 000006e4 | 000006e0 |          133         |      and       | 00000000  | 000000c0  | X | 
-riscv_opcode 33, riscv_pc 000006dc, sb_pc 000006e0
-rc_rd_p =30, rc_sr1_p =18, rc_rs1_val =          0, rc_rs2_p = 4 rc_rs2_val =          1| sb_rd_p = 0, sb_sr1_p =18, sb_rs1_val =         0, sb_rs2_p = 0 sb_rs2_val =       192
- 000006e8 | 000006e4 |          134         |      slt       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 000006e0, sb_pc 000006e4
-rc_rd_p = 3, rc_sr1_p =21, rc_rs1_val =          0, rc_rs2_p =22 rc_rs2_val =        109| sb_rd_p =30, sb_sr1_p =18, sb_rs1_val =         0, sb_rs2_p = 4 sb_rs2_val =         1
- 000006f4 | 000006f0 |          135         |      or        | fffffffd  | fffffffd  | PASS | 
- 00000704 | 00000700 |          136         |      sltu      | 00000000  | 00000000  | PASS | 
- 0000070c | 00000708 |          137         |      and       | 0000003c  | ffffffdf  | X | 
-riscv_opcode 33, riscv_pc 00000704, sb_pc 00000708
-rc_rd_p =12, rc_sr1_p =25, rc_rs1_val =         60, rc_rs2_p = 2 rc_rs2_val =         -3| sb_rd_p =26, sb_sr1_p =12, sb_rs1_val =       977, sb_rs2_p =30 sb_rs2_val =         0
- 00000710 | 0000070c |          138         |      add       | 00000000  | 0000003c  | X | FUNC ERROR
-riscv_opcode 33, riscv_pc 00000708, sb_pc 0000070c
-rc_rd_p =11, rc_sr1_p = 0, rc_rs1_val =          0, rc_rs2_p =20 rc_rs2_val =          0| sb_rd_p =12, sb_sr1_p =25, sb_rs1_val =        60, sb_rs2_p = 2 sb_rs2_val =4294967293
- 00000724 | 00000720 |          139         |      srl       | 00000000  | 00000000  | PASS | 
- 00000728 | 00000724 |          140         |      slt       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000720, sb_pc 00000724
-rc_rd_p = 0, rc_sr1_p =20, rc_rs1_val =          0, rc_rs2_p = 7 rc_rs2_val =          2| sb_rd_p =18, sb_sr1_p =12, sb_rs1_val =        60, sb_rs2_p =23 sb_rs2_val =       599
- 0000073c | 00000738 |          141         |      and       | 00000000  | 00000000  | PASS | 
- 00000740 | 0000073c |          142         |      xor       | 00000000  | 00000000  | PASS | 
- 00000744 | 00000740 |          143         |      xor       | 00000000  | 00000000  | PASS | XOR
- 00000758 | 00000754 |          144         |      and       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000750, sb_pc 00000754
-rc_rd_p =23, rc_sr1_p = 1, rc_rs1_val =          1, rc_rs2_p = 9 rc_rs2_val =          1| sb_rd_p =30, sb_sr1_p =28, sb_rs1_val =       779, sb_rs2_p =12 sb_rs2_val =        60
- 00000760 | 0000075c |          145         |      or        | ffffff97  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000758, sb_pc 0000075c
-rc_rd_p = 1, rc_sr1_p =17, rc_rs1_val =          1, rc_rs2_p =31 rc_rs2_val =       -105| sb_rd_p = 5, sb_sr1_p = 5, sb_rs1_val =         0, sb_rs2_p =15 sb_rs2_val =       222
- 00000774 | 00000770 |          146         |      xor       | ffffffde  | ffffffcf  | X | 
-riscv_opcode 33, riscv_pc 0000076c, sb_pc 00000770
-rc_rd_p =21, rc_sr1_p =26, rc_rs1_val =        -34, rc_rs2_p =16 rc_rs2_val =          0| sb_rd_p = 4, sb_sr1_p = 5, sb_rs1_val =         0, sb_rs2_p =15 sb_rs2_val =       222
- 00000788 | 00000784 |          147         |      and       | 00000000  | 00000000  | PASS | 
- 0000078c | 00000788 |          148         |      sll       | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000784, sb_pc 00000788
-rc_rd_p =19, rc_sr1_p =13, rc_rs1_val =          1, rc_rs2_p = 6 rc_rs2_val =          0| sb_rd_p =14, sb_sr1_p =22, sb_rs1_val =         1, sb_rs2_p =14 sb_rs2_val =         0
- 00000790 | 0000078c |          149         |      and       | 00000000  | 20000000  | X | 
-riscv_opcode 33, riscv_pc 00000788, sb_pc 0000078c
-rc_rd_p =30, rc_sr1_p = 3, rc_rs1_val =          1, rc_rs2_p =15 rc_rs2_val =        222| sb_rd_p =19, sb_sr1_p =13, sb_rs1_val =         1, sb_rs2_p = 6 sb_rs2_val =       253
- 00000794 | 00000790 |          150         |      srl       | 00000000  | 00000000  | PASS | 
- 00000798 | 00000794 |          151         |      srl       | 00000000  | 00000000  | PASS | SRL
- 0000079c | 00000798 |          152         |      or        | 00000243  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 00000794, sb_pc 00000798
-rc_rd_p =23, rc_sr1_p =24, rc_rs1_val =        578, rc_rs2_p =13 rc_rs2_val =          1| sb_rd_p =31, sb_sr1_p = 1, sb_rs1_val =         0, sb_rs2_p =21 sb_rs2_val =4294967263
- 000007b4 | 000007b0 |          153         |      or        | 00000001  | 00000000  | X | 
-riscv_opcode 33, riscv_pc 000007ac, sb_pc 000007b0
-rc_rd_p =27, rc_sr1_p = 9, rc_rs1_val =          1, rc_rs2_p =13 rc_rs2_val =          1| sb_rd_p =30, sb_sr1_p = 1, sb_rs1_val =       948, sb_rs2_p = 7 sb_rs2_val =         0
- 000007c0 | 000007bc |          154         |      sll       | e0000000  | 0000004d  | X | 
-riscv_opcode 33, riscv_pc 000007b8, sb_pc 000007bc
-rc_rd_p =20, rc_sr1_p =15, rc_rs1_val =        222, rc_rs2_p =25 rc_rs2_val =         60| sb_rd_p =24, sb_sr1_p =22, sb_rs1_val =         1, sb_rs2_p =12 sb_rs2_val =       779
- 000007c4 | 000007c0 |          155         |      and       | 00000000  | e0000000  | X | 
-riscv_opcode 33, riscv_pc 000007bc, sb_pc 000007c0
-rc_rd_p = 7, rc_sr1_p =27, rc_rs1_val =          1, rc_rs2_p =20 rc_rs2_val = -536870912| sb_rd_p =20, sb_sr1_p =15, sb_rs1_val =       222, sb_rs2_p =25 sb_rs2_val =        60
- 000007d0 | 000007cc |          156         |      sll       | 40000000  | fffffffd  | X | 
-riscv_opcode 33, riscv_pc 000007c8, sb_pc 000007cc
-rc_rd_p =18, rc_sr1_p =19, rc_rs1_val =          1, rc_rs2_p =21 rc_rs2_val =        -34| sb_rd_p =22, sb_sr1_p = 6, sb_rs1_val =       253, sb_rs2_p = 5 sb_rs2_val =         0
- 000007f0 | 000007ec |          157         |      sll       | 0000004d  | 0000030b  | X | 
-riscv_opcode 33, riscv_pc 000007e8, sb_pc 000007ec
-rc_rd_p =18, rc_sr1_p =24, rc_rs1_val =         77, rc_rs2_p = 7 rc_rs2_val =          0| sb_rd_p =28, sb_sr1_p =22, sb_rs1_val =       860, sb_rs2_p =14 sb_rs2_val =         0
- 000007fc | 000007f8 |          158         |      sll       | 000001bc  | 0000030b  | X | 
-riscv_opcode 33, riscv_pc 000007f4, sb_pc 000007f8
-rc_rd_p = 0, rc_sr1_p =15, rc_rs1_val =        222, rc_rs2_p =17 rc_rs2_val =          1| sb_rd_p =12, sb_sr1_p = 8, sb_rs1_val =       536, sb_rs2_p =31 sb_rs2_val =         0
+Instruction Decode/Execute 00ba6433
+rc_rd_p = 8, rc_sr1_p =20, rc_rs1_val =        517, rc_rs2_p =11 rc_rs2_val =       -251| sb_rd_p = 8, sb_sr1_p =20, sb_rs1_val =         5, sb_rs2_p =11 sb_rs2_val =4294966533
+ 0000022c | 0000022c |          137         |      slli      | e0a00000  | a0a00000  | X | SLLI
+riscv_opcode 13, riscv_pc 00000224, sb_pc 0000022c
+Instruction Decode/Execute 01541e93
+rc_rd_p =29, rc_sr1_p = 8, rc_rs1_val =       -251, rc_rs2_p =21 rc_rs2_val =          5| sb_rd_p =29, sb_sr1_p = 8, sb_rs1_val =4294966533, sb_rs2_p =21 sb_rs2_val =         5
+ 00000230 | 00000230 |          138         |      xor       | ffffff05  | fffffd05  | X | XOR
+riscv_opcode 33, riscv_pc 00000228, sb_pc 00000230
+Instruction Decode/Execute 00d44233
+rc_rd_p = 4, rc_sr1_p = 8, rc_rs1_val =       -251, rc_rs2_p =13 rc_rs2_val =          0| sb_rd_p = 4, sb_sr1_p = 8, sb_rs1_val =4294966533, sb_rs2_p =13 sb_rs2_val =         0
+ 00000234 | 00000234 |          139         |      xor       | ffffff31  | ffffff31  | PASS | XOR
+Instruction Decode/Execute 003041b3
+ 00000238 | 00000238 |          140         |      ori       | 000001fd  | 000001fd  | PASS | ORI
+Instruction Decode/Execute 09cf6213
+ 0000023c | 0000023c |          141         |      sll       | 00000188  | 00000188  | PASS | SLL
+Instruction Decode/Execute 006d1bb3
+ 00000240 | 00000240 |          142         |      srl       | fffffd06  | fffffd06  | PASS | SRL
+Instruction Decode/Execute 000e5bb3
+ 00000244 | 00000244 |          143         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01a35f33
+ 00000248 | 00000248 |          144         |      slli      | 40080000  | 40080000  | PASS | SLLI
+Instruction Decode/Execute 01391613
+xd       588 17      191119 5
+ 0000024c | 0000024c |          145         |      srli      | 00001fff  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000244, sb_pc 0000024c
+Instruction Decode/Execute 0135d293
+rc_rd_p = 5, rc_sr1_p =11, rc_rs1_val =       -251, rc_rs2_p =19 rc_rs2_val =          0| sb_rd_p = 5, sb_sr1_p =11, sb_rs1_val =4294966533, sb_rs2_p =19 sb_rs2_val =         0
+ 00000250 | 00000250 |          146         |      slti      |     1     |     1     | PASS 
+ 00000254 | 00000254 |          147         |      or        | fffda747  | fffda747  | PASS | OR
+Instruction Decode/Execute 001aea33
+ 00000258 | 00000258 |          148         |      andi      | 00000088  | 00000088  | PASS | ANDI
+Instruction Decode/Execute 0ac8f913
+ 0000025c | 0000025c |          149         |      ori       | 000000dd  | 000000dd  | PASS | ORI
+Instruction Decode/Execute 099d6993
+xd       608 17       630 614
+ 00000260 | 00000260 |          150         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 006f5713
+ 00000264 | 00000264 |          151         |      add       | 000000c5  | 000000c5  | PASS | ADD
+Instruction Decode/Execute 017d0f33
+xd       616 17      261026 7
+ 00000268 | 00000268 |          152         |      srli      | 0000003f  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000260, sb_pc 00000268
+Instruction Decode/Execute 01a55393
+rc_rd_p = 7, rc_sr1_p =10, rc_rs1_val =   -9830204, rc_rs2_p =26 rc_rs2_val =        196| sb_rd_p = 7, sb_sr1_p =10, sb_rs1_val =4285137092, sb_rs2_p =26 sb_rs2_val =       196
+ 0000026c | 0000026c |          153         |      addi      | fffffd30  | fffffd30  | PASS | ADDI
+Instruction Decode/Execute 02ae0313
+ 00000270 | 00000270 |          154         |      xori      | 000000e8  | 000000e8  | PASS | XORI
+Instruction Decode/Execute 0edac493
+ 00000274 | 00000274 |          155         |      xori      | ffffff89  | ffffff89  | PASS | XORI
+Instruction Decode/Execute f549ca93
+ 00000278 | 00000278 |          156         |      ori       | ffffff6c  | ffffff6c  | PASS | ORI
+Instruction Decode/Execute f6c66793
+ 0000027c | 0000027c |          157         |      xor       | fffda83f  | 000257ff  | X | XOR
+riscv_opcode 33, riscv_pc 00000274, sb_pc 0000027c
+Instruction Decode/Execute 007845b3
+rc_rd_p =11, rc_sr1_p =16, rc_rs1_val =    -153600, rc_rs2_p = 7 rc_rs2_val =         63| sb_rd_p =11, sb_sr1_p =16, sb_rs1_val =4294813696, sb_rs2_p = 7 sb_rs2_val =4294967295
+ 00000280 | 00000280 |          158         |      add       | e09da747  | a09da747  | X | ADD
+riscv_opcode 33, riscv_pc 00000278, sb_pc 00000280
+Instruction Decode/Execute 001e84b3
+rc_rd_p = 9, rc_sr1_p =29, rc_rs1_val = -526385152, rc_rs2_p = 1 rc_rs2_val =    -153785| sb_rd_p = 9, sb_sr1_p =29, sb_rs1_val =2694840320, sb_rs2_p = 1 sb_rs2_val =4294813511
+ 00000284 | 00000284 |          159         |      ori       | ffffff75  | ffffff75  | PASS | ORI
+Instruction Decode/Execute f75dea13
+xd       648 17      12 21223
+ 00000288 | 00000288 |          160         |      srli      | 000fffff  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000280, sb_pc 00000288
+Instruction Decode/Execute 00c15b93
+rc_rd_p =23, rc_sr1_p = 2, rc_rs1_val =       -764, rc_rs2_p =12 rc_rs2_val = 1074266112| sb_rd_p =23, sb_sr1_p = 2, sb_rs1_val =4294966532, sb_rs2_p =12 sb_rs2_val =1074266112
+xd       652 17       613 627
+ 0000028c | 0000028c |          161         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 0066dd93
+ 00000290 | 00000290 |          162         |      and       | 40080000  | 40080000  | PASS | AND
+Instruction Decode/Execute 008675b3
+ 00000294 | 00000294 |          163         |      addi      | e0a000bf  | a0a000bf  | X | ADDI
+riscv_opcode 13, riscv_pc 0000028c, sb_pc 00000294
+Instruction Decode/Execute 0bfe8f93
+rc_rd_p =31, rc_sr1_p =29, rc_rs1_val = -526385152, rc_rs2_p =31 rc_rs2_val =   -9830400| sb_rd_p =31, sb_sr1_p =29, sb_rs1_val =2694840320, sb_rs2_p =31 sb_rs2_val =2694840511
+ 00000298 | 00000298 |          164         |      sll       | 80000000  | 80000000  | PASS | SLL
+Instruction Decode/Execute 01f41e33
+ 0000029c | 0000029c |          165         |      ori       | e09da7ef  | a09da7ef  | X | ORI
+riscv_opcode 13, riscv_pc 00000294, sb_pc 0000029c
+Instruction Decode/Execute 0ab4ed13
+rc_rd_p =26, rc_sr1_p = 9, rc_rs1_val = -526538937, rc_rs2_p =11 rc_rs2_val = 1074266112| sb_rd_p =26, sb_sr1_p = 9, sb_rs1_val =2694686535, sb_rs2_p =11 sb_rs2_val =1074266112
+ 000002a0 | 000002a0 |          166         |      ori       | ffffffc6  | ffffffc6  | PASS | ORI
+Instruction Decode/Execute f0656f13
+ 000002a4 | 000002a4 |          167         |      addi      | fffffd0a  | fffffd0a  | PASS | ADDI
+Instruction Decode/Execute 00610f13
+ 000002a8 | 000002a8 |          168         |      slli      | fffa6000  | fffa6000  | PASS | SLLI
+Instruction Decode/Execute 00931e13
+ 000002ac | 000002ac |          169         |      sltiu     |     0     |     0     | PASS 
+ 000002b0 | 000002b0 |          170         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00c33433
+ 000002b4 | 000002b4 |          171         |      slli      | 00000324  | 00000324  | PASS | SLLI
+Instruction Decode/Execute 00289013
+ 000002b8 | 000002b8 |          172         |      sll       | e0a000bf  | a0a000bf  | X | SLL
+riscv_opcode 33, riscv_pc 000002b0, sb_pc 000002b8
+Instruction Decode/Execute 00cf9eb3
+rc_rd_p =29, rc_sr1_p =31, rc_rs1_val = -526384961, rc_rs2_p =12 rc_rs2_val = 1074266112| sb_rd_p =29, sb_sr1_p =31, sb_rs1_val =2694840511, sb_rs2_p =12 sb_rs2_val =1074266112
+ 000002bc | 000002bc |          173         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 00562ab3
+ 0 | 000002c0 |          174         |      sltiu     |     1     |     0     | X 
+riscv_opcode 13, riscv_pc 000002b8, sb_pc 000002c0
+rc_rd_p = 9, rc_sr1_p = 7, rc_rs1_val =         63, rc_rs2_p =25 rc_rs2_val =         70| sb_rd_p = 9, sb_sr1_p = 7, sb_rs1_val =4294967295, sb_rs2_p =25 sb_rs2_val =        70
+xd       708 17      29 529 2
+ 000002c4 | 000002c4 |          175         |      srli      | 00000000  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 000002bc, sb_pc 000002c4
+Instruction Decode/Execute 01d2d113
+rc_rd_p = 2, rc_sr1_p = 5, rc_rs1_val =       8191, rc_rs2_p =29 rc_rs2_val = -526384961| sb_rd_p = 2, sb_sr1_p = 5, sb_rs1_val =4294967295, sb_rs2_p =29 sb_rs2_val =2694840511
+xd       712 17      17 017 2
+ 000002c8 | 000002c8 |          176         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01105113
+xd       716 17      28 82827
+ 000002cc | 000002cc |          177         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01c45d93
+ 000002d0 | 000002d0 |          178         |      andi      | ffffff11  | ffffff11  | PASS | ANDI
+Instruction Decode/Execute f5d1fc13
+ 000002d4 | 000002d4 |          179         |      sll       | fff4c000  | fffa6000  | X | SLL
+riscv_opcode 33, riscv_pc 000002cc, sb_pc 000002d4
+Instruction Decode/Execute 009e1433
+rc_rd_p = 8, rc_sr1_p =28, rc_rs1_val =    -368640, rc_rs2_p = 9 rc_rs2_val =          1| sb_rd_p = 8, sb_sr1_p =28, sb_rs1_val =4294598656, sb_rs2_p = 9 sb_rs2_val =         0
+ 000002d8 | 000002d8 |          180         |      or        | fffffd0a  | fffffd0a  | PASS | OR
+Instruction Decode/Execute 01e76f33
+ 000002dc | 000002dc |          181         |      slti      |     0     |     0     | PASS 
+ 000002e0 | 000002e0 |          182         |      xor       | 000fffff  | ffffffff  | X | XOR
+riscv_opcode 33, riscv_pc 000002d8, sb_pc 000002e0
+Instruction Decode/Execute 017acd33
+rc_rd_p =26, rc_sr1_p =21, rc_rs1_val =          0, rc_rs2_p =23 rc_rs2_val =    1048575| sb_rd_p =26, sb_sr1_p =21, sb_rs1_val =         0, sb_rs2_p =23 sb_rs2_val =4294967295
+ 000002e4 | 000002e4 |          183         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 014efcb3
+ 000002e8 | 000002e8 |          184         |      xori      | ffffff24  | ffffff24  | PASS | XORI
+Instruction Decode/Execute fac94d13
+ 000002ec | 000002ec |          185         |      sll       | 80000000  | 80000000  | PASS | SLL
+Instruction Decode/Execute 01f291b3
+ 000002f0 | 000002f0 |          186         |      ori       | fffffffa  | fffffffa  | PASS | ORI
+Instruction Decode/Execute ff0f6593
+ 000002f4 | 000002f4 |          187         |      addi      | 0000006f  | 0000002f  | X | ADDI
+riscv_opcode 13, riscv_pc 000002ec, sb_pc 000002f4
+Instruction Decode/Execute 03038093
+rc_rd_p = 1, rc_sr1_p = 7, rc_rs1_val =         63, rc_rs2_p =16 rc_rs2_val =    -153600| sb_rd_p = 1, sb_sr1_p = 7, sb_rs1_val =4294967295, sb_rs2_p =16 sb_rs2_val =4294813696
+ 000002f8 | 000002f8 |          188         |      andi      | e0a00085  | a0a00085  | X | ANDI
+riscv_opcode 13, riscv_pc 000002f0, sb_pc 000002f8
+Instruction Decode/Execute f85ef313
+rc_rd_p = 6, rc_sr1_p =29, rc_rs1_val = -526384961, rc_rs2_p = 5 rc_rs2_val =       8191| sb_rd_p = 6, sb_sr1_p =29, sb_rs1_val =2694840511, sb_rs2_p = 5 sb_rs2_val =4294967295
+ 000002fc | 000002fc |          189         |      srl       | 0fffa600  | 0fffa600  | PASS | SRL
+Instruction Decode/Execute 00ae5133
+ 00000300 | 00000300 |          190         |      or        | ffffffff  | ffffffff  | PASS | OR
+Instruction Decode/Execute 00b36bb3
+ 00000304 | 00000304 |          191         |      or        | ffffff35  | ffffff35  | PASS | OR
+Instruction Decode/Execute 018d6cb3
+ 00000308 | 00000308 |          192         |      slti      |     1     |     1     | PASS 
+ 0000030c | 0000030c |          193         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 007ede33
+ 00000310 | 00000310 |          194         |      slti      |     1     |     1     | PASS 
+ 00000314 | 00000314 |          195         |      xor       | 7fffff24  | 7fffff24  | PASS | XOR
+Instruction Decode/Execute 01a1c7b3
+ 00000318 | 00000318 |          196         |      slli      | fffffe00  | fffffe00  | PASS | SLLI
+Instruction Decode/Execute 009b9413
+ 0000031c | 0000031c |          197         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 0043a333
+ 00000320 | 00000320 |          198         |      andi      | 00000096  | 00000096  | PASS | ANDI
+Instruction Decode/Execute 0962f013
+ 00000324 | 00000324 |          199         |      srl       | 7fffff88  | 7fffff88  | PASS | SRL
+Instruction Decode/Execute 006c56b3
+ 00000328 | 00000328 |          200         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01405933
+ 0000032c | 0000032c |          201         |      sll       | ffc40000  | ffc40000  | PASS | SLL
+Instruction Decode/Execute 00169233
+ 00000330 | 00000330 |          202         |      sll       | 0000006f  | 0000002f  | X | SLL
+riscv_opcode 33, riscv_pc 00000328, sb_pc 00000330
+Instruction Decode/Execute 00009933
+rc_rd_p =18, rc_sr1_p = 1, rc_rs1_val =        111, rc_rs2_p = 0 rc_rs2_val =          0| sb_rd_p =18, sb_sr1_p = 1, sb_rs1_val =        47, sb_rs2_p = 0 sb_rs2_val =         0
+ 00000334 | 00000334 |          203         |      sltiu     |     1     |     1     | PASS 
+ 00000338 | 00000338 |          204         |      addi      | 00000115  | 000000d5  | X | ADDI
+riscv_opcode 13, riscv_pc 00000330, sb_pc 00000338
+Instruction Decode/Execute 0d638713
+rc_rd_p =14, rc_sr1_p = 7, rc_rs1_val =         63, rc_rs2_p =22 rc_rs2_val =        511| sb_rd_p =14, sb_sr1_p = 7, sb_rs1_val =4294967295, sb_rs2_p =22 sb_rs2_val =4294967295
+ 0000033c | 0000033c |          205         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00dfbab3
+ 00000340 | 00000340 |          206         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 0090a233
+ 00000344 | 00000344 |          207         |      add       | 00000000  | 00000000  | PASS | ADD
+Instruction Decode/Execute 017e8533
+ 00000348 | 00000348 |          208         |      ori       | 0000002f  | 0000002f  | PASS | ORI
+Instruction Decode/Execute 02faed93
+ 0000034c | 0000034c |          209         |      ori       | fffffffe  | fffffffe  | PASS | ORI
+Instruction Decode/Execute 0cc5ee13
+xd       848 17      103010 9
+ 00000350 | 00000350 |          210         |      srli      | 003fffff  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000348, sb_pc 00000350
+Instruction Decode/Execute 00af5493
+rc_rd_p = 9, rc_sr1_p =30, rc_rs1_val =       -758, rc_rs2_p =10 rc_rs2_val =          0| sb_rd_p = 9, sb_sr1_p =30, sb_rs1_val =4294966538, sb_rs2_p =10 sb_rs2_val =         0
+ 00000354 | 00000354 |          211         |      addi      | 00000105  | 000000c5  | X | ADDI
+riscv_opcode 13, riscv_pc 0000034c, sb_pc 00000354
+Instruction Decode/Execute 0c638d93
+rc_rd_p =27, rc_sr1_p = 7, rc_rs1_val =         63, rc_rs2_p = 6 rc_rs2_val =          1| sb_rd_p =27, sb_sr1_p = 7, sb_rs1_val =4294967295, sb_rs2_p = 6 sb_rs2_val =         1
+ 0 | 00000358 |          212         |      sltiu     |     0     |     1     | X 
+riscv_opcode 13, riscv_pc 00000350, sb_pc 00000358
+rc_rd_p = 1, rc_sr1_p =13, rc_rs1_val = 2147483528, rc_rs2_p =10 rc_rs2_val =          0| sb_rd_p = 1, sb_sr1_p =13, sb_rs1_val =2147483528, sb_rs2_p =10 sb_rs2_val =         0
+ 0000035c | 0000035c |          213         |      add       | 00001ffe  | fffffffe  | X | ADD
+riscv_opcode 33, riscv_pc 00000354, sb_pc 0000035c
+Instruction Decode/Execute 005b8233
+rc_rd_p = 4, rc_sr1_p =23, rc_rs1_val =         -1, rc_rs2_p = 5 rc_rs2_val =       8191| sb_rd_p = 4, sb_sr1_p =23, sb_rs1_val =4294967295, sb_rs2_p = 5 sb_rs2_val =4294967295
+ 00000360 | 00000360 |          214         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 001a9233
+ 00000364 | 00000364 |          215         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 017a7cb3
+ 00000368 | 00000368 |          216         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01c02bb3
+ 0000036c | 0000036c |          217         |      addi      | ffffff17  | ffffff17  | PASS | ADDI
+Instruction Decode/Execute f17a8413
+ 00000370 | 00000370 |          218         |      srl       | 0fffffd0  | 0fffffd0  | PASS | SRL
+Instruction Decode/Execute 00ff5133
+ 00000374 | 00000374 |          219         |      xori      | 00000014  | 00000014  | PASS | XORI
+Instruction Decode/Execute 01424b93
+ 00000378 | 00000378 |          220         |      srl       | 00000000  | 00000001  | X | SRL
+riscv_opcode 33, riscv_pc 00000370, sb_pc 00000378
+Instruction Decode/Execute 0093ddb3
+rc_rd_p =27, rc_sr1_p = 7, rc_rs1_val =         63, rc_rs2_p = 9 rc_rs2_val =    4194303| sb_rd_p =27, sb_sr1_p = 7, sb_rs1_val =4294967295, sb_rs2_p = 9 sb_rs2_val =4294967295
+ 0000037c | 0000037c |          221         |      xori      | 000000fc  | 000000fc  | PASS | XORI
+Instruction Decode/Execute 0fcacd13
+ 00000380 | 00000380 |          222         |      slli      | ffffe800  | ffffe800  | PASS | SLLI
+Instruction Decode/Execute 00711e13
+ 00000384 | 00000384 |          223         |      add       | 8ffffef4  | 8ffffef4  | PASS | ADD
+Instruction Decode/Execute 00f10f33
+ 00000388 | 00000388 |          224         |      addi      | 0000008a  | 0000008a  | PASS | ADDI
+Instruction Decode/Execute 08a50b93
+ 0000038c | 0000038c |          225         |      addi      | 00000095  | 00000095  | PASS | ADDI
+Instruction Decode/Execute fb898313
+ 00000390 | 00000390 |          226         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 0155a433
+ 00000394 | 00000394 |          227         |      sll       | a8000000  | a8000000  | PASS | SLL
+Instruction Decode/Execute 00281733
+ 00000398 | 00000398 |          228         |      xor       | 80000000  | 80000000  | PASS | XOR
+Instruction Decode/Execute 003ccab3
+ 0000039c | 0000039c |          229         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 009ddcb3
+xd       928 17       530 510
+ 000003a0 | 000003a0 |          230         |      srli      | 047ffff7  | fc7ffff7  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000398, sb_pc 000003a0
+Instruction Decode/Execute 005f5513
+rc_rd_p =10, rc_sr1_p =30, rc_rs1_val =-1879048460, rc_rs2_p = 5 rc_rs2_val =       8191| sb_rd_p =10, sb_sr1_p =30, sb_rs1_val =2415918836, sb_rs2_p = 5 sb_rs2_val =4294967295
+ 000003a4 | 000003a4 |          231         |      slti      |     0     |     0     | PASS 
+ 000003a8 | 000003a8 |          232         |      ori       | ffffe841  | ffffe841  | PASS | ORI
+Instruction Decode/Execute 041e6c13
+ 000003ac | 000003ac |          233         |      sltiu     |     0     |     0     | PASS 
+ 000003b0 | 000003b0 |          234         |      sltiu     |     0     |     0     | PASS 
+ 000003b4 | 000003b4 |          235         |      add       | 4007e800  | 4007e800  | PASS | ADD
+Instruction Decode/Execute 01c60ab3
+ 000003b8 | 000003b8 |          236         |      add       | 00000186  | 00000186  | PASS | ADD
+Instruction Decode/Execute 01ab8d33
+ 000003bc | 000003bc |          237         |      and       | 0fffffd0  | 0fffffd0  | PASS | AND
+Instruction Decode/Execute 00217f33
+ 000003c0 | 000003c0 |          238         |      and       | 00000001  | 00000001  | PASS | AND
+Instruction Decode/Execute 008ff0b3
+ 000003c4 | 000003c4 |          239         |      or        | 80000001  | 80000001  | PASS | OR
+Instruction Decode/Execute 0030eab3
+xd       968 17      12 012 1
+ 000003c8 | 000003c8 |          240         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 00c05093
+ 000003cc | 000003cc |          241         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00499b33
+ 000003d0 | 000003d0 |          242         |      addi      | ffffff6d  | ffffff6d  | PASS | ADDI
+Instruction Decode/Execute f7358793
+ 000003d4 | 000003d4 |          243         |      or        | fffffffa  | fffffffa  | PASS | OR
+Instruction Decode/Execute 00ba67b3
+ 000003d8 | 000003d8 |          244         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01819e13
+ 000003dc | 000003dc |          245         |      sltiu     |     1     |     1     | PASS 
+ 000003e0 | 000003e0 |          246         |      xori      | 000001e2  | 000001e2  | PASS | XORI
+Instruction Decode/Execute 064d4513
+ 000003e4 | 000003e4 |          247         |      slti      |     0     |     0     | PASS 
+ 000003e8 | 000003e8 |          248         |      slt       | 00000000  | 00000001  | X | SLT
+riscv_opcode 33, riscv_pc 000003e0, sb_pc 000003e8
+Instruction Decode/Execute 0002a3b3
+rc_rd_p = 7, rc_sr1_p = 5, rc_rs1_val =       8191, rc_rs2_p = 0 rc_rs2_val =          0| sb_rd_p = 7, sb_sr1_p = 5, sb_rs1_val =4294967295, sb_rs2_p = 0 sb_rs2_val =         0
+ 000003ec | 000003ec |          249         |      slti      |     0     |     0     | PASS 
+ 000003f0 | 000003f0 |          250         |      add       | 00000186  | 00000186  | PASS | ADD
+Instruction Decode/Execute 01ac8db3
+ 000003f4 | 000003f4 |          251         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 01ce38b3
+ 000003f8 | 000003f8 |          252         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 01293a33
+ 000003fc | 000003fc |          253         |      addi      | 00000027  | 00000027  | PASS | ADDI
+Instruction Decode/Execute 027a0593
+ 00000400 | 00000400 |          254         |      sltiu     |     1     |     1     | PASS 
+ 00000404 | 00000404 |          255         |      or        | 00000001  | 00000001  | PASS | OR
+Instruction Decode/Execute 010263b3
+ 00000408 | 00000408 |          256         |      add       | 0000026c  | 0000026c  | PASS | ADD
+Instruction Decode/Execute 00ab8f33
+ 0000040c | 0000040c |          257         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 004a4e33
+ 00000410 | 00000410 |          258         |      srl       | ffffe841  | ffffe841  | PASS | SRL
+Instruction Decode/Execute 00ec56b3
+ 00000414 | 00000414 |          259         |      add       | 00000000  | 00000000  | PASS | ADD
+Instruction Decode/Execute 013c8cb3
+ 00000418 | 00000418 |          260         |      ori       | ffffffd2  | ffffffd2  | PASS | ORI
+Instruction Decode/Execute fd21ef93
+ 0000041c | 0000041c |          261         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 005b7c33
+pc_val: 00000420, rx_f: 10, imm: 000000000000000000000, rs1: 01, rs2: 00, rdd: 17
+ 00000420 | 00000420 |          262         |      srli      | 00000000  | 00000000  | PASS | SRLI
+Instruction Decode/Execute 0000db93
+ 00000424 | 00000424 |          263         |      slti      |     1     |     1     | PASS 
+ 00000428 | 00000428 |          264         |      addi      | 7fffffbd  | 7fffffbd  | PASS | ADDI
+Instruction Decode/Execute fbd18793
+ 0000042c | 0000042c |          265         |      andi      | 000000a2  | 000000a2  | PASS | ANDI
+Instruction Decode/Execute 0a657a13
+ 00000430 | 00000430 |          266         |      xori      | 0000008f  | 0000008f  | PASS | XORI
+Instruction Decode/Execute 08f0cc93
+ 00000434 | 00000434 |          267         |      sll       | 1fffff80  | ffffff80  | X | SLL
+riscv_opcode 33, riscv_pc 0000042c, sb_pc 00000434
+Instruction Decode/Execute 00b495b3
+rc_rd_p =11, rc_sr1_p = 9, rc_rs1_val =    4194303, rc_rs2_p =11 rc_rs2_val =         39| sb_rd_p =11, sb_sr1_p = 9, sb_rs1_val =4294967295, sb_rs2_p =11 sb_rs2_val =4294967168
+ 00000438 | 00000438 |          268         |      add       | 00000000  | 00000000  | PASS | ADD
+Instruction Decode/Execute 01308c33
+ 0000043c | 0000043c |          269         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 039d7613
+ 00000440 | 00000440 |          270         |      andi      | 00001f22  | ffffff22  | X | ANDI
+riscv_opcode 13, riscv_pc 00000438, sb_pc 00000440
+Instruction Decode/Execute f222ff13
+rc_rd_p =30, rc_sr1_p = 5, rc_rs1_val =       8191, rc_rs2_p = 2 rc_rs2_val =  268435408| sb_rd_p =30, sb_sr1_p = 5, sb_rs1_val =4294967295, sb_rs2_p = 2 sb_rs2_val = 268435408
+xd      1092 17      212221 9
+ 00000444 | 00000444 |          271         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 015b5493
+ 00000448 | 00000448 |          272         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01085c33
+ 0000044c | 0000044c |          273         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute f6867a93
+ 00000450 | 00000450 |          274         |      add       | 00000001  | 00000001  | PASS | ADD
+Instruction Decode/Execute 008982b3
+ 00000454 | 00000454 |          275         |      xor       | 00001f22  | ffffff22  | X | XOR
+riscv_opcode 33, riscv_pc 0000044c, sb_pc 00000454
+Instruction Decode/Execute 015f4633
+rc_rd_p =12, rc_sr1_p =30, rc_rs1_val =       7970, rc_rs2_p =21 rc_rs2_val =          0| sb_rd_p =12, sb_sr1_p =30, sb_rs1_val =4294967074, sb_rs2_p =21 sb_rs2_val =         0
+ 00000458 | 00000458 |          276         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01cb9793
+xd      1116 17      272827 5
+ 0000045c | 0000045c |          277         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01be5293
+ 00000460 | 00000460 |          278         |      or        | 00001f22  | ffffff22  | X | OR
+riscv_opcode 33, riscv_pc 00000458, sb_pc 00000460
+Instruction Decode/Execute 01ee6433
+rc_rd_p = 8, rc_sr1_p =28, rc_rs1_val =          0, rc_rs2_p =30 rc_rs2_val =       7970| sb_rd_p = 8, sb_sr1_p =28, sb_rs1_val =         0, sb_rs2_p =30 sb_rs2_val =4294967074
+ 00000464 | 00000464 |          279         |      srl       | 02a00000  | 02a00000  | PASS | SRL
+Instruction Decode/Execute 01b75133
+ 00000468 | 00000468 |          280         |      srl       | 00000001  | 00000001  | PASS | SRL
+Instruction Decode/Execute 00385c33
+ 0000046c | 0000046c |          281         |      xori      | 000000e6  | 000000a6  | X | XORI
+riscv_opcode 13, riscv_pc 00000464, sb_pc 0000046c
+Instruction Decode/Execute 08994413
+rc_rd_p = 8, rc_sr1_p =18, rc_rs1_val =        111, rc_rs2_p = 9 rc_rs2_val =          0| sb_rd_p = 8, sb_sr1_p =18, sb_rs1_val =        47, sb_rs2_p = 9 sb_rs2_val =         0
+ 00000470 | 00000470 |          282         |      add       | 00000187  | 00000187  | PASS | ADD
+Instruction Decode/Execute 018d8033
+ 00000474 | 00000474 |          283         |      sltiu     |     1     |     1     | PASS 
+ 00000478 | 00000478 |          284         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 010075b3
+ 0000047c | 0000047c |          285         |      sll       | 80000000  | 80000000  | PASS | SLL
+Instruction Decode/Execute 013195b3
+ 00000480 | 00000480 |          286         |      xori      | 00000075  | 00000075  | PASS | XORI
+Instruction Decode/Execute 0faccc93
+ 00000484 | 00000484 |          287         |      ori       | 000000f3  | 000000f3  | PASS | ORI
+Instruction Decode/Execute 0f2c6513
+ 00000488 | 00000488 |          288         |      xori      | 7fffff6a  | 7fffff6a  | PASS | XORI
+Instruction Decode/Execute f6a5c413
+ 0000048c | 0000048c |          289         |      slti      |     0     |     0     | PASS 
+ 00000490 | 00000490 |          290         |      sltiu     |     1     |     1     | PASS 
+ 00000494 | 00000494 |          291         |      xor       | ffffe9c7  | ffffe9c7  | PASS | XOR
+Instruction Decode/Execute 01b6c433
+ 00000498 | 00000498 |          292         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 004adeb3
+ 0000049c | 0000049c |          293         |      slt       | 00000001  | 00000000  | X | SLT
+riscv_opcode 33, riscv_pc 00000494, sb_pc 0000049c
+Instruction Decode/Execute 00c92a33
+rc_rd_p =20, rc_sr1_p =18, rc_rs1_val =        111, rc_rs2_p =12 rc_rs2_val =       7970| sb_rd_p =20, sb_sr1_p =18, sb_rs1_val =        47, sb_rs2_p =12 sb_rs2_val =4294967074
+ 000004a0 | 000004a0 |          294         |      xor       | 00000001  | 00000001  | PASS | XOR
+Instruction Decode/Execute 0007c4b3
+ 000004a4 | 000004a4 |          295         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 009bfdb3
+ 000004a8 | 000004a8 |          296         |      slti      |     1     |     1     | PASS 
+ 000004ac | 000004ac |          297         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00f4b5b3
+ 000004b0 | 000004b0 |          298         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 00921b93
+ 000004b4 | 000004b4 |          299         |      sll       | 00000002  | 00000002  | PASS | SLL
+Instruction Decode/Execute 007498b3
+ 000004b8 | 000004b8 |          300         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00f215b3
+ 000004bc | 000004bc |          301         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 00784b33
+ 000004c0 | 000004c0 |          302         |      srl       | 00001f22  | ffffff22  | X | SRL
+riscv_opcode 33, riscv_pc 000004b8, sb_pc 000004c0
+Instruction Decode/Execute 00b65333
+rc_rd_p = 6, rc_sr1_p =12, rc_rs1_val =       7970, rc_rs2_p =11 rc_rs2_val =          0| sb_rd_p = 6, sb_sr1_p =12, sb_rs1_val =4294967074, sb_rs2_p =11 sb_rs2_val =         0
+ 000004c4 | 000004c4 |          303         |      add       | 7fffe9c7  | 7fffe9c7  | PASS | ADD
+Instruction Decode/Execute 00818a33
+ 000004c8 | 000004c8 |          304         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 016813b3
+ 000004cc | 000004cc |          305         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 0102d033
+ 000004d0 | 000004d0 |          306         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00be1733
+ 000004d4 | 000004d4 |          307         |      srl       | 00000001  | 00000001  | PASS | SRL
+Instruction Decode/Execute 0133de33
+xd      1240 17      25142523
+ 000004d8 | 000004d8 |          308         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01975b93
+ 000004dc | 000004dc |          309         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 00d93fb3
+ 000004e0 | 000004e0 |          310         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 014e9213
+ 000004e4 | 000004e4 |          311         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 0883fc13
+ 000004e8 | 000004e8 |          312         |      ori       | ffffffe5  | ffffffe5  | PASS | ORI
+Instruction Decode/Execute fe50e113
+ 000004ec | 000004ec |          313         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01c71913
+ 000004f0 | 000004f0 |          314         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 003da733
+ 000004f4 | 000004f4 |          315         |      slti      |     0     |     0     | PASS 
+ 000004f8 | 000004f8 |          316         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01a5d9b3
+ 000004fc | 000004fc |          317         |      xor       | ffffffe7  | ffffffe7  | PASS | XOR
+Instruction Decode/Execute 01114533
+ 00000500 | 00000500 |          318         |      xori      | fffffff6  | fffffff6  | PASS | XORI
+Instruction Decode/Execute ff6bc513
+ 00000504 | 00000504 |          319         |      sll       | 00000002  | 00000002  | PASS | SLL
+Instruction Decode/Execute 00939cb3
+ 00000508 | 00000508 |          320         |      slti      |     0     |     0     | PASS 
+ 0000050c | 0000050c |          321         |      ori       | 00000081  | 00000081  | PASS | ORI
+Instruction Decode/Execute 081c6313
+ 00000510 | 00000510 |          322         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00b01cb3
+ 00000514 | 00000514 |          323         |      andi      | 80000000  | 80000000  | PASS | ANDI
+Instruction Decode/Execute fce1f013
+ 00000518 | 00000518 |          324         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 015429b3
+ 0000051c | 0000051c |          325         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 00d3bbb3
+ 00000520 | 00000520 |          326         |      slli      | 70000000  | 70000000  | PASS | SLLI
+Instruction Decode/Execute 01c41393
+ 00000524 | 00000524 |          327         |      addi      | fffffff8  | fffffff8  | PASS | ADDI
+Instruction Decode/Execute ff858413
+ 00000528 | 00000528 |          328         |      xor       | 7fffe9c7  | 7fffe9c7  | PASS | XOR
+Instruction Decode/Execute 018a49b3
+ 0000052c | 0000052c |          329         |      add       | 00000187  | 00000187  | PASS | ADD
+Instruction Decode/Execute 01a80233
+ 00000530 | 00000530 |          330         |      slti      |     0     |     0     | PASS 
+ 00000534 | 00000534 |          331         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 00bfcb33
+ 00000538 | 00000538 |          332         |      andi      | 00000001  | 00000001  | PASS | ANDI
+Instruction Decode/Execute 0097f313
+ 0000053c | 0000053c |          333         |      andi      | 00000042  | 00000042  | PASS | ANDI
+Instruction Decode/Execute 04b57d93
+ 00000540 | 00000540 |          334         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 016f1a33
+ 00000544 | 00000544 |          335         |      or        | 00000042  | 00000042  | PASS | OR
+Instruction Decode/Execute 011decb3
+ 00000548 | 00000548 |          336         |      add       | 00000187  | 00000187  | PASS | ADD
+Instruction Decode/Execute 004285b3
+ 0000054c | 0000054c |          337         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01d229b3
+ 00000550 | 00000550 |          338         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 01afb2b3
+ 00000554 | 00000554 |          339         |      slti      |     1     |     1     | PASS 
+ 00000558 | 00000558 |          340         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 001fff93
+pc_val: 0000055c, rx_f: 10, imm: 000000000000000000000, rs1: 06, rs2: 00, rdd: 12
+ 0000055c | 0000055c |          341         |      srli      | 00000001  | 00000001  | PASS | SRLI
+Instruction Decode/Execute 00035913
+ 00000560 | 00000560 |          342         |      add       | 00000038  | 00000038  | PASS | ADD
+Instruction Decode/Execute 00ac8d33
+ 00000564 | 00000564 |          343         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00f5b033
+ 00000568 | 00000568 |          344         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 007e2533
+xd      1388 17      13 813 9
+ 0000056c | 0000056c |          345         |      srli      | 0007ffff  | ffffffff  | X | FUNC ERROR
+riscv_opcode 13, riscv_pc 00000564, sb_pc 0000056c
+Instruction Decode/Execute 00d45493
+rc_rd_p = 9, rc_sr1_p = 8, rc_rs1_val =         -8, rc_rs2_p =13 rc_rs2_val =      -6079| sb_rd_p = 9, sb_sr1_p = 8, sb_rs1_val =4294967288, sb_rs2_p =13 sb_rs2_val =4294961217
+xd      1392 17      18 71828
+ 00000570 | 00000570 |          346         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 0123de13
+ 00000574 | 00000574 |          347         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01de1613
+ 00000578 | 00000578 |          348         |      xori      | ffffff89  | ffffff89  | PASS | XORI
+Instruction Decode/Execute f89c4b93
+ 0000057c | 0000057c |          349         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 01b53b33
+ 00000580 | 00000580 |          350         |      srl       | 000000c3  | 000000c3  | PASS | SRL
+Instruction Decode/Execute 01225c33
+ 00000584 | 00000584 |          351         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 08fefb93
+ 00000588 | 00000588 |          352         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 00be9a93
+ 0000058c | 0000058c |          353         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 000c3c33
+ 00000590 | 00000590 |          354         |      ori       | 0000003d  | 0000003d  | PASS | ORI
+Instruction Decode/Execute 00dd6513
+ 00000594 | 00000594 |          355         |      xor       | 00000187  | 00000187  | PASS | XOR
+Instruction Decode/Execute 01c5cc33
+xd      1432 17      24242426
+ 00000598 | 00000598 |          356         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 018c5d13
+ 0000059c | 0000059c |          357         |      ori       | ffffff54  | ffffff54  | PASS | ORI
+Instruction Decode/Execute f54aed13
+ 000005a0 | 000005a0 |          358         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 017e3833
+ 000005a4 | 000005a4 |          359         |      addi      | 0000000a  | 0000000a  | PASS | ADDI
+Instruction Decode/Execute 00aa8e13
+ 000005a8 | 000005a8 |          360         |      add       | ffffff54  | ffffff54  | PASS | ADD
+Instruction Decode/Execute 007d0533
+xd      1452 17       325 325
+ 000005ac | 000005ac |          361         |      srli      | 00000008  | 00000008  | PASS | FUNC ERROR
+Instruction Decode/Execute 003cdc93
+ 000005b0 | 000005b0 |          362         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 010396b3
+ 000005b4 | 000005b4 |          363         |      add       | 00000001  | 00000001  | PASS | ADD
+Instruction Decode/Execute 00fe8433
+ 000005b8 | 000005b8 |          364         |      xori      | 000000c0  | 000000c0  | PASS | XORI
+Instruction Decode/Execute 0c1a4b93
+ 000005bc | 000005bc |          365         |      slti      |     0     |     0     | PASS 
+ 000005c0 | 000005c0 |          366         |      or        | 000001c7  | 000001c7  | PASS | OR
+Instruction Decode/Execute 017268b3
+ 000005c4 | 000005c4 |          367         |      slti      |     1     |     1     | PASS 
+ 000005c8 | 000005c8 |          368         |      sltiu     |     1     |     1     | PASS 
+ 000005cc | 000005cc |          369         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 0183bdb3
+ 000005d0 | 000005d0 |          370         |      ori       | 000000f7  | 000000f7  | PASS | ORI
+Instruction Decode/Execute 037be893
+ 000005d4 | 000005d4 |          371         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 00e27333
+ 000005d8 | 000005d8 |          372         |      slli      | fffd5000  | fffd5000  | PASS | SLLI
+Instruction Decode/Execute 00a51013
+pc_val: 000005dc, rx_f: 10, imm: 000000000000000000000, rs1: 09, rs2: 00, rdd: 11
+ 000005dc | 000005dc |          373         |      srli      | 0007ffff  | ffffffff  | X | SRLI
+riscv_opcode 13, riscv_pc 000005d4, sb_pc 000005dc
+Instruction Decode/Execute 0004d893
+rc_rd_p =17, rc_sr1_p = 9, rc_rs1_val =     524287, rc_rs2_p = 0 rc_rs2_val =          0| sb_rd_p =17, sb_sr1_p = 9, sb_rs1_val =4294967295, sb_rs2_p = 0 sb_rs2_val =         0
+ 000005e0 | 000005e0 |          374         |      or        | 0000000a  | 0000000a  | PASS | OR
+Instruction Decode/Execute 01c36033
+ 000005e4 | 000005e4 |          375         |      srl       | 00000005  | 00000005  | PASS | SRL
+Instruction Decode/Execute 008e50b3
+ 000005e8 | 000005e8 |          376         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01e3dd33
+ 000005ec | 000005ec |          377         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 01e1bfb3
+ 000005f0 | 000005f0 |          378         |      slti      |     1     |     1     | PASS 
+ 000005f4 | 000005f4 |          379         |      add       | 00080009  | 00000009  | X | ADD
+riscv_opcode 33, riscv_pc 000005ec, sb_pc 000005f4
+Instruction Decode/Execute 011e03b3
+rc_rd_p = 7, rc_sr1_p =28, rc_rs1_val =         10, rc_rs2_p =17 rc_rs2_val =     524287| sb_rd_p = 7, sb_sr1_p =28, sb_rs1_val =        10, sb_rs2_p =17 sb_rs2_val =4294967295
+ 000005f8 | 000005f8 |          380         |      sll       | 00000200  | 00000200  | PASS | SLL
+Instruction Decode/Execute 007f1933
+ 000005fc | 000005fc |          381         |      sll       | 00000002  | 00000002  | PASS | SLL
+Instruction Decode/Execute 016f1d33
+ 00000600 | 00000600 |          382         |      add       | 00000001  | 00000001  | PASS | ADD
+Instruction Decode/Execute 00800eb3
+ 00000604 | 00000604 |          383         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 00fb47b3
+ 00000608 | 00000608 |          384         |      slti      |     0     |     0     | PASS 
+ 0000060c | 0000060c |          385         |      and       | 00000002  | 00000002  | PASS | AND
+Instruction Decode/Execute 01a27533
+ 00000610 | 00000610 |          386         |      xor       | 00000002  | 00000002  | PASS | XOR
+Instruction Decode/Execute 01a9c333
+ 00000614 | 00000614 |          387         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 01e0b8b3
+ 00000618 | 00000618 |          388         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 000c35b3
+ 0000061c | 0000061c |          389         |      xori      | 0008006e  | 0000006e  | X | XORI
+riscv_opcode 13, riscv_pc 00000614, sb_pc 0000061c
+Instruction Decode/Execute 0673cc13
+rc_rd_p =24, rc_sr1_p = 7, rc_rs1_val =     524297, rc_rs2_p = 7 rc_rs2_val =     524297| sb_rd_p =24, sb_sr1_p = 7, sb_rs1_val =         9, sb_rs2_p = 7 sb_rs2_val =         9
+ 00000620 | 00000620 |          390         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 00bf1533
+ 00000624 | 00000624 |          391         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute f8907693
+ 00000628 | 00000628 |          392         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 00b41533
+ 0000062c | 0000062c |          393         |      andi      | 00000002  | 00000002  | PASS | ANDI
+Instruction Decode/Execute f9637293
+ 00000630 | 00000630 |          394         |      or        | 00000001  | 00000001  | PASS | OR
+Instruction Decode/Execute 01e464b3
+ 00000634 | 00000634 |          395         |      sll       | 00000002  | 00000002  | PASS | SLL
+Instruction Decode/Execute 00d31c33
+ 00000638 | 00000638 |          396         |      add       | 00000000  | 00000000  | PASS | ADD
+Instruction Decode/Execute 00b00b33
+ 0000063c | 0000063c |          397         |      addi      | 0000026e  | 0000026e  | PASS | ADDI
+Instruction Decode/Execute 0e720713
+ 00000640 | 00000640 |          398         |      or        | 0000000b  | 0000000b  | PASS | OR
+Instruction Decode/Execute 008e6ab3
+ 00000644 | 00000644 |          399         |      xori      | 00000024  | 00000024  | PASS | XORI
+Instruction Decode/Execute 025a4393
+ 00000648 | 00000648 |          400         |      ori       | 00000070  | 00000070  | PASS | ORI
+Instruction Decode/Execute 070fe193
+ 0000064c | 0000064c |          401         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 003daa33
+ 00000650 | 00000650 |          402         |      addi      | 00000075  | 00000075  | PASS | ADDI
+Instruction Decode/Execute 07580513
+ 00000654 | 00000654 |          403         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 00903433
+ 00000658 | 00000658 |          404         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 009dccb3
+ 0000065c | 0000065c |          405         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 019d9b33
+ 00000660 | 00000660 |          406         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 028cf713
+ 00000664 | 00000664 |          407         |      sltiu     |     0     |     0     | PASS 
+xd      1640 17      123012 0
+ 00000668 | 00000668 |          408         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 00cf5013
+ 0000066c | 0000066c |          409         |      slti      |     1     |     1     | PASS 
+ 00000670 | 00000670 |          410         |      srl       | 00000100  | 00000100  | PASS | SRL
+Instruction Decode/Execute 00995c33
+ 00000674 | 00000674 |          411         |      addi      | 00000157  | 00000157  | PASS | ADDI
+Instruction Decode/Execute 0e250a93
+ 00000678 | 00000678 |          412         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 00461a93
+ 0000067c | 0000067c |          413         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 0025df33
+xd      1664 17       314 3 1
+ 00000680 | 00000680 |          414         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 00375093
+ 00000684 | 00000684 |          415         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 00b891b3
+ 00000688 | 00000688 |          416         |      andi      | 00000002  | 00000002  | PASS | ANDI
+Instruction Decode/Execute 06737413
+ 0000068c | 0000068c |          417         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 01ee94b3
+ 00000690 | 00000690 |          418         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 0059beb3
+ 00000694 | 00000694 |          419         |      addi      | ffffffd6  | ffffffd6  | PASS | ADDI
+Instruction Decode/Execute fd6f8e93
+ 00000698 | 00000698 |          420         |      xor       | 00000008  | 00000008  | PASS | XOR
+Instruction Decode/Execute 006e4433
+ 0000069c | 0000069c |          421         |      xor       | 00000009  | 00000009  | PASS | XOR
+Instruction Decode/Execute 008b4033
+ 000006a0 | 000006a0 |          422         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01a79213
+ 000006a4 | 000006a4 |          423         |      add       | 00000002  | 00000002  | PASS | ADD
+Instruction Decode/Execute 00128eb3
+ 000006a8 | 000006a8 |          424         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01fe2033
+ 000006ac | 000006ac |          425         |      andi      | 00000001  | 00000001  | PASS | ANDI
+Instruction Decode/Execute 099df693
+ 000006b0 | 000006b0 |          426         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 01212d33
+ 000006b4 | 000006b4 |          427         |      addi      | ffffffee  | ffffffee  | PASS | ADDI
+Instruction Decode/Execute fedd0293
+ 000006b8 | 000006b8 |          428         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 00de38b3
+ 000006bc | 000006bc |          429         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01a6a7b3
+ 000006c0 | 000006c0 |          430         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 0a9ef813
+ 000006c4 | 000006c4 |          431         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01e89993
+ 000006c8 | 000006c8 |          432         |      xor       | 0000000a  | 0000000a  | PASS | XOR
+Instruction Decode/Execute 01cac6b3
+ 000006cc | 000006cc |          433         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 014123b3
+ 000006d0 | 000006d0 |          434         |      add       | 00000001  | 00000001  | PASS | ADD
+Instruction Decode/Execute 000d8c33
+ 000006d4 | 000006d4 |          435         |      ori       | ffffffe8  | ffffffe8  | PASS | ORI
+Instruction Decode/Execute fe87ee93
+ 000006d8 | 000006d8 |          436         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 004c34b3
+ 000006dc | 000006dc |          437         |      sltiu     |     1     |     1     | PASS 
+ 000006e0 | 000006e0 |          438         |      slti      |     0     |     0     | PASS 
+ 000006e4 | 000006e4 |          439         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01b1deb3
+ 000006e8 | 000006e8 |          440         |      sltiu     |     1     |     1     | PASS 
+ 000006ec | 000006ec |          441         |      sltiu     |     1     |     1     | PASS 
+ 000006f0 | 000006f0 |          442         |      sltiu     |     1     |     1     | PASS 
+ 000006f4 | 000006f4 |          443         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 003f2433
+ 000006f8 | 000006f8 |          444         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 0086fbb3
+xd      1788 17      15251526
+ 000006fc | 000006fc |          445         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 00fcdd13
+ 00000700 | 00000700 |          446         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 00e92133
+ 00000704 | 00000704 |          447         |      xori      | 000000e8  | 000000e8  | PASS | XORI
+Instruction Decode/Execute 0e88c493
+ 00000708 | 00000708 |          448         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 014477b3
+xd      1804 17      201620 3
+ 0000070c | 0000070c |          449         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 01485193
+ 00000710 | 00000710 |          450         |      slti      |     0     |     0     | PASS 
+ 00000714 | 00000714 |          451         |      andi      | 00000001  | 00000001  | PASS | ANDI
+Instruction Decode/Execute 0b3c7d93
+ 00000718 | 00000718 |          452         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 0157d5b3
+ 0000071c | 0000071c |          453         |      ori       | ffffff19  | ffffff19  | PASS | ORI
+Instruction Decode/Execute f190ea93
+ 00000720 | 00000720 |          454         |      or        | 00000002  | 00000002  | PASS | OR
+Instruction Decode/Execute 01f36633
+ 00000724 | 00000724 |          455         |      xor       | 00000000  | 00000000  | PASS | XOR
+Instruction Decode/Execute 0089cb33
+xd      1832 17       431 420
+ 00000728 | 00000728 |          456         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 004fda13
+ 0000072c | 0000072c |          457         |      add       | 00000001  | 00000001  | PASS | ADD
+Instruction Decode/Execute 00f20fb3
+ 00000730 | 00000730 |          458         |      sltiu     |     1     |     1     | PASS 
+ 00000734 | 00000734 |          459         |      or        | ffffffee  | ffffffee  | PASS | OR
+Instruction Decode/Execute 00516eb3
+ 00000738 | 00000738 |          460         |      or        | 00000000  | 00000000  | PASS | OR
+Instruction Decode/Execute 00276a33
+ 0000073c | 0000073c |          461         |      sltiu     |     1     |     1     | PASS 
+ 00000740 | 00000740 |          462         |      or        | 00000003  | 00000003  | PASS | OR
+Instruction Decode/Execute 00626db3
+ 00000744 | 00000744 |          463         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01eb2133
+ 00000748 | 00000748 |          464         |      ori       | 00000009  | 00000009  | PASS | ORI
+Instruction Decode/Execute 008c6993
+ 0000074c | 0000074c |          465         |      xori      | ffffff21  | ffffff21  | PASS | XORI
+Instruction Decode/Execute f217c913
+ 00000750 | 00000750 |          466         |      ori       | 00000007  | 00000007  | PASS | ORI
+Instruction Decode/Execute 00736113
+ 00000754 | 00000754 |          467         |      sltiu     |     1     |     1     | PASS 
+ 0 | 00000758 |          468         |      sltiu     |     0     |     1     | X 
+riscv_opcode 13, riscv_pc 00000750, sb_pc 00000758
+rc_rd_p = 7, rc_sr1_p =21, rc_rs1_val =       -231, rc_rs2_p =10 rc_rs2_val =        117| sb_rd_p = 7, sb_sr1_p =21, sb_rs1_val =4294967065, sb_rs2_p =10 sb_rs2_val =       117
+ 0000075c | 0000075c |          469         |      slti      |     1     |     1     | PASS 
+ 00000760 | 00000760 |          470         |      andi      | 00000002  | 00000002  | PASS | ANDI
+Instruction Decode/Execute 0f6dff13
+ 00000764 | 00000764 |          471         |      srl       | 00000000  | 00000000  | PASS | SRL
+Instruction Decode/Execute 01d4d533
+ 00000768 | 00000768 |          472         |      slti      |     0     |     0     | PASS 
+ 0000076c | 0000076c |          473         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 011e2d33
+ 00000770 | 00000770 |          474         |      addi      | 00000088  | 00000088  | PASS | ADDI
+Instruction Decode/Execute 087c0b13
+ 00000774 | 00000774 |          475         |      add       | 00000004  | 00000004  | PASS | ADD
+Instruction Decode/Execute 01fd86b3
+ 00000778 | 00000778 |          476         |      sll       | 00000000  | 00000000  | PASS | SLL
+Instruction Decode/Execute 011712b3
+ 0000077c | 0000077c |          477         |      add       | fffffff8  | fffffff8  | PASS | ADD
+Instruction Decode/Execute 01de0833
+ 00000780 | 00000780 |          478         |      slli      | 02800000  | 02800000  | PASS | SLLI
+Instruction Decode/Execute 016e1413
+ 00000784 | 00000784 |          479         |      add       | 00000000  | 00000000  | PASS | ADD
+Instruction Decode/Execute 00370e33
+ 00000788 | 00000788 |          480         |      slti      |     0     |     0     | PASS 
+ 0000078c | 0000078c |          481         |      andi      | 00000001  | 00000001  | PASS | ANDI
+Instruction Decode/Execute 071df293
+ 00000790 | 00000790 |          482         |      xori      | 000000a2  | 000000a2  | PASS | XORI
+Instruction Decode/Execute 0a27ca93
+ 00000794 | 00000794 |          483         |      xor       | 00000009  | 00000008  | X | XOR
+riscv_opcode 33, riscv_pc 0000078c, sb_pc 00000794
+Instruction Decode/Execute 0079cdb3
+rc_rd_p =27, rc_sr1_p =19, rc_rs1_val =          9, rc_rs2_p = 7 rc_rs2_val =          0| sb_rd_p =27, sb_sr1_p =19, sb_rs1_val =         9, sb_rs2_p = 7 sb_rs2_val =         1
+ 00000798 | 00000798 |          484         |      sll       | 00000001  | 00000001  | PASS | SLL
+Instruction Decode/Execute 01c21eb3
+ 0000079c | 0000079c |          485         |      andi      | 00000001  | 00000001  | PASS | ANDI
+Instruction Decode/Execute 045a7613
+ 000007a0 | 000007a0 |          486         |      sltu      | 00000000  | 00000000  | PASS | SLTU
+Instruction Decode/Execute 003a33b3
+ 000007a4 | 000007a4 |          487         |      sltu      | 00000001  | 00000001  | PASS | SLTU
+Instruction Decode/Execute 016bb033
+ 000007a8 | 000007a8 |          488         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 00f3f3b3
+ 000007ac | 000007ac |          489         |      or        | 02800007  | 02800007  | PASS | OR
+Instruction Decode/Execute 00246833
+ 000007b0 | 000007b0 |          490         |      xor       | 00000001  | 00000001  | PASS | XOR
+Instruction Decode/Execute 000a4ab3
+ 000007b4 | 000007b4 |          491         |      slti      |     0     |     0     | PASS 
+ 000007b8 | 000007b8 |          492         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 01b4a0b3
+ 000007bc | 000007bc |          493         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute fcd67513
+ 000007c0 | 000007c0 |          494         |      sltiu     |     1     |     1     | PASS 
+ 000007c4 | 000007c4 |          495         |      addi      | 0000002f  | 0000002f  | PASS | ADDI
+Instruction Decode/Execute 02f70813
+ 000007c8 | 000007c8 |          496         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 0052a3b3
+xd      1996 17       931 9 4
+ 000007cc | 000007cc |          497         |      srli      | 00000000  | 00000000  | PASS | FUNC ERROR
+Instruction Decode/Execute 009fd213
+ 000007d0 | 000007d0 |          498         |      and       | 00000000  | 00000000  | PASS | AND
+Instruction Decode/Execute 00c57233
+ 000007d4 | 000007d4 |          499         |      slti      |     1     |     1     | PASS 
+ 000007d8 | 000007d8 |          500         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01b79c13
+ 000007dc | 000007dc |          501         |      slt       | 00000001  | 00000001  | PASS | SLT
+Instruction Decode/Execute 01b02ab3
+ 000007e0 | 000007e0 |          502         |      addi      | ffffff17  | ffffff17  | PASS | ADDI
+Instruction Decode/Execute f1788513
+ 000007e4 | 000007e4 |          503         |      addi      | 00000068  | 00000068  | PASS | ADDI
+Instruction Decode/Execute 06860c13
+ 000007e8 | 000007e8 |          504         |      xori      | 000000b9  | 000000b9  | PASS | XORI
+Instruction Decode/Execute 0bd6c913
+ 000007ec | 000007ec |          505         |      slli      | 00000000  | 00000000  | PASS | SLLI
+Instruction Decode/Execute 01971613
+ 000007f0 | 000007f0 |          506         |      slti      |     0     |     0     | PASS 
+ 000007f4 | 000007f4 |          507         |      sltiu     |     1     |     1     | PASS 
+ 000007f8 | 000007f8 |          508         |      slt       | 00000000  | 00000000  | PASS | SLT
+Instruction Decode/Execute 0119ac33
+ 000007fc | 000007fc |          509         |      andi      | 00000000  | 00000000  | PASS | ANDI
+Instruction Decode/Execute 08ebf913
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
-Run directory: /home/ricardo/Documents/UCR/2024/Verif/darkriscv/file_struc_edaplayground/sim
+Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
   Random seed: 4898498497

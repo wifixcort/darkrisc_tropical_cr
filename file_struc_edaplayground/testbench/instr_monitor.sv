@@ -52,6 +52,7 @@ class instr_monitor;
         fct3    = rx_instruction[14:12];
         fct7    = rx_instruction[31:25];
 
+        //$display("Monitor 1 reportando instrucción %h", rx_instruction);
         //Build immediate value, which may be used for instruction decoding.
         case (opcode)
             R_TYPE      : imm_val = '0;

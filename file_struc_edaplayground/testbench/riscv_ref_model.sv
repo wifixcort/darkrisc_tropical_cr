@@ -16,6 +16,7 @@ class riscv_ref_model;
   logic bt;
   // For debug
   logic [31:0] pc_val_in;
+  logic [31:0] fake_reg0;
   // General Purpose 32x32 bit registers 
   logic [31:0] REGS [0:31];
   integer i;
@@ -117,11 +118,13 @@ class riscv_ref_model;
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         REGS[rdd_val] = REGS[rs1_val] >> (imm_val_sign_ext[4:0]); 
         pc_val = pc_val + 4;
+        $display("pc_val: %h, rx_f: %h, imm: %b, rs1: %h, rs2: %h, rdd: %h", pc_val, rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
       end
       SRAI : begin 
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         REGS[rdd_val] = $signed(REGS[rs1_val]) >>> (imm_val_sign_ext[4:0]);
         pc_val = pc_val + 4;
+        $display("xd",pc_val, rx_funct, imm_val,rs1_val, rs2_val, rdd_val);
       end
       SLTI : begin
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
@@ -337,6 +340,11 @@ class riscv_ref_model;
         REGS[rdd_val] = pc_val + imm_val_sign_ext;
       end
     endcase
+    
+    // Assign Value that was supposed to be for reg0 to a fake reg
+    fake_reg0 = REGS[rdd_val];
+    // Keep Register 0 to value 0
+    REGS[0] = 0;
     
     // Update Predicted Values
     pc_val_upd  = pc_val;
