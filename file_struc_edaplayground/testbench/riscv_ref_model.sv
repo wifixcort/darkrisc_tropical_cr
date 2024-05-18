@@ -43,7 +43,7 @@ class riscv_ref_model;
   endfunction
   
   function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1_val,logic [4:0] rs2_val,logic [4:0] rdd_val);
-    // L/S: DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
+    // L/S: DADDR[31] must equal 0, if not we access I/O peripherals.
     // All instructions shouldnt be allowed to modify register 0 value
     pc_val_in = pc_val; // Copy of the input PC for debug
     case (rx_funct)
@@ -132,11 +132,11 @@ class riscv_ref_model;
         pc_val = pc_val + 4;
       end
       SLTIU: begin 
-        imm_val_sign_ext = {{20{1'b0}}, imm_val[11:0]}; 
+        imm_val_sign_ext = {{20{1'b0}}, imm_val[11:0]}; // No sign extension required
         REGS[rdd_val] = (REGS[rs1_val] < imm_val_sign_ext) ? 1'b1 : 1'b0;
         pc_val = pc_val + 4;
       end
-      // I-L(load) Type - DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
+      // I-L(load) Type - DADDR[31] must equal 0, if not we access I/O peripherals.
       LB   : begin
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         DADDR = REGS[rs1_val] + imm_val_sign_ext;
@@ -213,7 +213,7 @@ class riscv_ref_model;
         REGS[rdd_val] = DATAI;
         pc_val = pc_val + 4;
       end 
-      // S-Type - DADDR[31] debe ser 0, de lo contario se accede a I/O de los perifericos.
+      // S-Type - DADDR[31] must equal 0, if not we access I/O peripherals.
       SB   : begin 
         imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
         DADDR = REGS[rs1_val] + imm_val_sign_ext;
@@ -332,11 +332,11 @@ class riscv_ref_model;
       end
       // U-Type
       LUI  : begin 
-        imm_val_sign_ext = {imm_val[20:0], {12{1'b0}}}; 
+        imm_val_sign_ext = {imm_val[20:0], {11{1'b0}}}; 
         REGS[rdd_val] = imm_val_sign_ext;
       end 
       AUIPC: begin 
-        imm_val_sign_ext = {imm_val[20:0], {12{1'b0}}}; 
+        imm_val_sign_ext = {imm_val[20:0], {11{1'b0}}}; 
         REGS[rdd_val] = pc_val + imm_val_sign_ext;
       end
     endcase

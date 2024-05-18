@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-16 17:28:45 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-16 17:28:45 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-18 11:08:23 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-18 11:08:23 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -1563,7 +1563,7 @@ Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS
    509 | 03554113 | xori  | XORI | 00000035 | 00000035 | PASS
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
-Run directory: /home/ricardo/Documents/UCR/2024/Verif/darkriscv/file_struc_edaplayground/sim
+Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
   Random seed: 14492301493598
