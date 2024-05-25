@@ -2,301 +2,316 @@ import instructions_data_struc::*;
 
 //`define __DB_ENABLE__
 // `define XIDATA_P top.soc0.core0.XIDATA
+`define RMDATA top.soc0.core0.RMDATA
+
+`define DPTR top.soc0.core0.DPTR
+`define S1PTR top.soc0.core0.S1PTR
+`define S1REG top.soc0.core0.S1REG
+`define S2PTR top.soc0.core0.S2PTR
+`define S2REG top.soc0.core0.S2REG
+`define XSIMM top.soc0.core0.XSIMM
+`define FALSE 0
+`define TRUE 1
+
 class monitor2;
    // scoreboard sb = new();
    scoreboard sb;
 
-   logic [15:0] inst_counter = 0;
-   int			err_count = 0;
+   logic [15:0] inst_counter;
+   int			err_count;
    logic [15:0]	display_one;
-   logic [31:0] sinc_count = 0;
-   logic [31:0] reg_rd_value;
+   logic [31:0]	sinc_count = 0;
+   logic [31:0]	sb_rd_reg_value;
 
-   logic        old_pc, old2_pc;
+   logic		old_pc, old2_pc;
 
-   int			debug_counter_num_inst = 0;
-   string rx_funct_str = "";
+   int			debug_counter_num_inst;
+   string		rx_funct_str = "";
    //    function new(); //scoreboard sb
    function new(scoreboard sb); //
       $display("Creating monitor 2");
 	  //     this.intf = intf;
 	  this.sb = sb;
+	  this.inst_counter = 0;
+	  this.err_count = 0;
 	  this.display_one = 1;
+	  debug_counter_num_inst = 0;
    endfunction
 
-task check();
-	debug_counter_num_inst = 0;
-	// this.display_one = 1;
-	forever begin
-		@ (posedge top.CLK);
-		old_pc = top.soc0.core0.IADDR; //Take PC (1 clock in the future, actually)
-		if (top.soc0.core0.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
+   task check();
+	  debug_counter_num_inst = 0;
+	  // this.display_one = 1;
+	  forever begin
+		 @ (posedge top.CLK);
+		 old_pc = top.soc0.core0.IADDR; //Take PC (1 clock in the future, actually)
+		 if (top.soc0.core0.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
 			if(top.soc0.core0.OPCODE != 0 )begin 				//Ricardos Sync
-				if (debug_counter_num_inst==0) sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
-				sb.process_inst();								//Pop scoreboard info to compare it against actual instruction.
-				if(this.display_one == 1)begin
-					$display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
-					this.display_one = 0;
-				end
-				reg_rd_value = (top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd_val];
-				case (top.soc0.core0.XIDATA[6:0])
-					R_TYPE: begin
-						 case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
-						   10'h0: begin //add
-							  cp_mem_w("add", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
-						   end
-						   10'b0100000000: begin //sub 
-							  cp_mem_w("sbu", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SUB)?"SUB":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   SLL_FC: begin //sll
-							  cp_mem_w("sll", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLL)?"SLL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   SLT_FC: begin //slt
-							  cp_mem_w("slt", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLT)?"SLT":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   SLTU_FC: begin //sltu
-							  cp_mem_w("sltu", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLTU)?"SLTU":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   XOR_FC: begin //xor
-							  cp_mem_w("xor", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==XOR)?"XOR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   9'h005: begin //srl
-							  cp_mem_w("srl", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SRL)?"SRL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   9'h105: begin //sra
-							  cp_mem_w("sra", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SRA)?"SRA":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   OR_FC: begin //or
-							  cp_mem_w("or", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==OR)?"OR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   AND_FC: begin //and
-							  cp_mem_w("and", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==AND)?"AND":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
-						   end
-						   default: begin
-			  `ifdef __DB_ENABLE__ 
-							  $display("**** Instruccion type R not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
-							  $display("FC7 = %b, FC3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
-							  $display("sb_rd_p = %h, sb_rd_val = %d, sb_rs1_p = %h, sb_rs1_val = %d, sb_imm = %d ", sb.rdd_val, reg_rd_value, sb.rs1_val, $signed(sb.ref_model.REGS[sb.rs1_val]), sb.imm_val_sign_ext);
-			  `endif
-							  err_count++;
-							  inst_counter++;
-						   end
-						 endcase
+			   if (debug_counter_num_inst==0) sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
+			   sb.process_inst();								//Pop scoreboard info to compare it against actual instruction.
+			   if(this.display_one == 1)begin
+				  $display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
+				  this.display_one = 0;
+			   end
+			   sb_rd_reg_value = (top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd_val];
+			   case (top.soc0.core0.XIDATA[6:0])
+				 R_TYPE: begin
+					case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
+					  10'h0: begin //add
+						 cp_mem_w("add", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
 					  end
+					  10'b0100000000: begin //sub 
+						 cp_mem_w("sbu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SUB)?"SUB":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  SLL_FC: begin //sll
+						 cp_mem_w("sll", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLL)?"SLL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  SLT_FC: begin //slt
+						 cp_mem_w("slt", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLT)?"SLT":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  SLTU_FC: begin //sltu
+						 cp_mem_w("sltu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTU)?"SLTU":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  XOR_FC: begin //xor
+						 cp_mem_w("xor", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XOR)?"XOR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  9'h005: begin //srl
+						 cp_mem_w("srl", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRL)?"SRL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  9'h105: begin //sra
+						 cp_mem_w("sra", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRA)?"SRA":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  OR_FC: begin //or
+						 cp_mem_w("or", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==OR)?"OR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  AND_FC: begin //and
+						 cp_mem_w("and", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==AND)?"AND":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+					  end
+					  default: begin
+`ifdef __DB_ENABLE__ 
+						 $display("**** Instruccion type R not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
+						 $display("FC7 = %b, FC3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
+						 $display("sb_rd_p = %h, sb_rd_val = %d, sb_rs1_p = %h, sb_rs1_val = %d, sb_imm = %d ", sb.rdd_val, sb_rd_reg_value, sb.rs1_val, $signed(sb.ref_model.REGS[sb.rs1_val]), sb.imm_val_sign_ext);
+`endif
+						 err_count++;
+						 inst_counter++;
+					  end
+					endcase
+				 end
 
-					  I_TYPE: begin
-						 if(top.soc0.core0.FCT3 == 3'b101) begin
-							case(top.soc0.core0.XIDATA[31:25])
-							  10'h000: begin //srli
-								 cp_mem_w("srli", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SRLI)?"SRLI":"FUNC ERROR");
-							  end
-							  10'h020: begin //srai
-								 cp_mem_w("srai", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SRAI)?"SRAI":"FUNC ERROR");
-							  end
-							  default: begin
-			  `ifdef __DB_ENABLE__ 
-								 $display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
-								 $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
-			  `endif
-								 err_count++;
-								 inst_counter++;
-							  end
-							endcase
-						 end else if(top.soc0.core0.FCT3 == 3'b001)begin
-						  case(top.soc0.core0.XIDATA[31:25])
-							  10'h000: begin //srli
-								 cp_mem_w("slli", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLLI)?"SLLI":"FUNC ERROR");
-							  end
-							  default: begin
-			  `ifdef __DB_ENABLE__ 
-								 $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-								 $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
-			  `endif
-								 err_count++;
-								 inst_counter++;
-							  end
-							endcase
-						 end else begin
-							case(top.soc0.core0.FCT3)
-							  ADDI_FC:begin //addi
-								 cp_mem_w("addi", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR");
-							  end
-							  SLTI_FC:begin //slti
-								 cp_mem_bb("slti", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
-							  end
-							  SLTIU_FC:begin //sltiu
-								 cp_mem_bb("sltiu", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
-							  end
-							  XORI_FC:begin //xori
-								 cp_mem_w("xori", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
-							  end
-							  ORI_FC:begin //ori
-								 cp_mem_w("ori", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==ORI)?"ORI":"FUNC ERROR");
-							  end
-							  ANDI_FC:begin //andi
-								 cp_mem_w("andi", top.soc0.core0.RMDATA, reg_rd_value, (sb.rx_funct==ANDI)?"ANDI":"FUNC ERROR");
-							  end
-							  default: begin
-			  `ifdef __DB_ENABLE__ 
-								 $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-								 $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-			  `endif
-								 err_count++;
-								 inst_counter++;
-							  end
-							endcase                  
-							
+				 I_TYPE: begin
+					if(top.soc0.core0.FCT3 == 3'b101) begin
+					   case(top.soc0.core0.XIDATA[31:25])
+						 10'h000: begin //srli
+							cp_mem_w("srli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRLI)?"SRLI":"FUNC ERROR");
 						 end
-					  end	
-					  /*
-					  I_L_TYPE: begin
-						 case(top.soc0.core0.FCT3)
-						   LB_FC: begin //lb
-							  cp_mem_b("lb" ,top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.DATAI[7:0]);//top.soc0.core0.LDATA[7:0]
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
+						 10'h020: begin //srai
+							cp_mem_w("srai", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRAI)?"SRAI":"FUNC ERROR");
+						 end
+						 default: begin
+`ifdef __DB_ENABLE__ 
+							$display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
+							$display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
+`endif
+							err_count++;
+							inst_counter++;
+						 end
+					   endcase
+					end else if(top.soc0.core0.FCT3 == 3'b001)begin
+					   case(top.soc0.core0.XIDATA[31:25])
+						 10'h000: begin //srli
+							cp_mem_w("slli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLLI)?"SLLI":"FUNC ERROR");
+						 end
+						 default: begin
+`ifdef __DB_ENABLE__ 
+							$display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+							$display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
+`endif
+							err_count++;
+							inst_counter++;
+						 end
+					   endcase
+					end else begin
+					   case(top.soc0.core0.FCT3)
+						 ADDI_FC:begin //addi
+							// i_type_cheker_rd_rs1_imm("addi", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							cp_mem_w("addi", `RMDATA, sb_rd_reg_value, (sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR");
+						 end
+						 SLTI_FC:begin //slti
+							cp_mem_bb("slti", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
+						 end
+						 SLTIU_FC:begin //sltiu
+							cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
+						 end
+						 XORI_FC:begin //xori
+							cp_mem_w("xori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
+						 end
+						 ORI_FC:begin //ori
+							cp_mem_w("ori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ORI)?"ORI":"FUNC ERROR");
+						 end
+						 ANDI_FC:begin //andi
+							cp_mem_w("andi", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ANDI)?"ANDI":"FUNC ERROR");
+						 end
+						 default: begin
+`ifdef __DB_ENABLE__ 
+							$display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+							$display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+`endif
+							err_count++;
+							inst_counter++;
+						 end
+					   endcase                  
+					   
+					end
+				 end	
+				 /*
+				  I_L_TYPE: begin
+				  case(top.soc0.core0.FCT3)
+				  LB_FC: begin //lb
+				  cp_mem_b("lb" ,top.soc0.core0.REGS[top.soc0.core0.DPTR], sb.DATAI[7:0]);//top.soc0.core0.LDATA[7:0]
+				  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
-						   LH_FC: begin //lh
-							  cp_mem_h("lh" ,top.soc0.core0.LDATA[15:0], sb.DATAI[15:0]);
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
+				  LH_FC: begin //lh
+				  cp_mem_h("lh" ,top.soc0.core0.LDATA[15:0], sb.DATAI[15:0]);
+				  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
-						   LW_FC: begin //lw
-							  cp_mem_w("lw" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LW)?"LW":"FUNC ERROR");
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);
+				  LW_FC: begin //lw
+				  cp_mem_w("lw" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LW)?"LW":"FUNC ERROR");
+				  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);
 						   end
-						   LBU_FC: begin //lbu
-							  cp_mem_w("lbu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LBU)?"LBU":"FUNC ERROR");
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
+				  LBU_FC: begin //lbu
+				  cp_mem_w("lbu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LBU)?"LBU":"FUNC ERROR");
+				  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
-						   LHU_FC: begin //lhu
-							  cp_mem_w("lhu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LHU)?"LHU":"FUNC ERROR");
-							  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
+				  LHU_FC: begin //lhu
+				  cp_mem_w("lhu" ,top.soc0.core0.LDATA, sb.DATAI, (sb.rx_funct==LHU)?"LHU":"FUNC ERROR");
+				  $display("rc_imm = %d  ,  sb_imm = %d", $signed(top.soc0.core0.XSIMM), sb.imm_val_sign_ext);	
 						   end
-						   default: begin
-			  `ifdef __DB_ENABLE__ 
-							  $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-							  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-			  `endif
-							  err_count++;
-							  inst_counter++;
+				  default: begin
+				  `ifdef __DB_ENABLE__ 
+				  $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+				  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+				  `endif
+				  err_count++;
+				  inst_counter++;
 						   end
 						 endcase
 					  end
-					  I_JALR_TYPE: begin //jalr
-						 case(top.soc0.core0.FCT3)
-						   JALR_C: begin
-							  // inst_counter++;
+				  I_JALR_TYPE: begin //jalr
+				  case(top.soc0.core0.FCT3)
+				  JALR_C: begin
+				  // inst_counter++;
 						   end
-						   default: begin
-			  `ifdef __DB_ENABLE__ 
-							  $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-							  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-			  `endif
-							  err_count++;
-							  inst_counter++;
+				  default: begin
+				  `ifdef __DB_ENABLE__ 
+				  $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+				  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+				  `endif
+				  err_count++;
+				  inst_counter++;
 						   end
 						 endcase
 					  end	
-					  S_TYPE: begin
-						 case(top.soc0.core0.FCT3)
-						   SB_FC:begin //sb
-							  cp_mem_b("sb", top.soc0.core0.SDATA[7:0], sb.DATAO[7:0]);
-							  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);					 
+				  S_TYPE: begin
+				  case(top.soc0.core0.FCT3)
+				  SB_FC:begin //sb
+				  cp_mem_b("sb", top.soc0.core0.SDATA[7:0], sb.DATAO[7:0]);
+				  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);					 
 						   end
-						   SH_FC:begin //sh
-							  cp_mem_h("sh", top.soc0.core0.SDATA[15:0], sb.DATAO[15:0]);
-							  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);			
+				  SH_FC:begin //sh
+				  cp_mem_h("sh", top.soc0.core0.SDATA[15:0], sb.DATAO[15:0]);
+				  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);			
 						   end
-						   SW_FC:begin //sw
-							  cp_mem_w("sw", top.soc0.core0.SDATA, sb.DATAO, (sb.rx_funct==SW)?"SW":"FUNC ERROR");
-							  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);
+				  SW_FC:begin //sw
+				  cp_mem_w("sw", top.soc0.core0.SDATA, sb.DATAO, (sb.rx_funct==SW)?"SW":"FUNC ERROR");
+				  $display("rc_imm = %d  ,  sb_imm = %d", top.soc0.core0.XSIMM, sb.imm_val_sign_ext);
 						   end
-						   default: begin
-			  `ifdef __DB_ENABLE__ 
-							  $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-							  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-			  `endif
-							  err_count++;
-							  inst_counter++;
+				  default: begin
+				  `ifdef __DB_ENABLE__ 
+				  $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+				  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+				  `endif
+				  err_count++;
+				  inst_counter++;
 						   end
 						 endcase  
 					  end	
-					  S_B_TYPE: begin
-						 case(top.soc0.core0.FCT3)
-						   BEQ_FC: begin //beq
-							  // inst_counter++;
-							  $display("*********************ALERTA**********************     BEQ    ");
+				  S_B_TYPE: begin
+				  case(top.soc0.core0.FCT3)
+				  BEQ_FC: begin //beq
+				  // inst_counter++;
+				  $display("*********************ALERTA**********************     BEQ    ");
 						   end
-						   BNE_FC: begin //bne
-			  `ifdef __DB_ENABLE__ 
-							  //  $display("-> func: BNE <-");
-							  $display("*********************ALERTA**********************     BNE    ");
-			  `endif
+				  BNE_FC: begin //bne
+				  `ifdef __DB_ENABLE__ 
+				  //  $display("-> func: BNE <-");
+				  $display("*********************ALERTA**********************     BNE    ");
+				  `endif
 						   end
-						   BLT_FC: begin //blt
-			  `ifdef __DB_ENABLE__ 
-							  //  $display("-> func: BLT <-");
-							  $display("*********************ALERTA**********************     BLT    ");
-			  `endif
-							  // inst_counter++;
+				  BLT_FC: begin //blt
+				  `ifdef __DB_ENABLE__ 
+				  //  $display("-> func: BLT <-");
+				  $display("*********************ALERTA**********************     BLT    ");
+				  `endif
+				  // inst_counter++;
 						   end
-						   BGE_FC: begin //beg
-			  `ifdef __DB_ENABLE__ 
-							  //  $display("-> func: BEG <-");
-							  $display("*********************ALERTA**********************     BEG    ");
-			  `endif
-							  // inst_counter++;
+				  BGE_FC: begin //beg
+				  `ifdef __DB_ENABLE__ 
+				  //  $display("-> func: BEG <-");
+				  $display("*********************ALERTA**********************     BEG    ");
+				  `endif
+				  // inst_counter++;
 						   end
-						   BLTU_FC: begin //bltu
-			  `ifdef __DB_ENABLE__ 
-							  //  $display("-> func: BLTU <-");
-							  $display("*********************ALERTA**********************     BLTU   ");
-			  `endif
-							  // inst_counter++;
+				  BLTU_FC: begin //bltu
+				  `ifdef __DB_ENABLE__ 
+				  //  $display("-> func: BLTU <-");
+				  $display("*********************ALERTA**********************     BLTU   ");
+				  `endif
+				  // inst_counter++;
 						   end
-						   BGEU_FC: begin //bgeu
-			  `ifdef __DB_ENABLE__ 
-							  //  $display("-> func: BGEU <-");
-							  $display("*********************ALERTA**********************     BGEU    ");
-			  `endif
-							  // inst_counter++;
+				  BGEU_FC: begin //bgeu
+				  `ifdef __DB_ENABLE__ 
+				  //  $display("-> func: BGEU <-");
+				  $display("*********************ALERTA**********************     BGEU    ");
+				  `endif
+				  // inst_counter++;
 						   end
-						   default: begin
-			  `ifdef __DB_ENABLE__ 
-							  $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-			  `endif
-							  err_count++;
-							  //  inst_counter++;
+				  default: begin
+				  `ifdef __DB_ENABLE__ 
+				  $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+				  `endif
+				  err_count++;
+				  //  inst_counter++;
 						   end
 						 endcase
 					  end	
-					  J_TYPE: begin
-						 // inst_counter++;
-						  $display("*********************ALERTA**********************     J_TYPE    ");
+				  J_TYPE: begin
+				  // inst_counter++;
+				  $display("*********************ALERTA**********************     J_TYPE    ");
 					  end
-					  LUI_TYPE: begin
-						 // inst_counter++;
-						  $display("*********************ALERTA**********************     LUI    ");
+				  LUI_TYPE: begin
+				  // inst_counter++;
+				  $display("*********************ALERTA**********************     LUI    ");
 					  end	
-					  AUIPC_TYPE: begin
-						 // inst_counter++;
-						//   $display("*********************ALERTA**********************     AUIPC    ");
+				  AUIPC_TYPE: begin
+				  // inst_counter++;
+				  //   $display("*********************ALERTA**********************     AUIPC    ");
 					  end	
-**/
-					  default: begin
-						 if(top.soc0.core0.XIDATA != 0) begin
-			  `ifdef __DB_ENABLE__ 
-							// $display("**** Instruccion not found ****");
-							// $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-			  `endif
-							err_count++; 
-						end
+				  **/
+				 default: begin
+					if(top.soc0.core0.XIDATA != 0) begin
+`ifdef __DB_ENABLE__ 
+					   // $display("**** Instruccion not found ****");
+					   // $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+`endif
+					   err_count++; 
 					end
-				endcase
-				debug_counter_num_inst = debug_counter_num_inst+1;     
+				 end
+			   endcase
+			   debug_counter_num_inst = debug_counter_num_inst+1;     
 			end
-		end//Work out of reset
-	end
-endtask
+		 end//Work out of reset
+	  end
+   endtask
 
    task s_and_b_print(input logic [7:0]num, input logic [6:0]opcode, input logic [4:0]rs1, input logic [4:0]rs2, input logic [4:0]rd, input logic [20:0]imm);
 	  //$display("RISC PC | SB PC VAL IN | SB PC |Instruction number=%d | op=%b  |  rs1=%d  |  rs2=%d  | imm=%d", num, opcode, rs1, rs2, imm);
@@ -306,7 +321,7 @@ endtask
    task cp_mem_b(string inst ,input logic [7:0] risc_mem, input logic [7:0] sb_mem);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
-		// $display(" %h | %h |       %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
+		 // $display(" %h | %h |       %d         |      %s     |    %h     |    %h     | %s ", top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "X");
 		 //$display("riscv_opcode %h, riscv_pc %h, sb_pc %h", top.soc0.core0.OPCODE, top.soc0.core0.PC, sb.pc_val);
 `ifdef __DB_ENABLE__
 		 $display("rc_pc = %h, rc_rd_p =%h, rc_sr1_p =%h, rc_rs1_val =%d, rc_rs2_p =%h rc_rs2_val =%d | sb_pc = %h, sb_rd_p =%h, sb_sr1_p =%h, sb_rs1_val =%d, sb_rs2_p =%h sb_rs2_val =%d", top.soc0.core0.PC, top.soc0.core0.DPTR, top.soc0.core0.S1PTR, top.soc0.core0.S1REG, top.soc0.core0.S2PTR, top.soc0.core0.S2REG, sb.pc_val, sb.rdd_val, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val],sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
@@ -351,16 +366,35 @@ endtask
 		 //$display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
 		 //$display(" %h | %h |        %d         |      %s     |     %h     |     %h     | %s | %s ",  top.soc0.core0.IADDR, sb.pc_val, inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 		 //$display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
-		end
+	  end
 	  inst_counter++;
    endtask
 
+   /*
+   task i_type_cheker_rd_rs1_imm(string inst, input logic [31:0] rmdata, input logic [31:0] risc_rs1, input logic [31:0] risc_rs1_v, input logic [31:0] risc_xsimm, input logic [31:0] sb_rd_val, input logic [31:0] sb_rs1, input logic [31:0] sb.rs1_val, input logic [31:0] sb_xsimm);
+	  this.inst = inst_resize(inst);
+	  rd_val_status = (rmdata == sb_rd_val) ? `TRUE : `FALSE;
+	  rs1_status = (risc_rs1 == sb_rs1) ? `TRUE : `FALSE;
+	  rs1_val_status = (risc_rs1_v == sb_rs1_val) ? `TRUE : `FALSE;
+	  imm_val_status = (risc_xsimm == sb_xsimm) ? `TRUE : `FALSE;
+	  
+	  if(!rd_val_status || !sr1_status || !rs1_val_status || !imm_val_status)begin
+		 general_status = "X";
+	  end else begin
+		 general_status = "PASS";
+	  end
+
+
+   endtask: i_type_cheker_rd_rs1_imm
+*/
+
+   
    task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
-		//$display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
+		 //$display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
 		 //$display("%s > * ERROR * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
-		$display(" %d | %h | %s | %s | %h | %h | %s", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "X");
+		 $display(" %d | %h | %s | %s | %h | %h | %s ", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "X");
 		 //--$display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",   inst_counter, inst, risc_mem, sb_mem, "X", rx_funct);
 		 //--$display("riscv_opcode %h", top.soc0.core0.OPCODE);
 		 //--$display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
@@ -372,8 +406,8 @@ endtask
 		 // $display("%s > * PASS * DUT data is %h :: SB data is %h ", inst, risc_mem, sb_mem);
 		 //--$display(" Counter: %d         |      %s     | riscv_mem:%h  | sb_mem:%h  | %s | rx_f:%s",  inst_counter, inst, risc_mem, sb_mem, "PASS", rx_funct);
 		 //--$display("Instruction Decode/Execute %h", top.soc0.core0.XIDATA);
-		$display(" %d | %h | %s | %s | %h | %h | %s", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "PASS");
-		//  $display("FUNCT 7 = %b , FUNC 3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
+		 $display(" %d | %h | %s | %s | %h | %h | %s", inst_counter, top.soc0.core0.XIDATA, inst, rx_funct, risc_mem, sb_mem, "PASS");
+		 //  $display("FUNCT 7 = %b , FUNC 3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
 	  end
 	  inst_counter++;
    endtask
