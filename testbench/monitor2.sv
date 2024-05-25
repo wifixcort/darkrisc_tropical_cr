@@ -2,15 +2,19 @@ import instructions_data_struc::*;
 
 // `define __DB_ENABLE__
 // `define __DB_PASS__
-// `define XIDATA_P top.soc0.core0.XIDATA
+
 `define RMDATA top.soc0.core0.RMDATA
 
+`define XIDATA top.soc0.core0.XIDATA
 `define DPTR top.soc0.core0.DPTR
 `define S1PTR top.soc0.core0.S1PTR
 `define S1REG top.soc0.core0.S1REG
+`define U1REG top.soc0.core0.U1REG
 `define S2PTR top.soc0.core0.S2PTR
 `define S2REG top.soc0.core0.S2REG
+`define U2REG top.soc0.core0.U2REG
 `define XSIMM top.soc0.core0.XSIMM
+`define XUIMM top.soc0.core0.XUIMM
 `define FALSE 0
 `define TRUE 1
 
@@ -50,7 +54,7 @@ class monitor2;
 			   if (debug_counter_num_inst==0) sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
 			   sb.process_inst();								//Pop scoreboard info to compare it against actual instruction.
 			   if(this.display_one == 1)begin
-				  $display("Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS ");
+				  $display(" # | Type | Stat | risv rd p | SB   rd p  | Stat |  Riscv rs1 p | SB   rs1 p | Stat |  Riscv rs2 p | SB   rs2 p | Stat |  Riscv rs2 v | SB   rs2 v | Stat |  Riscv imm v | SB   imm v | Stat | Gen. STATUS ");
 				  this.display_one = 0;
 			   end
 			   sb_rd_reg_value = (top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd_val];
@@ -58,34 +62,54 @@ class monitor2;
 				 R_TYPE: begin
 					case({top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]})
 					  10'h0: begin //add
-						 cp_mem_w("add", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
+						//  cp_mem_w("add", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ADD)?"ADD":"FUNC ERROR");
+						r_type_cheker_rd_rs1_rs2("ADD",ADD, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
 					  end
 					  10'b0100000000: begin //sub 
-						 cp_mem_w("sbu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SUB)?"SUB":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						//  cp_mem_w("sbu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SUB)?"SUB":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SBU",SUB, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
 					  end
 					  SLL_FC: begin //sll
-						 cp_mem_w("sll", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLL)?"SLL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SLL",SLL, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("sll", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLL)?"SLL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  SLT_FC: begin //slt
-						 cp_mem_w("slt", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLT)?"SLT":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SLT",SLT, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("slt", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLT)?"SLT":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  SLTU_FC: begin //sltu
-						 cp_mem_w("sltu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTU)?"SLTU":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SLTU",SLTU, `DPTR, `RMDATA, `S1PTR, `U1REG, `S2PTR, `U2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("sltu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTU)?"SLTU":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  XOR_FC: begin //xor
-						 cp_mem_w("xor", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XOR)?"XOR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("XOR",XOR, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("xor", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XOR)?"XOR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  9'h005: begin //srl
-						 cp_mem_w("srl", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRL)?"SRL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SRL",SRL, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("srl", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRL)?"SRL":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  9'h105: begin //sra
-						 cp_mem_w("sra", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRA)?"SRA":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("SRA",SRA, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("sra", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRA)?"SRA":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  OR_FC: begin //or
-						 cp_mem_w("or", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==OR)?"OR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("OR",OR, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("or", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==OR)?"OR":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  AND_FC: begin //and
-						 cp_mem_w("and", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==AND)?"AND":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
+						r_type_cheker_rd_rs1_rs2("AND",AND, `DPTR, `RMDATA, `S1PTR, `S1REG, `S2PTR, `S2REG, sb.rdd_val, sb_rd_reg_value,
+						sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.rs2_val, sb.ref_model.REGS[sb.rs2_val]);
+						//  cp_mem_w("and", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==AND)?"AND":($sformatf(rx_funct_str, "%b", "FUNC ERROR")));
 					  end
 					  default: begin
 `ifdef __DB_ENABLE__ 
@@ -94,7 +118,7 @@ class monitor2;
 						 $display("sb_rd_p = %h, sb_rd_val = %d, sb_rs1_p = %h, sb_rs1_val = %d, sb_imm = %d ", sb.rdd_val, sb_rd_reg_value, sb.rs1_val, $signed(sb.ref_model.REGS[sb.rs1_val]), sb.imm_val_sign_ext);
 `endif
 						 err_count++;
-						 inst_counter++;
+						 //  inst_counter++;
 					  end
 					endcase
 				 end
@@ -103,10 +127,14 @@ class monitor2;
 					if(top.soc0.core0.FCT3 == 3'b101) begin
 					   case(top.soc0.core0.XIDATA[31:25])
 						 10'h000: begin //srli
-							cp_mem_w("srli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRLI)?"SRLI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("SRLI",SRLI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+													 sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("srli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRLI)?"SRLI":"FUNC ERROR");
 						 end
 						 10'h020: begin //srai
-							cp_mem_w("srai", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRAI)?"SRAI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("SRAI",SRAI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("srai", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SRAI)?"SRAI":"FUNC ERROR");
 						 end
 						 default: begin
 `ifdef __DB_ENABLE__ 
@@ -114,13 +142,15 @@ class monitor2;
 							$display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 `endif
 							err_count++;
-							inst_counter++;
+							// inst_counter++;
 						 end
 					   endcase
 					end else if(top.soc0.core0.FCT3 == 3'b001)begin
 					   case(top.soc0.core0.XIDATA[31:25])
 						 10'h000: begin //srli
-							cp_mem_w("slli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLLI)?"SLLI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("SLLI",SLLI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("slli", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLLI)?"SLLI":"FUNC ERROR");
 						 end
 						 default: begin
 `ifdef __DB_ENABLE__ 
@@ -128,31 +158,40 @@ class monitor2;
 							$display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 `endif
 							err_count++;
-							inst_counter++;
+							// inst_counter++;
 						 end
 					   endcase
 					end else begin
 					   case(top.soc0.core0.FCT3)
 						 ADDI_FC:begin //addi , logic'(ADDI)
-							i_type_cheker_rd_rs1_imm("ADDI", ADDI, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
-							cp_mem_w("addi", `RMDATA, sb_rd_reg_value, ((sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR"));
+							i_type_cheker_rd_rs1_imm("ADDI", ADDI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("addi", `RMDATA, sb_rd_reg_value, ((sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR"));
 						 end
 						 SLTI_FC:begin //slti
-							// i_type_cheker_rd_rs1_imm("SLTI", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
-							cp_mem_bb("slti", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
+							i_type_cheker_rd_rs1_imm("SLTI",SLTI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_bb("slti", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
 						 end
 						 SLTIU_FC:begin //sltiu
-							// i_type_cheker_rd_rs1_imm("SLTIU", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
-							cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("SLTIU", SLTIU, `DPTR, `RMDATA, `S1PTR, `U1REG, `XUIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
 						 end
 						 XORI_FC:begin //xori
-							cp_mem_w("xori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("XORI", XORI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("xori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==XORI)?"XORI":"FUNC ERROR");
 						 end
 						 ORI_FC:begin //ori
-							cp_mem_w("ori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ORI)?"ORI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("ORI", ORI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("ori", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ORI)?"ORI":"FUNC ERROR");
 						 end
 						 ANDI_FC:begin //andi
-							cp_mem_w("andi", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ANDI)?"ANDI":"FUNC ERROR");
+							i_type_cheker_rd_rs1_imm("ANDI", ANDI, `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+							sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							// cp_mem_w("andi", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==ANDI)?"ANDI":"FUNC ERROR");
 						 end
 						 default: begin
 `ifdef __DB_ENABLE__ 
@@ -160,7 +199,7 @@ class monitor2;
 							$display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 `endif
 							err_count++;
-							inst_counter++;
+							// inst_counter++;
 						 end
 					   endcase                  
 					   
@@ -373,47 +412,109 @@ class monitor2;
 	  end
 	  inst_counter++;
    endtask
-//    , input logic [7:0] instruccion
+
    task automatic i_type_cheker_rd_rs1_imm(
-	string inst,
-	input logic [7:0] instruccion,
-	input logic [31:0] rmdata,
-	input logic [31:0] risc_rs1,
-	input logic [31:0] risc_rs1_v,
-	input logic [31:0] risc_xsimm,
-	input logic [31:0] sb_rd_val,
-	input logic [31:0] sb_rs1,
-	input logic [31:0] sb_rs1_val,
-	input logic [31:0] sb_xsimm);
+										   string			  inst,
+										   input logic [7:0]  instruccion,
+										   input logic [31:0] risc_rd_p, // riscv rd register pointer
+										   input logic [31:0] risc_rd_v, // riscv rd register value
+										   input logic [31:0] risc_rs1_p,  // riscv rs1 register pointer
+										   input logic [31:0] risc_rs1_v, // riscv rs1 register value
+										   input logic [31:0] risc_imm, // riscv immidiate value
+										   input logic [31:0] sb_rd_p, // sb rd register pointer
+										   input logic [31:0] sb_rd_v, // sb rd register value
+										   input logic [31:0] sb_rs1_p, // sb rs1 register pointer
+										   input logic [31:0] sb_rs1_v, // sb rs1 register value
+										   input logic [31:0] sb_imm); // sb immidiate value
 
-	bit function_checker;
-	bit rd_val_status;
-	bit rs1_status;
-	bit rs1_val_status;
-	bit imm_val_status;
-	bit general_status;
+	  bit													  function_check;
+	  bit													  rd_p_check;	  
+	  bit													  rd_v_check;
+	  bit													  rs1_p_check;
+	  bit													  rs1_v_check;
+	  bit													  imm_check;
+	  bit													  general_check;
 
-	begin
-	
-	  inst = inst_resize(inst);
-	  function_checker = (sb.rx_funct == instruccion) ? `TRUE : `FALSE;
-	  rd_val_status = (rmdata == sb_rd_val) ? `TRUE : `FALSE;
-	  rs1_status = (risc_rs1 == sb_rs1) ? `TRUE : `FALSE;
-	  rs1_val_status = (risc_rs1_v == sb_rs1_val) ? `TRUE : `FALSE;
-	  imm_val_status = (risc_xsimm == sb_xsimm) ? `TRUE : `FALSE;
-	  
-	  if(!function_checker || !rd_val_status || !rs1_status || !rs1_val_status || !imm_val_status)begin
-		 general_status = `FALSE;//No paso la pueba
-		 $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", inst_counter, inst, function_checker?"PASS":"X", rmdata, sb_rd_val, rd_val_status?"PASS":"X", risc_rs1, sb_rs1, rs1_status?"PASS":"X", risc_rs1_v, sb_rs1_val, rs1_val_status?"PASS":"X", risc_xsimm, sb_xsimm, imm_val_status?"PASS":"X", general_status?"PASS":"X");
-	  end else begin
-		 general_status = `TRUE;//Si paso la prueba
-		 `ifdef __DB_PASS__ 
-		//  $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", inst_counter, inst, function_checker?"PASS":"X", rmdata, sb_rd_val, rd_val_status?"PASS":"X", risc_rs1, sb_rs1, rs1_status?"PASS":"X", risc_rs1_v, sb_rs1_val, rs1_val_status?"PASS":"X", risc_xsimm, sb_xsimm, imm_val_status?"PASS":"X", general_status?"PASS":"X");
-	  `endif
-		end
-	end
-	endtask: i_type_cheker_rd_rs1_imm
-   
+	  begin
+		 
+		 inst = inst_resize(inst);
+		 function_check = (sb.rx_funct == instruccion) ? `TRUE : `FALSE;
+		 rd_p_check = (risc_rd_p == sb_rd_p) ? `TRUE : `FALSE;
+		 rd_v_check = (risc_rd_v == sb_rd_v) ? `TRUE : `FALSE;
+		 rs1_p_check = (risc_rs1_p == sb_rs1_p) ? `TRUE : `FALSE;
+		 rs1_v_check = (risc_rs1_v == sb_rs1_v) ? `TRUE : `FALSE;
+		 imm_check = (risc_imm == sb_imm) ? `TRUE : `FALSE;
+		//  , `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+		// 											 sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !imm_check)begin
+			general_check = `FALSE;//No paso la pueba
+			$display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
+			inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR");
+		 end else begin
+			general_check = `TRUE;//Si paso la prueba
+`ifdef __DB_PASS__ 
+			$display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
+			inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR");
+			// $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", 
+			// inst_counter, inst, function_check?"OK":"X", risc_rd_p, sb_rd_p, rd_p_check?"OK":"X", risc_rd_v, sb_rd_v, rd_v_check?"OK":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"OK":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"OK":"X", risc_imm, sb_imm, imm_check?"OK":"X", general_check?"OK":"X");
+`endif
+		 end
+	  end
+   endtask: i_type_cheker_rd_rs1_imm
+
+   task r_type_cheker_rd_rs1_rs2(
+										   string			  inst,
+										   input logic [7:0]  instruccion,
+										   input logic [31:0] risc_rd_p, // riscv rd register pointer
+										   input logic [31:0] risc_rd_v, // riscv rd register value
+										   input logic [31:0] risc_rs1_p,  // riscv rs1 register pointer
+										   input logic [31:0] risc_rs1_v, // riscv rs1 register value
+										   input logic [31:0] risc_rs2_p, // riscv rs2 register pointer
+										   input logic [31:0] risc_rs2_v, // riscv rs2 register value
+										   input logic [31:0] sb_rd_p, // sb rd register pointer
+										   input logic [31:0] sb_rd_v, // sb rd register value
+										   input logic [31:0] sb_rs1_p, // sb rs1 register pointer
+										   input logic [31:0] sb_rs1_v, // sb rs1 register value
+										   input logic [31:0] sb_rs2_p, // sb rs1 register pointer
+										   input logic [31:0] sb_rs2_v ); // sb immidiate value
+
+	  bit													  function_check;
+	  bit													  rd_p_check;	  
+	  bit													  rd_v_check;
+	  bit													  rs1_p_check;
+	  bit													  rs1_v_check;
+	  bit													  rs2_p_check;
+	  bit													  rs2_v_check;
+	  bit													  general_check;
+
+	  begin
+		 
+		 inst = inst_resize(inst);
+		 function_check = (sb.rx_funct == instruccion) ? `TRUE : `FALSE;
+		 rd_p_check = (risc_rd_p == sb_rd_p) ? `TRUE : `FALSE;
+		 rd_v_check = (risc_rd_v == sb_rd_v) ? `TRUE : `FALSE;
+		 rs1_p_check = (risc_rs1_p == sb_rs1_p) ? `TRUE : `FALSE;
+		 rs1_v_check = (risc_rs1_v == sb_rs1_v) ? `TRUE : `FALSE;
+		 rs2_p_check = (risc_rs2_p == sb_rs2_p) ? `TRUE : `FALSE;
+		 rs2_v_check = (risc_rs2_v == sb_rs2_v) ? `TRUE : `FALSE;
+		//  , `DPTR, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb.rdd_val, sb_rd_reg_value,
+		// 											 sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !rs2_p_check || !rs2_v_check)begin
+			general_check = `FALSE;//No paso la pueba
+			$display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- |                              *** %s ***", 
+			inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", general_check?"PASS":"ERROR");
+		 end else begin
+			general_check = `TRUE;//Si paso la prueba
+`ifdef __DB_PASS__ 
+			$display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- |                              *** %s ***", 
+			inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", general_check?"PASS":"ERROR");
+		 	// $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", 
+			// inst_counter, inst, function_check?"OK":"X", risc_rd_p, sb_rd_p, rd_p_check?"OK":"X", risc_rd_v, sb_rd_v, rd_v_check?"OK":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"OK":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"OK":"X", risc_imm, sb_imm, imm_check?"OK":"X", general_check?"OK":"X");
+`endif
+		 end
+	  end
+   endtask: r_type_cheker_rd_rs1_rs2
+
    task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
 	  if(risc_mem != sb_mem)begin
