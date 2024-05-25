@@ -1,6 +1,7 @@
 import instructions_data_struc::*;
 
-//`define __DB_ENABLE__
+// `define __DB_ENABLE__
+// `define __DB_PASS__
 // `define XIDATA_P top.soc0.core0.XIDATA
 `define RMDATA top.soc0.core0.RMDATA
 
@@ -35,7 +36,7 @@ class monitor2;
 	  this.inst_counter = 0;
 	  this.err_count = 0;
 	  this.display_one = 1;
-	  debug_counter_num_inst = 0;
+	  this.debug_counter_num_inst = 0;
    endfunction
 
    task check();
@@ -132,14 +133,16 @@ class monitor2;
 					   endcase
 					end else begin
 					   case(top.soc0.core0.FCT3)
-						 ADDI_FC:begin //addi
-							// i_type_cheker_rd_rs1_imm("addi", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
-							cp_mem_w("addi", `RMDATA, sb_rd_reg_value, (sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR");
+						 ADDI_FC:begin //addi , logic'(ADDI)
+							i_type_cheker_rd_rs1_imm("ADDI", ADDI, `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
+							cp_mem_w("addi", `RMDATA, sb_rd_reg_value, ((sb.rx_funct==ADDI)?"ADDI":"FUNC ERROR"));
 						 end
 						 SLTI_FC:begin //slti
+							// i_type_cheker_rd_rs1_imm("SLTI", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
 							cp_mem_bb("slti", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTI)?"SLTI":"FUNC ERROR");					 
 						 end
 						 SLTIU_FC:begin //sltiu
+							// i_type_cheker_rd_rs1_imm("SLTIU", `RMDATA, `S1PTR, `S1REG, `XSIMM, sb_rd_reg_value, sb.rs1_val, sb.ref_model.REGS[sb.rs1_val], sb.imm_val_sign_ext);
 							cp_mem_bb("sltiu", top.soc0.core0.RMDATA, sb_rd_reg_value, (sb.rx_funct==SLTIU)?"SLTIU":"FUNC ERROR");
 						 end
 						 XORI_FC:begin //xori
@@ -309,6 +312,7 @@ class monitor2;
 			   endcase
 			   debug_counter_num_inst = debug_counter_num_inst+1;     
 			end
+			inst_counter++;
 		 end//Work out of reset
 	  end
    endtask
@@ -369,25 +373,46 @@ class monitor2;
 	  end
 	  inst_counter++;
    endtask
+//    , input logic [7:0] instruccion
+   task automatic i_type_cheker_rd_rs1_imm(
+	string inst,
+	input logic [7:0] instruccion,
+	input logic [31:0] rmdata,
+	input logic [31:0] risc_rs1,
+	input logic [31:0] risc_rs1_v,
+	input logic [31:0] risc_xsimm,
+	input logic [31:0] sb_rd_val,
+	input logic [31:0] sb_rs1,
+	input logic [31:0] sb_rs1_val,
+	input logic [31:0] sb_xsimm);
 
-   /*
-   task i_type_cheker_rd_rs1_imm(string inst, input logic [31:0] rmdata, input logic [31:0] risc_rs1, input logic [31:0] risc_rs1_v, input logic [31:0] risc_xsimm, input logic [31:0] sb_rd_val, input logic [31:0] sb_rs1, input logic [31:0] sb.rs1_val, input logic [31:0] sb_xsimm);
-	  this.inst = inst_resize(inst);
+	bit function_checker;
+	bit rd_val_status;
+	bit rs1_status;
+	bit rs1_val_status;
+	bit imm_val_status;
+	bit general_status;
+
+	begin
+	
+	  inst = inst_resize(inst);
+	  function_checker = (sb.rx_funct == instruccion) ? `TRUE : `FALSE;
 	  rd_val_status = (rmdata == sb_rd_val) ? `TRUE : `FALSE;
 	  rs1_status = (risc_rs1 == sb_rs1) ? `TRUE : `FALSE;
 	  rs1_val_status = (risc_rs1_v == sb_rs1_val) ? `TRUE : `FALSE;
 	  imm_val_status = (risc_xsimm == sb_xsimm) ? `TRUE : `FALSE;
 	  
-	  if(!rd_val_status || !sr1_status || !rs1_val_status || !imm_val_status)begin
-		 general_status = "X";
+	  if(!function_checker || !rd_val_status || !rs1_status || !rs1_val_status || !imm_val_status)begin
+		 general_status = `FALSE;//No paso la pueba
+		 $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", inst_counter, inst, function_checker?"PASS":"X", rmdata, sb_rd_val, rd_val_status?"PASS":"X", risc_rs1, sb_rs1, rs1_status?"PASS":"X", risc_rs1_v, sb_rs1_val, rs1_val_status?"PASS":"X", risc_xsimm, sb_xsimm, imm_val_status?"PASS":"X", general_status?"PASS":"X");
 	  end else begin
-		 general_status = "PASS";
-	  end
-
-
-   endtask: i_type_cheker_rd_rs1_imm
-*/
-
+		 general_status = `TRUE;//Si paso la prueba
+		 `ifdef __DB_PASS__ 
+		//  $display(" %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %s", inst_counter, inst, function_checker?"PASS":"X", rmdata, sb_rd_val, rd_val_status?"PASS":"X", risc_rs1, sb_rs1, rs1_status?"PASS":"X", risc_rs1_v, sb_rs1_val, rs1_val_status?"PASS":"X", risc_xsimm, sb_xsimm, imm_val_status?"PASS":"X", general_status?"PASS":"X");
+	  `endif
+		end
+	end
+	endtask: i_type_cheker_rd_rs1_imm
    
    task cp_mem_w(string inst ,input logic [31:0] risc_mem, input logic [31:0] sb_mem, string rx_funct);
 	  inst = inst_resize(inst);
