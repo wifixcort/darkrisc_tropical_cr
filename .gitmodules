@@ -1,0 +1,3 @@
+[submodule "darkriscv"]
+	path = darkriscv
+	url = git@github.com:darklife/darkriscv.git
