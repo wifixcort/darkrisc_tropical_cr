@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-24 21:26:05 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-24 21:26:05 -0600)] usage server initial connection
+=N:[UsageMeter (2024-05-26 21:20:10 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-05-26 21:20:16 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -44,13 +44,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [1/9] module $root: 207 functions, 458 basic blocks
-  [3/9] CU scope $unit: 51 functions, 1769 basic blocks
-  [4/9] module top: 57 functions, 222 basic blocks
-  [6/9] package instructions_data_struc: 1 functions, 2 basic blocks
-  [7/9] interface intf_soc: 1 functions, 2 basic blocks
-  [8/9] module darksocv: 66 functions, 1435 basic blocks
-  [9/9] program testcase: 3 functions, 17 basic blocks
+  [3/9] CU scope $unit: 51 functions, 1816 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -1569,7 +1563,7 @@ Inst. N | Inst.Dec/Ex | Darck Inst | SB Inst | Risc MEM | SB MEM | STATUS
    509 | 03554113 | xori  | XORI | 00000035 | 00000035 | PASS
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
-Run directory: /home/ricardo/Documents/UCR/2024/Verif/cops_dark/file_struc_edaplayground/sim
+Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
   Random seed: 14492301493598
