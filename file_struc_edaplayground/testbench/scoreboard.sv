@@ -1,21 +1,25 @@
 class scoreboard;
 
   // Queue for STORING decoded instructions from Monitor
-  logic [75:0] decoded_inst_q [$]; // Data in queue: rx_funct, rs1_val, rs2_val, rdd_val, imm_val
+  logic [75:0] decoded_inst_q [$]; // Data in queue: rx_funct, rs1, rs2, rdd, imm_val
 	
   // Internal Signals for decoded_inst proccessing
   logic [75:0] decoded_inst_x;
   logic [7:0] rx_funct;
   logic signed [20:0]  imm_val;
   logic signed [31:0]  imm_val_sign_ext;
-  logic [4:0] rs1_val;
-  logic [4:0] rs2_val;
-  logic [4:0] rdd_val;
+  logic [4:0] rs1;
+  logic [4:0] rs2;
+  logic [4:0] rdd;
   logic [31:0] DATAI;
   logic [31:0] DATAO;
   logic [31:0] DADDR;
   logic [31:0] pc_val;
   
+  // For Debug
+  logic [31:0] rs1_val_ini;
+  logic [31:0] rs2_val_ini;
+
   // Reference Model Instance
   riscv_ref_model ref_model;
   
@@ -23,9 +27,9 @@ class scoreboard;
   function new();
     rx_funct = '0;
     imm_val = '0;
-    rs1_val = '0;
-    rs2_val = '0;
-    rdd_val = '0;
+    rs1 = '0;
+    rs2 = '0;
+    rdd = '0;
     DATAI = '0;
     DATAO = '0;
     DADDR = '0;
@@ -34,9 +38,9 @@ class scoreboard;
   endfunction
   
    // Function to push instruction to the queue
-  function push_instruction(logic [31:0] pc_val_in, logic [7:0] rx_funct_in, logic signed [20:0] imm_val_in, logic [4:0] rs1_val_in, logic [4:0] rs2_val_in, logic [4:0] rdd_val_in);
+  function push_instruction(logic [31:0] pc_val_in, logic [7:0] rx_funct_in, logic signed [20:0] imm_val_in, logic [4:0] rs1_in, logic [4:0] rs2_in, logic [4:0] rdd_in);
     
-    decoded_inst_q.push_back({pc_val_in, rx_funct_in, imm_val_in, rs1_val_in, rs2_val_in, rdd_val_in});
+    decoded_inst_q.push_back({pc_val_in, rx_funct_in, imm_val_in, rs1_in, rs2_in, rdd_in});
   endfunction
   
   // Function to get values from the queue and procces instruction in our model
@@ -48,17 +52,19 @@ class scoreboard;
       pc_val   = decoded_inst_x[75:44];
       rx_funct = decoded_inst_x[43:36];
       imm_val  = decoded_inst_x[35:15];
-      rs1_val  = decoded_inst_x[14:10];
-      rs2_val  = decoded_inst_x[9:5];
-      rdd_val  = decoded_inst_x[4:0];
+      rs1  = decoded_inst_x[14:10];
+      rs2  = decoded_inst_x[9:5];
+      rdd  = decoded_inst_x[4:0];
       
       // Predict with Reference Model
-      ref_model.predict(pc_val,rx_funct, imm_val, rs1_val, rs2_val, rdd_val);
+      ref_model.predict(pc_val,rx_funct, imm_val, rs1, rs2, rdd);
       imm_val_sign_ext = ref_model.imm_val_sign_ext;
       DATAI = ref_model.DATAI;
       DATAO = ref_model.DATAO;
       DADDR = ref_model.DADDR;
       pc_val = ref_model.pc_val_upd;
+	  rs1_val_ini = ref_model.rs1_val_ini;
+	  rs2_val_ini = ref_model.rs2_val_ini;
 
       // Dump Model Registers
       top.scbdreg_dmpd0 = ref_model.REGS[0];
