@@ -11,3 +11,5 @@ boards/*/darksocv.ip_user_files
 boards/*/darksocv.sim
 fusesoc.conf
 build
+Dsim/*
+!Dsim/driscv.dpf
