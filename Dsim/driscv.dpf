@@ -1,0 +1,69 @@
+---
+# Note: The contents of this file are automatically generated.
+# Any changes made by hand may be overwritten.
+version: '0.2'
+work_dir: .
+design_root_dir: ..\..
+simulations:
+  - name: test_basic
+    options: >-
+      -timescale 1ns/1ps  -sv_seed 123 -top TB.top_hvl -L DUT -L TB -image image
+      -uvm 1.2 +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic
+  - name: riscv-sim-s
+    options: >-
+      -timescale 1ns/1ps  -sv_seed 14492301598 -top TB.top -L DUT -L TB +acc+b
+      -waves darksocv.mxd
+  - name: riscv-sim-l
+    options: >-
+      -timescale 1ns/1ps  -sv_seed 16392301598 -top TB.top -L DUT -L TB +acc+b
+      -waves darksocv.mxd
+  - name: riscv-sim-g
+    options: >-
+      -timescale 1ns/1ps  -sv_seed 234392301598 -top TB.top -L DUT -L TB +acc+b
+      -waves darksocv.mxd
+source_files:
+  - language: verilog
+    path: ../rtl/config.vh
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkuart.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkpll.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkcache.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darkriscv.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/darksocv.v
+    library_name: DUT
+  - language: verilog
+    path: ../rtl/top_hdl.sv
+    library_name: DUT
+    options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/instructions_data_struc.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/intf_soc.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/test_basic.sv
+    library_name: TB
+    options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/driver.sv
+    library_name: TB
+    options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/env.sv
+    library_name: TB
+    options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/top_hvl.sv
+    library_name: TB
+library_search_paths:
+  - $STD_LIBS/ieee93
