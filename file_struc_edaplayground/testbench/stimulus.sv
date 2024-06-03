@@ -36,9 +36,9 @@ class instruction_generator;
    //********************************************************
    constraint opcode_cases{
       opcode dist 	{R_TYPE :/ 44,
-                     I_TYPE  :/ 44
-                     //I_L_TYPE,
-                     //S_TYPE  :/ 12
+                     I_TYPE  :/ 44,
+                     //I_L_TYPE
+                     S_TYPE  :/ 12
                      /*S_B_TYPE,
                       J_TYPE,
                       I_JALR_TYPE,

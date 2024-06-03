@@ -207,7 +207,7 @@ class riscv_ref_model;
           imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
           DADDR = REGS[rs1] + imm_val_sign_ext;
           DATAI = MEM[DADDR[`MLEN-1:2]];
-          case (DADDR[0])
+          case (DADDR[1])
             1: BE = 4'b1100;
             0: BE = 4'b0011;
           endcase
@@ -255,7 +255,7 @@ class riscv_ref_model;
           imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
           DADDR = REGS[rs1] + imm_val_sign_ext;
           DATAI = MEM[DADDR[`MLEN-1:2]];
-          case (DADDR[0])
+          case (DADDR[1])
             1: BE = 4'b1100;
             0: BE = 4'b0011;
           endcase
@@ -303,7 +303,7 @@ class riscv_ref_model;
         if (!(|FLUSH)) begin
           imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
           DADDR = REGS[rs1] + imm_val_sign_ext;
-          case (DADDR[0])
+          case (DADDR[1])
             1: BE = 4'b1100;
             0: BE = 4'b0011;
           endcase

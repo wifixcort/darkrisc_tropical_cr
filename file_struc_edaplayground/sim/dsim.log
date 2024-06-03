@@ -1,5 +1,5 @@
-=N:[UsageMeter (2024-05-27 20:13:53 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-05-27 20:13:53 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-02 19:30:05 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-02 19:30:06 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -44,6 +44,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
+  [3/9] CU scope $unit: 53 functions, 2428 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -78,516 +79,516 @@ Stimulus: Invoked opt_addr() -> set instructions before load/storage for force v
 ******************************************************************************************
 Stimulus: Invoked print_mem() -> print the actual state of MEM
 ******************************************************************************************
-Instruction #    0:	0eb48093	opcode: 0010011 
-Instruction #    1:	0f280113	opcode: 0010011 
-Instruction #    2:	fb9b8193	opcode: 0010011 
-Instruction #    3:	02940213	opcode: 0010011 
-Instruction #    4:	0bcd0293	opcode: 0010011 
-Instruction #    5:	07648313	opcode: 0010011 
-Instruction #    6:	fbaf8393	opcode: 0010011 
-Instruction #    7:	f8540413	opcode: 0010011 
-Instruction #    8:	fbbe0493	opcode: 0010011 
-Instruction #    9:	01758513	opcode: 0010011 
-Instruction #   10:	056e0593	opcode: 0010011 
-Instruction #   11:	0b770613	opcode: 0010011 
-Instruction #   12:	0f7e0693	opcode: 0010011 
-Instruction #   13:	f56b8713	opcode: 0010011 
-Instruction #   14:	f1f50793	opcode: 0010011 
-Instruction #   15:	04d90813	opcode: 0010011 
-Instruction #   16:	03c20893	opcode: 0010011 
-Instruction #   17:	0f468913	opcode: 0010011 
-Instruction #   18:	0cef8993	opcode: 0010011 
-Instruction #   19:	06410a13	opcode: 0010011 
-Instruction #   20:	fdc60a93	opcode: 0010011 
-Instruction #   21:	0b738b13	opcode: 0010011 
-Instruction #   22:	09e90b93	opcode: 0010011 
-Instruction #   23:	f7540c13	opcode: 0010011 
-Instruction #   24:	ffd70c93	opcode: 0010011 
-Instruction #   25:	fa3e8d13	opcode: 0010011 
-Instruction #   26:	ffea8d93	opcode: 0010011 
-Instruction #   27:	05b20e13	opcode: 0010011 
-Instruction #   28:	f6050e93	opcode: 0010011 
-Instruction #   29:	0cbf8f13	opcode: 0010011 
-Instruction #   30:	0da38f93	opcode: 0010011 
-Instruction #   31:	fcd57b93	opcode: 0010011 
-Instruction #   32:	006fdb93	opcode: 0010011 
-Instruction #   33:	ff727d93	opcode: 0010011 
-Instruction #   34:	002a0fb3	opcode: 0110011 
-Instruction #   35:	02b8a313	opcode: 0010011 
-Instruction #   36:	0e087e13	opcode: 0010011 
-Instruction #   37:	f8c98193	opcode: 0010011 
-Instruction #   38:	009371b3	opcode: 0110011 
-Instruction #   39:	0094fdb3	opcode: 0110011 
-Instruction #   40:	0018e4b3	opcode: 0110011 
-Instruction #   41:	fb872f93	opcode: 0010011 
-Instruction #   42:	01201b13	opcode: 0010011 
-Instruction #   43:	001f1f93	opcode: 0010011 
-Instruction #   44:	f6d3a193	opcode: 0010011 
-Instruction #   45:	00fb76b3	opcode: 0110011 
-Instruction #   46:	00ab4333	opcode: 0110011 
-Instruction #   47:	0952e413	opcode: 0010011 
-Instruction #   48:	0197eeb3	opcode: 0110011 
-Instruction #   49:	006e27b3	opcode: 0110011 
-Instruction #   50:	faeee193	opcode: 0010011 
-Instruction #   51:	fe057013	opcode: 0010011 
-Instruction #   52:	01a7bbb3	opcode: 0110011 
-Instruction #   53:	f775ad93	opcode: 0010011 
-Instruction #   54:	00438f33	opcode: 0110011 
-Instruction #   55:	0c84a693	opcode: 0010011 
-Instruction #   56:	01f9d213	opcode: 0010011 
-Instruction #   57:	004d4eb3	opcode: 0110011 
-Instruction #   58:	fa838d93	opcode: 0010011 
-Instruction #   59:	0b7ec513	opcode: 0010011 
-Instruction #   60:	02217193	opcode: 0010011 
-Instruction #   61:	fb2c6293	opcode: 0010011 
-Instruction #   62:	01ef7e33	opcode: 0110011 
-Instruction #   63:	00c0fb33	opcode: 0110011 
-Instruction #   64:	0d9b3393	opcode: 0010011 
-Instruction #   65:	01405013	opcode: 0010011 
-Instruction #   66:	004e49b3	opcode: 0110011 
-Instruction #   67:	002d5033	opcode: 0110011 
-Instruction #   68:	015bd793	opcode: 0010011 
-Instruction #   69:	0e848013	opcode: 0010011 
-Instruction #   70:	02c9f313	opcode: 0010011 
-Instruction #   71:	00a11233	opcode: 0110011 
-Instruction #   72:	005f4433	opcode: 0110011 
-Instruction #   73:	04414e93	opcode: 0010011 
-Instruction #   74:	010728b3	opcode: 0110011 
-Instruction #   75:	012e1713	opcode: 0010011 
-Instruction #   76:	07e62893	opcode: 0010011 
-Instruction #   77:	00dac4b3	opcode: 0110011 
-Instruction #   78:	00961b33	opcode: 0110011 
-Instruction #   79:	01eb9833	opcode: 0110011 
-Instruction #   80:	01f06f33	opcode: 0110011 
-Instruction #   81:	017154b3	opcode: 0110011 
-Instruction #   82:	fe6ec213	opcode: 0010011 
-Instruction #   83:	01a91eb3	opcode: 0110011 
-Instruction #   84:	017aecb3	opcode: 0110011 
-Instruction #   85:	f8c26013	opcode: 0010011 
-Instruction #   86:	09772a93	opcode: 0010011 
-Instruction #   87:	03ac8013	opcode: 0010011 
-Instruction #   88:	f3a0a613	opcode: 0010011 
-Instruction #   89:	00960833	opcode: 0110011 
-Instruction #   90:	00b83db3	opcode: 0110011 
-Instruction #   91:	fc977213	opcode: 0010011 
-Instruction #   92:	00d21193	opcode: 0010011 
-Instruction #   93:	018ba7b3	opcode: 0110011 
-Instruction #   94:	f5a3b813	opcode: 0010011 
-Instruction #   95:	01d5c7b3	opcode: 0110011 
-Instruction #   96:	01df0c33	opcode: 0110011 
-Instruction #   97:	08657c13	opcode: 0010011 
-Instruction #   98:	01525813	opcode: 0010011 
-Instruction #   99:	01e4d893	opcode: 0010011 
-Instruction #  100:	00fb6133	opcode: 0110011 
-Instruction #  101:	00d19433	opcode: 0110011 
-Instruction #  102:	004ec1b3	opcode: 0110011 
-Instruction #  103:	01909713	opcode: 0010011 
-Instruction #  104:	0c896b93	opcode: 0010011 
-Instruction #  105:	078f4b93	opcode: 0010011 
-Instruction #  106:	014f9bb3	opcode: 0110011 
-Instruction #  107:	0611c413	opcode: 0010011 
-Instruction #  108:	00770433	opcode: 0110011 
-Instruction #  109:	00727033	opcode: 0110011 
-Instruction #  110:	00ec5793	opcode: 0010011 
-Instruction #  111:	004b26b3	opcode: 0110011 
-Instruction #  112:	013d8bb3	opcode: 0110011 
-Instruction #  113:	01bbe533	opcode: 0110011 
-Instruction #  114:	0031f833	opcode: 0110011 
-Instruction #  115:	018a3db3	opcode: 0110011 
-Instruction #  116:	0702e013	opcode: 0010011 
-Instruction #  117:	0aed3e13	opcode: 0010011 
-Instruction #  118:	0d82cf13	opcode: 0010011 
-Instruction #  119:	0036a833	opcode: 0110011 
-Instruction #  120:	05c84d93	opcode: 0010011 
-Instruction #  121:	0457b693	opcode: 0010011 
-Instruction #  122:	00189693	opcode: 0010011 
-Instruction #  123:	011e9e93	opcode: 0010011 
-Instruction #  124:	01cecab3	opcode: 0110011 
-Instruction #  125:	00fcdab3	opcode: 0110011 
-Instruction #  126:	00e398b3	opcode: 0110011 
-Instruction #  127:	01d2d993	opcode: 0010011 
-Instruction #  128:	0035a433	opcode: 0110011 
-Instruction #  129:	01cf27b3	opcode: 0110011 
-Instruction #  130:	fcaaa613	opcode: 0010011 
-Instruction #  131:	0090ee33	opcode: 0110011 
-Instruction #  132:	0186fcb3	opcode: 0110011 
-Instruction #  133:	f42b6793	opcode: 0010011 
-Instruction #  134:	01950f33	opcode: 0110011 
-Instruction #  135:	018bf233	opcode: 0110011 
-Instruction #  136:	0071f633	opcode: 0110011 
-Instruction #  137:	0ffae993	opcode: 0010011 
-Instruction #  138:	01ff1213	opcode: 0010011 
-Instruction #  139:	01782e93	opcode: 0010011 
-Instruction #  140:	face0593	opcode: 0010011 
-Instruction #  141:	003fa333	opcode: 0110011 
-Instruction #  142:	006f8033	opcode: 0110011 
-Instruction #  143:	f9b5ce93	opcode: 0010011 
-Instruction #  144:	f262f893	opcode: 0010011 
-Instruction #  145:	f59d4213	opcode: 0010011 
-Instruction #  146:	02b2f893	opcode: 0010011 
-Instruction #  147:	f5f8ad93	opcode: 0010011 
-Instruction #  148:	00700233	opcode: 0110011 
-Instruction #  149:	01799613	opcode: 0010011 
-Instruction #  150:	019adab3	opcode: 0110011 
-Instruction #  151:	0286c213	opcode: 0010011 
-Instruction #  152:	00b35813	opcode: 0010011 
-Instruction #  153:	008451b3	opcode: 0110011 
-Instruction #  154:	00311693	opcode: 0010011 
-Instruction #  155:	00cb23b3	opcode: 0110011 
-Instruction #  156:	000600b3	opcode: 0110011 
-Instruction #  157:	00415233	opcode: 0110011 
-Instruction #  158:	09f6be93	opcode: 0010011 
-Instruction #  159:	01241c13	opcode: 0010011 
-Instruction #  160:	0119d3b3	opcode: 0110011 
-Instruction #  161:	f8a3c393	opcode: 0010011 
-Instruction #  162:	015f24b3	opcode: 0110011 
-Instruction #  163:	f8e06793	opcode: 0010011 
-Instruction #  164:	0350b593	opcode: 0010011 
-Instruction #  165:	0cde8d13	opcode: 0010011 
-Instruction #  166:	00271193	opcode: 0010011 
-Instruction #  167:	014906b3	opcode: 0110011 
-Instruction #  168:	01cc9913	opcode: 0010011 
-Instruction #  169:	00495f93	opcode: 0010011 
-Instruction #  170:	01123393	opcode: 0010011 
-Instruction #  171:	01c38993	opcode: 0010011 
-Instruction #  172:	00b30133	opcode: 0110011 
-Instruction #  173:	0039c333	opcode: 0110011 
-Instruction #  174:	01bd86b3	opcode: 0110011 
-Instruction #  175:	00d527b3	opcode: 0110011 
-Instruction #  176:	0003b193	opcode: 0010011 
-Instruction #  177:	000698b3	opcode: 0110011 
-Instruction #  178:	00c726b3	opcode: 0110011 
-Instruction #  179:	017ec433	opcode: 0110011 
-Instruction #  180:	002eda33	opcode: 0110011 
-Instruction #  181:	015f4633	opcode: 0110011 
-Instruction #  182:	019bf333	opcode: 0110011 
-Instruction #  183:	019be0b3	opcode: 0110011 
-Instruction #  184:	00781033	opcode: 0110011 
-Instruction #  185:	0be6c693	opcode: 0010011 
-Instruction #  186:	fcf6e193	opcode: 0010011 
-Instruction #  187:	00540c33	opcode: 0110011 
-Instruction #  188:	fa64f493	opcode: 0010011 
-Instruction #  189:	01527bb3	opcode: 0110011 
-Instruction #  190:	01490133	opcode: 0110011 
-Instruction #  191:	09ee2213	opcode: 0010011 
-Instruction #  192:	f9a7ea13	opcode: 0010011 
-Instruction #  193:	f3516913	opcode: 0010011 
-Instruction #  194:	050a8613	opcode: 0010011 
-Instruction #  195:	01fa72b3	opcode: 0110011 
-Instruction #  196:	0a5e6993	opcode: 0010011 
-Instruction #  197:	01624233	opcode: 0110011 
-Instruction #  198:	01e2b333	opcode: 0110011 
-Instruction #  199:	0c533a93	opcode: 0010011 
-Instruction #  200:	00bf74b3	opcode: 0110011 
-Instruction #  201:	011a1bb3	opcode: 0110011 
-Instruction #  202:	094ab213	opcode: 0010011 
-Instruction #  203:	002d5c93	opcode: 0010011 
-Instruction #  204:	047c4693	opcode: 0010011 
-Instruction #  205:	0197e133	opcode: 0110011 
-Instruction #  206:	00017eb3	opcode: 0110011 
-Instruction #  207:	017f8633	opcode: 0110011 
-Instruction #  208:	00639833	opcode: 0110011 
-Instruction #  209:	f2f3bc93	opcode: 0010011 
-Instruction #  210:	010d08b3	opcode: 0110011 
-Instruction #  211:	00f260b3	opcode: 0110011 
-Instruction #  212:	049db093	opcode: 0010011 
-Instruction #  213:	003915b3	opcode: 0110011 
-Instruction #  214:	00a10b33	opcode: 0110011 
-Instruction #  215:	fe5c3713	opcode: 0010011 
-Instruction #  216:	001cadb3	opcode: 0110011 
-Instruction #  217:	0a4b6a13	opcode: 0010011 
-Instruction #  218:	f6a67013	opcode: 0010011 
-Instruction #  219:	fedac913	opcode: 0010011 
-Instruction #  220:	fd37e693	opcode: 0010011 
-Instruction #  221:	01dbc9b3	opcode: 0110011 
-Instruction #  222:	01531893	opcode: 0010011 
-Instruction #  223:	f8c34393	opcode: 0010011 
-Instruction #  224:	012516b3	opcode: 0110011 
-Instruction #  225:	0e68e193	opcode: 0010011 
-Instruction #  226:	0d48f313	opcode: 0010011 
-Instruction #  227:	00accab3	opcode: 0110011 
-Instruction #  228:	00075c93	opcode: 0010011 
-Instruction #  229:	00466d33	opcode: 0110011 
-Instruction #  230:	ffed7293	opcode: 0010011 
-Instruction #  231:	015cba33	opcode: 0110011 
-Instruction #  232:	00903fb3	opcode: 0110011 
-Instruction #  233:	016b5c93	opcode: 0010011 
-Instruction #  234:	00961b13	opcode: 0010011 
-Instruction #  235:	f4327593	opcode: 0010011 
-Instruction #  236:	f7fefc13	opcode: 0010011 
-Instruction #  237:	00b87033	opcode: 0110011 
-Instruction #  238:	009e0bb3	opcode: 0110011 
-Instruction #  239:	00b62db3	opcode: 0110011 
-Instruction #  240:	01959733	opcode: 0110011 
-Instruction #  241:	009075b3	opcode: 0110011 
-Instruction #  242:	ffefe693	opcode: 0010011 
-Instruction #  243:	00d59813	opcode: 0010011 
-Instruction #  244:	feafb913	opcode: 0010011 
-Instruction #  245:	00f71e93	opcode: 0010011 
-Instruction #  246:	00567f33	opcode: 0110011 
-Instruction #  247:	01440733	opcode: 0110011 
-Instruction #  248:	0bfbae93	opcode: 0010011 
-Instruction #  249:	01db10b3	opcode: 0110011 
-Instruction #  250:	014ed613	opcode: 0010011 
-Instruction #  251:	010e1313	opcode: 0010011 
-Instruction #  252:	01bed313	opcode: 0010011 
-Instruction #  253:	00db1593	opcode: 0010011 
-Instruction #  254:	0005d393	opcode: 0010011 
-Instruction #  255:	0f4d8393	opcode: 0010011 
-Instruction #  256:	01679c33	opcode: 0110011 
-Instruction #  257:	01bde7b3	opcode: 0110011 
-Instruction #  258:	004bcd33	opcode: 0110011 
-Instruction #  259:	012dba13	opcode: 0010011 
-Instruction #  260:	00a5fd93	opcode: 0010011 
-Instruction #  261:	0066a733	opcode: 0110011 
-Instruction #  262:	f3846f13	opcode: 0010011 
-Instruction #  263:	019f99b3	opcode: 0110011 
-Instruction #  264:	014e41b3	opcode: 0110011 
-Instruction #  265:	00a5a233	opcode: 0110011 
-Instruction #  266:	014357b3	opcode: 0110011 
-Instruction #  267:	013deb33	opcode: 0110011 
-Instruction #  268:	01a793b3	opcode: 0110011 
-Instruction #  269:	01ba2b33	opcode: 0110011 
-Instruction #  270:	0080e1b3	opcode: 0110011 
-Instruction #  271:	01e82f93	opcode: 0010011 
-Instruction #  272:	0162f333	opcode: 0110011 
-Instruction #  273:	f7602b13	opcode: 0010011 
-Instruction #  274:	0c2f0193	opcode: 0010011 
-Instruction #  275:	0b894c93	opcode: 0010011 
-Instruction #  276:	00b8deb3	opcode: 0110011 
-Instruction #  277:	fa218913	opcode: 0010011 
-Instruction #  278:	f1056a93	opcode: 0010011 
-Instruction #  279:	01d8d813	opcode: 0010011 
-Instruction #  280:	005ec8b3	opcode: 0110011 
-Instruction #  281:	fea4ac93	opcode: 0010011 
-Instruction #  282:	01fd6733	opcode: 0110011 
-Instruction #  283:	016c5113	opcode: 0010011 
-Instruction #  284:	0000f533	opcode: 0110011 
-Instruction #  285:	01aeba33	opcode: 0110011 
-Instruction #  286:	00ca3733	opcode: 0110011 
-Instruction #  287:	f97f8b93	opcode: 0010011 
-Instruction #  288:	00e7e633	opcode: 0110011 
-Instruction #  289:	06b50e13	opcode: 0010011 
-Instruction #  290:	f18afa13	opcode: 0010011 
-Instruction #  291:	003d2c33	opcode: 0110011 
-Instruction #  292:	012dd413	opcode: 0010011 
-Instruction #  293:	00be2333	opcode: 0110011 
-Instruction #  294:	01f69a33	opcode: 0110011 
-Instruction #  295:	01e8ddb3	opcode: 0110011 
-Instruction #  296:	f88da813	opcode: 0010011 
-Instruction #  297:	019be833	opcode: 0110011 
-Instruction #  298:	00db29b3	opcode: 0110011 
-Instruction #  299:	faf24793	opcode: 0010011 
-Instruction #  300:	014569b3	opcode: 0110011 
-Instruction #  301:	0136fb33	opcode: 0110011 
-Instruction #  302:	07b44c13	opcode: 0010011 
-Instruction #  303:	ffe5a293	opcode: 0010011 
-Instruction #  304:	01223733	opcode: 0110011 
-Instruction #  305:	00e12eb3	opcode: 0110011 
-Instruction #  306:	011d44b3	opcode: 0110011 
-Instruction #  307:	003e12b3	opcode: 0110011 
-Instruction #  308:	fbd9c693	opcode: 0010011 
-Instruction #  309:	01f330b3	opcode: 0110011 
-Instruction #  310:	f2304913	opcode: 0010011 
-Instruction #  311:	f8fc6793	opcode: 0010011 
-Instruction #  312:	009a4a33	opcode: 0110011 
-Instruction #  313:	ffed8f93	opcode: 0010011 
-Instruction #  314:	013356b3	opcode: 0110011 
-Instruction #  315:	00a1eab3	opcode: 0110011 
-Instruction #  316:	01876db3	opcode: 0110011 
-Instruction #  317:	f9c76993	opcode: 0010011 
-Instruction #  318:	00e551b3	opcode: 0110011 
-Instruction #  319:	07f54393	opcode: 0010011 
-Instruction #  320:	00eea9b3	opcode: 0110011 
-Instruction #  321:	00ec9093	opcode: 0010011 
-Instruction #  322:	f8eb3c93	opcode: 0010011 
-Instruction #  323:	f56e8413	opcode: 0010011 
-Instruction #  324:	fdc80493	opcode: 0010011 
-Instruction #  325:	00929d13	opcode: 0010011 
-Instruction #  326:	00cb3c33	opcode: 0110011 
-Instruction #  327:	00749813	opcode: 0010011 
-Instruction #  328:	016f9e93	opcode: 0010011 
-Instruction #  329:	fe99f613	opcode: 0010011 
-Instruction #  330:	ff680f13	opcode: 0010011 
-Instruction #  331:	00edd3b3	opcode: 0110011 
-Instruction #  332:	017edc33	opcode: 0110011 
-Instruction #  333:	01a95593	opcode: 0010011 
-Instruction #  334:	00eda6b3	opcode: 0110011 
-Instruction #  335:	09e73613	opcode: 0010011 
-Instruction #  336:	01d09f93	opcode: 0010011 
-Instruction #  337:	01f02433	opcode: 0110011 
-Instruction #  338:	017d2133	opcode: 0110011 
-Instruction #  339:	02eff613	opcode: 0010011 
-Instruction #  340:	0162e9b3	opcode: 0110011 
-Instruction #  341:	01e52033	opcode: 0110011 
-Instruction #  342:	00398933	opcode: 0110011 
-Instruction #  343:	00e577b3	opcode: 0110011 
-Instruction #  344:	014a9c13	opcode: 0010011 
-Instruction #  345:	fa46bd93	opcode: 0010011 
-Instruction #  346:	01a446b3	opcode: 0110011 
-Instruction #  347:	07c1f713	opcode: 0010011 
-Instruction #  348:	01fe1db3	opcode: 0110011 
-Instruction #  349:	00612733	opcode: 0110011 
-Instruction #  350:	004e6933	opcode: 0110011 
-Instruction #  351:	0039e3b3	opcode: 0110011 
-Instruction #  352:	01fba933	opcode: 0110011 
-Instruction #  353:	00e0e433	opcode: 0110011 
-Instruction #  354:	0118bbb3	opcode: 0110011 
-Instruction #  355:	01aa4633	opcode: 0110011 
-Instruction #  356:	011ee033	opcode: 0110011 
-Instruction #  357:	002f3633	opcode: 0110011 
-Instruction #  358:	01c127b3	opcode: 0110011 
-Instruction #  359:	01de9a33	opcode: 0110011 
-Instruction #  360:	07abf213	opcode: 0010011 
-Instruction #  361:	0ca70613	opcode: 0010011 
-Instruction #  362:	01e87ab3	opcode: 0110011 
-Instruction #  363:	0ace7193	opcode: 0010011 
-Instruction #  364:	0138de13	opcode: 0010011 
-Instruction #  365:	fb79e513	opcode: 0010011 
-Instruction #  366:	00ff3733	opcode: 0110011 
-Instruction #  367:	012fe0b3	opcode: 0110011 
-Instruction #  368:	07658393	opcode: 0010011 
-Instruction #  369:	0e7c0593	opcode: 0010011 
-Instruction #  370:	0dd70213	opcode: 0010011 
-Instruction #  371:	01996233	opcode: 0110011 
-Instruction #  372:	017874b3	opcode: 0110011 
-Instruction #  373:	013d4d33	opcode: 0110011 
-Instruction #  374:	00069013	opcode: 0010011 
-Instruction #  375:	0f7ecd93	opcode: 0010011 
-Instruction #  376:	00609333	opcode: 0110011 
-Instruction #  377:	0149abb3	opcode: 0110011 
-Instruction #  378:	01e81933	opcode: 0110011 
-Instruction #  379:	00dc1d93	opcode: 0010011 
-Instruction #  380:	fa35ae13	opcode: 0010011 
-Instruction #  381:	08577393	opcode: 0010011 
-Instruction #  382:	0082df93	opcode: 0010011 
-Instruction #  383:	01d46433	opcode: 0110011 
-Instruction #  384:	0d4d0493	opcode: 0010011 
-Instruction #  385:	00071993	opcode: 0010011 
-Instruction #  386:	0838a993	opcode: 0010011 
-Instruction #  387:	f8bba713	opcode: 0010011 
-Instruction #  388:	0c77a913	opcode: 0010011 
-Instruction #  389:	ffcdf813	opcode: 0010011 
-Instruction #  390:	01970533	opcode: 0110011 
-Instruction #  391:	015f4bb3	opcode: 0110011 
-Instruction #  392:	01717833	opcode: 0110011 
-Instruction #  393:	01b48a33	opcode: 0110011 
-Instruction #  394:	047dfd93	opcode: 0010011 
-Instruction #  395:	f41cad93	opcode: 0010011 
-Instruction #  396:	01a97a33	opcode: 0110011 
-Instruction #  397:	021e2e13	opcode: 0010011 
-Instruction #  398:	01f12e33	opcode: 0110011 
-Instruction #  399:	012d1413	opcode: 0010011 
-Instruction #  400:	0b5f3293	opcode: 0010011 
-Instruction #  401:	0cc50c93	opcode: 0010011 
-Instruction #  402:	00dce913	opcode: 0010011 
-Instruction #  403:	005787b3	opcode: 0110011 
-Instruction #  404:	01528c33	opcode: 0110011 
-Instruction #  405:	010e06b3	opcode: 0110011 
-Instruction #  406:	f5af7c13	opcode: 0010011 
-Instruction #  407:	00866533	opcode: 0110011 
-Instruction #  408:	f7c6f113	opcode: 0010011 
-Instruction #  409:	00c52c33	opcode: 0110011 
-Instruction #  410:	00af29b3	opcode: 0110011 
-Instruction #  411:	00243b33	opcode: 0110011 
-Instruction #  412:	00da83b3	opcode: 0110011 
-Instruction #  413:	0d063b93	opcode: 0010011 
-Instruction #  414:	00e9de93	opcode: 0010011 
-Instruction #  415:	0100ad33	opcode: 0110011 
-Instruction #  416:	00339b13	opcode: 0010011 
-Instruction #  417:	f5892c93	opcode: 0010011 
-Instruction #  418:	003feb33	opcode: 0110011 
-Instruction #  419:	001d0533	opcode: 0110011 
-Instruction #  420:	011609b3	opcode: 0110011 
-Instruction #  421:	0003a833	opcode: 0110011 
-Instruction #  422:	00ae9433	opcode: 0110011 
-Instruction #  423:	015b40b3	opcode: 0110011 
-Instruction #  424:	009566b3	opcode: 0110011 
-Instruction #  425:	f068c093	opcode: 0010011 
-Instruction #  426:	015f3493	opcode: 0010011 
-Instruction #  427:	f024ee93	opcode: 0010011 
-Instruction #  428:	019de8b3	opcode: 0110011 
-Instruction #  429:	012775b3	opcode: 0110011 
-Instruction #  430:	07603993	opcode: 0010011 
-Instruction #  431:	01052c33	opcode: 0110011 
-Instruction #  432:	f498b213	opcode: 0010011 
-Instruction #  433:	010ca7b3	opcode: 0110011 
-Instruction #  434:	00ee8193	opcode: 0010011 
-Instruction #  435:	00d1d413	opcode: 0010011 
-Instruction #  436:	f315bc13	opcode: 0010011 
-Instruction #  437:	0181c433	opcode: 0110011 
-Instruction #  438:	035f6793	opcode: 0010011 
-Instruction #  439:	019a51b3	opcode: 0110011 
-Instruction #  440:	019e78b3	opcode: 0110011 
-Instruction #  441:	001316b3	opcode: 0110011 
-Instruction #  442:	01482333	opcode: 0110011 
-Instruction #  443:	f0dab213	opcode: 0010011 
-Instruction #  444:	005572b3	opcode: 0110011 
-Instruction #  445:	017924b3	opcode: 0110011 
-Instruction #  446:	01ceddb3	opcode: 0110011 
-Instruction #  447:	00e4eb33	opcode: 0110011 
-Instruction #  448:	f4442113	opcode: 0010011 
-Instruction #  449:	00a84bb3	opcode: 0110011 
-Instruction #  450:	00819093	opcode: 0010011 
-Instruction #  451:	01ad85b3	opcode: 0110011 
-Instruction #  452:	004be4b3	opcode: 0110011 
-Instruction #  453:	0198e5b3	opcode: 0110011 
-Instruction #  454:	008c0533	opcode: 0110011 
-Instruction #  455:	fa550993	opcode: 0010011 
-Instruction #  456:	01715593	opcode: 0010011 
-Instruction #  457:	00ed4393	opcode: 0010011 
-Instruction #  458:	004f5e33	opcode: 0110011 
-Instruction #  459:	00757433	opcode: 0110011 
-Instruction #  460:	0d8d7213	opcode: 0010011 
-Instruction #  461:	01bed233	opcode: 0110011 
-Instruction #  462:	01d1fe33	opcode: 0110011 
-Instruction #  463:	005573b3	opcode: 0110011 
-Instruction #  464:	01982f33	opcode: 0110011 
-Instruction #  465:	009431b3	opcode: 0110011 
-Instruction #  466:	01091f13	opcode: 0010011 
-Instruction #  467:	0e068393	opcode: 0010011 
-Instruction #  468:	0070ffb3	opcode: 0110011 
-Instruction #  469:	01ac8033	opcode: 0110011 
-Instruction #  470:	00e6cfb3	opcode: 0110011 
-Instruction #  471:	0091c4b3	opcode: 0110011 
-Instruction #  472:	01575d13	opcode: 0010011 
-Instruction #  473:	00edda13	opcode: 0010011 
-Instruction #  474:	018026b3	opcode: 0110011 
-Instruction #  475:	045bc393	opcode: 0010011 
-Instruction #  476:	00f85893	opcode: 0010011 
-Instruction #  477:	002672b3	opcode: 0110011 
-Instruction #  478:	01798db3	opcode: 0110011 
-Instruction #  479:	01d2c2b3	opcode: 0110011 
-Instruction #  480:	00150533	opcode: 0110011 
-Instruction #  481:	01835233	opcode: 0110011 
-Instruction #  482:	0f81f493	opcode: 0010011 
-Instruction #  483:	0134a2b3	opcode: 0110011 
-Instruction #  484:	00195693	opcode: 0010011 
-Instruction #  485:	005a9713	opcode: 0010011 
-Instruction #  486:	01334e33	opcode: 0110011 
-Instruction #  487:	f53bf413	opcode: 0010011 
-Instruction #  488:	00ff47b3	opcode: 0110011 
-Instruction #  489:	05324313	opcode: 0010011 
-Instruction #  490:	01adee93	opcode: 0010011 
-Instruction #  491:	f33db393	opcode: 0010011 
-Instruction #  492:	0176d993	opcode: 0010011 
-Instruction #  493:	00fc3db3	opcode: 0110011 
-Instruction #  494:	01207c33	opcode: 0110011 
-Instruction #  495:	00a15513	opcode: 0010011 
-Instruction #  496:	01805693	opcode: 0010011 
-Instruction #  497:	00235893	opcode: 0010011 
-Instruction #  498:	017264b3	opcode: 0110011 
-Instruction #  499:	00368133	opcode: 0110011 
-Instruction #  500:	fc68c113	opcode: 0010011 
-Instruction #  501:	0007b3b3	opcode: 0110011 
-Instruction #  502:	04c3e413	opcode: 0010011 
-Instruction #  503:	00b68ab3	opcode: 0110011 
-Instruction #  504:	f26cb613	opcode: 0010011 
-Instruction #  505:	f5aae393	opcode: 0010011 
-Instruction #  506:	f791fb93	opcode: 0010011 
-Instruction #  507:	012ef5b3	opcode: 0110011 
-Instruction #  508:	01980a33	opcode: 0110011 
-Instruction #  509:	03554113	opcode: 0010011 
+Instruction #    0:	09348093	opcode: 0010011 
+Instruction #    1:	f3108113	opcode: 0010011 
+Instruction #    2:	0e5a8193	opcode: 0010011 
+Instruction #    3:	01f18213	opcode: 0010011 
+Instruction #    4:	f5128293	opcode: 0010011 
+Instruction #    5:	0d7a0313	opcode: 0010011 
+Instruction #    6:	f0108393	opcode: 0010011 
+Instruction #    7:	f7fd0413	opcode: 0010011 
+Instruction #    8:	097f8493	opcode: 0010011 
+Instruction #    9:	087d0513	opcode: 0010011 
+Instruction #   10:	08a78593	opcode: 0010011 
+Instruction #   11:	035b8613	opcode: 0010011 
+Instruction #   12:	054a8693	opcode: 0010011 
+Instruction #   13:	056f8713	opcode: 0010011 
+Instruction #   14:	0d100793	opcode: 0010011 
+Instruction #   15:	06fa8813	opcode: 0010011 
+Instruction #   16:	f7ba0893	opcode: 0010011 
+Instruction #   17:	f4840913	opcode: 0010011 
+Instruction #   18:	fad90993	opcode: 0010011 
+Instruction #   19:	fb328a13	opcode: 0010011 
+Instruction #   20:	01940a93	opcode: 0010011 
+Instruction #   21:	0c1f0b13	opcode: 0010011 
+Instruction #   22:	0ddc0b93	opcode: 0010011 
+Instruction #   23:	037d0c13	opcode: 0010011 
+Instruction #   24:	f1ae0c93	opcode: 0010011 
+Instruction #   25:	00f50d13	opcode: 0010011 
+Instruction #   26:	f9f80d93	opcode: 0010011 
+Instruction #   27:	0de48e13	opcode: 0010011 
+Instruction #   28:	0a9f8e93	opcode: 0010011 
+Instruction #   29:	0e510f13	opcode: 0010011 
+Instruction #   30:	fc2c0f93	opcode: 0010011 
+Instruction #   31:	014b20b3	opcode: 0110011 
+Instruction #   32:	0ceaba93	opcode: 0010011 
+Instruction #   33:	01885c93	opcode: 0010011 
+Instruction #   34:	01607c33	opcode: 0110011 
+Instruction #   35:	081aee13	opcode: 0010011 
+Instruction #   36:	f2d42513	opcode: 0010011 
+Instruction #   37:	35c00313	opcode: 0010011 
+Instruction #   38:	f6931223	opcode: 0100011 
+Instruction #   39:	015573b3	opcode: 0110011 
+Instruction #   40:	01639a93	opcode: 0010011 
+Instruction #   41:	039a6113	opcode: 0010011 
+Instruction #   42:	f58c0413	opcode: 0010011 
+Instruction #   43:	01efe2b3	opcode: 0110011 
+Instruction #   44:	04133c13	opcode: 0010011 
+Instruction #   45:	01baea33	opcode: 0110011 
+Instruction #   46:	01f49bb3	opcode: 0110011 
+Instruction #   47:	00f91a13	opcode: 0010011 
+Instruction #   48:	0013feb3	opcode: 0110011 
+Instruction #   49:	38c00113	opcode: 0010011 
+Instruction #   50:	f9a11223	opcode: 0100011 
+Instruction #   51:	fc12f193	opcode: 0010011 
+Instruction #   52:	00d2dd13	opcode: 0010011 
+Instruction #   53:	00973533	opcode: 0110011 
+Instruction #   54:	00ba97b3	opcode: 0110011 
+Instruction #   55:	01a89633	opcode: 0110011 
+Instruction #   56:	0d7dbc13	opcode: 0010011 
+Instruction #   57:	38000493	opcode: 0010011 
+Instruction #   58:	fd24a223	opcode: 0100011 
+Instruction #   59:	2b000593	opcode: 0010011 
+Instruction #   60:	f8359e23	opcode: 0100011 
+Instruction #   61:	000e0bb3	opcode: 0110011 
+Instruction #   62:	00652db3	opcode: 0110011 
+Instruction #   63:	007fd493	opcode: 0010011 
+Instruction #   64:	23c00e13	opcode: 0010011 
+Instruction #   65:	f7be1b23	opcode: 0100011 
+Instruction #   66:	00bb5c33	opcode: 0110011 
+Instruction #   67:	fdadfd93	opcode: 0010011 
+Instruction #   68:	012d5d33	opcode: 0110011 
+Instruction #   69:	fc268093	opcode: 0010011 
+Instruction #   70:	ff143593	opcode: 0010011 
+Instruction #   71:	010b4833	opcode: 0110011 
+Instruction #   72:	0b076693	opcode: 0010011 
+Instruction #   73:	03ed0593	opcode: 0010011 
+Instruction #   74:	2b400213	opcode: 0010011 
+Instruction #   75:	02d21723	opcode: 0100011 
+Instruction #   76:	0147d2b3	opcode: 0110011 
+Instruction #   77:	0165b6b3	opcode: 0110011 
+Instruction #   78:	01de7933	opcode: 0110011 
+Instruction #   79:	0097be33	opcode: 0110011 
+Instruction #   80:	006c04b3	opcode: 0110011 
+Instruction #   81:	00ee9493	opcode: 0010011 
+Instruction #   82:	0e777e13	opcode: 0010011 
+Instruction #   83:	fd73f293	opcode: 0010011 
+Instruction #   84:	fb1dac13	opcode: 0010011 
+Instruction #   85:	01085cb3	opcode: 0110011 
+Instruction #   86:	04b2cf93	opcode: 0010011 
+Instruction #   87:	00197133	opcode: 0110011 
+Instruction #   88:	010f3bb3	opcode: 0110011 
+Instruction #   89:	3dc00a93	opcode: 0010011 
+Instruction #   90:	28a00893	opcode: 0010011 
+Instruction #   91:	f8a89923	opcode: 0100011 
+Instruction #   92:	35c00e93	opcode: 0010011 
+Instruction #   93:	f0feaa23	opcode: 0100011 
+Instruction #   94:	002b9bb3	opcode: 0110011 
+Instruction #   95:	01cfd733	opcode: 0110011 
+Instruction #   96:	f905e413	opcode: 0010011 
+Instruction #   97:	00350eb3	opcode: 0110011 
+Instruction #   98:	0186f833	opcode: 0110011 
+Instruction #   99:	f74c8c23	opcode: 0100011 
+Instruction #  100:	00aa91b3	opcode: 0110011 
+Instruction #  101:	007a1633	opcode: 0110011 
+Instruction #  102:	014a1093	opcode: 0010011 
+Instruction #  103:	32400913	opcode: 0010011 
+Instruction #  104:	04492623	opcode: 0100011 
+Instruction #  105:	00e9c033	opcode: 0110011 
+Instruction #  106:	00b0f913	opcode: 0010011 
+Instruction #  107:	0f0f2b13	opcode: 0010011 
+Instruction #  108:	0b170ca3	opcode: 0100011 
+Instruction #  109:	00203833	opcode: 0110011 
+Instruction #  110:	000f50b3	opcode: 0110011 
+Instruction #  111:	004dd313	opcode: 0010011 
+Instruction #  112:	22000f13	opcode: 0010011 
+Instruction #  113:	f94f1823	opcode: 0100011 
+Instruction #  114:	23200e93	opcode: 0010011 
+Instruction #  115:	010e9a23	opcode: 0100011 
+Instruction #  116:	f568c113	opcode: 0010011 
+Instruction #  117:	0080de33	opcode: 0110011 
+Instruction #  118:	f29afc93	opcode: 0010011 
+Instruction #  119:	00101733	opcode: 0110011 
+Instruction #  120:	000a7c93	opcode: 0010011 
+Instruction #  121:	01fb9e33	opcode: 0110011 
+Instruction #  122:	2f000c93	opcode: 0010011 
+Instruction #  123:	fdbc9723	opcode: 0100011 
+Instruction #  124:	000a4233	opcode: 0110011 
+Instruction #  125:	2bc00d93	opcode: 0010011 
+Instruction #  126:	0a3d9e23	opcode: 0100011 
+Instruction #  127:	016fc4b3	opcode: 0110011 
+Instruction #  128:	26000293	opcode: 0010011 
+Instruction #  129:	33000293	opcode: 0010011 
+Instruction #  130:	0662a623	opcode: 0100011 
+Instruction #  131:	0674e593	opcode: 0010011 
+Instruction #  132:	018145b3	opcode: 0110011 
+Instruction #  133:	0f27e093	opcode: 0010011 
+Instruction #  134:	09cbc893	opcode: 0010011 
+Instruction #  135:	036a7d93	opcode: 0010011 
+Instruction #  136:	00294e33	opcode: 0110011 
+Instruction #  137:	06230713	opcode: 0010011 
+Instruction #  138:	00389e33	opcode: 0110011 
+Instruction #  139:	f0f87e13	opcode: 0010011 
+Instruction #  140:	001c8b93	opcode: 0010011 
+Instruction #  141:	007836b3	opcode: 0110011 
+Instruction #  142:	01b4bfb3	opcode: 0110011 
+Instruction #  143:	f8f4f213	opcode: 0010011 
+Instruction #  144:	013059b3	opcode: 0110011 
+Instruction #  145:	01b509b3	opcode: 0110011 
+Instruction #  146:	20400493	opcode: 0010011 
+Instruction #  147:	fcd49823	opcode: 0100011 
+Instruction #  148:	005b1013	opcode: 0010011 
+Instruction #  149:	0191e333	opcode: 0110011 
+Instruction #  150:	f10c0593	opcode: 0010011 
+Instruction #  151:	f7783413	opcode: 0010011 
+Instruction #  152:	28400293	opcode: 0010011 
+Instruction #  153:	0f32ae23	opcode: 0100011 
+Instruction #  154:	00404433	opcode: 0110011 
+Instruction #  155:	f8e82b93	opcode: 0010011 
+Instruction #  156:	0168c7b3	opcode: 0110011 
+Instruction #  157:	00e50a33	opcode: 0110011 
+Instruction #  158:	25800813	opcode: 0010011 
+Instruction #  159:	38c00f13	opcode: 0010011 
+Instruction #  160:	0dbf2a23	opcode: 0100011 
+Instruction #  161:	00fd04b3	opcode: 0110011 
+Instruction #  162:	00bd12b3	opcode: 0110011 
+Instruction #  163:	00951833	opcode: 0110011 
+Instruction #  164:	01eaeab3	opcode: 0110011 
+Instruction #  165:	014c1433	opcode: 0110011 
+Instruction #  166:	00ae3d33	opcode: 0110011 
+Instruction #  167:	004496b3	opcode: 0110011 
+Instruction #  168:	00864833	opcode: 0110011 
+Instruction #  169:	007cfc33	opcode: 0110011 
+Instruction #  170:	3e000513	opcode: 0010011 
+Instruction #  171:	00f51c23	opcode: 0100011 
+Instruction #  172:	0fe13d13	opcode: 0010011 
+Instruction #  173:	2cc00213	opcode: 0010011 
+Instruction #  174:	04621e23	opcode: 0100011 
+Instruction #  175:	013c4fb3	opcode: 0110011 
+Instruction #  176:	01f9a533	opcode: 0110011 
+Instruction #  177:	23600793	opcode: 0010011 
+Instruction #  178:	fcf79d23	opcode: 0100011 
+Instruction #  179:	007c4433	opcode: 0110011 
+Instruction #  180:	00fac233	opcode: 0110011 
+Instruction #  181:	0184a1b3	opcode: 0110011 
+Instruction #  182:	0af70293	opcode: 0010011 
+Instruction #  183:	01928fb3	opcode: 0110011 
+Instruction #  184:	08120893	opcode: 0010011 
+Instruction #  185:	fa380393	opcode: 0010011 
+Instruction #  186:	f5b87993	opcode: 0010011 
+Instruction #  187:	f56bab13	opcode: 0010011 
+Instruction #  188:	fc2c8d93	opcode: 0010011 
+Instruction #  189:	01036bb3	opcode: 0110011 
+Instruction #  190:	00088d33	opcode: 0110011 
+Instruction #  191:	0e997713	opcode: 0010011 
+Instruction #  192:	01c01d93	opcode: 0010011 
+Instruction #  193:	ffa60013	opcode: 0010011 
+Instruction #  194:	07e08193	opcode: 0010011 
+Instruction #  195:	00318033	opcode: 0110011 
+Instruction #  196:	00415a33	opcode: 0110011 
+Instruction #  197:	fcf90123	opcode: 0100011 
+Instruction #  198:	0117b1b3	opcode: 0110011 
+Instruction #  199:	fed8c293	opcode: 0010011 
+Instruction #  200:	012a85b3	opcode: 0110011 
+Instruction #  201:	08e1b093	opcode: 0010011 
+Instruction #  202:	00181633	opcode: 0110011 
+Instruction #  203:	01384233	opcode: 0110011 
+Instruction #  204:	3d800393	opcode: 0010011 
+Instruction #  205:	f1c3a423	opcode: 0100011 
+Instruction #  206:	fdd2c913	opcode: 0010011 
+Instruction #  207:	0186b4b3	opcode: 0110011 
+Instruction #  208:	ff277d93	opcode: 0010011 
+Instruction #  209:	00363733	opcode: 0110011 
+Instruction #  210:	00de1393	opcode: 0010011 
+Instruction #  211:	0090a4b3	opcode: 0110011 
+Instruction #  212:	01ed8b33	opcode: 0110011 
+Instruction #  213:	00f25f93	opcode: 0010011 
+Instruction #  214:	000134b3	opcode: 0110011 
+Instruction #  215:	00368933	opcode: 0110011 
+Instruction #  216:	01b26333	opcode: 0110011 
+Instruction #  217:	01e298b3	opcode: 0110011 
+Instruction #  218:	00719193	opcode: 0010011 
+Instruction #  219:	01030433	opcode: 0110011 
+Instruction #  220:	01e8c6b3	opcode: 0110011 
+Instruction #  221:	0071fc33	opcode: 0110011 
+Instruction #  222:	f5904b13	opcode: 0010011 
+Instruction #  223:	001429b3	opcode: 0110011 
+Instruction #  224:	0aec0f13	opcode: 0010011 
+Instruction #  225:	006867b3	opcode: 0110011 
+Instruction #  226:	2b000413	opcode: 0010011 
+Instruction #  227:	f5942a23	opcode: 0100011 
+Instruction #  228:	00465813	opcode: 0010011 
+Instruction #  229:	00c69213	opcode: 0010011 
+Instruction #  230:	f588bd13	opcode: 0010011 
+Instruction #  231:	f9dbfe93	opcode: 0010011 
+Instruction #  232:	fdf28993	opcode: 0010011 
+Instruction #  233:	f97e8ea3	opcode: 0100011 
+Instruction #  234:	0241f613	opcode: 0010011 
+Instruction #  235:	00712f33	opcode: 0110011 
+Instruction #  236:	f8b3f313	opcode: 0010011 
+Instruction #  237:	2a800e93	opcode: 0010011 
+Instruction #  238:	0aee9523	opcode: 0100011 
+Instruction #  239:	01135993	opcode: 0010011 
+Instruction #  240:	f5cefa13	opcode: 0010011 
+Instruction #  241:	012da7b3	opcode: 0110011 
+Instruction #  242:	00ac9093	opcode: 0010011 
+Instruction #  243:	f5308e93	opcode: 0010011 
+Instruction #  244:	fe9ecf13	opcode: 0010011 
+Instruction #  245:	01254633	opcode: 0110011 
+Instruction #  246:	0021ba33	opcode: 0110011 
+Instruction #  247:	002738b3	opcode: 0110011 
+Instruction #  248:	0075cdb3	opcode: 0110011 
+Instruction #  249:	02ddbe93	opcode: 0010011 
+Instruction #  250:	0830b093	opcode: 0010011 
+Instruction #  251:	07c4a613	opcode: 0010011 
+Instruction #  252:	08c7be13	opcode: 0010011 
+Instruction #  253:	004a6733	opcode: 0110011 
+Instruction #  254:	0101b833	opcode: 0110011 
+Instruction #  255:	00b81733	opcode: 0110011 
+Instruction #  256:	01984133	opcode: 0110011 
+Instruction #  257:	00e3b8b3	opcode: 0110011 
+Instruction #  258:	00645493	opcode: 0010011 
+Instruction #  259:	00f59713	opcode: 0010011 
+Instruction #  260:	01d543b3	opcode: 0110011 
+Instruction #  261:	f7a2c493	opcode: 0010011 
+Instruction #  262:	00df1d33	opcode: 0110011 
+Instruction #  263:	015179b3	opcode: 0110011 
+Instruction #  264:	2d800393	opcode: 0010011 
+Instruction #  265:	f923a423	opcode: 0100011 
+Instruction #  266:	f3d92893	opcode: 0010011 
+Instruction #  267:	01ba29b3	opcode: 0110011 
+Instruction #  268:	0051c8b3	opcode: 0110011 
+Instruction #  269:	f020fe93	opcode: 0010011 
+Instruction #  270:	fa8fe593	opcode: 0010011 
+Instruction #  271:	00607db3	opcode: 0110011 
+Instruction #  272:	22c00893	opcode: 0010011 
+Instruction #  273:	ffb89c23	opcode: 0100011 
+Instruction #  274:	3d200393	opcode: 0010011 
+Instruction #  275:	f2e39723	opcode: 0100011 
+Instruction #  276:	041489a3	opcode: 0100011 
+Instruction #  277:	32000913	opcode: 0010011 
+Instruction #  278:	f8092023	opcode: 0100011 
+Instruction #  279:	00b37033	opcode: 0110011 
+Instruction #  280:	063fa493	opcode: 0010011 
+Instruction #  281:	09294413	opcode: 0010011 
+Instruction #  282:	0eff6b93	opcode: 0010011 
+Instruction #  283:	f4b56a13	opcode: 0010011 
+Instruction #  284:	01451693	opcode: 0010011 
+Instruction #  285:	0060aab3	opcode: 0110011 
+Instruction #  286:	04834993	opcode: 0010011 
+Instruction #  287:	0b8d7713	opcode: 0010011 
+Instruction #  288:	f34f2213	opcode: 0010011 
+Instruction #  289:	03c9fa13	opcode: 0010011 
+Instruction #  290:	3ea00093	opcode: 0010011 
+Instruction #  291:	05509023	opcode: 0100011 
+Instruction #  292:	25000513	opcode: 0010011 
+Instruction #  293:	f2852623	opcode: 0100011 
+Instruction #  294:	00e1cf33	opcode: 0110011 
+Instruction #  295:	00779313	opcode: 0010011 
+Instruction #  296:	0092c533	opcode: 0110011 
+Instruction #  297:	05c0a913	opcode: 0010011 
+Instruction #  298:	fc5e6113	opcode: 0010011 
+Instruction #  299:	36000713	opcode: 0010011 
+Instruction #  300:	03071623	opcode: 0100011 
+Instruction #  301:	00877db3	opcode: 0110011 
+Instruction #  302:	01b0ebb3	opcode: 0110011 
+Instruction #  303:	018fb7b3	opcode: 0110011 
+Instruction #  304:	fb4f2093	opcode: 0010011 
+Instruction #  305:	01c85993	opcode: 0010011 
+Instruction #  306:	01e449b3	opcode: 0110011 
+Instruction #  307:	0151cfb3	opcode: 0110011 
+Instruction #  308:	004776b3	opcode: 0110011 
+Instruction #  309:	3b200493	opcode: 0010011 
+Instruction #  310:	fa649e23	opcode: 0100011 
+Instruction #  311:	fe0b07a3	opcode: 0100011 
+Instruction #  312:	f988cd13	opcode: 0010011 
+Instruction #  313:	0745a213	opcode: 0010011 
+Instruction #  314:	009d4333	opcode: 0110011 
+Instruction #  315:	fe5ff713	opcode: 0010011 
+Instruction #  316:	ffaf6793	opcode: 0010011 
+Instruction #  317:	0bfea913	opcode: 0010011 
+Instruction #  318:	22000993	opcode: 0010011 
+Instruction #  319:	03f99d23	opcode: 0100011 
+Instruction #  320:	008da7b3	opcode: 0110011 
+Instruction #  321:	017d81b3	opcode: 0110011 
+Instruction #  322:	00e11613	opcode: 0010011 
+Instruction #  323:	0058f733	opcode: 0110011 
+Instruction #  324:	38000e93	opcode: 0010011 
+Instruction #  325:	fe7e9b23	opcode: 0100011 
+Instruction #  326:	0125d933	opcode: 0110011 
+Instruction #  327:	00be8ab3	opcode: 0110011 
+Instruction #  328:	34000c93	opcode: 0010011 
+Instruction #  329:	f5ec9723	opcode: 0100011 
+Instruction #  330:	2c000293	opcode: 0010011 
+Instruction #  331:	0212a823	opcode: 0100011 
+Instruction #  332:	011f24b3	opcode: 0110011 
+Instruction #  333:	3fe00c93	opcode: 0010011 
+Instruction #  334:	f86c9223	opcode: 0100011 
+Instruction #  335:	003bc3b3	opcode: 0110011 
+Instruction #  336:	060abf93	opcode: 0010011 
+Instruction #  337:	01f7f733	opcode: 0110011 
+Instruction #  338:	0852f293	opcode: 0010011 
+Instruction #  339:	f201b593	opcode: 0010011 
+Instruction #  340:	00b6f2b3	opcode: 0110011 
+Instruction #  341:	0172acb3	opcode: 0110011 
+Instruction #  342:	38000b13	opcode: 0010011 
+Instruction #  343:	fceb2e23	opcode: 0100011 
+Instruction #  344:	00a5f3b3	opcode: 0110011 
+Instruction #  345:	009c7b93	opcode: 0010011 
+Instruction #  346:	30400c13	opcode: 0010011 
+Instruction #  347:	f81c2023	opcode: 0100011 
+Instruction #  348:	f8b23e13	opcode: 0010011 
+Instruction #  349:	f29a8a93	opcode: 0010011 
+Instruction #  350:	29000c13	opcode: 0010011 
+Instruction #  351:	f24c2e23	opcode: 0100011 
+Instruction #  352:	000ff233	opcode: 0110011 
+Instruction #  353:	35000213	opcode: 0010011 
+Instruction #  354:	0b521523	opcode: 0100011 
+Instruction #  355:	009e5813	opcode: 0010011 
+Instruction #  356:	008311b3	opcode: 0110011 
+Instruction #  357:	01b99bb3	opcode: 0110011 
+Instruction #  358:	fb7b3693	opcode: 0010011 
+Instruction #  359:	f1563193	opcode: 0010011 
+Instruction #  360:	01a0bc33	opcode: 0110011 
+Instruction #  361:	00e71733	opcode: 0110011 
+Instruction #  362:	2cc00e13	opcode: 0010011 
+Instruction #  363:	022e2c23	opcode: 0100011 
+Instruction #  364:	f4bf3c13	opcode: 0010011 
+Instruction #  365:	09556313	opcode: 0010011 
+Instruction #  366:	014ba3b3	opcode: 0110011 
+Instruction #  367:	06e07d93	opcode: 0010011 
+Instruction #  368:	00285193	opcode: 0010011 
+Instruction #  369:	f4adeb93	opcode: 0010011 
+Instruction #  370:	008d5d33	opcode: 0110011 
+Instruction #  371:	0c3ab213	opcode: 0010011 
+Instruction #  372:	01ecdab3	opcode: 0110011 
+Instruction #  373:	f9c32113	opcode: 0010011 
+Instruction #  374:	009475b3	opcode: 0110011 
+Instruction #  375:	00695bb3	opcode: 0110011 
+Instruction #  376:	012c3bb3	opcode: 0110011 
+Instruction #  377:	0d423793	opcode: 0010011 
+Instruction #  378:	016c41b3	opcode: 0110011 
+Instruction #  379:	f80e2b93	opcode: 0010011 
+Instruction #  380:	0105f533	opcode: 0110011 
+Instruction #  381:	09f28193	opcode: 0010011 
+Instruction #  382:	01916693	opcode: 0010011 
+Instruction #  383:	01b01d93	opcode: 0010011 
+Instruction #  384:	0a7ce793	opcode: 0010011 
+Instruction #  385:	01cc3033	opcode: 0110011 
+Instruction #  386:	00835c93	opcode: 0010011 
+Instruction #  387:	00ae9d93	opcode: 0010011 
+Instruction #  388:	01465593	opcode: 0010011 
+Instruction #  389:	02510413	opcode: 0010011 
+Instruction #  390:	29000d13	opcode: 0010011 
+Instruction #  391:	05bd2c23	opcode: 0100011 
+Instruction #  392:	00cf1b33	opcode: 0110011 
+Instruction #  393:	f71b7d93	opcode: 0010011 
+Instruction #  394:	0f59b913	opcode: 0010011 
+Instruction #  395:	3f200093	opcode: 0010011 
+Instruction #  396:	f6b09823	opcode: 0100011 
+Instruction #  397:	01703833	opcode: 0110011 
+Instruction #  398:	00472b33	opcode: 0110011 
+Instruction #  399:	0176acb3	opcode: 0110011 
+Instruction #  400:	013101b3	opcode: 0110011 
+Instruction #  401:	00f5c433	opcode: 0110011 
+Instruction #  402:	01e81833	opcode: 0110011 
+Instruction #  403:	00e35713	opcode: 0010011 
+Instruction #  404:	01170e33	opcode: 0110011 
+Instruction #  405:	011badb3	opcode: 0110011 
+Instruction #  406:	fe8bc993	opcode: 0010011 
+Instruction #  407:	0199db93	opcode: 0010011 
+Instruction #  408:	01a7e333	opcode: 0110011 
+Instruction #  409:	06334793	opcode: 0010011 
+Instruction #  410:	0002a5b3	opcode: 0110011 
+Instruction #  411:	07c90e23	opcode: 0100011 
+Instruction #  412:	00687e33	opcode: 0110011 
+Instruction #  413:	01589533	opcode: 0110011 
+Instruction #  414:	00789433	opcode: 0110011 
+Instruction #  415:	33000e93	opcode: 0010011 
+Instruction #  416:	f41eae23	opcode: 0100011 
+Instruction #  417:	00168c33	opcode: 0110011 
+Instruction #  418:	20000393	opcode: 0010011 
+Instruction #  419:	04e3a623	opcode: 0100011 
+Instruction #  420:	0ab7c693	opcode: 0010011 
+Instruction #  421:	00b12933	opcode: 0110011 
+Instruction #  422:	0146e933	opcode: 0110011 
+Instruction #  423:	00f32433	opcode: 0110011 
+Instruction #  424:	01b67e33	opcode: 0110011 
+Instruction #  425:	001394b3	opcode: 0110011 
+Instruction #  426:	0529e513	opcode: 0010011 
+Instruction #  427:	0d0ff393	opcode: 0010011 
+Instruction #  428:	004e7d33	opcode: 0110011 
+Instruction #  429:	22c00293	opcode: 0010011 
+Instruction #  430:	0d629d23	opcode: 0100011 
+Instruction #  431:	00018a33	opcode: 0110011 
+Instruction #  432:	0b720513	opcode: 0010011 
+Instruction #  433:	03a1cd93	opcode: 0010011 
+Instruction #  434:	fd933793	opcode: 0010011 
+Instruction #  435:	01f37433	opcode: 0110011 
+Instruction #  436:	f58f6913	opcode: 0010011 
+Instruction #  437:	f1860a13	opcode: 0010011 
+Instruction #  438:	fec57d13	opcode: 0010011 
+Instruction #  439:	35800693	opcode: 0010011 
+Instruction #  440:	3a800113	opcode: 0010011 
+Instruction #  441:	feb12c23	opcode: 0100011 
+Instruction #  442:	006d7bb3	opcode: 0110011 
+Instruction #  443:	fc72c813	opcode: 0010011 
+Instruction #  444:	011ddd13	opcode: 0010011 
+Instruction #  445:	043e3513	opcode: 0010011 
+Instruction #  446:	0232bf93	opcode: 0010011 
+Instruction #  447:	011c24b3	opcode: 0110011 
+Instruction #  448:	3a400913	opcode: 0010011 
+Instruction #  449:	fbc91123	opcode: 0100011 
+Instruction #  450:	00a91493	opcode: 0010011 
+Instruction #  451:	01fb9a13	opcode: 0010011 
+Instruction #  452:	f77f7a13	opcode: 0010011 
+Instruction #  453:	0898f493	opcode: 0010011 
+Instruction #  454:	35800213	opcode: 0010011 
+Instruction #  455:	f9d21923	opcode: 0100011 
+Instruction #  456:	22000513	opcode: 0010011 
+Instruction #  457:	f3752e23	opcode: 0100011 
+Instruction #  458:	01a0a5b3	opcode: 0110011 
+Instruction #  459:	012454b3	opcode: 0110011 
+Instruction #  460:	00001413	opcode: 0010011 
+Instruction #  461:	3c000893	opcode: 0010011 
+Instruction #  462:	f988a223	opcode: 0100011 
+Instruction #  463:	ff616313	opcode: 0010011 
+Instruction #  464:	01e11eb3	opcode: 0110011 
+Instruction #  465:	00d706b3	opcode: 0110011 
+Instruction #  466:	01bf6033	opcode: 0110011 
+Instruction #  467:	06d188a3	opcode: 0100011 
+Instruction #  468:	0146a433	opcode: 0110011 
+Instruction #  469:	09d10623	opcode: 0100011 
+Instruction #  470:	01966233	opcode: 0110011 
+Instruction #  471:	f56be193	opcode: 0010011 
+Instruction #  472:	01fb3133	opcode: 0110011 
+Instruction #  473:	05837d13	opcode: 0010011 
+Instruction #  474:	06d98113	opcode: 0010011 
+Instruction #  475:	015f1a33	opcode: 0110011 
+Instruction #  476:	0119c7b3	opcode: 0110011 
+Instruction #  477:	0b370813	opcode: 0010011 
+Instruction #  478:	f6fa6c13	opcode: 0010011 
+Instruction #  479:	00439d93	opcode: 0010011 
+Instruction #  480:	042dbd93	opcode: 0010011 
+Instruction #  481:	011af433	opcode: 0110011 
+Instruction #  482:	015a56b3	opcode: 0110011 
+Instruction #  483:	f1a68e23	opcode: 0100011 
+Instruction #  484:	06ed2593	opcode: 0010011 
+Instruction #  485:	006d9133	opcode: 0110011 
+Instruction #  486:	00909ab3	opcode: 0110011 
+Instruction #  487:	01eafdb3	opcode: 0110011 
+Instruction #  488:	f85a2413	opcode: 0010011 
+Instruction #  489:	00740433	opcode: 0110011 
+Instruction #  490:	01b815b3	opcode: 0110011 
+Instruction #  491:	fdbe3c93	opcode: 0010011 
+Instruction #  492:	01716033	opcode: 0110011 
+Instruction #  493:	00b95e93	opcode: 0010011 
+Instruction #  494:	01e210b3	opcode: 0110011 
+Instruction #  495:	014b54b3	opcode: 0110011 
+Instruction #  496:	fa530e93	opcode: 0010011 
+Instruction #  497:	0159d913	opcode: 0010011 
+Instruction #  498:	01ba5db3	opcode: 0110011 
+Instruction #  499:	001a90b3	opcode: 0110011 
+Instruction #  500:	00315013	opcode: 0010011 
+Instruction #  501:	0c9afc13	opcode: 0010011 
+Instruction #  502:	00674933	opcode: 0110011 
+Instruction #  503:	0dda2d13	opcode: 0010011 
+Instruction #  504:	00191533	opcode: 0110011 
+Instruction #  505:	00475533	opcode: 0110011 
+Instruction #  506:	018b3033	opcode: 0110011 
+Instruction #  507:	f91689a3	opcode: 0100011 
+Instruction #  508:	0ce88713	opcode: 0010011 
+Instruction #  509:	f216b293	opcode: 0010011 
 Instruction #  510:	00000097	opcode: 0010111 
 Instruction #  511:	00008067	opcode: 1100111 
 Instruction #  512:	00000000	opcode: 0000000 
@@ -1103,9 +1104,532 @@ Instruction # 1021:	00000000	opcode: 0000000
 Instruction # 1022:	00000000	opcode: 0000000 
 Instruction # 1023:	00000000	opcode: 0000000 
  # | Type | Stat | risv rd p | SB   rd p  | Stat |  Riscv rs1 p | SB   rs1 p | Stat |  Riscv rs2 p | SB   rs2 p | Stat |  Riscv rs2 v | SB   rs2 v | Stat |  Riscv imm v | SB   imm v | Stat | Gen. STATUS 
+     0 | ADDI  |    X | 00000001 | 000000Xx |    X | 00000093 | xxxxxxxx |    X | 00000009 | 000000Xx |    X | 00000000 | xxxxxxxx |    X | -------- | -------- | --- | -------- | -------- | --- | 00000093 | 00000000 |    X |                              *** ERROR ***
+PC = 00000000, inst = 09348093
+     1 | ADDI  | PASS | 00000001 | 00000001 | PASS | 00000093 | 00000093 | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000093 | 00000093 | PASS |                              ***  PASS ***
+     2 | ADDI  | PASS | 00000002 | 00000002 | PASS | ffffffc4 | ffffffc4 | PASS | 00000001 | 00000001 | PASS | 00000093 | 00000093 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff31 | ffffff31 | PASS |                              ***  PASS ***
+     3 | ADDI  | PASS | 00000003 | 00000003 | PASS | 000000e5 | 000000e5 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000e5 | 000000e5 | PASS |                              ***  PASS ***
+     4 | ADDI  | PASS | 00000004 | 00000004 | PASS | 00000104 | 00000104 | PASS | 00000003 | 00000003 | PASS | 000000e5 | 000000e5 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000001f | 0000001f | PASS |                              ***  PASS ***
+     5 | ADDI  | PASS | 00000005 | 00000005 | PASS | ffffff51 | ffffff51 | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff51 | ffffff51 | PASS |                              ***  PASS ***
+     6 | ADDI  | PASS | 00000006 | 00000006 | PASS | 000000d7 | 000000d7 | PASS | 00000014 | 00000014 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000d7 | 000000d7 | PASS |                              ***  PASS ***
+     7 | ADDI  | PASS | 00000007 | 00000007 | PASS | ffffff94 | ffffff94 | PASS | 00000001 | 00000001 | PASS | 00000093 | 00000093 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff01 | ffffff01 | PASS |                              ***  PASS ***
+     8 | ADDI  | PASS | 00000008 | 00000008 | PASS | ffffff7f | ffffff7f | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff7f | ffffff7f | PASS |                              ***  PASS ***
+     9 | ADDI  | PASS | 00000009 | 00000009 | PASS | 00000097 | 00000097 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000097 | 00000097 | PASS |                              ***  PASS ***
+    10 | ADDI  | PASS | 0000000a | 0000000a | PASS | 00000087 | 00000087 | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000087 | 00000087 | PASS |                              ***  PASS ***
+    11 | ADDI  | PASS | 0000000b | 0000000b | PASS | 0000008a | 0000008a | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000008a | 0000008a | PASS |                              ***  PASS ***
+    12 | ADDI  | PASS | 0000000c | 0000000c | PASS | 00000035 | 00000035 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000035 | 00000035 | PASS |                              ***  PASS ***
+    13 | ADDI  | PASS | 0000000d | 0000000d | PASS | 00000054 | 00000054 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000054 | 00000054 | PASS |                              ***  PASS ***
+    14 | ADDI  | PASS | 0000000e | 0000000e | PASS | 00000056 | 00000056 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000056 | 00000056 | PASS |                              ***  PASS ***
+    15 | ADDI  | PASS | 0000000f | 0000000f | PASS | 000000d1 | 000000d1 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000d1 | 000000d1 | PASS |                              ***  PASS ***
+    16 | ADDI  | PASS | 00000010 | 00000010 | PASS | 0000006f | 0000006f | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000006f | 0000006f | PASS |                              ***  PASS ***
+    17 | ADDI  | PASS | 00000011 | 00000011 | PASS | ffffff7b | ffffff7b | PASS | 00000014 | 00000014 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff7b | ffffff7b | PASS |                              ***  PASS ***
+    18 | ADDI  | PASS | 00000012 | 00000012 | PASS | fffffec7 | fffffec7 | PASS | 00000008 | 00000008 | PASS | ffffff7f | ffffff7f | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff48 | ffffff48 | PASS |                              ***  PASS ***
+    19 | ADDI  | PASS | 00000013 | 00000013 | PASS | fffffe74 | fffffe74 | PASS | 00000012 | 00000012 | PASS | fffffec7 | fffffec7 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffad | ffffffad | PASS |                              ***  PASS ***
+    20 | ADDI  | PASS | 00000014 | 00000014 | PASS | ffffff04 | ffffff04 | PASS | 00000005 | 00000005 | PASS | ffffff51 | ffffff51 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffb3 | ffffffb3 | PASS |                              ***  PASS ***
+    21 | ADDI  | PASS | 00000015 | 00000015 | PASS | ffffff98 | ffffff98 | PASS | 00000008 | 00000008 | PASS | ffffff7f | ffffff7f | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000019 | 00000019 | PASS |                              ***  PASS ***
+    22 | ADDI  | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | 0000001e | 0000001e | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000c1 | 000000c1 | PASS |                              ***  PASS ***
+    23 | ADDI  | PASS | 00000017 | 00000017 | PASS | 000000dd | 000000dd | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000dd | 000000dd | PASS |                              ***  PASS ***
+    24 | ADDI  | PASS | 00000018 | 00000018 | PASS | 00000037 | 00000037 | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000037 | 00000037 | PASS |                              ***  PASS ***
+    25 | ADDI  | PASS | 00000019 | 00000019 | PASS | ffffff1a | ffffff1a | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff1a | ffffff1a | PASS |                              ***  PASS ***
+    26 | ADDI  | PASS | 0000001a | 0000001a | PASS | 00000096 | 00000096 | PASS | 0000000a | 0000000a | PASS | 00000087 | 00000087 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000f | 0000000f | PASS |                              ***  PASS ***
+    27 | ADDI  | PASS | 0000001b | 0000001b | PASS | 0000000e | 0000000e | PASS | 00000010 | 00000010 | PASS | 0000006f | 0000006f | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff9f | ffffff9f | PASS |                              ***  PASS ***
+    28 | ADDI  | PASS | 0000001c | 0000001c | PASS | 00000175 | 00000175 | PASS | 00000009 | 00000009 | PASS | 00000097 | 00000097 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000de | 000000de | PASS |                              ***  PASS ***
+    29 | ADDI  | PASS | 0000001d | 0000001d | PASS | 000000a9 | 000000a9 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000a9 | 000000a9 | PASS |                              ***  PASS ***
+    30 | ADDI  | PASS | 0000001e | 0000001e | PASS | 000000a9 | 000000a9 | PASS | 00000002 | 00000002 | PASS | ffffffc4 | ffffffc4 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000e5 | 000000e5 | PASS |                              ***  PASS ***
+    31 | ADDI  | PASS | 0000001f | 0000001f | PASS | fffffff9 | fffffff9 | PASS | 00000018 | 00000018 | PASS | 00000037 | 00000037 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc2 | ffffffc2 | PASS |                              ***  PASS ***
+    32 | SLT   | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | 00000014 | 00000014 | PASS | ffffff04 | ffffff04 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    33 | SLTIU | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | ffffff98 | ffffff98 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000ce | 000000ce | PASS |                              ***  PASS ***
+    34 | SRLI  | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 0000006f | 0000006f | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000018 | 00000018 | PASS |                              ***  PASS ***
+    35 | AND   | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    36 | ORI   | PASS | 0000001c | 0000001c | PASS | 00000081 | 00000081 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000081 | 00000081 | PASS |                              ***  PASS ***
+    37 | SLTI  | PASS | 0000000a | 0000000a | PASS | 00000000 | 00000000 | PASS | 00000008 | 00000008 | PASS | ffffff7f | ffffff7f | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff2d | ffffff2d | PASS |                              ***  PASS ***
+    38 | ADDI  | PASS | 00000006 | 00000006 | PASS | 0000035c | 0000035c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000035c | 0000035c | PASS |                              ***  PASS ***
+    39 | SH    | PASS | -------- | DATAO--> | --- | 00000097 | 00000097 | PASS | 00000006 | 00000006 | PASS | 0000035c | 0000035c | PASS | 00000009 | 00000009 | PASS | 00000097 | 00000097 | PASS | ffffff64 | ffffff64 | PASS |                              ***  PASS ***
+    40 | AND   | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 0000000a | 0000000a | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    41 | SLLI  | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000016 | 00000016 | PASS |                              ***  PASS ***
+    42 | ORI   | PASS | 00000002 | 00000002 | PASS | ffffff3d | ffffff3d | PASS | 00000014 | 00000014 | PASS | ffffff04 | ffffff04 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000039 | 00000039 | PASS |                              ***  PASS ***
+    43 | ADDI  | PASS | 00000008 | 00000008 | PASS | ffffff58 | ffffff58 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff58 | ffffff58 | PASS |                              ***  PASS ***
+    44 | OR    | PASS | 00000005 | 00000005 | PASS | fffffff9 | fffffff9 | PASS | 0000001f | 0000001f | PASS | fffffff9 | fffffff9 | PASS | 0000001e | 0000001e | PASS | 000000a9 | 000000a9 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    45 | SLTIU | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 0000035c | 0000035c | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000041 | 00000041 | PASS |                              ***  PASS ***
+    46 | OR    | PASS | 00000014 | 00000014 | PASS | 0000000e | 0000000e | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 0000000e | 0000000e | PASS | -------- | -------- | --- |                              ***  PASS ***
+    47 | SLL   | PASS | 00000017 | 00000017 | PASS | 2e000000 | 2e000000 | PASS | 00000009 | 00000009 | PASS | 00000097 | 00000097 | PASS | 0000001f | 0000001f | PASS | fffffff9 | fffffff9 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    48 | SLLI  | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | 00000012 | 00000012 | PASS | fffffec7 | fffffec7 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000f | 0000000f | PASS |                              ***  PASS ***
+    49 | AND   | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    50 | ADDI  | PASS | 00000002 | 00000002 | PASS | 0000038c | 0000038c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000038c | 0000038c | PASS |                              ***  PASS ***
+    51 | SH    | PASS | -------- | DATAO--> | --- | 00000096 | 00000096 | PASS | 00000002 | 00000002 | PASS | 0000038c | 0000038c | PASS | 0000001a | 0000001a | PASS | 00000096 | 00000096 | PASS | ffffff84 | ffffff84 | PASS |                              ***  PASS ***
+    52 | ANDI  | PASS | 00000003 | 00000003 | PASS | ffffffc1 | ffffffc1 | PASS | 00000005 | 00000005 | PASS | fffffff9 | fffffff9 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc1 | ffffffc1 | PASS |                              ***  PASS ***
+    53 | SRLI  | PASS | 0000001a | 0000001a | PASS | 0007ffff | 0007ffff | PASS | 00000005 | 00000005 | PASS | fffffff9 | fffffff9 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000d | 0000000d | PASS |                              ***  PASS ***
+    54 | SLTU  | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 0000000e | 0000000e | PASS | 00000056 | 00000056 | PASS | 00000009 | 00000009 | PASS | 00000097 | 00000097 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    55 | SLL   | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | 0000008a | 0000008a | PASS | -------- | -------- | --- |                              ***  PASS ***
+    56 | SLL   | PASS | 0000000c | 0000000c | PASS | 80000000 | 80000000 | PASS | 00000011 | 00000011 | PASS | ffffff7b | ffffff7b | PASS | 0000001a | 0000001a | PASS | 0007ffff | 0007ffff | PASS | -------- | -------- | --- |                              ***  PASS ***
+    57 | SLTIU | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 0000001b | 0000001b | PASS | 0000000e | 0000000e | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000d7 | 000000d7 | PASS |                              ***  PASS ***
+    58 | ADDI  | PASS | 00000009 | 00000009 | PASS | 00000380 | 00000380 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000380 | 00000380 | PASS |                              ***  PASS ***
+    59 | SW    | PASS | -------- | DATAO--> | --- | fffffec7 | fffffec7 | PASS | 00000009 | 00000009 | PASS | 00000380 | 00000380 | PASS | 00000012 | 00000012 | PASS | fffffec7 | fffffec7 | PASS | ffffffc4 | ffffffc4 | PASS |                              ***  PASS ***
+    60 | ADDI  | PASS | 0000000b | 0000000b | PASS | 000002b0 | 000002b0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002b0 | 000002b0 | PASS |                              ***  PASS ***
+    61 | SH    | PASS | -------- | DATAO--> | --- | 0000ffc1 | 0000ffc1 | PASS | 0000000b | 0000000b | PASS | 000002b0 | 000002b0 | PASS | 00000003 | 00000003 | PASS | ffffffc1 | ffffffc1 | PASS | ffffff9c | ffffff9c | PASS |                              ***  PASS ***
+    62 | ADD   | PASS | 00000017 | 00000017 | PASS | 00000081 | 00000081 | PASS | 0000001c | 0000001c | PASS | 00000081 | 00000081 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    63 | SLT   | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 00000006 | 00000006 | PASS | 0000035c | 0000035c | PASS | -------- | -------- | --- |                              ***  PASS ***
+    64 | SRLI  | PASS | 00000009 | 00000009 | PASS | 01ffffff | 01ffffff | PASS | 0000001f | 0000001f | PASS | fffffff9 | fffffff9 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000007 | 00000007 | PASS |                              ***  PASS ***
+    65 | ADDI  | PASS | 0000001c | 0000001c | PASS | 0000023c | 0000023c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000023c | 0000023c | PASS |                              ***  PASS ***
+    66 | SH    | PASS | -------- | DATAO--> | --- | 00010000 | 00010000 | PASS | 0000001c | 0000001c | PASS | 0000023c | 0000023c | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | ffffff76 | ffffff76 | PASS |                              ***  PASS ***
+    67 | SRL   | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | 0000000b | 0000000b | PASS | 000002b0 | 000002b0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    68 | ANDI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffda | ffffffda | PASS |                              ***  PASS ***
+    69 | SRL   | PASS | 0000001a | 0000001a | PASS | 00000fff | 00000fff | PASS | 0000001a | 0000001a | PASS | 0007ffff | 0007ffff | PASS | 00000012 | 00000012 | PASS | fffffec7 | fffffec7 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    70 | ADDI  | PASS | 00000001 | 00000001 | PASS | 00000016 | 00000016 | PASS | 0000000d | 0000000d | PASS | 00000054 | 00000054 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc2 | ffffffc2 | PASS |                              ***  PASS ***
+    71 | SLTIU | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | 00000008 | 00000008 | PASS | ffffff58 | ffffff58 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000ff1 | 00000ff1 | PASS |                              ***  PASS ***
+    72 | XOR   | PASS | 00000010 | 00000010 | PASS | 000000ae | 000000ae | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | 00000010 | 00000010 | PASS | 0000006f | 0000006f | PASS | -------- | -------- | --- |                              ***  PASS ***
+    73 | ORI   | PASS | 0000000d | 0000000d | PASS | 000000f6 | 000000f6 | PASS | 0000000e | 0000000e | PASS | 00000056 | 00000056 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000b0 | 000000b0 | PASS |                              ***  PASS ***
+    74 | ADDI  | PASS | 0000000b | 0000000b | PASS | 0000103d | 0000103d | PASS | 0000001a | 0000001a | PASS | 00000fff | 00000fff | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000003e | 0000003e | PASS |                              ***  PASS ***
+    75 | ADDI  | PASS | 00000004 | 00000004 | PASS | 000002b4 | 000002b4 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002b4 | 000002b4 | PASS |                              ***  PASS ***
+    76 | SH    | PASS | -------- | DATAO--> | --- | 00f60000 | 00f60000 | PASS | 00000004 | 00000004 | PASS | 000002b4 | 000002b4 | PASS | 0000000d | 0000000d | PASS | 000000f6 | 000000f6 | PASS | 0000002e | 0000002e | PASS |                              ***  PASS ***
+    77 | SRL   | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    78 | SLTU  | PASS | 0000000d | 0000000d | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | 0000103d | 0000103d | PASS | 00000016 | 00000016 | PASS | 000000c1 | 000000c1 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    79 | AND   | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 0000023c | 0000023c | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    80 | SLTU  | PASS | 0000001c | 0000001c | PASS | 00000001 | 00000001 | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | 00000009 | 00000009 | PASS | 01ffffff | 01ffffff | PASS | -------- | -------- | --- |                              ***  PASS ***
+    81 | ADD   | PASS | 00000009 | 00000009 | PASS | 0000035c | 0000035c | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 0000035c | 0000035c | PASS | -------- | -------- | --- |                              ***  PASS ***
+    82 | SLLI  | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000e | 0000000e | PASS |                              ***  PASS ***
+    83 | ANDI  | PASS | 0000001c | 0000001c | PASS | 00000046 | 00000046 | PASS | 0000000e | 0000000e | PASS | 00000056 | 00000056 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000e7 | 000000e7 | PASS |                              ***  PASS ***
+    84 | ANDI  | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffd7 | ffffffd7 | PASS |                              ***  PASS ***
+    85 | SLTI  | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffb1 | ffffffb1 | PASS |                              ***  PASS ***
+    86 | SRL   | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 000000ae | 000000ae | PASS | 00000010 | 00000010 | PASS | 000000ae | 000000ae | PASS | -------- | -------- | --- |                              ***  PASS ***
+    87 | XORI  | PASS | 0000001f | 0000001f | PASS | 0000004b | 0000004b | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000004b | 0000004b | PASS |                              ***  PASS ***
+    88 | AND   | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000016 | 00000016 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    89 | SLTU  | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | 000000a9 | 000000a9 | PASS | 00000010 | 00000010 | PASS | 000000ae | 000000ae | PASS | -------- | -------- | --- |                              ***  PASS ***
+    90 | ADDI  | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003dc | 000003dc | PASS |                              ***  PASS ***
+    91 | ADDI  | PASS | 00000011 | 00000011 | PASS | 0000028a | 0000028a | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000028a | 0000028a | PASS |                              ***  PASS ***
+    92 | SH    | PASS | -------- | DATAO--> | --- | 00000001 | 00000001 | PASS | 00000011 | 00000011 | PASS | 0000028a | 0000028a | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | ffffff92 | ffffff92 | PASS |                              ***  PASS ***
+    93 | ADDI  | PASS | 0000001d | 0000001d | PASS | 0000035c | 0000035c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000035c | 0000035c | PASS |                              ***  PASS ***
+    94 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 0000001d | 0000001d | PASS | 0000035c | 0000035c | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | ffffff14 | ffffff14 | PASS |                              ***  PASS ***
+    95 | SLL   | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    96 | SRL   | PASS | 0000000e | 0000000e | PASS | 00000001 | 00000001 | PASS | 0000001f | 0000001f | PASS | 0000004b | 0000004b | PASS | 0000001c | 0000001c | PASS | 00000046 | 00000046 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    97 | ORI   | PASS | 00000008 | 00000008 | PASS | ffffffbd | ffffffbd | PASS | 0000000b | 0000000b | PASS | 0000103d | 0000103d | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff90 | ffffff90 | PASS |                              ***  PASS ***
+    98 | ADD   | PASS | 0000001d | 0000001d | PASS | ffffffc2 | ffffffc2 | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 00000003 | 00000003 | PASS | ffffffc1 | ffffffc1 | PASS | -------- | -------- | --- |                              ***  PASS ***
+    99 | AND   | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 0000000d | 0000000d | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   100 | SB    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | ffffff78 | ffffff78 | PASS |                              ***  PASS ***
+   101 | SLL   | PASS | 00000003 | 00000003 | PASS | 000007b8 | 000007b8 | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   102 | SLL   | PASS | 0000000c | 0000000c | PASS | ff638000 | ff638000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   103 | SLLI  | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000014 | 00000014 | PASS |                              ***  PASS ***
+   104 | ADDI  | PASS | 00000012 | 00000012 | PASS | 00000324 | 00000324 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000324 | 00000324 | PASS |                              ***  PASS ***
+   105 | SW    | PASS | -------- | DATAO--> | --- | 000002b4 | 000002b4 | PASS | 00000012 | 00000012 | PASS | 00000324 | 00000324 | PASS | 00000004 | 00000004 | PASS | 000002b4 | 000002b4 | PASS | 0000004c | 0000004c | PASS |                              ***  PASS ***
+   106 | XOR   | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000013 | 00000013 | PASS | fffffe74 | fffffe74 | PASS | 0000000e | 0000000e | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   107 | ANDI  | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000b | 0000000b | PASS |                              ***  PASS ***
+   108 | SLTI  | PASS | 00000016 | 00000016 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | 000000a9 | 000000a9 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000f0 | 000000f0 | PASS |                              ***  PASS ***
+   109 | SB    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000019 | 00000019 | PASS |                              ***  PASS ***
+   110 | SLTU  | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   111 | SRL   | PASS | 00000001 | 00000001 | PASS | 000000a9 | 000000a9 | PASS | 0000001e | 0000001e | PASS | 000000a9 | 000000a9 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   112 | SRLI  | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000004 | 00000004 | PASS |                              ***  PASS ***
+   113 | ADDI  | PASS | 0000001e | 0000001e | PASS | 00000220 | 00000220 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000220 | 00000220 | PASS |                              ***  PASS ***
+   114 | SH    | PASS | -------- | DATAO--> | --- | 00008000 | 00008000 | PASS | 0000001e | 0000001e | PASS | 00000220 | 00000220 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | ffffff90 | ffffff90 | PASS |                              ***  PASS ***
+   115 | ADDI  | PASS | 0000001d | 0000001d | PASS | 00000232 | 00000232 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000232 | 00000232 | PASS |                              ***  PASS ***
+   116 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 0000001d | 0000001d | PASS | 00000232 | 00000232 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS |                              ***  PASS ***
+   117 | XORI  | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | 00000011 | 00000011 | PASS | 0000028a | 0000028a | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff56 | ffffff56 | PASS |                              ***  PASS ***
+   118 | SRL   | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000000a9 | 000000a9 | PASS | 00000008 | 00000008 | PASS | ffffffbd | ffffffbd | PASS | -------- | -------- | --- |                              ***  PASS ***
+   119 | ANDI  | PASS | 00000019 | 00000019 | PASS | 00000308 | 00000308 | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff29 | ffffff29 | PASS |                              ***  PASS ***
+   120 | SLL   | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000000a9 | 000000a9 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   121 | ANDI  | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000000 | 00000000 | PASS |                              ***  PASS ***
+   122 | SLL   | PASS | 0000001c | 0000001c | PASS | 00000800 | 00000800 | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | 0000001f | 0000001f | PASS | 0000004b | 0000004b | PASS | -------- | -------- | --- |                              ***  PASS ***
+   123 | ADDI  | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002f0 | 000002f0 | PASS |                              ***  PASS ***
+   124 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | ffffffce | ffffffce | PASS |                              ***  PASS ***
+   125 | XOR   | PASS | 00000004 | 00000004 | PASS | ff638000 | ff638000 | PASS | 00000014 | 00000014 | PASS | ff638000 | ff638000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   126 | ADDI  | PASS | 0000001b | 0000001b | PASS | 000002bc | 000002bc | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002bc | 000002bc | PASS |                              ***  PASS ***
+   127 | SH    | PASS | -------- | DATAO--> | --- | 000007b8 | 000007b8 | PASS | 0000001b | 0000001b | PASS | 000002bc | 000002bc | PASS | 00000003 | 00000003 | PASS | 000007b8 | 000007b8 | PASS | 000000bc | 000000bc | PASS |                              ***  PASS ***
+   128 | XOR   | PASS | 00000009 | 00000009 | PASS | 0000004a | 0000004a | PASS | 0000001f | 0000001f | PASS | 0000004b | 0000004b | PASS | 00000016 | 00000016 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   129 | ADDI  | PASS | 00000005 | 00000005 | PASS | 00000260 | 00000260 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000260 | 00000260 | PASS |                              ***  PASS ***
+   130 | ADDI  | PASS | 00000005 | 00000005 | PASS | 00000330 | 00000330 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000330 | 00000330 | PASS |                              ***  PASS ***
+   131 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 00000330 | 00000330 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 0000006c | 0000006c | PASS |                              ***  PASS ***
+   132 | ORI   | PASS | 0000000b | 0000000b | PASS | 0000006f | 0000006f | PASS | 00000009 | 00000009 | PASS | 0000004a | 0000004a | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000067 | 00000067 | PASS |                              ***  PASS ***
+   133 | XOR   | PASS | 0000000b | 0000000b | PASS | fffffddc | fffffddc | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   134 | ORI   | PASS | 00000001 | 00000001 | PASS | 000000f2 | 000000f2 | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000f2 | 000000f2 | PASS |                              ***  PASS ***
+   135 | XORI  | PASS | 00000011 | 00000011 | PASS | 0000009d | 0000009d | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000009c | 0000009c | PASS |                              ***  PASS ***
+   137 | XOR   | PASS | 0000001c | 0000001c | PASS | fffffddc | fffffddc | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   138 | ADDI  | PASS | 0000000e | 0000000e | PASS | 00000062 | 00000062 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000062 | 00000062 | PASS |                              ***  PASS ***
+   139 | SLL   | PASS | 0000001c | 0000001c | PASS | 9d000000 | 9d000000 | PASS | 00000011 | 00000011 | PASS | 0000009d | 0000009d | PASS | 00000003 | 00000003 | PASS | 000007b8 | 000007b8 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   140 | ANDI  | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff0f | ffffff0f | PASS |                              ***  PASS ***
+   141 | ADDI  | PASS | 00000017 | 00000017 | PASS | 000002f1 | 000002f1 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000001 | 00000001 | PASS |                              ***  PASS ***
+   142 | SLTU  | PASS | 0000000d | 0000000d | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   143 | SLTU  | PASS | 0000001f | 0000001f | PASS | 00000001 | 00000001 | PASS | 00000009 | 00000009 | PASS | 0000004a | 0000004a | PASS | 0000001b | 0000001b | PASS | 000002bc | 000002bc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   144 | ANDI  | PASS | 00000004 | 00000004 | PASS | 0000000a | 0000000a | PASS | 00000009 | 00000009 | PASS | 0000004a | 0000004a | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff8f | ffffff8f | PASS |                              ***  PASS ***
+   145 | SRL   | PASS | 00000013 | 00000013 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000013 | 00000013 | PASS | fffffe74 | fffffe74 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   146 | ADD   | PASS | 00000013 | 00000013 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   147 | ADDI  | PASS | 00000009 | 00000009 | PASS | 00000204 | 00000204 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000204 | 00000204 | PASS |                              ***  PASS ***
+   149 | SLLI  | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000005 | 00000005 | PASS |                              ***  PASS ***
+   150 | OR    | PASS | 00000006 | 00000006 | PASS | 000007f8 | 000007f8 | PASS | 00000003 | 00000003 | PASS | 000007b8 | 000007b8 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   151 | ADDI  | PASS | 0000000b | 0000000b | PASS | ffffff10 | ffffff10 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff10 | ffffff10 | PASS |                              ***  PASS ***
+   152 | SLTIU | PASS | 00000008 | 00000008 | PASS | 00000001 | 00000001 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f77 | 00000f77 | PASS |                              ***  PASS ***
+   153 | ADDI  | PASS | 00000005 | 00000005 | PASS | 00000284 | 00000284 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000284 | 00000284 | PASS |                              ***  PASS ***
+   154 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 00000284 | 00000284 | PASS | 00000013 | 00000013 | PASS | 00000000 | 00000000 | PASS | 000000fc | 000000fc | PASS |                              ***  PASS ***
+   155 | XOR   | PASS | 00000008 | 00000008 | PASS | 0000000a | 0000000a | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | 0000000a | 0000000a | PASS | -------- | -------- | --- |                              ***  PASS ***
+   156 | SLTI  | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff8e | ffffff8e | PASS |                              ***  PASS ***
+   158 | ADD   | PASS | 00000014 | 00000014 | PASS | 00000063 | 00000063 | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 0000000e | 0000000e | PASS | 00000062 | 00000062 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   159 | ADDI  | PASS | 00000010 | 00000010 | PASS | 00000258 | 00000258 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000258 | 00000258 | PASS |                              ***  PASS ***
+   160 | ADDI  | PASS | 0000001e | 0000001e | PASS | 0000038c | 0000038c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000038c | 0000038c | PASS |                              ***  PASS ***
+   161 | SW    | PASS | -------- | DATAO--> | --- | 000002bc | 000002bc | PASS | 0000001e | 0000001e | PASS | 0000038c | 0000038c | PASS | 0000001b | 0000001b | PASS | 000002bc | 000002bc | PASS | 000000d4 | 000000d4 | PASS |                              ***  PASS ***
+   162 | ADD   | PASS | 00000009 | 00000009 | PASS | 00000fff | 00000fff | PASS | 0000001a | 0000001a | PASS | 00000fff | 00000fff | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   163 | SLL   | PASS | 00000005 | 00000005 | PASS | 0fff0000 | 0fff0000 | PASS | 0000001a | 0000001a | PASS | 00000fff | 00000fff | PASS | 0000000b | 0000000b | PASS | ffffff10 | ffffff10 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   164 | SLL   | PASS | 00000010 | 00000010 | PASS | 80000000 | 80000000 | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 00000009 | 00000009 | PASS | 00000fff | 00000fff | PASS | -------- | -------- | --- |                              ***  PASS ***
+   165 | OR    | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 0000001e | 0000001e | PASS | 0000038c | 0000038c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   166 | SLL   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | 00000063 | 00000063 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   167 | SLTU  | PASS | 0000001a | 0000001a | PASS | 00000001 | 00000001 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   168 | SLL   | PASS | 0000000d | 0000000d | PASS | 003ffc00 | 003ffc00 | PASS | 00000009 | 00000009 | PASS | 00000fff | 00000fff | PASS | 00000004 | 00000004 | PASS | 0000000a | 0000000a | PASS | -------- | -------- | --- |                              ***  PASS ***
+   169 | XOR   | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | 0000000c | 0000000c | PASS | ff638000 | ff638000 | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   170 | AND   | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   171 | ADDI  | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003e0 | 000003e0 | PASS |                              ***  PASS ***
+   172 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS |                              ***  PASS ***
+   173 | SLTIU | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000fe | 000000fe | PASS |                              ***  PASS ***
+   174 | ADDI  | PASS | 00000004 | 00000004 | PASS | 000002cc | 000002cc | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002cc | 000002cc | PASS |                              ***  PASS ***
+   175 | SH    | PASS | -------- | DATAO--> | --- | 000007f8 | 000007f8 | PASS | 00000004 | 00000004 | PASS | 000002cc | 000002cc | PASS | 00000006 | 00000006 | PASS | 000007f8 | 000007f8 | PASS | 0000005c | 0000005c | PASS |                              ***  PASS ***
+   176 | XOR   | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   178 | ADDI  | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000236 | 00000236 | PASS |                              ***  PASS ***
+   179 | SH    | PASS | -------- | DATAO--> | --- | 00000236 | 00000236 | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | ffffffda | ffffffda | PASS |                              ***  PASS ***
+   180 | XOR   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   181 | XOR   | PASS | 00000004 | 00000004 | PASS | 000001ea | 000001ea | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   182 | SLT   | PASS | 00000003 | 00000003 | PASS | 00000000 | 00000000 | PASS | 00000009 | 00000009 | PASS | 00000fff | 00000fff | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   183 | ADDI  | PASS | 00000005 | 00000005 | PASS | 00000111 | 00000111 | PASS | 0000000e | 0000000e | PASS | 00000062 | 00000062 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000af | 000000af | PASS |                              ***  PASS ***
+   184 | ADD   | PASS | 0000001f | 0000001f | PASS | 00000401 | 00000401 | PASS | 00000005 | 00000005 | PASS | 00000111 | 00000111 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   185 | ADDI  | PASS | 00000011 | 00000011 | PASS | ff63800f | ff63800f | PASS | 0000000c | 0000000c | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000f | 0000000f | PASS |                              ***  PASS ***
+   186 | ADDI  | PASS | 00000007 | 00000007 | PASS | ff637fa3 | ff637fa3 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffa3 | ffffffa3 | PASS |                              ***  PASS ***
+   187 | ANDI  | PASS | 00000013 | 00000013 | PASS | ff638000 | ff638000 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff5b | ffffff5b | PASS |                              ***  PASS ***
+   188 | SLTI  | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff56 | ffffff56 | PASS |                              ***  PASS ***
+   189 | ADDI  | PASS | 0000001b | 0000001b | PASS | 000002b2 | 000002b2 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc2 | ffffffc2 | PASS |                              ***  PASS ***
+   190 | OR    | PASS | 00000017 | 00000017 | PASS | ff6387f8 | ff6387f8 | PASS | 00000006 | 00000006 | PASS | 000007f8 | 000007f8 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   191 | ADD   | PASS | 0000001a | 0000001a | PASS | ff63800f | ff63800f | PASS | 00000011 | 00000011 | PASS | ff63800f | ff63800f | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   192 | ANDI  | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000e9 | 000000e9 | PASS |                              ***  PASS ***
+   193 | SLLI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000001c | 0000001c | PASS |                              ***  PASS ***
+   194 | ADDI  | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 0000000c | 0000000c | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | fffffffa | fffffffa | PASS |                              ***  PASS ***
+   195 | ADDI  | PASS | 00000003 | 00000003 | PASS | 01f9033e | 00fc8342 |    X | 00000001 | 00000001 | PASS | 01f902c0 | 00fc82c4 |    X | -------- | -------- | --- | -------- | -------- | --- | 0000007e | 0000007e | PASS |                              *** ERROR ***
+PC = 00000308, inst = 07e08193
+   196 | ADD   | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000003 | 00000003 | PASS | 01f9033e | 00fc8342 |    X | 00000003 | 00000003 | PASS | 01f9033e | 00fc8342 |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 0000030c, inst = 00318033
+   198 | SB    | PASS | -------- | DATAO--> | --- | 00360000 | 00360000 | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | ffffffc2 | ffffffc2 | PASS |                              ***  PASS ***
+   199 | SLTU  | PASS | 00000003 | 00000003 | PASS | 00000001 | 00000001 | PASS | 0000000f | 0000000f | PASS | 00000236 | 00000236 | PASS | 00000011 | 00000011 | PASS | ff63800f | ff63800f | PASS | -------- | -------- | --- |                              ***  PASS ***
+   200 | XORI  | PASS | 00000005 | 00000005 | PASS | 009c7fe2 | 009c7fe2 | PASS | 00000011 | 00000011 | PASS | ff63800f | ff63800f | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffed | ffffffed | PASS |                              ***  PASS ***
+   201 | ADD   | PASS | 0000000b | 0000000b | PASS | 000003dc | 000003dc | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   202 | SLTIU | PASS | 00000001 | 00000001 | PASS | 00000001 | 00000001 | PASS | 00000003 | 00000003 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000008e | 0000008e | PASS |                              ***  PASS ***
+   204 | XOR   | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | 00000013 | 00000013 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   205 | ADDI  | PASS | 00000007 | 00000007 | PASS | 000003d8 | 000003d8 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003d8 | 000003d8 | PASS |                              ***  PASS ***
+   206 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 000003d8 | 000003d8 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | ffffff08 | ffffff08 | PASS |                              ***  PASS ***
+   207 | XORI  | PASS | 00000012 | 00000012 | PASS | ff63803f | ff63803f | PASS | 00000005 | 00000005 | PASS | 009c7fe2 | 009c7fe2 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffdd | ffffffdd | PASS |                              ***  PASS ***
+   208 | SLTU  | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 0000000d | 0000000d | PASS | 003ffc00 | 003ffc00 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   209 | ANDI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | fffffff2 | fffffff2 | PASS |                              ***  PASS ***
+   211 | SLLI  | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000d | 0000000d | PASS |                              ***  PASS ***
+   212 | SLT   | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000001 | 00000001 | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   213 | ADD   | PASS | 00000016 | 00000016 | PASS | 0000038c | 0000038c | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 0000001e | 0000001e | PASS | 0000038c | 0000038c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   214 | SRLI  | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000f | 0000000f | PASS |                              ***  PASS ***
+   215 | SLTU  | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   216 | ADD   | PASS | 00000012 | 00000012 | PASS | 003ffc01 | 003ffc01 | PASS | 0000000d | 0000000d | PASS | 003ffc00 | 003ffc00 | PASS | 00000003 | 00000003 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   217 | OR    | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   218 | SLL   | PASS | 00000011 | 00000011 | PASS | c7fe2000 | c7fe2000 | PASS | 00000005 | 00000005 | PASS | 009c7fe2 | 009c7fe2 | PASS | 0000001e | 0000001e | PASS | 0000038c | 0000038c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   219 | SLLI  | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 00000003 | 00000003 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000007 | 00000007 | PASS |                              ***  PASS ***
+   220 | ADD   | PASS | 00000008 | 00000008 | PASS | ff638000 | ff638000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   222 | AND   | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   224 | SLT   | PASS | 00000013 | 00000013 | PASS | 00000001 | 00000001 | PASS | 00000008 | 00000008 | PASS | ff638000 | ff638000 | PASS | 00000001 | 00000001 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   226 | OR    | PASS | 0000000f | 0000000f | PASS | ff638000 | ff638000 | PASS | 00000010 | 00000010 | PASS | ff638000 | ff638000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   227 | ADDI  | PASS | 00000008 | 00000008 | PASS | 000002b0 | 000002b0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002b0 | 000002b0 | PASS |                              ***  PASS ***
+   228 | SW    | PASS | -------- | DATAO--> | --- | 000002f0 | 000002f0 | PASS | 00000008 | 00000008 | PASS | 000002b0 | 000002b0 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | ffffff54 | ffffff54 | PASS |                              ***  PASS ***
+   229 | SRLI  | PASS | 00000010 | 00000010 | PASS | 0ff63800 | 0ff63800 | PASS | 0000000c | 0000000c | PASS | ff638000 | ff638000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000004 | 00000004 | PASS |                              ***  PASS ***
+   230 | SLLI  | PASS | 00000004 | 00000004 | PASS | ffc00000 | ffc00000 | PASS | 0000000d | 0000000d | PASS | 003ffc00 | 003ffc00 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000c | 0000000c | PASS |                              ***  PASS ***
+   231 | SLTIU | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | 00000011 | 00000011 | PASS | c7fe2000 | c7fe2000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f58 | 00000f58 | PASS |                              ***  PASS ***
+   233 | ADDI  | PASS | 00000013 | 00000013 | PASS | 009c7fc1 | 00000353 |    X | 00000005 | 00000005 | PASS | 009c7fe2 | 00000374 |    X | -------- | -------- | --- | -------- | -------- | --- | ffffffdf | ffffffdf | PASS |                              *** ERROR ***
+PC = 000003a0, inst = fdf28993
+   234 | SB    | PASS | -------- | DATAO--> | --- | f8000000 | 0000f800 |    X | 0000001d | 0000001d | PASS | 00000232 | 00000348 |    X | 00000017 | 00000017 | PASS | ff6387f8 | ff6387f8 | PASS | ffffff9d | ffffff9d | PASS |                              *** ERROR ***
+PC = 000003a4, inst = f97e8ea3
+   235 | ANDI  | PASS | 0000000c | 0000000c | PASS | 00000000 | 00000000 | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000024 | 00000024 | PASS |                              ***  PASS ***
+   236 | SLT   | PASS | 0000001e | 0000001e | PASS | 00000001 | 00000001 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   237 | ANDI  | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff8b | ffffff8b | PASS |                              ***  PASS ***
+   238 | ADDI  | PASS | 0000001d | 0000001d | PASS | 000002a8 | 000002a8 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002a8 | 000002a8 | PASS |                              ***  PASS ***
+   239 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 0000001d | 0000001d | PASS | 000002a8 | 000002a8 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 000000aa | 000000aa | PASS |                              ***  PASS ***
+   240 | SRLI  | PASS | 00000013 | 00000013 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000011 | 00000011 | PASS |                              ***  PASS ***
+   241 | ANDI  | PASS | 00000014 | 00000014 | PASS | 00000208 | 00000208 | PASS | 0000001d | 0000001d | PASS | 000002a8 | 000002a8 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff5c | ffffff5c | PASS |                              ***  PASS ***
+   242 | SLT   | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 003ffc01 | 003ffc01 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   243 | SLLI  | PASS | 00000001 | 00000001 | PASS | 000bc000 | 000bc000 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000a | 0000000a | PASS |                              ***  PASS ***
+   244 | ADDI  | PASS | 0000001d | 0000001d | PASS | 000bbf53 | 000bbf53 | PASS | 00000001 | 00000001 | PASS | 000bc000 | 000bc000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff53 | ffffff53 | PASS |                              ***  PASS ***
+   245 | XORI  | PASS | 0000001e | 0000001e | PASS | fff440ba | fff440ba | PASS | 0000001d | 0000001d | PASS | 000bbf53 | 000bbf53 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffe9 | ffffffe9 | PASS |                              ***  PASS ***
+   246 | XOR   | PASS | 0000000c | 0000000c | PASS | 003fffe1 | 003fffe1 | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | 00000012 | 00000012 | PASS | 003ffc01 | 003ffc01 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   247 | SLTU  | PASS | 00000014 | 00000014 | PASS | 00000001 | 00000001 | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   248 | SLTU  | PASS | 00000011 | 00000011 | PASS | 00000001 | 00000001 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | fffffddc | fffffddc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   249 | XOR   | PASS | 0000001b | 0000001b | PASS | 000003dc | 000003dc | PASS | 0000000b | 0000000b | PASS | 000003dc | 000003dc | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   250 | SLTIU | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000002d | 0000002d | PASS |                              ***  PASS ***
+   251 | SLTIU | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000bc000 | 000bc000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000083 | 00000083 | PASS |                              ***  PASS ***
+   252 | SLTI  | PASS | 0000000c | 0000000c | PASS | 00000001 | 00000001 | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000007c | 0000007c | PASS |                              ***  PASS ***
+   253 | SLTIU | PASS | 0000001c | 0000001c | PASS | 00000001 | 00000001 | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000008c | 0000008c | PASS |                              ***  PASS ***
+   254 | OR    | PASS | 0000000e | 0000000e | PASS | ffc00001 | ffc00001 | PASS | 00000014 | 00000014 | PASS | 00000001 | 00000001 | PASS | 00000004 | 00000004 | PASS | ffc00000 | ffc00000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   256 | SLL   | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 0ff63800 | 0ff63800 | PASS | 0000000b | 0000000b | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   257 | XOR   | PASS | 00000002 | 00000002 | PASS | 0ff63af0 | 0ff63af0 | PASS | 00000010 | 00000010 | PASS | 0ff63800 | 0ff63800 | PASS | 00000019 | 00000019 | PASS | 000002f0 | 000002f0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   258 | SLTU  | PASS | 00000011 | 00000011 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   259 | SRLI  | PASS | 00000009 | 00000009 | PASS | 0000000a | 0000000a | PASS | 00000008 | 00000008 | PASS | 000002b0 | 000002b0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000006 | 00000006 | PASS |                              ***  PASS ***
+   260 | SLLI  | PASS | 0000000e | 0000000e | PASS | 01ee0000 | 01ee0000 | PASS | 0000000b | 0000000b | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000f | 0000000f | PASS |                              ***  PASS ***
+   261 | XOR   | PASS | 00000007 | 00000007 | PASS | 000003e0 | 000003e0 | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   262 | XORI  | PASS | 00000009 | 00000009 | PASS | ff638098 | fffffc0e |    X | 00000005 | 00000005 | PASS | 009c7fe2 | 00000374 |    X | -------- | -------- | --- | -------- | -------- | --- | ffffff7a | ffffff7a | PASS |                              *** ERROR ***
+PC = 00000414, inst = f7a2c493
+   263 | SLL   | PASS | 0000001a | 0000001a | PASS | fff440ba | fff440ba | PASS | 0000001e | 0000001e | PASS | fff440ba | fff440ba | PASS | 0000000d | 0000000d | PASS | 003ffc00 | 003ffc00 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   264 | AND   | PASS | 00000013 | 00000013 | PASS | 000002d0 | 000002d0 | PASS | 00000002 | 00000002 | PASS | 0ff63af0 | 0ff63af0 | PASS | 00000015 | 00000015 | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   265 | ADDI  | PASS | 00000007 | 00000007 | PASS | 000002d8 | 000002d8 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002d8 | 000002d8 | PASS |                              ***  PASS ***
+   266 | SW    | PASS | -------- | DATAO--> | --- | 003ffc01 | 003ffc01 | PASS | 00000007 | 00000007 | PASS | 000002d8 | 000002d8 | PASS | 00000012 | 00000012 | PASS | 003ffc01 | 003ffc01 | PASS | ffffff88 | ffffff88 | PASS |                              ***  PASS ***
+   267 | SLTI  | PASS | 00000011 | 00000011 | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 003ffc01 | 003ffc01 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff3d | ffffff3d | PASS |                              ***  PASS ***
+   268 | SLT   | PASS | 00000013 | 00000013 | PASS | 00000001 | 00000001 | PASS | 00000014 | 00000014 | PASS | 00000001 | 00000001 | PASS | 0000001b | 0000001b | PASS | 000003dc | 000003dc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   269 | XOR   | PASS | 00000011 | 00000011 | PASS | 009c7f62 | 000003f4 |    X | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 00000005 | 00000005 | PASS | 009c7fe2 | 00000374 |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 00000430, inst = 0051c8b3
+   270 | ANDI  | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff02 | ffffff02 | PASS |                              ***  PASS ***
+   271 | ORI   | PASS | 0000000b | 0000000b | PASS | ffffffa8 | ffffffa8 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffa8 | ffffffa8 | PASS |                              ***  PASS ***
+   272 | AND   | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   273 | ADDI  | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000022c | 0000022c | PASS |                              ***  PASS ***
+   274 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | fffffff8 | fffffff8 | PASS |                              ***  PASS ***
+   275 | ADDI  | PASS | 00000007 | 00000007 | PASS | 000003d2 | 000003d2 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003d2 | 000003d2 | PASS |                              ***  PASS ***
+   276 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 000003d2 | 000003d2 | PASS | 0000000e | 0000000e | PASS | 01ee0000 | 01ee0000 | PASS | ffffff2e | ffffff2e | PASS |                              ***  PASS ***
+   277 | SB    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000009 | 00000009 | PASS | ff638098 | fffffc0e |    X | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000053 | 00000053 | PASS |                              *** ERROR ***
+PC = 00000450, inst = 041489a3
+   278 | ADDI  | PASS | 00000012 | 00000012 | PASS | 00000320 | 00000320 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000320 | 00000320 | PASS |                              ***  PASS ***
+   279 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 00000320 | 00000320 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | ffffff80 | ffffff80 | PASS |                              ***  PASS ***
+   280 | AND   | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | ffffffa8 | ffffffa8 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   282 | XORI  | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | 00000012 | 00000012 | PASS | 00000320 | 00000320 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000092 | 00000092 | PASS |                              ***  PASS ***
+   283 | ORI   | PASS | 00000017 | 00000017 | PASS | fff440ff | fff440ff | PASS | 0000001e | 0000001e | PASS | fff440ba | fff440ba | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000ef | 000000ef | PASS |                              ***  PASS ***
+   284 | ORI   | PASS | 00000014 | 00000014 | PASS | ffffffeb | ffffffeb | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff4b | ffffff4b | PASS |                              ***  PASS ***
+   285 | SLLI  | PASS | 0000000d | 0000000d | PASS | 3e000000 | 3e000000 | PASS | 0000000a | 0000000a | PASS | 000003e0 | 000003e0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000014 | 00000014 | PASS |                              ***  PASS ***
+   286 | SLT   | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   287 | XORI  | PASS | 00000013 | 00000013 | PASS | 00000048 | 00000048 | PASS | 00000006 | 00000006 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000048 | 00000048 | PASS |                              ***  PASS ***
+   288 | ANDI  | PASS | 0000000e | 0000000e | PASS | 000000b8 | 000000b8 | PASS | 0000001a | 0000001a | PASS | fff440ba | fff440ba | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000b8 | 000000b8 | PASS |                              ***  PASS ***
+   289 | SLTI  | PASS | 00000004 | 00000004 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | fff440ba | fff440ba | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff34 | ffffff34 | PASS |                              ***  PASS ***
+   290 | ANDI  | PASS | 00000014 | 00000014 | PASS | 00000008 | 00000008 | PASS | 00000013 | 00000013 | PASS | 00000048 | 00000048 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000003c | 0000003c | PASS |                              ***  PASS ***
+   291 | ADDI  | PASS | 00000001 | 00000001 | PASS | 000003ea | 000003ea | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003ea | 000003ea | PASS |                              ***  PASS ***
+   292 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000003ea | 000003ea | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000040 | 00000040 | PASS |                              ***  PASS ***
+   293 | ADDI  | PASS | 0000000a | 0000000a | PASS | 00000250 | 00000250 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000250 | 00000250 | PASS |                              ***  PASS ***
+   294 | SW    | PASS | -------- | DATAO--> | --- | 000003b2 | 000003b2 | PASS | 0000000a | 0000000a | PASS | 00000250 | 00000250 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | ffffff2c | ffffff2c | PASS |                              ***  PASS ***
+   295 | XOR   | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 0000000e | 0000000e | PASS | 000000b8 | 000000b8 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   296 | SLLI  | PASS | 00000006 | 00000006 | PASS | 00000080 | 00000080 | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000007 | 00000007 | PASS |                              ***  PASS ***
+   297 | XOR   | PASS | 0000000a | 0000000a | PASS | ffffff7a | fffff86a |    X | 00000005 | 00000005 | PASS | 009c7fe2 | 00000464 |    X | 00000009 | 00000009 | PASS | ff638098 | fffffc0e |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 000004a0, inst = 0092c533
+   298 | SLTI  | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000003ea | 000003ea | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000005c | 0000005c | PASS |                              ***  PASS ***
+   299 | ORI   | PASS | 00000002 | 00000002 | PASS | ffffffc5 | ffffffc5 | PASS | 0000001c | 0000001c | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc5 | ffffffc5 | PASS |                              ***  PASS ***
+   300 | ADDI  | PASS | 0000000e | 0000000e | PASS | 00000360 | 00000360 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000360 | 00000360 | PASS |                              ***  PASS ***
+   301 | SH    | PASS | -------- | DATAO--> | --- | 00003800 | 00003800 | PASS | 0000000e | 0000000e | PASS | 00000360 | 00000360 | PASS | 00000010 | 00000010 | PASS | 0ff63800 | 0ff63800 | PASS | 0000002c | 0000002c | PASS |                              ***  PASS ***
+   302 | AND   | PASS | 0000001b | 0000001b | PASS | 00000320 | 00000320 | PASS | 0000000e | 0000000e | PASS | 00000360 | 00000360 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   303 | OR    | PASS | 00000017 | 00000017 | PASS | 000003ea | 000003ea | PASS | 00000001 | 00000001 | PASS | 000003ea | 000003ea | PASS | 0000001b | 0000001b | PASS | 00000320 | 00000320 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   304 | SLTU  | PASS | 0000000f | 0000000f | PASS | 00000000 | 00000000 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   305 | SLTI  | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffb4 | ffffffb4 | PASS |                              ***  PASS ***
+   306 | SRLI  | PASS | 00000013 | 00000013 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 0ff63800 | 0ff63800 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000001c | 0000001c | PASS |                              ***  PASS ***
+   307 | XOR   | PASS | 00000013 | 00000013 | PASS | 0000038a | 0000038a | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   308 | XOR   | PASS | 0000001f | 0000001f | PASS | 00000080 | 00000080 | PASS | 00000003 | 00000003 | PASS | 00000080 | 00000080 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   309 | AND   | PASS | 0000000d | 0000000d | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000360 | 00000360 | PASS | 00000004 | 00000004 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   310 | ADDI  | PASS | 00000009 | 00000009 | PASS | 000003b2 | 000003b2 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003b2 | 000003b2 | PASS |                              ***  PASS ***
+   311 | SH    | PASS | -------- | DATAO--> | --- | 00800000 | 00800000 | PASS | 00000009 | 00000009 | PASS | 000003b2 | 000003b2 | PASS | 00000006 | 00000006 | PASS | 00000080 | 00000080 | PASS | ffffffbc | ffffffbc | PASS |                              ***  PASS ***
+   312 | SB    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 0000038c | 0000038c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | ffffffef | ffffffef | PASS |                              ***  PASS ***
+   313 | XORI  | PASS | 0000001a | 0000001a | PASS | fffffdb4 | fffffdb4 | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff98 | ffffff98 | PASS |                              ***  PASS ***
+   314 | SLTI  | PASS | 00000004 | 00000004 | PASS | 00000001 | 00000001 | PASS | 0000000b | 0000000b | PASS | ffffffa8 | ffffffa8 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000074 | 00000074 | PASS |                              ***  PASS ***
+   315 | XOR   | PASS | 00000006 | 00000006 | PASS | fffffe06 | fffffe06 | PASS | 0000001a | 0000001a | PASS | fffffdb4 | fffffdb4 | PASS | 00000009 | 00000009 | PASS | 000003b2 | 000003b2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   316 | ANDI  | PASS | 0000000e | 0000000e | PASS | 00000080 | 00000080 | PASS | 0000001f | 0000001f | PASS | 00000080 | 00000080 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffe5 | ffffffe5 | PASS |                              ***  PASS ***
+   317 | ORI   | PASS | 0000000f | 0000000f | PASS | fffffffa | fffffffa | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | fffffffa | fffffffa | PASS |                              ***  PASS ***
+   318 | SLTI  | PASS | 00000012 | 00000012 | PASS | 00000001 | 00000001 | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000bf | 000000bf | PASS |                              ***  PASS ***
+   319 | ADDI  | PASS | 00000013 | 00000013 | PASS | 00000220 | 00000220 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000220 | 00000220 | PASS |                              ***  PASS ***
+   320 | SH    | PASS | -------- | DATAO--> | --- | 00800000 | 00800000 | PASS | 00000013 | 00000013 | PASS | 00000220 | 00000220 | PASS | 0000001f | 0000001f | PASS | 00000080 | 00000080 | PASS | 0000003a | 0000003a | PASS |                              ***  PASS ***
+   321 | SLT   | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | 0000001b | 0000001b | PASS | 00000320 | 00000320 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   322 | ADD   | PASS | 00000003 | 00000003 | PASS | 0000070a | 0000070a | PASS | 0000001b | 0000001b | PASS | 00000320 | 00000320 | PASS | 00000017 | 00000017 | PASS | 000003ea | 000003ea | PASS | -------- | -------- | --- |                              ***  PASS ***
+   323 | SLLI  | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | 00000002 | 00000002 | PASS | ffffffc5 | ffffffc5 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000e | 0000000e | PASS |                              ***  PASS ***
+   324 | AND   | PASS | 0000000e | 0000000e | PASS | 00000220 | 00000024 |    X | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | 00000005 | 00000005 | PASS | 009c7fe2 | 00000464 |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 0000050c, inst = 0058f733
+   325 | ADDI  | PASS | 0000001d | 0000001d | PASS | 00000380 | 00000380 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000380 | 00000380 | PASS |                              ***  PASS ***
+   326 | SH    | PASS | -------- | DATAO--> | --- | 03d20000 | 03d20000 | PASS | 0000001d | 0000001d | PASS | 00000380 | 00000380 | PASS | 00000007 | 00000007 | PASS | 000003d2 | 000003d2 | PASS | fffffff6 | fffffff6 | PASS |                              ***  PASS ***
+   327 | SRL   | PASS | 00000012 | 00000012 | PASS | 7fffffd4 | 7fffffd4 | PASS | 0000000b | 0000000b | PASS | ffffffa8 | ffffffa8 | PASS | 00000012 | 00000012 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   328 | ADD   | PASS | 00000015 | 00000015 | PASS | 00000328 | 00000328 | PASS | 0000001d | 0000001d | PASS | 00000380 | 00000380 | PASS | 0000000b | 0000000b | PASS | ffffffa8 | ffffffa8 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   329 | ADDI  | PASS | 00000019 | 00000019 | PASS | 00000340 | 00000340 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000340 | 00000340 | PASS |                              ***  PASS ***
+   330 | SH    | PASS | -------- | DATAO--> | --- | 00380000 | 00380000 | PASS | 00000019 | 00000019 | PASS | 00000340 | 00000340 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | ffffff4e | ffffff4e | PASS |                              ***  PASS ***
+   331 | ADDI  | PASS | 00000005 | 00000005 | PASS | 000002c0 | 000002c0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002c0 | 000002c0 | PASS |                              ***  PASS ***
+   332 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 000002c0 | 000002c0 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000030 | 00000030 | PASS |                              ***  PASS ***
+   333 | SLT   | PASS | 00000009 | 00000009 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   334 | ADDI  | PASS | 00000019 | 00000019 | PASS | 000003fe | 000003fe | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003fe | 000003fe | PASS |                              ***  PASS ***
+   335 | SH    | PASS | -------- | DATAO--> | --- | fe060000 | fe060000 | PASS | 00000019 | 00000019 | PASS | 000003fe | 000003fe | PASS | 00000006 | 00000006 | PASS | fffffe06 | fffffe06 | PASS | ffffff84 | ffffff84 | PASS |                              ***  PASS ***
+   336 | XOR   | PASS | 00000007 | 00000007 | PASS | 000004e0 | 000004e0 | PASS | 00000017 | 00000017 | PASS | 000003ea | 000003ea | PASS | 00000003 | 00000003 | PASS | 0000070a | 0000070a | PASS | -------- | -------- | --- |                              ***  PASS ***
+   337 | SLTIU | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | 00000328 | 00000328 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000060 | 00000060 | PASS |                              ***  PASS ***
+   338 | AND   | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   339 | ANDI  | PASS | 00000005 | 00000005 | PASS | 00000080 | 00000080 | PASS | 00000005 | 00000005 | PASS | 000002c0 | 000002c0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000085 | 00000085 | PASS |                              ***  PASS ***
+   340 | SLTIU | PASS | 0000000b | 0000000b | PASS | 00000001 | 00000001 | PASS | 00000003 | 00000003 | PASS | 0000070a | 0000070a | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f20 | 00000f20 | PASS |                              ***  PASS ***
+   341 | AND   | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | 0000000d | 0000000d | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   342 | SLT   | PASS | 00000019 | 00000019 | PASS | 00000001 | 00000001 | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | 00000017 | 00000017 | PASS | 000003ea | 000003ea | PASS | -------- | -------- | --- |                              ***  PASS ***
+   343 | ADDI  | PASS | 00000016 | 00000016 | PASS | 00000380 | 00000380 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000380 | 00000380 | PASS |                              ***  PASS ***
+   344 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 00000380 | 00000380 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | ffffffdc | ffffffdc | PASS |                              ***  PASS ***
+   345 | AND   | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | 00000001 | 00000001 | PASS | 0000000a | 0000000a | PASS | ffffff7a | fffff86a |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 00000560, inst = 00a5f3b3
+   346 | ANDI  | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000009 | 00000009 | PASS |                              ***  PASS ***
+   347 | ADDI  | PASS | 00000018 | 00000018 | PASS | 00000304 | 00000304 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000304 | 00000304 | PASS |                              ***  PASS ***
+   348 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000304 | 00000304 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | ffffff80 | ffffff80 | PASS |                              ***  PASS ***
+   349 | SLTIU | PASS | 0000001c | 0000001c | PASS | 00000001 | 00000001 | PASS | 00000004 | 00000004 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f8b | 00000f8b | PASS |                              ***  PASS ***
+   350 | ADDI  | PASS | 00000015 | 00000015 | PASS | 00000251 | 00000251 | PASS | 00000015 | 00000015 | PASS | 00000328 | 00000328 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff29 | ffffff29 | PASS |                              ***  PASS ***
+   351 | ADDI  | PASS | 00000018 | 00000018 | PASS | 00000290 | 00000290 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000290 | 00000290 | PASS |                              ***  PASS ***
+   352 | SW    | PASS | -------- | DATAO--> | --- | 00000001 | 00000001 | PASS | 00000018 | 00000018 | PASS | 00000290 | 00000290 | PASS | 00000004 | 00000004 | PASS | 00000001 | 00000001 | PASS | ffffff3c | ffffff3c | PASS |                              ***  PASS ***
+   353 | AND   | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   354 | ADDI  | PASS | 00000004 | 00000004 | PASS | 00000350 | 00000350 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000350 | 00000350 | PASS |                              ***  PASS ***
+   355 | SH    | PASS | -------- | DATAO--> | --- | 02510000 | 02510000 | PASS | 00000004 | 00000004 | PASS | 00000350 | 00000350 | PASS | 00000015 | 00000015 | PASS | 00000251 | 00000251 | PASS | 000000aa | 000000aa | PASS |                              ***  PASS ***
+   356 | SRLI  | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000009 | 00000009 | PASS |                              ***  PASS ***
+   357 | SLL   | PASS | 00000003 | 00000003 | PASS | f8180000 | f8180000 | PASS | 00000006 | 00000006 | PASS | fffffe06 | fffffe06 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   358 | SLL   | PASS | 00000017 | 00000017 | PASS | 00000220 | 00000220 | PASS | 00000013 | 00000013 | PASS | 00000220 | 00000220 | PASS | 0000001b | 0000001b | PASS | 00000320 | 00000320 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   359 | SLTIU | PASS | 0000000d | 0000000d | PASS | 00000001 | 00000001 | PASS | 00000016 | 00000016 | PASS | 00000380 | 00000380 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000fb7 | 00000fb7 | PASS |                              ***  PASS ***
+   360 | SLTIU | PASS | 00000003 | 00000003 | PASS | 00000000 | 00000000 | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f15 | 00000f15 | PASS |                              ***  PASS ***
+   361 | SLTU  | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 0000001a | 0000001a | PASS | fffffdb4 | fffffdb4 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   362 | SLL   | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   363 | ADDI  | PASS | 0000001c | 0000001c | PASS | 000002cc | 000002cc | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000002cc | 000002cc | PASS |                              ***  PASS ***
+   364 | SW    | PASS | -------- | DATAO--> | --- | ffffffc5 | ffffffc5 | PASS | 0000001c | 0000001c | PASS | 000002cc | 000002cc | PASS | 00000002 | 00000002 | PASS | ffffffc5 | ffffffc5 | PASS | 00000038 | 00000038 | PASS |                              ***  PASS ***
+   365 | SLTIU | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f4b | 00000f4b | PASS |                              ***  PASS ***
+   366 | ORI   | PASS | 00000006 | 00000006 | PASS | ffffffff | fffff8ff |    X | 0000000a | 0000000a | PASS | ffffff7a | fffff86a |    X | -------- | -------- | --- | -------- | -------- | --- | 00000095 | 00000095 | PASS |                              *** ERROR ***
+PC = 000005b4, inst = 09556313
+   367 | SLT   | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 00000017 | 00000017 | PASS | 00000220 | 00000220 | PASS | 00000014 | 00000014 | PASS | 00000008 | 00000008 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   368 | ANDI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000006e | 0000006e | PASS |                              ***  PASS ***
+   369 | SRLI  | PASS | 00000003 | 00000003 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000002 | 00000002 | PASS |                              ***  PASS ***
+   370 | ORI   | PASS | 00000017 | 00000017 | PASS | ffffff4a | ffffff4a | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff4a | ffffff4a | PASS |                              ***  PASS ***
+   371 | SRL   | PASS | 0000001a | 0000001a | PASS | 00003fff | 00003fff | PASS | 0000001a | 0000001a | PASS | fffffdb4 | fffffdb4 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   372 | SLTIU | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | 00000251 | 00000251 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000c3 | 000000c3 | PASS |                              ***  PASS ***
+   373 | SRL   | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000019 | 00000019 | PASS | 00000001 | 00000001 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   374 | SLTI  | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000001 |    X | 00000006 | 00000006 | PASS | ffffffff | fffff8ff |    X | -------- | -------- | --- | -------- | -------- | --- | ffffff9c | ffffff9c | PASS |                              *** ERROR ***
+PC = 000005d4, inst = f9c32113
+   375 | AND   | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | 00000008 | 00000008 | PASS | 000003b2 | 000003b2 | PASS | 00000009 | 00000009 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   376 | SRL   | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 7fffffd4 | 7fffffd4 | PASS | 00000006 | 00000006 | PASS | ffffffff | fffff8ff |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 000005dc, inst = 00695bb3
+   377 | SLTU  | PASS | 00000017 | 00000017 | PASS | 00000001 | 00000001 | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 00000012 | 00000012 | PASS | 7fffffd4 | 7fffffd4 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   378 | SLTIU | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000d4 | 000000d4 | PASS |                              ***  PASS ***
+   379 | XOR   | PASS | 00000003 | 00000003 | PASS | 00000381 | 00000381 | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 00000016 | 00000016 | PASS | 00000380 | 00000380 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   380 | SLTI  | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 000002cc | 000002cc | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff80 | ffffff80 | PASS |                              ***  PASS ***
+   381 | AND   | PASS | 0000000a | 0000000a | PASS | 00000000 | 00000000 | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   382 | ADDI  | PASS | 00000003 | 00000003 | PASS | 0000009f | 0000009f | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000009f | 0000009f | PASS |                              ***  PASS ***
+   383 | ORI   | PASS | 0000000d | 0000000d | PASS | 00000019 | 00000019 | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000001 |    X | -------- | -------- | --- | -------- | -------- | --- | 00000019 | 00000019 | PASS |                              *** ERROR ***
+PC = 000005f8, inst = 01916693
+   384 | SLLI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000001b | 0000001b | PASS |                              ***  PASS ***
+   385 | ORI   | PASS | 0000000f | 0000000f | PASS | 000000a7 | 000000a7 | PASS | 00000019 | 00000019 | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000a7 | 000000a7 | PASS |                              ***  PASS ***
+   386 | SLTU  | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 00000001 | 00000001 | PASS | 0000001c | 0000001c | PASS | 000002cc | 000002cc | PASS | -------- | -------- | --- |                              ***  PASS ***
+   387 | SRLI  | PASS | 00000019 | 00000019 | PASS | 00ffffff | 00fffff8 |    X | 00000006 | 00000006 | PASS | ffffffff | fffff8ff |    X | -------- | -------- | --- | -------- | -------- | --- | 00000008 | 00000008 | PASS |                              *** ERROR ***
+PC = 00000608, inst = 00835c93
+   388 | SLLI  | PASS | 0000001b | 0000001b | PASS | 000e0000 | 000e0000 | PASS | 0000001d | 0000001d | PASS | 00000380 | 00000380 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000a | 0000000a | PASS |                              ***  PASS ***
+   389 | SRLI  | PASS | 0000000b | 0000000b | PASS | 00000fff | 00000fff | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000014 | 00000014 | PASS |                              ***  PASS ***
+   390 | ADDI  | PASS | 00000008 | 00000008 | PASS | 00000025 | 00000026 |    X | 00000002 | 00000002 | PASS | 00000000 | 00000001 |    X | -------- | -------- | --- | -------- | -------- | --- | 00000025 | 00000025 | PASS |                              *** ERROR ***
+PC = 00000614, inst = 02510413
+   391 | ADDI  | PASS | 0000001a | 0000001a | PASS | 00000290 | 00000290 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000290 | 00000290 | PASS |                              ***  PASS ***
+   392 | SW    | PASS | -------- | DATAO--> | --- | 000e0000 | 000e0000 | PASS | 0000001a | 0000001a | PASS | 00000290 | 00000290 | PASS | 0000001b | 0000001b | PASS | 000e0000 | 000e0000 | PASS | 00000058 | 00000058 | PASS |                              ***  PASS ***
+   393 | SLL   | PASS | 00000016 | 00000016 | PASS | 00000038 | 00000038 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   394 | ANDI  | PASS | 0000001b | 0000001b | PASS | 00000030 | 00000030 | PASS | 00000016 | 00000016 | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff71 | ffffff71 | PASS |                              ***  PASS ***
+   395 | SLTIU | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000013 | 00000013 | PASS | 00000220 | 00000220 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000f5 | 000000f5 | PASS |                              ***  PASS ***
+   396 | ADDI  | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003f2 | 000003f2 | PASS |                              ***  PASS ***
+   397 | SH    | PASS | -------- | DATAO--> | --- | 0fff0000 | 0fff0000 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | 0000000b | 0000000b | PASS | 00000fff | 00000fff | PASS | ffffff70 | ffffff70 | PASS |                              ***  PASS ***
+   398 | SLTU  | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   399 | SLT   | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 0000000e | 0000000e | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   400 | SLT   | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | 0000000d | 0000000d | PASS | 00000019 | 00000019 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   401 | ADD   | PASS | 00000003 | 00000003 | PASS | 00000220 | 00000221 |    X | 00000002 | 00000002 | PASS | 00000000 | 00000001 |    X | 00000013 | 00000013 | PASS | 00000220 | 00000220 | PASS | -------- | -------- | --- |                              *** ERROR ***
+PC = 00000640, inst = 013101b3
+   402 | XOR   | PASS | 00000008 | 00000008 | PASS | 00000f58 | 00000f58 | PASS | 0000000b | 0000000b | PASS | 00000fff | 00000fff | PASS | 0000000f | 0000000f | PASS | 000000a7 | 000000a7 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   403 | SLL   | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   404 | SRLI  | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 00000006 | 00000006 | PASS | ffffffff | fffff8ff |    X | -------- | -------- | --- | -------- | -------- | --- | 0000000e | 0000000e | PASS |                              *** ERROR ***
+PC = 0000064c, inst = 00e35713
+   405 | ADD   | PASS | 0000001c | 0000001c | PASS | 0004022b | 0004022b | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   406 | SLT   | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   407 | XORI  | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | 00000017 | 00000017 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffe8 | ffffffe8 | PASS |                              ***  PASS ***
+   408 | SRLI  | PASS | 00000017 | 00000017 | PASS | 0000007f | 0000007f | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000019 | 00000019 | PASS |                              ***  PASS ***
+   409 | OR    | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | 0000000f | 0000000f | PASS | 000000a7 | 000000a7 | PASS | 0000001a | 0000001a | PASS | 00000290 | 00000290 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   410 | XORI  | PASS | 0000000f | 0000000f | PASS | 000002d4 | 000002d4 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000063 | 00000063 | PASS |                              ***  PASS ***
+   411 | SLT   | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   412 | SB    | PASS | -------- | DATAO--> | --- | 0000002b | 0000002b | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 0004022b | 0004022b | PASS | 0000007c | 0000007c | PASS |                              ***  PASS ***
+   413 | AND   | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 00000010 | 00000010 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   414 | SLL   | PASS | 0000000a | 0000000a | PASS | 0000022c | 0000022c | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   415 | SLL   | PASS | 00000008 | 00000008 | PASS | 0000022c | 0000022c | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   416 | ADDI  | PASS | 0000001d | 0000001d | PASS | 00000330 | 00000330 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000330 | 00000330 | PASS |                              ***  PASS ***
+   417 | SW    | PASS | -------- | DATAO--> | --- | 000003f2 | 000003f2 | PASS | 0000001d | 0000001d | PASS | 00000330 | 00000330 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | ffffff5c | ffffff5c | PASS |                              ***  PASS ***
+   418 | ADD   | PASS | 00000018 | 00000018 | PASS | 0000040b | 0000040b | PASS | 0000000d | 0000000d | PASS | 00000019 | 00000019 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   419 | ADDI  | PASS | 00000007 | 00000007 | PASS | 00000200 | 00000200 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000200 | 00000200 | PASS |                              ***  PASS ***
+   420 | SW    | PASS | -------- | DATAO--> | --- | 0003ffff | 0003ffff | PASS | 00000007 | 00000007 | PASS | 00000200 | 00000200 | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 0000004c | 0000004c | PASS |                              ***  PASS ***
+   421 | XORI  | PASS | 0000000d | 0000000d | PASS | 0000027f | 0000027f | PASS | 0000000f | 0000000f | PASS | 000002d4 | 000002d4 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000ab | 000000ab | PASS |                              ***  PASS ***
+   422 | SLT   | PASS | 00000012 | 00000012 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000001 |    X | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              *** ERROR ***
+PC = 00000694, inst = 00b12933
+   423 | OR    | PASS | 00000012 | 00000012 | PASS | 0000027f | 0000027f | PASS | 0000000d | 0000000d | PASS | 0000027f | 0000027f | PASS | 00000014 | 00000014 | PASS | 00000008 | 00000008 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   424 | SLT   | PASS | 00000008 | 00000008 | PASS | 00000001 | 00000001 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | 0000000f | 0000000f | PASS | 000002d4 | 000002d4 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   425 | AND   | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   426 | SLL   | PASS | 00000009 | 00000009 | PASS | 08000000 | 08000000 | PASS | 00000007 | 00000007 | PASS | 00000200 | 00000200 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   427 | ORI   | PASS | 0000000a | 0000000a | PASS | fffffffa | fffffffa | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000052 | 00000052 | PASS |                              ***  PASS ***
+   428 | ANDI  | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000d0 | 000000d0 | PASS |                              ***  PASS ***
+   429 | AND   | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   430 | ADDI  | PASS | 00000005 | 00000005 | PASS | 0000022c | 0000022c | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000022c | 0000022c | PASS |                              ***  PASS ***
+   431 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 0000022c | 0000022c | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 000000da | 000000da | PASS |                              ***  PASS ***
+   432 | ADD   | PASS | 00000014 | 00000014 | PASS | 00000220 | 00000221 |    X | 00000003 | 00000003 | PASS | 00000220 | 00000221 |    X | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              *** ERROR ***
+PC = 000006bc, inst = 00018a33
+   433 | ADDI  | PASS | 0000000a | 0000000a | PASS | 000000b7 | 000000b7 | PASS | 00000004 | 00000004 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000b7 | 000000b7 | PASS |                              ***  PASS ***
+   434 | XORI  | PASS | 0000001b | 0000001b | PASS | 0000021a | 0000021b |    X | 00000003 | 00000003 | PASS | 00000220 | 00000221 |    X | -------- | -------- | --- | -------- | -------- | --- | 0000003a | 0000003a | PASS |                              *** ERROR ***
+PC = 000006c4, inst = 03a1cd93
+   435 | SLTIU | PASS | 0000000f | 0000000f | PASS | 00000001 | 00000001 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000fd9 | 00000fd9 | PASS |                              ***  PASS ***
+   436 | AND   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   437 | ORI   | PASS | 00000012 | 00000012 | PASS | ffffff78 | ffffff78 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff58 | ffffff58 | PASS |                              ***  PASS ***
+   438 | ADDI  | PASS | 00000014 | 00000014 | PASS | fff13f18 | fff13f18 | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff18 | ffffff18 | PASS |                              ***  PASS ***
+   439 | ANDI  | PASS | 0000001a | 0000001a | PASS | 000000a4 | 000000a4 | PASS | 0000000a | 0000000a | PASS | 000000b7 | 000000b7 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffec | ffffffec | PASS |                              ***  PASS ***
+   440 | ADDI  | PASS | 0000000d | 0000000d | PASS | 00000358 | 00000358 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000358 | 00000358 | PASS |                              ***  PASS ***
+   441 | ADDI  | PASS | 00000002 | 00000002 | PASS | 000003a8 | 000003a8 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003a8 | 000003a8 | PASS |                              ***  PASS ***
+   442 | SW    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 000003a8 | 000003a8 | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | fffffff8 | fffffff8 | PASS |                              ***  PASS ***
+   443 | AND   | PASS | 00000017 | 00000017 | PASS | 000000a4 | 000000a4 | PASS | 0000001a | 0000001a | PASS | 000000a4 | 000000a4 | PASS | 00000006 | 00000006 | PASS | 000002b7 | 000002b7 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   444 | XORI  | PASS | 00000010 | 00000010 | PASS | fffffdeb | fffffdeb | PASS | 00000005 | 00000005 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffc7 | ffffffc7 | PASS |                              ***  PASS ***
+   445 | SRLI  | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | 0000001b | 0000001b | PASS | 0000021a | 0000021b |    X | -------- | -------- | --- | -------- | -------- | --- | 00000011 | 00000011 | PASS |                              *** ERROR ***
+PC = 000006f0, inst = 011ddd13
+   446 | SLTIU | PASS | 0000000a | 0000000a | PASS | 00000001 | 00000001 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000043 | 00000043 | PASS |                              ***  PASS ***
+   447 | SLTIU | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | 00000005 | 00000005 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000023 | 00000023 | PASS |                              ***  PASS ***
+   448 | SLT   | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 0000040b | 0000040b | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- |                              ***  PASS ***
+   449 | ADDI  | PASS | 00000012 | 00000012 | PASS | 000003a4 | 000003a4 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003a4 | 000003a4 | PASS |                              ***  PASS ***
+   450 | SH    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 000003a4 | 000003a4 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | ffffffa2 | ffffffa2 | PASS |                              ***  PASS ***
+   451 | SLLI  | PASS | 00000009 | 00000009 | PASS | 000e9000 | 000e9000 | PASS | 00000012 | 00000012 | PASS | 000003a4 | 000003a4 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000a | 0000000a | PASS |                              ***  PASS ***
+   452 | SLLI  | PASS | 00000014 | 00000014 | PASS | 00000000 | 00000000 | PASS | 00000017 | 00000017 | PASS | 000000a4 | 000000a4 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000001f | 0000001f | PASS |                              ***  PASS ***
+   453 | ANDI  | PASS | 00000014 | 00000014 | PASS | 00000030 | 00000030 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff77 | ffffff77 | PASS |                              ***  PASS ***
+   454 | ANDI  | PASS | 00000009 | 00000009 | PASS | 00000008 | 00000008 | PASS | 00000011 | 00000011 | PASS | 0000022c | 0000022c | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000089 | 00000089 | PASS |                              ***  PASS ***
+   455 | ADDI  | PASS | 00000004 | 00000004 | PASS | 00000358 | 00000358 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000358 | 00000358 | PASS |                              ***  PASS ***
+   456 | SH    | PASS | -------- | DATAO--> | --- | 03300000 | 03300000 | PASS | 00000004 | 00000004 | PASS | 00000358 | 00000358 | PASS | 0000001d | 0000001d | PASS | 00000330 | 00000330 | PASS | ffffff92 | ffffff92 | PASS |                              ***  PASS ***
+   457 | ADDI  | PASS | 0000000a | 0000000a | PASS | 00000220 | 00000220 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000220 | 00000220 | PASS |                              ***  PASS ***
+   458 | SW    | PASS | -------- | DATAO--> | --- | 000000a4 | 000000a4 | PASS | 0000000a | 0000000a | PASS | 00000220 | 00000220 | PASS | 00000017 | 00000017 | PASS | 000000a4 | 000000a4 | PASS | ffffff3c | ffffff3c | PASS |                              ***  PASS ***
+   459 | SLT   | PASS | 0000000b | 0000000b | PASS | 00000000 | 00000000 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | 0000001a | 0000001a | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   460 | SRL   | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 000003a4 | 000003a4 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   461 | SLLI  | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000000 | 00000000 | PASS |                              ***  PASS ***
+   462 | ADDI  | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000003c0 | 000003c0 | PASS |                              ***  PASS ***
+   463 | SW    | PASS | -------- | DATAO--> | --- | 0000040b | 0000040b | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | 00000018 | 00000018 | PASS | 0000040b | 0000040b | PASS | ffffff84 | ffffff84 | PASS |                              ***  PASS ***
+   464 | ORI   | PASS | 00000006 | 00000006 | PASS | fffffffe | fffffffe | PASS | 00000002 | 00000002 | PASS | 000003a8 | 000003a8 | PASS | -------- | -------- | --- | -------- | -------- | --- | fffffff6 | fffffff6 | PASS |                              ***  PASS ***
+   465 | SLL   | PASS | 0000001d | 0000001d | PASS | a8000000 | a8000000 | PASS | 00000002 | 00000002 | PASS | 000003a8 | 000003a8 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   466 | ADD   | PASS | 0000000d | 0000000d | PASS | 00040357 | 00040357 | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 0000000d | 0000000d | PASS | 00000358 | 00000358 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   467 | OR    | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | 0000001b | 0000001b | PASS | 0000021a | 0000021b |    X | -------- | -------- | --- |                              *** ERROR ***
+PC = 00000748, inst = 01bf6033
+   468 | SB    | PASS | -------- | DATAO--> | --- | 00005700 | 00570000 |    X | 00000003 | 00000003 | PASS | 00000220 | 00000221 |    X | 0000000d | 0000000d | PASS | 00040357 | 00040357 | PASS | 00000071 | 00000071 | PASS |                              *** ERROR ***
+PC = 0000074c, inst = 06d188a3
+   469 | SLT   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 0000000d | 0000000d | PASS | 00040357 | 00040357 | PASS | 00000014 | 00000014 | PASS | 00000030 | 00000030 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   470 | SB    | PASS | -------- | DATAO--> | --- | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 000003a8 | 000003a8 | PASS | 0000001d | 0000001d | PASS | a8000000 | a8000000 | PASS | 0000008c | 0000008c | PASS |                              ***  PASS ***
+   471 | OR    | PASS | 00000004 | 00000004 | PASS | fff14000 | fff14000 | PASS | 0000000c | 0000000c | PASS | fff14000 | fff14000 | PASS | 00000019 | 00000019 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   472 | ORI   | PASS | 00000003 | 00000003 | PASS | fffffff6 | fffffff6 | PASS | 00000017 | 00000017 | PASS | 000000a4 | 000000a4 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff56 | ffffff56 | PASS |                              ***  PASS ***
+   473 | SLTU  | PASS | 00000002 | 00000002 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 0000001f | 0000001f | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   474 | ANDI  | PASS | 0000001a | 0000001a | PASS | 00000058 | 00000058 | PASS | 00000006 | 00000006 | PASS | fffffffe | fffffffe | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000058 | 00000058 | PASS |                              ***  PASS ***
+   475 | ADDI  | PASS | 00000002 | 00000002 | PASS | 00000055 | 00000055 | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000006d | 0000006d | PASS |                              ***  PASS ***
+   476 | SLL   | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   477 | XOR   | PASS | 0000000f | 0000000f | PASS | fffffc28 | fffffc28 | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   478 | ADDI  | PASS | 00000010 | 00000010 | PASS | 000400b2 | 000400b2 | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000b3 | 000000b3 | PASS |                              ***  PASS ***
+   479 | ORI   | PASS | 00000018 | 00000018 | PASS | ffffff7f | ffffff7f | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff6f | ffffff6f | PASS |                              ***  PASS ***
+   480 | SLLI  | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000004 | 00000004 | PASS |                              ***  PASS ***
+   481 | SLTIU | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000042 | 00000042 | PASS |                              ***  PASS ***
+   482 | AND   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   483 | SRL   | PASS | 0000000d | 0000000d | PASS | 00000038 | 00000038 | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | 00000015 | 00000015 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   484 | SB    | PASS | -------- | DATAO--> | --- | 00000058 | 00000058 | PASS | 0000000d | 0000000d | PASS | 00000038 | 00000038 | PASS | 0000001a | 0000001a | PASS | 00000058 | 00000058 | PASS | ffffff1c | ffffff1c | PASS |                              ***  PASS ***
+   485 | SLTI  | PASS | 0000000b | 0000000b | PASS | 00000001 | 00000001 | PASS | 0000001a | 0000001a | PASS | 00000058 | 00000058 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000006e | 0000006e | PASS |                              ***  PASS ***
+   486 | SLL   | PASS | 00000002 | 00000002 | PASS | 40000000 | 40000000 | PASS | 0000001b | 0000001b | PASS | 00000001 | 00000001 | PASS | 00000006 | 00000006 | PASS | fffffffe | fffffffe | PASS | -------- | -------- | --- |                              ***  PASS ***
+   487 | SLL   | PASS | 00000015 | 00000015 | PASS | 000003f2 | 000003f2 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   488 | AND   | PASS | 0000001b | 0000001b | PASS | 00000030 | 00000030 | PASS | 00000015 | 00000015 | PASS | 000003f2 | 000003f2 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   489 | SLTI  | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffff85 | ffffff85 | PASS |                              ***  PASS ***
+   490 | ADD   | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000008 | 00000008 | PASS | 00000000 | 00000000 | PASS | 00000007 | 00000007 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   491 | SLL   | PASS | 0000000b | 0000000b | PASS | 00b20000 | 00b20000 | PASS | 00000010 | 00000010 | PASS | 000400b2 | 000400b2 | PASS | 0000001b | 0000001b | PASS | 00000030 | 00000030 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   492 | SLTIU | PASS | 00000019 | 00000019 | PASS | 00000001 | 00000001 | PASS | 0000001c | 0000001c | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000fdb | 00000fdb | PASS |                              ***  PASS ***
+   493 | OR    | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 40000000 | 40000000 | PASS | 00000017 | 00000017 | PASS | 000000a4 | 000000a4 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   494 | SRLI  | PASS | 0000001d | 0000001d | PASS | 00000000 | 00000000 | PASS | 00000012 | 00000012 | PASS | 000003a4 | 000003a4 | PASS | -------- | -------- | --- | -------- | -------- | --- | 0000000b | 0000000b | PASS |                              ***  PASS ***
+   495 | SLL   | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | 00000004 | 00000004 | PASS | fff14000 | fff14000 | PASS | 0000001e | 0000001e | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   496 | SRL   | PASS | 00000009 | 00000009 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   497 | ADDI  | PASS | 0000001d | 0000001d | PASS | ffffffa3 | ffffffa3 | PASS | 00000006 | 00000006 | PASS | fffffffe | fffffffe | PASS | -------- | -------- | --- | -------- | -------- | --- | ffffffa5 | ffffffa5 | PASS |                              ***  PASS ***
+   498 | SRLI  | PASS | 00000012 | 00000012 | PASS | 000007ff | 000007ff | PASS | 00000013 | 00000013 | PASS | ffffffe8 | ffffffe8 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000015 | 00000015 | PASS |                              ***  PASS ***
+   499 | SRL   | PASS | 0000001b | 0000001b | PASS | 00000000 | 00000000 | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | 0000001b | 0000001b | PASS | 00000030 | 00000030 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   500 | SLL   | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | 00000015 | 00000015 | PASS | 000003f2 | 000003f2 | PASS | 00000001 | 00000001 | PASS | 00000000 | 00000000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   501 | SRLI  | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000002 | 00000002 | PASS | 40000000 | 40000000 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000003 | 00000003 | PASS |                              ***  PASS ***
+   502 | ANDI  | PASS | 00000018 | 00000018 | PASS | 000000c0 | 000000c0 | PASS | 00000015 | 00000015 | PASS | 000003f2 | 000003f2 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000c9 | 000000c9 | PASS |                              ***  PASS ***
+   503 | XOR   | PASS | 00000012 | 00000012 | PASS | fffc0001 | fffc0001 | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 00000006 | 00000006 | PASS | fffffffe | fffffffe | PASS | -------- | -------- | --- |                              ***  PASS ***
+   504 | SLTI  | PASS | 0000001a | 0000001a | PASS | 00000001 | 00000001 | PASS | 00000014 | 00000014 | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000dd | 000000dd | PASS |                              ***  PASS ***
+   505 | SLL   | PASS | 0000000a | 0000000a | PASS | 00040000 | 00040000 | PASS | 00000012 | 00000012 | PASS | fffc0001 | fffc0001 | PASS | 00000001 | 00000001 | PASS | 000003f2 | 000003f2 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   506 | SRL   | PASS | 0000000a | 0000000a | PASS | 0003ffff | 0003ffff | PASS | 0000000e | 0000000e | PASS | 0003ffff | 0003ffff | PASS | 00000004 | 00000004 | PASS | fff14000 | fff14000 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   507 | SLTU  | PASS | 00000000 | 00000000 | PASS | 00000000 | 00000000 | PASS | 00000016 | 00000016 | PASS | 00000000 | 00000000 | PASS | 00000018 | 00000018 | PASS | 000000c0 | 000000c0 | PASS | -------- | -------- | --- |                              ***  PASS ***
+   508 | SB    | PASS | -------- | DATAO--> | --- | c0000000 | c0000000 | PASS | 0000000d | 0000000d | PASS | 00000038 | 00000038 | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | ffffff93 | ffffff93 | PASS |                              ***  PASS ***
+   509 | ADDI  | PASS | 0000000e | 0000000e | PASS | 0000048e | 0000048e | PASS | 00000011 | 00000011 | PASS | 000003c0 | 000003c0 | PASS | -------- | -------- | --- | -------- | -------- | --- | 000000ce | 000000ce | PASS |                              ***  PASS ***
+   510 | SLTIU | PASS | 00000005 | 00000005 | PASS | 00000001 | 00000001 | PASS | 0000000d | 0000000d | PASS | 00000038 | 00000038 | PASS | -------- | -------- | --- | -------- | -------- | --- | 00000f21 | 00000f21 | PASS |                              ***  PASS ***
 =N:[dumpMXD] closing MXD dump
 =T:Simulation terminated by $finish at time 10000010000 ((last program block exited):0);
 Run directory: /home/ricardo/Documents/UCR/2024/Verif/verif_darkrisc/file_struc_edaplayground/sim
   System timescale is 1ps / 1ps
   Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
-  Random seed: 14492301493598
+  Random seed: 14492301598
