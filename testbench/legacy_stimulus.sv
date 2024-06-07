@@ -28,8 +28,6 @@ class instruction_generator;
       (opcode == I_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
       (opcode == I_L_TYPE) -> full_inst == {imm,rs1,funct3,rd,opcode};
       (opcode == S_TYPE)   -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};
-      //} 
-      
    }
    
 
@@ -44,8 +42,7 @@ class instruction_generator;
                       I_JALR_TYPE,
                       LUI_TYPE,
                       AUIPC_TYPE */
-                     };
-      
+                     };    
    }
    
    // funct3
@@ -240,7 +237,7 @@ class stimulus;
     		end
 		 end 
 		 else if (MEM[i][6:0] == I_L_TYPE) begin 
-			if (MEM[i][6:0] == S_TYPE) begin         
+         // TODO: hay dos if aqui ????       
 			   reg_addr = MEM[i][19:15]; // reg where load going to search address
 
 			   // loop if effective_addr out of range
@@ -260,9 +257,7 @@ class stimulus;
 			   if (DBG_HIGH_VERBOSITY) begin
 				  $display("(force ADDI for set base addrress before store)\tInstruction fixed #%d\t\tnew instruction:%h\tbase address:%h", i[15:0]-1'b1, MEM[i-1], MEM[i-1][31:20]);
     		   end
-			end 
 		 end
-		 // TODO: other if for I_L_TYPE insructions
       end
       inst_gen2.opt_addr_select = 1'b0;
    endfunction

@@ -1,6 +1,7 @@
-`include "../rtl/config.vh"
 `include "uvm_macros.svh"
 import uvm_pkg::*;
+`include "../rtl/config.vh" //"config.vh"
+import instructions_data_struc::*;
 
 
 // sequence item  <- legacy class rv32i_instruction
@@ -154,11 +155,12 @@ class gen_sequence extends uvm_sequence;
     super.new(name);
   endfunction
 
-  // TODO: estas dos lineas pueden ser util para escribir ROM con una cantidad aleatoria de instrucciones
-  //rand int num; 	// Config total number of items to be sent
-  //constraint c1 { num inside {[2:5]}; }
-
   /*
+  // TODO: estas dos lineas pueden ser util para escribir ROM con una cantidad aleatoria de instrucciones
+  rand int num; 	// Config total number of items to be sent
+ constraint c1 { num inside {[2:5]}; }
+
+  
   virtual task body();
     rv32i_instruction i_item = rv32i_instruction::type_id::create("i_item");
     for (int i = 0; i < num; i ++) begin
@@ -171,7 +173,7 @@ class gen_sequence extends uvm_sequence;
     end
     `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
   endtask
-  */
+*/
 
   //==============================================================
   //         Generate memory and instruction sequences 
@@ -185,7 +187,8 @@ class gen_sequence extends uvm_sequence;
    
    // fulling the MEM array
    //**********************************************************
-   function  mem_generate(logic DBG_HIGH_VERBOSITY=0);
+  function void mem_generate(logic DBG_HIGH_VERBOSITY=0);
+      //$display("INSIDE OF mem_generate");
       rv32i_instruction inst_gen0; 
       inst_gen0 = new; 
       $display("\n********************************************************************************");
@@ -205,7 +208,7 @@ class gen_sequence extends uvm_sequence;
       end
    endfunction
 
-  function print_mem(logic DBG_HIGH_VERBOSITY=0);  //el argumento no se usa en esta función, se pone para que todas las funciones lo tengan
+  function void print_mem(logic DBG_HIGH_VERBOSITY=0);  //el argumento no se usa en esta función, se pone para que todas las funciones lo tengan
       $display("\n******************************************************************************************");
       $display("Stimulus: Invoked print_mem() -> print the actual state of MEM");
       $display("******************************************************************************************");
@@ -225,19 +228,19 @@ endclass
 class darksocv_driver extends uvm_driver #(rv32i_instruction);
 
   //==============================================================
-  //         Configuration and steps of UVM
+  //       UVM  Configuration and steps 
   //==============================================================
 
-  `uvm_component_utils (arb_driver)
+  `uvm_component_utils (darksocv_driver)
    function new (string name = "darksocv_driver", uvm_component parent = null);
      super.new (name, parent);
    endfunction
 
-   virtual arb_intf intf;
+   virtual intf_soc intf;
 
    virtual function void build_phase (uvm_phase phase);
      super.build_phase (phase);
-     if(uvm_config_db #(virtual arb_intf)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
+     if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
        `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
      end
    endfunction
@@ -265,18 +268,22 @@ class darksocv_driver extends uvm_driver #(rv32i_instruction);
   //==============================================================
   //         Driver Functions
   //==============================================================
-
+  gen_sequence seq;
   // Load values to .mem file
   //*******************************************************
-  function mem_load();
+  
+  function mem_load();  
+    seq = gen_sequence::type_id::create("seq");
+    
     $display("\n******************************************************************************************");
     $display("driver: Invoked mem_load()  -> load MEM to SoC");
     $display("******************************************************************************************");
-    sti.mem_generate();
-    sti.set_program_format();
-    sti.opt_addr();
-    //sti.print_mem();
-    $writememh("darksocv.mem", sti.MEM);
+    seq.mem_generate();
+    $display("PASE mem generate");
+    //seq.set_program_format();
+    //seq.opt_addr();
+    seq.print_mem();
+    $writememh("darksocv.mem", seq.MEM);
     $readmemh("darksocv.mem", top.soc0.MEM,0);      
   endfunction
 
@@ -303,9 +310,7 @@ endclass
 
 
 
-
-
-
+// LEGACY DRIVER
 
 /*
 class driver;

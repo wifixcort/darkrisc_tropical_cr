@@ -29,7 +29,7 @@
  */
 
 `timescale 1ns / 1ps
-`include "../rtl/config.vh"
+`include "../rtl/config.vh" //"config.vh"  //MODIFIED: path
 
 module darkpll
 (
