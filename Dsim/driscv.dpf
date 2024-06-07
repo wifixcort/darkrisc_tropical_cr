@@ -45,15 +45,19 @@ source_files:
     library_name: DUT
     options: '-uvm 1.2'
   - language: verilog
-    path: ../testbench/instructions_data_struc.sv
-    library_name: TB
-  - language: verilog
-    path: ../testbench/intf_soc.sv
-    library_name: TB
-  - language: verilog
     path: ../testbench/test_basic.sv
     library_name: TB
     options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/instructions_data_struc.sv
+    library_name: TB
+  - language: verilog
+    path: ../testbench/top_hvl.sv
+    library_name: TB
+    options: '-uvm 1.2'
+  - language: verilog
+    path: ../testbench/intf_soc.sv
+    library_name: TB
   - language: verilog
     path: ../testbench/driver.sv
     library_name: TB
@@ -62,8 +66,5 @@ source_files:
     path: ../testbench/env.sv
     library_name: TB
     options: '-uvm 1.2'
-  - language: verilog
-    path: ../testbench/top_hvl.sv
-    library_name: TB
 library_search_paths:
   - $STD_LIBS/ieee93

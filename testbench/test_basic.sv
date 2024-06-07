@@ -12,6 +12,7 @@ class test_basic extends uvm_test;
   virtual intf_soc intf;
   darksocv_env env;  
   
+  
   virtual function void build_phase(uvm_phase phase);
       super.build_phase(phase);
       
@@ -31,24 +32,35 @@ class test_basic extends uvm_test;
     
   endfunction : end_of_elaboration_phase
 
-  gen_sequenc seq;
+  gen_sequence seq;
 
   virtual task run_phase(uvm_phase phase);
 
     phase.raise_objection (this);
-
-    seq = gen_sequenc::type_id::create("seq");
     
-    // TODO: hacer mejor
-    seq.drvr.reset();
-    seq.drvr.mem_load();
+    uvm_report_info(get_full_name(),"SoC Reset Start", UVM_LOW);
+ 	env.drv.reset();
+    uvm_report_info(get_full_name(),"Soc Reset Done", UVM_LOW);
+
+    uvm_report_info(get_full_name(),"Soc MEM load Start", UVM_LOW);
+ 	env.drv.mem_load();
+    uvm_report_info(get_full_name(),"Soc MEM load Done", UVM_LOW);
+    
+	//#1000000; //1ms
+    #10000 //10 us
+    
+    //seq = gen_sequence::type_id::create("seq");
     
     phase.drop_objection (this);
   endtask
 
 endclass
 
-/*    /// TEST Delivery01 ///
+
+
+
+//  LEGACY TESCASE
+/*   
 program testcase(intf_soc intf);
   environment env = new(intf);
 

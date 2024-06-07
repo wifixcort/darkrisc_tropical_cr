@@ -10,7 +10,7 @@ class darksocv_env extends uvm_env;
   endfunction
   
   virtual intf_soc intf;
-  driver drv;
+  darksocv_driver drv;
   uvm_sequencer #(rv32i_instruction)	seqr;
   
 
@@ -21,7 +21,7 @@ class darksocv_env extends uvm_env;
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
     
-    drv = driver::type_id::create ("drv", this); 
+    drv = darksocv_driver::type_id::create ("drv", this); 
     
     seqr = uvm_sequencer#(rv32i_instruction)::type_id::create("seqr", this);
     
@@ -44,8 +44,7 @@ endclass
 
 
 
-
-
+	//	LEGACY ENV
 /* 
 class darksocv_environment;
    driver drvr;
