@@ -1,6 +1,3 @@
-`include "uvm_macros.svh"
-import uvm_pkg::*;
-`include "../rtl/config.vh" //"config.vh"
 import instructions_data_struc::*;
 
 

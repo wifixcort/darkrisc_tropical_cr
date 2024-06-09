@@ -1,5 +1,4 @@
-`include "../rtl/config.vh" //"config.vh"  //MODIFIED: path
-//`include "uvm_macros.svh"
+`include "uvm_macros.svh"
 import uvm_pkg::*;
 
 module top();

@@ -1,0 +1,6 @@
+`include "../rtl/config.vh"
+`include "../rtl/top_hdl.sv"
+`include "../rtl/darksocv.v"
+`include "../rtl/darkriscv.v"
+`include "../rtl/darkuart.v"
+`include "../rtl/darkpll.v"

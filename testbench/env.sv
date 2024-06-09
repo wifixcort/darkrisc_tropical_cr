@@ -1,6 +1,3 @@
-`include "uvm_macros.svh"
-import uvm_pkg::*;
-
 class darksocv_env extends uvm_env;
 
   `uvm_component_utils(darksocv_env)
