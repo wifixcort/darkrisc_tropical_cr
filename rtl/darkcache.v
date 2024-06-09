@@ -29,7 +29,7 @@
  */
 
 `timescale 1ns / 1ps
-`include "../rtl/config.vh"
+//`include "config.vh"
 
 module darkcache
 (
