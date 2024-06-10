@@ -4,25 +4,14 @@ class darksocv_agent_passive extends uvm_agent;
       super.new(name, parent);
     endfunction
     
-    // virtual intf_soc intf;
-    // darksocv_driver drv;
     uvc2_mon monitor2;
-    // uvm_sequencer #(rv32i_instruction)	seqr;
-
   
     virtual function void build_phase(uvm_phase phase);
       super.build_phase(phase);
-    //   if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
-    //     `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
-    //   end
       if(get_is_active() == UVM_PASSIVE) begin
         monitor2 = uvc2_mon::type_id::create("monitor2", this);
         `uvm_info(get_full_name(), "This is Passive agent", UVM_LOW);
       end
-    //   drv = darksocv_driver::type_id::create ("drv", this); 
-      
-    //   seqr = uvm_sequencer#(rv32i_instruction)::type_id::create("seqr", this);
-      
 
     endfunction
   
