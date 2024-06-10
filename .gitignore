@@ -13,3 +13,4 @@ fusesoc.conf
 build
 Dsim/*
 !Dsim/driscv.dpf
+sim/dsim_work/*

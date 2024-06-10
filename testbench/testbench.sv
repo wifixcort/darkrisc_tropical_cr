@@ -3,5 +3,8 @@
 `include "../testbench/top_hvl.sv"
 `include "../testbench/intf_soc.sv"
 `include "../testbench/driver.sv"
+`include "../testbench/monitor_2.sv"
+`include "../testbench/uvc2_passive_agent.sv"
+`include "../testbench/uvc2_env.sv"
 `include "../testbench/env.sv"
 `include "../testbench/test_basic.sv"

@@ -9,6 +9,7 @@ class darksocv_env extends uvm_env;
   virtual intf_soc intf;
   darksocv_driver drv;
   uvm_sequencer #(rv32i_instruction)	seqr;
+  darksocv_uvc2_env uvc2_env;
   
 
   virtual function void build_phase(uvm_phase phase);
@@ -18,6 +19,8 @@ class darksocv_env extends uvm_env;
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
     
+    uvc2_env  = darksocv_uvc2_env::type_id::create ("uvc2_env", this);
+
     drv = darksocv_driver::type_id::create ("drv", this); 
     
     seqr = uvm_sequencer#(rv32i_instruction)::type_id::create("seqr", this);

@@ -1,6 +1,6 @@
-=N:[UVMSource] Using sources from '/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-08 21:39:19 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-08 21:39:19 -0600)] usage server initial connection
+=N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
+=N:[UsageMeter (2024-06-10 00:18:38 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-10 00:18:39 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -13,18 +13,18 @@ Elaborating...
 =W:[IneffectiveDynamicCast]:
     The following dynamic $cast cases will always be false    
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_pkg.sv:31:12                                                                                                                                                                                         
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_pkg.sv:31:12                                                                                                                                                                                         
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
 =W:[ExprStmtNotVoid]:
     The following expressions used as statements do not have void type:    
@@ -50,6 +50,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
+  [3/10] CU scope $unit: 61 functions, 451 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -66,35 +67,56 @@ UVM_INFO @ 0: uvm_test_top.env [uvm_test_top.env] End_of_build_phase
 Name                   Type                    Size  Value
 ----------------------------------------------------------
 env                    darksocv_env            -     @351 
-  drv                  darksocv_driver         -     @362 
-    rsp_port           uvm_analysis_port       -     @381 
-    seq_item_port      uvm_seq_item_pull_port  -     @371 
-  seqr                 uvm_sequencer           -     @391 
-    rsp_export         uvm_analysis_export     -     @400 
-    seq_item_export    uvm_seq_item_pull_imp   -     @518 
+  drv                  darksocv_driver         -     @371 
+    rsp_port           uvm_analysis_port       -     @390 
+    seq_item_port      uvm_seq_item_pull_port  -     @380 
+  seqr                 uvm_sequencer           -     @400 
+    rsp_export         uvm_analysis_export     -     @409 
+    seq_item_export    uvm_seq_item_pull_imp   -     @527 
     arbitration_queue  array                   0     -    
     lock_queue         array                   0     -    
     num_last_reqs      integral                32    'd1  
     num_last_rsps      integral                32    'd1  
+  uvc2_env             darksocv_uvc2_env       -     @362 
 ----------------------------------------------------------
+UVM_INFO @ 0: uvm_test_top.env.uvc2_env [uvm_test_top.env.uvc2_env] End_of_build_phase UVC 2
+----------------------------------------------------
+Name             Type                    Size  Value
+----------------------------------------------------
+uvc2_env         darksocv_uvc2_env       -     @362 
+  agent_passive  darksocv_agent_passive  -     @545 
+----------------------------------------------------
+UVM_INFO ../testbench/uvc2_passive_agent.sv(20) @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] This is Passive agent
+UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] End_of_build_phase Monitor 2
+-------------------------------
+Name      Type      Size  Value
+-------------------------------
+monitor2  uvc2_mon  -     @562 
+-------------------------------
+Passive agent connect phase
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] End_of_elaboration
 ------------------------------------------------------------
 Name                     Type                    Size  Value
 ------------------------------------------------------------
 uvm_test_top             test_basic              -     @333 
   env                    darksocv_env            -     @351 
-    drv                  darksocv_driver         -     @362 
-      rsp_port           uvm_analysis_port       -     @381 
-      seq_item_port      uvm_seq_item_pull_port  -     @371 
-    seqr                 uvm_sequencer           -     @391 
-      rsp_export         uvm_analysis_export     -     @400 
-      seq_item_export    uvm_seq_item_pull_imp   -     @518 
+    drv                  darksocv_driver         -     @371 
+      rsp_port           uvm_analysis_port       -     @390 
+      seq_item_port      uvm_seq_item_pull_port  -     @380 
+    seqr                 uvm_sequencer           -     @400 
+      rsp_export         uvm_analysis_export     -     @409 
+      seq_item_export    uvm_seq_item_pull_imp   -     @527 
       arbitration_queue  array                   0     -    
       lock_queue         array                   0     -    
       num_last_reqs      integral                32    'd1  
       num_last_rsps      integral                32    'd1  
+    uvc2_env             darksocv_uvc2_env       -     @362 
+      agent_passive      darksocv_agent_passive  -     @545 
+        monitor2         uvc2_mon                -     @562 
 ------------------------------------------------------------
 UVM_INFO ../testbench/driver.sv(254) @ 0: uvm_test_top.env.drv [DRV] Wait for item from sequencer
+UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] Monitor 2 running........
+Passive agent run phase
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] SoC Reset Start
 
 ******************************************************************************************
@@ -1140,12 +1162,12 @@ Instruction # 1021:	00000000	opcode: 0000000
 Instruction # 1022:	00000000	opcode: 0000000 
 Instruction # 1023:	00000000	opcode: 0000000 
 UVM_INFO @ 10000: uvm_test_top [uvm_test_top] Soc MEM load Done
-UVM_INFO /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 10010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 10010000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 10010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 10010000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :    9
+UVM_INFO :   13
 UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
@@ -1155,10 +1177,13 @@ UVM_FATAL :    0
 [TEST_DONE]     1
 [uvm_test_top]     5
 [uvm_test_top.env]     1
+[uvm_test_top.env.uvc2_env]     1
+[uvm_test_top.env.uvc2_env.agent_passive]     1
+[uvm_test_top.env.uvc2_env.agent_passive.monitor2]     2
 
 =N:[dumpMXD] closing MXD dump
-=T:Simulation terminated by $finish at time 10010000 (/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
-Run directory: /home/aqua/Downloads/UVM_DarkRiscv/sim
+=T:Simulation terminated by $finish at time 10010000 (/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
+Run directory: /home/ricardo/Documents/UCR/2024/Verif/verif_darkrisc/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
   Random seed: 123
