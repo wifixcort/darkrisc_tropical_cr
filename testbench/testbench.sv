@@ -2,6 +2,8 @@
 `include "../testbench/instructions_data_struc.sv"
 `include "../testbench/top_hvl.sv"
 `include "../testbench/intf_soc.sv"
+`include "../testbench/sequence_item_rv32i_instruction.sv"
+`include "../testbench/gen_sequence.sv"
 `include "../testbench/driver.sv"
 `include "../testbench/env.sv"
 `include "../testbench/test_basic.sv"
