@@ -15,3 +15,4 @@ Dsim/*
 !Dsim/driscv.dpf
 sim/dsim_work/*
 file_struc_edaplayground/sim/dsim_work/*
+rtl/tmp*
