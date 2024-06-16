@@ -11,6 +11,7 @@ module top();
    
    // Interface
    intf_soc intf(CLK);
+   intf_soc intf2(CLK);
    
    // DUT connection	
    darksocv soc0 (
@@ -47,6 +48,7 @@ module top();
         $dumpfile("darksocv.vcd");
         $dumpvars();
         uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf);
+        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
    end
    
    //Test case

@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-10 00:18:38 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-10 00:18:39 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-15 19:03:45 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-15 19:03:45 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -50,7 +50,7 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/10] CU scope $unit: 61 functions, 451 basic blocks
+  [3/10] CU scope $unit: 61 functions, 567 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -58,9 +58,9 @@ Using default typical min/typ/max.
 =N:[dump] Dump started at time 0
 =N:Starting event scheduler...
 UVM_INFO @ 0: reporter [RNTST] Running test test_basic...
-=W:[dump] ../rtl/top_hdl.sv:47: $dumpfile() called, but dump already enabled.
+=W:[dump] ../rtl/top_hdl.sv:48: $dumpfile() called, but dump already enabled.
     included from ../rtl/design.sv:2
-=W:[dump] ../rtl/top_hdl.sv:48: $dumpvars() called after dumping started.
+=W:[dump] ../rtl/top_hdl.sv:49: $dumpvars() called after dumping started.
     included from ../rtl/design.sv:2
 UVM_INFO @ 0: uvm_test_top.env [uvm_test_top.env] End_of_build_phase
 ----------------------------------------------------------
@@ -86,14 +86,14 @@ Name             Type                    Size  Value
 uvc2_env         darksocv_uvc2_env       -     @362 
   agent_passive  darksocv_agent_passive  -     @545 
 ----------------------------------------------------
-UVM_INFO ../testbench/uvc2_passive_agent.sv(20) @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] This is Passive agent
+UVM_INFO ../testbench/uvc2_passive_agent.sv(21) @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] This is Passive agent
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] End_of_build_phase Monitor 2
 -------------------------------
 Name      Type      Size  Value
 -------------------------------
 monitor2  uvc2_mon  -     @562 
 -------------------------------
-Passive agent connect phase
+UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] Passive agent connect phase
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] End_of_elaboration
 ------------------------------------------------------------
 Name                     Type                    Size  Value
@@ -115,8 +115,7 @@ uvm_test_top             test_basic              -     @333
         monitor2         uvc2_mon                -     @562 
 ------------------------------------------------------------
 UVM_INFO ../testbench/driver.sv(254) @ 0: uvm_test_top.env.drv [DRV] Wait for item from sequencer
-UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] Monitor 2 running........
-Passive agent run phase
+UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] Start run phase monitor 2
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] SoC Reset Start
 
 ******************************************************************************************
@@ -1167,7 +1166,7 @@ UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :   13
+UVM_INFO :   14
 UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
@@ -1178,7 +1177,7 @@ UVM_FATAL :    0
 [uvm_test_top]     5
 [uvm_test_top.env]     1
 [uvm_test_top.env.uvc2_env]     1
-[uvm_test_top.env.uvc2_env.agent_passive]     1
+[uvm_test_top.env.uvc2_env.agent_passive]     2
 [uvm_test_top.env.uvc2_env.agent_passive.monitor2]     2
 
 =N:[dumpMXD] closing MXD dump
