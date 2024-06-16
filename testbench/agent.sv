@@ -6,7 +6,7 @@ class darksocv_agent_active extends uvm_agent;
   
   virtual intf_soc intf;
   darksocv_driver drv;
-  uvm_sequencer #(rv32i_instruction)	seqr;
+  uvm_sequencer #(sequence_item_rv32i_instruction)	seqr;
 
   //fifo_monitor_wr fifo_mntr_wr;
 
@@ -19,7 +19,7 @@ class darksocv_agent_active extends uvm_agent;
     
     drv = darksocv_driver::type_id::create ("drv", this); 
     
-    seqr = uvm_sequencer#(rv32i_instruction)::type_id::create("seqr", this);
+    seqr = uvm_sequencer#(sequence_item_rv32i_instruction)::type_id::create("seqr", this);
     
     //fifo_mntr_wr = fifo_monitor_wr::type_id::create ("fifo_mntr_wr", this);
     

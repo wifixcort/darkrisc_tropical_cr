@@ -1,6 +1,7 @@
 tmp/*
 sim/darksocv
 sim/darksocv.vcd
+rtl/darksocv.vcd
 *~
 */*~
 .DS_Store

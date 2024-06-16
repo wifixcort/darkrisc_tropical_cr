@@ -36,13 +36,13 @@ class test_basic extends uvm_test;
 
     phase.raise_objection (this);
     
-    uvm_report_info(get_full_name(),"SoC Reset Start", UVM_LOW);
+    //uvm_report_info(get_full_name(),"SoC Reset Start", UVM_LOW);
  	env.drv.reset();
-    uvm_report_info(get_full_name(),"Soc Reset Done", UVM_LOW);
+    //uvm_report_info(get_full_name(),"Soc Reset Done", UVM_LOW);
 
-    uvm_report_info(get_full_name(),"Soc MEM load Start", UVM_LOW);
+    //uvm_report_info(get_full_name(),"Soc MEM load Start", UVM_LOW);
  	env.drv.mem_load();
-    uvm_report_info(get_full_name(),"Soc MEM load Done", UVM_LOW);
+    //uvm_report_info(get_full_name(),"Soc MEM load Done", UVM_LOW);
     
 	//#1000000; //1ms
     #10000 //10 us
