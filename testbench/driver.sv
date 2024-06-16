@@ -25,20 +25,21 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
     
   endfunction
 
-  virtual task run_phase(uvm_phase phase);
-    super.run_phase(phase);
-    forever begin
-      sequence_item_rv32i_instruction i_item;
-      `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
-      seq_item_port.get_next_item(i_item);
-      //Drive tasks here  **************** Nunca ha sido necesario drivear nada directamente
-      /*fork
-        mem_load();
-        reset();
-      join*/
-      seq_item_port.item_done();
-    end
-  endtask    
+
+  // virtual task run_phase(uvm_phase phase);
+  //   super.run_phase(phase);
+  //   forever begin
+  //     sequence_item_rv32i_instruction i_item;
+  //     `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
+  //     seq_item_port.get_next_item(i_item);
+  //     //Drive tasks here  **************** Nunca ha sido necesario drivear nada directamente
+  //     /*fork
+  //       mem_load();
+  //       reset();
+  //     join*/
+  //     seq_item_port.item_done();
+  //   end
+  // endtask    
 
   //==============================================================
   //         Driver Functions
