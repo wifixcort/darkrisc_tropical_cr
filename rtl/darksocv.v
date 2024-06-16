@@ -71,8 +71,8 @@ module darksocv
         $readmemh("darksocv.rom.mem",ROM);
         $readmemh("darksocv.ram.mem",RAM);
     `else
-        $readmemh("../src/darksocv.rom.mem",ROM);
-        $readmemh("../src/darksocv.ram.mem",RAM);
+        $readmemh("darksocv.rom.mem",ROM);          //MODIFIED: path
+        $readmemh("darksocv.ram.mem",RAM);          //MODIFIED: path
     `endif
     end
 
@@ -99,9 +99,9 @@ module darksocv
     `ifdef XILINX_SIMULATOR
         $readmemh("darksocv.mem",MEM);
 	 `elsif MODEL_TECH
-		  $readmemh("../../../../src/darksocv.mem",MEM);
+		$readmemh("darksocv.mem",MEM);      //MODIFIED: path
     `else
-      	  $readmemh("darksocv.mem",MEM,0);	//MODIFIED: path
+      	$readmemh("darksocv.mem",MEM,0);	//MODIFIED: path
     `endif
     end
 

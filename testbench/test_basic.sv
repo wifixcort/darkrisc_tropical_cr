@@ -37,16 +37,16 @@ class test_basic extends uvm_test;
     phase.raise_objection (this);
     
     //uvm_report_info(get_full_name(),"SoC Reset Start", UVM_LOW);
- 	env.drv.reset();
+ 	  env.uvc1_env.agent_active.drv.reset();
     //uvm_report_info(get_full_name(),"Soc Reset Done", UVM_LOW);
 
     //uvm_report_info(get_full_name(),"Soc MEM load Start", UVM_LOW);
- 	env.drv.mem_load();
+ 	  env.uvc1_env.agent_active.drv.mem_load();
     //uvm_report_info(get_full_name(),"Soc MEM load Done", UVM_LOW);
     
-	//#1000000; //1ms
-    #10000 //10 us
-    
+    //#10000 //10 us
+    #50000 //50 us
+    //#1000000; //1ms
     //seq = gen_sequence::type_id::create("seq");
     
     phase.drop_objection (this);

@@ -1,10 +1,10 @@
-`include "uvm_macros.svh"
-import uvm_pkg::*;
+//`include "uvm_macros.svh"
+//import uvm_pkg::*;
 
 module top();
 
    // external clk generator
-   reg CLK = 0;
+   reg CLK = 1;
    always begin
       #(500e6/`BOARD_CK) CLK = !CLK;
    end 

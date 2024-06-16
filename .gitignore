@@ -1,8 +1,14 @@
 tmp/*
+sim/image.so
+sim/dsim_work/sir*
+sim/dsim_work/obj*
+sim/dsim_work/sfe*
 sim/darksocv
 rtl/darksocv.vcd
 sim/darksocv.vcd
 rtl/tmp*
+rtl/darksocv.vc
+testbench/darksocv.vcd
 *~
 */*~
 .DS_Store

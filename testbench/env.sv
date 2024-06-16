@@ -7,9 +7,11 @@ class darksocv_env extends uvm_env;
   endfunction
   
   virtual intf_soc intf;
-  darksocv_driver drv;
+  darksocv_uvc1_env uvc1_env;
   darksocv_uvc2_env uvc2_env;
-  uvm_sequencer #(sequence_item_rv32i_instruction)	seqr;
+
+  //uvm_sequencer #(sequence_item_sequence_item_rv32i_instruction)	seqr;
+  //darksocv_driver drv;
   
 
   virtual function void build_phase(uvm_phase phase);
@@ -19,11 +21,14 @@ class darksocv_env extends uvm_env;
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
     
+    uvc1_env  = darksocv_uvc1_env::type_id::create ("uvc1_env", this);
     uvc2_env  = darksocv_uvc2_env::type_id::create ("uvc2_env", this);
-
-    drv = darksocv_driver::type_id::create ("drv", this); 
     
-    seqr = uvm_sequencer#(sequence_item_rv32i_instruction)::type_id::create("seqr", this);
+    //uvc2_env  = darksocv_uvc2_env::type_id::create ("uvc2_env", this);
+
+    //drv = darksocv_driver::type_id::create ("drv", this); 
+    
+    //seqr = uvm_sequencer#(sequence_item_rv32i_instruction)::type_id::create("seqr", this);
     
     // legacy del ejemplo del arbitro
     //uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top.darksocv_env.*", "VIRTUAL_INTERFACE", intf);    
@@ -35,7 +40,7 @@ class darksocv_env extends uvm_env;
 
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    drv.seq_item_port.connect(seqr.seq_item_export);
+    //drv.seq_item_port.connect(seqr.seq_item_export);
   endfunction
 
 endclass

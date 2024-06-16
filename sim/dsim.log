@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-16 14:21:23 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-16 14:21:24 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-16 15:54:07 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-16 15:54:07 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -32,18 +32,17 @@ Elaborating...
     ../testbench/gen_sequence.sv:62:4               int    
     Included from ../testbench/testbench.sv:6:10           
 
-    ../testbench/gen_sequence.sv:90:8               int    
+    ../testbench/gen_sequence.sv:83:5               int    
     Included from ../testbench/testbench.sv:6:10           
 
-    ../testbench/gen_sequence.sv:110:7              int    
+    ../testbench/gen_sequence.sv:90:5               int    
     Included from ../testbench/testbench.sv:6:10           
 
-=W:[MissingCallbackAcc]:
-    Only waveforms for signals with callback access can be dumped.                     
-    For $dumpvars to be useful command options +acc+b or -acc-specs should be used.    
+    ../testbench/gen_sequence.sv:119:8              int    
+    Included from ../testbench/testbench.sv:6:10           
 
-
-    ../rtl/top_hdl.sv:50:9    
+    ../testbench/gen_sequence.sv:141:7              int    
+    Included from ../testbench/testbench.sv:6:10           
 
   Found 10 unique specialization(s) of 10 design element(s).
 =W:[MissingTimescale]:
@@ -61,9 +60,15 @@ Elaborating...
 
 Optimizing...
 Building models...
-PLI/VPI access: (none) 
+PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/10] CU scope $unit: 67 functions, 583 basic blocks
+  [1/10] module $root: 1883 functions, 4151 basic blocks
+  [3/10] CU scope $unit: 83 functions, 910 basic blocks
+  [4/10] module top_hvl: 2 functions, 6 basic blocks
+  [5/10] module top: 5 functions, 14 basic blocks
+  [7/10] package uvm_pkg: 6 submodules, 3906 functions, 42898 basic blocks
+  [9/10] interface intf_soc: 1 functions, 2 basic blocks
+  [10/10] module darksocv: 63 functions, 1427 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -71,327 +76,854 @@ Using default typical min/typ/max.
 UVM_INFO @ 0: reporter [RNTST] Running test test_basic...
 =N:[dumpVCD] ../rtl/top_hdl.sv:49: preparing VCD dump to 'darksocv.vcd'.
 UVM_INFO @ 0: uvm_test_top.env [uvm_test_top.env] End_of_build_phase
-----------------------------------------------------------
-Name                   Type                    Size  Value
-----------------------------------------------------------
-env                    darksocv_env            -     @351 
-  drv                  darksocv_driver         -     @371 
-    rsp_port           uvm_analysis_port       -     @390 
-    seq_item_port      uvm_seq_item_pull_port  -     @380 
-  seqr                 uvm_sequencer           -     @400 
-    rsp_export         uvm_analysis_export     -     @409 
-    seq_item_export    uvm_seq_item_pull_imp   -     @527 
-    arbitration_queue  array                   0     -    
-    lock_queue         array                   0     -    
-    num_last_reqs      integral                32    'd1  
-    num_last_rsps      integral                32    'd1  
-  uvc2_env             darksocv_uvc2_env       -     @362 
-----------------------------------------------------------
+------------------------------------------
+Name        Type               Size  Value
+------------------------------------------
+env         darksocv_env       -     @351 
+  uvc1_env  darksocv_uvc1_env  -     @362 
+  uvc2_env  darksocv_uvc2_env  -     @371 
+------------------------------------------
+UVM_INFO @ 0: uvm_test_top.env.uvc1_env [uvm_test_top.env.uvc1_env] End_of_build_phase UVC 1
+--------------------------------------------------
+Name            Type                   Size  Value
+--------------------------------------------------
+uvc1_env        darksocv_uvc1_env      -     @362 
+  agent_active  darksocv_agent_active  -     @382 
+--------------------------------------------------
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env [uvm_test_top.env.uvc2_env] End_of_build_phase UVC 2
 ----------------------------------------------------
 Name             Type                    Size  Value
 ----------------------------------------------------
-uvc2_env         darksocv_uvc2_env       -     @362 
-  agent_passive  darksocv_agent_passive  -     @545 
+uvc2_env         darksocv_uvc2_env       -     @371 
+  agent_passive  darksocv_agent_passive  -     @572 
 ----------------------------------------------------
 UVM_INFO ../testbench/uvc2_passive_agent.sv(21) @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] This is Passive agent
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] End_of_build_phase Monitor 2
 ------------------------------------------
 Name        Type               Size  Value
 ------------------------------------------
-monitor2    uvc2_mon           -     @562 
-  mon2_txn  uvm_analysis_port  -     @573 
+monitor2    uvc2_mon           -     @587 
+  mon2_txn  uvm_analysis_port  -     @598 
 ------------------------------------------
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] Passive agent connect phase
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] End_of_elaboration
-------------------------------------------------------------
-Name                     Type                    Size  Value
-------------------------------------------------------------
-uvm_test_top             test_basic              -     @333 
-  env                    darksocv_env            -     @351 
-    drv                  darksocv_driver         -     @371 
-      rsp_port           uvm_analysis_port       -     @390 
-      seq_item_port      uvm_seq_item_pull_port  -     @380 
-    seqr                 uvm_sequencer           -     @400 
-      rsp_export         uvm_analysis_export     -     @409 
-      seq_item_export    uvm_seq_item_pull_imp   -     @527 
-      arbitration_queue  array                   0     -    
-      lock_queue         array                   0     -    
-      num_last_reqs      integral                32    'd1  
-      num_last_rsps      integral                32    'd1  
-    uvc2_env             darksocv_uvc2_env       -     @362 
-      agent_passive      darksocv_agent_passive  -     @545 
-        monitor2         uvc2_mon                -     @562 
-          mon2_txn       uvm_analysis_port       -     @573 
-------------------------------------------------------------
+----------------------------------------------------------------
+Name                         Type                    Size  Value
+----------------------------------------------------------------
+uvm_test_top                 test_basic              -     @333 
+  env                        darksocv_env            -     @351 
+    uvc1_env                 darksocv_uvc1_env       -     @362 
+      agent_active           darksocv_agent_active   -     @382 
+        drv                  darksocv_driver         -     @400 
+          rsp_port           uvm_analysis_port       -     @419 
+          seq_item_port      uvm_seq_item_pull_port  -     @409 
+        seqr                 uvm_sequencer           -     @429 
+          rsp_export         uvm_analysis_export     -     @438 
+          seq_item_export    uvm_seq_item_pull_imp   -     @556 
+          arbitration_queue  array                   0     -    
+          lock_queue         array                   0     -    
+          num_last_reqs      integral                32    'd1  
+          num_last_rsps      integral                32    'd1  
+    uvc2_env                 darksocv_uvc2_env       -     @371 
+      agent_passive          darksocv_agent_passive  -     @572 
+        monitor2             uvc2_mon                -     @587 
+          mon2_txn           uvm_analysis_port       -     @598 
+----------------------------------------------------------------
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] Start run phase monitor 2
-UVM_INFO ../testbench/driver.sv(143) @ 0: uvm_test_top.env.drv [Driver] Sending RESET signal to SoC
-UVM_INFO ../testbench/driver.sv(131) @ 10000: uvm_test_top.env.drv [Driver] Loading memory in SoC
-------------- SLT -------------
-------------- SLL -------------
-------------- SRL -------------
-------------- SLT -------------
-------------- SRL -------------
+driver: Invoked reset()     -> send RESET signal to SoC
+driver: Invoked mem_load()  -> load MEM to SoC
+
+gen_sequence: set_program_format() -> set first and last instructions
+
+gen_sequence: opt_addr() -> set instructions before load/storage for force valid address
+
+gen_sequence: Invoked print_mem() -> print the actual state of MEM
+UVM_INFO ../testbench/gen_sequence.sv(167) @ 10000: reporter@@seq [gen_sequence] Values in ROM: 
+Instruction #    0:	05780093	opcode: 0010011 
+Instruction #    1:	0a978113	opcode: 0010011 
+Instruction #    2:	0b938193	opcode: 0010011 
+Instruction #    3:	f4d60213	opcode: 0010011 
+Instruction #    4:	f8108293	opcode: 0010011 
+Instruction #    5:	0cbe8313	opcode: 0010011 
+Instruction #    6:	0b378393	opcode: 0010011 
+Instruction #    7:	ff5e0413	opcode: 0010011 
+Instruction #    8:	06238493	opcode: 0010011 
+Instruction #    9:	fec48513	opcode: 0010011 
+Instruction #   10:	f4098593	opcode: 0010011 
+Instruction #   11:	069a8613	opcode: 0010011 
+Instruction #   12:	f7750693	opcode: 0010011 
+Instruction #   13:	06e78713	opcode: 0010011 
+Instruction #   14:	f95c0793	opcode: 0010011 
+Instruction #   15:	f06a0813	opcode: 0010011 
+Instruction #   16:	ff578893	opcode: 0010011 
+Instruction #   17:	f8eb8913	opcode: 0010011 
+Instruction #   18:	f7a78993	opcode: 0010011 
+Instruction #   19:	08218a13	opcode: 0010011 
+Instruction #   20:	0ce48a93	opcode: 0010011 
+Instruction #   21:	02a88b13	opcode: 0010011 
+Instruction #   22:	f0300b93	opcode: 0010011 
+Instruction #   23:	08ed0c13	opcode: 0010011 
+Instruction #   24:	f14f8c93	opcode: 0010011 
+Instruction #   25:	f31d8d13	opcode: 0010011 
+Instruction #   26:	07f98d93	opcode: 0010011 
+Instruction #   27:	fac18e13	opcode: 0010011 
+Instruction #   28:	f8378e93	opcode: 0010011 
+Instruction #   29:	feb20f13	opcode: 0010011 
+Instruction #   30:	07488f93	opcode: 0010011 
+Instruction #   31:	014bbf33	opcode: 0110011 
+Instruction #   32:	01655e13	opcode: 0010011 
+Instruction #   33:	002582b3	opcode: 0110011 
+Instruction #   34:	01f99233	opcode: 0110011 
+Instruction #   35:	f3433213	opcode: 0010011 
+Instruction #   36:	f212f693	opcode: 0010011 
+Instruction #   37:	f74eaa13	opcode: 0010011 
+Instruction #   38:	005b5e13	opcode: 0010011 
+Instruction #   39:	077acc93	opcode: 0010011 
+Instruction #   40:	ffba7d13	opcode: 0010011 
+Instruction #   41:	0056c2b3	opcode: 0110011 
+Instruction #   42:	00da1e13	opcode: 0010011 
+Instruction #   43:	ffe2e093	opcode: 0010011 
+Instruction #   44:	08cdc093	opcode: 0010011 
+Instruction #   45:	00a52733	opcode: 0110011 
+Instruction #   46:	0045a4b3	opcode: 0110011 
+Instruction #   47:	0bff7e93	opcode: 0010011 
+Instruction #   48:	0121eab3	opcode: 0110011 
+Instruction #   49:	ff9fe913	opcode: 0010011 
+Instruction #   50:	ffbcbc93	opcode: 0010011 
+Instruction #   51:	01298433	opcode: 0110011 
+Instruction #   52:	ff4c6113	opcode: 0010011 
+Instruction #   53:	00a3b4b3	opcode: 0110011 
+Instruction #   54:	01757db3	opcode: 0110011 
+Instruction #   55:	001166b3	opcode: 0110011 
+Instruction #   56:	0412c013	opcode: 0010011 
+Instruction #   57:	f47b4693	opcode: 0010011 
+Instruction #   58:	0c507413	opcode: 0010011 
+Instruction #   59:	017061b3	opcode: 0110011 
+Instruction #   60:	01f4e5b3	opcode: 0110011 
+Instruction #   61:	00c386b3	opcode: 0110011 
+Instruction #   62:	0123df33	opcode: 0110011 
+Instruction #   63:	009f3b33	opcode: 0110011 
+Instruction #   64:	00097db3	opcode: 0110011 
+Instruction #   65:	0b1bb293	opcode: 0010011 
+Instruction #   66:	0a3b7113	opcode: 0010011 
+Instruction #   67:	01986033	opcode: 0110011 
+Instruction #   68:	00265893	opcode: 0010011 
+Instruction #   69:	f7e7a493	opcode: 0010011 
+Instruction #   70:	00fb64b3	opcode: 0110011 
+Instruction #   71:	01f9cb33	opcode: 0110011 
+Instruction #   72:	06f57593	opcode: 0010011 
+Instruction #   73:	012d9793	opcode: 0010011 
+Instruction #   74:	008ef333	opcode: 0110011 
+Instruction #   75:	f7b76313	opcode: 0010011 
+Instruction #   76:	fb8c3613	opcode: 0010011 
+Instruction #   77:	013db433	opcode: 0110011 
+Instruction #   78:	00f71c93	opcode: 0010011 
+Instruction #   79:	00cfd7b3	opcode: 0110011 
+Instruction #   80:	f4dba893	opcode: 0010011 
+Instruction #   81:	064fc893	opcode: 0010011 
+Instruction #   82:	01602fb3	opcode: 0110011 
+Instruction #   83:	01f9dd93	opcode: 0010011 
+Instruction #   84:	010e9f33	opcode: 0110011 
+Instruction #   85:	0064e133	opcode: 0110011 
+Instruction #   86:	01cb42b3	opcode: 0110011 
+Instruction #   87:	014eacb3	opcode: 0110011 
+Instruction #   88:	00d97633	opcode: 0110011 
+Instruction #   89:	011c5113	opcode: 0010011 
+Instruction #   90:	f575a893	opcode: 0010011 
+Instruction #   91:	009d66b3	opcode: 0110011 
+Instruction #   92:	0046b593	opcode: 0010011 
+Instruction #   93:	01f301b3	opcode: 0110011 
+Instruction #   94:	007bdfb3	opcode: 0110011 
+Instruction #   95:	00553333	opcode: 0110011 
+Instruction #   96:	004829b3	opcode: 0110011 
+Instruction #   97:	00b19c13	opcode: 0010011 
+Instruction #   98:	030e0213	opcode: 0010011 
+Instruction #   99:	017b78b3	opcode: 0110011 
+Instruction #  100:	00ab1733	opcode: 0110011 
+Instruction #  101:	001cfc33	opcode: 0110011 
+Instruction #  102:	0282bf93	opcode: 0010011 
+Instruction #  103:	01cf9a13	opcode: 0010011 
+Instruction #  104:	f7682093	opcode: 0010011 
+Instruction #  105:	08e96a93	opcode: 0010011 
+Instruction #  106:	001776b3	opcode: 0110011 
+Instruction #  107:	01021993	opcode: 0010011 
+Instruction #  108:	01cefcb3	opcode: 0110011 
+Instruction #  109:	003fbcb3	opcode: 0110011 
+Instruction #  110:	0122e6b3	opcode: 0110011 
+Instruction #  111:	01d08133	opcode: 0110011 
+Instruction #  112:	f6697693	opcode: 0010011 
+Instruction #  113:	0164c7b3	opcode: 0110011 
+Instruction #  114:	040f3a13	opcode: 0010011 
+Instruction #  115:	0aeb2793	opcode: 0010011 
+Instruction #  116:	09a6eb93	opcode: 0010011 
+Instruction #  117:	09b2c113	opcode: 0010011 
+Instruction #  118:	09c50613	opcode: 0010011 
+Instruction #  119:	012b2cb3	opcode: 0110011 
+Instruction #  120:	f247fd93	opcode: 0010011 
+Instruction #  121:	018d30b3	opcode: 0110011 
+Instruction #  122:	fec87793	opcode: 0010011 
+Instruction #  123:	01591433	opcode: 0110011 
+Instruction #  124:	004a09b3	opcode: 0110011 
+Instruction #  125:	fb9a6e13	opcode: 0010011 
+Instruction #  126:	00015f33	opcode: 0110011 
+Instruction #  127:	f301cc93	opcode: 0010011 
+Instruction #  128:	011f4eb3	opcode: 0110011 
+Instruction #  129:	f549e393	opcode: 0010011 
+Instruction #  130:	09792b13	opcode: 0010011 
+Instruction #  131:	fe400013	opcode: 0010011 
+Instruction #  132:	017c5593	opcode: 0010011 
+Instruction #  133:	fb2c2d93	opcode: 0010011 
+Instruction #  134:	00103133	opcode: 0110011 
+Instruction #  135:	007fde33	opcode: 0110011 
+Instruction #  136:	072f7693	opcode: 0010011 
+Instruction #  137:	0f98ab13	opcode: 0010011 
+Instruction #  138:	01b9c2b3	opcode: 0110011 
+Instruction #  139:	010d9d93	opcode: 0010011 
+Instruction #  140:	fb6bb413	opcode: 0010011 
+Instruction #  141:	f4d18b13	opcode: 0010011 
+Instruction #  142:	015450b3	opcode: 0110011 
+Instruction #  143:	00214cb3	opcode: 0110011 
+Instruction #  144:	048fb493	opcode: 0010011 
+Instruction #  145:	f767e993	opcode: 0010011 
+Instruction #  146:	01011c93	opcode: 0010011 
+Instruction #  147:	f98b6793	opcode: 0010011 
+Instruction #  148:	007a3bb3	opcode: 0110011 
+Instruction #  149:	01139913	opcode: 0010011 
+Instruction #  150:	fa7f3a13	opcode: 0010011 
+Instruction #  151:	f75bb593	opcode: 0010011 
+Instruction #  152:	00d004b3	opcode: 0110011 
+Instruction #  153:	00861bb3	opcode: 0110011 
+Instruction #  154:	0285f413	opcode: 0010011 
+Instruction #  155:	f3d9ca93	opcode: 0010011 
+Instruction #  156:	01259933	opcode: 0110011 
+Instruction #  157:	01ce9633	opcode: 0110011 
+Instruction #  158:	07ce6113	opcode: 0010011 
+Instruction #  159:	00b5c5b3	opcode: 0110011 
+Instruction #  160:	01e1fbb3	opcode: 0110011 
+Instruction #  161:	002e49b3	opcode: 0110011 
+Instruction #  162:	01981733	opcode: 0110011 
+Instruction #  163:	ff1f0513	opcode: 0010011 
+Instruction #  164:	00baf3b3	opcode: 0110011 
+Instruction #  165:	00761a13	opcode: 0010011 
+Instruction #  166:	013a1f33	opcode: 0110011 
+Instruction #  167:	fa082193	opcode: 0010011 
+Instruction #  168:	01d58bb3	opcode: 0110011 
+Instruction #  169:	0048e113	opcode: 0010011 
+Instruction #  170:	0058de13	opcode: 0010011 
+Instruction #  171:	0131e033	opcode: 0110011 
+Instruction #  172:	0016d733	opcode: 0110011 
+Instruction #  173:	0b2afe13	opcode: 0010011 
+Instruction #  174:	f6dbb893	opcode: 0010011 
+Instruction #  175:	0071f733	opcode: 0110011 
+Instruction #  176:	0dc23c93	opcode: 0010011 
+Instruction #  177:	013aa9b3	opcode: 0110011 
+Instruction #  178:	01a065b3	opcode: 0110011 
+Instruction #  179:	00254eb3	opcode: 0110011 
+Instruction #  180:	f8442993	opcode: 0010011 
+Instruction #  181:	001a6133	opcode: 0110011 
+Instruction #  182:	06688193	opcode: 0010011 
+Instruction #  183:	0922b513	opcode: 0010011 
+Instruction #  184:	0124b113	opcode: 0010011 
+Instruction #  185:	01317d33	opcode: 0110011 
+Instruction #  186:	fe44eb13	opcode: 0010011 
+Instruction #  187:	f1083013	opcode: 0010011 
+Instruction #  188:	00bcdbb3	opcode: 0110011 
+Instruction #  189:	01b15733	opcode: 0110011 
+Instruction #  190:	000337b3	opcode: 0110011 
+Instruction #  191:	091ffa93	opcode: 0010011 
+Instruction #  192:	095f4493	opcode: 0010011 
+Instruction #  193:	017af7b3	opcode: 0110011 
+Instruction #  194:	f5d2a693	opcode: 0010011 
+Instruction #  195:	0cdd6a13	opcode: 0010011 
+Instruction #  196:	01351133	opcode: 0110011 
+Instruction #  197:	008fb233	opcode: 0110011 
+Instruction #  198:	00d819b3	opcode: 0110011 
+Instruction #  199:	f2cf6713	opcode: 0010011 
+Instruction #  200:	05d52a93	opcode: 0010011 
+Instruction #  201:	f2218393	opcode: 0010011 
+Instruction #  202:	00925493	opcode: 0010011 
+Instruction #  203:	f3ba2793	opcode: 0010011 
+Instruction #  204:	fd24fd13	opcode: 0010011 
+Instruction #  205:	00a35d93	opcode: 0010011 
+Instruction #  206:	00d9d5b3	opcode: 0110011 
+Instruction #  207:	01bfeeb3	opcode: 0110011 
+Instruction #  208:	fbb54e93	opcode: 0010011 
+Instruction #  209:	01ac8ab3	opcode: 0110011 
+Instruction #  210:	01f2bcb3	opcode: 0110011 
+Instruction #  211:	01a28833	opcode: 0110011 
+Instruction #  212:	078fe513	opcode: 0010011 
+Instruction #  213:	01ff4eb3	opcode: 0110011 
+Instruction #  214:	0ebbe693	opcode: 0010011 
+Instruction #  215:	00e233b3	opcode: 0110011 
+Instruction #  216:	f4d2c713	opcode: 0010011 
+Instruction #  217:	09657813	opcode: 0010011 
+Instruction #  218:	006d5013	opcode: 0010011 
+Instruction #  219:	01d42593	opcode: 0010011 
+Instruction #  220:	04b5c993	opcode: 0010011 
+Instruction #  221:	fb112893	opcode: 0010011 
+Instruction #  222:	0170dfb3	opcode: 0110011 
+Instruction #  223:	012e6633	opcode: 0110011 
+Instruction #  224:	f8458313	opcode: 0010011 
+Instruction #  225:	0116a733	opcode: 0110011 
+Instruction #  226:	004d9e13	opcode: 0010011 
+Instruction #  227:	01303633	opcode: 0110011 
+Instruction #  228:	01d95413	opcode: 0010011 
+Instruction #  229:	00f78733	opcode: 0110011 
+Instruction #  230:	0a886493	opcode: 0010011 
+Instruction #  231:	01f492b3	opcode: 0110011 
+Instruction #  232:	00202ab3	opcode: 0110011 
+Instruction #  233:	0f562f13	opcode: 0010011 
+Instruction #  234:	00ae5893	opcode: 0010011 
+Instruction #  235:	f481fa93	opcode: 0010011 
+Instruction #  236:	00b3bbb3	opcode: 0110011 
+Instruction #  237:	f04afb93	opcode: 0010011 
+Instruction #  238:	0fa3a313	opcode: 0010011 
+Instruction #  239:	0f020293	opcode: 0010011 
+Instruction #  240:	f2687b93	opcode: 0010011 
+Instruction #  241:	01f35db3	opcode: 0110011 
+Instruction #  242:	01de9813	opcode: 0010011 
+Instruction #  243:	012cd0b3	opcode: 0110011 
+Instruction #  244:	010efe33	opcode: 0110011 
+Instruction #  245:	f08d2993	opcode: 0010011 
+Instruction #  246:	00f28d33	opcode: 0110011 
+Instruction #  247:	0d708b13	opcode: 0010011 
+Instruction #  248:	014c2033	opcode: 0110011 
+Instruction #  249:	00771533	opcode: 0110011 
+Instruction #  250:	010b5833	opcode: 0110011 
+Instruction #  251:	00dd3433	opcode: 0110011 
+Instruction #  252:	007f5393	opcode: 0010011 
+Instruction #  253:	017bd593	opcode: 0010011 
+Instruction #  254:	014fdf33	opcode: 0110011 
+Instruction #  255:	00aafeb3	opcode: 0110011 
+Instruction #  256:	00fd1c93	opcode: 0010011 
+Instruction #  257:	00f3da13	opcode: 0010011 
+Instruction #  258:	016e1ab3	opcode: 0110011 
+Instruction #  259:	000b6433	opcode: 0110011 
+Instruction #  260:	01be30b3	opcode: 0110011 
+Instruction #  261:	00e609b3	opcode: 0110011 
+Instruction #  262:	01820593	opcode: 0010011 
+Instruction #  263:	007239b3	opcode: 0110011 
+Instruction #  264:	00745f93	opcode: 0010011 
+Instruction #  265:	0d332093	opcode: 0010011 
+Instruction #  266:	00857b33	opcode: 0110011 
+Instruction #  267:	0337e293	opcode: 0010011 
+Instruction #  268:	f5dc2a13	opcode: 0010011 
+Instruction #  269:	008b1b13	opcode: 0010011 
+Instruction #  270:	0140ba13	opcode: 0010011 
+Instruction #  271:	f5390393	opcode: 0010011 
+Instruction #  272:	0015fe33	opcode: 0110011 
+Instruction #  273:	00cdc4b3	opcode: 0110011 
+Instruction #  274:	01271413	opcode: 0010011 
+Instruction #  275:	00e3df33	opcode: 0110011 
+Instruction #  276:	006dcd33	opcode: 0110011 
+Instruction #  277:	01cd3bb3	opcode: 0110011 
+Instruction #  278:	01d7f533	opcode: 0110011 
+Instruction #  279:	00fe90b3	opcode: 0110011 
+Instruction #  280:	00fc8ab3	opcode: 0110011 
+Instruction #  281:	010c8633	opcode: 0110011 
+Instruction #  282:	00f15db3	opcode: 0110011 
+Instruction #  283:	f5212793	opcode: 0010011 
+Instruction #  284:	f18cbf93	opcode: 0010011 
+Instruction #  285:	04f17213	opcode: 0010011 
+Instruction #  286:	f7b73993	opcode: 0010011 
+Instruction #  287:	00f5a033	opcode: 0110011 
+Instruction #  288:	f2a07013	opcode: 0010011 
+Instruction #  289:	012c06b3	opcode: 0110011 
+Instruction #  290:	0e51e813	opcode: 0010011 
+Instruction #  291:	00949a13	opcode: 0010011 
+Instruction #  292:	fdceb293	opcode: 0010011 
+Instruction #  293:	00aa5b33	opcode: 0110011 
+Instruction #  294:	01e31fb3	opcode: 0110011 
+Instruction #  295:	01d0df93	opcode: 0010011 
+Instruction #  296:	0058ae33	opcode: 0110011 
+Instruction #  297:	01350bb3	opcode: 0110011 
+Instruction #  298:	00d71993	opcode: 0010011 
+Instruction #  299:	017245b3	opcode: 0110011 
+Instruction #  300:	fc066593	opcode: 0010011 
+Instruction #  301:	017a1a93	opcode: 0010011 
+Instruction #  302:	00e036b3	opcode: 0110011 
+Instruction #  303:	fca62793	opcode: 0010011 
+Instruction #  304:	f1d24a13	opcode: 0010011 
+Instruction #  305:	f4b87f13	opcode: 0010011 
+Instruction #  306:	004ca0b3	opcode: 0110011 
+Instruction #  307:	015e5db3	opcode: 0110011 
+Instruction #  308:	006190b3	opcode: 0110011 
+Instruction #  309:	0029da33	opcode: 0110011 
+Instruction #  310:	0a580713	opcode: 0010011 
+Instruction #  311:	010f4ab3	opcode: 0110011 
+Instruction #  312:	07b68c93	opcode: 0010011 
+Instruction #  313:	00b95113	opcode: 0010011 
+Instruction #  314:	01c0da13	opcode: 0010011 
+Instruction #  315:	015a0b33	opcode: 0110011 
+Instruction #  316:	00661413	opcode: 0010011 
+Instruction #  317:	01dea2b3	opcode: 0110011 
+Instruction #  318:	01601bb3	opcode: 0110011 
+Instruction #  319:	0028d413	opcode: 0010011 
+Instruction #  320:	f3c47c13	opcode: 0010011 
+Instruction #  321:	001d53b3	opcode: 0110011 
+Instruction #  322:	083dca93	opcode: 0010011 
+Instruction #  323:	014b5e13	opcode: 0010011 
+Instruction #  324:	01f50133	opcode: 0110011 
+Instruction #  325:	f4746193	opcode: 0010011 
+Instruction #  326:	0410b293	opcode: 0010011 
+Instruction #  327:	0126e933	opcode: 0110011 
+Instruction #  328:	014cb833	opcode: 0110011 
+Instruction #  329:	0072e233	opcode: 0110011 
+Instruction #  330:	00b9f5b3	opcode: 0110011 
+Instruction #  331:	00286eb3	opcode: 0110011 
+Instruction #  332:	f21f8313	opcode: 0010011 
+Instruction #  333:	03083393	opcode: 0010011 
+Instruction #  334:	f4c52a13	opcode: 0010011 
+Instruction #  335:	f92e4113	opcode: 0010011 
+Instruction #  336:	f8d8fa13	opcode: 0010011 
+Instruction #  337:	006e85b3	opcode: 0110011 
+Instruction #  338:	017e37b3	opcode: 0110011 
+Instruction #  339:	f9b3e113	opcode: 0010011 
+Instruction #  340:	0171ef33	opcode: 0110011 
+Instruction #  341:	fbbb2e93	opcode: 0010011 
+Instruction #  342:	005a67b3	opcode: 0110011 
+Instruction #  343:	0082b8b3	opcode: 0110011 
+Instruction #  344:	f1420613	opcode: 0010011 
+Instruction #  345:	0179fe33	opcode: 0110011 
+Instruction #  346:	0124ebb3	opcode: 0110011 
+Instruction #  347:	f2c0a213	opcode: 0010011 
+Instruction #  348:	0030cd33	opcode: 0110011 
+Instruction #  349:	07c78613	opcode: 0010011 
+Instruction #  350:	058cec93	opcode: 0010011 
+Instruction #  351:	fd744693	opcode: 0010011 
+Instruction #  352:	0127a233	opcode: 0110011 
+Instruction #  353:	0028d893	opcode: 0010011 
+Instruction #  354:	017cddb3	opcode: 0110011 
+Instruction #  355:	01d35f13	opcode: 0010011 
+Instruction #  356:	01e5e433	opcode: 0110011 
+Instruction #  357:	0089efb3	opcode: 0110011 
+Instruction #  358:	01efde13	opcode: 0010011 
+Instruction #  359:	00855fb3	opcode: 0110011 
+Instruction #  360:	00f29733	opcode: 0110011 
+Instruction #  361:	00eb2033	opcode: 0110011 
+Instruction #  362:	01c79db3	opcode: 0110011 
+Instruction #  363:	01f4ebb3	opcode: 0110011 
+Instruction #  364:	0be78193	opcode: 0010011 
+Instruction #  365:	00e95013	opcode: 0010011 
+Instruction #  366:	04c3e413	opcode: 0010011 
+Instruction #  367:	fb498613	opcode: 0010011 
+Instruction #  368:	f99f2593	opcode: 0010011 
+Instruction #  369:	0c9b3f13	opcode: 0010011 
+Instruction #  370:	001fbf33	opcode: 0110011 
+Instruction #  371:	00356eb3	opcode: 0110011 
+Instruction #  372:	0066ecb3	opcode: 0110011 
+Instruction #  373:	f95e2613	opcode: 0010011 
+Instruction #  374:	00f94a33	opcode: 0110011 
+Instruction #  375:	03e3b993	opcode: 0010011 
+Instruction #  376:	0bf48793	opcode: 0010011 
+Instruction #  377:	01c850b3	opcode: 0110011 
+Instruction #  378:	01cb14b3	opcode: 0110011 
+Instruction #  379:	f7c6f013	opcode: 0010011 
+Instruction #  380:	00161033	opcode: 0110011 
+Instruction #  381:	009266b3	opcode: 0110011 
+Instruction #  382:	00e96033	opcode: 0110011 
+Instruction #  383:	01dccc33	opcode: 0110011 
+Instruction #  384:	00d91a93	opcode: 0010011 
+Instruction #  385:	00f896b3	opcode: 0110011 
+Instruction #  386:	018b6b33	opcode: 0110011 
+Instruction #  387:	015243b3	opcode: 0110011 
+Instruction #  388:	01511313	opcode: 0010011 
+Instruction #  389:	01107033	opcode: 0110011 
+Instruction #  390:	01628793	opcode: 0010011 
+Instruction #  391:	01b3aa33	opcode: 0110011 
+Instruction #  392:	0161bd33	opcode: 0110011 
+Instruction #  393:	01ab9b13	opcode: 0010011 
+Instruction #  394:	00fe1493	opcode: 0010011 
+Instruction #  395:	f5f00513	opcode: 0010011 
+Instruction #  396:	0006c533	opcode: 0110011 
+Instruction #  397:	00631693	opcode: 0010011 
+Instruction #  398:	01287633	opcode: 0110011 
+Instruction #  399:	01def333	opcode: 0110011 
+Instruction #  400:	09804613	opcode: 0010011 
+Instruction #  401:	003671b3	opcode: 0110011 
+Instruction #  402:	00b03b33	opcode: 0110011 
+Instruction #  403:	f3cde393	opcode: 0010011 
+Instruction #  404:	ffea8d93	opcode: 0010011 
+Instruction #  405:	01305f33	opcode: 0110011 
+Instruction #  406:	0e968793	opcode: 0010011 
+Instruction #  407:	01dc63b3	opcode: 0110011 
+Instruction #  408:	09233b93	opcode: 0010011 
+Instruction #  409:	016f9113	opcode: 0010011 
+Instruction #  410:	009ce593	opcode: 0010011 
+Instruction #  411:	f9e74493	opcode: 0010011 
+Instruction #  412:	019b9293	opcode: 0010011 
+Instruction #  413:	0b946513	opcode: 0010011 
+Instruction #  414:	006c7433	opcode: 0110011 
+Instruction #  415:	fed7a993	opcode: 0010011 
+Instruction #  416:	f8264313	opcode: 0010011 
+Instruction #  417:	0b49a193	opcode: 0010011 
+Instruction #  418:	0a3a3993	opcode: 0010011 
+Instruction #  419:	014b6133	opcode: 0110011 
+Instruction #  420:	01fafab3	opcode: 0110011 
+Instruction #  421:	00115a33	opcode: 0110011 
+Instruction #  422:	01abaeb3	opcode: 0110011 
+Instruction #  423:	016bf333	opcode: 0110011 
+Instruction #  424:	0ce52e13	opcode: 0010011 
+Instruction #  425:	03b88893	opcode: 0010011 
+Instruction #  426:	013739b3	opcode: 0110011 
+Instruction #  427:	0b962e13	opcode: 0010011 
+Instruction #  428:	0208cf13	opcode: 0010011 
+Instruction #  429:	f4ce2413	opcode: 0010011 
+Instruction #  430:	0069fd33	opcode: 0110011 
+Instruction #  431:	00fb7d33	opcode: 0110011 
+Instruction #  432:	00b11113	opcode: 0010011 
+Instruction #  433:	0000d493	opcode: 0010011 
+Instruction #  434:	fcbf0b93	opcode: 0010011 
+Instruction #  435:	0115f533	opcode: 0110011 
+Instruction #  436:	00719713	opcode: 0010011 
+Instruction #  437:	ff4fb413	opcode: 0010011 
+Instruction #  438:	00b1e9b3	opcode: 0110011 
+Instruction #  439:	0147df33	opcode: 0110011 
+Instruction #  440:	016cb4b3	opcode: 0110011 
+Instruction #  441:	00507333	opcode: 0110011 
+Instruction #  442:	00e4f6b3	opcode: 0110011 
+Instruction #  443:	00791db3	opcode: 0110011 
+Instruction #  444:	019e7bb3	opcode: 0110011 
+Instruction #  445:	0113df33	opcode: 0110011 
+Instruction #  446:	01fc9f93	opcode: 0010011 
+Instruction #  447:	f8706e93	opcode: 0010011 
+Instruction #  448:	00159fb3	opcode: 0110011 
+Instruction #  449:	01825113	opcode: 0010011 
+Instruction #  450:	00aa9cb3	opcode: 0110011 
+Instruction #  451:	00e312b3	opcode: 0110011 
+Instruction #  452:	003a5813	opcode: 0010011 
+Instruction #  453:	f9f0ad93	opcode: 0010011 
+Instruction #  454:	011bd3b3	opcode: 0110011 
+Instruction #  455:	01f91b93	opcode: 0010011 
+Instruction #  456:	00755813	opcode: 0010011 
+Instruction #  457:	f6820193	opcode: 0010011 
+Instruction #  458:	007615b3	opcode: 0110011 
+Instruction #  459:	08173c13	opcode: 0010011 
+Instruction #  460:	01834c33	opcode: 0110011 
+Instruction #  461:	0098d7b3	opcode: 0110011 
+Instruction #  462:	00d9d133	opcode: 0110011 
+Instruction #  463:	f1a1b093	opcode: 0010011 
+Instruction #  464:	01e49033	opcode: 0110011 
+Instruction #  465:	0183f233	opcode: 0110011 
+Instruction #  466:	01761213	opcode: 0010011 
+Instruction #  467:	01e4c033	opcode: 0110011 
+Instruction #  468:	00046d33	opcode: 0110011 
+Instruction #  469:	01e30b33	opcode: 0110011 
+Instruction #  470:	013c74b3	opcode: 0110011 
+Instruction #  471:	0130d3b3	opcode: 0110011 
+Instruction #  472:	06ca4793	opcode: 0010011 
+Instruction #  473:	01f15933	opcode: 0110011 
+Instruction #  474:	00f36933	opcode: 0110011 
+Instruction #  475:	0ac18693	opcode: 0010011 
+Instruction #  476:	01869433	opcode: 0110011 
+Instruction #  477:	01d16db3	opcode: 0110011 
+Instruction #  478:	016b90b3	opcode: 0110011 
+Instruction #  479:	05d94793	opcode: 0010011 
+Instruction #  480:	f69f6a93	opcode: 0010011 
+Instruction #  481:	00274533	opcode: 0110011 
+Instruction #  482:	010272b3	opcode: 0110011 
+Instruction #  483:	006f9233	opcode: 0110011 
+Instruction #  484:	00b2b8b3	opcode: 0110011 
+Instruction #  485:	01b5c5b3	opcode: 0110011 
+Instruction #  486:	fd342413	opcode: 0010011 
+Instruction #  487:	f9ff0893	opcode: 0010011 
+Instruction #  488:	011d5e13	opcode: 0010011 
+Instruction #  489:	01fb1b93	opcode: 0010011 
+Instruction #  490:	019facb3	opcode: 0110011 
+Instruction #  491:	01cc56b3	opcode: 0110011 
+Instruction #  492:	007582b3	opcode: 0110011 
+Instruction #  493:	0103d313	opcode: 0010011 
+Instruction #  494:	018986b3	opcode: 0110011 
+Instruction #  495:	02d70893	opcode: 0010011 
+Instruction #  496:	0149dd13	opcode: 0010011 
+Instruction #  497:	011705b3	opcode: 0110011 
+Instruction #  498:	f9823993	opcode: 0010011 
+Instruction #  499:	0059bab3	opcode: 0110011 
+Instruction #  500:	00d326b3	opcode: 0110011 
+Instruction #  501:	00228f33	opcode: 0110011 
+Instruction #  502:	0024d733	opcode: 0110011 
+Instruction #  503:	00ee1813	opcode: 0010011 
+Instruction #  504:	006765b3	opcode: 0110011 
+Instruction #  505:	fcf8fd13	opcode: 0010011 
+Instruction #  506:	08264b93	opcode: 0010011 
+Instruction #  507:	0178c733	opcode: 0110011 
+Instruction #  508:	01e41893	opcode: 0010011 
+Instruction #  509:	f1dcb113	opcode: 0010011 
+Instruction #  510:	00000097	opcode: 0010111 
+Instruction #  511:	00008067	opcode: 1100111 
 ------------- SLTU -------------
 ------------- SRLI -------------
-------------- OR -------------
-------------- SRLI -------------
-------------- SRLI -------------
+------------- ADD -------------
 ------------- SLL -------------
-------------- SLTU -------------
+------------- SRLI -------------
+------------- XOR -------------
+------------- SLT -------------
+------------- SLT -------------
 ------------- OR -------------
 ------------- ADD -------------
-------------- SRLI -------------
-------------- SRLI -------------
-------------- SLL -------------
 ------------- SLTU -------------
 ------------- AND -------------
+------------- OR -------------
+------------- OR -------------
+------------- OR -------------
+------------- ADD -------------
+------------- SRL -------------
 ------------- SLTU -------------
-------------- SRLI -------------
-------------- SLT -------------
-------------- SLT -------------
-------------- SLT -------------
+------------- AND -------------
+------------- OR -------------
 ------------- SRLI -------------
 ------------- OR -------------
+------------- XOR -------------
+------------- AND -------------
+------------- SLTU -------------
+------------- SRL -------------
+------------- SLT -------------
+------------- SRLI -------------
+------------- SLL -------------
+------------- OR -------------
+------------- XOR -------------
+------------- SLT -------------
+------------- AND -------------
+------------- SRLI -------------
+------------- OR -------------
+------------- ADD -------------
+------------- SRL -------------
+------------- SLTU -------------
+------------- SLT -------------
+------------- AND -------------
+------------- SLL -------------
+------------- AND -------------
+------------- AND -------------
+------------- AND -------------
+------------- SLTU -------------
+------------- OR -------------
+------------- ADD -------------
+------------- XOR -------------
+------------- SLT -------------
+------------- SLTU -------------
 ------------- SLL -------------
 ------------- ADD -------------
-------------- ADD -------------
-------------- OR -------------
-------------- ADD -------------
+------------- SRL -------------
+------------- XOR -------------
 ------------- SRLI -------------
-------------- AND -------------
+------------- SLTU -------------
 ------------- SRL -------------
 ------------- XOR -------------
 ------------- SRL -------------
-------------- OR -------------
-------------- SRL -------------
-------------- OR -------------
+------------- XOR -------------
 ------------- SLTU -------------
-------------- SLTU -------------
-------------- OR -------------
-------------- AND -------------
-------------- SRLI -------------
-------------- SLTU -------------
-------------- SRL -------------
-------------- OR -------------
-------------- SRLI -------------
-------------- ADD -------------
 ------------- ADD -------------
 ------------- SLL -------------
+------------- SLL -------------
+------------- SLL -------------
+------------- XOR -------------
+------------- AND -------------
+------------- XOR -------------
+------------- SLL -------------
+------------- AND -------------
+------------- SLL -------------
 ------------- ADD -------------
+------------- SRLI -------------
+------------- OR -------------
+------------- SRL -------------
+------------- AND -------------
+------------- SLT -------------
+------------- OR -------------
+------------- XOR -------------
+------------- OR -------------
+------------- AND -------------
+------------- SRL -------------
+------------- SRL -------------
+------------- SLTU -------------
+------------- AND -------------
+------------- SLL -------------
+------------- SLTU -------------
+------------- SLL -------------
+------------- SRLI -------------
+------------- SRLI -------------
+------------- SRL -------------
+------------- OR -------------
+------------- ADD -------------
+------------- SLTU -------------
+------------- ADD -------------
+------------- XOR -------------
+------------- SLTU -------------
+------------- SRLI -------------
+------------- SRL -------------
+------------- OR -------------
+------------- SLT -------------
+------------- SLTU -------------
+------------- SRLI -------------
+------------- ADD -------------
+------------- SLL -------------
+------------- SLT -------------
+------------- SRLI -------------
+------------- SLTU -------------
+------------- SRL -------------
+------------- SRL -------------
+------------- AND -------------
+------------- ADD -------------
+------------- SLT -------------
+------------- SLL -------------
+------------- SRL -------------
+------------- SLTU -------------
+------------- SRLI -------------
+------------- SRLI -------------
+------------- SRL -------------
+------------- AND -------------
+------------- SRLI -------------
+------------- SLL -------------
+------------- OR -------------
+------------- SLTU -------------
+------------- ADD -------------
+------------- SLTU -------------
+------------- SRLI -------------
+------------- AND -------------
+------------- AND -------------
+------------- XOR -------------
+------------- SRL -------------
 ------------- XOR -------------
 ------------- SLTU -------------
 ------------- AND -------------
 ------------- SLL -------------
-------------- OR -------------
+------------- ADD -------------
+------------- ADD -------------
+------------- SRL -------------
+------------- SLT -------------
+------------- ADD -------------
+------------- SRL -------------
+------------- SLL -------------
+------------- SRLI -------------
+------------- SLT -------------
+------------- ADD -------------
 ------------- XOR -------------
+------------- SLTU -------------
+------------- SLT -------------
+------------- SRL -------------
 ------------- SLL -------------
 ------------- SRL -------------
 ------------- XOR -------------
-------------- AND -------------
-------------- SRL -------------
-------------- SLL -------------
-------------- XOR -------------
-------------- AND -------------
-------------- SLT -------------
-------------- ADD -------------
-------------- ADD -------------
-------------- SLTU -------------
-------------- SLL -------------
-------------- ADD -------------
-------------- AND -------------
 ------------- SRLI -------------
-------------- SRL -------------
-------------- SRLI -------------
-------------- OR -------------
-------------- AND -------------
-------------- XOR -------------
-------------- AND -------------
-------------- SLT -------------
-------------- ADD -------------
-------------- SLT -------------
-------------- OR -------------
-------------- XOR -------------
-------------- SLTU -------------
-------------- SRLI -------------
-------------- XOR -------------
-------------- OR -------------
-------------- SRLI -------------
-------------- SLTU -------------
-------------- XOR -------------
-------------- SRL -------------
-------------- ADD -------------
-------------- SLTU -------------
-------------- XOR -------------
-------------- OR -------------
-------------- AND -------------
-------------- SLL -------------
-------------- SLTU -------------
-------------- SLL -------------
 ------------- SRLI -------------
 ------------- ADD -------------
-------------- SRLI -------------
-------------- ADD -------------
-------------- SLT -------------
-------------- SLT -------------
-------------- OR -------------
-------------- SRLI -------------
-------------- SLL -------------
-------------- SRL -------------
-------------- AND -------------
-------------- ADD -------------
-------------- SLL -------------
-------------- AND -------------
-------------- XOR -------------
-------------- AND -------------
-------------- SRL -------------
-------------- OR -------------
-------------- XOR -------------
-------------- SRL -------------
-------------- SRL -------------
-------------- XOR -------------
-------------- XOR -------------
-------------- ADD -------------
-------------- OR -------------
-------------- SLTU -------------
-------------- SLT -------------
 ------------- SLT -------------
 ------------- SLL -------------
 ------------- SRLI -------------
-------------- OR -------------
+------------- SRL -------------
+------------- SRLI -------------
 ------------- ADD -------------
-------------- SLT -------------
+------------- OR -------------
+------------- SLTU -------------
 ------------- OR -------------
 ------------- AND -------------
-------------- XOR -------------
+------------- OR -------------
+------------- ADD -------------
+------------- SLTU -------------
+------------- OR -------------
 ------------- OR -------------
 ------------- SLTU -------------
-------------- SRLI -------------
-------------- SLTU -------------
-------------- ADD -------------
-------------- SLT -------------
-------------- ADD -------------
-------------- SLL -------------
-------------- SRLI -------------
 ------------- AND -------------
-------------- SRL -------------
 ------------- OR -------------
-------------- SRLI -------------
-------------- OR -------------
-------------- ADD -------------
-------------- SRLI -------------
 ------------- XOR -------------
-------------- SLTU -------------
+------------- SLT -------------
+------------- SRLI -------------
+------------- SRL -------------
+------------- SRLI -------------
+------------- OR -------------
 ------------- OR -------------
 ------------- SRLI -------------
-------------- SLL -------------
-------------- SLTU -------------
-------------- ADD -------------
+------------- SRL -------------
 ------------- SLL -------------
 ------------- SLT -------------
+------------- SLL -------------
 ------------- OR -------------
-------------- SRL -------------
-------------- SLTU -------------
-------------- SLT -------------
-------------- XOR -------------
-------------- OR -------------
-------------- SLTU -------------
-------------- ADD -------------
 ------------- SRLI -------------
-------------- SLT -------------
+------------- SLTU -------------
+------------- OR -------------
+------------- OR -------------
+------------- XOR -------------
 ------------- SRL -------------
-------------- SRL -------------
+------------- SLL -------------
+------------- SLL -------------
+------------- OR -------------
+------------- OR -------------
+------------- XOR -------------
+------------- SLL -------------
+------------- OR -------------
 ------------- XOR -------------
 ------------- AND -------------
 ------------- SLT -------------
-------------- SLT -------------
-------------- SRLI -------------
-------------- ADD -------------
-------------- SLL -------------
-------------- SRLI -------------
-------------- OR -------------
-------------- SLT -------------
+------------- SLTU -------------
+------------- XOR -------------
 ------------- AND -------------
-------------- ADD -------------
-------------- ADD -------------
-------------- SRLI -------------
+------------- AND -------------
+------------- AND -------------
+------------- SLTU -------------
 ------------- SRL -------------
-------------- XOR -------------
-------------- SLTU -------------
-------------- SLT -------------
-------------- ADD -------------
-------------- SLL -------------
-------------- SLTU -------------
-------------- SLL -------------
-------------- SLTU -------------
+------------- OR -------------
+------------- AND -------------
+------------- OR -------------
+------------- AND -------------
+------------- SRL -------------
 ------------- SLT -------------
 ------------- AND -------------
-------------- XOR -------------
 ------------- SLTU -------------
 ------------- AND -------------
-------------- SLT -------------
+------------- AND -------------
+------------- SRLI -------------
+------------- AND -------------
 ------------- OR -------------
 ------------- SRL -------------
-------------- AND -------------
 ------------- SLTU -------------
+------------- AND -------------
+------------- AND -------------
 ------------- SLL -------------
-------------- ADD -------------
+------------- AND -------------
+------------- SRL -------------
+------------- SLL -------------
+------------- SRLI -------------
+------------- SLL -------------
+------------- SLL -------------
 ------------- SRLI -------------
 ------------- SRL -------------
-------------- SRL -------------
+------------- SRLI -------------
+------------- SLL -------------
 ------------- XOR -------------
-------------- SLL -------------
 ------------- SRL -------------
-------------- SRLI -------------
-------------- SRLI -------------
 ------------- SRL -------------
-------------- SLTU -------------
-------------- SLL -------------
 ------------- SLL -------------
 ------------- AND -------------
+------------- XOR -------------
+------------- OR -------------
+------------- ADD -------------
+------------- AND -------------
 ------------- SRL -------------
+------------- SRL -------------
+------------- OR -------------
 ------------- SLL -------------
 ------------- OR -------------
 ------------- SLL -------------
 ------------- XOR -------------
+------------- AND -------------
+------------- SLL -------------
+------------- SLTU -------------
+------------- XOR -------------
+------------- SRLI -------------
+------------- SLT -------------
+------------- SRL -------------
+------------- ADD -------------
+------------- SRLI -------------
+------------- ADD -------------
+------------- SRLI -------------
 ------------- ADD -------------
 ------------- SLTU -------------
-------------- SRLI -------------
-------------- SLL -------------
+------------- SLT -------------
 ------------- ADD -------------
 ------------- SRL -------------
 ------------- OR -------------
-------------- SRLI -------------
-------------- ADD -------------
-------------- AND -------------
-------------- OR -------------
-------------- SLT -------------
-------------- ADD -------------
-------------- SRLI -------------
-------------- AND -------------
-------------- SLL -------------
-------------- SLT -------------
-------------- SRL -------------
-------------- AND -------------
-------------- SLTU -------------
-------------- ADD -------------
-------------- SLL -------------
-------------- SLT -------------
-------------- AND -------------
 ------------- XOR -------------
-------------- XOR -------------
-------------- ADD -------------
-------------- SRLI -------------
-------------- SLTU -------------
-------------- AND -------------
-------------- SRLI -------------
-------------- SLT -------------
-------------- SRL -------------
-------------- ADD -------------
-------------- SLT -------------
-------------- SLL -------------
-UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 10010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 10010000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 50010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 50010000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -400,17 +932,18 @@ UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
 ** Report counts by id
-[Driver]     2
 [RNTST]     1
 [TEST_DONE]     1
+[gen_sequence]     1
 [uvm_test_top]     1
 [uvm_test_top.env]     1
+[uvm_test_top.env.uvc1_env]     1
 [uvm_test_top.env.uvc2_env]     1
 [uvm_test_top.env.uvc2_env.agent_passive]     2
 [uvm_test_top.env.uvc2_env.agent_passive.monitor2]     2
 
-=T:Simulation terminated by $finish at time 10010000 (/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
+=T:Simulation terminated by $finish at time 50010000 (/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
 Run directory: /home/ricardo/Documents/UCR/2024/Verif/verif_darkrisc/sim
   System timescale is 1ps / 1ps
   Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
-  Random seed: 123
+  Random seed: 123456

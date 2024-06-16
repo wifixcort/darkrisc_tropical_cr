@@ -9,5 +9,7 @@
 `include "../testbench/monitor_2.sv"
 `include "../testbench/uvc2_passive_agent.sv"
 `include "../testbench/uvc2_env.sv"
+`include "../testbench/uvc1_active_agent.sv"
+`include "../testbench/uvc1_env.sv"
 `include "../testbench/env.sv"
 `include "../testbench/test_basic.sv"
