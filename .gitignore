@@ -2,7 +2,6 @@ tmp/*
 sim/darksocv
 rtl/darksocv.vcd
 sim/darksocv.vcd
-sim/dsim_wor*
 rtl/tmp*
 *~
 */*~
