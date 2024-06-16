@@ -439,11 +439,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
    
 endtask
 
-
-
-
-
-
 function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    super.new (name, parent);
 endfunction
