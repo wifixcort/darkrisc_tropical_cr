@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-16 07:33:57 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-16 07:33:57 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-16 14:43:48 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-16 14:43:48 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -62,6 +62,10 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
+  [3/10] CU scope $unit: 60 functions, 723 basic blocks
+  [4/10] module top_hvl: 2 functions, 6 basic blocks
+  [5/10] module top: 5 functions, 14 basic blocks
+  [7/10] package uvm_pkg: 6 submodules, 3849 functions, 42346 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -69,39 +73,39 @@ Using default typical min/typ/max.
 UVM_INFO @ 0: reporter [RNTST] Running test test_basic...
 =N:[dumpVCD] ../rtl/top_hdl.sv:49: preparing VCD dump to 'darksocv.vcd'.
 UVM_INFO @ 0: uvm_test_top.env [uvm_test_top.env] End_of_build_phase
-----------------------------------------------------------
-Name                   Type                    Size  Value
-----------------------------------------------------------
-env                    darksocv_env            -     @351 
-  drv                  darksocv_driver         -     @362 
-    rsp_port           uvm_analysis_port       -     @381 
-    seq_item_port      uvm_seq_item_pull_port  -     @371 
-  seqr                 uvm_sequencer           -     @391 
-    rsp_export         uvm_analysis_export     -     @400 
-    seq_item_export    uvm_seq_item_pull_imp   -     @518 
-    arbitration_queue  array                   0     -    
-    lock_queue         array                   0     -    
-    num_last_reqs      integral                32    'd1  
-    num_last_rsps      integral                32    'd1  
-----------------------------------------------------------
+------------------------------------------
+Name        Type               Size  Value
+------------------------------------------
+env         darksocv_env       -     @351 
+  uvc1_env  darksocv_uvc1_env  -     @362 
+------------------------------------------
+UVM_INFO @ 0: uvm_test_top.env.uvc1_env [uvm_test_top.env.uvc1_env] End_of_build_phase UVC 1
+--------------------------------------------------
+Name            Type                   Size  Value
+--------------------------------------------------
+uvc1_env        darksocv_uvc1_env      -     @362 
+  agent_active  darksocv_agent_active  -     @373 
+--------------------------------------------------
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] End_of_elaboration
-------------------------------------------------------------
-Name                     Type                    Size  Value
-------------------------------------------------------------
-uvm_test_top             test_basic              -     @333 
-  env                    darksocv_env            -     @351 
-    drv                  darksocv_driver         -     @362 
-      rsp_port           uvm_analysis_port       -     @381 
-      seq_item_port      uvm_seq_item_pull_port  -     @371 
-    seqr                 uvm_sequencer           -     @391 
-      rsp_export         uvm_analysis_export     -     @400 
-      seq_item_export    uvm_seq_item_pull_imp   -     @518 
-      arbitration_queue  array                   0     -    
-      lock_queue         array                   0     -    
-      num_last_reqs      integral                32    'd1  
-      num_last_rsps      integral                32    'd1  
-------------------------------------------------------------
-UVM_INFO ../testbench/driver.sv(32) @ 0: uvm_test_top.env.drv [DRV] Wait for item from sequencer
+----------------------------------------------------------------
+Name                         Type                    Size  Value
+----------------------------------------------------------------
+uvm_test_top                 test_basic              -     @333 
+  env                        darksocv_env            -     @351 
+    uvc1_env                 darksocv_uvc1_env       -     @362 
+      agent_active           darksocv_agent_active   -     @373 
+        drv                  darksocv_driver         -     @391 
+          rsp_port           uvm_analysis_port       -     @410 
+          seq_item_port      uvm_seq_item_pull_port  -     @400 
+        seqr                 uvm_sequencer           -     @420 
+          rsp_export         uvm_analysis_export     -     @429 
+          seq_item_export    uvm_seq_item_pull_imp   -     @547 
+          arbitration_queue  array                   0     -    
+          lock_queue         array                   0     -    
+          num_last_reqs      integral                32    'd1  
+          num_last_rsps      integral                32    'd1  
+----------------------------------------------------------------
+UVM_INFO ../testbench/driver.sv(32) @ 0: uvm_test_top.env.uvc1_env.agent_active.drv [DRV] Wait for item from sequencer
 driver: Invoked reset()     -> send RESET signal to SoC
 driver: Invoked mem_load()  -> load MEM to SoC
 
@@ -678,7 +682,7 @@ UVM_INFO /home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_se
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :    6
+UVM_INFO :    7
 UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
@@ -689,6 +693,7 @@ UVM_FATAL :    0
 [gen_sequence]     1
 [uvm_test_top]     1
 [uvm_test_top.env]     1
+[uvm_test_top.env.uvc1_env]     1
 
 =T:Simulation terminated by $finish at time 50010000 (/home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
 Run directory: /home/jesus/Code/darkrisc_tropical_MY_DEVELOP/sim
