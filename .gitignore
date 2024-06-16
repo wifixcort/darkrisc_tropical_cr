@@ -1,7 +1,8 @@
 tmp/*
 sim/darksocv
 sim/darksocv.vcd
-rtl/darksocv.vcd
+sim/dsim_wor*
+rtl/tmp*
 *~
 */*~
 .DS_Store
@@ -14,6 +15,4 @@ fusesoc.conf
 build
 Dsim/*
 !Dsim/driscv.dpf
-sim/dsim_work/*
 file_struc_edaplayground/sim/dsim_work/*
-rtl/tmp*
