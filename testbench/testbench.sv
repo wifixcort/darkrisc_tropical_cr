@@ -5,6 +5,7 @@
 `include "../testbench/sequence_item_rv32i_instruction.sv"
 `include "../testbench/gen_sequence.sv"
 `include "../testbench/driver.sv"
+`include "../testbench/mon2_transaction.sv"
 `include "../testbench/monitor_2.sv"
 `include "../testbench/uvc2_passive_agent.sv"
 `include "../testbench/uvc2_env.sv"

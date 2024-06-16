@@ -49,7 +49,7 @@ typedef struct {
 
 
 class uvc2_mon extends uvm_monitor;
-
+   uvm_analysis_port #(mon2_transaction) mon2_txn;
    // UVM Factory Registration Macro
    `uvm_component_utils(uvc2_mon)
    
@@ -88,12 +88,17 @@ function string uvc2_mon::inst_resize(string inst);
 endfunction
 
 task uvc2_mon:: run_phase(uvm_phase phase);
+   mon2_transaction mn_txn; //Instancia par la transacción
    super.run_phase(phase);
    uvm_report_info(get_full_name(),"Start run phase monitor 2", UVM_LOW);
+
    forever begin
 
       @ (posedge intf2.clk);// begin//
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
+         mn_txn = mon2_transaction::type_id::create("tr");
+         mn_txn.data = '0; //Generar el dato a enviar
+         mon2_txn.write(mn_txn);//Publicar la transacción
          //R TYPE
          //  if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
          //     ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
@@ -446,6 +451,7 @@ endfunction
 function void uvc2_mon::build_phase(uvm_phase phase);
    super.build_phase(phase);
 
+   mon2_txn = new("mon2_txn", this);
    if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf2) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface 2 for the TB")
    end
@@ -459,3 +465,8 @@ function void uvc2_mon::connect_phase(uvm_phase phase);
    super.connect_phase(phase);
    //   drv.seq_item_port.connect(seqr.seq_item_export);
 endfunction
+
+// function void notify_transaction(ExData data);
+//    return transactions
+//    wb_mon_ap.write(data);
+// endfunction : notify_transaction

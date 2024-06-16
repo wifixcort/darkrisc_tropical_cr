@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-16 02:07:07 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-16 02:07:08 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-16 14:21:23 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-16 14:21:24 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -63,15 +63,7 @@ Optimizing...
 Building models...
 PLI/VPI access: (none) 
 Simulation time precision is 1ps.
-  [1/10] module $root: 1838 functions, 4049 basic blocks
-  [2/10] module $pkgs: 1 functions, 2 basic blocks
-  [3/10] CU scope $unit: 60 functions, 541 basic blocks
-  [4/10] module top_hvl: 2 functions, 6 basic blocks
-  [5/10] module top: 5 functions, 14 basic blocks
-  [7/10] package uvm_pkg: 6 submodules, 3855 functions, 41419 basic blocks
-  [8/10] package instructions_data_struc: 1 functions, 2 basic blocks
-  [9/10] interface intf_soc: 1 functions, 2 basic blocks
-  [10/10] module darksocv: 60 functions, 1402 basic blocks
+  [3/10] CU scope $unit: 67 functions, 583 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -104,11 +96,12 @@ uvc2_env         darksocv_uvc2_env       -     @362
 ----------------------------------------------------
 UVM_INFO ../testbench/uvc2_passive_agent.sv(21) @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] This is Passive agent
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] End_of_build_phase Monitor 2
--------------------------------
-Name      Type      Size  Value
--------------------------------
-monitor2  uvc2_mon  -     @562 
--------------------------------
+------------------------------------------
+Name        Type               Size  Value
+------------------------------------------
+monitor2    uvc2_mon           -     @562 
+  mon2_txn  uvm_analysis_port  -     @573 
+------------------------------------------
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive [uvm_test_top.env.uvc2_env.agent_passive] Passive agent connect phase
 UVM_INFO @ 0: uvm_test_top [uvm_test_top] End_of_elaboration
 ------------------------------------------------------------
@@ -129,6 +122,7 @@ uvm_test_top             test_basic              -     @333
     uvc2_env             darksocv_uvc2_env       -     @362 
       agent_passive      darksocv_agent_passive  -     @545 
         monitor2         uvc2_mon                -     @562 
+          mon2_txn       uvm_analysis_port       -     @573 
 ------------------------------------------------------------
 UVM_INFO @ 0: uvm_test_top.env.uvc2_env.agent_passive.monitor2 [uvm_test_top.env.uvc2_env.agent_passive.monitor2] Start run phase monitor 2
 UVM_INFO ../testbench/driver.sv(143) @ 0: uvm_test_top.env.drv [Driver] Sending RESET signal to SoC
