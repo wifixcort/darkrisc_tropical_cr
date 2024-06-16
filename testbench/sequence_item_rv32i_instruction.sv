@@ -35,16 +35,16 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
    
    //********************************************************
   constraint opcode_cases{
-    opcode dist {R_TYPE :/ 44,
-                I_TYPE  :/ 44
-                //I_L_TYPE :/ 12,
-                //S_TYPE  :/ 12
-                /*S_B_TYPE,
-                J_TYPE,
-                I_JALR_TYPE,
-                LUI_TYPE,
-                AUIPC_TYPE */
-                };
+  soft opcode dist  {R_TYPE   :/ 44,
+                    I_TYPE    :/ 44,
+                    I_L_TYPE  :/ 5,
+                    S_TYPE    :/ 5
+                    /*S_B_TYPE,
+                    J_TYPE,
+                    I_JALR_TYPE,
+                    LUI_TYPE,
+                    AUIPC_TYPE */
+                  };
   }
    
   // funct3
@@ -86,11 +86,10 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   constraint func7_cases{
     solve funct3 before funct7;
     if (opcode == R_TYPE) {
-    //fix ||
-      (funct3 == ADD_o_SUB_FC) -> funct7 inside {h00_FC7,
-                                                    h20_FC7};
+      (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
+                                                  h20_FC7};
       (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
-                                                     h20_FC7};
+                                                  h20_FC7};
       (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
       (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
     } 
@@ -105,7 +104,15 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   // special cases for regs
   //************************
   constraint regs {
-    (opcode == S_TYPE) -> rs1 !=0;  
+    if (opcode == S_TYPE) {
+      rs1 != 0; 
+      //rs2 != 0;
+    }   
+
+    if (opcode == I_L_TYPE) {
+      rs1 != 0; 
+      rd  != 0;
+    }
    }
    
   // Offseft for calc effective direction

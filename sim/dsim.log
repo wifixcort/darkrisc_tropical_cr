@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-15 23:57:06 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-15 23:57:06 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-16 07:33:57 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-16 07:33:57 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -32,18 +32,17 @@ Elaborating...
     ../testbench/gen_sequence.sv:62:4               int    
     Included from ../testbench/testbench.sv:6:10           
 
-    ../testbench/gen_sequence.sv:90:8               int    
+    ../testbench/gen_sequence.sv:83:5               int    
     Included from ../testbench/testbench.sv:6:10           
 
-    ../testbench/gen_sequence.sv:110:7              int    
+    ../testbench/gen_sequence.sv:90:5               int    
     Included from ../testbench/testbench.sv:6:10           
 
-=W:[MissingCallbackAcc]:
-    Only waveforms for signals with callback access can be dumped.                     
-    For $dumpvars to be useful command options +acc+b or -acc-specs should be used.    
+    ../testbench/gen_sequence.sv:119:8              int    
+    Included from ../testbench/testbench.sv:6:10           
 
-
-    ../rtl/top_hdl.sv:50:9    
+    ../testbench/gen_sequence.sv:141:7              int    
+    Included from ../testbench/testbench.sv:6:10           
 
   Found 10 unique specialization(s) of 10 design element(s).
 =W:[MissingTimescale]:
@@ -61,9 +60,8 @@ Elaborating...
 
 Optimizing...
 Building models...
-PLI/VPI access: (none) 
+PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/10] CU scope $unit: 43 functions, 384 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -103,10 +101,580 @@ uvm_test_top             test_basic              -     @333
       num_last_reqs      integral                32    'd1  
       num_last_rsps      integral                32    'd1  
 ------------------------------------------------------------
-UVM_INFO ../testbench/driver.sv(143) @ 0: uvm_test_top.env.drv [Driver] Sending RESET signal to SoC
-UVM_INFO ../testbench/driver.sv(131) @ 10000: uvm_test_top.env.drv [Driver] Loading memory in SoC
-UVM_INFO /home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 10010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO /home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 10010000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO ../testbench/driver.sv(32) @ 0: uvm_test_top.env.drv [DRV] Wait for item from sequencer
+driver: Invoked reset()     -> send RESET signal to SoC
+driver: Invoked mem_load()  -> load MEM to SoC
+
+gen_sequence: set_program_format() -> set first and last instructions
+
+gen_sequence: opt_addr() -> set instructions before load/storage for force valid address
+(force ADDI for set base addrress before store)	Instruct fixed #   37		new instruct:3bc00513	base address:3bc
+(force ADDI for set base addrress before store)	Instruct fixed #   40		new instruct:32100593	base address:321
+(force ADDI for set base addrress before load)	Instruct fixed #   82		new instruct:3a000813	base address:3a0
+(force ADDI for set base addrress before load)	Instruct fixed #   87		new instruct:32c00c93	base address:32c
+(force ADDI for set base addrress before load)	Instruct fixed #  105		new instruct:23c00193	base address:23c
+(force ADDI for set base addrress before store)	Instruct fixed #  115		new instruct:3fc00713	base address:3fc
+(force ADDI for set base addrress before store)	Instruct fixed #  127		new instruct:3a800113	base address:3a8
+(force ADDI for set base addrress before store)	Instruct fixed #  136		new instruct:32c00b93	base address:32c
+(force ADDI for set base addrress before load)	Instruct fixed #  137		new instruct:3f400313	base address:3f4
+(force ADDI for set base addrress before store)	Instruct fixed #  138		new instruct:2e400c13	base address:2e4
+(force ADDI for set base addrress before store)	Instruct fixed #  139		new instruct:26700113	base address:267
+(force ADDI for set base addrress before store)	Instruct fixed #  143		new instruct:39c00213	base address:39c
+(force ADDI for set base addrress before store)	Instruct fixed #  149		new instruct:21000e93	base address:210
+(force ADDI for set base addrress before load)	Instruct fixed #  153		new instruct:37400d13	base address:374
+(force ADDI for set base addrress before store)	Instruct fixed #  155		new instruct:2ae00a93	base address:2ae
+(force ADDI for set base addrress before store)	Instruct fixed #  162		new instruct:27300713	base address:273
+(force ADDI for set base addrress before store)	Instruct fixed #  178		new instruct:22600493	base address:226
+(force ADDI for set base addrress before load)	Instruct fixed #  179		new instruct:39000193	base address:390
+(force ADDI for set base addrress before load)	Instruct fixed #  182		new instruct:37c00f93	base address:37c
+(force ADDI for set base addrress before load)	Instruct fixed #  186		new instruct:20400e13	base address:204
+(force ADDI for set base addrress before load)	Instruct fixed #  187		new instruct:3ec00493	base address:3ec
+(force ADDI for set base addrress before load)	Instruct fixed #  208		new instruct:36000813	base address:360
+(force ADDI for set base addrress before store)	Instruct fixed #  212		new instruct:30600913	base address:306
+(force ADDI for set base addrress before load)	Instruct fixed #  236		new instruct:22a00b13	base address:22a
+(force ADDI for set base addrress before load)	Instruct fixed #  244		new instruct:33600993	base address:336
+(force ADDI for set base addrress before load)	Instruct fixed #  273		new instruct:23c00313	base address:23c
+(force ADDI for set base addrress before store)	Instruct fixed #  278		new instruct:2be00a13	base address:2be
+(force ADDI for set base addrress before store)	Instruct fixed #  318		new instruct:2bc00093	base address:2bc
+(force ADDI for set base addrress before load)	Instruct fixed #  324		new instruct:22800113	base address:228
+(force ADDI for set base addrress before load)	Instruct fixed #  342		new instruct:25e00613	base address:25e
+(force ADDI for set base addrress before store)	Instruct fixed #  345		new instruct:2a400693	base address:2a4
+(force ADDI for set base addrress before load)	Instruct fixed #  374		new instruct:2b600193	base address:2b6
+(force ADDI for set base addrress before load)	Instruct fixed #  381		new instruct:22000e93	base address:220
+(force ADDI for set base addrress before store)	Instruct fixed #  385		new instruct:22a00093	base address:22a
+(force ADDI for set base addrress before store)	Instruct fixed #  392		new instruct:35a00093	base address:35a
+(force ADDI for set base addrress before load)	Instruct fixed #  394		new instruct:2ea00213	base address:2ea
+(force ADDI for set base addrress before store)	Instruct fixed #  400		new instruct:32000093	base address:320
+(force ADDI for set base addrress before store)	Instruct fixed #  406		new instruct:31000793	base address:310
+(force ADDI for set base addrress before load)	Instruct fixed #  415		new instruct:29600813	base address:296
+(force ADDI for set base addrress before store)	Instruct fixed #  418		new instruct:28c00c93	base address:28c
+(force ADDI for set base addrress before store)	Instruct fixed #  426		new instruct:24800c93	base address:248
+(force ADDI for set base addrress before store)	Instruct fixed #  434		new instruct:31c00e13	base address:31c
+(force ADDI for set base addrress before load)	Instruct fixed #  448		new instruct:3de00613	base address:3de
+(force ADDI for set base addrress before store)	Instruct fixed #  456		new instruct:27000913	base address:270
+(force ADDI for set base addrress before load)	Instruct fixed #  472		new instruct:2f200c93	base address:2f2
+(force ADDI for set base addrress before store)	Instruct fixed #  474		new instruct:3d800293	base address:3d8
+(force ADDI for set base addrress before store)	Instruct fixed #  475		new instruct:30b00713	base address:30b
+(force ADDI for set base addrress before store)	Instruct fixed #  480		new instruct:36e00293	base address:36e
+(force ADDI for set base addrress before store)	Instruct fixed #  491		new instruct:22d00993	base address:22d
+(force ADDI for set base addrress before load)	Instruct fixed #  496		new instruct:2d800a13	base address:2d8
+
+gen_sequence: Invoked print_mem() -> print the actual state of MEM
+UVM_INFO ../testbench/gen_sequence.sv(167) @ 10000: reporter@@seq [gen_sequence] Values in ROM: 
+Instruction #    0:	05780093	opcode: 0010011 
+Instruction #    1:	0a978113	opcode: 0010011 
+Instruction #    2:	0b938193	opcode: 0010011 
+Instruction #    3:	f4d60213	opcode: 0010011 
+Instruction #    4:	f8108293	opcode: 0010011 
+Instruction #    5:	0cbe8313	opcode: 0010011 
+Instruction #    6:	0b378393	opcode: 0010011 
+Instruction #    7:	ff5e0413	opcode: 0010011 
+Instruction #    8:	06238493	opcode: 0010011 
+Instruction #    9:	fec48513	opcode: 0010011 
+Instruction #   10:	f4098593	opcode: 0010011 
+Instruction #   11:	069a8613	opcode: 0010011 
+Instruction #   12:	f7750693	opcode: 0010011 
+Instruction #   13:	06e78713	opcode: 0010011 
+Instruction #   14:	f95c0793	opcode: 0010011 
+Instruction #   15:	f06a0813	opcode: 0010011 
+Instruction #   16:	ff578893	opcode: 0010011 
+Instruction #   17:	f8eb8913	opcode: 0010011 
+Instruction #   18:	f7a78993	opcode: 0010011 
+Instruction #   19:	08218a13	opcode: 0010011 
+Instruction #   20:	0ce48a93	opcode: 0010011 
+Instruction #   21:	02a88b13	opcode: 0010011 
+Instruction #   22:	f0300b93	opcode: 0010011 
+Instruction #   23:	08ed0c13	opcode: 0010011 
+Instruction #   24:	f14f8c93	opcode: 0010011 
+Instruction #   25:	f31d8d13	opcode: 0010011 
+Instruction #   26:	07f98d93	opcode: 0010011 
+Instruction #   27:	fac18e13	opcode: 0010011 
+Instruction #   28:	f8378e93	opcode: 0010011 
+Instruction #   29:	feb20f13	opcode: 0010011 
+Instruction #   30:	07488f93	opcode: 0010011 
+Instruction #   31:	01e0bab3	opcode: 0110011 
+Instruction #   32:	01655e13	opcode: 0010011 
+Instruction #   33:	0086f1b3	opcode: 0110011 
+Instruction #   34:	0b212493	opcode: 0010011 
+Instruction #   35:	00f90b33	opcode: 0110011 
+Instruction #   36:	011b27b3	opcode: 0110011 
+Instruction #   37:	3bc00513	opcode: 0010011 
+Instruction #   38:	f7a52a23	opcode: 0100011 
+Instruction #   39:	00b91f33	opcode: 0110011 
+Instruction #   40:	32100593	opcode: 0010011 
+Instruction #   41:	f0558ba3	opcode: 0100011 
+Instruction #   42:	0173adb3	opcode: 0110011 
+Instruction #   43:	00c751b3	opcode: 0110011 
+Instruction #   44:	0fef7e13	opcode: 0010011 
+Instruction #   45:	085bb493	opcode: 0010011 
+Instruction #   46:	00af14b3	opcode: 0110011 
+Instruction #   47:	013f70b3	opcode: 0110011 
+Instruction #   48:	00e03db3	opcode: 0110011 
+Instruction #   49:	015e5913	opcode: 0010011 
+Instruction #   50:	03240193	opcode: 0010011 
+Instruction #   51:	005260b3	opcode: 0110011 
+Instruction #   52:	01bef8b3	opcode: 0110011 
+Instruction #   53:	01e7de33	opcode: 0110011 
+Instruction #   54:	01cc1433	opcode: 0110011 
+Instruction #   55:	019bd7b3	opcode: 0110011 
+Instruction #   56:	00ac4233	opcode: 0110011 
+Instruction #   57:	0135f233	opcode: 0110011 
+Instruction #   58:	f5980713	opcode: 0010011 
+Instruction #   59:	015e43b3	opcode: 0110011 
+Instruction #   60:	011b82b3	opcode: 0110011 
+Instruction #   61:	01c55633	opcode: 0110011 
+Instruction #   62:	005007b3	opcode: 0110011 
+Instruction #   63:	f6d6cb13	opcode: 0010011 
+Instruction #   64:	017b1733	opcode: 0110011 
+Instruction #   65:	019e1933	opcode: 0110011 
+Instruction #   66:	005e3333	opcode: 0110011 
+Instruction #   67:	00dd7eb3	opcode: 0110011 
+Instruction #   68:	0387ae13	opcode: 0010011 
+Instruction #   69:	00b788b3	opcode: 0110011 
+Instruction #   70:	f610ee93	opcode: 0010011 
+Instruction #   71:	00aa7fb3	opcode: 0110011 
+Instruction #   72:	01d22fb3	opcode: 0110011 
+Instruction #   73:	f740c593	opcode: 0010011 
+Instruction #   74:	00cecfb3	opcode: 0110011 
+Instruction #   75:	01561813	opcode: 0010011 
+Instruction #   76:	0cc7b693	opcode: 0010011 
+Instruction #   77:	018cc7b3	opcode: 0110011 
+Instruction #   78:	f6fba313	opcode: 0010011 
+Instruction #   79:	01c81cb3	opcode: 0110011 
+Instruction #   80:	01a1dd93	opcode: 0010011 
+Instruction #   81:	0080d813	opcode: 0010011 
+Instruction #   82:	3a000813	opcode: 0010011 
+Instruction #   83:	05d84c03	opcode: 0000011 
+Instruction #   84:	0009fbb3	opcode: 0110011 
+Instruction #   85:	00d3cd33	opcode: 0110011 
+Instruction #   86:	0033a933	opcode: 0110011 
+Instruction #   87:	32c00c93	opcode: 0010011 
+Instruction #   88:	f8accb03	opcode: 0000011 
+Instruction #   89:	01a3feb3	opcode: 0110011 
+Instruction #   90:	00fbe933	opcode: 0110011 
+Instruction #   91:	f0274393	opcode: 0010011 
+Instruction #   92:	0639cb93	opcode: 0010011 
+Instruction #   93:	0166ccb3	opcode: 0110011 
+Instruction #   94:	0144e4b3	opcode: 0110011 
+Instruction #   95:	00bea6b3	opcode: 0110011 
+Instruction #   96:	f91ab513	opcode: 0010011 
+Instruction #   97:	01025533	opcode: 0110011 
+Instruction #   98:	013e2633	opcode: 0110011 
+Instruction #   99:	00d8beb3	opcode: 0110011 
+Instruction #  100:	00d3f1b3	opcode: 0110011 
+Instruction #  101:	fa253813	opcode: 0010011 
+Instruction #  102:	0dbeeb13	opcode: 0010011 
+Instruction #  103:	0d47f913	opcode: 0010011 
+Instruction #  104:	00b116b3	opcode: 0110011 
+Instruction #  105:	23c00193	opcode: 0010011 
+Instruction #  106:	0ac1a603	opcode: 0000011 
+Instruction #  107:	00aff333	opcode: 0110011 
+Instruction #  108:	0107e133	opcode: 0110011 
+Instruction #  109:	00eb3e33	opcode: 0110011 
+Instruction #  110:	00a448b3	opcode: 0110011 
+Instruction #  111:	00ce70b3	opcode: 0110011 
+Instruction #  112:	000248b3	opcode: 0110011 
+Instruction #  113:	01ed45b3	opcode: 0110011 
+Instruction #  114:	01d67e33	opcode: 0110011 
+Instruction #  115:	3fc00713	opcode: 0010011 
+Instruction #  116:	fb772c23	opcode: 0100011 
+Instruction #  117:	016745b3	opcode: 0110011 
+Instruction #  118:	00735833	opcode: 0110011 
+Instruction #  119:	fbd27893	opcode: 0010011 
+Instruction #  120:	01d9beb3	opcode: 0110011 
+Instruction #  121:	01e809b3	opcode: 0110011 
+Instruction #  122:	00ec3033	opcode: 0110011 
+Instruction #  123:	016f9513	opcode: 0010011 
+Instruction #  124:	00bcf7b3	opcode: 0110011 
+Instruction #  125:	fb338493	opcode: 0010011 
+Instruction #  126:	f809bc13	opcode: 0010011 
+Instruction #  127:	3a800113	opcode: 0010011 
+Instruction #  128:	0c911223	opcode: 0100011 
+Instruction #  129:	fcf43213	opcode: 0010011 
+Instruction #  130:	0154c8b3	opcode: 0110011 
+Instruction #  131:	0013fe33	opcode: 0110011 
+Instruction #  132:	01da7bb3	opcode: 0110011 
+Instruction #  133:	006d8c33	opcode: 0110011 
+Instruction #  134:	01e76eb3	opcode: 0110011 
+Instruction #  135:	006965b3	opcode: 0110011 
+Instruction #  136:	32c00b93	opcode: 0010011 
+Instruction #  137:	3f400313	opcode: 0010011 
+Instruction #  138:	2e400c13	opcode: 0010011 
+Instruction #  139:	26700113	opcode: 0010011 
+Instruction #  140:	02010ba3	opcode: 0100011 
+Instruction #  141:	f3ff3413	opcode: 0010011 
+Instruction #  142:	00a7d533	opcode: 0110011 
+Instruction #  143:	39c00213	opcode: 0010011 
+Instruction #  144:	fd721323	opcode: 0100011 
+Instruction #  145:	001edf93	opcode: 0010011 
+Instruction #  146:	01d92233	opcode: 0110011 
+Instruction #  147:	0a854413	opcode: 0010011 
+Instruction #  148:	00cf18b3	opcode: 0110011 
+Instruction #  149:	21000e93	opcode: 0010011 
+Instruction #  150:	088e9f23	opcode: 0100011 
+Instruction #  151:	01af5793	opcode: 0010011 
+Instruction #  152:	0ab14b13	opcode: 0010011 
+Instruction #  153:	37400d13	opcode: 0010011 
+Instruction #  154:	fb4d5d83	opcode: 0000011 
+Instruction #  155:	2ae00a93	opcode: 0010011 
+Instruction #  156:	014a9523	opcode: 0100011 
+Instruction #  157:	f43f2893	opcode: 0010011 
+Instruction #  158:	00239333	opcode: 0110011 
+Instruction #  159:	00dc90b3	opcode: 0110011 
+Instruction #  160:	01eeac33	opcode: 0110011 
+Instruction #  161:	00a3dd13	opcode: 0010011 
+Instruction #  162:	27300713	opcode: 0010011 
+Instruction #  163:	fd9704a3	opcode: 0100011 
+Instruction #  164:	01218933	opcode: 0110011 
+Instruction #  165:	033fef93	opcode: 0010011 
+Instruction #  166:	00304033	opcode: 0110011 
+Instruction #  167:	fca8b413	opcode: 0010011 
+Instruction #  168:	013dfb33	opcode: 0110011 
+Instruction #  169:	00cb1c93	opcode: 0010011 
+Instruction #  170:	0175e6b3	opcode: 0110011 
+Instruction #  171:	01d881b3	opcode: 0110011 
+Instruction #  172:	f62cb613	opcode: 0010011 
+Instruction #  173:	017af7b3	opcode: 0110011 
+Instruction #  174:	f5d2a693	opcode: 0010011 
+Instruction #  175:	0007c033	opcode: 0110011 
+Instruction #  176:	044cb093	opcode: 0010011 
+Instruction #  177:	f5a0fc13	opcode: 0010011 
+Instruction #  178:	22600493	opcode: 0010011 
+Instruction #  179:	39000193	opcode: 0010011 
+Instruction #  180:	f2218383	opcode: 0000011 
+Instruction #  181:	00925493	opcode: 0010011 
+Instruction #  182:	37c00f93	opcode: 0010011 
+Instruction #  183:	f44fc983	opcode: 0000011 
+Instruction #  184:	01a52a33	opcode: 0110011 
+Instruction #  185:	01a3f1b3	opcode: 0110011 
+Instruction #  186:	20400e13	opcode: 0010011 
+Instruction #  187:	3ec00493	opcode: 0010011 
+Instruction #  188:	f9e4dd03	opcode: 0000011 
+Instruction #  189:	01081233	opcode: 0110011 
+Instruction #  190:	f601fa93	opcode: 0010011 
+Instruction #  191:	0c57c493	opcode: 0010011 
+Instruction #  192:	0b1ae213	opcode: 0010011 
+Instruction #  193:	004662b3	opcode: 0110011 
+Instruction #  194:	ff980313	opcode: 0010011 
+Instruction #  195:	00de5893	opcode: 0010011 
+Instruction #  196:	01138e33	opcode: 0110011 
+Instruction #  197:	f8804613	opcode: 0010011 
+Instruction #  198:	00da78b3	opcode: 0110011 
+Instruction #  199:	ffa0c513	opcode: 0010011 
+Instruction #  200:	07586f93	opcode: 0010011 
+Instruction #  201:	002d5713	opcode: 0010011 
+Instruction #  202:	01777f33	opcode: 0110011 
+Instruction #  203:	0a9b7593	opcode: 0010011 
+Instruction #  204:	017305b3	opcode: 0110011 
+Instruction #  205:	01239893	opcode: 0010011 
+Instruction #  206:	07a97713	opcode: 0010011 
+Instruction #  207:	0aa4f013	opcode: 0010011 
+Instruction #  208:	36000813	opcode: 0010011 
+Instruction #  209:	f9a85503	opcode: 0000011 
+Instruction #  210:	015acbb3	opcode: 0110011 
+Instruction #  211:	01f93533	opcode: 0110011 
+Instruction #  212:	30600913	opcode: 0010011 
+Instruction #  213:	fda91423	opcode: 0100011 
+Instruction #  214:	002c0733	opcode: 0110011 
+Instruction #  215:	0f020293	opcode: 0010011 
+Instruction #  216:	07bb0313	opcode: 0010011 
+Instruction #  217:	005c4c33	opcode: 0110011 
+Instruction #  218:	00a92bb3	opcode: 0110011 
+Instruction #  219:	00b651b3	opcode: 0110011 
+Instruction #  220:	01f21e93	opcode: 0010011 
+Instruction #  221:	f99a0013	opcode: 0010011 
+Instruction #  222:	002b55b3	opcode: 0110011 
+Instruction #  223:	017a50b3	opcode: 0110011 
+Instruction #  224:	000bdfb3	opcode: 0110011 
+Instruction #  225:	f8d66893	opcode: 0010011 
+Instruction #  226:	0d6fe913	opcode: 0010011 
+Instruction #  227:	02a9c613	opcode: 0010011 
+Instruction #  228:	01a15a13	opcode: 0010011 
+Instruction #  229:	01d01993	opcode: 0010011 
+Instruction #  230:	01847db3	opcode: 0110011 
+Instruction #  231:	002a9913	opcode: 0010011 
+Instruction #  232:	00365c93	opcode: 0010011 
+Instruction #  233:	007b3c33	opcode: 0110011 
+Instruction #  234:	00d0d7b3	opcode: 0110011 
+Instruction #  235:	094df413	opcode: 0010011 
+Instruction #  236:	22a00b13	opcode: 0010011 
+Instruction #  237:	046b5c03	opcode: 0000011 
+Instruction #  238:	0ec9cc13	opcode: 0010011 
+Instruction #  239:	006dc8b3	opcode: 0110011 
+Instruction #  240:	038b0613	opcode: 0010011 
+Instruction #  241:	019f9f13	opcode: 0010011 
+Instruction #  242:	00fb5d13	opcode: 0010011 
+Instruction #  243:	fba9aa13	opcode: 0010011 
+Instruction #  244:	33600993	opcode: 0010011 
+Instruction #  245:	0b09c403	opcode: 0000011 
+Instruction #  246:	001b3833	opcode: 0110011 
+Instruction #  247:	000d0c33	opcode: 0110011 
+Instruction #  248:	fc61a593	opcode: 0010011 
+Instruction #  249:	01ad1b13	opcode: 0010011 
+Instruction #  250:	00337533	opcode: 0110011 
+Instruction #  251:	0bffff13	opcode: 0010011 
+Instruction #  252:	0e8f7893	opcode: 0010011 
+Instruction #  253:	0ef86713	opcode: 0010011 
+Instruction #  254:	00971c13	opcode: 0010011 
+Instruction #  255:	0dbaa413	opcode: 0010011 
+Instruction #  256:	08dfa713	opcode: 0010011 
+Instruction #  257:	f9d10593	opcode: 0010011 
+Instruction #  258:	019e62b3	opcode: 0110011 
+Instruction #  259:	00123233	opcode: 0110011 
+Instruction #  260:	f85ce513	opcode: 0010011 
+Instruction #  261:	f3354b13	opcode: 0010011 
+Instruction #  262:	00ccdbb3	opcode: 0110011 
+Instruction #  263:	01880bb3	opcode: 0110011 
+Instruction #  264:	003437b3	opcode: 0110011 
+Instruction #  265:	00de4633	opcode: 0110011 
+Instruction #  266:	f55cbe13	opcode: 0010011 
+Instruction #  267:	0c400413	opcode: 0010011 
+Instruction #  268:	004303b3	opcode: 0110011 
+Instruction #  269:	01f0fdb3	opcode: 0110011 
+Instruction #  270:	00c10633	opcode: 0110011 
+Instruction #  271:	07ee6d13	opcode: 0010011 
+Instruction #  272:	008a5493	opcode: 0010011 
+Instruction #  273:	23c00313	opcode: 0010011 
+Instruction #  274:	fa235403	opcode: 0000011 
+Instruction #  275:	f4167393	opcode: 0010011 
+Instruction #  276:	fa52f893	opcode: 0010011 
+Instruction #  277:	fbc84a93	opcode: 0010011 
+Instruction #  278:	2be00a13	opcode: 0010011 
+Instruction #  279:	ffea1c23	opcode: 0100011 
+Instruction #  280:	013e9233	opcode: 0110011 
+Instruction #  281:	01dc0bb3	opcode: 0110011 
+Instruction #  282:	019b29b3	opcode: 0110011 
+Instruction #  283:	019fd033	opcode: 0110011 
+Instruction #  284:	01e7be33	opcode: 0110011 
+Instruction #  285:	f0828013	opcode: 0010011 
+Instruction #  286:	f3c47c13	opcode: 0010011 
+Instruction #  287:	0056fe33	opcode: 0110011 
+Instruction #  288:	00c8bfb3	opcode: 0110011 
+Instruction #  289:	f0aacd13	opcode: 0010011 
+Instruction #  290:	00bcbfb3	opcode: 0110011 
+Instruction #  291:	0073ddb3	opcode: 0110011 
+Instruction #  292:	009e9693	opcode: 0010011 
+Instruction #  293:	0546e393	opcode: 0010011 
+Instruction #  294:	01e4d713	opcode: 0010011 
+Instruction #  295:	0072e233	opcode: 0110011 
+Instruction #  296:	00b9f5b3	opcode: 0110011 
+Instruction #  297:	00286eb3	opcode: 0110011 
+Instruction #  298:	01949093	opcode: 0010011 
+Instruction #  299:	014cdab3	opcode: 0110011 
+Instruction #  300:	0028c1b3	opcode: 0110011 
+Instruction #  301:	01040633	opcode: 0110011 
+Instruction #  302:	018254b3	opcode: 0110011 
+Instruction #  303:	006e85b3	opcode: 0110011 
+Instruction #  304:	017e37b3	opcode: 0110011 
+Instruction #  305:	0087ed33	opcode: 0110011 
+Instruction #  306:	06f54893	opcode: 0010011 
+Instruction #  307:	012459b3	opcode: 0110011 
+Instruction #  308:	0179c833	opcode: 0110011 
+Instruction #  309:	018295b3	opcode: 0110011 
+Instruction #  310:	00e020b3	opcode: 0110011 
+Instruction #  311:	01253ab3	opcode: 0110011 
+Instruction #  312:	01fc9f13	opcode: 0010011 
+Instruction #  313:	fd528613	opcode: 0010011 
+Instruction #  314:	032fe393	opcode: 0010011 
+Instruction #  315:	011c9693	opcode: 0010011 
+Instruction #  316:	00c9e433	opcode: 0110011 
+Instruction #  317:	00641993	opcode: 0010011 
+Instruction #  318:	2bc00093	opcode: 0010011 
+Instruction #  319:	f680a223	opcode: 0100011 
+Instruction #  320:	f1ece113	opcode: 0010011 
+Instruction #  321:	00f26fb3	opcode: 0110011 
+Instruction #  322:	023e4b13	opcode: 0010011 
+Instruction #  323:	010936b3	opcode: 0110011 
+Instruction #  324:	22800113	opcode: 0010011 
+Instruction #  325:	ff011883	opcode: 0000011 
+Instruction #  326:	00d27b33	opcode: 0110011 
+Instruction #  327:	00ed94b3	opcode: 0110011 
+Instruction #  328:	0f9f2193	opcode: 0010011 
+Instruction #  329:	0125beb3	opcode: 0110011 
+Instruction #  330:	0c057593	opcode: 0010011 
+Instruction #  331:	0471b593	opcode: 0010011 
+Instruction #  332:	0116be33	opcode: 0110011 
+Instruction #  333:	0121e233	opcode: 0110011 
+Instruction #  334:	01ea38b3	opcode: 0110011 
+Instruction #  335:	012dbe33	opcode: 0110011 
+Instruction #  336:	001c1a33	opcode: 0110011 
+Instruction #  337:	004d9393	opcode: 0010011 
+Instruction #  338:	01aabc33	opcode: 0110011 
+Instruction #  339:	f19a7493	opcode: 0010011 
+Instruction #  340:	008e1a33	opcode: 0110011 
+Instruction #  341:	00f398b3	opcode: 0110011 
+Instruction #  342:	25e00613	opcode: 0010011 
+Instruction #  343:	fae65c83	opcode: 0000011 
+Instruction #  344:	0007ceb3	opcode: 0110011 
+Instruction #  345:	2a400693	opcode: 0010011 
+Instruction #  346:	f366ac23	opcode: 0100011 
+Instruction #  347:	001a87b3	opcode: 0110011 
+Instruction #  348:	00a0a2b3	opcode: 0110011 
+Instruction #  349:	0fe52313	opcode: 0010011 
+Instruction #  350:	015798b3	opcode: 0110011 
+Instruction #  351:	f0b26813	opcode: 0010011 
+Instruction #  352:	01fe3833	opcode: 0110011 
+Instruction #  353:	f3ff2a93	opcode: 0010011 
+Instruction #  354:	0ec4a293	opcode: 0010011 
+Instruction #  355:	f1c07e13	opcode: 0010011 
+Instruction #  356:	f670cd93	opcode: 0010011 
+Instruction #  357:	00015633	opcode: 0110011 
+Instruction #  358:	012b5f13	opcode: 0010011 
+Instruction #  359:	004bd593	opcode: 0010011 
+Instruction #  360:	00845133	opcode: 0110011 
+Instruction #  361:	01cc51b3	opcode: 0110011 
+Instruction #  362:	01b7f8b3	opcode: 0110011 
+Instruction #  363:	019009b3	opcode: 0110011 
+Instruction #  364:	00f88133	opcode: 0110011 
+Instruction #  365:	00a3efb3	opcode: 0110011 
+Instruction #  366:	013c1393	opcode: 0010011 
+Instruction #  367:	01cd9d13	opcode: 0010011 
+Instruction #  368:	07976c93	opcode: 0010011 
+Instruction #  369:	02fb2613	opcode: 0010011 
+Instruction #  370:	00209d33	opcode: 0110011 
+Instruction #  371:	019ddb13	opcode: 0010011 
+Instruction #  372:	f6bbaf13	opcode: 0010011 
+Instruction #  373:	019b9293	opcode: 0010011 
+Instruction #  374:	2b600193	opcode: 0010011 
+Instruction #  375:	03c1d583	opcode: 0000011 
+Instruction #  376:	0193d633	opcode: 0110011 
+Instruction #  377:	fbcdec93	opcode: 0010011 
+Instruction #  378:	f6f64113	opcode: 0010011 
+Instruction #  379:	01085e93	opcode: 0010011 
+Instruction #  380:	f5133c93	opcode: 0010011 
+Instruction #  381:	22000e93	opcode: 0010011 
+Instruction #  382:	fc4e9903	opcode: 0000011 
+Instruction #  383:	00ee63b3	opcode: 0110011 
+Instruction #  384:	00ef23b3	opcode: 0110011 
+Instruction #  385:	22a00093	opcode: 0010011 
+Instruction #  386:	04509123	opcode: 0100011 
+Instruction #  387:	fb87ad13	opcode: 0010011 
+Instruction #  388:	0409cd13	opcode: 0010011 
+Instruction #  389:	004f2bb3	opcode: 0110011 
+Instruction #  390:	00d7e033	opcode: 0110011 
+Instruction #  391:	002fe293	opcode: 0010011 
+Instruction #  392:	35a00093	opcode: 0010011 
+Instruction #  393:	07609a23	opcode: 0100011 
+Instruction #  394:	2ea00213	opcode: 0010011 
+Instruction #  395:	f0425b83	opcode: 0000011 
+Instruction #  396:	01b26133	opcode: 0110011 
+Instruction #  397:	f2687293	opcode: 0010011 
+Instruction #  398:	0233c493	opcode: 0010011 
+Instruction #  399:	005c03b3	opcode: 0110011 
+Instruction #  400:	32000093	opcode: 0010011 
+Instruction #  401:	01408923	opcode: 0100011 
+Instruction #  402:	01e72ab3	opcode: 0110011 
+Instruction #  403:	01a05393	opcode: 0010011 
+Instruction #  404:	00c89833	opcode: 0110011 
+Instruction #  405:	013cf233	opcode: 0110011 
+Instruction #  406:	31000793	opcode: 0010011 
+Instruction #  407:	0ac7a623	opcode: 0100011 
+Instruction #  408:	01ea6c33	opcode: 0110011 
+Instruction #  409:	0081c933	opcode: 0110011 
+Instruction #  410:	00b9a3b3	opcode: 0110011 
+Instruction #  411:	00861bb3	opcode: 0110011 
+Instruction #  412:	f5c76813	opcode: 0010011 
+Instruction #  413:	016aefb3	opcode: 0110011 
+Instruction #  414:	f734a193	opcode: 0010011 
+Instruction #  415:	29600813	opcode: 0010011 
+Instruction #  416:	ffc85103	opcode: 0000011 
+Instruction #  417:	01f995b3	opcode: 0110011 
+Instruction #  418:	28c00c93	opcode: 0010011 
+Instruction #  419:	f81c9a23	opcode: 0100011 
+Instruction #  420:	01cb2ab3	opcode: 0110011 
+Instruction #  421:	07cff793	opcode: 0010011 
+Instruction #  422:	012314b3	opcode: 0110011 
+Instruction #  423:	021da113	opcode: 0010011 
+Instruction #  424:	017bec33	opcode: 0110011 
+Instruction #  425:	04240313	opcode: 0010011 
+Instruction #  426:	24800c93	opcode: 0010011 
+Instruction #  427:	f57ca823	opcode: 0100011 
+Instruction #  428:	00b1df13	opcode: 0010011 
+Instruction #  429:	01f15933	opcode: 0110011 
+Instruction #  430:	00f36933	opcode: 0110011 
+Instruction #  431:	0ac18693	opcode: 0010011 
+Instruction #  432:	01869433	opcode: 0110011 
+Instruction #  433:	01d16db3	opcode: 0110011 
+Instruction #  434:	31c00e13	opcode: 0010011 
+Instruction #  435:	f5fe2623	opcode: 0100011 
+Instruction #  436:	f3de3f93	opcode: 0010011 
+Instruction #  437:	01991bb3	opcode: 0110011 
+Instruction #  438:	0441cf13	opcode: 0010011 
+Instruction #  439:	01864193	opcode: 0010011 
+Instruction #  440:	04b5cd93	opcode: 0010011 
+Instruction #  441:	01029a33	opcode: 0110011 
+Instruction #  442:	00b3e033	opcode: 0110011 
+Instruction #  443:	019902b3	opcode: 0110011 
+Instruction #  444:	0f5ac413	opcode: 0010011 
+Instruction #  445:	007f6f33	opcode: 0110011 
+Instruction #  446:	fa200393	opcode: 0010011 
+Instruction #  447:	01e81933	opcode: 0110011 
+Instruction #  448:	3de00613	opcode: 0010011 
+Instruction #  449:	f7a61f03	opcode: 0000011 
+Instruction #  450:	f9d90e13	opcode: 0010011 
+Instruction #  451:	00248333	opcode: 0110011 
+Instruction #  452:	0038fc33	opcode: 0110011 
+Instruction #  453:	018d3433	opcode: 0110011 
+Instruction #  454:	f2d5ab13	opcode: 0010011 
+Instruction #  455:	fc776993	opcode: 0010011 
+Instruction #  456:	27000913	opcode: 0010011 
+Instruction #  457:	fbc92c23	opcode: 0100011 
+Instruction #  458:	0f016513	opcode: 0010011 
+Instruction #  459:	0084da13	opcode: 0010011 
+Instruction #  460:	030ac593	opcode: 0010011 
+Instruction #  461:	0e26c813	opcode: 0010011 
+Instruction #  462:	00ae75b3	opcode: 0110011 
+Instruction #  463:	005654b3	opcode: 0110011 
+Instruction #  464:	f70d8913	opcode: 0010011 
+Instruction #  465:	01610a33	opcode: 0110011 
+Instruction #  466:	f4c90793	opcode: 0010011 
+Instruction #  467:	019b9fb3	opcode: 0110011 
+Instruction #  468:	01520c33	opcode: 0110011 
+Instruction #  469:	0ae58513	opcode: 0010011 
+Instruction #  470:	fe634e13	opcode: 0010011 
+Instruction #  471:	017b51b3	opcode: 0110011 
+Instruction #  472:	2f200c93	opcode: 0010011 
+Instruction #  473:	0fcc9a03	opcode: 0000011 
+Instruction #  474:	3d800293	opcode: 0010011 
+Instruction #  475:	30b00713	opcode: 0010011 
+Instruction #  476:	f6d70aa3	opcode: 0100011 
+Instruction #  477:	f2533a13	opcode: 0010011 
+Instruction #  478:	f9827093	opcode: 0010011 
+Instruction #  479:	01678e33	opcode: 0110011 
+Instruction #  480:	36e00293	opcode: 0010011 
+Instruction #  481:	01529a23	opcode: 0100011 
+Instruction #  482:	fa932213	opcode: 0010011 
+Instruction #  483:	08eba713	opcode: 0010011 
+Instruction #  484:	f6e36693	opcode: 0010011 
+Instruction #  485:	000724b3	opcode: 0110011 
+Instruction #  486:	010e5ab3	opcode: 0110011 
+Instruction #  487:	00c49f93	opcode: 0010011 
+Instruction #  488:	01f7c4b3	opcode: 0110011 
+Instruction #  489:	0029c433	opcode: 0110011 
+Instruction #  490:	00a93e33	opcode: 0110011 
+Instruction #  491:	22d00993	opcode: 0010011 
+Instruction #  492:	fdf988a3	opcode: 0100011 
+Instruction #  493:	0093ee33	opcode: 0110011 
+Instruction #  494:	0f13a293	opcode: 0010011 
+Instruction #  495:	019f7633	opcode: 0110011 
+Instruction #  496:	2d800a13	opcode: 0010011 
+Instruction #  497:	f0fa0403	opcode: 0000011 
+Instruction #  498:	009e6233	opcode: 0110011 
+Instruction #  499:	0845ae13	opcode: 0010011 
+Instruction #  500:	012255b3	opcode: 0110011 
+Instruction #  501:	01d14bb3	opcode: 0110011 
+Instruction #  502:	0007ca33	opcode: 0110011 
+Instruction #  503:	f74afb93	opcode: 0010011 
+Instruction #  504:	0100b0b3	opcode: 0110011 
+Instruction #  505:	01039733	opcode: 0110011 
+Instruction #  506:	feaf4113	opcode: 0010011 
+Instruction #  507:	00ae63b3	opcode: 0110011 
+Instruction #  508:	0cb90213	opcode: 0010011 
+Instruction #  509:	018f8d33	opcode: 0110011 
+Instruction #  510:	00000097	opcode: 0010111 
+Instruction #  511:	00008067	opcode: 1100111 
+UVM_INFO /home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 50010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 50010000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -115,14 +683,15 @@ UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
 ** Report counts by id
-[Driver]     2
+[DRV]     1
 [RNTST]     1
 [TEST_DONE]     1
+[gen_sequence]     1
 [uvm_test_top]     1
 [uvm_test_top.env]     1
 
-=T:Simulation terminated by $finish at time 10010000 (/home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
-Run directory: /home/jesus/Code/darkrisc_tropical_cr/sim
+=T:Simulation terminated by $finish at time 50010000 (/home/jesus/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
+Run directory: /home/jesus/Code/darkrisc_tropical_MY_DEVELOP/sim
   System timescale is 1ps / 1ps
   Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_20.04)
-  Random seed: 123
+  Random seed: 123456

@@ -4,3 +4,4 @@
 `include "../rtl/darkriscv.v"
 `include "../rtl/darkuart.v"
 `include "../rtl/darkpll.v"
+`include "../testbench/intf_soc.sv"
