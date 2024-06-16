@@ -3,6 +3,8 @@ sim/dsim_work/sir*
 sim/dsim_work/sfe*
 sim/darksocv
 sim/darksocv.vcd
+rtl/darksocv.vc
+testbench/darksocv.vcd
 *~
 */*~
 .DS_Store
