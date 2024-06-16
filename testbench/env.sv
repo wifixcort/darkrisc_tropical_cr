@@ -8,7 +8,7 @@ class darksocv_env extends uvm_env;
   
   virtual intf_soc intf;
   darksocv_driver drv;
-  uvm_sequencer #(rv32i_instruction)	seqr;
+  uvm_sequencer #(sequence_item_rv32i_instruction)	seqr;
   
 
   virtual function void build_phase(uvm_phase phase);
@@ -20,7 +20,7 @@ class darksocv_env extends uvm_env;
     
     drv = darksocv_driver::type_id::create ("drv", this); 
     
-    seqr = uvm_sequencer#(rv32i_instruction)::type_id::create("seqr", this);
+    seqr = uvm_sequencer#(sequence_item_rv32i_instruction)::type_id::create("seqr", this);
     
     // legacy del ejemplo del arbitro
     //uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top.darksocv_env.*", "VIRTUAL_INTERFACE", intf);    
