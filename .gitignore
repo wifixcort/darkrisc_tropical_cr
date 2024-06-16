@@ -1,4 +1,6 @@
 tmp/*
+sim/dsim_work/sir*
+sim/dsim_work/sfe*
 sim/darksocv
 sim/darksocv.vcd
 *~
