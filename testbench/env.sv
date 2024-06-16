@@ -10,7 +10,7 @@ class darksocv_env extends uvm_env;
   darksocv_uvc1_env uvc1_env;
   darksocv_uvc2_env uvc2_env;
 
-  //uvm_sequencer #(sequence_item_sequence_item_rv32i_instruction)	seqr;
+  //uvm_sequencer #(sequence_item_rv32i_instruction)	seqr;
   //darksocv_driver drv;
   
 

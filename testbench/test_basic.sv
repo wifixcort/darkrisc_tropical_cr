@@ -7,8 +7,7 @@ class test_basic extends uvm_test;
   endfunction : new
   
   virtual intf_soc intf;
-  darksocv_env env;
- 
+  darksocv_env env;  
   
   
   virtual function void build_phase(uvm_phase phase);

@@ -14,7 +14,7 @@ simulations:
     options: >-
       -top testbench.top_hvl -top DUT.top -L DUT -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      123
+      12345 +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt
