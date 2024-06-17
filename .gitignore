@@ -1,5 +1,5 @@
 sim/
-!sim/dsim_work/debug/*
+!sim/dsim_work/*
 !sim/*.dpf
 !sim/*.gtkw
 !sim/*.txt
