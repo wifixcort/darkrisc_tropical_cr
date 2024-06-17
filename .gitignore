@@ -1,5 +1,5 @@
-sim/
-!sim/dsim_work/*
-!sim/*.dpf
-!sim/*.gtkw
-!sim/*.txt
+sim/*.db
+sim/*.env
+sim/*.log
+sim/*.mem
+sim/*.vcd
