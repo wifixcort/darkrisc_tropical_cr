@@ -1,5 +1,7 @@
 `include "../rtl/config.vh"
 `include "../testbench/instructions_data_struc.sv"
 `include "../testbench/top_hvl.sv"
-`include "../testbench/mon1.sv"
+//`include "../testbench/mon1.sv"
+`include "../testbench/transaction_m2.sv"
 `include "../testbench/scoreboard.sv"
+//`include "../testbench/riscv_ref_model.sv"
