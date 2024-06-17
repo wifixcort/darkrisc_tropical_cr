@@ -1,6 +1,6 @@
 =N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-16 23:42:59 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-16 23:43:00 -0600)] usage server initial connection
+=N:[UsageMeter (2024-06-17 08:42:10 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-17 08:42:10 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -700,730 +700,2494 @@ Instruction #  510:	00000097	opcode: 0010111
 Instruction #  511:	00008067	opcode: 1100111 
 UVM_INFO @ 2605000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2605000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000001
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2615000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2615000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000001
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2625000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2625000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000002
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2635000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2635000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2645000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2645000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000004
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2655000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2655000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000005
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2665000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2665000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000006
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2675000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2675000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000007
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2685000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2685000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000008
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2695000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2695000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2705000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2705000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2715000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2715000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2725000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2725000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2735000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2735000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2745000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2745000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2755000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2755000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2765000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2765000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2775000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2775000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2785000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2785000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2795000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2795000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000013
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2805000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2805000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000014
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2815000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2815000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000015
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2825000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2825000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000016
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2835000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2835000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2845000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2845000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2855000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2855000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000019
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2865000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2865000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2875000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2875000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2885000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2885000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2895000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2895000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2905000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2905000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2915000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2915000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000001f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2925000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 2925000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 00000015
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2935000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2935000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRLI, 10, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2945000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 2945000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2955000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2955000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTI, 12, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2965000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 2965000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 00000016
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2975000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 2975000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2985000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 2985000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2995000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 2995000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SW, 1b, 00000014
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3005000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3005000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 0000001e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3015000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3015000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3025000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3025000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SB, 19, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3035000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3035000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 0000001b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3045000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3045000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3055000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3055000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ANDI, 0e, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3065000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3065000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3075000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3075000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3085000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3085000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000001
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3095000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3095000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 0000001b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3105000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3105000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRLI, 10, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3115000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3115000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3125000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3125000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 00000001
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3135000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3135000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3145000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3145000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3155000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3155000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 00000008
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3165000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3165000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3175000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3175000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000004
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3185000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3185000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000004
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3195000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3195000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3205000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3205000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000007
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3215000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3215000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 00000005
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3225000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3225000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 0000000c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3235000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3235000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3245000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3245000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XORI, 0c, 00000016
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3255000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3255000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 0000000e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3265000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3265000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3275000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3275000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 00000006
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3285000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3285000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3295000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3295000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTI, 12, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3305000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3305000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3315000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3315000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ORI, 0d, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3325000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3325000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000001f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3335000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3335000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 0000001f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3345000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3345000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XORI, 0c, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3355000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3355000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 0000001f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3365000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3365000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLLI, 0f, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3375000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3375000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 0000000d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3385000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3385000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3395000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3395000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTI, 12, 00000006
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3405000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3405000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 00000019
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3415000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3415000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRLI, 10, 0000001b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3425000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3425000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRLI, 10, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3435000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3435000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3445000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3445000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , 00, 00000000
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3455000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- IL type -------------------------
 UVM_INFO @ 3455000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: LBU, 17, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3465000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3465000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3475000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3475000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 0000001a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3485000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3485000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3495000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3495000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000019
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3505000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3505000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , 00, 00000000
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3515000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- IL type -------------------------
 UVM_INFO @ 3515000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: LBU, 17, 00000016
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3525000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3525000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3535000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3535000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3545000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3545000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XORI, 0c, 00000007
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3555000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3555000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XORI, 0c, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3565000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3565000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000019
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3575000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3575000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3585000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3585000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 0000000d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3595000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3595000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 0000000a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3605000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3605000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 0000000a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3615000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3615000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLT, 09, 0000000c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3625000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3625000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3635000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3635000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3645000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3645000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3655000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3655000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ORI, 0d, 00000016
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3665000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3665000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ANDI, 0e, 00000012
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3675000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3675000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLL, 06, 0000000d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3685000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3685000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000003
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3695000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3695000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , 00, 00000000
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3705000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- IL type -------------------------
 UVM_INFO @ 3705000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: LW, 16, 0000000c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3715000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3715000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000006
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3725000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3725000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 00000002
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3735000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3735000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3745000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3745000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3755000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3755000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000001
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3765000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3765000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3775000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3775000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3785000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3785000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3795000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3795000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 0000000e
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3805000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3805000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SW, 1b, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3815000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3815000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3825000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3825000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SRL, 07, 00000010
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3835000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3835000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ANDI, 0e, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3845000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3845000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3855000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3855000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 00000013
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3865000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3865000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTU, 0a, 00000000
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3875000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3875000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLLI, 0f, 0000000a
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3885000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3885000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000000f
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3895000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3895000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000009
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3905000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3905000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3915000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3915000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000002
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3925000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3925000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SH, 1a, 00000004
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3935000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 3935000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 00000004
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3945000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3945000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: XOR, 03, 00000011
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3955000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3955000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 0000001c
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3965000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3965000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: AND, 05, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3975000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3975000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADD, 01, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3985000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3985000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 0000001d
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 3995000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- R type -------------------------
 UVM_INFO @ 3995000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: OR, 04, 0000000b
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4005000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 4005000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4015000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 4015000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000006
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4025000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 4025000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000018
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4035000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 4035000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: ADDI, 0b, 00000002
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4045000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4045000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SB, 19, 00000017
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4055000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 ------------------------- I type -------------------------
 UVM_INFO @ 4055000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: SLTIU, 13, 00000008
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4065000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , xx, xxxxxxxx
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO @ 4065000: uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] 
  Received transaction: , 00, 00000000
+-----------------------------------------
+Name        Type              Size  Value
+-----------------------------------------
+scoreboard  my_scoreboard     -     @380 
+  mon2_txn  uvm_analysis_imp  -     @391 
+-----------------------------------------
 UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 50010000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 50010000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
