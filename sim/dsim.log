@@ -1,6 +1,6 @@
-=N:[UVMSource] Using sources from '/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2'
-=N:[UsageMeter (2024-06-17 08:42:24 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
-=N:[UsageMeter (2024-06-17 08:42:35 -0600)] usage server initial connection
+=N:[UVMSource] Using sources from '/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2'
+=N:[UsageMeter (2024-06-17 09:34:37 -0600)] Using /etc/ssl/certs as location of CA certificates to verify license server.
+=N:[UsageMeter (2024-06-17 09:34:37 -0600)] usage server initial connection
 =N:[License] 
 Licensed for Metrics Design Automation.
 =N:[License] New lease granted.
@@ -13,18 +13,18 @@ Elaborating...
 =W:[IneffectiveDynamicCast]:
     The following dynamic $cast cases will always be false    
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_pkg.sv:31:12                                                                                                                                                                                         
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:521:9              class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_phase_cb)    class uvm_pkg::uvm_callbacks#(class uvm_pkg::uvm_phase,class uvm_pkg::uvm_callback)    
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_pkg.sv:31:12                                                                                                                                                                                         
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:671:12             class uvm_pkg::uvm_phase                                                               class uvm_pkg::uvm_report_object                                                       
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:731:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
-    /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
-    Included from /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
+    /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_callback.svh:808:10             class uvm_pkg::uvm_component                                                           class uvm_pkg::uvm_phase                                                               
+    Included from /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_base.svh:76:12                                                                                                                                                                                  
 
 =W:[ExprStmtNotVoid]:
     The following expressions used as statements do not have void type:    
@@ -62,8 +62,6 @@ Optimizing...
 Building models...
 PLI/VPI access: +b 
 Simulation time precision is 1ps.
-  [3/10] CU scope $unit: 82 functions, 896 basic blocks
-  [7/10] package uvm_pkg: 6 submodules, 3906 functions, 42898 basic blocks
 Linking image.so...
 Using default typical min/typ/max.
 =S:Begin run-time elaboration and static initialization...
@@ -767,8 +765,8 @@ driver: Invoked reset()     -> send RESET signal to SoC
 ------------- ADD -------------
 ------------- OR -------------
 ------------- OR -------------
-UVM_INFO /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 53000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO /home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 53000000: reporter [UVM/REPORT/SERVER] 
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_objection.svh(1270) @ 53000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_report_server.svh(847) @ 53000000: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
@@ -788,8 +786,8 @@ UVM_FATAL :    0
 [uvm_test_top.env.uvc2_env.agent_passive.monitor2]     2
 
 =N:[dumpMXD] closing MXD dump
-=T:Simulation terminated by $finish at time 53000000 (/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
-Run directory: /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/sim
+=T:Simulation terminated by $finish at time 53000000 (/home/ricardo/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/base/uvm_root.svh:517);
+Run directory: /home/ricardo/Documents/UCR/2024/Verif/verif_darkrisc/sim
   System timescale is 1ps / 1ps
-  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:ubuntu_22.04)
+  Metrics DSim version: 20240422.0.0 (b:R #c:0 h:d894f4c124 os:debian_11)
   Random seed: 123456
