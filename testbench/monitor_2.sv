@@ -139,11 +139,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //  $display("--------------------------------------------------------------------------------------------<");
 		 
           end
-          //Clear this buffer
-         //  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-         //           risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, sb_rd_p : '0, sb_rd_v : '0,
-         //           sb_rs1_p : '0, sb_rs1_v : '0, sb_rs2_p : '0, sb_rs2_v : '0, sb_imm : '0, inst_PC : '0, 
-         //           inst_XIDATA : '0, sb_DADDR : '0, sb_DATAI : '0};
+
           mn_txn.inst = this.ex_dbuf.inst;
           mn_txn.instruction = this.ex_dbuf.instruccion;
           mn_txn.risc_rd_p = this.ex_dbuf.risc_rd_p;
@@ -155,11 +151,17 @@ task uvc2_mon:: run_phase(uvm_phase phase);
           mn_txn.risc_imm = this.ex_dbuf.risc_imm;
           mn_txn.inst_PC = this.ex_dbuf.inst_PC;
           mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
+         //  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
 
+          mon2_txn.write(mn_txn);
+          //Clear this buffer
+         //  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+         //           risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, sb_rd_p : '0, sb_rd_v : '0,
+         //           sb_rs1_p : '0, sb_rs1_v : '0, sb_rs2_p : '0, sb_rs2_v : '0, sb_imm : '0, inst_PC : '0, 
+         //           inst_XIDATA : '0, sb_DADDR : '0, sb_DATAI : '0};
           this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
                    risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
                    inst_XIDATA : '0};
-         mon2_txn.write(mn_txn);
       end
       
       if (`CORE.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
@@ -462,6 +464,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM), sb_rd_p : sb.rdd, sb_rd_v : sb_rd_reg_value,
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
+            ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
+                  risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
+                  inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA};            
             // inst_counter++;   
          end
          
@@ -473,6 +478,9 @@ endtask
 
 function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    super.new (name, parent);
+   this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+   risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
+   inst_XIDATA : '0};
 endfunction
 
 function void uvc2_mon::build_phase(uvm_phase phase);
