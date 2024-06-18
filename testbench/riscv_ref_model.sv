@@ -486,12 +486,15 @@ class riscv_ref_model extends uvm_component;
     // Write prediction to the FIFO
     pred_t transaction = new();
     /*
-    transaction.pc_val = ;
-    transaction.rx_funct = ;
-    transaction.imm_val_sign_ext  = ;
-    transaction.rs1_val  = ;
-    transaction.rs2_val  = ;
-    transaction.rdd_val  = ;
+    transaction.pc_val = pc_val_upd;
+    transaction.imm_val_sign_ext = imm_val_sign_ext;
+    transaction.rx_funct = rx_funct;
+    transaction.rs1_val = t.rs1_val;
+    transaction.rs2_val = t.rs2_val;
+    transaction.rdd_val = t.rdd;
+    transaction.rs1_val_mem = REGS[t.rs1_val];
+    transaction.rs2_val_mem = REGS[t.rs2_val];
+    transaction.rdd_val_mem = REGS[t.rdd];
     */
     ref_model_fifo.write_item(pred);  
 
