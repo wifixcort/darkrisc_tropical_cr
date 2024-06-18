@@ -46,8 +46,8 @@ class test_basic extends uvm_test;
     // // todo: programar on/off para los tipos de instrucciones que se generan
 
     seq.mem_generate();
-    //seq.set_program_format();
-    //seq.opt_addr(1);
+    seq.loop_end_of_program(1);
+    seq.opt_addr(1);
     seq.print_mem();
 
     $writememh("darksocv.mem", seq.MEM);
@@ -56,6 +56,7 @@ class test_basic extends uvm_test;
 
  	  env.uvc1_env.agent_active.drv.reset();
 
+    // Tiempo de simulación
     //#10000    //10 us
     #50000 //50 us
     //#1000000; //1ms

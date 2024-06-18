@@ -36,9 +36,9 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
    //********************************************************
   constraint opcode_cases{
   soft opcode dist  {R_TYPE   :/ 44,
-                    I_TYPE    :/ 44
-                    //I_L_TYPE  :/ 5,
-                    //S_TYPE    :/ 5
+                    I_TYPE    :/ 44,
+                    I_L_TYPE  :/ 5,
+                    S_TYPE    :/ 5
                     /*S_B_TYPE,
                     J_TYPE,
                     I_JALR_TYPE,
@@ -96,7 +96,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     //special cases of I_TYPE instructions
     if (opcode == I_TYPE) { 
       (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
-                                                   h00_FC7};
+                                                h00_FC7};
       (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
     }
   }
@@ -116,10 +116,12 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
    }
    
   // Offseft for calc effective direction
+  // "the effective address for all loads and stores should be naturally aligned for each data type"  - riscv_spec
   //*******************************************************
   constraint offset_load_store {
     solve funct3 before imm;
-    if (!opt_addr_select) {     
+    if (!opt_addr_select) {   
+      // ALINEADORES  
       if (opcode == I_L_TYPE){
         (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
         (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
@@ -128,7 +130,11 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
         (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
         (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
       }
-      //ACOTADORES de offset a +127 -127
+      
+      
+      // -----> "The effective byte address is obtained by adding register rs1 to the sign-extended 12-bit offset" - riscv_spec
+      //        El offset de 12 bits es demasiado para el darkriscv.
+      // //ACOTADORES de offset a +127 -127
       if(imm[11] == 0){
         //pos sign extend
         imm[10:8] == 3'b000;
