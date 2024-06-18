@@ -7,7 +7,7 @@ design_root_dir: ..\..
 simulations:
   - name: sim1
     options: >-
-      -top testbench.top_hvl -top dut.top -L DUT -L testbench -uvm 1.2
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       123456 +acc+b
   - name: sim2
