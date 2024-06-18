@@ -7,6 +7,7 @@ class test_basic extends uvm_test;
   endfunction : new
   
   virtual intf_soc intf;
+  virtual intf_mem_rd mem_rd_chan;
   darksocv_env env;  
   gen_sequence seq;
   
@@ -16,10 +17,14 @@ class test_basic extends uvm_test;
     if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
         `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
+    if(uvm_config_db #(virtual intf_mem_rd)::get(this, "", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan) == 0) begin
+      `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the memory read channel")
+    end 
       
     env  = darksocv_env::type_id::create ("env", this);
     seq = gen_sequence::type_id::create("seq");
     uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top.*", "VIRTUAL_INTERFACE", intf);
+    uvm_config_db #(virtual intf_mem_rd)::set (null, "uvm_test_top.*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
       
   endfunction
   

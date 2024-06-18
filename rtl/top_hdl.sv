@@ -12,6 +12,10 @@ module top();
    // Interface
    intf_soc intf(CLK);
    intf_soc intf2(CLK);
+   intf_mem_rd mem_rd_chan(CLK);
+
+   assign mem_rd_chan.IADDR = soc0.IADDR;
+   assign mem_rd_chan.IDATA = soc0.IDATA;
    
    // DUT connection	
    darksocv soc0 (
