@@ -1,5 +1,5 @@
-//`include "uvm_macros.svh"
-//import uvm_pkg::*;
+`include "uvm_macros.svh"
+import uvm_pkg::*;
 
 module top();
 
@@ -13,15 +13,16 @@ module top();
    intf_soc intf(CLK);
    intf_soc intf2(CLK);
    intf_mem_rd mem_rd_chan(CLK);
+   logic reset_x;
 
    assign mem_rd_chan.IADDR = soc0.IADDR;
    assign mem_rd_chan.IDATA = soc0.IDATA;
-   
+
    // DUT connection	
    darksocv soc0 (
 				  .XCLK(CLK),
-				  .XRES(intf.rst),
-				  .UART_RXD(intf.uart_rx),
+				  .XRES(reset_x),
+     			  .UART_RXD('0),
 				  .UART_TXD(intf_uart_tx),
 				  .LED(intf.leds),
 				  .DEBUG(intf.debug));
@@ -53,6 +54,10 @@ module top();
         $dumpvars();
         uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf);
         uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
+        uvm_config_db #(virtual intf_mem_rd)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
+     	reset_x = 1;
+     	#3000
+     	reset_x = 0;
    end
    
    //Test case

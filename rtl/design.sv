@@ -1,4 +1,5 @@
 `include "../rtl/config.vh"
+`include "../testbench/intf_mem_rd.sv"
 `include "../rtl/top_hdl.sv"
 `include "../rtl/darksocv.v"
 `include "../rtl/darkriscv.v"

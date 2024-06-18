@@ -7,7 +7,7 @@ class darksocv_env extends uvm_env;
   endfunction
   
   virtual intf_soc intf;
-  virtual intf_mem_rd mem_rd_chan;
+  //virtual intf_mem_rd mem_rd_chan;
   darksocv_uvc1_env uvc1_env;
   darksocv_uvc2_env uvc2_env;
 
@@ -21,11 +21,11 @@ class darksocv_env extends uvm_env;
     if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the TB")
     end
-
+    /*
     if(uvm_config_db #(virtual intf_mem_rd)::get(this, "", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the memory read channel")
     end   
-    
+    */
     uvc1_env  = darksocv_uvc1_env::type_id::create ("uvc1_env", this);
     uvc2_env  = darksocv_uvc2_env::type_id::create ("uvc2_env", this);
     
