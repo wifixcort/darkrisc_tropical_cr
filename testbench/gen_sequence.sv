@@ -16,55 +16,61 @@ class gen_sequence extends uvm_sequence;
     super.new(name);
   endfunction
 
-  /*
-  // TODO: estas dos lineas pueden ser util para escribir ROM con una cantidad aleatoria de instrucciones
-  rand int num; 	// Config total number of items to be sent
- constraint c1 { num inside {[2:5]}; }
-
   
-  virtual task body();
-    sequence_item_rv32i_instruction i_item = sequence_item_rv32i_instructionn::type_id::create("i_item");
-    for (int i = 0; i < num; i ++) begin
-        start_item(i_item);
-    	i_item.randomize();
-    	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
-    	i_item.print();
-        finish_item(i_item);
-        //`uvm_do(i_item);
-    end
-    `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
-  endtask
-*/
+   
+  // VERSION DEL EJEMPLO
+  // rand int num; 	// Config total number of items to be sent
+  // constraint c1 { num inside {[2:5]}; }
+
+  // virtual task body();
+  //   sequence_item_rv32i_instruction i_item = sequence_item_rv32i_instructionn::type_id::create("i_item");
+  //   for (int i = 0; i < num; i ++) begin
+  //       start_item(i_item);
+  //   	i_item.randomize();
+  //   	`uvm_info("SEQ", $sformatf("Generate new item: "), UVM_LOW)
+  //   	i_item.print();
+  //       finish_item(i_item);
+  //       //`uvm_do(i_item);
+  //   end
+  //   `uvm_info("SEQ", $sformatf("Done generation of %0d items", num), UVM_LOW)
+  // endtask
+
 
   //==============================================================
   //         Generate memory and instruction sequences 
-  //         (legacy class stimulus)        
   //==============================================================
+
   logic [31:0]	   MEM [0:2**`MLEN/4-1];
   logic [4:0]	   reg_addr;
   logic [31:0]	   effective_addr = 32'h00000000;
   int			   min_data_addr = 2**`MLEN/(4*2);
   int			   max_data_addr = 2**`MLEN/4-1;
+
    
-   // fulling the MEM array
-   //**********************************************************
+  // fulling the MEM array
+  //**********************************************************
+  // todo: convertir en funcion para generar instrucciones r,i,l,s
   function void mem_generate(logic DBG_HIGH_VERBOSITY=0);
-      //$display("INSIDE OF mem_generate");
-      sequence_item_rv32i_instruction inst_gen0; 
-      inst_gen0 = new; 
-      //$display("Stimulus: Invoked mem_generate() -> proced to generate random instructions array");
-      // inicializate MEM to 0
-      for(int i=0;i!=2**`MLEN/4;i=i+1) begin
-         MEM[i] = 32'd0; //This is completely necessary, otherwise there are x's in the RAM 
-      end
-      // set instructions in MEM
-      for (int i=0;i!=2**`MLEN/(4*2);i=i+1) begin
-		 inst_gen0.randomize();
-		 MEM[i] = inst_gen0.full_inst;
-		 //Verbosity for each instruction
-		 //if (DBG_HIGH_VERBOSITY)
-           //$display("Instruction generated #%d:\t%h\topcode: %b ", i[15:0], inst_gen0.full_inst, inst_gen0.opcode);
-      end
+    sequence_item_rv32i_instruction inst_gen0; 
+    inst_gen0 = new; 
+    //$display("Stimulus: Invoked mem_generate() -> proced to generate random instructions array");
+ 
+    for(int i=0;i!=2**`MLEN/4;i=i+1) begin
+      if (i == 0) begin
+        inst_gen0.randomize() with {opcode inside {I_TYPE, R_TYPE};};
+        MEM[i] = inst_gen0.full_inst;  // Force first instruction
+      end else if (i < 2**`MLEN/(4*2)) begin
+        inst_gen0.randomize();
+		    MEM[i] = inst_gen0.full_inst;  // Instructions memory
+      end else begin
+        MEM[i] = 32'd0;                // Data memory
+      end 
+
+      //Verbosity for each instruction
+      if (DBG_HIGH_VERBOSITY) 
+        $display("Instruction generated #%d:\t%h\topcode: %b ", i[15:0], inst_gen0.full_inst, inst_gen0.opcode);
+    end
+
   endfunction
 
 
@@ -80,7 +86,7 @@ class gen_sequence extends uvm_sequence;
 
     // recorrer los 31 registros modificables 
     for(int i=1; i<=31; i=i+1) begin 
-		  inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==i;};
+		  inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
 		  MEM[i-1] = inst_gen1.full_inst;
 		  if (DBG_HIGH_VERBOSITY)
         $display("(inicializate reg x%d) Instruction fixed #%d:\t\tnew instruction:%h\tnew opcode: %b ",inst_gen1.rd, i[15:0]-1'b1, inst_gen1.full_inst, inst_gen1.opcode);

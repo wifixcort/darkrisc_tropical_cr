@@ -6,7 +6,7 @@ class darksocv_agent_active extends uvm_agent;
   
   virtual intf_soc intf;
   darksocv_driver drv;
-  uvm_sequencer #(sequence_item_rv32i_instruction)	seqr;
+  sequencer #(sequence_item_rv32i_instruction)	seqr;
 
   //fifo_monitor_wr fifo_mntr_wr;
 

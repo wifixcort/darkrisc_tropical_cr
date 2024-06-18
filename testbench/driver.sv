@@ -22,7 +22,6 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
    
    virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    
   endfunction
 
 
@@ -44,18 +43,13 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
   //==============================================================
   //         Driver Functions
   //==============================================================
-  gen_sequence seq;
+  
   // Load values to .mem file
   //*******************************************************
   
+  // Load .mem in SoC MEM
+  //*******************************************************
   function mem_load();  
-    seq = gen_sequence::type_id::create("seq");
-    $display("driver: Invoked mem_load()  -> load MEM to SoC");
-    seq.mem_generate();
-    seq.set_program_format();
-    seq.opt_addr(1);
-    seq.print_mem();
-    $writememh("darksocv.mem", seq.MEM);
     $readmemh("darksocv.mem", top.soc0.MEM,0);      
   endfunction
 
@@ -68,7 +62,7 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
     //intf.uart_tx = 0;
     intf.rst = 1;
     @ (negedge intf.clk);
-    intf.rst = 0;
+      intf.rst = 0;
   endtask   
   
 endclass
