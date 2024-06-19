@@ -44,15 +44,23 @@ class monitor_1 extends uvm_monitor;
 //          Monitor "monitoring" action
 //=================================================
     virtual task run_phase (uvm_phase phase);
-        `uvm_info("Nomero 1", "Run Phase initialized", UVM_LOW)
+        `uvm_info("Monitor 1", "Run Phase initialized", UVM_LOW)
         forever begin
             @(posedge mem_rd_chan.clk);
             IADDR = mem_rd_chan.IADDR;
             IDATA = mem_rd_chan.IDATA;
             if (IADDR!==IADDR_old)begin
-                $display("IDATA is: %h", IDATA);
+                mon1_t tx_instr = mon1_t::type_id::create("tx_instr");                
                 decodify_instruction(IADDR, IDATA, 0);
                 counter_inst = counter_inst+1;
+                
+                tx_instr.pc_val   = pc_val;
+                tx_instr.rx_funct = rx_funct;
+                tx_instr.imm_val  = imm_val;
+                tx_instr.rs1_val  = rs1_val;
+                tx_instr.rs2_val  = rs2_val;
+                tx_instr.rdd_val  = rdd_val;
+                mon1_analysis_port.write(tx_instr);
             end
             IADDR_old = IADDR;
         end
@@ -159,7 +167,7 @@ class monitor_1 extends uvm_monitor;
                         AUIPC;
         end
         
-        if (counter_inst < 150) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
+        if (counter_inst < 150) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)    
             $display("Function: %d, r1=%d, r2=%d, rd=%d, imm=%d, imm_binary=%b", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val_ext_full);
             // $display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d", rx_funct, rs1_val, rs2_val, rdd_val, imm_val);
             //$display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d, testing_imm[11:5]=%h", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val[11:5]);
