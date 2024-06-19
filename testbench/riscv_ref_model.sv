@@ -496,6 +496,17 @@ class riscv_ref_model extends uvm_component;
     transaction.rs2_val_mem = REGS[t.rs2_val];
     transaction.rdd_val_mem = REGS[t.rdd];
     */
+
+    // logic [31:0]	sb_rd_p; // sb rd register pointer
+    // logic [31:0]	sb_rd_v; // sb rd register value
+    // logic [31:0]	sb_rs1_p; // sb rs1 register pointer
+    // logic [31:0]	sb_rs1_v; // sb rs1 register value
+    // logic [31:0]	sb_rs2_p; // sb rs1 register pointer
+    // logic [31:0]	sb_rs2_v; // sb rs1 register value
+    // logic [31:0]	sb_imm; // sb immidiate value
+    // logic [31:0]	sb_DADDR;
+    // logic [31:0]	sb_DATAI;
+
     ref_model_fifo.write_item(pred);  
 
   endfunction

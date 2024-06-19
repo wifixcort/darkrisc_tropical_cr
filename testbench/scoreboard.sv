@@ -3,7 +3,7 @@ class scoreboard extends uvm_scoreboard;
 
     // Analysis ports 
     uvm_analysis_imp  #(mon1_t, scoreboard) ap_mon1;
-    uvm_analysis_imp  #(mon2_t, scoreboard) ap_mon2;
+    uvm_analysis_imp  #(mon2_transaction, scoreboard) ap_mon2;
     //uvm_analysis_imp  #(ref_model_t, scoreboard) ap_ref_model;
 
     // Handle of Reference Model
@@ -73,7 +73,7 @@ class scoreboard extends uvm_scoreboard;
     endfunction
   
     // Method to handle received transactions from mon_2 
-    function void write(mon2_t t);
+    function void write(mon2_transaction t);
         // Process instruction that is inside queue
         process_inst();
         // Compare values from mon_2 and ref_model    

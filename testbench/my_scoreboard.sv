@@ -1,7 +1,6 @@
 class my_scoreboard extends uvm_scoreboard;
     // uvm_analysis_imp#(mon2_transaction, my_scoreboard) mon2_txn;
-    // uvm_analysis_export#(mon2_transaction) mon2_txn;
-
+    
     `uvm_component_utils(my_scoreboard)
   
     function new(string name, uvm_component parent);

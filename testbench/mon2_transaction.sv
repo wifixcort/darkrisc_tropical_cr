@@ -9,18 +9,9 @@ class mon2_transaction extends uvm_sequence_item;
     logic [31:0]	risc_rs2_p; // riscv rs1 register pointer
     logic [31:0]	risc_rs2_v; // riscv rs1 register value
     logic [31:0]	risc_imm; // riscv immidiate value
-    // logic [31:0]	sb_rd_p; // sb rd register pointer
-    // logic [31:0]	sb_rd_v; // sb rd register value
-    // logic [31:0]	sb_rs1_p; // sb rs1 register pointer
-    // logic [31:0]	sb_rs1_v; // sb rs1 register value
-    // logic [31:0]	sb_rs2_p; // sb rs1 register pointer
-    // logic [31:0]	sb_rs2_v; // sb rs1 register value
-    // logic [31:0]	sb_imm; // sb immidiate value
  
     logic [31:0]	inst_PC;
     logic [31:0]	inst_XIDATA;
-    // logic [31:0]	sb_DADDR;
-    // logic [31:0]	sb_DATAI;
 //  }data;
   
     `uvm_object_utils(mon2_transaction)
