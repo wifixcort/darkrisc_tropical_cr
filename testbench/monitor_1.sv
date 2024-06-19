@@ -32,7 +32,7 @@ class monitor_1 extends uvm_monitor;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         
-        if(uvm_config_db #(virtual intf_mem_rd)::get(this, "", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan) == 0) begin
+        if(uvm_config_db #(virtual intf_mem_rd)::get(this, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan) == 0) begin
         `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface for the memory read channel")
         end
 

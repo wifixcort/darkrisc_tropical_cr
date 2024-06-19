@@ -52,9 +52,9 @@ module top();
    initial begin
         $dumpfile("darksocv.vcd");
         $dumpvars();
-        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf);
+        uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
         uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
-        uvm_config_db #(virtual intf_mem_rd)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
+        uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
      	reset_x = 1;
      	#3000
      	reset_x = 0;

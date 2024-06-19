@@ -7,8 +7,7 @@ class darksocv_uvc1_env extends uvm_env;
     endfunction
     
     darksocv_agent_active agent_active;
-    
-  
+     
     virtual function void build_phase(uvm_phase phase);
       super.build_phase(phase);
       
