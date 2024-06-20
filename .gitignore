@@ -3,3 +3,6 @@ sim/*.env
 sim/*.log
 sim/*.mem
 sim/*.vcd
+sim/dsim_work/sfe*
+sim/dsim_work/sir*
+sim/dsim_work/obj*
