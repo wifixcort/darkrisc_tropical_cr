@@ -4,21 +4,21 @@ class monitor_1 extends uvm_monitor;
     uvm_analysis_port #(monitor_tr) mon1_analysis_port;
     `uvm_component_utils(monitor_1)
 
-    logic [7:0]             rx_funct;
-    logic [7:0]             pc_val;
+    logic        [7:0]      rx_funct;
+    logic        [31:0]     pc_val;
     logic signed [20:0]     imm_val;
     logic signed [31:0]     imm_val_ext_full;
-    logic [4:0]             rs1_val;
-    logic [4:0]             rs2_val;
-    logic [4:0]             rdd_val;
-    logic [6:0]             opcode;
+    logic        [4:0]      rs1_val;
+    logic        [4:0]      rs2_val;
+    logic        [4:0]      rdd_val;
+    logic        [6:0]      opcode;
 
-    logic [2:0]             fct3;
-    logic [6:0]             fct7;
+    logic        [2:0]      fct3;
+    logic        [6:0]      fct7;
   
-    logic [31:0]            IADDR, IADDR_old;
-    logic [31:0]            IDATA;
-    logic [31:0]            counter_inst = 0;
+    logic        [31:0]     IADDR, IADDR_old;
+    logic        [31:0]     IDATA;
+    logic        [31:0]     counter_inst = 0;
 
     virtual intf_mem_rd     mem_rd_chan;
     
@@ -51,7 +51,7 @@ class monitor_1 extends uvm_monitor;
             IDATA = mem_rd_chan.IDATA;
             if (IADDR!==IADDR_old)begin
                 monitor_tr tx_instr = monitor_tr::type_id::create("tx_instr");                
-                decodify_instruction(IADDR, IDATA, 0);
+                decodify_instruction(IADDR_old, IDATA, 0);
                 counter_inst = counter_inst+1;
                 
                 tx_instr.pc_val_mon1   = pc_val;
@@ -61,6 +61,12 @@ class monitor_1 extends uvm_monitor;
                 tx_instr.rs2_val_mon1  = rs2_val;
                 tx_instr.rdd_val_mon1  = rdd_val;
                 mon1_analysis_port.write(tx_instr);
+
+                if (counter_inst < 600) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)
+                    $display("");                
+                    uvm_report_info(get_full_name(), $sformatf("\n Instruction Monitor report:\nPC Value=%h || Function: %d || r1=%d || r2=%d || rd=%d || imm=%d || imm_binary=%b\n", IADDR_old, rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val_ext_full), UVM_LOW);
+                    //$display("PC Value=%h || Function: %d || r1=%d || r2=%d || rd=%d || imm=%d || imm_binary=%b", IADDR_old, rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val_ext_full);                   
+                end
             end
             IADDR_old = IADDR;
         end
@@ -72,7 +78,7 @@ class monitor_1 extends uvm_monitor;
 
     function decodify_instruction(reg [31:0] rx_pc_val, reg [31:0] rx_instruction, reg DBG_HIGH_VERBOSITY=0);
         rx_funct = '0;
-        pc_val  = '0;
+        pc_val  = rx_pc_val;
         imm_val = '0; //Update this depending on opcode+function values.PO
         rs1_val = rx_instruction[19:15];
         rs2_val = rx_instruction[24:20];
@@ -165,12 +171,6 @@ class monitor_1 extends uvm_monitor;
                         (opcode == LUI_TYPE)?     LUI     :
                         (opcode == AUIPC_TYPE)?   AUIPC   :
                         AUIPC;
-        end
-        
-        if (counter_inst < 150) begin //Only for debugging. This prints all the fields (some may not be correct due to instruction type, be aware)    
-            $display("Function: %d, r1=%d, r2=%d, rd=%d, imm=%d, imm_binary=%b", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val_ext_full);
-            // $display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d", rx_funct, rs1_val, rs2_val, rdd_val, imm_val);
-            //$display("instrucción=%d, rs1=%d, rs2=%d, rdd=%d, imm=%d, testing_imm[11:5]=%h", rx_funct, rs1_val, rs2_val, rdd_val, imm_val, imm_val[11:5]);
         end
 
     endfunction //decodify_instruction    
