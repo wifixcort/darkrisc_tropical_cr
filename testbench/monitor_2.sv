@@ -100,71 +100,67 @@ task uvc2_mon:: run_phase(uvm_phase phase);
          // mn_txn = monitor_tr::type_id::create("tr", this);
          // mn_txn.data = '0; //Generar el dato a enviar
 
+         // //R TYPE
+         // if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
+         //    ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
+         //    ex_dbuf.instruccion == AND || ex_dbuf.instruccion == OR)begin
+         //    //  $display("-------------------------------------------------------------------------------------------->");
+         //    $display("------------------------- R type -------------------------");
+         //    //  r_type_cheker_rd_rs1_rs2(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
+         //    //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_rs2_p, ex_dbuf.risc_rs2_v, ex_dbuf.sb_rd_p,
+         //    //             ex_dbuf.sb_rd_v, ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_rs2_p, ex_dbuf.sb_rs2_v);
+         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+         //    //  $display("--------------------------------------------------------------------------------------------<");
+			
+         //    //I TYPE
+         // end	else if(ex_dbuf.instruccion == ADDI || ex_dbuf.instruccion == SLTI || ex_dbuf.instruccion == SLTIU || ex_dbuf.instruccion == XORI ||
+			// 			ex_dbuf.instruccion == ORI || ex_dbuf.instruccion == ANDI || ex_dbuf.instruccion == SLLI || ex_dbuf.instruccion == SRLI ||
+			// 			ex_dbuf.instruccion == SRAI)begin
+         //    //  $display("-------------------------------------------------------------------------------------------->");
+         //    $display("------------------------- I type -------------------------");
+         //    //  i_type_cheker_rd_rs1_imm(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
+         //    //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
+         //    //             ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
+         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
+         //    //  $display("--------------------------------------------------------------------------------------------<");
+			
+         //    //I_L TYPE
+         // end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
+			// 		 ex_dbuf.instruccion == LHU) begin
+         //    //  $display("-------------------------------------------------------------------------------------------->");
+         //    $display("------------------------- IL type -------------------------");
+         //    //  i_l_type_cheker_rd_imm_rs1(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
+         //    //               ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
+         //    //               ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
+         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+         //    //  $display("--------------------------------------------------------------------------------------------<");
+			
+         // end
+         ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
-         // mon2_txn.write(mn_txn);//Publicar la transacción
-         //R TYPE
-          if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
-             ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
-             ex_dbuf.instruccion == AND || ex_dbuf.instruccion == OR)begin
-            //  $display("-------------------------------------------------------------------------------------------->");
-             $display("------------------------- R type -------------------------");
-            //  r_type_cheker_rd_rs1_rs2(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-            //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_rs2_p, ex_dbuf.risc_rs2_v, ex_dbuf.sb_rd_p,
-            //             ex_dbuf.sb_rd_v, ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_rs2_p, ex_dbuf.sb_rs2_v);
-             ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-            //  $display("--------------------------------------------------------------------------------------------<");
-         
-             //I TYPE
-          end	else if(ex_dbuf.instruccion == ADDI || ex_dbuf.instruccion == SLTI || ex_dbuf.instruccion == SLTIU || ex_dbuf.instruccion == XORI ||
-                ex_dbuf.instruccion == ORI || ex_dbuf.instruccion == ANDI || ex_dbuf.instruccion == SLLI || ex_dbuf.instruccion == SRLI ||
-                ex_dbuf.instruccion == SRAI)begin
-            //  $display("-------------------------------------------------------------------------------------------->");
-             $display("------------------------- I type -------------------------");
-            //  i_type_cheker_rd_rs1_imm(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-            //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
-            //             ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
-             ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-
-            //  $display("--------------------------------------------------------------------------------------------<");
-		 
-             //I_L TYPE
-          end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
-                ex_dbuf.instruccion == LHU) begin
-            //  $display("-------------------------------------------------------------------------------------------->");
-             $display("------------------------- IL type -------------------------");
-            //  i_l_type_cheker_rd_imm_rs1(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-            //               ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
-            //               ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
-             ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-            //  $display("--------------------------------------------------------------------------------------------<");
-		 
-          end
-
-          mn_txn.inst = this.ex_dbuf.inst;
-          mn_txn.instruction = this.ex_dbuf.instruccion;
-          mn_txn.risc_rd_p = this.ex_dbuf.risc_rd_p;
-          mn_txn.risc_rd_v = this.ex_dbuf.risc_rd_v;
-          mn_txn.risc_rs1_p = this.ex_dbuf.risc_rs1_p;
-          mn_txn.risc_rs1_v = this.ex_dbuf.risc_rs1_v;
-          mn_txn.risc_rs2_p = this.ex_dbuf.risc_rs2_p;
-          mn_txn.risc_rs2_v = this.ex_dbuf.risc_rs2_v;
-          mn_txn.risc_imm = this.ex_dbuf.risc_imm;
-          mn_txn.inst_PC = this.ex_dbuf.inst_PC;
-          mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
+         mn_txn.inst = this.ex_dbuf.inst;
+         mn_txn.instruction = this.ex_dbuf.instruccion;
+         mn_txn.risc_rd_p = this.ex_dbuf.risc_rd_p;
+         mn_txn.risc_rd_v = this.ex_dbuf.risc_rd_v;
+         mn_txn.risc_rs1_p = this.ex_dbuf.risc_rs1_p;
+         mn_txn.risc_rs1_v = this.ex_dbuf.risc_rs1_v;
+         mn_txn.risc_rs2_p = this.ex_dbuf.risc_rs2_p;
+         mn_txn.risc_rs2_v = this.ex_dbuf.risc_rs2_v;
+         mn_txn.risc_imm = this.ex_dbuf.risc_imm;
+         mn_txn.inst_PC = this.ex_dbuf.inst_PC;
+         mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
          //  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
 
-          mn_txn.inst = "ADD";
-          mn_txn.instruction = ADD;
-          mon2_txn.write(mn_txn);
-          //Clear this buffer
+         mon2_txn.write(mn_txn);
+         //Clear this buffer
          //  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
          //           risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, sb_rd_p : '0, sb_rd_v : '0,
          //           sb_rs1_p : '0, sb_rs1_v : '0, sb_rs2_p : '0, sb_rs2_v : '0, sb_imm : '0, inst_PC : '0, 
          //           inst_XIDATA : '0, sb_DADDR : '0, sb_DATAI : '0};
-          this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-                   risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
-                   inst_XIDATA : '0};
+         this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+						  risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
+						  inst_XIDATA : '0};
       end
       
       if (`CORE.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
@@ -186,52 +182,52 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 				 risc_rd_reg_value = (`CORE.DPTR==0)? `CORE.REGS[`DPTR] : `RMDATA;
 				 case({`CORE.XIDATA[31:25], `CORE.XIDATA[14:12]})
                    10'h0: begin //add
-					//   $display("------------- ADD -------------");
+					  //   $display("------------- ADD -------------");
 					  ex_dbuf.inst = "ADD";
 					  ex_dbuf.instruccion = ADD;
                    end
                    10'b0100000000: begin //sub
-					//   $display("------------- SUB -------------");
+					  //   $display("------------- SUB -------------");
 					  ex_dbuf.inst = "SUB";
 					  ex_dbuf.instruccion = SUB;
                    end
                    SLL_FC: begin //sll
-					//   $display("------------- SLL -------------");
+					  //   $display("------------- SLL -------------");
 					  ex_dbuf.inst = "SLL";
 					  ex_dbuf.instruccion = SLL;
                    end
                    SLT_FC: begin //slt
-					//   $display("------------- SLT -------------");
+					  //   $display("------------- SLT -------------");
 					  ex_dbuf.inst = "SLT";
 					  ex_dbuf.instruccion = SLT;
                    end
                    SLTU_FC: begin //sltu
-					//   $display("------------- SLTU -------------");
+					  //   $display("------------- SLTU -------------");
 					  ex_dbuf.inst = "SLTU";
 					  ex_dbuf.instruccion = SLTU;
                    end
                    XOR_FC: begin //xor
-					//   $display("------------- XOR -------------");
+					  //   $display("------------- XOR -------------");
 					  ex_dbuf.inst = "XOR";
 					  ex_dbuf.instruccion = XOR;
                    end
                    9'h005: begin //srl
-					//   $display("------------- SRL -------------");
+					  //   $display("------------- SRL -------------");
 					  ex_dbuf.inst = "SRL";
 					  ex_dbuf.instruccion = SRL;
                    end
                    9'h105: begin //sra
-					//   $display("------------- SRA -------------");
+					  //   $display("------------- SRA -------------");
 					  ex_dbuf.inst = "SRA";
 					  ex_dbuf.instruccion = SRA;
                    end
                    OR_FC: begin //or
-					//   $display("------------- OR -------------");
+					  //   $display("------------- OR -------------");
 					  ex_dbuf.inst = "OR";
 					  ex_dbuf.instruccion = OR;
                    end
                    AND_FC: begin //and
-					//   $display("------------- AND -------------");
+					  //   $display("------------- AND -------------");
 					  ex_dbuf.inst = "AND";
 					  ex_dbuf.instruccion = AND;
                    end
@@ -251,7 +247,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 				 if(top.soc0.core0.FCT3 == 3'b101) begin
 					case(top.soc0.core0.XIDATA[31:25])
 					  10'h000: begin //srli
-						//  $display("------------- SRLI -------------");
+						 //  $display("------------- SRLI -------------");
 						 ex_dbuf.inst = "SRLI";
 						 ex_dbuf.instruccion = SRLI;
 					  end
@@ -468,8 +464,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
-                  risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
-                  inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA};            
+						risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
+						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA};            
             // inst_counter++;   
          end
          
@@ -482,8 +478,8 @@ endtask
 function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    super.new (name, parent);
    this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-   risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
-   inst_XIDATA : '0};
+					risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
+					inst_XIDATA : '0};
 endfunction
 
 function void uvc2_mon::build_phase(uvm_phase phase);
