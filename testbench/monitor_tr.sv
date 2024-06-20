@@ -25,7 +25,7 @@ class monitor_tr extends uvm_sequence_item;
     */
     logic [31:0]	inst_PC;
     logic [31:0]	inst_XIDATA;
-
+    logic [15:0]	inst_counter;
     // Mon1
     logic [31:0]             pc_val_mon1 = 0;
     logic [7:0]             rx_funct_mon1 = 0;
