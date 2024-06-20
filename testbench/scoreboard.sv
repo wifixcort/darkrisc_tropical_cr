@@ -9,24 +9,7 @@ class scoreboard extends uvm_scoreboard;
     // Handle of Reference Model
     riscv_ref_model ref_model;
 
-    // Queue for STORING decoded instructions from Monitor
-    logic [75:0] decoded_inst_q [$]; // Data in queue: rx_funct, rs1_val, rs2_val, rdd_val, imm_val
-	
-    // Analysis FIFO to store predictions from ref_model
-    uvm_analysis_fifo#(pred_t) ref_model_fifo;
-
-    // Internal Signals for decoded_inst proccessing
-    logic [75:0] decoded_inst_x;
-    logic [7:0] rx_funct;
-    logic signed [20:0]  imm_val;
-    logic signed [31:0]  imm_val_sign_ext;
-    logic [4:0] rs1_val;
-    logic [4:0] rs2_val;
-    logic [4:0] rdd_val;
-    logic [31:0] DATAI;
-    logic [31:0] DATAO;
-    logic [31:0] DADDR;
-    logic [31:0] pc_val;
+    
   
     // Scoreboard Constructor
     function new(string name = sb, uvm_component parent = environment);
