@@ -5,51 +5,46 @@ version: '0.2'
 work_dir: .
 design_root_dir: ..\..
 simulations:
-  - name: fail  (invalid IDATA)
+  - name: test_02 (old fail)
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      123456 +acc+b
-  - name: sim2 GOOD
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed 123456
+      +acc+b
+  - name: test_01 seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      12345 +acc+b 
-  - name: sim3 GOOD
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 12345
+      +acc+b
+  - name: test_01 seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      666 +acc+b
-  - name: sim4 GOOD
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 666
+      +acc+b
+  - name: test_01 seed_03
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
       63453536 +acc+b
-  - name: sim5 GOOD
+  - name: test_01 seed_04
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      63536 +acc+b
-  - name: sim6 GOOD
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 63536
+      +acc+b
+  - name: test_01 seed_05
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       2342346 +acc+b
-  - name: sim7 GOOD
+  - name: test_02 seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      00923948 +acc+b
-  - name: sim8 GOOD
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 12345
+      +acc+b
+  - name: test_02 seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      1234445 +acc+b
-  - name: sim 9 GOOD
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      23422242445 +acc+b
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 666
+      +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt

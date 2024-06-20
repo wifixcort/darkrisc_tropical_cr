@@ -1,8 +1,8 @@
-class test_basic extends uvm_test;
+class test_01 extends uvm_test;
 
-  `uvm_component_utils(test_basic)
+  `uvm_component_utils(test_01)
  
-  function new (string name="test_basic", uvm_component parent=null);
+  function new (string name="test_01", uvm_component parent=null);
     super.new (name, parent);
   endfunction : new
   
@@ -30,23 +30,20 @@ class test_basic extends uvm_test;
 
     ///// CONFIGURACION DE CONTROLABILIDAD  /////
     
-    // // todo: programar on/off para los tipos de instrucciones que se generan
+    // Colocar 1 como parametro para verbosity
 
-    seq.mem_generate();
-    seq.loop_end_of_program(1);
-    seq.opt_addr(1);
-    seq.print_mem();
-
-    $writememh("darksocv.mem", seq.MEM);
- 
+    seq.gen_instructs_R_I();   // Generar instrucciones tipo R, I, L y S
+    //seq.gen_instructs_R_I_L_S();   // Generar instrucciones tipo R, I, L y S
+    seq.loop_end_of_program(1);    // Forzar instrucciones al final del programa para dejarlo loopeado
+    //seq.opt_addr(1);               // Forzar direcciones validas para las instrucciones Load y Store
+    seq.print_mem();               // Imprimir el resultado de la memoria de instrucciones
+    seq.write_mem();               // Escribir archivo .mem
+    
  	  env.uvc1_env.agent_active.drv.mem_load();
-
  	  env.uvc1_env.agent_active.drv.reset();
 
     // Tiempo de simulación
-    //#10000    //10 us
     #50000 //50 us
-    //#1000000; //1ms
  
     phase.drop_objection (this);
   endtask

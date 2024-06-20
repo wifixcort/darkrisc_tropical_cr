@@ -46,15 +46,39 @@ class gen_sequence extends uvm_sequence;
   int			   min_data_addr = 2**`MLEN/(4*2);
   int			   max_data_addr = 2**`MLEN/4-1;
 
-   
-  // fulling the MEM array
+
+  // Write .mem file
   //**********************************************************
-  // todo: convertir en funcion para generar instrucciones r,i,l,s
-  function void mem_generate(logic DBG_HIGH_VERBOSITY=0);
+  function write_mem();
+    $writememh("darksocv.mem", MEM);
+  endfunction
+
+  // Full the MEM array with R and I instructions
+  //**********************************************************
+  function void gen_instructs_R_I(logic DBG_HIGH_VERBOSITY=0);
     sequence_item_rv32i_instruction inst_gen0; 
     inst_gen0 = new; 
     //$display("Stimulus: Invoked mem_generate() -> proced to generate random instructions array");
- 
+    for(int i=0;i!=2**`MLEN/4;i=i+1) begin 
+      if (i < 2**`MLEN/(4*2)) begin
+        inst_gen0.randomize() with {opcode inside {I_TYPE, R_TYPE};};
+		    MEM[i] = inst_gen0.full_inst;  // Instructions memory
+      end else begin
+        MEM[i] = 32'd0;                // Data memory
+      end 
+      //Verbosity for each instruction
+      if (DBG_HIGH_VERBOSITY) 
+        $display("Instruction generated #%d:\t%h\topcode: %b ", i[15:0], inst_gen0.full_inst, inst_gen0.opcode);
+    end
+  endfunction
+
+
+  // Full the MEM array with R, I, L and S instructions
+  //**********************************************************
+  function void gen_instructs_R_I_L_S(logic DBG_HIGH_VERBOSITY=0);
+    sequence_item_rv32i_instruction inst_gen0; 
+    inst_gen0 = new; 
+    //$display("Stimulus: Invoked mem_generate() -> proced to generate random instructions array");
     for(int i=0;i!=2**`MLEN/4;i=i+1) begin 
       //se insertan primero dos instrucciones I/R para poder insertar instrucciones correctivas en caso de un Load/Store
       if (i < 2) begin 
@@ -66,51 +90,11 @@ class gen_sequence extends uvm_sequence;
       end else begin
         MEM[i] = 32'd0;                // Data memory
       end 
-
       //Verbosity for each instruction
       if (DBG_HIGH_VERBOSITY) 
         $display("Instruction generated #%d:\t%h\topcode: %b ", i[15:0], inst_gen0.full_inst, inst_gen0.opcode);
     end
-
   endfunction
-
-
-
-  //Setea los registros en las primeras 31 instrucciones
-  //Ultima instruccion debe ser bra *
-  //*****************************************************
-  // function  set_program_format(logic DBG_HIGH_VERBOSITY=0);
-  // 	sequence_item_rv32i_instruction inst_gen1;
-  //   inst_gen1 = new;
-
-  //   $display("\ngen_sequence: set_program_format() -> set firsts instructions");
-
-  //   // recorrer los 31 registros modificables 
-  //   for(int i=1; i<=31; i=i+1) begin 
-	// 	  inst_gen1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
-	// 	  MEM[i-1] = inst_gen1.full_inst;
-	// 	  if (DBG_HIGH_VERBOSITY)
-  //       $display("(inicializate reg x%d) Instruction fixed #%d:\t\tnew instruction:%h\tnew opcode: %b ",inst_gen1.rd, i[15:0]-1'b1, inst_gen1.full_inst, inst_gen1.opcode);
-  //   end
-      
-  //   //forzar I/R en instruccion 31 y 32 para no afectar posterior ejecucion de opt_addr()
-  //   inst_gen1.randomize() with {opcode inside {I_TYPE, R_TYPE};};
-  //   MEM[32] = inst_gen1.full_inst;
-  //   inst_gen1.randomize() with {opcode inside {I_TYPE, R_TYPE};};
-  //   MEM[33] = inst_gen1.full_inst;
-  //   if (DBG_HIGH_VERBOSITY) begin
-	// 	  $display("(force) Instruction fixed          #%d:\t\tnew instruction:%h\tnew opcode: %b ", 16'd31, MEM[31], MEM[i][6:0]);
-  //     $display("(force) Instruction fixed          #%d:\t\tnew instruction:%h\tnew opcode: %b ", 16'd32, MEM[32], MEM[i][6:0]);
-  //   end
-
-  //   //force loop in the final instruction
-  //   MEM[2**`MLEN/(4*2)-2] = 32'b00000000000000000000000010010111; //auipc x1, 0
-  //   MEM[2**`MLEN/(4*2)-1] = 32'b00000000000000001000000001100111; //jalr x0, 0(x1) puede ser necesario meter -4 de offset
-  //   if (DBG_HIGH_VERBOSITY) begin
-  //     $display("(force auipc x1,0)      Instruction fixed #%d\t\tnew instruction: 0x%h", 2**`MLEN/(4*2)-2, 32'b00000000000000000000000010010111);
-  //     $display("(force jalr x0, 0(x1))  Instruction fixed #%d\t\tnew instruction: 0x%h", 2**`MLEN/(4*2)-1, 32'b00000000000000001000000001100111);
-  //   end    
-  //  endfunction
 
 
   // Force loop in the final instructions so that the PC does not get out of rank
@@ -223,6 +207,7 @@ class gen_sequence extends uvm_sequence;
     end
     inst_gen2.opt_addr_select = 1'b0;
    endfunction
+
 
   // Imprimir la memoria de instrucciones local (de esta clase, no del .mem)
   //************************************************************************
