@@ -1,4 +1,4 @@
-class mon1_t extends uvm_object;
+class mon1_t extends uvm_sequence_item;
     
     logic [7:0]             pc_val = 0;
     logic [7:0]             rx_funct = 0;

@@ -1,7 +1,7 @@
 import instructions_data_struc::*;
 
 class monitor_1 extends uvm_monitor;
-
+    uvm_analysis_port #(monitor_tr) mon1_analysis_port;
     `uvm_component_utils(monitor_1)
 
     logic [7:0]             rx_funct;
@@ -21,7 +21,7 @@ class monitor_1 extends uvm_monitor;
     logic [31:0]            counter_inst = 0;
 
     virtual intf_mem_rd     mem_rd_chan;
-    uvm_analysis_port #(mon1_t) mon1_analysis_port;
+    
 
     // ================= Methodos =================
 
@@ -50,16 +50,16 @@ class monitor_1 extends uvm_monitor;
             IADDR = mem_rd_chan.IADDR;
             IDATA = mem_rd_chan.IDATA;
             if (IADDR!==IADDR_old)begin
-                mon1_t tx_instr = mon1_t::type_id::create("tx_instr");                
+                monitor_tr tx_instr = monitor_tr::type_id::create("tx_instr");                
                 decodify_instruction(IADDR, IDATA, 0);
                 counter_inst = counter_inst+1;
                 
-                tx_instr.pc_val   = pc_val;
-                tx_instr.rx_funct = rx_funct;
-                tx_instr.imm_val  = imm_val;
-                tx_instr.rs1_val  = rs1_val;
-                tx_instr.rs2_val  = rs2_val;
-                tx_instr.rdd_val  = rdd_val;
+                // tx_instr.pc_val   = pc_val;
+                // tx_instr.rx_funct = rx_funct;
+                // tx_instr.imm_val  = imm_val;
+                // tx_instr.rs1_val  = rs1_val;
+                // tx_instr.rs2_val  = rs2_val;
+                // tx_instr.rdd_val  = rdd_val;
                 mon1_analysis_port.write(tx_instr);
             end
             IADDR_old = IADDR;

@@ -22,8 +22,11 @@ class darksocv_env extends uvm_env;
 
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    uvc2_env.agent_passive.monitor2.mon2_txn.connect(scoreboard.mon2_txn);
-    uvc1_env.agent_active.mon1.mon1_analysis_port.connect(scoreboard.mon1_txn);
+
+    uvc2_env.agent_passive.monitor2.mon2_txn.connect(scoreboard.txn_mon2);
+    uvc1_env.agent_active.mon1.mon1_analysis_port.connect(scoreboard.txn_mon1);
+    // scoreboard.mon1_txn.connect(scoreboard.write_m1);
+    // scoreboard.mon2_txn.connect(scoreboard.write_m2);
   endfunction
 
 endclass

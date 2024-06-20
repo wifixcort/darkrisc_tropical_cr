@@ -7,7 +7,7 @@
 `include "../testbench/gen_sequence.sv"
 `include "../testbench/driver.sv"
 `include "../testbench/sequencer.sv"
-`include "../testbench/mon2_transaction.sv"
+`include "../testbench/monitor_tr.sv"
 `include "../testbench/mon1_t.sv"
 `include "../testbench/monitor_1.sv"
 `include "../testbench/monitor_2.sv"

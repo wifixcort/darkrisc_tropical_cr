@@ -49,7 +49,7 @@ typedef struct {
 
 
 class uvc2_mon extends uvm_monitor;
-   uvm_analysis_port #(mon2_transaction) mon2_txn;
+   uvm_analysis_port #(monitor_tr) mon2_txn;
    // UVM Factory Registration Macro
    `uvm_component_utils(uvc2_mon)
    
@@ -88,7 +88,7 @@ function string uvc2_mon::inst_resize(string inst);
 endfunction
 
 task uvc2_mon:: run_phase(uvm_phase phase);
-   mon2_transaction mn_txn; //Instancia par la transacción
+   monitor_tr mn_txn; //Instancia par la transacción
    super.run_phase(phase);
    uvm_report_info(get_full_name(),"Start run phase monitor 2", UVM_LOW);
 
@@ -96,7 +96,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 
       @ (posedge intf2.clk);// begin//
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
-         mn_txn = mon2_transaction::type_id::create("tr");
+         mn_txn = monitor_tr::type_id::create("tr");
          // mn_txn.data = '0; //Generar el dato a enviar
 
 
