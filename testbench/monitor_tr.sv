@@ -23,7 +23,7 @@ class monitor_tr extends uvm_sequence_item;
     logic [31:0]	sb_DATAI;
 //  }data;
 
-    logic [7:0]             pc_val_mon1 = 0;
+    logic [31:0]             pc_val_mon1 = 0;
     logic [7:0]             rx_funct_mon1 = 0;
     logic signed [20:0]     imm_val_mon1 = 0;
     logic [4:0]             rs1_val_mon1 = 0;
