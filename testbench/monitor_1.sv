@@ -54,12 +54,12 @@ class monitor_1 extends uvm_monitor;
                 decodify_instruction(IADDR, IDATA, 0);
                 counter_inst = counter_inst+1;
                 
-                // tx_instr.pc_val   = pc_val;
-                // tx_instr.rx_funct = rx_funct;
-                // tx_instr.imm_val  = imm_val;
-                // tx_instr.rs1_val  = rs1_val;
-                // tx_instr.rs2_val  = rs2_val;
-                // tx_instr.rdd_val  = rdd_val;
+                tx_instr.pc_val_mon1   = pc_val;
+                tx_instr.rx_funct_mon1 = rx_funct;
+                tx_instr.imm_val_mon1  = imm_val;
+                tx_instr.rs1_val_mon1  = rs1_val;
+                tx_instr.rs2_val_mon1  = rs2_val;
+                tx_instr.rdd_val_mon1  = rdd_val;
                 mon1_analysis_port.write(tx_instr);
             end
             IADDR_old = IADDR;
