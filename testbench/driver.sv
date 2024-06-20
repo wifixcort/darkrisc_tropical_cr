@@ -43,7 +43,7 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
     $display("driver: Invoked reset()     -> send RESET signal to SoC");
     intf.rst = 0;
     intf.uart_rx = 0;
-    //intf.uart_tx = 0;
+    intf.uart_tx = 0;
     intf.rst = 1;
     @ (negedge intf.clk);
       intf.rst = 0;
