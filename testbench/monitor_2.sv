@@ -26,11 +26,11 @@ import instructions_data_struc::*;
 typedef struct {
    string	   inst;
    logic [7:0] instruccion;
-   logic [31:0]	risc_rd_p; // riscv rd register pointer
+   logic [4:0]	risc_rd_p; // riscv rd register pointer
    logic [31:0]	risc_rd_v; // riscv rd register value
-   logic [31:0]	risc_rs1_p; // riscv rs1 register pointer
+   logic [4:0]	risc_rs1_p; // riscv rs1 register pointer
    logic [31:0]	risc_rs1_v; // riscv rs1 register value
-   logic [31:0]	risc_rs2_p; // riscv rs1 register pointer
+   logic [4:0]	risc_rs2_p; // riscv rs1 register pointer
    logic [31:0]	risc_rs2_v; // riscv rs1 register value
    logic [31:0]	risc_imm; // riscv immidiate value
    // logic [31:0]	sb_rd_p; // sb rd register pointer
