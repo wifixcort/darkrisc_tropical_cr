@@ -25,14 +25,14 @@ class my_scoreboard extends uvm_scoreboard;
     //     super.connect_phase(phase);
     //   endfunction
 
-    function void  write_mon1(monitor_tr tr);
+    function void  write_mon2(monitor_tr tr);
         uvm_report_info(get_full_name(), $sformatf("\n Received transaction: %s, %h, %h", tr.inst, tr.instruction, tr.risc_rd_p), UVM_LOW);
-        print();
+        // print();
     //   `uvm_info("MY_SCOREBOARD", $sformatf("\n Received transaction: %s, %h, %h", tr.inst, tr.instruction, tr.risc_rd_p), UVM_MEDIUM)
       // Procesar la transacción recibida
     endfunction
 
-    function void  write_mon2(monitor_tr tr);
+    function void  write_mon1(monitor_tr tr);
         //uvm_report_info(get_full_name(), $sformatf("\n Received transaction: %s, %h, %h", tr.inst, tr.instruction, tr.risc_rd_p), UVM_LOW);
         //print();
         $display("hello mon1 working on SCB");
