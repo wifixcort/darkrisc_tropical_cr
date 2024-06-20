@@ -88,7 +88,8 @@ function string uvc2_mon::inst_resize(string inst);
 endfunction
 
 task uvc2_mon:: run_phase(uvm_phase phase);
-   monitor_tr mn_txn; //Instancia par la transacción
+   // monitor_tr mn_txn; //Instancia par la transacción
+   monitor_tr mn_txn = monitor_tr::type_id::create("tr", this);
    super.run_phase(phase);
    uvm_report_info(get_full_name(),"Start run phase monitor 2", UVM_LOW);
 
@@ -96,12 +97,12 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 
       @ (posedge intf2.clk);// begin//
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
-         mn_txn = monitor_tr::type_id::create("tr");
+         // mn_txn = monitor_tr::type_id::create("tr", this);
          // mn_txn.data = '0; //Generar el dato a enviar
 
 
 
-         mon2_txn.write(mn_txn);//Publicar la transacción
+         // mon2_txn.write(mn_txn);//Publicar la transacción
          //R TYPE
           if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
              ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
@@ -153,6 +154,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
           mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
          //  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
 
+          mn_txn.inst = "ADD";
+          mn_txn.instruction = ADD;
           mon2_txn.write(mn_txn);
           //Clear this buffer
          //  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
