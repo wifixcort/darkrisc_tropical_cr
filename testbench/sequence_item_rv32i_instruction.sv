@@ -1,9 +1,5 @@
-//`include "uvm_macros.svh"
-//import uvm_pkg::*;
 import instructions_data_struc::*;
-//`include "../rtl/config.vh"
 
-// sequence item  <- legacy class instruction_generator
 class sequence_item_rv32i_instruction extends uvm_sequence_item;
 
   // random variables 
@@ -22,6 +18,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //==============================================================
   //         Constraints for instruction generator
   //==============================================================
+   
    
   // Generate the full instruction in last contraint solver
   //**************************************************************

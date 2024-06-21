@@ -32,12 +32,12 @@ class test_01 extends uvm_test;
     
     // Colocar 1 como parametro para verbosity
 
-    seq.gen_instructs_R_I();   // Generar instrucciones tipo R, I, L y S
-    //seq.gen_instructs_R_I_L_S();   // Generar instrucciones tipo R, I, L y S
-    seq.loop_end_of_program(1);    // Forzar instrucciones al final del programa para dejarlo loopeado
-    //seq.opt_addr(1);               // Forzar direcciones validas para las instrucciones Load y Store
-    seq.print_mem();               // Imprimir el resultado de la memoria de instrucciones
-    seq.write_mem();               // Escribir archivo .mem
+    seq.gen_instructs_R_I();                     // Generar instrucciones tipo R, I, L y S
+    //seq.gen_instructs_R_I_L_S();               // Generar instrucciones tipo R, I, L y S
+    seq.loop_end_of_program(1);                  // Forzar instrucciones al final del programa para dejarlo loopeado
+    //seq.opt_addr(1);                           // Forzar direcciones validas para las instrucciones Load y Store
+    seq.print_mem();                             // Imprimir el resultado de la memoria de instrucciones
+    seq.write_mem();                             // Escribir archivo .mem
     
  	  env.uvc1_env.agent_active.drv.mem_load();
  	  env.uvc1_env.agent_active.drv.reset();

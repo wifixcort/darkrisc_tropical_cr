@@ -5,13 +5,8 @@ version: '0.2'
 work_dir: .
 design_root_dir: ..\..
 simulations:
-  - name: test_02 (old fail)
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed 123456
-      +acc+b
   - name: test_01 seed_01
-    options: >-
+    options: >
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 12345
       +acc+b
@@ -24,7 +19,7 @@ simulations:
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
-      63453536 +acc+b
+      123456 +acc+b
   - name: test_01 seed_04
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
@@ -33,18 +28,33 @@ simulations:
   - name: test_01 seed_05
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
       2342346 +acc+b
   - name: test_02 seed_01
-    options: >-
+    options: >
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
+      +acc+b 
   - name: test_02 seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 666
       +acc+b
+  - name: test_02 seed_03
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed 123456
+      +acc+b
+  - name: test_02 seed_04
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 63536
+      +acc+b
+  - name: test_02 seed_05
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed
+      2342346 +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt
