@@ -17,4 +17,5 @@
 `include "../testbench/riscv_ref_model.sv"
 `include "../testbench/my_scoreboard.sv"
 `include "../testbench/env.sv"
-`include "../testbench/test_basic.sv"
+`include "../testbench/test_01.sv"
+`include "../testbench/test_02.sv"

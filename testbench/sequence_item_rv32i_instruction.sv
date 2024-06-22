@@ -1,9 +1,5 @@
-//`include "uvm_macros.svh"
-//import uvm_pkg::*;
 import instructions_data_struc::*;
-//`include "../rtl/config.vh"
 
-// sequence item  <- legacy class instruction_generator
 class sequence_item_rv32i_instruction extends uvm_sequence_item;
 
   // random variables 
@@ -23,6 +19,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //         Constraints for instruction generator
   //==============================================================
    
+   
   // Generate the full instruction in last contraint solver
   //**************************************************************
   constraint construct_full_inst{
@@ -36,9 +33,9 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
    //********************************************************
   constraint opcode_cases{
   soft opcode dist  {R_TYPE   :/ 44,
-                    I_TYPE    :/ 44
-                    // I_L_TYPE  :/ 5
-                    // S_TYPE    :/ 5
+                    I_TYPE    :/ 44,
+                    I_L_TYPE  :/ 5,
+                    S_TYPE    :/ 5
                     /*S_B_TYPE,
                     J_TYPE,
                     I_JALR_TYPE,
