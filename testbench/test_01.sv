@@ -43,7 +43,9 @@ class test_01 extends uvm_test;
  	  env.uvc1_env.agent_active.drv.reset();
 
     // Tiempo de simulación
-    #50000 //50 us
+    //#50000 //50 us
+    #7860
+    //env.uvc1_env.agent_active.drv.reset();
  
     phase.drop_objection (this);
   endtask
