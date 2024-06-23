@@ -1,5 +1,7 @@
 import instructions_data_struc::*;
 
+`include "../rtl/config.vh"
+
 `define __DB_ENABLE__
 `define __DB_PASS__
 
@@ -19,6 +21,7 @@ import instructions_data_struc::*;
 `define XSIMM top.soc0.core0.XSIMM
 `define XUIMM top.soc0.core0.XUIMM
 `define DATAO top.soc0.core0.DATAO
+`define DATAI top.soc0.core0.DATAI
 
 `define FALSE 0
 `define TRUE 1
@@ -26,7 +29,7 @@ import instructions_data_struc::*;
 typedef struct {
    string	   inst;
    logic [7:0] instruccion;
-   logic [4:0]	risc_rd_p; // riscv rd register pointer
+   logic [4:0] risc_rd_p; // riscv rd register pointer
    logic [31:0]	risc_rd_v; // riscv rd register value
    logic [4:0]	risc_rs1_p; // riscv rs1 register pointer
    logic [31:0]	risc_rs1_v; // riscv rs1 register value
@@ -43,6 +46,9 @@ typedef struct {
    logic [31:0]	inst_PC;
    logic [31:0]	inst_XIDATA;
    logic [15:0]	inst_counter;
+   logic [31:0]	risc_sdata;
+   logic [31:0]	risc_daddr;
+   bit			be;
    // logic [31:0]	sb_DADDR;
    // logic [31:0]	sb_DATAI;
 }ExData;
@@ -96,72 +102,94 @@ task uvc2_mon:: run_phase(uvm_phase phase);
    forever begin
 
       @ (posedge intf2.clk);// begin//
+      
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
-         // mn_txn = monitor_tr::type_id::create("tr", this);
-         // mn_txn.data = '0; //Generar el dato a enviar
+         if (`CORE.HLT == 0) begin
+			// mn_txn = monitor_tr::type_id::create("tr", this);
+			// mn_txn.data = '0; //Generar el dato a enviar
 
-         // //R TYPE
-         // if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
-         //    ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
-         //    ex_dbuf.instruccion == AND || ex_dbuf.instruccion == OR)begin
-         //    //  $display("-------------------------------------------------------------------------------------------->");
-         //    $display("------------------------- R type -------------------------");
-         //    //  r_type_cheker_rd_rs1_rs2(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-         //    //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_rs2_p, ex_dbuf.risc_rs2_v, ex_dbuf.sb_rd_p,
-         //    //             ex_dbuf.sb_rd_v, ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_rs2_p, ex_dbuf.sb_rs2_v);
-         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-         //    //  $display("--------------------------------------------------------------------------------------------<");
-			
-         //    //I TYPE
-         // end	else if(ex_dbuf.instruccion == ADDI || ex_dbuf.instruccion == SLTI || ex_dbuf.instruccion == SLTIU || ex_dbuf.instruccion == XORI ||
-			// 			ex_dbuf.instruccion == ORI || ex_dbuf.instruccion == ANDI || ex_dbuf.instruccion == SLLI || ex_dbuf.instruccion == SRLI ||
-			// 			ex_dbuf.instruccion == SRAI)begin
-         //    //  $display("-------------------------------------------------------------------------------------------->");
-         //    $display("------------------------- I type -------------------------");
-         //    //  i_type_cheker_rd_rs1_imm(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-         //    //             ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
-         //    //             ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
-         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+			//R TYPE
+			if(ex_dbuf.instruccion == ADD || ex_dbuf.instruccion == SUB || ex_dbuf.instruccion == SLL || ex_dbuf.instruccion == SLT || 
+               ex_dbuf.instruccion == SLTU || ex_dbuf.instruccion == XOR || ex_dbuf.instruccion == SRL || ex_dbuf.instruccion == SRA || 
+               ex_dbuf.instruccion == AND || ex_dbuf.instruccion == OR)begin
+               // $display("------------------------- R type -------------------------");
+               ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
-         //    //  $display("--------------------------------------------------------------------------------------------<");
-			
-         //    //I_L TYPE
-         // end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
-			// 		 ex_dbuf.instruccion == LHU) begin
-         //    //  $display("-------------------------------------------------------------------------------------------->");
-         //    $display("------------------------- IL type -------------------------");
-         //    //  i_l_type_cheker_rd_imm_rs1(ex_dbuf.inst ,ex_dbuf.instruccion, ex_dbuf.risc_rd_p, `CORE.REGS[ex_dbuf.risc_rd_p], 
-         //    //               ex_dbuf.risc_rs1_p, ex_dbuf.risc_rs1_v, ex_dbuf.risc_imm, ex_dbuf.sb_rd_p, ex_dbuf.sb_rd_v,
-         //    //               ex_dbuf.sb_rs1_p, ex_dbuf.sb_rs1_v, ex_dbuf.sb_imm);
-         //    ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-         //    //  $display("--------------------------------------------------------------------------------------------<");
-			
-         // end
-         ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+               //I TYPE
+			end	else if(ex_dbuf.instruccion == ADDI || ex_dbuf.instruccion == SLTI || ex_dbuf.instruccion == SLTIU || ex_dbuf.instruccion == XORI ||
+						ex_dbuf.instruccion == ORI || ex_dbuf.instruccion == ANDI || ex_dbuf.instruccion == SLLI || ex_dbuf.instruccion == SRLI ||
+						ex_dbuf.instruccion == SRAI)begin
+               // $display("------------------------- I type -------------------------");
+               ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+               //I_L TYPE
+			end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
+						ex_dbuf.instruccion == LHU) begin
+               // $display("------------------------- IL type -------------------------");
+               ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
+			   
+			end else if(ex_dbuf.instruccion == SB || ex_dbuf.instruccion == SH || ex_dbuf.instruccion == SW) begin
+			   // $display("------------------------- IL type -------------------------");
+			   ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rs2_p];
+               // Ver cuando es cual y sacar de la memoria los datos
+               if(ex_dbuf.instruccion == SB )begin
+				  case (ex_dbuf.be)
+					4'b1000: begin 
+                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][31:24];
+					end 
+					4'b0100: begin
+                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][23:16];
+					end
+					4'b0010: begin 
+                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][15:8];
+					end
+					4'b0001: begin 
+                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][7:0];
+					end
+				  endcase
+               end else if(ex_dbuf.instruccion == SH) begin
+                  case (ex_dbuf.be)
+                    4'b1100: begin 
+                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][31:16];
+                    end
+                    4'b0011: begin 
+                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][15:0];
+                    end 
+                  endcase
+               end else if(ex_dbuf.instruccion == SW) begin
+                  ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]];
+                  // ex_dbuf.risc_sdata = `CORE.SDATA;
+               end
+			   
+			end
+			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
-         mn_txn.inst = this.ex_dbuf.inst;
-         mn_txn.instruction = this.ex_dbuf.instruccion;
-         mn_txn.risc_rd_p = this.ex_dbuf.risc_rd_p;
-         mn_txn.risc_rd_v = this.ex_dbuf.risc_rd_v;
-         mn_txn.risc_rs1_p = this.ex_dbuf.risc_rs1_p;
-         mn_txn.risc_rs1_v = this.ex_dbuf.risc_rs1_v;
-         mn_txn.risc_rs2_p = this.ex_dbuf.risc_rs2_p;
-         mn_txn.risc_rs2_v = this.ex_dbuf.risc_rs2_v;
-         mn_txn.risc_imm = this.ex_dbuf.risc_imm;
-         mn_txn.inst_PC = this.ex_dbuf.inst_PC;
-         mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
-         mn_txn.inst_counter = this.inst_counter;
-         //  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
+			mn_txn.inst = this.ex_dbuf.inst;
+			mn_txn.instruction = this.ex_dbuf.instruccion;
+			mn_txn.risc_rd_p = this.ex_dbuf.risc_rd_p;
+			mn_txn.risc_rd_v = this.ex_dbuf.risc_rd_v;
+			mn_txn.risc_rs1_p = this.ex_dbuf.risc_rs1_p;
+			mn_txn.risc_rs1_v = this.ex_dbuf.risc_rs1_v;
+			mn_txn.risc_rs2_p = this.ex_dbuf.risc_rs2_p;
+			mn_txn.risc_rs2_v = this.ex_dbuf.risc_rs2_v;
+			mn_txn.risc_imm = this.ex_dbuf.risc_imm;
+			// mn_txn.risc_datai = `DATAI;
+			// mn_txn.risc_datao = `DATAO;
+			mn_txn.inst_PC = this.ex_dbuf.inst_PC;
+			mn_txn.inst_XIDATA = this.ex_dbuf.inst_XIDATA;
+			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
+			mn_txn.risc_sdata = ex_dbuf.risc_sdata;
+			//  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
 
-         mon2_txn.write(mn_txn);
-         //Clear this buffer
-         //  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-         //           risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, sb_rd_p : '0, sb_rd_v : '0,
-         //           sb_rs1_p : '0, sb_rs1_v : '0, sb_rs2_p : '0, sb_rs2_v : '0, sb_imm : '0, inst_PC : '0, 
-         //           inst_XIDATA : '0, sb_DADDR : '0, sb_DATAI : '0};
-         this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-						  risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
-						  inst_XIDATA : '0, inst_counter : '0};//
+			mon2_txn.write(mn_txn);
+			//Clear this buffer
+			//  this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+			//           risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, sb_rd_p : '0, sb_rd_v : '0,
+			//           sb_rs1_p : '0, sb_rs1_v : '0, sb_rs2_p : '0, sb_rs2_v : '0, sb_imm : '0, inst_PC : '0, 
+			//           inst_XIDATA : '0, sb_DADDR : '0, sb_DATAI : '0};
+			this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
+							 inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_daddr : '0, be : '0};//
+         end
       end
       
       if (`CORE.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
@@ -256,7 +284,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						 ex_dbuf.instruccion = SRAI;
 					  end
 					  default: begin
-`ifdef __DB_ENABLE__ 
+ `ifdef __DB_ENABLE__ 
 						 //  $display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
 						 $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
@@ -272,7 +300,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  default: begin
 
 						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-						//  $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
+						 //  $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
 					  end
 					endcase
@@ -303,9 +331,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						 ex_dbuf.instruccion = ANDI;
 					  end
 					  default: begin
-                  `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-						//  $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-						//  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+						 //  $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+						 //  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
 					  end
 					endcase                  
@@ -337,9 +365,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = LHU;
                    end
                    default: begin
-                     `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-					//   $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-					//   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+                      `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					  //   $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
                    end
 				 endcase
@@ -351,9 +379,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  //  $display("*********************ALERTA**********************     I_JALR    ");
                    end
                    default: begin
-                     `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-					//   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-					//   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					  //   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
                    end
 				 endcase
@@ -373,9 +401,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = SW;
                    end
                    default: begin
-                     `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-					//   $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-					//   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
+                      `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					  //   $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
                    end
 				 endcase  
@@ -383,48 +411,48 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               S_B_TYPE: begin
 				 case(top.soc0.core0.FCT3)
                    BEQ_FC: begin //beq
-                     `uvm_info("ALERTA", "BEQ instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BEQ    ");
+                      `uvm_info("ALERTA", "BEQ instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BEQ    ");
                    end
                    BNE_FC: begin //bne 
 					  //  $display("-> func: BNE <-");
-                     `uvm_info("ALERTA", "BNE instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BNE    ");
+                      `uvm_info("ALERTA", "BNE instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BNE    ");
                    end
                    BLT_FC: begin //blt
 					  //  $display("-> func: BLT <-");
-                     `uvm_info("ALERTA", "BLT instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BLT    ");
+                      `uvm_info("ALERTA", "BLT instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BLT    ");
                    end
                    BGE_FC: begin //beg
 					  //  $display("-> func: BEG <-");
-                     `uvm_info("ALERTA", "BEG instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BEG    ");
+                      `uvm_info("ALERTA", "BEG instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BEG    ");
                    end
                    BLTU_FC: begin //bltu
 					  //  $display("-> func: BLTU <-");
-                     `uvm_info("ALERTA", "BLTU instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BLTU   ");
+                      `uvm_info("ALERTA", "BLTU instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BLTU   ");
                    end
                    BGEU_FC: begin //bgeu
 					  //  $display("-> func: BGEU <-");
-                     `uvm_info("ALERTA", "BGEU instruction found", UVM_MEDIUM);
-					//   $display("*********************ALERTA**********************     BGEU    ");
+                      `uvm_info("ALERTA", "BGEU instruction found", UVM_MEDIUM);
+					  //   $display("*********************ALERTA**********************     BGEU    ");
                    end
                    default: begin
-                     `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
-					//   $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
+                      `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					  //   $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  err_count++;
                    end
 				 endcase
               end	
               J_TYPE: begin
-            `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
-				//  $display("*********************ALERTA**********************     J_TYPE    ");
+				 `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
+				 //  $display("*********************ALERTA**********************     J_TYPE    ");
               end
               LUI_TYPE: begin
-               `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
-				//  $display("*********************ALERTA**********************     LUI    ");
+				 `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
+				 //  $display("*********************ALERTA**********************     LUI    ");
 
               end	
               AUIPC_TYPE: begin
@@ -433,7 +461,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               
               default: begin
 				 if(top.soc0.core0.XIDATA != 0) begin
-               `uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					`uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					// $display("**** Instruccion not found ****");
 					// $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					err_count++; 
@@ -450,8 +478,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
 						risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
-						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0};//, inst_counter: this.inst_counter     
-              
+						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0, risc_sdata : `CORE.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
+            
          end
          
          //  end//Work out of reset
@@ -472,7 +500,7 @@ function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    rx_funct_str = "";
    this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
 					risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
-					inst_XIDATA : '0, inst_counter : '0};
+					inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_daddr : '0, be : '0};//
 endfunction
 
 function void uvc2_mon::build_phase(uvm_phase phase);
