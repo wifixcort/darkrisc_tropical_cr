@@ -32,7 +32,7 @@ class gen_sequence extends uvm_sequence;
                 start_item(item_0);
                 finish_item(item_0);  
                 `uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0]), UVM_MEDIUM)
-    	        item_0.print();   
+    	        //item_0.print();   
             end
                                                                                                        //hasta 511 hasta que no se agregue lo del loop al final
             //*** Insertando instrucciones teniendo en cuenta las direcciones base en caso de LOAD/STORE (Instrucciones 31-509)
@@ -41,7 +41,7 @@ class gen_sequence extends uvm_sequence;
             else if (i < 2**`MLEN/(4*2) ) begin //-2
                 item_0.randomize();
                 
-                // Si la instruccion es un STORE o un LOAD
+                // Si la instruccion item_00 es un STORE o un LOAD
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
                     reg_addr = item_0.rs1 ; // reg where store/load going to search base adrress
 
@@ -76,11 +76,11 @@ class gen_sequence extends uvm_sequence;
                     
                     //INFO prints
                     `uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0]), UVM_MEDIUM)
-    	            item_2.print();
+    	            //item_2.print();
                     `uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0] + 2'h1), UVM_MEDIUM)
-    	            item_1.print();
+    	            //item_1.print();
                     `uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0] + 2'h2), UVM_MEDIUM)
-    	            item_0.print();
+    	            //item_0.print();
                     // todo: quitar displays
                     $display("\n(force ADDI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0], item_2.full_inst);
                     $display("(force XORI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]+2'h1, item_1.full_inst);
@@ -96,7 +96,7 @@ class gen_sequence extends uvm_sequence;
                     i = i+2;
                 end
 
-                // Si la instruccion es REGISTER o IMMEDIATE
+                // Si la instruccion item_0 es REGISTER o IMMEDIATE
                 else begin
                     //Transaccion normal
                     start_item(item_0);
