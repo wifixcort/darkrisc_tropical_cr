@@ -59,7 +59,7 @@ class my_scoreboard extends uvm_scoreboard;
 		 tr.instruction == SLTU || tr.instruction == XOR || tr.instruction == SRL || tr.instruction == SRA || 
 		 tr.instruction == AND || tr.instruction == OR)begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		 //  $display("------------------------- R type -------------------------");
+		  $display("------------------------- R type -------------------------");
 		 r_type_cheker_rd_rs1_rs2(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 								  tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_rs2_p, tr.risc_rs2_v, this.rdd_val,
 								  this.rdd_val_final, this.rs1_val, this.rs1_val_init, this.rs2_val, this.rs2_val_init, tr.inst_counter);
@@ -71,7 +71,7 @@ class my_scoreboard extends uvm_scoreboard;
 					tr.instruction == ORI || tr.instruction == ANDI || tr.instruction == SLLI || tr.instruction == SRLI ||
 					tr.instruction == SRAI)begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		 //  $display("------------------------- I type -------------------------");
+		  $display("------------------------- I type -------------------------");
 		 i_type_cheker_rd_rs1_imm(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 								  tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm, this.rdd_val, this.rdd_val_final,
 								  this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
@@ -81,7 +81,7 @@ class my_scoreboard extends uvm_scoreboard;
 	  end else if(tr.instruction == LB || tr.instruction == LH || tr.instruction == LW || tr.instruction == LBU || 
 				  tr.instruction == LHU) begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		 //  $display("------------------------- IL type -------------------------");
+		  $display("------------------------- IL type -------------------------");
 		 i_l_type_cheker_rd_imm_rs1(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.rdd_val_final,
 									this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
@@ -91,7 +91,7 @@ class my_scoreboard extends uvm_scoreboard;
 
 	  end else if(tr.instruction == SB || tr.instruction == SH || tr.instruction == SW) begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		 //  $display("------------------------- IL type -------------------------");
+		  $display("------------------------- S type -------------------------");
 		 s_type_cheker_rs2_imm_rs1(tr.inst ,tr.instruction, tr.risc_sdata, tr.risc_rs2_p, `CORE.REGS[tr.risc_rs2_p],
 								   tr.risc_imm, tr.risc_rs1_p, tr.risc_rs1_v, this.sdata, this.rs2_val, ref_model.REGS[this.rs2_val], this.imm_val_sign_ext,
 								   this.rs1_val, this.rs1_val_init, tr.inst_counter);
@@ -202,12 +202,10 @@ class my_scoreboard extends uvm_scoreboard;
 			// err_count++; 
 		 end else begin
 			general_check = `TRUE;//Si paso la prueba
-`ifdef __DB_PASS__ 
 			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
 											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
 			// $display("PC = %h, inst = %h", top.soc0.core0.PC, `XIDATA);
 			// $display("sb DADDR = %h , sb DATAI = %h", sb.ref_model.DADDR, sb.ref_model.DATAI);
-`endif
 		 end
 	  end
    endfunction: i_type_cheker_rd_rs1_imm
@@ -257,10 +255,8 @@ class my_scoreboard extends uvm_scoreboard;
    			// err_count++; 
    		 end else begin
    			general_check = `TRUE;//Si paso la prueba
-`ifdef __DB_PASS__ 
    			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- |                              *** %s ***", 
 											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
-`endif
    		 end
    	  end
    endfunction: r_type_cheker_rd_rs1_rs2
@@ -309,10 +305,8 @@ class my_scoreboard extends uvm_scoreboard;
    			// err_count++; 
    		 end else begin
    			general_check = `TRUE;//Si paso la prueba
-`ifdef __DB_PASS__ 
    			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
 											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
-`endif
    		 end
    	  end
    endfunction: i_l_type_cheker_rd_imm_rs1

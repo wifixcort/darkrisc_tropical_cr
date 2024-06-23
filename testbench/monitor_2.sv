@@ -120,6 +120,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
 						ex_dbuf.instruccion == LHU) begin
                // $display("------------------------- IL type -------------------------");
+                     $display("DATAI mon2 = %h", top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]]);
                ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 			   
 			end else if(ex_dbuf.instruccion == SB || ex_dbuf.instruccion == SH || ex_dbuf.instruccion == SW) begin
@@ -256,7 +257,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = AND;
                    end
                    default: begin
-`ifdef __DB_ENABLE__ 
+// `ifdef __DB_ENABLE__ 
 					  // $display("**** Instruccion type R not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
 					  // $display("FC7 = %b, FC3 = %b", top.soc0.core0.XIDATA[31:25], top.soc0.core0.XIDATA[14:12]);
 					  // $display("sb_rd_p = %h, sb_rd_val = %d, sb_rs1_p = %h, sb_rs1 = %d, sb_imm = %d ", sb.rdd, sb_rd_reg_value, sb.rs1, $signed(sb.rs1_val_ini), sb.imm_val_sign_ext);
@@ -279,7 +280,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						 ex_dbuf.instruccion = SRAI;
 					  end
 					  default: begin
- `ifdef __DB_ENABLE__ 
+//  `ifdef __DB_ENABLE__ 
 						 //  $display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
 						 $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
