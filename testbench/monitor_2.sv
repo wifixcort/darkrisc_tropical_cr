@@ -1,10 +1,5 @@
 import instructions_data_struc::*;
 
-`include "../rtl/config.vh"
-
-`define __DB_ENABLE__
-`define __DB_PASS__
-
 `define RMDATA top.soc0.core0.RMDATA
 `define LDATA top.soc0.core0.LDATA
 `define SDATA top.soc0.core0.SDATA
