@@ -8,22 +8,21 @@ class darksocv_agent_active extends uvm_agent;
   
   monitor_1 mon1;
   darksocv_driver drv;
-  sequencer seqr;
-
-  // TODO: AQUI VA INSTANCIA DE MONITOR 1
+  uvm_sequencer #(sequence_item_rv32i_instruction) seqr;
+  //sequencer #(sequence_item_rv32i_instruction) seqr;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
             
-    drv = darksocv_driver::type_id::create ("drv", this); 
+    drv  = darksocv_driver::type_id::create ("drv", this); 
     mon1 = monitor_1::type_id::create ("mon1", this);
-    seqr = sequencer::type_id::create("seqr", this);
+    seqr  = uvm_sequencer#(sequence_item_rv32i_instruction)::type_id::create("seqr", this);
 
   endfunction
 
   virtual function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
-    //drv.seq_item_port.connect(seqr.seq_item_export);
+    drv.seq_item_port.connect(seqr.seq_item_export);
   endfunction
 
 endclass

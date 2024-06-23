@@ -2,6 +2,11 @@ import instructions_data_struc::*;
 
 class sequence_item_rv32i_instruction extends uvm_sequence_item;
 
+  function new(string name = "sequence_item_rv32i_instruction");
+    super.new(name);
+  endfunction
+
+
   // random variables 
   rand bit [31:0] full_inst;
   rand bit [6:0]  opcode;
@@ -11,6 +16,18 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   rand bit [6:0]  funct7;
   rand bit [2:0]  funct3;
   rand bit [11:0] imm;
+
+  //*******************************************************
+  `uvm_object_utils_begin(sequence_item_rv32i_instruction)
+    `uvm_field_int (full_inst, UVM_DEFAULT)
+    `uvm_field_int (opcode, UVM_DEFAULT)
+    `uvm_field_int (rs1, UVM_DEFAULT)
+    `uvm_field_int (rs2, UVM_DEFAULT)
+    `uvm_field_int (rd, UVM_DEFAULT)
+    `uvm_field_int (funct7, UVM_DEFAULT)
+    `uvm_field_int (funct3, UVM_DEFAULT)
+    `uvm_field_int (imm, UVM_DEFAULT)
+  `uvm_object_utils_end
 
   // operation variables
   logic opt_addr_select = 1'b0; //optimize for generate address
@@ -127,8 +144,8 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
         (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
         (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
       }
-      
-      
+
+      //todo; puede ser necesario meter esto dentro del if( L || S ) y quitar el opt_addres select
       // -----> "The effective byte address is obtained by adding register rs1 to the sign-extended 12-bit offset" - riscv_spec
       //        El offset de 12 bits es demasiado para el darkriscv.
       // //ACOTADORES de offset a +127 -127
@@ -140,13 +157,5 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
         imm[10:8] == 3'b111;
       }
     }
-   } 
-   
-  // UVM requirements
-  //*******************************************************
-  `uvm_object_utils_begin(sequence_item_rv32i_instruction)
-  `uvm_object_utils_end
-  function new(string name = "sequence_item_rv32i_instruction");
-    super.new(name);
-  endfunction
+  } 
 endclass

@@ -7,13 +7,11 @@ class test_01 extends uvm_test;
   endfunction : new
   
   darksocv_env env;  
-  gen_sequence seq;
   
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
           
     env  = darksocv_env::type_id::create ("env", this);
-    seq = gen_sequence::type_id::create("seq");
 
   endfunction
   
@@ -23,22 +21,24 @@ class test_01 extends uvm_test;
     
   endfunction : end_of_elaboration_phase
 
+  gen_sequence seq;
 
   virtual task run_phase(uvm_phase phase);
 
     phase.raise_objection (this);
 
     ///// CONFIGURACION DE CONTROLABILIDAD  /////
+    //seq.gen_instructs_R_I();                     // Generar instrucciones tipo R, I, L y S
+    //seq.set_regs();             
+    //seq.gen_instructs_R_I_L_S();                 // Generar instrucciones tipo R, I, L y S
+    //seq.loop_end_of_program(1);                  // Forzar instrucciones al final del programa para dejarlo loopeado
+    //seq.opt_addr(1);                             // Forzar direcciones validas para las instrucciones Load y Store
+    //seq.print_mem();                             // Imprimir el resultado de la memoria de instrucciones
+    //seq.write_mem();                             // Escribir archivo .mem
     
-    // Colocar 1 como parametro para verbosity
+    seq = gen_sequence::type_id::create("seq");
+    seq.start(env.uvc1_env.agent_active.seqr);
 
-    seq.gen_instructs_R_I();                     // Generar instrucciones tipo R, I, L y S
-    //seq.gen_instructs_R_I_L_S();               // Generar instrucciones tipo R, I, L y S
-    seq.loop_end_of_program(1);                  // Forzar instrucciones al final del programa para dejarlo loopeado
-    //seq.opt_addr(1);                           // Forzar direcciones validas para las instrucciones Load y Store
-    seq.print_mem();                             // Imprimir el resultado de la memoria de instrucciones
-    seq.write_mem();                             // Escribir archivo .mem
-    
  	  env.uvc1_env.agent_active.drv.mem_load();
  	  env.uvc1_env.agent_active.drv.reset();
 
