@@ -295,7 +295,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  end
 					  default: begin
 
-						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+						 `uvm_error("Instruction type I not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 						 //  $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
 					  end
@@ -327,7 +327,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						 ex_dbuf.instruccion = ANDI;
 					  end
 					  default: begin
-						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+						 `uvm_error("Instruction type I not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 						 //  $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 						 //  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
@@ -361,7 +361,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = LHU;
                    end
                    default: begin
-                      `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type L not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -375,7 +375,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  //  $display("*********************ALERTA**********************     I_JALR    ");
                    end
                    default: begin
-                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -397,7 +397,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = SW;
                    end
                    default: begin
-                      `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type S not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -407,47 +407,47 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               S_B_TYPE: begin
 				 case(top.soc0.core0.FCT3)
                    BEQ_FC: begin //beq
-                      `uvm_info("ALERTA", "BEQ instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BEQ instruction found");
 					  //   $display("*********************ALERTA**********************     BEQ    ");
                    end
                    BNE_FC: begin //bne 
 					  //  $display("-> func: BNE <-");
-                      `uvm_info("ALERTA", "BNE instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BNE instruction found");
 					  //   $display("*********************ALERTA**********************     BNE    ");
                    end
                    BLT_FC: begin //blt
 					  //  $display("-> func: BLT <-");
-                      `uvm_info("ALERTA", "BLT instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BLT instruction found");
 					  //   $display("*********************ALERTA**********************     BLT    ");
                    end
                    BGE_FC: begin //beg
 					  //  $display("-> func: BEG <-");
-                      `uvm_info("ALERTA", "BEG instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BEG instruction found");
 					  //   $display("*********************ALERTA**********************     BEG    ");
                    end
                    BLTU_FC: begin //bltu
 					  //  $display("-> func: BLTU <-");
-                      `uvm_info("ALERTA", "BLTU instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BLTU instruction found");
 					  //   $display("*********************ALERTA**********************     BLTU   ");
                    end
                    BGEU_FC: begin //bgeu
 					  //  $display("-> func: BGEU <-");
-                      `uvm_info("ALERTA", "BGEU instruction found", UVM_MEDIUM);
+                      `uvm_warning("ALERTA", "BGEU instruction found");
 					  //   $display("*********************ALERTA**********************     BGEU    ");
                    end
                    default: begin
-                      `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type S_B not found", $sformatf("\nXIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  err_count++;
                    end
 				 endcase
               end	
               J_TYPE: begin
-				 `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
+				 `uvm_warning("ALERTA", "J_TYPE instruction found");
 				 //  $display("*********************ALERTA**********************     J_TYPE    ");
               end
               LUI_TYPE: begin
-				 `uvm_info("ALERTA", "J_TYPE instruction found", UVM_MEDIUM);
+				 `uvm_warning("ALERTA", "J_TYPE instruction found");
 				 //  $display("*********************ALERTA**********************     LUI    ");
 
               end	
@@ -457,7 +457,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               
               default: begin
 				 if(top.soc0.core0.XIDATA != 0) begin
-					`uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+					`uvm_error("Instruction UNKOWN", $sformatf("\n XIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
 					// $display("**** Instruccion not found ****");
 					// $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					err_count++; 
@@ -474,7 +474,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
 						risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
-						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0, risc_sdata : `CORE.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
+						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : this.inst_counter, risc_sdata : `CORE.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
             
          end
          

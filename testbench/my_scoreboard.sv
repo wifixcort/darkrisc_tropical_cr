@@ -43,7 +43,8 @@ class my_scoreboard extends uvm_scoreboard;
    endfunction
    
    virtual function void build_phase(uvm_phase phase);
-      //super.new(phase);  
+      //super.new(phase);
+	
    endfunction
 
    // virtual function void connect_phase(uvm_phase phase);
@@ -59,7 +60,7 @@ class my_scoreboard extends uvm_scoreboard;
 		 tr.instruction == SLTU || tr.instruction == XOR || tr.instruction == SRL || tr.instruction == SRA || 
 		 tr.instruction == AND || tr.instruction == OR)begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		  $display("------------------------- R type -------------------------");
+		//   $display("------------------------- R type -------------------------");
 		 r_type_cheker_rd_rs1_rs2(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 								  tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_rs2_p, tr.risc_rs2_v, this.rdd_val,
 								  this.rdd_val_final, this.rs1_val, this.rs1_val_init, this.rs2_val, this.rs2_val_init, tr.inst_counter);
@@ -71,7 +72,7 @@ class my_scoreboard extends uvm_scoreboard;
 					tr.instruction == ORI || tr.instruction == ANDI || tr.instruction == SLLI || tr.instruction == SRLI ||
 					tr.instruction == SRAI)begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		  $display("------------------------- I type -------------------------");
+		//   $display("------------------------- I type -------------------------");
 		 i_type_cheker_rd_rs1_imm(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 								  tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm, this.rdd_val, this.rdd_val_final,
 								  this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
@@ -81,26 +82,27 @@ class my_scoreboard extends uvm_scoreboard;
 	  end else if(tr.instruction == LB || tr.instruction == LH || tr.instruction == LW || tr.instruction == LBU || 
 				  tr.instruction == LHU) begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		  $display("------------------------- IL type -------------------------");
+		//   $display("------------------------- IL type -------------------------");
 		 i_l_type_cheker_rd_imm_rs1(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.rdd_val_final,
 									this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
-         $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
-		 $display("r DATAI = %h, s DATAI = %h", DATAI, DATAI);
+         
+		//  $display("r DATAI = %h, s DATAI = %h", DATAI, DATAI);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
 	  end else if(tr.instruction == SB || tr.instruction == SH || tr.instruction == SW) begin
 		 //  $display("-------------------------------------------------------------------------------------------->");
-		  $display("------------------------- S type -------------------------");
+		//   $display("------------------------- S type -------------------------");
 		 s_type_cheker_rs2_imm_rs1(tr.inst ,tr.instruction, tr.risc_sdata, tr.risc_rs2_p, `CORE.REGS[tr.risc_rs2_p],
 								   tr.risc_imm, tr.risc_rs1_p, tr.risc_rs1_v, this.sdata, this.rs2_val, ref_model.REGS[this.rs2_val], this.imm_val_sign_ext,
 								   this.rs1_val, this.rs1_val_init, tr.inst_counter);
-		 $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
-		 $display("MEM sdata = %h, SB sdata = %h", tr.risc_sdata, sdata);
+		//  $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
+		//  $display("MEM sdata = %h, SB sdata = %h", tr.risc_sdata, sdata);
 		 //  $display("r DATAO = %h, s DATAO = %h", tr.risc_datao, DATAO);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
 	  end
+	  $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
       //   `uvm_info("MY_SCOREBOARD", $sformatf("\n Received transaction: %s, %h, %h", tr.inst, tr.instruction, tr.risc_rd_p), UVM_MEDIUM)
       // Procesar la transacción recibida
    endfunction
@@ -182,7 +184,7 @@ class my_scoreboard extends uvm_scoreboard;
 	  bit														  rs1_p_check;
 	  bit														  rs1_v_check;
 	  bit														  imm_check;
-	  bit														  general_check;
+	//   bit														  general_check;
 
 	  begin
 
@@ -194,16 +196,17 @@ class my_scoreboard extends uvm_scoreboard;
 		 rs1_v_check = (risc_rs1_v == sb_rs1_v) ? `TRUE : `FALSE;
 		 imm_check = (risc_imm == sb_imm) ? `TRUE : `FALSE;
 		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !imm_check)begin
-			general_check = `FALSE;//No paso la pueba
-			`uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
-													inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
-			// display("PC = %h, inst = %h", top.soc0.core0.PC, `XIDATA);
+			`uvm_error("TEST NOT PASSED", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_imm, sb_imm, imm_check?"PASS":"ERR"))
+			
+			// `uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
+			// 										inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
+			
+													// display("PC = %h, inst = %h", top.soc0.core0.PC, `XIDATA);
 			// $display("sb DADDR = %h , sb DATAI = %h", sb.ref_model.DADDR, sb.ref_model.DATAI);
 			// err_count++; 
 		 end else begin
-			general_check = `TRUE;//Si paso la prueba
-			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
-											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
+			// general_check = `TRUE;//Si paso la prueba
+			`uvm_info("TEST PASS", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_imm, sb_imm, imm_check?"PASS":"ERR"), UVM_LOW)
 			// $display("PC = %h, inst = %h", top.soc0.core0.PC, `XIDATA);
 			// $display("sb DADDR = %h , sb DATAI = %h", sb.ref_model.DADDR, sb.ref_model.DATAI);
 		 end
@@ -234,7 +237,7 @@ class my_scoreboard extends uvm_scoreboard;
    	  bit												rs1_v_check;
    	  bit												rs2_p_check;
    	  bit												rs2_v_check;
-   	  bit												general_check;
+   	//   bit												general_check;
 
    	  begin
 
@@ -247,16 +250,14 @@ class my_scoreboard extends uvm_scoreboard;
    		 rs2_p_check = (risc_rs2_p == sb_rs2_p) ? `TRUE : `FALSE;
    		 rs2_v_check = (risc_rs2_v == sb_rs2_v) ? `TRUE : `FALSE;
    		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !rs2_p_check || !rs2_v_check)begin
-   			general_check = `FALSE;//No paso la pueba
-   			`uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- |                              *** %s ***", 
-   													inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", general_check?"PASS":"ERROR"))
+   			// general_check = `FALSE;//No paso la pueba
+   			`uvm_error("TEST NOT PASSED", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X"))
    			// $display("PC = %h, inst = %h", mn_txn.inst_PC, ex_dbuf.inst_XIDATA );
    			// $display("sb DADDR = %h , sb DATAI = %h", ex_dbuf.sb_DADDR, ex_dbuf.sb_DATAI);
    			// err_count++; 
    		 end else begin
-   			general_check = `TRUE;//Si paso la prueba
-   			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- |                              *** %s ***", 
-											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
+   			// general_check = `TRUE;//Si paso la prueba
+   			`uvm_info("TEST PASS", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X"), UVM_LOW)
    		 end
    	  end
    endfunction: r_type_cheker_rd_rs1_rs2
@@ -298,15 +299,16 @@ class my_scoreboard extends uvm_scoreboard;
 		 //  ldata_check = (risc_ldata == sb_ldata) ? `TRUE : `FALSE;
    		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !imm_check)begin // || !ldata_check
    			general_check = `FALSE;//No paso la pueba
-   			`uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
-													inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
+			   `uvm_error("TEST NOT PASSED", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_imm, sb_imm, imm_check?"PASS":"ERR"))
+   			// `uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***",                                                                                                   inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
    			// $display("PC = %h, inst = %h", ex_dbuf.inst_PC, ex_dbuf.inst_XIDATA );
    			// $display("sb DADDR = %h , sb DATAI = %h", ex_dbuf.sb_DADDR, ex_dbuf.sb_DATAI);
    			// err_count++; 
    		 end else begin
    			general_check = `TRUE;//Si paso la prueba
-   			`uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
-											 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
+			   `uvm_info("TEST PASS", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_imm, sb_imm, imm_check?"PASS":"ERR"), UVM_LOW)
+   			// `uvm_info("TEST PASS", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***", 
+			// 								 inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"), UVM_LOW)
    		 end
    	  end
    endfunction: i_l_type_cheker_rd_imm_rs1
