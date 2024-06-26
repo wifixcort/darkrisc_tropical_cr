@@ -375,7 +375,7 @@ module darksocv
     wire [3:0] UDEBUG;
 
     wire FINISH_REQ;
-
+/*
     darkuart
 //    #(
 //      .BAUD((`BOARD_CK/115200))
@@ -400,7 +400,7 @@ module darksocv
 `endif
       .DEBUG(UDEBUG)
     );
-
+*/
     // darkriscv
 
     wire [3:0] KDEBUG;
@@ -471,6 +471,7 @@ module darksocv
 	 
     assign DEBUG = { XTIMER, KDEBUG[2:0] }; // UDEBUG;
 
+/*
 `ifdef SIMULATION
 
     `ifdef __PERFMETER__
@@ -545,5 +546,5 @@ module darksocv
     `endif
 
 `endif
-
+*/
 endmodule

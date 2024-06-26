@@ -520,6 +520,7 @@ module darkriscv
 `endif
         PC   <= /*XRES ? `__RESETPC__ :*/ HLT ? PC : NXPC; // current program counter
 
+/*
 `ifndef __YOSYS__
 
         if(EBRK)
@@ -540,7 +541,7 @@ module darkriscv
             $stop();
         end
 `endif
-
+*/
     end
 
     // IO and memory interface

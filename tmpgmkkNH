@@ -1,0 +1,9183 @@
+
+`line 1 "rtl/../rtl/config.vh" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+//`timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// darkriscv configuration
+////////////////////////////////////////////////////////////////////////////////
+
+// pipeline stages:
+//
+// 2-stage version: core and memory in different clock edges result in less
+// clock performance, but less losses when the program counter changes
+// (pipeline flush = 1 clock).  Works like a 4-stage pipeline and remember
+// the 68040 clock scheme, with instruction per clock = 1.  alternatively,
+// it is possible work w/ 1 wait-state and 1 clock edge, but with a penalty
+// in performance (instruction per clock = 0.5).
+//
+// 3-stage version: core and memory in the same clock edge require one extra
+// stage in the pipeline, but keep a good performance most of time
+// (instruction per clock = 1).  of course, read operations require 1
+// wait-state, which means sometimes the read performance is reduced.
+
+
+// RV32I vs RV32E:
+//
+// The difference between the RV32I and RV32E regarding the logic space is
+// minimal in typical applications with modern 5 or 6 input LUT based FPGAs,
+// but the RV32E is better with old 4 input LUT based FPGAs.
+//`define __RV32E__  //MODIFIED: comented for use RV32I
+
+// muti-threading support:
+//
+// Decreases clock performance by 20% (80MHz), but enables two or more
+// contexts (threads) in the core. The threads work in symmetrical way,
+// which means that they will start with the same exactly core parameters
+// (same initial PC, same initial SP, etc). The boot.s code is designed
+// to handle this difference and set each thread to different
+// applications.
+// Notes:
+// a) threading is currently supported only in the 3-stage pipeline version.
+// b) the old experimental "interrupt mode" was removed, which means that
+//    the multi-thread mode does not make anything "visible" other than
+//    increment the gpio register.
+// c) the threading in the non-interrupt mode switches when the program flow
+//    changes, i.e. every jal instruction. When the core is idle, it is
+//    probably in a jal loop.
+// The number of threads must be 2**n (i.e. THREADS = 3 means 8 threads)
+//`define __THREADS__ 3
+//
+// mac instruction:
+//
+// The mac instruction is similar to other register to register
+// instructions, but with a different opcode 7'h1111111.  the format is mac
+// rd,r1,r2, but is not currently possible encode in asm, by this way it is
+// available in licb as int mac(int rd, short r1, short r2).  Although it
+// can be used to accelerate the mul/div operations, the mac operation is
+// designed for DSP applications.  with some effort (low level machine
+// code), it is possible peak 100MMAC/s @100MHz.
+//`define __MAC16X16__
+
+// flexbuzz interface (experimental):
+//
+// A new data bus interface similar to a well known c*ldfire bus interface, in
+// a way that part of the bus routing is moved to the core, in a way that
+// is possible support different bus widths (8, 16 or 32 bit) and endians more
+// easily (the new interface is natively big-endian, but the endian can be adjusted
+// in the bus interface dinamically). Similarly to the standard 32-bit interface,
+// the external logic must detect the RD/WR operation quick enough and assert HLT
+// in order to insert wait-states and perform the required multiplexing to fit
+// the DLEN operand size in the data bus width available.
+//`define __FLEXBUZZ__
+
+// interrupt support
+//
+// The interrupt support in the core uses the machine registers mtvec and
+// mepc, which means support the control special register instruction csrrw,
+// in a way that is possible read/write the mtvec and mepc.
+// the interrupt itself works like the thread switch, with the difference
+// that:
+// a) the PC will be saved in the mepc register
+// b)the PC will receive the mtvec value
+// c) single interrupt, which means that the mtvec offset is always zero
+// The interrupt support cannot be used with threading (because makes no
+// much sense?)... also, it requires the 3 stage pipeline (again, makes no
+// much sense use it with the 2-stage pipeline).
+//`define __INTERRUPT__
+
+// initial PC
+//
+// Typically, the PC is set [by HW] to address 0, representing the start of
+// ROM memory and the SP is set [by SW] to the final of RAM memory.  In the
+// linker, the start of ROM memory matches with the .text area, which is
+// defined in the boot.c code and the start of RAM memory matches with the
+// .data and other volatile data, in a way that the stack can be positioned
+// in the top of RAM and does not match with the .data.
+
+
+////////////////////////////////////////////////////////////////////////////////
+// darksocv configuration:
+////////////////////////////////////////////////////////////////////////////////
+
+// interactive simulation:
+//
+// When enabled, will trick the simulator in order to enable interactive
+// access via the stdin, in a way that is possible type interactive commands,
+// which will make your simulator crazy! unfortunately, it works only with
+// iverilog... at least, Xilinx ISIM does not liket the $fgetc()
+//`define __INTERACTIVE__
+
+// performance measurement:
+//
+// The performance measurement can be done in the simulation level by
+// eabling the __PERFMETER__ define, in order to check how the clock cycles
+// are used in the core. The report is displayed when the FINISH_REQ signal
+// is actived by the UART.
+
+
+// icarus register debug:
+//
+// As most people observed, the icarus verilog does not dump the register
+// bank because icarus does not dump arrays by default. However, it is possible
+// activate this special option in order to dump the register bank. This
+// makes no effect in other simulators, but it appears as a warning.
+//`define __REGDUMP__
+
+// full harvard architecture:
+//
+// When defined, enforses that the instruction and data buses are connected
+// to fully separate memory banks.  Although the darkriscv always use
+// harvard architecture in the core, with separate instruction and data
+// buses, the logic levels outside the core can use different architectures
+// and concepts, including von neumann, wich a single bus shared by
+// instruction and data access, as well a mix between harvard and von
+// neumann, which is possible in the case of dual-port blockrams, where is
+// possible connect two separate buses in a single memory bank.  the main
+// advantage of a single memory bank is that the .text and .data areas can
+// be better allocated, but in this case is not possible protect the .text
+// area as in the case of separate memory banks.
+// WARNING: this setup must match with the src/darksocv.ld.src file!
+//`define __HARVARD__
+
+// memory size:
+//
+// The current test firmware requires 8KB of memory, but it depends of the
+// memory layout: whenthe I-bus and D-bus are both attached in the same BRAM,
+// it is possible assume that 8MB is enough, but when the I-bus and D-bus are
+// attached to separate memories, the I-BRAM requires around 5KB and the
+// D-BRAM requires about 1.5KB. A safe solution is just simply and set the
+// size as the same.
+// The size is defined as 2**MLEN, i.e. the address bits used in the memory.
+// WARNING: this setup must match with the src/darksocv.ld.src file!
+
+
+
+    
+    //`define MLEN 15 // MEM[12:0] -> 32KBytes LENGTH = 0x8000 for coremark!
+
+
+// read-modify-write cycle:
+//
+// Generate RMW cycles when writing in the memory. This option basically
+// makes the read and write cycle symmetric and may work better in the cases
+// when the 32-bit memory does not support separate write enables for
+// separate 16-bit and 8-bit words. Typically, the RMW cycle results in a
+// decrease of 5% in the performance (not the clock, but the instruction
+// pipeline eficiency) due to memory wait-states.
+//`define __RMW_CYCLE__
+
+// UART speed is set in bits per second, typically 115200 bps:
+//`define __UARTSPEED__ 115200
+
+// UART queue:
+//
+// Optional RX/TX queue for communication oriented applications. The concept
+// foreseen 256 bytes for TX and RX, in a way that frames up to 128 bytes can
+// be easily exchanged via UART.
+//`define __UARTQUEUE__
+
+////////////////////////////////////////////////////////////////////////////////
+// board definition:
+////////////////////////////////////////////////////////////////////////////////
+
+// The board is automatically defined in the xst/xise files via Makefile or
+// ISE. Case it is not the case, please define you board name here:
+//`define AVNET_MICROBOARD_LX9
+//`define XILINX_AC701_A200
+//`define QMTECH_SDRAM_LX16
+
+// the following defines are automatically defined:
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// the board definition is done on the tool, otherwise we assume simulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// to port to a new board, use TESTMODE to test:
+// - the reset button is working
+// - the LED is blinking at 1Hz
+// - the UART is looped
+//`define TESTMODE
+
+
+    
+    
+
+
+
+
+
+
+// darkuart baudrate automtically calculated according to board clock:
+
+
+  
+
+
+
+
+// register number depends of CPU type RV32[EI] and number of threads
+
+
+
+
+
+
+
+
+
+
+    
+
+
+        
+
+
+`line 2 "rtl/design.sv" 2
+
+`line 1 "rtl/../testbench/intf_mem_rd.sv" 1
+/* ============================================
+    darksocv inputs and outputs interface
+ ============================================ */
+
+interface intf_mem_rd(input clk);
+    logic [31:0]    IADDR;
+    logic [31:0]    IDATA;
+endinterface
+`line 3 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/top_hdl.sv" 1
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 1
+//
+//----------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc.
+//   Copyright 2010-2011 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+// 
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+
+
+
+//
+// Any vendor specific defines go here.
+//
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// Deprecation Control Macros
+//
+
+
+
+
+
+
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_version_defines.svh" 1
+//----------------------------------------------------------------------
+//   Copyright 2007-2010 Mentor Graphics Corporation
+//   Copyright 2007-2010 Cadence Design Systems, Inc. 
+//   Copyright 2010-2011 Synopsys, Inc.
+//   Copyright 2014      NVIDIA Corporation
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+
+
+
+// Title: UVM Version Defines
+
+// Group: UVM Revision Values
+// These macros provide the current values for the ~MAJOR~, ~MINOR~,
+// and optionally the ~FIX~ revision.
+//
+// Example with UVM version 1.2:
+//  UVM_MAJOR_REV - '1'
+//  UVM_MINOR_REV - '2'
+//  UVM_FIX_REV - 'undefined'
+//
+// Example with UVM version 1.1a:
+//  UVM_MAJOR_REV - '1'
+//  UVM_MINOR_REV - '1'
+//  UVM_FIX_REV - 'a'
+//
+
+// Macro: UVM_MAJOR_REV
+// Defines the MAJOR revision number.
+//
+// For UVM version 1.2, the MAJOR revision number is '1'
+//
+// | `define UVM_MAJOR_REV 1
+
+
+// Macro: UVM_MINOR_REV
+// Defines the MINOR revision number.
+//
+// For UVM version 1.2, the MINOR revision number is '2'
+//
+// | `define UVM_MINOR_REV 2
+
+
+// Macro: UVM_FIX_REV
+// (Optionally) Defines the FIX revision letter.
+//
+// For the first "X.Y" release of the UVM, there is no
+// FIX revision letter.  In these cases, the UVM_FIX_REV
+// is left undefined.
+//
+// For any subsequent "X.Y" fix releases, the UVM_FIX_REV
+// value is set to the appropriate fix release letter.
+//
+// Example:
+// 1.1 - First release, UVM_FIX_REV is undefined
+// 1.1a - Fix release, UVM_FIX_REV is 'a'
+
+// Include this in the comment when the FIX rev is present:
+// | `define UVM_FIX_REV a
+
+//`define UVM_FIX_REV a
+
+// Macro: UVM_NAME
+// The name used by the library when displaying the name of
+// the library.
+//
+// | `define UVM_NAME UVM
+
+
+// Macro: UVM_VERSION_STRING
+// Provides a string-ized version of the UVM Library version number.
+//
+// When there is a FIX_REV, the string is "<name>-<major>.<minor><fix>" (such as "UVM-1.1d").
+// When there is NO FIX_REV, the string is "<name>-<major>.<minor>" (such as "UVM-1.2").
+
+
+
+
+ 
+
+
+// Group: Conditional Compilation
+// These macros provide the ability to conditionally compile based on the
+// revision of the library which is being used.
+//
+// These macros are required for conditional compilation, as SystemVerilog does
+// not support conditionals with `ifdefs.
+//
+// For example:
+// |  // Illegal:
+// | `if (UVM_MAJOR_REV == 1)
+// |
+// | // Legal:
+// | `ifdef UVM_MAJOR_REV_1
+// 
+
+
+// Macro: UVM_MAJOR_REV_1
+// Indicates that the MAJOR version of this release is '1'.
+//
+// | `define UVM_MAJOR_REV_1
+//
+
+
+// Macro: UVM_MINOR_REV_2
+// Indicates that the MINOR version of this release is '2'.
+//
+// | `define UVM_MINOR_REV_2
+//
+
+
+// Macro: UVM_VERSION_1_2
+// Indicates that the version of this release is '1.2'.
+//
+// | `define UVM_VERSION_1_2
+
+
+// Undocumented, same thing as UVM_VERSION_1_2
+
+
+// Group: UVM Version Ladder
+
+// Macro: UVM_POST_VERSION_1_1
+// Indicates that this version of the UVM came after the
+// 1.1 versions, including the various 1.1 fix revisions.  
+//
+// The first UVM version wherein this macro is defined is
+// 1.2, and the macro will continue to be defined
+// for all future revisions of the UVM library.
+//
+// | `define UVM_POST_VERSION_1_1
+
+
+
+`line 70 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_global_defines.svh" 1
+//------------------------------------------------------------------------------
+//   Copyright 2014 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//------------------------------------------------------------------------------
+
+
+
+//
+// Title: Global Macros 
+//------------------------
+// Group: Global object Macro definitions can be used in multiple locations
+//------------------------
+//
+// MACRO: `UVM_MAX_STREAMBITS
+//
+// Defines the maximum bit vector size for integral types. 
+// Used to set uvm_bitstream_t
+
+
+ 
+
+
+
+// MACRO: `UVM_PACKER_MAX_BYTES
+//
+// Defines the maximum bytes to allocate for packing an object using
+// the <uvm_packer>. Default is <`UVM_MAX_STREAMBITS>, in ~bytes~.
+
+
+ 
+
+
+//------------------------
+// Group: Global Time Macro definitions that can be used in multiple locations
+//------------------------
+
+// MACRO: `UVM_DEFAULT_TIMEOUT
+//
+// The default timeout for simulation, if not overridden by
+// <uvm_root::set_timeout> or <uvm_cmdline_processor::+UVM_TIMEOUT>
+//
+
+
+
+
+`line 71 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_message_defines.svh" 1
+//----------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2010 Cadence Design Systems, Inc. 
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+
+
+
+
+  
+
+
+
+  
+
+
+//`ifndef UVM_USE_FILE_LINE
+//`define UVM_REPORT_DISABLE_FILE_LINE
+//`endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+// Title: Report Macros 
+//
+// This set of macros provides wrappers around the uvm_report_* <Reporting> 
+// functions. The macros serve two essential purposes:
+//
+// - To reduce the processing overhead associated with filtered out messages,
+//   a check is made against the report's verbosity setting and the action
+//   for the id/severity pair before any string formatting is performed. This 
+//   affects only `uvm_info reports.
+//
+// - The `__FILE__ and `__LINE__ information is automatically provided to the
+//   underlying uvm_report_* call. Having the file and line number from where
+//   a report was issued aides in debug. You can disable display of file and
+//   line information in reports by defining UVM_REPORT_DISABLE_FILE_LINE on
+//   the command line.
+//
+// The macros also enforce a verbosity setting of UVM_NONE for warnings, errors
+// and fatals so that they cannot be mistakenly turned off by setting the
+// verbosity level too low (warning and errors can still be turned off by 
+// setting the actions appropriately).
+//
+// To use the macros, replace the previous call to uvm_report_* with the
+// corresponding macro.
+//
+//| //Previous calls to uvm_report_*
+//| uvm_report_info("MYINFO1", $sformatf("val: %0d", val), UVM_LOW);
+//| uvm_report_warning("MYWARN1", "This is a warning");
+//| uvm_report_error("MYERR", "This is an error");
+//| uvm_report_fatal("MYFATAL", "A fatal error has occurred");
+//
+// The above code is replaced by
+//
+//| //New calls to `uvm_*
+//| `uvm_info("MYINFO1", $sformatf("val: %0d", val), UVM_LOW)
+//| `uvm_warning("MYWARN1", "This is a warning")
+//| `uvm_error("MYERR", "This is an error")
+//| `uvm_fatal("MYFATAL", "A fatal error has occurred")
+//
+// Macros represent text substitutions, not statements, so they should not be
+// terminated with semi-colons.
+
+
+//----------------------------------------------------------------------------
+// Group:  Basic Messaging Macros
+//----------------------------------------------------------------------------
+
+
+// MACRO: `uvm_info
+//
+// Calls uvm_report_info if ~VERBOSITY~ is lower than the configured verbosity of
+// the associated reporter. ~ID~ is given as the message tag and ~MSG~ is given as
+// the message text. The file and line are also sent to the uvm_report_info call.
+//
+// |`uvm_info(ID, MSG, VERBOSITY)
+
+
+
+
+
+
+
+
+// MACRO: `uvm_warning
+//
+// Calls uvm_report_warning with a verbosity of UVM_NONE. The message cannot
+// be turned off using the reporter's verbosity setting, but can be turned off
+// by setting the action for the message.  ~ID~ is given as the message tag and 
+// ~MSG~ is given as the message text. The file and line are also sent to the 
+// uvm_report_warning call.
+//
+// |`uvm_warning(ID, MSG)
+
+
+
+
+
+
+
+
+// MACRO: `uvm_error
+//
+// Calls uvm_report_error with a verbosity of UVM_NONE. The message cannot
+// be turned off using the reporter's verbosity setting, but can be turned off
+// by setting the action for the message.  ~ID~ is given as the message tag and 
+// ~MSG~ is given as the message text. The file and line are also sent to the 
+// uvm_report_error call.
+//
+// |`uvm_error(ID, MSG)
+
+
+
+
+
+
+
+
+// MACRO: `uvm_fatal
+//
+// Calls uvm_report_fatal with a verbosity of UVM_NONE. The message cannot
+// be turned off using the reporter's verbosity setting, but can be turned off
+// by setting the action for the message.  ~ID~ is given as the message tag and 
+// ~MSG~ is given as the message text. The file and line are also sent to the 
+// uvm_report_fatal call.
+//
+// |`uvm_fatal(ID, MSG)
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_info_context
+//
+//| `uvm_info_context(ID, MSG, VERBOSITY, RO)
+//
+// Operates identically to `uvm_info but requires that the
+// context, or <uvm_report_object>, in which the message is printed be 
+// explicitly supplied as a macro argument.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_warning_context
+//
+//| `uvm_warning_context(ID, MSG, RO)
+//
+// Operates identically to `uvm_warning but requires that the
+// context, or <uvm_report_object>, in which the message is printed be
+// explicitly supplied as a macro argument.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_error_context
+//
+//| `uvm_error_context(ID, MSG, RO)
+//
+// Operates identically to `uvm_error but requires that the
+// context, or <uvm_report_object> in which the message is printed be 
+// explicitly supplied as a macro argument.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_fatal_context
+//
+//| `uvm_fatal_context(ID, MSG, RO)
+//
+// Operates identically to `uvm_fatal but requires that the
+// context, or <uvm_report_object>, in which the message is printed be 
+// explicitly supplied as a macro argument.
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+// Group:  Message Trace Macros
+//----------------------------------------------------------------------------
+
+// MACRO- `uvm_message_begin
+//
+// Undocumented. Library internal use.
+//
+
+
+
+
+
+
+
+
+
+
+// MACRO- `uvm_message_end
+//
+// Undocumented. Library internal use.
+//
+//
+
+
+
+
+
+
+// MACRO- `uvm_message_context_begin
+//
+// Undocumented. Library internal use.
+//
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO- `uvm_message_context_end
+//
+// Undocumented. Library internal use.
+//
+//
+
+
+
+
+
+
+
+// MACRO: `uvm_info_begin
+//
+// |`uvm_info_begin(ID, MSG, VERBOSITY, RM = __uvm_msg)
+//
+
+
+
+
+// MACRO: `uvm_info_end
+//
+// This macro pair provides the ability to add elements to messages.
+//
+// |`uvm_info_end
+//
+// Example usage is shown here.
+//
+// |...
+// |task my_task();
+// |   ...
+// |   `uvm_info_begin("MY_ID", "This is my message...", UVM_LOW)
+// |     `uvm_message_add_tag("my_color", "red")
+// |     `uvm_message_add_int(my_int, UVM_DEC)
+// |     `uvm_message_add_string(my_string)
+// |     `uvm_message_add_object(my_obj)
+// |   `uvm_info_end
+// |   ...
+// |endtask
+//
+
+
+
+
+ 
+// MACRO: `uvm_warning_begin
+//
+// |`uvm_warning_begin(ID, MSG, RM = __uvm_msg)
+//
+
+
+
+
+// MACRO: `uvm_warning_end
+//
+// This macro pair operates identically to <`uvm_info_begin>/<`uvm_info_end> with
+// exception that the message severity is <UVM_WARNING> and has no verbosity threshold.
+//
+// |`uvm_warning_end
+//
+// The usage shown in <`uvm_info_end> works identically for this pair.
+//
+
+
+
+
+
+// MACRO: `uvm_error_begin
+//
+// |`uvm_error_begin(ID, MSG, RM = __uvm_msg)
+//
+
+
+
+
+
+// MACRO: `uvm_error_end
+//
+// This macro pair operates identically to <`uvm_info_begin>/<`uvm_info_end> with
+// exception that the message severity is <UVM_ERROR> and has no verbosity threshold.
+//
+// |`uvm_error_end
+//
+// The usage shown in <`uvm_info_end> works identically for this pair.
+//
+
+
+
+
+
+// MACRO: `uvm_fatal_begin
+//
+// |`uvm_fatal_begin(ID, MSG, RM = __uvm_msg)
+//
+
+
+
+
+
+// MACRO: `uvm_fatal_end
+//
+// This macro pair operates identically to <`uvm_info_begin>/<`uvm_info_end> with
+// exception that the message severity is <UVM_FATAL> and has no verbosity threshold.
+//
+// |`uvm_fatal_end
+//
+// The usage shown in <`uvm_info_end> works identically for this pair.
+//
+
+
+
+
+
+// MACRO: `uvm_info_context_begin
+//
+// |`uvm_info_context_begin(ID, MSG, UVM_NONE, RO, RM = __uvm_msg)
+//
+
+
+
+
+
+// MACRO: `uvm_info_context_end
+//
+// |`uvm_info_context_end
+//
+// This macro pair operates identically to <`uvm_info_begin>/<`uvm_info_end>, but 
+// requires that the context, or <uvm_report_object> in which the message is printed
+// be explicitly supplied as a macro argument.
+//
+
+
+
+
+ 
+// MACRO: `uvm_warning_context_begin
+//
+// |`uvm_warning_context_begin(ID, MSG, RO, RM = __uvm_msg)
+//
+
+
+
+
+// MACRO: `uvm_warning_context_end
+//
+// |`uvm_warning_context_end
+//
+// This macro pair operates identically to <`uvm_warning_begin>/<`uvm_warning_end>, but 
+// requires that the context, or <uvm_report_object> in which the message is printed
+// be explicitly supplied as a macro argument.
+//
+
+
+
+
+
+// MACRO: `uvm_error_context_begin
+//
+// |`uvm_error_context_begin(ID, MSG, RO, RM = __uvm_msg)
+//
+
+
+
+
+
+// MACRO: `uvm_error_context_end
+//
+// |`uvm_error_context_end
+//
+// This macro pair operates identically to <`uvm_error_begin>/<`uvm_error_end>, but 
+// requires that the context, or <uvm_report_object> in which the message is printed
+// be explicitly supplied as a macro argument.
+//
+
+
+
+
+
+// MACRO: `uvm_fatal_context_begin
+//
+// |`uvm_fatal_context_begin(ID, MSG, RO, RM = __uvm_msg)
+//
+
+
+
+
+
+// MACRO: `uvm_fatal_context_end
+//
+// |`uvm_fatal_context_end
+//
+// This macro pair operates identically to <`uvm_fatal_begin>/<`uvm_fatal_end>, but 
+// requires that the context, or <uvm_report_object> in which the message is printed
+// be explicitly supplied as a macro argument.
+//
+
+
+
+
+
+//----------------------------------------------------------------------------
+// Group:  Message Element Macros
+//----------------------------------------------------------------------------
+
+
+// MACRO: `uvm_message_add_tag
+//
+// |`uvm_message_add_tag(NAME, VALUE, ACTION=(UVM_LOG|UVM_RM_RECORD))
+//
+
+
+
+
+
+// MACRO: `uvm_message_add_int
+//
+// |`uvm_message_add_int(VAR, RADIX, LABEL = "", ACTION=(UVM_LOG|UVM_RM_RECORD))
+//
+
+
+
+
+
+
+
+
+// MACRO: `uvm_message_add_string
+//
+// |`uvm_message_add_string(VAR, LABEL = "", ACTION=(UVM_LOG|UVM_RM_RECORD))
+//
+
+
+
+
+
+
+
+
+// MACRO: `uvm_message_add_object
+//
+// These macros allow the user to provide elements that are associated with
+// <uvm_report_message>s.  Separate macros are provided such that the
+// user can supply arbitrary string/string pairs using <`uvm_message_add_tag>,
+// integral types along with a radix using <`uvm_message_add_int>, string 
+// using <`uvm_message_add_string> and <uvm_object>s using 
+// <`uvm_message_add_object>.
+//
+// |`uvm_message_add_object(VAR, LABEL = "", ACTION=(UVM_LOG|UVM_RM_RECORD))
+//
+// Example usage is shown in <`uvm_info_end>.
+//
+
+
+
+
+
+
+
+
+
+`line 72 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_phase_defines.svh" 1
+
+
+//
+//----------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc. 
+//   Copyright 2011 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+
+// uvm_root.svh uses these macros to simplify creation of all the phases.
+// they are only to be used for UVM builtin phases, because they are simple
+// delegate imps that call the corresponding methods on uvm_component.
+// Also, they declare classes (uvm_XXXXX_phase) and singleton instances (XXXXX_ph)
+
+// If you require more complex phase functors for your custom phase, code your
+// own imp class extending uvm_task/topdown/bottomup_phase base classes, following
+// the pattern of the macros below, but customize the exec_task() or exec_func()
+// contents to suit your enhanced functionality or derived component type/methods.
+// The uvm_user_xxx_phase() macros are provided for your convenience.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 73 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_object_defines.svh" 1
+//------------------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc.
+//   Copyright 2010-2011 Synopsys, Inc.
+//   Copyright 2013-2014 NVIDIA Corporation
+//   Copyright 2013      Cisco Systems, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+// Title: Utility and Field Macros for Components and Objects
+//
+// Group: Utility Macros 
+//
+// The ~utils~ macros define the infrastructure needed to enable the
+// object/component for correct factory operation. See <`uvm_object_utils> and
+// <`uvm_component_utils> for details.
+//
+// A ~utils~ macro should be used inside ~every~ user-defined class that extends
+// <uvm_object> directly or indirectly, including <uvm_sequence_item> and
+// <uvm_component>.
+//
+// Below is an example usage of the ~utils~ macro for a user-defined object.
+//
+//|  class mydata extends uvm_object;
+//| 
+//|     `uvm_object_utils(mydata)
+//|
+//|     // declare data properties
+//|
+//|    function new(string name="mydata_inst");
+//|      super.new(name);
+//|    endfunction
+//|
+//|  endclass
+//
+// Below is an example usage of a ~utils~ macro for a user-defined component. 
+//
+//|  class my_comp extends uvm_component;
+//| 
+//|     `uvm_component_utils(my_comp)
+//|
+//|     // declare data properties
+//|
+//|    function new(string name, uvm_component parent=null);
+//|      super.new(name,parent);
+//|    endfunction
+//|
+//|  endclass
+//
+//------------------------------------------------------------------------------
+
+// Define- UVM_NO_REGISTERED_CONVERTER
+//
+// if this symbol is defined all auto registration of the proxies to print resources
+// are disabled and you only get the typename printed (printing the objects contents 
+// either requires fill %p support or an appropriate proxy registered)
+// 
+
+
+
+
+
+// Definitions for the user to use inside their derived data class declarations.
+
+// MACRO: `uvm_field_utils_begin
+
+// MACRO: `uvm_field_utils_end
+//
+// These macros form a block in which `uvm_field_* macros can be placed. 
+// Used as
+//
+//|  `uvm_field_utils_begin(TYPE)
+//|    `uvm_field_* macros here
+//|  `uvm_field_utils_end
+//
+// 
+// These macros do ~not~ perform factory registration nor implement the
+// ~get_type_name~ and ~create~ methods. Use this form when you need custom
+// implementations of these two methods, or when you are setting up field macros
+// for an abstract class (i.e. virtual class).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        void'(__current_scopes.pop_back()); \
+        __m_uvm_status_container.m_uvm_cycle_scopes = __current_scopes; \
+     end \
+     end \
+endfunction \
+
+// MACRO: `uvm_object_utils
+
+// MACRO: `uvm_object_param_utils
+
+// MACRO: `uvm_object_utils_begin
+
+// MACRO: `uvm_object_param_utils_begin
+
+// MACRO: `uvm_object_utils_end
+//
+// <uvm_object>-based class declarations may contain one of the above forms of
+// utility macros.
+// 
+// For simple objects with no field macros, use
+//
+//|  `uvm_object_utils(TYPE)
+//    
+// For simple objects with field macros, use
+//
+//|  `uvm_object_utils_begin(TYPE)
+//|    `uvm_field_* macro invocations here
+//|  `uvm_object_utils_end
+//    
+// For parameterized objects with no field macros, use
+//
+//|  `uvm_object_param_utils(TYPE)
+//    
+// For parameterized objects, with field macros, use
+//
+//|  `uvm_object_param_utils_begin(TYPE)
+//|    `uvm_field_* macro invocations here
+//|  `uvm_object_utils_end
+//
+// Simple (non-parameterized) objects use the uvm_object_utils* versions, which
+// do the following:
+//
+// o Implements get_type_name, which returns TYPE as a string
+//
+// o Implements create, which allocates an object of type TYPE by calling its
+//   constructor with no arguments. TYPE's constructor, if defined, must have
+//   default values on all it arguments.
+//
+// o Registers the TYPE with the factory, using the string TYPE as the factory
+//   lookup string for the type.
+//
+// o Implements the static get_type() method which returns a factory
+//   proxy object for the type.
+//
+// o Implements the virtual get_object_type() method which works just like the
+//   static get_type() method, but operates on an already allocated object.
+//
+// Parameterized classes must use the uvm_object_param_utils* versions. They
+// differ from <`uvm_object_utils> only in that they do not supply a type name
+// when registering the object with the factory. As such, name-based lookup with
+// the factory for parameterized classes is not possible.
+//
+// The macros with _begin suffixes are the same as the non-suffixed versions
+// except that they also start a block in which `uvm_field_* macros can be
+// placed. The block must be terminated by `uvm_object_utils_end.
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+// MACRO: `uvm_component_param_utils
+
+// MACRO: `uvm_component_utils_begin
+
+// MACRO: `uvm_component_param_utils_begin
+
+// MACRO: `uvm_component_end
+//
+// uvm_component-based class declarations may contain one of the above forms of
+// utility macros.
+//
+// For simple components with no field macros, use
+//
+//|  `uvm_component_utils(TYPE)
+//
+// For simple components with field macros, use
+//
+//|  `uvm_component_utils_begin(TYPE)
+//|    `uvm_field_* macro invocations here
+//|  `uvm_component_utils_end
+//
+// For parameterized components with no field macros, use
+//
+//|  `uvm_component_param_utils(TYPE)
+//
+// For parameterized components with field macros, use
+//
+//|  `uvm_component_param_utils_begin(TYPE)
+//|    `uvm_field_* macro invocations here
+//|  `uvm_component_utils_end
+//
+// Simple (non-parameterized) components must use the uvm_components_utils*
+// versions, which do the following:
+//
+// o Implements get_type_name, which returns TYPE as a string.
+//
+// o Implements create, which allocates a component of type TYPE using a two
+//   argument constructor. TYPE's constructor must have a name and a parent
+//   argument.
+//
+// o Registers the TYPE with the factory, using the string TYPE as the factory
+//   lookup string for the type.
+//
+// o Implements the static get_type() method which returns a factory
+//   proxy object for the type.
+//
+// o Implements the virtual get_object_type() method which works just like the
+//   static get_type() method, but operates on an already allocated object.
+//
+// Parameterized classes must use the uvm_object_param_utils* versions. They
+// differ from `uvm_object_utils only in that they do not supply a type name
+// when registering the object with the factory. As such, name-based lookup with
+// the factory for parameterized classes is not possible.
+//
+// The macros with _begin suffixes are the same as the non-suffixed versions
+// except that they also start a block in which `uvm_field_* macros can be
+// placed. The block must be terminated by `uvm_component_utils_end.
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_object_registry
+//
+// Register a uvm_object-based class with the factory
+//
+//| `uvm_object_registry(T,S)
+//
+// Registers a uvm_object-based class ~T~ and lookup
+// string ~S~ with the factory. ~S~ typically is the
+// name of the class in quotes. The <`uvm_object_utils>
+// family of macros uses this macro.
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_component_registry
+//
+// Registers a uvm_component-based class with the factory
+//
+//| `uvm_component_registry(T,S)
+//
+// Registers a uvm_component-based class ~T~ and lookup
+// string ~S~ with the factory. ~S~ typically is the
+// name of the class in quotes. The <`uvm_object_utils>
+// family of macros uses this macro.
+
+
+
+
+
+
+
+
+
+
+
+// uvm_new_func
+// ------------
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// INTERNAL MACROS - in support of *_utils macros -- do not use directly
+//-----------------------------------------------------------------------------
+
+// m_uvm_object_create_func
+// ------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// m_uvm_get_type_name_func
+// ----------------------
+
+
+
+
+
+
+
+
+// m_uvm_object_registry_internal
+// ------------------------------
+
+//This is needed due to an issue in of passing down strings
+//created by args to lower level macros.
+
+
+
+
+
+
+
+
+
+
+// m_uvm_object_registry_param
+// ---------------------------
+
+
+
+
+
+
+
+
+
+
+
+// m_uvm_component_registry_internal
+// ---------------------------------
+
+//This is needed due to an issue in of passing down strings
+//created by args to lower level macros.
+
+
+
+
+
+
+
+
+
+// versions of the uvm_component_registry macros to be used with
+// parameterized classes
+
+// m_uvm_component_registry_param
+// ------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+// Group: Field Macros
+//
+// The `uvm_field_*  macros are invoked inside of the `uvm_*_utils_begin and
+// `uvm_*_utils_end macro blocks to form "automatic" implementations of the
+// core data methods: copy, compare, pack, unpack, record, print, and sprint.
+//
+// By using the macros, you do not have to implement any of the do_* methods 
+// inherited from <uvm_object>. However, be aware that the field macros expand
+// into general inline code that is not as run-time efficient nor as flexible
+// as direct implementations of the do_* methods. 
+//
+// Below is an example usage of the field macros for a sequence item. 
+//
+//|  class my_trans extends uvm_sequence_item;
+//| 
+//|    cmd_t  cmd;
+//|    int    addr;
+//|    int    data[$];
+//|    my_ext ext;
+//|    string str;
+//|
+//|    `uvm_object_utils_begin(my_trans)
+//|      `uvm_field_enum     (cmd_t, cmd, UVM_ALL_ON)
+//|      `uvm_field_int      (addr, UVM_ALL_ON)
+//|      `uvm_field_queue_int(data, UVM_ALL_ON)
+//|      `uvm_field_object   (ext,  UVM_ALL_ON)
+//|      `uvm_field_string   (str,  UVM_ALL_ON)
+//|    `uvm_object_utils_end
+//|
+//|    function new(string name="mydata_inst");
+//|      super.new(name);
+//|    endfunction
+//|
+//|  endclass
+//
+// Below is an example usage of the field macros for a component.
+//
+//|  class my_comp extends uvm_component;
+//| 
+//|    my_comp_cfg  cfg;
+//|
+//|    `uvm_component_utils_begin(my_comp)
+//|      `uvm_field_object   (cfg,  UVM_ALL_ON)
+//|    `uvm_object_utils_end
+//|
+//|    function new(string name="my_comp_inst", uvm_component parent=null);
+//|      super.new(name);
+//|    endfunction
+//|
+//|  endclass
+//
+// Each `uvm_field_* macro is named according to the particular data type it
+// handles: integrals, strings, objects, queues, etc., and each has at least two
+// arguments: ~ARG~ and ~FLAG~.
+//
+// ARG -  is the instance name of the variable, whose type must be compatible with
+// the macro being invoked. In the example, class variable ~addr~ is an integral type,
+// so we use the ~`uvm_field_int~ macro.
+//
+// FLAG - if set to ~UVM_ALL_ON~, as in the example, the ARG variable will be
+// included in all data methods. If FLAG is set to something other than
+// ~UVM_ALL_ON~ or ~UVM_DEFAULT~, it specifies which data method implementations will
+// ~not~ include the given variable. Thus, if ~FLAG~ is specified as ~NO_COMPARE~,
+// the ARG variable will not affect comparison operations, but it will be
+// included in everything else.
+//
+// All possible values for ~FLAG~ are listed and described below. Multiple flag
+// values can be bitwise OR'ed together (in most cases they may be added together
+// as well, but care must be taken when using the + operator to ensure that the
+// same bit is not added more than once).
+//
+//   UVM_ALL_ON     - Set all operations on.
+//   UVM_DEFAULT    - This is the recommended set of flags to pass 
+//                      to the field macros.  Currently, it enables
+//                      all of the operations, making it functionally
+//                      identical to ~UVM_ALL_ON~.  In the future 
+//                      however, additional flags could be added with
+//                      a recommended default value of ~off~.
+//
+//   UVM_NOCOPY     - Do not copy this field.
+//   UVM_NOCOMPARE  - Do not compare this field.
+//   UVM_NOPRINT    - Do not print this field.
+//   UVM_NOPACK     - Do not pack or unpack this field.
+//
+//   UVM_REFERENCE  - For object types, operate only on the handle (e.g. no deep copy)
+//
+//   UVM_PHYSICAL   - Treat as a physical field. Use physical setting in
+//                      policy class for this field.
+//   UVM_ABSTRACT   - Treat as an abstract field. Use the abstract setting
+//                      in the policy class for this field.
+//   UVM_READONLY   - Do not allow setting of this field from the set_*_local
+//                      methods or during <uvm_component::apply_config_settings> operation.
+//
+//
+// A radix for printing and recording can be specified by OR'ing one of the
+// following constants in the ~FLAG~ argument
+//
+//   UVM_BIN      - Print / record the field in binary (base-2).
+//   UVM_DEC      - Print / record the field in decimal (base-10).
+//   UVM_UNSIGNED - Print / record the field in unsigned decimal (base-10).
+//   UVM_OCT      - Print / record the field in octal (base-8).
+//   UVM_HEX      - Print / record the field in hexadecimal (base-16).
+//   UVM_STRING   - Print / record the field in string format.
+//   UVM_TIME     - Print / record the field in time format.
+//
+//   Radix settings for integral types. Hex is the default radix if none is
+//   specified.
+//
+// A UVM component should ~not~ be specified using the `uvm_field_object macro
+// unless its flag includes UVM_REFERENCE.  Otherwise, the field macro will 
+// implement deep copy, which is an illegal operation for uvm_components.
+// You will get a FATAL error if you tried to copy or clone an object containing
+// a component handle that was registered with a field macro without the
+// UVM_REFERENCE flag. You will also get duplicate entries when printing
+// component topology, as this functionality is already provided by UVM. 
+//------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_* macros
+//
+// Macros that implement data operations for scalar properties.
+//
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_field_int
+//
+// Implements the data operations for any packed integral property.
+//
+//|  `uvm_field_int(ARG,FLAG)
+//
+// ~ARG~ is an integral property of the class, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_object
+//
+// Implements the data operations for a <uvm_object>-based property.
+//
+//|  `uvm_field_object(ARG,FLAG)
+//
+// ~ARG~ is an object property of the class, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            for(cnt=0; cnt<str__.len(); ++cnt) begin \
+              if(str__[cnt] == "." || str__[cnt] == "*") break; \
+            end \
+            if(cnt!=str__.len()) begin \
+              __m_uvm_status_container.scope.down(`"ARG`"); \
+              ARG.__m_uvm_field_automation(null, UVM_SETOBJ, str__); \
+              __m_uvm_status_container.scope.up(); \
+            end \
+          end \
+        end \
+    endcase \
+  end
+
+
+// MACRO: `uvm_field_string
+//
+// Implements the data operations for a string property.
+//
+//|  `uvm_field_string(ARG,FLAG)
+//
+// ~ARG~ is a string property of the class, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_enum
+// 
+// Implements the data operations for an enumerated property.
+//
+//|  `uvm_field_enum(T,ARG,FLAG)
+//
+// ~T~ is an enumerated _type_, ~ARG~ is an instance of that type, and
+// ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_real
+//
+// Implements the data operations for any real property.
+//
+//|  `uvm_field_real(ARG,FLAG)
+//
+// ~ARG~ is an real property of the class, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_event
+//   
+// Implements the data operations for an event property.
+//
+//|  `uvm_field_event(ARG,FLAG)
+//
+// ~ARG~ is an event property of the class, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        end \
+      UVM_UNPACK: \
+        if(!((FLAG)&UVM_NOPACK)) begin \
+        end \
+      UVM_RECORD: \
+        begin \
+          // Events are not recorded  \
+        end \
+      UVM_PRINT: \
+        if(!((FLAG)&UVM_NOPRINT)) begin \
+          __m_uvm_status_container.printer.print_generic(`"ARG`", "event", -1, ""); \
+        end \
+      UVM_SETINT: \
+        begin \
+          // Events are not configurable via set_config \
+        end \
+    endcase \
+  end
+
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_sarray_* macros
+//                            
+// Macros that implement data operations for one-dimensional static array
+// properties.
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_field_sarray_int
+//
+// Implements the data operations for a one-dimensional static array of
+// integrals.
+//
+//|  `uvm_field_sarray_int(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional static array of integrals, and ~FLAG~
+// is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_sarray_object
+//
+// Implements the data operations for a one-dimensional static array of
+// <uvm_object>-based objects.
+//
+//|  `uvm_field_sarray_object(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional static array of <uvm_object>-based objects,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETINT, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+      UVM_SETSTR: \
+        begin \
+          string s; \
+          if(!((FLAG)&UVM_READONLY)) begin \
+            foreach(ARG[i]) begin \
+              $swrite(s,`"ARG[%0d]`",i); \
+              __m_uvm_status_container.scope.set_arg(s); \
+              if(uvm_is_match(str__, __m_uvm_status_container.scope.get())) begin \
+                if (__m_uvm_status_container.print_matches) \
+                  uvm_report_info("STRMTC", {"set_object()", ": Matched string ", str__, " to field ", __m_uvm_status_container.get_full_scope_arg()}, UVM_LOW); \
+                if($cast(ARG[i],uvm_object::__m_uvm_status_container.object)) \
+                  uvm_object::__m_uvm_status_container.status = 1; \
+              end \
+              else if(ARG[i]!=null && !((FLAG)&UVM_REFERENCE)) begin \
+                int cnt; \
+                //Only traverse if there is a possible match. \
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETSTR, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+      UVM_SETOBJ: \
+        begin \
+          string s; \
+          if(!((FLAG)&UVM_READONLY)) begin \
+            foreach(ARG[i]) begin \
+              $swrite(s,`"ARG[%0d]`",i); \
+              __m_uvm_status_container.scope.set_arg(s); \
+              if(uvm_is_match(str__, __m_uvm_status_container.scope.get())) begin \
+                if (__m_uvm_status_container.print_matches) \
+                  uvm_report_info("STRMTC", {"set_object()", ": Matched string ", str__, " to field ", __m_uvm_status_container.get_full_scope_arg()}, UVM_LOW); \
+                if($cast(ARG[i],uvm_object::__m_uvm_status_container.object)) \
+                  uvm_object::__m_uvm_status_container.status = 1; \
+              end \
+              else if(ARG[i]!=null && !((FLAG)&UVM_REFERENCE)) begin \
+                int cnt; \
+                //Only traverse if there is a possible match. \
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETOBJ, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+    endcase \
+  end
+
+
+// MACRO: `uvm_field_sarray_string
+//
+// Implements the data operations for a one-dimensional static array of
+// strings.
+//
+//|  `uvm_field_sarray_string(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional static array of strings, and ~FLAG~ is a bitwise
+// OR of one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_sarray_enum
+//
+// Implements the data operations for a one-dimensional static array of
+// enums.
+//
+//|  `uvm_field_sarray_enum(T,ARG,FLAG)
+//
+// ~T~ is a one-dimensional dynamic array of enums _type_, ~ARG~ is an
+// instance of that type, and ~FLAG~ is a bitwise OR of one or more flag
+// settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_array_* macros
+//
+// Macros that implement data operations for one-dimensional dynamic array
+// properties.
+//
+// Implementation note:
+// lines flagged with empty multi-line comments, /**/, are not needed or need
+// to be different for fixed arrays, which cannot be resized. Fixed arrays 
+// do not need to pack/unpack their size either, because their size is known;
+// wouldn't hurt though if it allowed code consolidation. Unpacking would
+// necessarily be different. */
+// 
+//-----------------------------------------------------------------------------
+
+// M_UVM_QUEUE_RESIZE
+// ------------------
+
+
+
+
+
+
+
+// ------------------
+
+
+
+
+
+
+// -------------------
+
+
+
+
+
+// M_UVM_FIELD_QDA_INT
+// -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_array_int
+//
+// Implements the data operations for a one-dimensional dynamic array of
+// integrals.
+//
+//|  `uvm_field_array_int(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional dynamic array of integrals,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_array_object
+//
+// Implements the data operations for a one-dimensional dynamic array
+// of <uvm_object>-based objects.
+//
+//|  `uvm_field_array_object(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional dynamic array of <uvm_object>-based objects,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETINT, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+      UVM_SETSTR: \
+        begin \
+          __m_uvm_status_container.scope.set_arg(`"ARG`"); \
+          if(uvm_is_match(str__, __m_uvm_status_container.scope.get())) begin \
+            if((FLAG)&UVM_READONLY) begin \
+              uvm_report_warning("RDONLY", $sformatf("Readonly argument match %s is ignored",  \
+                 __m_uvm_status_container.get_full_scope_arg()), UVM_NONE); \
+            end \
+            else begin \
+                  uvm_report_warning("STRMTC", {"set_str()", ": Match ignored for string ", str__, ". Cannot set array of objects to string value."}); \
+            end \
+          end \
+          else if(!((FLAG)&UVM_READONLY)) begin \
+            foreach(ARG[i]) begin \
+              string s; \
+              $swrite(s,`"ARG[%0d]`",i); \
+              __m_uvm_status_container.scope.set_arg(s); \
+              if(uvm_is_match(str__, __m_uvm_status_container.scope.get())) begin \
+                  uvm_report_warning("STRMTC", {"set_str()", ": Match ignored for string ", str__, ". Cannot set object to string value."}); \
+              end \
+              else if(ARG[i]!=null && !((FLAG)&UVM_REFERENCE)) begin \
+                int cnt; \
+                //Only traverse if there is a possible match. \
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETSTR, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+      UVM_SETOBJ: \
+        begin \
+          string s; \
+          if(!((FLAG)&UVM_READONLY)) begin \
+            bit wildcard_index__; \
+            int index__; \
+            __m_uvm_status_container.scope.set_arg(`"ARG`"); \
+            index__ = uvm_get_array_index_int(str__, wildcard_index__); \
+            if(uvm_is_array(str__)  && (index__ != -1)) begin\
+              if(wildcard_index__) begin \
+                for(index__=0; index__<ARG.size(); ++index__) begin \
+                  if(uvm_is_match(str__, {__m_uvm_status_container.scope.get_arg(),$sformatf("[%0d]", index__)})) begin \
+                    if (__m_uvm_status_container.print_matches) \
+                      uvm_report_info("STRMTC", {"set_int()", ": Matched string ", str__, " to field ", __m_uvm_status_container.get_full_scope_arg(), $sformatf("[%0d]",index__)}, UVM_LOW); \
+                    $cast(ARG[index__], uvm_object::__m_uvm_status_container.object); \
+                    __m_uvm_status_container.status = 1; \
+                  end \
+                end \
+              end \
+              else if(uvm_is_match(str__, {__m_uvm_status_container.get_full_scope_arg(),$sformatf("[%0d]", index__)})) begin \
+                if(index__+1 > ARG.size()) begin \
+                  int sz = index__+1; \
+                  ``(ARG,null) \
+                end \
+                if (__m_uvm_status_container.print_matches) \
+                  uvm_report_info("STRMTC", {"set_int()", ": Matched string ", str__, " to field ", __m_uvm_status_container.get_full_scope_arg()}, UVM_LOW); \
+                $cast(ARG[index__],  uvm_object::__m_uvm_status_container.object); \
+                __m_uvm_status_container.status = 1; \
+              end \
+            end \
+            else if(!((FLAG)&UVM_REFERENCE)) begin \
+              int cnt; \
+              foreach(ARG[i]) begin \
+                if (ARG[i]!=null) begin \
+                  string s; \
+                  $swrite(s,`"ARG[%0d]`",i); \
+                //Only traverse if there is a possible match. \
+                for(cnt=0; cnt<str__.len(); ++cnt) begin \
+                  if(str__[cnt] == "." || str__[cnt] == "*") break; \
+                end \
+                if(cnt!=str__.len()) begin \
+                  __m_uvm_status_container.scope.down(s); \
+                  ARG[i].__m_uvm_field_automation(null, UVM_SETOBJ, str__); \
+                  __m_uvm_status_container.scope.up(); \
+                end \
+              end \
+            end \
+          end \
+        end \
+        end \
+    endcase \
+  end 
+
+
+// MACRO: `uvm_field_array_string
+//
+// Implements the data operations for a one-dimensional dynamic array 
+// of strings.
+//
+//|  `uvm_field_array_string(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional dynamic array of strings, and ~FLAG~ is a bitwise
+// OR of one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_array_enum
+//
+// Implements the data operations for a one-dimensional dynamic array of
+// enums.
+//
+//|  `uvm_field_array_enum(T,ARG,FLAG)
+//
+// ~T~ is a one-dimensional dynamic array of enums _type_,
+// ~ARG~ is an instance of that type, and ~FLAG~ is a bitwise OR of
+// one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_queue_* macros
+//
+// Macros that implement data operations for dynamic queues.
+//
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_field_queue_int
+//
+// Implements the data operations for a queue of integrals.
+//
+//|  `uvm_field_queue_int(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional queue of integrals,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+// MACRO: `uvm_field_queue_object
+//
+// Implements the data operations for a queue of <uvm_object>-based objects.
+//
+//|  `uvm_field_queue_object(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional queue of <uvm_object>-based objects,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described in
+// <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_queue_string
+//
+// Implements the data operations for a queue of strings.
+//
+//|  `uvm_field_queue_string(ARG,FLAG)
+//
+// ~ARG~ is a one-dimensional queue of strings, and ~FLAG~ is a bitwise
+// OR of one or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_queue_enum
+//
+// Implements the data operations for a one-dimensional queue of enums.
+//
+//|  `uvm_field_queue_enum(T,ARG,FLAG)
+//
+// ~T~ is a queue of enums _type_, ~ARG~ is an instance of that type,
+// and ~FLAG~ is a bitwise OR of one or more flag settings as described
+// in <Field Macros> above.
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_aa_*_string macros
+//
+// Macros that implement data operations for associative arrays indexed
+// by ~string~.
+//
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_field_aa_int_string
+//
+// Implements the data operations for an associative array of integrals indexed
+// by ~string~.
+//
+//|  `uvm_field_aa_int_string(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with string key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_aa_object_string
+//
+// Implements the data operations for an associative array of <uvm_object>-based
+// objects indexed by ~string~.
+//
+//|  `uvm_field_aa_object_string(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of objects
+// with string key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_aa_string_string
+//
+// Implements the data operations for an associative array of strings indexed
+// by ~string~.
+//
+//|  `uvm_field_aa_string_string(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of strings
+// with string key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Group: `uvm_field_aa_*_int macros
+//
+// Macros that implement data operations for associative arrays indexed by an
+// integral type.
+//
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_field_aa_object_int
+//
+// Implements the data operations for an associative array of <uvm_object>-based
+// objects indexed by the ~int~ data type.
+//
+//|  `uvm_field_aa_object_int(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of objects
+// with ~int~ key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_int
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~int~ data type.
+//
+//|  `uvm_field_aa_int_int(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~int~ key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~int unsigned~ data type.
+//
+//|  `uvm_field_aa_int_int_unsigned(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~int unsigned~ key, and ~FLAG~ is a bitwise OR of one or more flag
+// settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_integer
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~integer~ data type.
+//
+//|  `uvm_field_aa_int_integer(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~integer~ key, and ~FLAG~ is a bitwise OR of one or more flag settings
+// as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_integer_unsigned
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~integer unsigned~ data type.
+//
+//|  `uvm_field_aa_int_integer_unsigned(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~integer unsigned~ key, and ~FLAG~ is a bitwise OR of one or more 
+// flag settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_byte
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~byte~ data type.
+//
+//|  `uvm_field_aa_int_byte(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~byte~ key, and ~FLAG~ is a bitwise OR of one or more flag settings as
+// described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_byte_unsigned
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~byte unsigned~ data type.
+//
+//|  `uvm_field_aa_int_byte_unsigned(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~byte unsigned~ key, and ~FLAG~ is a bitwise OR of one or more flag
+// settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_shortint
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~shortint~ data type.
+//
+//|  `uvm_field_aa_int_shortint(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~shortint~ key, and ~FLAG~ is a bitwise OR of one or more flag
+// settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_shortint_unsigned
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~shortint unsigned~ data type.
+//
+//|  `uvm_field_aa_int_shortint_unsigned(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~shortint unsigned~ key, and ~FLAG~ is a bitwise OR of one or more
+// flag settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_longint
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~longint~ data type.
+//
+//|  `uvm_field_aa_int_longint(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~longint~ key, and ~FLAG~ is a bitwise OR of one or more flag settings
+// as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_longint_unsigned
+//
+// Implements the data operations for an associative array of integral
+// types indexed by the ~longint unsigned~ data type.
+//
+//|  `uvm_field_aa_int_longint_unsigned(ARG,FLAG)
+//
+// ~ARG~ is the name of a property that is an associative array of integrals
+// with ~longint unsigned~ key, and ~FLAG~ is a bitwise OR of one or more
+// flag settings as described in <Field Macros> above.
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_key
+//
+// Implements the data operations for an associative array of integral
+// types indexed by any integral key data type. 
+//
+//|  `uvm_field_aa_int_key(KEY,ARG,FLAG)
+//
+// ~KEY~ is the data type of the integral key, ~ARG~ is the name of a property 
+// that is an associative array of integrals, and ~FLAG~ is a bitwise OR of one 
+// or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_field_aa_int_enumkey
+//
+// Implements the data operations for an associative array of integral
+// types indexed by any enumeration key data type. 
+//
+//|  `uvm_field_aa_int_enumkey(KEY, ARG,FLAG)
+//
+// ~KEY~ is the enumeration type of the key, ~ARG~ is the name of a property 
+// that is an associative array of integrals, and ~FLAG~ is a bitwise OR of one 
+// or more flag settings as described in <Field Macros> above.
+
+
+
+
+
+
+
+
+// m_uvm_print_int
+
+// Purpose: provide print functionality for a specific integral field. This
+// macro is available for user access. If used externally, a record_options
+// object must be avaialble and must have the name opt.
+// 
+// Postcondition: ~ARG~ is printed using the format set by the FLAGS.
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// MACROS- recording
+//
+//-----------------------------------------------------------------------------
+
+// m_uvm_record_int
+// ----------------
+
+// Purpose: provide record functionality for a specific integral field. This
+// macro is available for user access. If used externally, a record_options
+// object must be avaialble and must have the name opt.
+// 
+// Postcondition: ~ARG~ is printed using the format set by the FLAGS.
+
+
+
+
+
+
+
+
+
+
+// m_uvm_record_string
+// -------------------
+
+// Purpose: provide record functionality for a specific string field. This
+// macro is available for user access. If used externally, a record_options
+// object must be avaialble and must have the name recorder.
+//  
+// Postcondition: ~ARG~ is recorded in string format.
+      
+
+
+
+
+
+
+
+// m_uvm_record_object
+// -------------------
+
+// Purpose: provide record functionality for a specific <uvm_object> field. This
+// macro is available for user access. If used externally, a record_options
+// object must be avaialble and must have the name recorder.
+//
+// Postcondition: ~ARG~ is recorded. The record is done recursively where the
+// depth to record is set in the recorder object.
+
+
+
+
+
+
+
+
+// m_uvm_record_qda_int
+// --------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// m_uvm_record_qda_enum
+// ---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// m_uvm_record_qda_object
+// -----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// m_uvm_record_qda_string
+// -----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_DATA_AA_generic
+// -------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_DATA_AA_int_string
+// ----------------------------
+
+
+
+
+
+// M_UVM_FIELD_DATA_AA_int_int
+// ----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_DATA_AA_enum_key
+// ----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          end \
+      endcase \
+    end \
+  end 
+
+
+// M_UVM_FIELD_DATA_AA_object_string
+// -------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if(rhs != lhs) begin \
+                  bit refcmp; \
+                  refcmp = ((FLAG)& UVM_SHALLOW) && !(__m_uvm_status_container.comparer.policy == UVM_DEEP); \
+                  //do a deep compare here  \
+                  if(!refcmp && !(__m_uvm_status_container.comparer.policy == UVM_REFERENCE)) begin \
+                    if(((rhs == null) && (lhs != null)) || ((lhs==null) && (rhs!=null))) begin \
+                      __m_uvm_status_container.comparer.print_msg_object(lhs, rhs); \
+                    end \
+                    else begin \
+                      if (lhs != null)  \
+                        void'(lhs.compare(rhs, __m_uvm_status_container.comparer)); \
+                    end \
+                  end \
+                  else begin //reference compare \
+                    __m_uvm_status_container.comparer.print_msg_object(lhs, rhs); \
+                  end \
+                end \
+                __m_uvm_status_container.scope.up_element(); \
+              end \
+            end \
+          end \
+        UVM_COPY: \
+          begin \
+           if(!((FLAG)&UVM_NOCOPY) && (tmp_data__ != null) ) \
+           begin \
+            $cast(local_data__, tmp_data__); \
+            ARG.delete(); \
+            foreach(local_data__.ARG[_string_aa_key]) begin\
+               if((FLAG)&UVM_REFERENCE) \
+                ARG[_string_aa_key] = local_data__.ARG[_string_aa_key]; \
+             /*else if((FLAG)&UVM_SHALLOW)*/ \
+             /* ARG[string_aa_key] = new local_data__.ARG[string_aa_key];*/ \
+               else begin\
+                $cast(ARG[_string_aa_key],local_data__.ARG[_string_aa_key].clone());\
+                ARG[_string_aa_key].set_name({`"ARG`","[",_string_aa_key, "]"});\
+               end \
+             end \
+           end \
+          end \
+        UVM_PRINT: \
+          if(!((FLAG)&UVM_NOPRINT)) begin \
+            (ARG, __m_uvm_status_container.printer,FLAG) \
+          end \
+      endcase \
+    end \
+  end
+
+
+// M_UVM_FIELD_DATA_AA_object_int
+// -------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    if(!refcmp && !(__m_uvm_status_container.comparer.policy == UVM_REFERENCE)) begin \
+                      if(((rhs == null) && (lhs != null)) || ((lhs==null) && (rhs!=null))) begin \
+                        __m_uvm_status_container.comparer.print_msg_object(lhs, rhs); \
+                      end \
+                      else begin \
+                        if (lhs != null)  \
+                          void'(lhs.compare(rhs, __m_uvm_status_container.comparer)); \
+                      end \
+                    end \
+                    else begin //reference compare \
+                      __m_uvm_status_container.comparer.print_msg_object(lhs, rhs); \
+                    end \
+                  end \
+                  __m_uvm_status_container.scope.up_element(); \
+              end \
+            end \
+          end \
+        UVM_COPY: \
+          begin \
+           if(!((FLAG)&UVM_NOCOPY) && (tmp_data__ != null) ) \
+           begin \
+            $cast(local_data__, tmp_data__); \
+            ARG.delete(); \
+            foreach(local_data__.ARG[_key__]) begin \
+               if((FLAG)&UVM_REFERENCE) \
+                ARG[_key__] = local_data__.ARG[_key__]; \
+             /*else if((FLAG)&UVM_SHALLOW)*/ \
+             /* ARG[key__] = new local_data__.ARG[key__];*/ \
+               else begin\
+                 uvm_object tmp_obj; \
+                 tmp_obj = local_data__.ARG[_key__].clone(); \
+                 if(tmp_obj != null) \
+                   $cast(ARG[_key__], tmp_obj); \
+                 else \
+                   ARG[_key__]=null; \
+               end \
+             end \
+           end \
+         end \
+        UVM_PRINT: \
+          if(!((FLAG)&UVM_NOPRINT)) begin \
+             (ARG, __m_uvm_status_container.printer,FLAG) \
+          end \
+      endcase \
+    end \
+  end
+
+
+// M_UVM_FIELD_DATA_AA_string_string
+// -------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_SET_AA_TYPE
+// -----------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_SET_AA_OBJECT_TYPE
+// ------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_SET_AA_INT_TYPE
+// ---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// M_UVM_FIELD_SET_AA_INT_ENUMTYPE
+// -------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+// Group: Recording Macros
+//
+// The recording macros assist users who implement the <uvm_object::do_record>
+// method. They help ensure that the fields are recorded using a vendor-
+// independent API. Unlike the <uvm_recorder> policy, fields recorded using
+// the macros do not lose type information--they are passed
+// directly to the vendor-specific API. This results in more efficient recording
+// and no artificial limit on bit-widths. See your simulator vendor's 
+// documentation for more information on its transaction recording capabilities.
+//------------------------------------------------------------------------------
+
+// Macro: `uvm_record_attribute
+//
+// Vendor-independent macro to hide tool-specific interface for
+// recording attributes (fields) to a transaction database.
+//
+//| `uvm_record_attribute(TR_HANDLE, NAME, VALUE)
+//
+// The default implementation of the macro passes ~NAME~ and
+// ~VALUE~ through to the <uvm_recorder::record_generic> method.
+//
+// This macro should not be called directly by the user, the
+// other recording macros will call it automatically if 
+// <uvm_recorder::use_record_attribute> returns true.
+//
+
+
+ 
+
+
+
+    
+
+
+
+
+// Macro: `uvm_record_int
+//
+//| `uvm_record_int(NAME,VALUE,SIZE[,RADIX])
+//
+// The ~`uvm_record_int~ macro takes the same arguments as
+// the <uvm_recorder::record_field> method (including the optional ~RADIX~).
+//
+// The default implementation will pass the name/value pair to
+// <`uvm_record_attribute> if enabled, otherwise the information
+// will be passed to <uvm_recorder::record_field>.
+//
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_record_string
+//
+//| `uvm_record_string(NAME,VALUE)
+//
+// The ~`uvm_record_string~ macro takes the same arguments as
+// the <uvm_recorder::record_string> method.
+//
+// The default implementation will pass the name/value pair to
+// <`uvm_record_attribute> if enabled, otherwise the information
+// will be passed to <uvm_recorder::record_string>.
+//
+
+
+  
+
+
+
+
+
+
+
+
+// Macro: `uvm_record_time
+//
+//| `uvm_record_time(NAME,VALUE)
+//
+// The ~`uvm_record_time~ macro takes the same arguments as
+// the <uvm_recorder::record_time> method.
+//
+// The default implementation will pass the name/value pair to
+// <`uvm_record_attribute> if enabled, otherwise the information
+// will be passed to <uvm_recorder::record_time>.
+//
+
+  
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_record_real
+//
+//| `uvm_record_real(NAME,VALUE)
+//
+// The ~`uvm_record_real~ macro takes the same arguments as
+// the <uvm_recorder::record_field_real> method.
+//
+// The default implementation will pass the name/value pair to
+// <`uvm_record_attribute> if enabled, otherwise the information
+// will be passed to <uvm_recorder::record_field_real>.
+//
+
+  
+
+
+
+
+
+
+
+
+// Macro: `uvm_record_field
+//
+// Macro for recording arbitrary name-value pairs into a transaction recording database.
+// Requires a valid transaction handle, as provided by the
+// <uvm_transaction::begin_tr> and <uvm_component::begin_tr> methods. 
+//
+//| `uvm_record_field(NAME, VALUE)
+//
+// The default implementation will pass the name/value pair to
+// <`uvm_record_attribute> if enabled, otherwise the information
+// will be passed to <uvm_recorder::record_generic>, with the
+// ~VALUE~ being converted to a string using "%p" notation.
+//
+// | recorder.record_generic(NAME,$sformatf("%p",VALUE));
+//
+
+
+
+
+
+
+
+
+
+  
+//------------------------------------------------------------------------------
+// Group: Packing Macros
+//
+// The packing macros assist users who implement the <uvm_object::do_pack>
+// method. They help ensure that the pack operation is the exact inverse of the
+// unpack operation. See also <Unpacking Macros>.
+//
+//| virtual function void do_pack(uvm_packer packer);
+//|   `uvm_pack_int(cmd)
+//|   `uvm_pack_int(addr)
+//|   `uvm_pack_array(data)
+//| endfunction
+//
+// The 'N' versions of these macros take a explicit size argument, which must
+// be compile-time constant value greater than 0.
+//------------------------------------------------------------------------------
+
+//--------------------------------
+// Group: Packing - With Size Info
+//--------------------------------
+
+// Macro: `uvm_pack_intN
+//
+// Pack an integral variable.
+//
+//| `uvm_pack_intN(VAR,SIZE)
+//
+
+
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_pack_enumN
+//
+// Pack an integral variable.
+//
+//| `uvm_pack_enumN(VAR,SIZE)
+//
+
+
+
+
+// Macro: `uvm_pack_sarrayN
+//
+// Pack a static array of integrals.
+//
+//| `uvm_pack_sarray(VAR,SIZE)
+//
+
+
+
+
+
+
+
+// Macro: `uvm_pack_arrayN
+//
+// Pack a dynamic array of integrals.
+//
+//| `uvm_pack_arrayN(VAR,SIZE)
+//
+
+
+
+
+
+
+
+
+// Macro: `uvm_pack_queueN
+//
+// Pack a queue of integrals.
+//
+//| `uvm_pack_queueN(VAR,SIZE)
+//
+
+
+
+
+//------------------------------
+// Group: Packing - No Size Info
+//------------------------------
+
+// Macro: `uvm_pack_int
+//
+// Pack an integral variable without having to also specify the bit size.
+//
+//| `uvm_pack_int(VAR)
+//
+
+
+
+
+// Macro: `uvm_pack_enum
+//
+// Pack an enumeration value. Packing does not require its type be specified.
+//
+//| `uvm_pack_enum(VAR)
+//
+
+
+
+
+// Macro: `uvm_pack_string
+//
+// Pack a string variable.
+//
+//| `uvm_pack_string(VAR)
+//
+
+
+
+
+
+
+
+
+// Macro: `uvm_pack_real
+//
+// Pack a variable of type real.
+//
+//| `uvm_pack_real(VAR)
+//
+
+
+
+
+// Macro: `uvm_pack_sarray
+//
+// Pack a static array without having to also specify the bit size
+// of its elements.
+//
+//| `uvm_pack_sarray(VAR)
+//
+
+
+
+
+// Macro: `uvm_pack_array
+//
+// Pack a dynamic array without having to also specify the bit size
+// of its elements. Array size must be non-zero.
+//
+//| `uvm_pack_array(VAR)
+//
+
+
+
+
+// Macro: `uvm_pack_queue
+//
+// Pack a queue without having to also specify the bit size
+// of its elements. Queue must not be empty.
+//
+//| `uvm_pack_queue(VAR)
+//
+
+
+
+
+
+//------------------------------------------------------------------------------
+// Group: Unpacking Macros
+//
+// The unpacking macros assist users who implement the <uvm_object::do_unpack>
+// method. They help ensure that the unpack operation is the exact inverse of
+// the pack operation. See also <Packing Macros>.
+//
+//| virtual function void do_unpack(uvm_packer packer);
+//|   `uvm_unpack_enum(cmd,cmd_t)
+//|   `uvm_unpack_int(addr)
+//|   `uvm_unpack_array(data)
+//| endfunction
+//
+// The 'N' versions of these macros take a explicit size argument, which must
+// be a compile-time constant value greater than 0.
+//------------------------------------------------------------------------------
+
+//----------------------------------
+// Group: Unpacking - With Size Info
+//----------------------------------
+
+// Macro: `uvm_unpack_intN
+//
+// Unpack into an integral variable.
+//
+//| `uvm_unpack_intN(VAR,SIZE)
+//
+
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_unpack_enumN
+//
+// Unpack enum of type ~TYPE~ into ~VAR~.
+//
+// `uvm_unpack_enumN(VAR,SIZE,TYPE)
+//
+
+
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_unpack_sarrayN
+//
+// Unpack a static (fixed) array of integrals.
+//
+//| `uvm_unpack_sarrayN(VAR,SIZE)
+//
+
+
+
+
+
+
+
+// Macro: `uvm_unpack_arrayN
+//
+// Unpack into a dynamic array of integrals.
+//
+//| `uvm_unpack_arrayN(VAR,SIZE)
+//
+
+
+
+
+
+
+
+
+
+
+
+// Macro: `uvm_unpack_queueN
+//
+// Unpack into a queue of integrals.
+//
+//| `uvm_unpack_queue(VAR,SIZE)
+//
+
+
+
+
+
+
+
+
+
+
+
+
+//--------------------------------
+// Group: Unpacking - No Size Info
+//--------------------------------
+
+
+// Macro: `uvm_unpack_int
+//
+// Unpack an integral variable without having to also specify the bit size.
+//
+//| `uvm_unpack_int(VAR)
+//
+
+
+
+
+// Macro: `uvm_unpack_enum
+//
+// Unpack an enumeration value, which requires its type be specified.
+//
+//| `uvm_unpack_enum(VAR,TYPE)
+//
+
+
+
+
+// Macro: `uvm_unpack_string
+//
+// Unpack a string variable.
+//
+//| `uvm_unpack_string(VAR)
+//
+
+
+
+// Macro: `uvm_unpack_real
+//
+// Unpack a variable of type real.
+//
+//| `uvm_unpack_real(VAR)
+//
+
+
+
+
+
+
+
+
+// Macro: `uvm_unpack_sarray
+//
+// Unpack a static array without having to also specify the bit size
+// of its elements.
+//
+// | `uvm_unpack_sarray(VAR)
+//
+
+
+
+
+// Macro: `uvm_unpack_array
+//
+// Unpack a dynamic array without having to also specify the bit size
+// of its elements. Array size must be non-zero.
+//
+//| `uvm_unpack_array(VAR)
+//
+
+
+
+
+// Macro: `uvm_unpack_queue
+//
+// Unpack a queue without having to also specify the bit size
+// of its elements. Queue must not be empty.
+//
+//| `uvm_unpack_queue(VAR)
+//
+
+
+
+
+
+
+
+
+`line 74 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_printer_defines.svh" 1
+//----------------------------------------------------------------------
+//   Copyright 2007-2010 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc. 
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//
+// MACROS for uvm_printer usage
+//
+// Provides a set of printing macros that will call appropriate print methods
+// inside of a uvm_printer object. All macros have two versions: one assumes
+// a printer named printer is available in scope; the other takes a printer
+// argument.
+//
+//------------------------------------------------------------------------------
+
+
+
+
+// uvm_print_int*
+// --------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// uvm_print_enum
+// --------------
+
+
+
+
+
+// uvm_print_object*
+// -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+// uvm_print_string*
+// -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+// uvm_print_array*
+// ----------------
+
+
+
+   
+
+
+
+
+// uvm_print_sarray*
+// -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+    p__.print_array_header (`"F`", max__,`"T``(integral)`"); \
+    k__ = p__.knobs; \
+    if((p__.knobs.depth == -1) || (p__.m_scope.depth() < p__.knobs.depth+1)) \
+    begin \
+      foreach(F[i__]) begin \
+        if(k__.begin_elements == -1 || k__.end_elements == -1 || curr < k__.begin_elements ) begin \
+          (F, R, NM, P)     if ($bits(F) > 64)       P.print_field(NM, F, $bits(F), R, "[");     else       P.print_field_int(NM, F, $bits(F), R, "["); (F[curr], R, p__.index_string(curr), p__) \
+        end \
+        else break; \
+        curr++; \
+      end \
+      if(curr<max__) begin \
+        if((max__-k__.end_elements) > curr) curr = max__-k__.end_elements; \
+        if(curr<k__.begin_elements) curr = k__.begin_elements; \
+        else begin \
+          p__.print_array_range(k__.begin_elements, curr-1); \
+        end \
+        for(curr=curr; curr<max__; ++curr) begin \
+          (F, R, NM, P)     if ($bits(F) > 64)       P.print_field(NM, F, $bits(F), R, "[");     else       P.print_field_int(NM, F, $bits(F), R, "["); (F[curr], R, p__.index_string(curr), p__) \
+        end \
+      end \
+    end \
+    p__.print_array_footer(max__); \
+    //p__.print_footer(); \
+  end
+ 
+
+
+
+
+
+
+
+
+
+    p__.print_array_header (`"F`", max__,`"T``(``ET``)`"); \
+    k__ = p__.knobs; \
+    if((p__.knobs.depth == -1) || (p__.m_scope.depth() < p__.knobs.depth+1)) \
+    begin \
+      foreach(F[i__]) begin \
+        if(k__.begin_elements == -1 || k__.end_elements == -1 || curr < k__.begin_elements ) begin \
+          (T, F, NM, P)     P.print_generic(NM, `"T`", $bits(F), F.name(), "[");(ET, F[curr], p__.index_string(curr), p__) \
+        end \
+        else break; \
+        curr++; \
+      end \
+      if(curr<max__) begin \
+        if((max__-k__.end_elements) > curr) curr = max__-k__.end_elements; \
+        if(curr<k__.begin_elements) curr = k__.begin_elements; \
+        else begin \
+          p__.print_array_range(k__.begin_elements, curr-1); \
+        end \
+        for(curr=curr; curr<max__; ++curr) begin \
+          (T, F, NM, P)     P.print_generic(NM, `"T`", $bits(F), F.name(), "[");(ET, F[curr], p__.index_string(curr), p__) \
+        end \
+      end \
+    end \
+    p__.print_array_footer(max__); \
+    //p__.print_footer(); \
+  end
+ 
+
+
+
+
+
+
+
+
+   
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    foreach(F[i]) max__ = i+1; \
+\
+    //p__.print_header();\
+\
+    p__.m_scope.set_arg(`"F`");\
+    p__.print_array_header(`"F`", max__, `"T``(object)`");\
+    if((p__.knobs.depth == -1) || (p__.knobs.depth+1 > p__.m_scope.depth())) \
+    begin\
+      for(curr=0; curr<max__ && (p__.knobs.begin_elements == -1 || \
+         p__.knobs.end_elements == -1 || curr<p__.knobs.begin_elements); ++curr) begin \
+        if(((FLAG)&UVM_REFERENCE) == 0) \
+          p__.print_object(p__.index_string(curr), F[curr], "[");\
+        else \
+          p__.print_object_header(p__.index_string(curr), F[curr], "[");\
+      end \
+      if(curr<max__) begin\
+        curr = max__-p__.knobs.end_elements;\
+        if(curr<p__.knobs.begin_elements) curr = p__.knobs.begin_elements;\
+        else begin\
+          p__.print_array_range(p__.knobs.begin_elements, curr-1);\
+        end\
+        for(curr=curr; curr<max__; ++curr) begin\
+          if(((FLAG)&UVM_REFERENCE) == 0) \
+            p__.print_object(p__.index_string(curr), F[curr], "[");\
+          else \
+            p__.print_object_header(p__.index_string(curr), F[curr], "[");\
+        end \
+      end\
+    end \
+\
+    p__.print_array_footer(max__); \
+    //p__.print_footer(); \
+  end while(0);
+ 
+
+
+   
+
+
+
+
+ 
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+    foreach(F[i]) max__ = i+1; \
+    if(P!=null) p__ = P; \
+    else p__ = uvm_default_printer; \
+\
+    //p__.print_header();\
+\
+    p__.m_scope.set_arg(`"F`");\
+    p__.print_array_header(`"F`", max__, `"T``(string)`");\
+    if((p__.knobs.depth == -1) || (p__.knobs.depth+1 > p__.m_scope.depth())) \
+    begin\
+      for(curr=0; curr<max__ && curr<p__.knobs.begin_elements; ++curr) begin\
+        p__.print_string(p__.index_string(curr), F[curr], "[");\
+      end \
+      if(curr<max__) begin\
+        curr = max__-p__.knobs.end_elements;\
+        if(curr<p__.knobs.begin_elements) curr = p__.knobs.begin_elements;\
+        else begin\
+          p__.print_array_range(p__.knobs.begin_elements, curr-1);\
+        end\
+        for(curr=curr; curr<max__; ++curr) begin\
+          p__.print_string(p__.index_string(curr), F[curr], "[");\
+        end \
+      end\
+    end \
+\
+    p__.print_array_footer(max__); \
+    //p__.print_footer(); \
+  end while(0);
+ 
+
+
+   
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// Associative array printing methods
+//
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+`line 75 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_tlm_defines.svh" 1
+//----------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2010 Cadence Design Systems, Inc.
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//
+// Title: TLM Implementation Port Declaration Macros
+//
+// The TLM implementation declaration macros provide a way for components
+// to provide multiple implementation ports of the same implementation 
+// interface. When an implementation port is defined using the built-in
+// set of imps, there must be exactly one implementation of the interface.
+//
+// For example, if a component needs to provide a put implementation then
+// it would have an implementation port defined like:
+//
+//| class mycomp extends uvm_component;
+//|   uvm_put_imp#(data_type, mycomp) put_imp;
+//|   ...
+//|   virtual task put (data_type t);
+//|     ...
+//|   endtask
+//| endclass
+//
+// There are times, however, when you need more than one implementation 
+// for an interface. This set of declarations allow you to easily create
+// a new implementation class to allow for multiple implementations. Although
+// the new implementation class is a different class, it can be bound to
+// the same types of exports and ports as the original class. Extending
+// the put example above, let's say that mycomp needs to provide two put
+// implementation ports. In that case, you would do something like:
+//
+//| //Define two new put interfaces which are compatible with uvm_put_ports
+//| //and uvm_put_exports.
+//|
+//| `uvm_put_imp_decl(_1)
+//| `uvm_put_imp_decl(_2)
+//|
+//| class my_put_imp#(type T=int) extends uvm_component;
+//|    uvm_put_imp_1#(T,my_put_imp#(T)) put_imp1;
+//|    uvm_put_imp_2#(T,my_put_imp#(T)) put_imp2;
+//|    ...
+//|    function void put_1 (input T t);
+//|      //puts coming into put_imp1
+//|      ...
+//|    endfunction
+//|    function void put_2(input T t);
+//|      //puts coming into put_imp2
+//|      ...
+//|    endfunction
+//| endclass
+//
+// The important thing to note is that each `uvm_<interface>_imp_decl creates a 
+// new class of type uvm_<interface>_imp<suffix>, where suffix is the input 
+// argument to the macro. For this reason, you will typically want to put
+// these macros in a separate package to avoid collisions and to allow 
+// sharing of the definitions.
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_blocking_put_imp_decl
+//
+//| `uvm_blocking_put_imp_decl(SFX)
+//
+// Define the class uvm_blocking_put_impSFX for providing blocking put
+// implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_nonblocking_put_imp_decl
+//
+//| `uvm_nonblocking_put_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_put_impSFX for providing non-blocking 
+// put implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_put_imp_decl
+//
+//| `uvm_put_imp_decl(SFX)
+//
+// Define the class uvm_put_impSFX for providing both blocking and
+// non-blocking put implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_blocking_get_imp_decl
+//
+//| `uvm_blocking_get_imp_decl(SFX)
+//
+// Define the class uvm_blocking_get_impSFX for providing blocking get
+// implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_nonblocking_get_imp_decl
+//
+//| `uvm_nonblocking_get_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_get_impSFX for providing non-blocking 
+// get implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_get_imp_decl
+//
+//| `uvm_get_imp_decl(SFX)
+//
+// Define the class uvm_get_impSFX for providing both blocking and
+// non-blocking get implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_blocking_peek_imp_decl
+//
+//| `uvm_blocking_peek_imp_decl(SFX)
+//
+// Define the class uvm_blocking_peek_impSFX for providing blocking peek
+// implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_nonblocking_peek_imp_decl
+//
+//| `uvm_nonblocking_peek_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_peek_impSFX for providing non-blocking 
+// peek implementations.  ~SFX~ is the suffix for the new class type.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_peek_imp_decl
+//
+//| `uvm_peek_imp_decl(SFX)
+//
+// Define the class uvm_peek_impSFX for providing both blocking and
+// non-blocking peek implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_blocking_get_peek_imp_decl
+//
+//| `uvm_blocking_get_peek_imp_decl(SFX)
+//
+// Define the class uvm_blocking_get_peek_impSFX for providing the
+// blocking get_peek implementation.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_nonblocking_get_peek_imp_decl
+//
+//| `uvm_nonblocking_get_peek_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_get_peek_impSFX for providing non-blocking 
+// get_peek implementation.
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_get_peek_imp_decl
+//
+//| `uvm_get_peek_imp_decl(SFX)
+//
+// Define the class uvm_get_peek_impSFX for providing both blocking and
+// non-blocking get_peek implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_blocking_master_imp_decl
+//
+//| `uvm_blocking_master_imp_decl(SFX)
+//
+// Define the class uvm_blocking_master_impSFX for providing the
+// blocking master implementation.
+
+
+
+
+
+
+
+
+
+
+
+  \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  \
+endclass
+
+// MACRO: `uvm_nonblocking_master_imp_decl
+//
+//| `uvm_nonblocking_master_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_master_impSFX for providing the
+// non-blocking master implementation.
+
+
+
+
+
+
+
+
+
+
+
+  \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  \
+endclass
+
+// MACRO: `uvm_master_imp_decl
+//
+//| `uvm_master_imp_decl(SFX)
+//
+// Define the class uvm_master_impSFX for providing both blocking and
+// non-blocking master implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+
+
+  (SFX, m_req_imp, REQ, t) // req \
+  \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  \
+endclass
+
+// MACRO: `uvm_blocking_slave_imp_decl
+//
+//| `uvm_blocking_slave_imp_decl(SFX)
+//
+// Define the class uvm_blocking_slave_impSFX for providing the
+// blocking slave implementation.
+
+
+
+
+
+
+
+
+
+
+
+  \
+  (SFX, m_req_imp, REQ, t) // req \
+  (SFX, m_req_imp, REQ, t) // req \
+  \
+endclass
+
+// MACRO: `uvm_nonblocking_slave_imp_decl
+//
+//| `uvm_nonblocking_slave_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_slave_impSFX for providing the
+// non-blocking slave implementation.
+
+
+
+
+
+
+
+
+
+
+
+  \
+  (SFX, m_req_imp, REQ, t) // req \
+  (SFX, m_req_imp, REQ, t) // req \
+  \
+endclass
+
+// MACRO: `uvm_slave_imp_decl
+//
+//| `uvm_slave_imp_decl(SFX)
+//
+// Define the class uvm_slave_impSFX for providing both blocking and
+// non-blocking slave implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+
+
+  (SFX, m_rsp_imp, RSP, t) // rsp \
+  \
+  (SFX, m_req_imp, REQ, t) // req \
+  (SFX, m_req_imp, REQ, t) // req \
+  (SFX, m_req_imp, REQ, t) // req \
+  (SFX, m_req_imp, REQ, t) // req \
+  \
+endclass
+
+// MACRO: `uvm_blocking_transport_imp_decl
+//
+//| `uvm_blocking_transport_imp_decl(SFX)
+//
+// Define the class uvm_blocking_transport_impSFX for providing the
+// blocking transport implementation.
+
+
+
+
+
+
+
+
+// MACRO: `uvm_nonblocking_transport_imp_decl
+//
+//| `uvm_nonblocking_transport_imp_decl(SFX)
+//
+// Define the class uvm_nonblocking_transport_impSFX for providing the
+// non-blocking transport implementation.
+
+
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_transport_imp_decl
+//
+//| `uvm_transport_imp_decl(SFX)
+//
+// Define the class uvm_transport_impSFX for providing both blocking and
+// non-blocking transport implementations.  ~SFX~ is the suffix for the new class
+// type.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_analysis_imp_decl
+//
+//| `uvm_analysis_imp_decl(SFX)
+//
+// Define the class uvm_analysis_impSFX for providing an analysis
+// implementation. ~SFX~ is the suffix for the new class type. The analysis 
+// implementation is the write function. The `uvm_analysis_imp_decl allows 
+// for a scoreboard (or other analysis component) to support input from many 
+// places. For example:
+//
+//| `uvm_analysis_imp_decl(_ingress)
+//| `uvm_analysis_imp_decl(_egress)
+//|
+//| class myscoreboard extends uvm_component;
+//|   uvm_analysis_imp_ingress#(mydata, myscoreboard) ingress;
+//|   uvm_analysis_imp_egress#(mydata, myscoreboard) egress;
+//|   mydata ingress_list[$];
+//|   ...
+//|
+//|   function new(string name, uvm_component parent);
+//|     super.new(name,parent);
+//|     ingress = new("ingress", this);
+//|     egress = new("egress", this);
+//|   endfunction
+//|
+//|   function void write_ingress(mydata t);
+//|     ingress_list.push_back(t);
+//|   endfunction
+//|
+//|   function void write_egress(mydata t);
+//|     find_match_in_ingress_list(t);
+//|   endfunction
+//|
+//|   function void find_match_in_ingress_list(mydata t);
+//|     //implement scoreboarding for this particular dut
+//|     ...
+//|   endfunction
+//| endclass
+
+
+
+
+
+
+
+
+
+
+
+
+// These imps are used in uvm_*_port, uvm_*_export and uvm_*_imp, using suffixes
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------
+// imp definitions
+//----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+// primitive interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// combination interfaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/tlm1/uvm_tlm_imps.svh" 1
+//
+//----------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2010 Cadence Design Systems, Inc.
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+
+
+
+//
+// These IMP macros define implementations of the uvm_*_port, uvm_*_export,
+// and uvm_*_imp ports.
+//
+
+
+//---------------------------------------------------------------
+// Macros for implementations of UVM ports and exports
+
+/*
+`define UVM_BLOCKING_PUT_IMP(imp, TYPE, arg) \
+  task put (TYPE arg); \
+    if (m_imp_list.size()) == 0) begin \
+      uvm_report_error("Port Not Bound","Blocking put to unbound port will wait forever.", UVM_NONE);
+      @imp;
+    end
+    if (bcast_mode) begin \
+      if (m_imp_list.size()) > 1) \
+        fork
+          begin
+            foreach (m_imp_list[index]) \
+              fork \
+                automatic int i = index; \
+                begin m_imp_list[i].put(arg); end \
+              join_none \
+            wait fork; \
+          end \
+        join \
+      else \
+        m_imp_list[0].put(arg); \
+    end \
+    else  \
+      if (imp != null) \
+        imp.put(arg); \
+  endtask \
+
+`define UVM_NONBLOCKING_PUT_IMP(imp, TYPE, arg) \
+  function bit try_put(input TYPE arg); \
+    if (bcast_mode) begin \
+      if (!can_put()) \
+        return 0; \
+      foreach (m_imp_list[index]) \
+        void'(m_imp_list[index].try_put(arg)); \
+      return 1; \
+    end  \
+    if (imp != null) \
+      return imp.try_put(arg)); \
+    return 0; \
+  endfunction \
+  \
+  function bit can_put(); \
+    if (bcast_mode) begin \
+      if (m_imp_list.size()) begin \
+        foreach (m_imp_list[index]) begin \
+          if (!m_imp_list[index].can_put() \
+            return 0; \
+        end \
+        return 1; \
+      end \
+      return 0; \
+    end \
+    if (imp != null) \
+      return imp.can_put(); \
+    return 0; \
+  endfunction
+
+*/
+
+//-----------------------------------------------------------------------
+// TLM imp implementations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 429 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_tlm_defines.svh" 2
+`line 76 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_sequence_defines.svh" 1
+//------------------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2010 Cadence Design Systems, Inc. 
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide 
+//  
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//------------------------------------------------------------------------------
+
+// Title: Sequence-Related Macros
+
+
+
+//-----------------------------------------------------------------------------
+//
+// Group: Sequence Action Macros
+//
+// These macros are used to start sequences and sequence items on the default
+// sequencer, ~m_sequencer~. This is determined a number of ways. 
+// - the sequencer handle provided in the <uvm_sequence_base::start> method
+// - the sequencer used by the parent sequence
+// - the sequencer that was set using the <uvm_sequence_item::set_sequencer> method
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_create
+//
+//| `uvm_create(SEQ_OR_ITEM)
+//
+// This action creates the item or sequence using the factory.  It intentionally
+// does zero processing.  After this action completes, the user can manually set
+// values, manipulate rand_mode and constraint_mode, etc.
+
+
+
+
+
+// MACRO: `uvm_do
+//
+//| `uvm_do(SEQ_OR_ITEM)
+//
+// This macro takes as an argument a uvm_sequence_item variable or object.
+// The argument is created using <`uvm_create> if necessary,
+// then randomized.
+// In the case of an item, it is randomized after the call to
+// <uvm_sequence_base::start_item()> returns.
+// This is called late-randomization. 
+// In the case of a sequence, the sub-sequence is started using
+// <uvm_sequence_base::start()> with ~call_pre_post~ set to 0.
+// In the case of an item,
+// the item is sent to the driver through the associated sequencer.
+//
+// For a sequence item, the following are called, in order
+//
+//|
+//|   `uvm_create(item)
+//|   sequencer.wait_for_grant(prior) (task)
+//|   this.pre_do(1)                  (task)
+//|   item.randomize()
+//|   this.mid_do(item)               (func)
+//|   sequencer.send_request(item)    (func)
+//|   sequencer.wait_for_item_done()  (task)
+//|   this.post_do(item)              (func)
+//|
+//
+// For a sequence, the following are called, in order
+//
+//|
+//|   `uvm_create(sub_seq)
+//|   sub_seq.randomize()
+//|   sub_seq.pre_start()         (task)
+//|   this.pre_do(0)              (task)
+//|   this.mid_do(sub_seq)        (func)
+//|   sub_seq.body()              (task)
+//|   this.post_do(sub_seq)       (func)
+//|   sub_seq.post_start()        (task)
+//|
+
+
+
+
+
+// MACRO: `uvm_do_pri
+//
+//| `uvm_do_pri(SEQ_OR_ITEM, PRIORITY)
+//
+// This is the same as `uvm_do except that the sequence item or sequence is
+// executed with the priority specified in the argument
+
+
+
+
+
+// MACRO: `uvm_do_with
+//
+//| `uvm_do_with(SEQ_OR_ITEM, CONSTRAINTS)
+//
+// This is the same as `uvm_do except that the constraint block in the 2nd
+// argument is applied to the item or sequence in a randomize with statement
+// before execution.
+
+
+
+
+
+// MACRO: `uvm_do_pri_with
+//
+//| `uvm_do_pri_with(SEQ_OR_ITEM, PRIORITY, CONSTRAINTS)
+//
+// This is the same as `uvm_do_pri except that the given constraint block is
+// applied to the item or sequence in a randomize with statement before
+// execution.
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// Group: Sequence on Sequencer Action Macros
+//
+// These macros are used to start sequences and sequence items on a specific
+// sequencer. The sequence or item is created and executed on the given
+// sequencer.
+//-----------------------------------------------------------------------------
+
+// MACRO: `uvm_create_on
+//
+//| `uvm_create_on(SEQ_OR_ITEM, SEQR)
+//
+// This is the same as <`uvm_create> except that it also sets the parent sequence
+// to the sequence in which the macro is invoked, and it sets the sequencer to
+// the specified ~SEQR~ argument.
+
+
+
+
+
+
+
+
+
+// MACRO: `uvm_do_on
+//
+//| `uvm_do_on(SEQ_OR_ITEM, SEQR)
+//
+// This is the same as <`uvm_do> except that it also sets the parent sequence to
+// the sequence in which the macro is invoked, and it sets the sequencer to the
+// specified ~SEQR~ argument.
+
+
+
+
+
+// MACRO: `uvm_do_on_pri
+//
+//| `uvm_do_on_pri(SEQ_OR_ITEM, SEQR, PRIORITY)
+//
+// This is the same as <`uvm_do_pri> except that it also sets the parent sequence
+// to the sequence in which the macro is invoked, and it sets the sequencer to
+// the specified ~SEQR~ argument.
+
+
+
+
+
+// MACRO: `uvm_do_on_with
+//
+//| `uvm_do_on_with(SEQ_OR_ITEM, SEQR, CONSTRAINTS)
+//
+// This is the same as <`uvm_do_with> except that it also sets the parent
+// sequence to the sequence in which the macro is invoked, and it sets the
+// sequencer to the specified ~SEQR~ argument.
+// The user must supply brackets around the constraints.
+
+
+
+
+
+// MACRO: `uvm_do_on_pri_with
+//
+//| `uvm_do_on_pri_with(SEQ_OR_ITEM, SEQR, PRIORITY, CONSTRAINTS)
+//
+// This is the same as `uvm_do_pri_with except that it also sets the parent
+// sequence to the sequence in which the macro is invoked, and it sets the
+// sequencer to the specified ~SEQR~ argument.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// Group: Sequence Action Macros for Pre-Existing Sequences
+//
+// These macros are used to start sequences and sequence items that do not
+// need to be created. 
+//-----------------------------------------------------------------------------
+
+
+// MACRO: `uvm_send
+//
+//| `uvm_send(SEQ_OR_ITEM)
+//
+// This macro processes the item or sequence that has been created using
+// `uvm_create.  The processing is done without randomization.  Essentially, an
+// `uvm_do without the create or randomization.
+
+
+
+  
+
+// MACRO: `uvm_send_pri
+//
+//| `uvm_send_pri(SEQ_OR_ITEM, PRIORITY)
+//
+// This is the same as `uvm_send except that the sequence item or sequence is
+// executed with the priority specified in the argument.
+
+
+
+
+
+
+
+
+
+
+  
+
+// MACRO: `uvm_rand_send
+//
+//| `uvm_rand_send(SEQ_OR_ITEM)
+//
+// This macro processes the item or sequence that has been already been
+// allocated (possibly with `uvm_create). The processing is done with
+// randomization.  Essentially, an `uvm_do without the create.
+
+
+
+
+
+// MACRO: `uvm_rand_send_pri
+//
+//| `uvm_rand_send_pri(SEQ_OR_ITEM, PRIORITY)
+//
+// This is the same as `uvm_rand_send except that the sequence item or sequence
+// is executed with the priority specified in the argument.
+
+
+
+
+
+// MACRO: `uvm_rand_send_with
+//
+//| `uvm_rand_send_with(SEQ_OR_ITEM, CONSTRAINTS)
+//
+// This is the same as `uvm_rand_send except that the given constraint block is
+// applied to the item or sequence in a randomize with statement before
+// execution.
+
+
+
+
+
+// MACRO: `uvm_rand_send_pri_with
+//
+//| `uvm_rand_send_pri_with(SEQ_OR_ITEM, PRIORITY, CONSTRAINTS)
+//
+// This is the same as `uvm_rand_send_pri except that the given constraint block
+// is applied to the item or sequence in a randomize with statement before
+// execution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// Group- Sequence Library
+//
+//-----------------------------------------------------------------------------
+
+
+// MACRO: `uvm_add_to_sequence_library
+//
+// Adds the given sequence ~TYPE~ to the given sequence library ~LIBTYPE~
+//
+//| `uvm_add_to_seq_lib(TYPE,LIBTYPE)
+//
+// Invoke any number of times within a sequence declaration to statically add
+// that sequence to one or more sequence library types. The sequence will then
+// be available for selection and execution in all instances of the given
+// sequencer types.
+//
+//| class seqA extends uvm_sequence_base #(simple_item);
+//|
+//|    function new(string name=`"TYPE`");
+//|      super.new(name);
+//|    endfunction
+//|
+//|    `uvm_object_utils(seqA)
+//|
+//|    `uvm_add_to_seq_lib(seqA, simple_seq_lib_RST)
+//|    `uvm_add_to_seq_lib(seqA, simple_seq_lib_CFG)
+//|
+//|    virtual task body(); \
+//|      `uvm_info("SEQ_START", {"Executing sequence '", get_full_name(),
+//|                             "' (",get_type_name(),")"},UVM_HIGH)
+//|      #10;
+//|    endtask
+//|
+//|  endclass
+
+
+
+
+
+
+
+
+// MACRO: `uvm_sequence_library_utils
+//
+//| `uvm_sequence_library_utils(TYPE)
+// 
+// Declares the infrastructure needed to define extensions to the
+// <uvm_sequence_library> class. You define new sequence library subtypes
+// to statically specify sequence membership from within sequence
+// definitions. See also <`uvm_add_to_sequence_library> for more information.
+//
+//
+//| typedef simple_seq_lib uvm_sequence_library #(simple_item);
+//|
+//| class simple_seq_lib_RST extends simple_seq_lib;
+//|
+//|   `uvm_object_utils(simple_seq_lib_RST)
+//|
+//|   `uvm_sequence_library_utils(simple_seq_lib_RST)
+//|
+//|   function new(string name="");
+//|     super.new(name);
+//|   endfunction
+//|
+//| endclass
+//
+// Each library, itself a sequence, can then be started independently
+// on different sequencers or in different phases of the same sequencer.
+// See <uvm_sequencer_base::start_phase_sequence> for information on
+// starting default sequences.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// Group: Sequencer Subtypes
+//
+//-----------------------------------------------------------------------------
+
+
+// MACRO: `uvm_declare_p_sequencer
+//
+// This macro is used to declare a variable ~p_sequencer~ whose type is
+// specified by ~SEQUENCER~.
+//
+//| `uvm_declare_p_sequencer(SEQUENCER)
+//
+// The example below shows using the `uvm_declare_p_sequencer macro
+// along with the uvm_object_utils macros to set up the sequence but
+// not register the sequence in the sequencer's library.
+//
+//| class mysequence extends uvm_sequence#(mydata);
+//|   `uvm_object_utils(mysequence)
+//|   `uvm_declare_p_sequencer(some_seqr_type)
+//|   task body;
+//|     //Access some variable in the user's custom sequencer
+//|     if(p_sequencer.some_variable) begin
+//|       ...
+//|     end
+//|   endtask
+//| endclass
+//
+
+
+
+
+
+
+
+
+
+
+`line 77 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_callback_defines.svh" 1
+//-----------------------------------------------------------------------------
+//   Copyright 2007-2011 Mentor Graphics Corporation
+//   Copyright 2007-2011 Cadence Design Systems, Inc. 
+//   Copyright 2010 Synopsys, Inc.
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//-----------------------------------------------------------------------------
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// Title: Callback Macros
+//
+// These macros are used to register and execute callbacks extending
+// from ~uvm_callbacks~.
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// MACRO: `uvm_register_cb
+//
+//| `uvm_register_cb(T,CB)
+//
+// Registers the given ~CB~ callback type with the given ~T~ object type. If
+// a type-callback pair is not registered then a warning is issued if an
+// attempt is made to use the pair (add, delete, etc.).
+//
+// The registration will typically occur in the component that executes the
+// given type of callback. For instance:
+//
+//| virtual class mycb extends uvm_callback;
+//|   virtual function void doit();
+//| endclass
+//|
+//| class my_comp extends uvm_component;
+//|   `uvm_register_cb(my_comp,mycb)
+//|   ...
+//|   task run_phase(uvm_phase phase);
+//|     ...
+//|     `uvm_do_callbacks(my_comp, mycb, doit())
+//|   endtask
+//| endclass
+//-----------------------------------------------------------------------------
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// MACRO: `uvm_set_super_type
+//
+//| `uvm_set_super_type(T,ST)
+//
+// Defines the super type of ~T~ to be ~ST~. This allows for derived class
+// objects to inherit typewide callbacks that are registered with the base
+// class.
+//
+// The registration will typically occur in the component that executes the
+// given type of callback. For instance:
+//
+//| virtual class mycb extend uvm_callback;
+//|   virtual function void doit();
+//| endclass
+//|
+//| class my_comp extends uvm_component;
+//|   `uvm_register_cb(my_comp,mycb)
+//|   ...
+//|   task run_phase(uvm_phase phase);
+//|     ...
+//|     `uvm_do_callbacks(my_comp, mycb, doit())
+//|   endtask
+//| endclass
+//|
+//| class my_derived_comp extends my_comp;
+//|   `uvm_set_super_type(my_derived_comp,my_comp)
+//|   ...
+//|   task run_phase(uvm_phase phase);
+//|     ...
+//|     `uvm_do_callbacks(my_comp, mycb, doit())
+//|   endtask
+//| endclass
+//-----------------------------------------------------------------------------
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// MACRO: `uvm_do_callbacks
+//
+//| `uvm_do_callbacks(T,CB,METHOD)
+//
+// Calls the given ~METHOD~ of all callbacks of type ~CB~ registered with
+// the calling object (i.e. ~this~ object), which is or is based on type ~T~.
+//
+// This macro executes all of the callbacks associated with the calling
+// object (i.e. ~this~ object). The macro takes three arguments:
+//
+// - CB is the class type of the callback objects to execute. The class
+//   type must have a function signature that matches the METHOD argument.
+//
+// - T is the type associated with the callback. Typically, an instance
+//   of type T is passed as one the arguments in the ~METHOD~ call.
+//
+// - METHOD is the method call to invoke, with all required arguments as
+//   if they were invoked directly.
+//
+// For example, given the following callback class definition:
+//
+//| virtual class mycb extends uvm_cb;
+//|   pure function void my_function (mycomp comp, int addr, int data);
+//| endclass
+//
+// A component would invoke the macro as
+//
+//| task mycomp::run_phase(uvm_phase phase); 
+//|    int curr_addr, curr_data;
+//|    ...
+//|    `uvm_do_callbacks(mycb, mycomp, my_function(this, curr_addr, curr_data))
+//|    ...
+//| endtask
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// MACRO: `uvm_do_obj_callbacks
+//
+//| `uvm_do_obj_callbacks(T,CB,OBJ,METHOD)
+//
+// Calls the given ~METHOD~ of all callbacks based on type ~CB~ registered with
+// the given object, ~OBJ~, which is or is based on type ~T~.
+//
+// This macro is identical to <`uvm_do_callbacks> macro,
+// but it has an additional ~OBJ~ argument to allow the specification of an
+// external object to associate the callback with. For example, if the
+// callbacks are being applied in a sequence, ~OBJ~ could be specified
+// as the associated sequencer or parent sequence.
+//
+//|    ...
+//|    `uvm_do_callbacks(mycb, mycomp, seqr, my_function(seqr, curr_addr, curr_data))
+//|    ...
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+// MACRO: `uvm_do_callbacks_exit_on
+//
+//| `uvm_do_callbacks_exit_on(T,CB,METHOD,VAL)
+//
+// Calls the given ~METHOD~ of all callbacks of type ~CB~ registered with
+// the calling object (i.e. ~this~ object), which is or is based on type ~T~,
+// returning upon the first callback returning the bit value given by ~VAL~.
+//
+// This macro executes all of the callbacks associated with the calling
+// object (i.e. ~this~ object). The macro takes three arguments:
+//
+// - CB is the class type of the callback objects to execute. The class
+//   type must have a function signature that matches the METHOD argument.
+//
+// - T is the type associated with the callback. Typically, an instance
+//   of type T is passed as one the arguments in the ~METHOD~ call.
+//
+// - METHOD is the method call to invoke, with all required arguments as
+//   if they were invoked directly.
+//
+// - VAL, if 1, says return upon the first callback invocation that
+//   returns 1. If 0, says return upon the first callback invocation that
+//   returns 0.
+//
+// For example, given the following callback class definition:
+//
+//| virtual class mycb extends uvm_cb;
+//|   pure function bit drop_trans (mycomp comp, my_trans trans);
+//| endclass
+//
+// A component would invoke the macro as
+//
+//| task mycomp::run_phase(uvm_phase phase); 
+//|    my_trans trans;
+//|    forever begin
+//|      get_port.get(trans);
+//|      if(do_callbacks(trans) == 0)
+//|        uvm_report_info("DROPPED",{"trans dropped: %s",trans.convert2string()});
+//|      else
+//|        // execute transaction
+//|    end
+//| endtask
+//| function bit do_callbacks(my_trans);
+//|   // Returns 0 if drop happens and 1 otherwise
+//|   `uvm_do_callbacks_exit_on(mycomp, mycb, extobj, drop_trans(this,trans), 1)
+//| endfunction
+//
+// Because this macro calls ~return~, its use is restricted to implementations
+// of functions that return a ~bit~ value, as in the above example.
+//
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+// MACRO: `uvm_do_obj_callbacks_exit_on
+//
+//| `uvm_do_obj_callbacks_exit_on(T,CB,OBJ,METHOD,VAL)
+//
+// Calls the given ~METHOD~ of all callbacks of type ~CB~ registered with
+// the given object ~OBJ~, which must be or be based on type ~T~, and returns
+// upon the first callback that returns the bit value given by ~VAL~. It is
+// exactly the same as the <`uvm_do_callbacks_exit_on> but has a specific
+// object instance (instead of the implicit this instance) as the third
+// argument.
+//
+//| ...
+//|  // Exit if a callback returns a 1
+//|  `uvm_do_callbacks_exit_on(mycomp, mycb, seqr, drop_trans(seqr,trans), 1)
+//| ...
+//
+// Because this macro calls ~return~, its use is restricted to implementations
+// of functions that return a ~bit~ value, as in the above example.
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// The +define+UVM_CB_TRACE_ON setting will instrument the uvm library to emit 
+// messages with message id UVMCB_TRC and UVM_NONE verbosity 
+// notifing add,delete and execution of uvm callbacks. The instrumentation is off by default.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_reg_defines.svh" 1
+//----------------------------------------------------------------------
+//   Copyright 2010 Synopsys, Inc.
+//   Copyright 2010 Mentor Graphics Corporation
+//   All Rights Reserved Worldwide
+//
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//----------------------------------------------------------------------
+
+//------------------------
+// File: Register Defines
+//------------------------
+
+// Macro: `UVM_REG_ADDR_WIDTH
+//
+// Maximum address width in bits
+//
+// Default value is 64. Used to define the <uvm_reg_addr_t> type.
+//
+
+ 
+
+
+
+// Macro: `UVM_REG_DATA_WIDTH
+//
+// Maximum data width in bits
+//
+// Default value is 64. Used to define the <uvm_reg_data_t> type.
+//
+
+ 
+
+
+
+// Macro: `UVM_REG_BYTENABLE_WIDTH
+//
+// Maximum number of byte enable bits
+//
+// Default value is one per byte in <`UVM_REG_DATA_WIDTH>.
+// Used to define the <uvm_reg_byte_en_t> type.
+//
+ 
+  
+
+
+
+// Macro: `UVM_REG_CVR_WIDTH
+//
+// Maximum number of bits in a <uvm_reg_cvr_t> coverage model set.
+//
+// Default value is 32.
+//
+
+ 
+
+
+`line 79 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+`line 1 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/macros/uvm_deprecated_defines.svh" 1
+//------------------------------------------------------------------------------
+//   Copyright 2010-2011 Mentor Graphics Corporation
+//   All Rights Reserved Worldwide 
+//  
+//   Licensed under the Apache License, Version 2.0 (the
+//   "License"); you may not use this file except in
+//   compliance with the License.  You may obtain a copy of
+//   the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in
+//   writing, software distributed under the License is
+//   distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+//   CONDITIONS OF ANY KIND, either express or implied.  See
+//   the License for the specific language governing
+//   permissions and limitations under the License.
+//------------------------------------------------------------------------------
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// *** DEPRECATED ***
+// Group- Sequence Registration Macros
+//
+// The sequence-specific macros perform the same function as the set of
+// `uvm_object_*_utils macros, except they also set the default sequencer type
+// the sequence will run on. 
+//-----------------------------------------------------------------------------
+
+
+
+
+
+// MACRO- `uvm_sequence_utils_begin
+//
+
+
+
+
+
+// MACRO- `uvm_sequence_utils_end
+//
+
+
+
+// MACRO- `uvm_sequence_utils
+//
+// The sequence macros can be used in non-parameterized <uvm_sequence #(REQ,RSP)>
+// extensions to pre-register the sequence with a given <uvm_sequencer #(REQ,RSP)>
+// type.
+//
+// For sequences that do not use any `uvm_field macros:
+//
+//|  `uvm_sequence_utils(TYPE_NAME,SQR_TYPE_NAME)
+//
+// For sequences employing with field macros:
+//
+//|  `uvm_sequence_utils_begin(TYPE_NAME,SQR_TYPE_NAME)
+//|    `uvm_field_* macro invocations here
+//|  `uvm_sequence_utils_end
+//
+// The sequence-specific macros perform the same function as the set of
+// `uvm_object_*_utils macros except that they also register the sequence's
+// type, TYPE_NAME, with the given sequencer type, SQR_TYPE_NAME, and define
+// the p_sequencer variable and m_set_p_sequencer method.
+//
+// Use `uvm_sequence_utils[_begin] for non-parameterized classes and
+// `uvm_sequence_param_utils[_begin] for parameterized classes.
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// *** DEPRECATED ***
+//
+// Group- Sequencer Registration Macros
+//
+// The sequencer-specific macros perform the same function as the set of
+// `uvm_componenent_*utils macros except that they also declare the plumbing
+// necessary for creating the sequencer's sequence library.
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// This macro populates the instance-specific sequence library for a sequencer.
+// It should be invoked inside the sequencer��s constructor.
+
+
+
+
+
+
+// MACRO- `uvm_update_sequence_lib_and_item
+//
+// This macro populates the instance specific sequence library for a sequencer,
+// and it registers the given ~USER_ITEM~ as an instance override for the simple
+// sequence's item variable.
+//
+// The macro should be invoked inside the sequencer's constructor.
+
+
+
+
+
+
+
+
+
+
+// MACRO- `uvm_sequencer_utils
+
+
+
+
+
+// MACRO- `uvm_sequencer_utils_begin
+
+
+
+
+
+// MACRO- `uvm_sequencer_param_utils
+
+
+
+
+
+// MACRO- `uvm_sequencer_param_utils_begin
+
+
+
+
+
+
+// MACRO- `uvm_sequencer_utils_end
+//
+// The sequencer macros are used in uvm_sequencer-based class declarations
+// in one of four ways.
+//
+// For simple sequencers, no field macros
+//
+//   `uvm_sequencer_utils(SQR_TYPE_NAME)
+//
+// For simple sequencers, with field macros
+//
+//   `uvm_sequencer_utils_begin(SQR_TYPE_NAME)
+//     `uvm_field_* macros here
+//   `uvm_sequencer_utils_end
+//
+// For parameterized sequencers, no field macros
+//
+//   `uvm_sequencer_param_utils(SQR_TYPE_NAME)
+//
+// For parameterized sequencers, with field macros
+//
+//   `uvm_sequencer_param_utils_begin(SQR_TYPE_NAME)
+//     `uvm_field_* macros here
+//   `uvm_sequencer_utils_end
+//
+// The sequencer-specific macros perform the same function as the set of
+// `uvm_componenent_*utils macros except that they also declare the plumbing
+// necessary for creating the sequencer's sequence library. This includes:
+//
+// 1. Declaring the type-based static queue of strings registered on the
+//    sequencer type.
+//
+// 2. Declaring the static function to add strings to item #1 above.
+//
+// 3. Declaring the static function to remove strings to item #1 above.
+//
+// 4. Declaring the function to populate the instance specific sequence library
+//    for a sequencer.
+//
+// Use `uvm_sequencer_utils[_begin] for non-parameterized classes and
+// `uvm_sequencer_param_utils[_begin] for parameterized classes.
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// MACRO- `uvm_package
+//
+// Use `uvm_package to define the SV package and to create a bogus type to help 
+// automate triggering the static initializers of the package.
+// Use uvm_end_package to endpackage.
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------
+//
+// MACRO- `uvm_sequence_library_package
+//
+// This macro is used to trigger static initializers in packages. `uvm_package
+// creates a bogus type which gets referred to by uvm_sequence_library_package
+// to make a package-based variable of the bogus type.
+//-----------------------------------------------------------------------------
+
+
+
+
+
+
+`line 80 "/home/aqua/metrics-ca/dsim/20240422.0.0/uvm/1.2/src/uvm_macros.svh" 2
+
+
+`line 2 "rtl/../rtl/top_hdl.sv" 2
+import uvm_pkg::*;
+
+module top();
+
+   // external clk generator
+   reg CLK = 1;
+   always begin
+      #(500e6/100000000) CLK = !CLK;
+   end 
+   
+   // Interface
+   intf_soc intf(CLK);
+   intf_soc intf2(CLK);
+   intf_mem_rd mem_rd_chan(CLK);
+   //logic reset_x;
+
+   assign mem_rd_chan.IADDR = soc0.IADDR;
+   assign mem_rd_chan.IDATA = soc0.IDATA;
+
+   // DUT connection	
+   darksocv soc0 (
+				  .XCLK(CLK),
+				  .XRES(intf.rst),
+     			  .UART_RXD(intf.uart_rx),
+				  .UART_TXD(intf.uart_tx),
+				  .LED(intf.leds),
+				  .DEBUG(intf.debug));
+
+   // generate dumps
+   /*
+   genvar q;
+   generate 
+      for(q=0; q<32; q=q+1)begin 
+    	 logic [31:0] reg_dmpd;
+         assign reg_dmpd = soc0.core0.REGS[q];
+      end
+   endgenerate
+   
+   genvar			  inst;
+   generate
+      // for(inst=(2**`MLEN/4)-5; inst<(2**`MLEN/4); inst=inst+1)begin
+      for(inst=0; inst<20; inst=inst+1)begin
+         logic [31:0] inst_dmpd;
+         assign inst_dmpd = soc0.MEM[inst];
+      end
+   endgenerate
+
+   // .vcd generator
+   */
+
+   initial begin
+        $dumpfile("darksocv.vcd");
+        $dumpvars();
+        uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
+        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
+        uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
+     	//reset_x = 1;
+     	//#3000
+     	//reset_x = 0;
+   end
+   
+   //Test case
+   //testcase test(intf);  Para el port a UVM esta linea se pone en el top_hvl  
+
+   /*
+   logic [31:0] scbdreg_dmpd1;
+   logic [31:0]	scbdreg_dmpd0;
+   logic [31:0]	scbdreg_dmpd2;
+   logic [31:0]	scbdreg_dmpd3;
+   logic [31:0]	scbdreg_dmpd4;
+   logic [31:0]	scbdreg_dmpd5;
+   logic [31:0]	scbdreg_dmpd6;
+   logic [31:0]	scbdreg_dmpd7;
+   logic [31:0]	scbdreg_dmpd8;
+   logic [31:0]	scbdreg_dmpd9;
+   logic [31:0]	scbdreg_dmpd10;
+   logic [31:0]	scbdreg_dmpd11;
+   logic [31:0]	scbdreg_dmpd12;
+   logic [31:0]	scbdreg_dmpd13;
+   logic [31:0]	scbdreg_dmpd14;
+   logic [31:0]	scbdreg_dmpd15;
+   logic [31:0]	scbdreg_dmpd16;
+   logic [31:0]	scbdreg_dmpd17;
+   logic [31:0]	scbdreg_dmpd18;
+   logic [31:0]	scbdreg_dmpd19;
+   logic [31:0]	scbdreg_dmpd20;
+   logic [31:0]	scbdreg_dmpd21;
+   logic [31:0]	scbdreg_dmpd22;
+   logic [31:0]	scbdreg_dmpd23;
+   logic [31:0]	scbdreg_dmpd24;
+   logic [31:0]	scbdreg_dmpd25;
+   logic [31:0]	scbdreg_dmpd26;
+   logic [31:0]	scbdreg_dmpd27;
+   logic [31:0]	scbdreg_dmpd28;
+   logic [31:0]	scbdreg_dmpd29;
+   logic [31:0]	scbdreg_dmpd30;
+   logic [31:0]	scbdreg_dmpd31;  
+   */
+
+
+endmodule`line 4 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darksocv.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+`timescale 1ns / 1ps
+//`include "../config.vh" //MODIFIED: path
+
+module darksocv
+(
+    input        XCLK,      // external clock
+    input        XRES,      // external reset
+
+    input        UART_RXD,  // UART receive line
+    output       UART_TXD,  // UART transmit line
+
+    output [3:0] LED,       // on-board leds
+    output [3:0] DEBUG      // osciloscope
+);
+
+    wire CLK,RES;
+    
+    darkpll darkpll0(.XCLK(XCLK),.XRES(XRES),.CLK(CLK),.RES(RES));
+
+    // ro/rw memories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    reg [31:0] MEM [0:2**12 /4-1]; // ro memory
+
+    // memory initialization
+
+    integer i;
+    initial
+    begin
+
+
+        for(i=0;i!=2**12 /4;i=i+1)
+        begin
+            MEM[i] = 32'd0;
+        end
+
+
+        // workaround for vivado: no path in simulation and .mem extension
+
+    
+
+
+
+
+      	$readmemh("darksocv.mem",MEM,0);	//MODIFIED: path
+
+    end
+
+
+
+    // darkriscv bus interface
+
+    wire [31:0] IADDR;
+    wire [31:0] DADDR;
+    wire [31:0] IDATA;
+    wire [31:0] DATAO;
+    wire [31:0] DATAI;
+    wire        WR,RD;
+    wire [3:0]  BE;
+
+
+
+
+
+
+
+
+    wire [31:0] IOMUX [0:4];
+
+    reg  [15:0] GPIOFF = 0;
+    reg  [15:0] LEDFF  = 0;
+
+    wire HLT;
+
+    // instruction bus
+
+    reg [31:0] ROMFF;
+
+    wire IHIT = 1;
+
+    reg [31:0] ROMFF2 = 0;
+    reg        HLT2   = 0;
+
+    always@(posedge CLK) // stage #0.5
+    begin
+        if(HLT^HLT2)
+        begin
+            ROMFF2 <= ROMFF;
+        end
+
+        HLT2 <= HLT;
+    end
+
+    assign IDATA = HLT2 ? ROMFF2 : ROMFF;
+
+    always@(posedge CLK) // stage #0.5
+    begin
+
+
+
+        ROMFF <= MEM[IADDR[12 -1:2]];
+
+    end
+
+    // data bus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    reg [31:0] RAMFF;
+
+    // for single phase clock: 1 wait state in read op always required!
+
+    reg [1:0] DACK = 0;
+
+    wire WHIT = 1;
+    wire DHIT = !((RD
+            
+
+
+                    ) && DACK!=1); // the WR operatio does not need ws. in this config.
+
+    always@(posedge CLK) // stage #1.0
+    begin
+        DACK <= RES ? 0 : DACK ? DACK-1 : (RD
+            
+
+
+                    ) ? 1 : 0; // wait-states
+    end
+
+    always@(posedge CLK) // stage #1.5
+    begin
+
+
+
+        RAMFF <= MEM[DADDR[12 -1:2]];
+
+    end
+
+    //assign DATAI = DADDR[31] ? IOMUX  : RAM[DADDR[`MLEN-1:2]];
+
+    reg [31:0] IOMUXFF = 0;
+    reg [31:0] XADDR   = 0;
+
+    //individual byte/word/long selection, thanks to HYF!
+
+    always@(posedge CLK)
+    begin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // write-only operation w/ 0 wait-states:
+    
+
+
+
+
+
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[3]) MEM[DADDR[12 -1:2]][3 * 8 + 7: 3 * 8] <= DATAO[3 * 8 + 7: 3 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[2]) MEM[DADDR[12 -1:2]][2 * 8 + 7: 2 * 8] <= DATAO[2 * 8 + 7: 2 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[1]) MEM[DADDR[12 -1:2]][1 * 8 + 7: 1 * 8] <= DATAO[1 * 8 + 7: 1 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[0]) MEM[DADDR[12 -1:2]][0 * 8 + 7: 0 * 8] <= DATAO[0 * 8 + 7: 0 * 8];
+
+
+
+        XADDR <= DADDR; // 1 clock delayed
+        IOMUXFF <= IOMUX[DADDR[4:2]==3'b100 ? 3'b100 : DADDR[3:2]]; // read w/ 2 wait-states
+    end
+
+    //assign DATAI = DADDR[31] ? IOMUX[DADDR[3:2]]  : RAMFF;
+    //assign DATAI = DADDR[31] ? IOMUXFF : RAMFF;
+    assign DATAI = XADDR[31] ? IOMUX[XADDR[4:2]==3'b100 ? 3'b100 : XADDR[3:2]] : RAMFF;
+
+    // io for debug
+
+    reg [7:0] IREQ = 0;
+    reg [7:0] IACK = 0;
+
+    reg [31:0] TIMERFF = 0;
+    reg [31:0] TIMEUS = 0;
+
+    wire [7:0] BOARD_IRQ;
+
+    wire   [7:0] BOARD_ID = 0;              // board id
+    wire   [7:0] BOARD_CM = (100000000/2000000);    // board clock (MHz)
+
+
+
+
+
+    wire   [7:0] CORE_ID = 0;                       // core id
+
+
+    assign IOMUX[0] = { BOARD_IRQ, CORE_ID, BOARD_CM, BOARD_ID };
+    //assign IOMUX[1] = from UART!
+    assign IOMUX[2] = { GPIOFF, LEDFF };
+    assign IOMUX[3] = TIMERFF;
+    assign IOMUX[4] = TIMEUS;
+
+    reg [31:0] TIMER = 0;
+
+    reg XTIMER = 0;
+
+    always@(posedge CLK)
+    begin
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1000)
+        begin
+            LEDFF <= DATAO[15:0];
+        end
+
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1010)
+        begin
+            GPIOFF <= DATAO[31:16];
+        end
+
+        if(RES)
+            TIMERFF <= (100000000/1000000)-1; // timer set to 1MHz by default
+        else
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1100)
+        begin
+            TIMERFF <= DATAO[31:0];
+        end
+
+        if(RES)
+            IACK <= 0;
+        else
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b0011)
+        begin
+            //$display("clear io.irq = %x (ireq=%x, iack=%x)",DATAO[32:24],IREQ,IACK);
+
+            IACK[7] <= DATAO[7+24] ? IREQ[7] : IACK[7];
+            IACK[6] <= DATAO[6+24] ? IREQ[6] : IACK[6];
+            IACK[5] <= DATAO[5+24] ? IREQ[5] : IACK[5];
+            IACK[4] <= DATAO[4+24] ? IREQ[4] : IACK[4];
+            IACK[3] <= DATAO[3+24] ? IREQ[3] : IACK[3];
+            IACK[2] <= DATAO[2+24] ? IREQ[2] : IACK[2];
+            IACK[1] <= DATAO[1+24] ? IREQ[1] : IACK[1];
+            IACK[0] <= DATAO[0+24] ? IREQ[0] : IACK[0];
+        end
+
+        if(RES)
+            IREQ <= 0;
+        else
+        if(TIMERFF)
+        begin
+            TIMER <= TIMER ? TIMER-1 : TIMERFF;
+
+            if(TIMER==0 && IREQ==IACK)
+            begin
+                IREQ[7] <= !IACK[7];
+
+                //$display("timr0 set");
+            end
+
+            XTIMER  <= XTIMER+(TIMER==0);
+            TIMEUS <= (TIMER == TIMERFF) ? TIMEUS + 1'b1 : TIMEUS;
+        end
+    end
+
+    assign BOARD_IRQ = IREQ^IACK;
+
+    assign HLT = !IHIT||!DHIT||!WHIT;
+
+    // darkuart
+
+    wire [3:0] UDEBUG;
+
+    wire FINISH_REQ;
+
+    darkuart
+//    #(
+//      .BAUD((`BOARD_CK/115200))
+//    )
+    uart0
+    (
+      .CLK(CLK),
+      .RES(RES),
+      .RD(!HLT&&RD&&DADDR[31]&&DADDR[3:2]==1),
+      .WR(!HLT&&WR&&DADDR[31]&&DADDR[3:2]==1),
+      .BE(BE),
+      .DATAI(DATAO),
+      .DATAO(IOMUX[1]),
+      //.IRQ(UART_IRQ),
+
+
+      .RXD(UART_RXD),
+      .TXD(UART_TXD),
+
+		
+      .FINISH_REQ(FINISH_REQ),
+
+      .DEBUG(UDEBUG)
+    );
+
+    // darkriscv
+
+    wire [3:0] KDEBUG;
+
+    wire IDLE;
+
+    darkriscv
+//    #(
+//        .RESET_PC(32'h00000000),
+//        .RESET_SP(32'h00002000)
+//    )
+    core0
+    (
+        .CLK(CLK),
+        .RES(RES),
+        .HLT(HLT),
+
+
+
+
+
+
+        .IDATA(IDATA),
+        .IADDR(IADDR),
+        .DADDR(DADDR),
+
+
+
+
+
+
+
+        .DATAI(DATAI),
+        .DATAO(DATAO),
+        .BE(BE),
+        .WR(WR),
+        .RD(RD),
+
+
+        .IDLE(IDLE),
+
+        .DEBUG(KDEBUG)
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    assign LED   = LEDFF[3:0];
+
+	 
+    assign DEBUG = { XTIMER, KDEBUG[2:0] }; // UDEBUG;
+
+
+
+    
+
+        integer clocks=0, running=0, load=0, store=0, flush=0, halt=0;
+
+    
+
+
+
+
+
+
+        always@(posedge CLK)
+        begin
+            if(!RES)
+            begin
+                clocks = clocks+1;
+
+                if(HLT)
+                begin
+                         if(WR)	store = store+1;
+                    else if(RD)	load  = load +1;
+                    else 		halt  = halt +1;
+                end
+                else
+                if(IDLE)
+                begin
+                    flush=flush+1;
+                end
+                else
+                begin
+
+        
+
+
+
+
+
+
+
+
+
+                    running = running +1;
+                end
+
+                if(FINISH_REQ)
+                begin
+                    $display("****************************************************************************");
+                    $display("DarkRISCV Pipeline Report (%0d clocks):",clocks);
+
+                    $display("core0: %0d%% run, %0d%% wait (%0d%% i-bus, %0d%% d-bus/rd, %0d%% d-bus/wr), %0d%% idle",
+                        100.0*running/clocks,
+                        100.0*(load+store+halt)/clocks,
+                        100.0*halt/clocks,
+                        100.0*load/clocks,
+                        100.0*store/clocks,
+                        100.0*flush/clocks);
+
+         
+
+
+
+
+                    $display("****************************************************************************");
+                    $finish();
+                end
+            end
+        end
+
+
+
+
+
+
+endmodule
+`line 5 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darkriscv.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+`timescale 1ns / 1ps
+
+// implemented opcodes:
+
+
+
+
+
+
+
+
+
+
+
+
+// proprietary extension (custom-0)
+
+
+// not implemented opcodes:
+//`define FCC     7'b00011_11      // fencex
+
+
+// configuration file
+
+//`include "config.vh"  //MODIFIED: path
+
+module darkriscv
+//#(
+//    parameter [31:0] RESET_PC = 0,
+//    parameter [31:0] RESET_SP = 4096
+//)
+(
+    input             CLK,   // clock
+    input             RES,   // reset
+    input             HLT,   // halt
+
+
+
+
+
+
+
+
+
+    input      [31:0] IDATA, // instruction data bus
+    output     [31:0] IADDR, // instruction addr bus
+
+    input      [31:0] DATAI, // data bus (input)
+    output     [31:0] DATAO, // data bus (output)
+    output     [31:0] DADDR, // addr bus
+
+
+
+
+
+    output     [ 3:0] BE,   // byte enable
+    output            WR,    // write enable
+    output            RD,    // read enable
+
+
+    output            IDLE,   // idle output
+
+    output [3:0]  DEBUG       // old-school osciloscope based debug! :)
+);
+
+    // dummy 32-bit words w/ all-0s and all-1s:
+
+    wire [31:0] ALL0  = 0;
+    wire [31:0] ALL1  = -1;
+
+    reg XRES = 1;
+
+
+
+
+
+
+
+    // decode: IDATA is break apart as described in the RV32I specification
+
+
+
+    reg [31:0] XIDATA;
+
+    reg XLUI, XAUIPC, XJAL, XJALR, XBCC, XLCC, XSCC, XMCC, XRCC, XCUS, XCCC; //, XFCC, XCCC;
+
+    reg [31:0] XSIMM;
+    reg [31:0] XUIMM;
+
+    always@(posedge CLK)
+    begin
+        XIDATA <= XRES ? 0 : HLT ? XIDATA : IDATA;
+
+        XLUI   <= XRES ? 0 : HLT ? XLUI   : IDATA[6:0]==7'b01101_11      ;
+        XAUIPC <= XRES ? 0 : HLT ? XAUIPC : IDATA[6:0]==7'b00101_11      ;
+        XJAL   <= XRES ? 0 : HLT ? XJAL   : IDATA[6:0]==7'b11011_11      ;
+        XJALR  <= XRES ? 0 : HLT ? XJALR  : IDATA[6:0]==7'b11001_11      ;
+
+        XBCC   <= XRES ? 0 : HLT ? XBCC   : IDATA[6:0]==7'b11000_11      ;
+        XLCC   <= XRES ? 0 : HLT ? XLCC   : IDATA[6:0]==7'b00000_11      ;
+        XSCC   <= XRES ? 0 : HLT ? XSCC   : IDATA[6:0]==7'b01000_11      ;
+        XMCC   <= XRES ? 0 : HLT ? XMCC   : IDATA[6:0]==7'b00100_11      ;
+
+        XRCC   <= XRES ? 0 : HLT ? XRCC   : IDATA[6:0]==7'b01100_11      ;
+        XCUS   <= XRES ? 0 : HLT ? XRCC   : IDATA[6:0]==7'b00010_11      ;
+        //XFCC   <= XRES ? 0 : HLT ? XFCC   : IDATA[6:0]==`FCC;
+        XCCC   <= XRES ? 0 : HLT ? XCCC   : IDATA[6:0]==7'b11100_11      ;
+
+        // signal extended immediate, according to the instruction type:
+
+        XSIMM  <= XRES ? 0 : HLT ? XSIMM :
+                 IDATA[6:0]==7'b01000_11       ? { IDATA[31] ? ALL1[31:12]:ALL0[31:12], IDATA[31:25],IDATA[11:7] } : // s-type
+                 IDATA[6:0]==7'b11000_11       ? { IDATA[31] ? ALL1[31:13]:ALL0[31:13], IDATA[31],IDATA[7],IDATA[30:25],IDATA[11:8],ALL0[0] } : // b-type
+                 IDATA[6:0]==7'b11011_11       ? { IDATA[31] ? ALL1[31:21]:ALL0[31:21], IDATA[31], IDATA[19:12], IDATA[20], IDATA[30:21], ALL0[0] } : // j-type
+                 IDATA[6:0]==7'b01101_11      ||
+                 IDATA[6:0]==7'b00101_11       ? { IDATA[31:12], ALL0[11:0] } : // u-type
+                                      { IDATA[31] ? ALL1[31:12]:ALL0[31:12], IDATA[31:20] }; // i-type
+        // non-signal extended immediate, according to the instruction type:
+
+        XUIMM  <= XRES ? 0: HLT ? XUIMM :
+                 IDATA[6:0]==7'b01000_11       ? { ALL0[31:12], IDATA[31:25],IDATA[11:7] } : // s-type
+                 IDATA[6:0]==7'b11000_11       ? { ALL0[31:13], IDATA[31],IDATA[7],IDATA[30:25],IDATA[11:8],ALL0[0] } : // b-type
+                 IDATA[6:0]==7'b11011_11       ? { ALL0[31:21], IDATA[31], IDATA[19:12], IDATA[20], IDATA[30:21], ALL0[0] } : // j-type
+                 IDATA[6:0]==7'b01101_11      ||
+                 IDATA[6:0]==7'b00101_11       ? { IDATA[31:12], ALL0[11:0] } : // u-type
+                                      { ALL0[31:12], IDATA[31:20] }; // i-type
+    end
+
+    reg [1:0] FLUSH = -1;  // flush instruction pipeline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+        wire [4:0] DPTR   = XRES ? 0 : XIDATA[11: 7]; // set SP_RESET when RES==1
+        wire [4:0] S1PTR  = XIDATA[19:15];
+        wire [4:0] S2PTR  = XIDATA[24:20];
+
+
+
+    wire [6:0] OPCODE = FLUSH ? 0 : XIDATA[6:0];
+    wire [2:0] FCT3   = XIDATA[14:12];
+    wire [6:0] FCT7   = XIDATA[31:25];
+
+    wire [31:0] SIMM  = XSIMM;
+    wire [31:0] UIMM  = XUIMM;
+
+    // main opcode decoder:
+
+    wire    LUI = FLUSH ? 0 : XLUI;   // OPCODE==7'b0110111;
+    wire  AUIPC = FLUSH ? 0 : XAUIPC; // OPCODE==7'b0010111;
+    wire    JAL = FLUSH ? 0 : XJAL;   // OPCODE==7'b1101111;
+    wire   JALR = FLUSH ? 0 : XJALR;  // OPCODE==7'b1100111;
+
+    wire    BCC = FLUSH ? 0 : XBCC; // OPCODE==7'b1100011; //FCT3
+    wire    LCC = FLUSH ? 0 : XLCC; // OPCODE==7'b0000011; //FCT3
+    wire    SCC = FLUSH ? 0 : XSCC; // OPCODE==7'b0100011; //FCT3
+    wire    MCC = FLUSH ? 0 : XMCC; // OPCODE==7'b0010011; //FCT3
+
+    wire    RCC = FLUSH ? 0 : XRCC; // OPCODE==7'b0110011; //FCT3
+    wire    CUS = FLUSH ? 0 : XCUS; // OPCODE==7'b0110011; //FCT3
+    //wire    FCC = FLUSH ? 0 : XFCC; // OPCODE==7'b0001111; //FCT3
+    wire    CCC = FLUSH ? 0 : XCCC; // OPCODE==7'b1110011; //FCT3
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        reg [31:0] NXPC2;       // 32-bit program counter t+2
+
+
+    
+
+
+        reg [31:0] REGS [0:31];	// general-purpose 32x32-bit registers (s1)
+
+
+
+    reg [31:0] NXPC;        // 32-bit program counter t+1
+    reg [31:0] PC;		    // 32-bit program counter t+0
+
+
+    integer i;
+    
+    initial for(i=0;i!=32;i=i+1) REGS[i] = 0;
+
+
+    // source-1 and source-1 register selection
+
+    wire          [31:0] U1REG = REGS[S1PTR];
+    wire          [31:0] U2REG = REGS[S2PTR];
+
+    wire signed   [31:0] S1REG = U1REG;
+    wire signed   [31:0] S2REG = U2REG;
+
+
+    // L-group of instructions (OPCODE==7'b0000011)
+
+
+
+
+
+
+
+    wire [31:0] LDATA = FCT3==0||FCT3==4 ? ( DADDR[1:0]==3 ? { FCT3==0&&DATAI[31] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[31:24] } :
+                                             DADDR[1:0]==2 ? { FCT3==0&&DATAI[23] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[23:16] } :
+                                             DADDR[1:0]==1 ? { FCT3==0&&DATAI[15] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[15: 8] } :
+                                                             { FCT3==0&&DATAI[ 7] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[ 7: 0] } ):
+                        FCT3==1||FCT3==5 ? ( DADDR[1]==1   ? { FCT3==1&&DATAI[31] ? ALL1[31:16]:ALL0[31:16] , DATAI[31:16] } :
+                                                             { FCT3==1&&DATAI[15] ? ALL1[31:16]:ALL0[31:16] , DATAI[15: 0] } ) :
+                                             DATAI;
+
+
+    // S-group of instructions (OPCODE==7'b0100011)
+
+
+
+
+
+
+
+    wire [31:0] SDATA = FCT3==0 ? ( DADDR[1:0]==3 ? { U2REG[ 7: 0], ALL0 [23:0] } :
+                                    DADDR[1:0]==2 ? { ALL0 [31:24], U2REG[ 7:0], ALL0[15:0] } :
+                                    DADDR[1:0]==1 ? { ALL0 [31:16], U2REG[ 7:0], ALL0[7:0] } :
+                                                    { ALL0 [31: 8], U2REG[ 7:0] } ) :
+                        FCT3==1 ? ( DADDR[1]==1   ? { U2REG[15: 0], ALL0 [15:0] } :
+                                                    { ALL0 [31:16], U2REG[15:0] } ) :
+                                    U2REG;
+
+
+    // C-group: CSRRW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    wire EBRK = CCC && FCT3==0 && S2PTR==1;
+
+    // RM-group of instructions (OPCODEs==7'b0010011/7'b0110011), merged! src=immediate(M)/register(R)
+
+    wire signed [31:0] S2REGX = XMCC ? SIMM : S2REG;
+    wire        [31:0] U2REGX = XMCC ? UIMM : U2REG;
+
+    wire [31:0] RMDATA = FCT3==7 ? U1REG&S2REGX :
+                         FCT3==6 ? U1REG|S2REGX :
+                         FCT3==4 ? U1REG^S2REGX :
+                         FCT3==3 ? U1REG<U2REGX : // unsigned
+                         FCT3==2 ? S1REG<S2REGX : // signed
+                         FCT3==0 ? (XRCC&&FCT7[5] ? U1REG-S2REGX : U1REG+S2REGX) :
+                         FCT3==1 ? S1REG<<U2REGX[4:0] :
+                         //FCT3==5 ?
+                         !FCT7[5] ? S1REG>>U2REGX[4:0] :
+
+
+
+                                   $signed(S1REG)>>>U2REGX[4:0];  // (FCT7[5] ? U1REG>>>U2REG[4:0] :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // J/B-group of instructions (OPCODE==7'b1100011)
+
+    wire BMUX       = FCT3==7 && U1REG>=U2REG  || // bgeu
+                      FCT3==6 && U1REG< U2REGX || // bltu
+                      FCT3==5 && S1REG>=S2REG  || // bge
+                      FCT3==4 && S1REG< S2REGX || // blt
+                      FCT3==1 && U1REG!=U2REGX || // bne
+                      FCT3==0 && U1REG==U2REGX; // beq
+
+    wire [31:0] PCSIMM = PC+SIMM;
+    wire        JREQ = JAL||JALR||(BCC && BMUX);
+    wire [31:0] JVAL = JALR ? DADDR : PCSIMM; // SIMM + (JALR ? U1REG : PC);
+
+    always@(posedge CLK)
+    begin
+
+
+
+
+        XRES <= RES;
+
+
+
+	    FLUSH <= XRES ? 2 : HLT ? FLUSH :        // reset and halt
+	                       FLUSH ? FLUSH-1 :
+    
+
+
+	                       JREQ ? 2 : 0;  // flush the pipeline!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        REGS[DPTR] <=   XRES||DPTR[4:0]==0 ? 0  :        // reset sp
+
+                       HLT ? REGS[DPTR] :        // halt
+                       LCC ? LDATA :
+                     AUIPC ? PCSIMM :
+                      JAL||
+                      JALR ? NXPC :
+                       LUI ? SIMM :
+                  MCC||RCC ? RMDATA:
+
+
+
+
+
+
+
+                             REGS[DPTR];
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+        NXPC <= /*XRES ? `__RESETPC__ :*/ HLT ? NXPC : NXPC2;
+
+	    NXPC2 <=  XRES ? 32'd0 : HLT ? NXPC2 :   // reset and halt
+        
+
+
+
+	                 JREQ ? JVAL :                    // jmp/bra
+	                        NXPC2+4;                   // normal flow
+
+
+
+
+
+
+
+
+
+
+
+
+        PC   <= /*XRES ? `__RESETPC__ :*/ HLT ? PC : NXPC; // current program counter
+
+
+
+        if(EBRK)
+        begin
+            $display("breakpoint at %x",PC);
+            $stop();
+        end
+        
+        if(!FLUSH && IDATA===32'dx)
+        begin
+            $display("invalid IDATA at %x",PC);
+            $stop();  
+        end
+        
+        if(LCC && !HLT && DATAI===32'dx)
+        begin
+            $display("invalid DATAI@%x at %x",DADDR,PC);
+            $stop();
+        end
+
+
+    end
+
+    // IO and memory interface
+
+    assign DATAO = SDATA; // SCC ? SDATA : 0;
+    assign DADDR = U1REG + SIMM; // (SCC||LCC) ? U1REG + SIMM : 0;
+
+    // based in the Scc and Lcc
+
+
+
+
+
+
+
+    assign RD = LCC;
+    assign WR = SCC;
+    assign BE = FCT3==0||FCT3==4 ? ( DADDR[1:0]==3 ? 4'b1000 : // sb/lb
+                                     DADDR[1:0]==2 ? 4'b0100 :
+                                     DADDR[1:0]==1 ? 4'b0010 :
+                                                     4'b0001 ) :
+                FCT3==1||FCT3==5 ? ( DADDR[1]==1   ? 4'b1100 : // sh/lh
+                                                     4'b0011 ) :
+                                                     4'b1111; // sw/lw
+
+
+
+    
+
+
+        assign IADDR = NXPC2;
+
+
+
+
+
+    assign IDLE = |FLUSH;
+
+
+
+    assign DEBUG = { XRES, IDLE, SCC, LCC };
+
+
+endmodule
+`line 6 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darkuart.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * 
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ * 
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+`timescale 1ns / 1ps
+//`include "config.vh"				// MODIFIED: path
+
+// the following defines are automatically defined:
+/*
+`ifdef __ICARUS__
+    `define SIMULATION 1
+`endif
+
+`ifdef XILINX_ISIM
+    `define SIMULATION 2
+`endif
+
+`ifdef MODEL_TECH
+    `define SIMULATION 3
+`endif
+
+`ifdef XILINX_SIMULATOR
+    `define SIMULATION 4
+`endif
+*/
+// uart states
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// UART registers
+// 
+// 0: status register ro, 1 = xmit busy, 2 = recv bfusy
+// 1: buffer register rw, w = xmit fifo, r = recv fifo
+// 2: baud rate msb   rw (not used)
+// 3: baud rate lsb   rw (not used)
+
+module darkuart
+//#(
+// parameter [15:0] BAUD = 0
+//) 
+(
+    input           CLK,            // clock
+    input           RES,            // reset
+        
+    input           RD,             // bus read
+    input           WR,             // bus write
+    input  [ 3:0]   BE,             // byte enable
+    input  [31:0]   DATAI,          // data input
+    output [31:0]   DATAO,          // data output
+    output          IRQ,            // interrupt req
+
+    input           RXD,            // UART recv line
+    output          TXD,            // UART xmit line
+
+
+    output reg	    FINISH_REQ = 0,
+
+    
+    output [3:0]    DEBUG           // osc debug
+);
+
+    reg [15:0]  UART_TIMER = ((100000000/115200));  // baud rate from config.vh
+    reg         UART_IREQ  = 0;     // UART interrupt req
+    reg         UART_IACK  = 0;     // UART interrupt ack
+
+
+
+
+
+
+
+    reg [ 7:0]  UART_XFIFO = 0;     // UART TX FIFO
+    reg         UART_XREQ  = 0;     // xmit request (core side)
+    reg         UART_XACK  = 0;     // xmit ack (uart side)
+
+    reg [15:0]  UART_XBAUD = 0;     // baud rate counter
+    reg [ 3:0]  UART_XSTATE= 0;     // idle state
+
+
+
+
+
+
+
+    reg [ 7:0]  UART_RFIFO = 0;     // UART RX FIFO
+    reg         UART_RREQ  = 0;     // request (uart side)
+    reg         UART_RACK  = 0;     // ack (core side)
+
+    reg [15:0]  UART_RBAUD = 0;     // baud rate counter
+    reg [ 3:0]  UART_RSTATE= 0;     // idle state
+
+    reg [2:0]   UART_RXDFF = -1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    wire [7:0]  UART_STATE = { 6'd0, UART_RREQ!=UART_RACK, UART_XREQ!=UART_XACK };    
+
+    reg [7:0]   UART_STATEFF = 0;
+
+    // bus interface
+
+    reg [31:0] DATAOFF = 0;
+
+    reg [1:0] IOREQ = 0;
+    reg [1:0] IOACK = 0;
+
+    always@(posedge CLK)
+    begin
+        if(WR)
+        begin
+            if(BE[1])
+            begin
+
+
+                // print the UART output to console! :)
+                if(DATAI[15:8]!=13) // remove the '\r'
+                begin
+                    UART_XFIFO <= DATAI[15:8];
+                    $write("%c",DATAI[15:8]);
+                    $fflush();
+                    
+                    if(IOREQ==1&&DATAI[15:8]==" ")
+                    begin
+                        $fflush(32'h8000_0001);
+                        IOREQ <= 2;
+                    end
+                    else
+                        IOREQ <= 0;
+                end
+                
+                //if(DATAI[15:8]=="#") // break point
+                //begin
+                //    $display("[checkpoint #]");
+                //    $stop();
+                //end
+                
+                if(DATAI[15:8]==">") // prompt '>'
+                begin
+                
+    
+                    $display(" the __INTERACTIVE__ option is disabled, ending simulation...");
+                    FINISH_REQ <= 1;
+
+                    if(IOACK==0) IOREQ <= 1;
+                end
+
+
+
+
+
+
+
+
+
+
+
+
+            end
+            //if(BE[2]) UART_TIMER[ 7:0] <= DATAI[23:16];
+            //if(BE[3]) UART_TIMER[15:8] <= DATAI[31:24];           
+        end
+    
+        if(RES)
+        begin
+            UART_RACK <= UART_RREQ;
+            UART_STATEFF <= UART_STATE;
+        end
+        else
+        if(RD)
+        begin
+
+
+
+            if(BE[1]) UART_RACK     <= UART_RREQ; // fifo ready
+
+            if(BE[0]) UART_STATEFF <= UART_STATE; // state update, clear irq
+        end
+    end
+    
+    assign IRQ   = |(UART_STATE^UART_STATEFF);
+
+
+
+    assign DATAO = { UART_TIMER, UART_RFIFO, UART_STATE };
+
+
+    // xmit path: 6(IDLE), 7(START), 8, 9, 10, 11, 12, 13, 14, 15, 0(STOP), 1(ACK)
+    
+    always@(posedge CLK)
+    begin    
+        UART_XBAUD <= UART_XSTATE==6 ? UART_TIMER :      // xbaud=timer
+                      UART_XBAUD ? UART_XBAUD-1 : UART_TIMER;           // while() { while(xbaud--); xbaud=timer }
+
+        UART_XSTATE <= RES||UART_XSTATE==1  ? 6 :
+                            UART_XSTATE==6 ? UART_XSTATE+(UART_XREQ!=UART_XACK) :
+                                                            UART_XSTATE+(UART_XBAUD==0);
+
+
+
+        UART_XACK   <= RES||UART_XSTATE==1  ? UART_XREQ : UART_XACK;
+
+    end
+
+
+
+
+
+
+    assign TXD = UART_XSTATE[3] ? UART_XFIFO[UART_XSTATE[2:0]] : UART_XSTATE==7 ? 0 : 1;
+
+
+    // recv path: 6(IDLE), 7(START), 8, 9, 10, 11, 12, 13, 14, 15, 0(STOP), 1(ACK)
+
+    always@(posedge CLK)
+    begin
+        UART_RXDFF <= (UART_RXDFF<<1)|RXD;
+
+        UART_RBAUD <= UART_RSTATE==6 ? { 1'b0, UART_TIMER[15:1] } :    // rbaud=timer/2
+                      UART_RBAUD ? UART_RBAUD-1 : UART_TIMER;               // while() { while(rbaud--); rbaud=timer }
+
+        UART_RSTATE <= RES||UART_RSTATE==1  ? 6 :
+                            UART_RSTATE==6 ? UART_RSTATE+(UART_RXDFF[2:1]==2'b10) : // start bit detection
+                                                            UART_RSTATE+(UART_RBAUD==0);
+                                                            
+
+
+
+
+
+
+
+        UART_RREQ <= (IOACK==2 || UART_RSTATE==1) ? !UART_RACK : UART_RREQ;
+
+        if(UART_RSTATE[3]) 
+        begin
+
+
+
+            UART_RFIFO[UART_RSTATE[2:0]] <= UART_RXDFF[2];
+
+        end
+
+        else
+        if(IOACK==1)
+        begin
+            UART_RFIFO <= $fgetc(32'h8000_0000);
+            IOACK <= 2;
+        end
+        else
+        if(IOACK==2)
+        begin
+            IOACK <= UART_RREQ^UART_RACK ? 3 : 2;
+        end
+        else
+        if(IOACK==3)
+        begin
+            IOACK <= UART_RREQ^UART_RACK ? 3 : (UART_RFIFO=="\n" ? 0 : 1);
+        end
+        else
+        if(IOREQ==2)
+        begin
+            IOACK <= 1;
+        end
+
+    end
+
+    //debug
+    
+    assign DEBUG = { RXD, TXD, UART_XSTATE!=6, UART_RSTATE!=6 };
+    
+endmodule
+`line 7 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darkpll.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS 

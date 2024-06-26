@@ -1,0 +1,2233 @@
+5 18 181 10003 *
+8 /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr 2 -t (top) 2 -v (rtl/config.vh) 2 -v (rtl/top_hdl.sv) 2 -v (testbench/intf_mem_rd.sv) 2 -v (rtl/darksocv.v) 2 -v (rtl/darkriscv.v) 2 -v (rtl/darkpll.v) 2 -v (testbench/intf_soc.sv) 2 -vcd (sim/darksocv.vcd)
+3 0 $root "$root" 0 NA 0 0 100000000000000
+3 0 top "top" 0 rtl/top_hdl.sv 4 107 100000000000000
+2 1 0 7 d000d 1 1008 0 0 32 48 1 0
+2 2 1 7 70009 0 1410 0 0 1 1 CLK
+2 3 48 7 7000d 1 1a 1 2
+2 4 3d 8 a000e 2 5002 0 0 1 18 0 1 0 0 0 0 $u0
+1 CLK 1 7 1070007 1 0 0 0 1 17 0 1 0 0 1 0
+4 3 7 7 7 0 0 3
+4 4 8 10 7 4 0 4
+3 1 top.$u0 "top.$u0" 0 rtl/top_hdl.sv 0 10 100000000000000
+2 5 0 9 80016 1 1008 0 0 32 50 5f5e100 0 0 0 0 0
+2 6 0 9 8000c 1 1004 0 0 64 20 1 500e6
+2 7 4 9 80016 1 1084 5 6 64 22 0 5.000000
+2 8 2c 9 60018 3 900a 7 0 64 18 0 ffffffffffffffff 0 0 0 0
+2 9 1 9 210023 1 1018 0 0 1 1 CLK
+2 10 1d 9 200020 1 1024 9 0 1 18 0 1 1 0 0 0
+2 11 1 9 1a001c 0 1410 0 0 1 1 CLK
+2 12 37 9 1a0023 1 36 10 11
+4 8 9 6 11 12 0 8
+4 12 9 26 0 0 0 8
+3 0 darksocv "top.soc0" 0 rtl/darksocv.v 34 550 1000
+2 13 0 129 190019 1 1004 0 0 32 48 0 0
+2 14 1 129 100015 0 1410 0 0 16 1 GPIOFF
+2 15 48 129 100019 1 16 13 14
+2 16 0 130 190019 1 1004 0 0 32 48 0 0
+2 17 1 130 100014 0 1410 0 0 16 1 LEDFF
+2 18 48 130 100019 1 16 16 17
+2 19 0 138 100010 1 1008 0 0 32 48 1 0
+2 20 1 138 9000c 0 1410 0 0 1 1 IHIT
+2 21 36 138 90010 2 a 19 20
+2 22 0 140 180018 1 1004 0 0 32 48 0 0
+2 23 1 140 f0014 0 1410 0 0 32 1 ROMFF2
+2 24 48 140 f0018 1 16 22 23
+2 25 0 141 180018 1 1004 0 0 32 48 0 0
+2 26 1 141 f0012 0 1410 0 0 1 1 HLT2
+2 27 48 141 f0018 1 16 25 26
+2 28 1 143 140016 2712 100c 0 0 1 1 CLK
+2 29 27 143 c0016 3a9c 100a 28 0 1 18 0 1 0 0 0 0
+2 30 3d 144 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u3
+2 31 1 153 230027 0 1000 0 0 32 1 ROMFF
+2 32 1 153 1a001f 1 1004 0 0 32 1 ROMFF2
+2 33 1a 153 13001f 1 1000 31 32 32 18 0 ffffffff 0 0 0 0
+2 34 1 153 130016 1 1004 0 0 1 1 HLT2
+2 35 19 153 130027 1 1000 33 34 32 18 0 ffffffff 0 0 0 0
+2 36 1 153 b000f 0 1400 0 0 32 1 IDATA
+2 37 35 153 b0027 1 2 35 36
+2 38 1 155 140016 2712 100c 0 0 1 1 CLK
+2 39 27 155 c0016 3a9c 100a 38 0 1 18 0 1 0 0 0 0
+2 40 3d 156 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u5
+2 41 0 204 150015 1 1004 0 0 32 48 0 0
+2 42 1 204 e0011 0 1410 0 0 2 1 DACK
+2 43 48 204 e0015 1 16 41 42
+2 44 0 206 100010 1 1008 0 0 32 48 1 0
+2 45 1 206 9000c 0 1410 0 0 1 1 WHIT
+2 46 36 206 90010 2 a 44 45
+2 47 0 211 1f001f 1 1008 0 0 32 48 1 0
+2 48 1 211 19001c 1 1004 0 0 2 1 DACK
+2 49 15 211 19001f 1 1088 47 48 1 18 0 1 0 1 0 0
+2 50 1 207 130014 1b 20100c 0 0 1 1 RD
+2 51 18 207 12001f 1c 20128c 49 50 1 18 0 1 1 0 1 0
+2 52 1d 207 100010 1c 100c 51 0 1 18 0 1 1 1 0 0
+2 53 1 207 9000c 0 1410 0 0 1 1 DHIT
+2 54 36 207 90020 1c e 52 53
+2 55 1 213 140016 2712 100c 0 0 1 1 CLK
+2 56 27 213 c0016 3a9c 100a 55 0 1 18 0 1 0 0 0 0
+2 57 3d 214 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u6
+2 58 1 222 140016 2712 100c 0 0 1 1 CLK
+2 59 27 222 c0016 3a9c 100a 58 0 1 18 0 1 0 0 0 0
+2 60 3d 223 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u7
+2 61 0 233 190019 1 1004 0 0 32 48 0 0
+2 62 1 233 f0015 0 1410 0 0 32 1 IOMUXFF
+2 63 48 233 f0019 1 16 61 62
+2 64 0 234 190019 1 1004 0 0 32 48 0 0
+2 65 1 234 f0013 0 1410 0 0 32 1 XADDR
+2 66 48 234 f0019 1 16 64 65
+2 67 1 238 140016 2712 100c 0 0 1 1 CLK
+2 68 27 238 c0016 3a9c 100a 67 0 1 18 0 1 0 0 0 0
+2 69 3d 239 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u8
+2 70 1 281 510055 0 1000 0 0 32 1 RAMFF
+2 71 0 281 4b004b 1 1008 0 0 32 48 2 0
+2 72 0 281 490049 1 1008 0 0 32 48 3 0
+2 73 24 281 43004c 1 1204 71 72 2 18 0 3 0 0 0 0 XADDR
+2 74 0 281 3a003f 1 21008 0 0 3 16 4 0
+2 75 1a 281 25003f 1 1104 73 74 3 18 0 7 7 0 0 0
+2 76 0 281 310036 1 21008 0 0 3 16 4 0
+2 77 0 281 2d002d 1 1008 0 0 32 48 2 0
+2 78 0 281 2b002b 1 1008 0 0 32 48 4 0
+2 79 24 281 25002e 1 1204 77 78 3 18 0 7 0 0 0 0 XADDR
+2 80 11 281 250036 1 1084 76 79 1 18 0 1 1 0 0 0
+2 81 19 281 25004c 1 1004 75 80 3 18 0 7 7 0 0 0
+2 82 23 281 1f004d 1 1000 0 81 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 83 1a 281 13004d 1 1000 70 82 32 18 0 ffffffff 0 0 0 0
+2 84 0 281 19001a 1 1008 0 0 32 48 1f 0
+2 85 23 281 13001b 1 1004 0 84 1 18 0 1 0 0 0 0 XADDR
+2 86 19 281 130055 1 1000 83 85 32 18 0 ffffffff 0 0 0 0
+2 87 1 281 b000f 0 1400 0 0 32 1 DATAI
+2 88 35 281 b0055 1 2 86 87
+2 89 0 285 150015 1 1004 0 0 32 48 0 0
+2 90 1 285 e0011 0 1410 0 0 8 1 IREQ
+2 91 48 285 e0015 1 16 89 90
+2 92 0 286 150015 1 1004 0 0 32 48 0 0
+2 93 1 286 e0011 0 1410 0 0 8 1 IACK
+2 94 48 286 e0015 1 16 92 93
+2 95 0 288 190019 1 1004 0 0 32 48 0 0
+2 96 1 288 f0015 0 1410 0 0 32 1 TIMERFF
+2 97 48 288 f0019 1 16 95 96
+2 98 0 289 180018 1 1004 0 0 32 48 0 0
+2 99 1 289 f0014 0 1410 0 0 32 1 TIMEUS
+2 100 48 289 f0018 1 16 98 99
+2 101 0 293 1c001c 1 1004 0 0 32 48 0 0
+2 102 1 293 110018 0 1400 0 0 8 1 BOARD_ID
+2 103 36 293 11001c 2 6 101 102
+2 104 0 294 28002e 1 1008 0 0 32 48 1e8480 0
+2 105 0 294 1d0025 1 1008 0 0 32 48 5f5e100 0
+2 106 4 294 1d002e 1 201208 104 105 8 18 0 ff cd 32 0 0
+2 107 1 294 110018 0 1400 0 0 8 1 BOARD_CM
+2 108 36 294 11002f 2 a 106 107
+2 109 0 300 1b001b 1 1004 0 0 32 48 0 0
+2 110 1 300 110017 0 1400 0 0 8 1 CORE_ID
+2 111 36 300 11001b 2 6 109 110
+2 112 1 303 36003d 0 1000 0 0 8 1 BOARD_ID
+2 113 1 303 2c0033 0 1000 0 0 8 1 BOARD_CM
+2 114 1 303 230029 0 1000 0 0 8 1 CORE_ID
+2 115 1 303 180020 0 1000 0 0 8 1 BOARD_IRQ
+2 116 31 303 180029 0 1000 114 115 16 18 0 ffff 0 0 0 0
+2 117 31 303 180033 0 1000 113 116 24 18 0 ffffff 0 0 0 0
+2 118 31 303 18003d 0 1000 112 117 32 18 0 ffffffff 0 0 0 0
+2 119 26 303 16003f 0 1000 118 0 32 18 0 ffffffff 0 0 0 0
+2 120 0 303 110011 0 1400 0 0 32 48 0 0
+2 121 23 303 b0012 0 1400 0 120 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 122 35 303 b003f 1 2 119 121
+2 123 1 305 200024 1 1004 0 0 16 1 LEDFF
+2 124 1 305 18001d 1 1004 0 0 16 1 GPIOFF
+2 125 31 305 180024 1 1044 123 124 32 18 0 ffffffff ffffffff 0 0 0
+2 126 26 305 160026 1 1004 125 0 32 18 0 ffffffff ffffffff 0 0 0
+2 127 0 305 110011 0 1400 0 0 32 48 2 0
+2 128 23 305 b0012 0 1400 0 127 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 129 35 305 b0026 2 6 126 128
+2 130 1 306 16001c 1 1004 0 0 32 1 TIMERFF
+2 131 0 306 110011 0 1400 0 0 32 48 3 0
+2 132 23 306 b0012 0 1400 0 131 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 133 35 306 b001c 2 6 130 132
+2 134 1 307 16001b 1 1004 0 0 32 1 TIMEUS
+2 135 0 307 110011 0 1400 0 0 32 48 4 0
+2 136 23 307 b0012 0 1400 0 135 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 137 35 307 b001b 2 6 134 136
+2 138 0 309 170017 1 1004 0 0 32 48 0 0
+2 139 1 309 f0013 0 1410 0 0 32 1 TIMER
+2 140 48 309 f0017 1 16 138 139
+2 141 0 311 110011 1 1004 0 0 32 48 0 0
+2 142 1 311 8000d 0 1410 0 0 1 1 XTIMER
+2 143 48 311 80011 1 16 141 142
+2 144 1 313 140016 2712 100c 0 0 1 1 CLK
+2 145 27 313 c0016 3a9c 100a 144 0 1 18 0 1 0 0 0 0
+2 146 3d 314 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u9
+2 147 1 369 1c001f 1 1004 0 0 8 1 IACK
+2 148 1 369 17001a 1 1004 0 0 8 1 IREQ
+2 149 2 369 17001f 1 1044 147 148 8 18 0 ff ff 0 0 0
+2 150 1 369 b0013 0 1400 0 0 8 1 BOARD_IRQ
+2 151 35 369 b001f 2 6 149 150
+2 152 1 371 200023 1 1008 0 0 1 1 WHIT
+2 153 1d 371 1f001f 1 1004 152 0 1 18 0 1 1 0 0 0
+2 154 1 371 19001c 1b 100c 0 0 1 1 DHIT
+2 155 1d 371 180018 1b 100c 154 0 1 18 0 1 1 1 0 0
+2 156 1 371 120015 1 1008 0 0 1 1 IHIT
+2 157 1d 371 110011 1 1004 156 0 1 18 0 1 1 0 0 0
+2 158 17 371 11001c 1b 10cc 155 157 1 18 0 1 0 1 1 0
+2 159 17 371 110023 1b 114c 153 158 1 18 0 1 1 0 1 0
+2 160 1 371 b000d 0 1410 0 0 1 1 HLT
+2 161 35 371 b0023 1c e 159 160
+2 162 0 469 1b001b 1 1004 0 0 32 48 0 0
+2 163 0 469 190019 1 1008 0 0 32 48 3 0
+2 164 24 469 13001c 1 1104 162 163 4 18 0 f 0 0 0 0 LEDFF
+2 165 1 469 b000d 0 1400 0 0 4 1 LED
+2 166 35 469 b001c 1 2 164 165
+2 167 0 472 260026 1 1004 0 0 32 48 0 0
+2 168 0 472 240024 1 1008 0 0 32 48 2 0
+2 169 24 472 1d0027 1 1100 167 168 3 18 0 7 0 0 0 0 KDEBUG
+2 170 1 472 15001a 1 1004 0 0 1 1 XTIMER
+2 171 31 472 150027 1 1000 169 170 4 18 0 f 8 0 0 0
+2 172 26 472 130029 1 1000 171 0 4 18 0 f 8 0 0 0
+2 173 1 472 b000f 0 1400 0 0 4 1 DEBUG
+2 174 35 472 b0029 2 2 172 173
+1 XCLK 2 36 11 1 0 0 0 1 17 1 1 0 1 1 0
+1 XRES 3 37 11 1 0 0 0 1 17 1 1 0 0 1 0
+1 UART_RXD 4 39 11 1 0 0 0 1 17 1 1 0 0 0 0
+1 UART_TXD 5 40 20011 1 0 0 0 1 17 1 1 0 1 0 0
+1 LED 6 42 20011 1 0 3 0 4 17 f f 0 0 0 0
+1 DEBUG 7 43 20011 1 0 3 0 4 17 f f 0 0 0 0
+1 CLK 8 46 60009 1 0 0 0 1 17 1 1 0 1 1 0
+1 RES 9 46 6000d 1 0 0 0 1 17 1 1 0 0 1 0
+1 MEM 10 82 20f000f 1 1 0 1023 31 0 32768 19 0 ffffffffffffffff 0 0 0 0 ffffffff 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0 0 ffffffffffffffff 0 0 0 0 0 0
+1 i 11 86 7000c 1 0 31 0 32 49 0 ffffffff 0 0 0 0
+1 IADDR 12 112 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DADDR 13 113 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 IDATA 14 114 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DATAO 15 115 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DATAI 16 116 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 WR 17 117 60010 1 0 0 0 1 17 1 1 0 1 1 0
+1 RD 18 117 60013 1 0 0 0 1 17 1 1 0 1 1 0
+1 BE 19 118 60010 1 0 3 0 4 17 f f 0 0 0 0
+1 IOMUX 20 127 60010 1 1 0 4 31 0 160 17 ffffffffffffffff ffffffffffffffff 0 0 0 0 ffffffffffffffff ffffffffffffffff 0 0 0 0 ffffffff ffffffff 0 0 0 0
+1 GPIOFF 21 129 1070010 1 0 15 0 16 17 0 ffff 0 0 0 0
+1 LEDFF 22 130 1070010 1 0 15 0 16 17 0 ffff 0 0 0 0
+1 HLT 23 132 60009 1 0 0 0 1 17 1 1 0 1 1 0
+1 ROMFF 24 136 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 IHIT 25 138 60009 1 0 0 0 1 17 1 1 0 0 0 0
+1 ROMFF2 26 140 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 HLT2 27 141 107000f 1 0 0 0 1 17 0 1 0 0 0 0
+1 RAMFF 28 200 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 DACK 29 204 107000e 1 0 1 0 2 17 0 3 0 0 0 0
+1 WHIT 30 206 60009 1 0 0 0 1 17 1 1 0 0 0 0
+1 DHIT 31 207 60009 1 0 0 0 1 17 1 1 0 1 1 0
+1 IOMUXFF 32 233 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 XADDR 33 234 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 IREQ 34 285 107000e 1 0 7 0 8 17 0 ff 0 0 0 0
+1 IACK 35 286 107000e 1 0 7 0 8 17 0 ff 0 0 0 0
+1 TIMERFF 36 288 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 TIMEUS 37 289 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 BOARD_IRQ 38 291 6000f 1 0 7 0 8 17 ff ff 0 0 0 0
+1 BOARD_ID 39 293 60011 1 0 7 0 8 17 ff ff 0 0 0 0
+1 BOARD_CM 40 294 60011 1 0 7 0 8 17 ff ff 0 0 0 0
+1 CORE_ID 41 300 60011 1 0 7 0 8 17 ff ff 0 0 0 0
+1 TIMER 42 309 107000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 XTIMER 43 311 1070008 1 0 0 0 1 17 0 1 0 0 0 0
+1 UDEBUG 44 375 6000f 1 0 3 0 4 17 f f 0 0 0 0
+1 FINISH_REQ 45 377 60009 1 0 0 0 1 17 1 1 0 0 0 0
+1 KDEBUG 46 406 6000f 1 0 3 0 4 17 f f 0 0 0 0
+1 IDLE 47 408 60009 1 0 0 0 1 17 1 1 0 1 1 0
+4 15 129 16 7 0 0 15
+4 18 130 16 7 0 0 18
+4 21 138 9 f 21 21 21
+4 24 140 15 7 0 0 24
+4 27 141 15 7 0 0 27
+4 29 143 12 1 30 0 29
+4 30 144 4 6 29 0 29
+4 37 153 11 f 37 37 37
+4 39 155 12 1 40 0 39
+4 40 156 4 6 39 0 39
+4 43 204 14 7 0 0 43
+4 46 206 9 f 46 46 46
+4 54 207 9 f 54 54 54
+4 56 213 12 1 57 0 56
+4 57 214 4 6 56 0 56
+4 59 222 12 1 60 0 59
+4 60 223 4 6 59 0 59
+4 63 233 15 7 0 0 63
+4 66 234 15 7 0 0 66
+4 68 238 12 1 69 0 68
+4 69 239 4 6 68 0 68
+4 88 281 11 f 88 88 88
+4 91 285 14 7 0 0 91
+4 94 286 14 7 0 0 94
+4 97 288 15 7 0 0 97
+4 100 289 15 7 0 0 100
+4 103 293 17 f 103 103 103
+4 108 294 17 f 108 108 108
+4 111 300 17 f 111 111 111
+4 122 303 11 f 122 122 122
+4 129 305 11 f 129 129 129
+4 133 306 11 f 133 133 133
+4 137 307 11 f 137 137 137
+4 140 309 15 7 0 0 140
+4 143 311 8 7 0 0 143
+4 145 313 12 1 146 0 145
+4 146 314 4 6 145 0 145
+4 151 369 11 f 151 151 151
+4 161 371 11 f 161 161 161
+4 166 469 11 f 166 166 166
+4 174 472 11 f 174 174 174
+3 0 darkpll "top.soc0.darkpll0" 0 rtl/darkpll.v 34 221 1000
+2 175 0 45 160016 1 1008 0 0 32 48 1 0
+2 176 4d 45 150015 1 1008 175 0 8 50 0 ff 0 ff 0 0
+2 177 1 45 e0011 0 1410 0 0 8 1 IRES
+2 178 48 45 e0016 1 1a 176 177
+2 179 1 50 140017 2712 100c 0 0 1 1 XCLK
+2 180 27 50 c0017 3a9c 100a 179 0 1 18 0 1 0 0 0 0
+2 181 0 50 440044 1 1004 0 0 32 48 0 0
+2 182 0 50 400040 1 1008 0 0 32 48 1 0
+2 183 1 50 3b003e 1 1008 0 0 8 1 IRES
+2 184 7 50 3b0040 1 1208 182 183 32 18 0 ffffffff ffffff00 0 fe 1
+2 185 1a 50 310040 1 1108 181 184 32 18 0 ffffffff ffffff01 fe 0 0
+2 186 0 50 360036 1 1008 0 0 32 48 7 0
+2 187 23 50 310037 1 1008 0 186 1 18 0 1 0 0 0 0 IRES
+2 188 19 50 310044 1 1008 185 187 32 18 0 ffffffff ffffff01 fe 0 0
+2 189 0 50 2d002d 1 1008 0 0 32 48 1 0
+2 190 4d 50 2c002c 1 1008 189 0 32 50 0 ffffffff 0 ffffffff 0 0
+2 191 1a 50 22002d 2 1208 188 190 32 18 0 ffffffff ffffff01 ffffffff 0 0
+2 192 0 50 280028 1 1008 0 0 32 48 1 0
+2 193 1 50 220025 2 100c 0 0 1 1 XRES
+2 194 11 50 220028 2 128c 192 193 1 18 0 1 1 1 0 0
+2 195 19 50 220044 2 1008 191 194 8 18 0 ff 1 ff 0 0
+2 196 1 50 1a001d 0 1410 0 0 8 1 IRES
+2 197 38 50 1a0044 1389 a 195 196
+2 198 1 205 100013 2712 100c 0 0 1 1 XCLK
+2 199 1 205 a000c 0 1410 0 0 1 1 CLK
+2 200 35 205 a0013 2713 e 198 199
+2 201 0 206 190019 1 1008 0 0 32 48 7 0
+2 202 23 206 14001a 1 1008 0 201 1 18 0 1 0 0 0 0 IRES
+2 203 1d 206 130013 1 1004 202 0 1 18 0 1 1 0 0 0
+2 204 1 206 a000f 0 1410 0 0 1 1 LOCKED
+2 205 35 206 a001a 2 6 203 204
+2 206 0 212 160016 1 1008 0 0 32 48 1 0
+2 207 4d 212 150015 1 1008 206 0 8 50 0 ff 0 ff 0 0
+2 208 1 212 e0011 0 1410 0 0 8 1 DRES
+2 209 48 212 e0016 1 1a 207 208
+2 210 1 214 140016 2712 100c 0 0 1 1 CLK
+2 211 27 214 c0016 3a9c 100a 210 0 1 18 0 1 0 0 0 0
+2 212 3d 215 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u0
+2 213 0 219 160016 1 1008 0 0 32 48 7 0
+2 214 23 219 110017 1 1008 0 213 1 18 0 1 0 0 0 0 DRES
+2 215 1 219 b000d 0 1410 0 0 1 1 RES
+2 216 35 219 b0017 2 a 214 215
+1 XCLK 48 36 11 1 0 0 0 1 17 1 1 0 1 1 0
+1 XRES 49 37 11 1 0 0 0 1 17 1 1 0 0 1 0
+1 CLK 50 39 20011 1 0 0 0 1 17 1 1 0 1 1 0
+1 RES 51 40 20011 1 0 0 0 1 17 1 1 0 0 1 0
+1 IRES 52 45 107000e 1 0 7 0 8 17 0 ff 0 0 0 0
+1 LOCKED 53 53 60009 1 0 0 0 1 17 1 1 0 1 0 0
+1 DRES 54 212 107000e 1 0 7 0 8 17 0 ff 0 0 0 0
+4 178 45 14 7 0 0 178
+4 180 50 12 1 197 0 180
+4 197 50 26 6 180 180 180
+4 200 205 10 f 200 200 200
+4 205 206 10 f 205 205 205
+4 209 212 14 7 0 0 209
+4 211 214 12 1 212 0 211
+4 212 215 4 6 211 0 211
+4 216 219 11 f 216 216 216
+3 1 darkpll.$u0 "top.soc0.darkpll0.$u0" 0 rtl/darkpll.v 0 217 1000
+2 217 0 216 310031 1 1004 0 0 32 48 0 0
+2 218 0 216 2d002d 1 1008 0 0 32 48 1 0
+2 219 1 216 28002b 1 1008 0 0 8 1 DRES
+2 220 7 216 28002d 1 1208 218 219 32 18 0 ffffffff ffffff00 0 fe 1
+2 221 1a 216 21002d 1 1108 217 220 32 18 0 ffffffff ffffff01 fe 0 0
+2 222 1 216 210024 1 1008 0 0 8 1 DRES
+2 223 19 216 210031 1 1008 221 222 32 18 0 ffffffff ffffff01 fe 0 0
+2 224 0 216 1d001d 1 1008 0 0 32 48 1 0
+2 225 4d 216 1c001c 1 1008 224 0 32 50 0 ffffffff 0 ffffffff 0 0
+2 226 1a 216 10001d 2 1208 223 225 32 18 0 ffffffff ffffff01 ffffffff 0 0
+2 227 0 216 180018 1 1004 0 0 32 48 0 0
+2 228 1 216 100015 2 100c 0 0 1 1 LOCKED
+2 229 11 216 100018 2 114c 227 228 1 18 0 1 1 1 0 0
+2 230 19 216 100031 2 1008 226 229 8 18 0 ff 1 ff 0 0
+2 231 1 216 8000b 0 1410 0 0 8 1 DRES
+2 232 38 216 80031 1389 a 230 231
+4 232 216 8 11 0 0 232
+3 1 darksocv.$u0 "top.soc0.$u0" 0 rtl/darksocv.v 0 106 1000
+3 1 darksocv.$u3 "top.soc0.$u3" 0 rtl/darksocv.v 0 151 1000
+2 233 1 145 f0012 1 1004 0 0 1 1 HLT2
+2 234 1 145 b000d 1b 100c 0 0 1 1 HLT
+2 235 2 145 b0012 1b 114c 233 234 1 18 0 1 1 0 1 0
+2 236 39 145 80013 1389 e 235 0
+2 237 1 150 100012 1b 100c 0 0 1 1 HLT
+2 238 1 150 8000b 0 1410 0 0 1 1 HLT2
+2 239 38 150 80012 1389 e 237 238
+2 240 3d 146 8000c d 5002 0 0 1 18 0 1 0 0 0 0 $u4
+4 236 145 8 11 240 239 236
+4 240 146 8 6 239 0 236
+4 239 150 8 0 0 0 236
+3 1 darksocv.$u3.$u4 "top.soc0.$u3.$u4" 0 rtl/darksocv.v 0 148 1000
+2 241 1 147 16001a 0 1000 0 0 32 1 ROMFF
+2 242 1 147 c0011 0 1410 0 0 32 1 ROMFF2
+2 243 38 147 c001a d 2 241 242
+4 243 147 12 11 0 0 243
+3 1 darksocv.$u5 "top.soc0.$u5" 0 rtl/darksocv.v 0 162 1000
+2 244 0 160 210021 1 1008 0 0 32 48 2 0
+2 245 0 160 1f001f 1 1008 0 0 32 48 1 0
+2 246 0 160 1b001c 1 1008 0 0 32 48 c 0
+2 247 7 160 1b001f 1 1208 245 246 32 18 0 ffffffff fffffff2 1 c 0
+2 248 24 160 150022 1 1200 244 247 10 18 0 3ff 0 0 0 0 IADDR
+2 249 23 160 110023 1 1000 0 248 32 18 0 ffffffff 0 0 0 0 MEM
+2 250 1 160 8000c 0 1400 0 0 32 1 ROMFF
+2 251 38 160 80023 1389 2 249 250
+4 251 160 8 11 0 0 251
+3 1 darksocv.$u6 "top.soc0.$u6" 0 rtl/darksocv.v 0 220 1000
+2 252 0 219 1c001c 1 1004 0 0 32 48 0 0
+2 253 0 219 180018 1 1008 0 0 32 48 1 0
+2 254 1a 219 2a0018 1b 110c 252 253 32 18 0 ffffffff ffffffff 1 0 0
+2 255 1 215 2b002c 1b 20100c 0 0 1 1 RD
+2 256 19 215 2a001c 1b 100c 254 255 32 18 0 ffffffff ffffffff 1 0 0
+2 257 0 215 260026 1 1008 0 0 32 48 1 0
+2 258 1 215 210024 1 1004 0 0 2 1 DACK
+2 259 7 215 210026 1 1088 257 258 32 18 0 ffffffff fffffffe 1 0 0
+2 260 1a 215 1a0026 1b 130c 256 259 32 18 0 ffffffff ffffffff 1 0 0
+2 261 1 215 1a001d 1 1004 0 0 2 1 DACK
+2 262 19 215 1a001c 1b 100c 260 261 32 18 0 ffffffff ffffffff 1 0 0
+2 263 0 215 160016 1 1004 0 0 32 48 0 0
+2 264 1a 215 100016 1c 10cc 262 263 32 18 0 ffffffff ffffffff 1 0 0
+2 265 1 215 100012 2 100c 0 0 1 1 RES
+2 266 19 215 10001c 1c 100c 264 265 2 18 0 3 3 1 0 0
+2 267 1 215 8000b 0 1410 0 0 2 1 DACK
+2 268 38 215 8001c 1389 e 266 267
+4 268 215 8 11 0 0 268
+3 1 darksocv.$u7 "top.soc0.$u7" 0 rtl/darksocv.v 0 229 1000
+2 269 0 227 210021 1 1008 0 0 32 48 2 0
+2 270 0 227 1f001f 1 1008 0 0 32 48 1 0
+2 271 0 227 1b001c 1 1008 0 0 32 48 c 0
+2 272 7 227 1b001f 1 1208 270 271 32 18 0 ffffffff fffffff2 1 c 0
+2 273 24 227 150022 1 1200 269 272 10 18 0 3ff 0 0 0 0 DADDR
+2 274 23 227 110023 1 1000 0 273 32 18 0 ffffffff 0 0 0 0 MEM
+2 275 1 227 8000c 0 1400 0 0 32 1 RAMFF
+2 276 38 227 80023 1389 2 274 275
+4 276 227 8 11 0 0 276
+3 1 darksocv.$u8 "top.soc0.$u8" 0 rtl/darksocv.v 0 277 1000
+2 277 0 268 3d003d 1 1008 0 0 32 48 3 0
+2 278 23 268 3a003e 1 1000 0 277 1 18 0 1 0 0 0 0 BE
+2 279 0 268 200020 1 1004 0 0 32 48 0 0
+2 280 0 268 1b001c 1 1008 0 0 32 48 1f 0
+2 281 23 268 15001d 1 1000 0 280 1 18 0 1 0 0 0 0 DADDR
+2 282 11 268 150020 1 1000 279 281 1 18 0 1 0 0 0 0
+2 283 1 268 110012 33 100c 0 0 1 1 WR
+2 284 1 268 c000e 1b 100c 0 0 1 1 HLT
+2 285 1d 268 b000b 1b 100c 284 0 1 18 0 1 1 1 0 0
+2 286 18 268 b0012 4d 134c 283 285 1 18 0 1 1 1 1 0
+2 287 18 268 b0020 4d 1004 282 286 1 18 0 1 1 0 0 0
+2 288 18 268 b003e 4d 1004 278 287 1 18 0 1 1 0 0 0
+2 289 39 268 8003f 1389 6 288 0
+2 290 0 269 3d003d 1 1008 0 0 32 48 2 0
+2 291 23 269 3a003e 1 1000 0 290 1 18 0 1 0 0 0 0 BE
+2 292 0 269 200020 1 1004 0 0 32 48 0 0
+2 293 0 269 1b001c 1 1008 0 0 32 48 1f 0
+2 294 23 269 15001d 1 1000 0 293 1 18 0 1 0 0 0 0 DADDR
+2 295 11 269 150020 1 1000 292 294 1 18 0 1 0 0 0 0
+2 296 1 269 110012 33 100c 0 0 1 1 WR
+2 297 1 269 c000e 1b 100c 0 0 1 1 HLT
+2 298 1d 269 b000b 1b 100c 297 0 1 18 0 1 1 1 0 0
+2 299 18 269 b0012 4d 134c 296 298 1 18 0 1 1 1 1 0
+2 300 18 269 b0020 4d 1004 295 299 1 18 0 1 1 0 0 0
+2 301 18 269 b003e 4d 1004 291 300 1 18 0 1 1 0 0 0
+2 302 39 269 8003f 1389 6 301 0
+2 303 0 270 3d003d 1 1008 0 0 32 48 1 0
+2 304 23 270 3a003e 1 1000 0 303 1 18 0 1 0 0 0 0 BE
+2 305 0 270 200020 1 1004 0 0 32 48 0 0
+2 306 0 270 1b001c 1 1008 0 0 32 48 1f 0
+2 307 23 270 15001d 1 1000 0 306 1 18 0 1 0 0 0 0 DADDR
+2 308 11 270 150020 1 1000 305 307 1 18 0 1 0 0 0 0
+2 309 1 270 110012 33 100c 0 0 1 1 WR
+2 310 1 270 c000e 1b 100c 0 0 1 1 HLT
+2 311 1d 270 b000b 1b 100c 310 0 1 18 0 1 1 1 0 0
+2 312 18 270 b0012 4d 134c 309 311 1 18 0 1 1 1 1 0
+2 313 18 270 b0020 4d 1004 308 312 1 18 0 1 1 0 0 0
+2 314 18 270 b003e 4d 1004 304 313 1 18 0 1 1 0 0 0
+2 315 39 270 8003f 1389 6 314 0
+2 316 0 271 3d003d 1 1004 0 0 32 48 0 0
+2 317 23 271 3a003e 1 1000 0 316 1 18 0 1 0 0 0 0 BE
+2 318 0 271 200020 1 1004 0 0 32 48 0 0
+2 319 0 271 1b001c 1 1008 0 0 32 48 1f 0
+2 320 23 271 15001d 1 1000 0 319 1 18 0 1 0 0 0 0 DADDR
+2 321 11 271 150020 1 1000 318 320 1 18 0 1 0 0 0 0
+2 322 1 271 110012 33 100c 0 0 1 1 WR
+2 323 1 271 c000e 1b 100c 0 0 1 1 HLT
+2 324 1d 271 b000b 1b 100c 323 0 1 18 0 1 1 1 0 0
+2 325 18 271 b0012 4d 134c 322 324 1 18 0 1 1 1 1 0
+2 326 18 271 b0020 4d 1004 321 325 1 18 0 1 1 0 0 0
+2 327 18 271 b003e 4d 1004 317 326 1 18 0 1 1 0 0 0
+2 328 39 271 8003f 1389 6 327 0
+2 329 1 275 110015 0 1000 0 0 32 1 DADDR
+2 330 1 275 8000c 0 1410 0 0 32 1 XADDR
+2 331 38 275 80015 1389 2 329 330
+2 332 0 276 3f003f 1 1008 0 0 32 48 2 0
+2 333 0 276 3d003d 1 1008 0 0 32 48 3 0
+2 334 24 276 370040 1 1200 332 333 2 18 0 3 0 0 0 0 DADDR
+2 335 0 276 2e0033 1 21008 0 0 3 16 4 0
+2 336 1a 276 190033 1 1000 334 335 3 18 0 7 0 0 0 0
+2 337 0 276 25002a 1 21008 0 0 3 16 4 0
+2 338 0 276 210021 1 1008 0 0 32 48 2 0
+2 339 0 276 1f001f 1 1008 0 0 32 48 4 0
+2 340 24 276 190022 1 1200 338 339 3 18 0 7 0 0 0 0 DADDR
+2 341 11 276 19002a 1 1000 337 340 1 18 0 1 0 0 0 0
+2 342 19 276 190040 1 1000 336 341 3 18 0 7 0 0 0 0
+2 343 23 276 130041 1 1000 0 342 32 18 0 ffffffff 0 0 0 0 IOMUX
+2 344 1 276 8000e 0 1410 0 0 32 1 IOMUXFF
+2 345 38 276 80041 1389 2 343 344
+2 346 0 271 7f007f 0 1018 0 0 32 48 8 0
+2 347 0 271 7b007b 0 1014 0 0 32 48 0 0
+2 348 3 271 7b007f 0 10b4 346 347 32 18 0 ffffffff ffffffff 0 0 0
+2 349 0 271 780078 0 1018 0 0 32 48 7 0
+2 350 0 271 740074 0 1018 0 0 32 48 8 0
+2 351 0 271 700070 0 1014 0 0 32 48 0 0
+2 352 3 271 700074 0 10b4 350 351 32 18 0 ffffffff ffffffff 0 0 0
+2 353 6 271 700078 0 10b8 349 352 32 18 0 ffffffff fffffff8 7 0 0
+2 354 24 271 6a0080 0 1030 348 353 8 18 0 ff 0 0 0 0 DATAO
+2 355 0 271 640064 0 1408 0 0 32 48 8 0
+2 356 0 271 600060 0 1404 0 0 32 48 0 0
+2 357 3 271 600064 0 1484 355 356 32 18 0 ffffffff ffffffff 0 0 0
+2 358 0 271 5d005d 0 1408 0 0 32 48 7 0
+2 359 0 271 590059 0 1408 0 0 32 48 8 0
+2 360 0 271 550055 0 1404 0 0 32 48 0 0
+2 361 3 271 550059 0 1484 359 360 32 18 0 ffffffff ffffffff 0 0 0
+2 362 6 271 55005d 0 1488 358 361 32 18 0 ffffffff fffffff8 7 0 0
+2 363 24 271 540065 0 1400 357 362 8 18 0 ff 0 0 0 0 MEM
+2 364 0 271 510051 0 1408 0 0 32 48 2 0
+2 365 0 271 4f004f 0 1408 0 0 32 48 1 0
+2 366 0 271 4b004c 0 1408 0 0 32 48 c 0
+2 367 7 271 4b004f 0 1608 365 366 32 18 0 ffffffff fffffff2 1 c 0
+2 368 24 271 450052 0 1400 364 367 10 18 0 3ff 0 0 0 0 DADDR
+2 369 23 271 440053 0 1400 0 368 32 18 0 ffffffff 0 0 0 0 MEM
+2 370 58 271 410065 0 400 363 369
+2 371 38 271 410080 0 22 354 370
+2 372 0 270 7f007f 0 1018 0 0 32 48 8 0
+2 373 0 270 7b007b 0 1018 0 0 32 48 1 0
+2 374 3 270 7b007f 0 1238 372 373 32 18 0 ffffffff fffffff7 8 0 0
+2 375 0 270 780078 0 1018 0 0 32 48 7 0
+2 376 0 270 740074 0 1018 0 0 32 48 8 0
+2 377 0 270 700070 0 1018 0 0 32 48 1 0
+2 378 3 270 700074 0 1238 376 377 32 18 0 ffffffff fffffff7 8 0 0
+2 379 6 270 700078 0 1238 375 378 32 18 0 ffffffff fffffff0 7 8 0
+2 380 24 270 6a0080 0 1030 374 379 8 18 0 ff 0 0 0 0 DATAO
+2 381 0 270 640064 0 1408 0 0 32 48 8 0
+2 382 0 270 600060 0 1408 0 0 32 48 1 0
+2 383 3 270 600064 0 1608 381 382 32 18 0 ffffffff fffffff7 8 0 0
+2 384 0 270 5d005d 0 1408 0 0 32 48 7 0
+2 385 0 270 590059 0 1408 0 0 32 48 8 0
+2 386 0 270 550055 0 1408 0 0 32 48 1 0
+2 387 3 270 550059 0 1608 385 386 32 18 0 ffffffff fffffff7 8 0 0
+2 388 6 270 55005d 0 1608 384 387 32 18 0 ffffffff fffffff0 7 8 0
+2 389 24 270 540065 0 1400 383 388 8 18 0 ff 0 0 0 0 MEM
+2 390 0 270 510051 0 1408 0 0 32 48 2 0
+2 391 0 270 4f004f 0 1408 0 0 32 48 1 0
+2 392 0 270 4b004c 0 1408 0 0 32 48 c 0
+2 393 7 270 4b004f 0 1608 391 392 32 18 0 ffffffff fffffff2 1 c 0
+2 394 24 270 450052 0 1400 390 393 10 18 0 3ff 0 0 0 0 DADDR
+2 395 23 270 440053 0 1400 0 394 32 18 0 ffffffff 0 0 0 0 MEM
+2 396 58 270 410065 0 400 389 395
+2 397 38 270 410080 0 22 380 396
+2 398 0 269 7f007f 0 1018 0 0 32 48 8 0
+2 399 0 269 7b007b 0 1018 0 0 32 48 2 0
+2 400 3 269 7b007f 0 1238 398 399 32 18 0 ffffffff ffffffef 10 0 0
+2 401 0 269 780078 0 1018 0 0 32 48 7 0
+2 402 0 269 740074 0 1018 0 0 32 48 8 0
+2 403 0 269 700070 0 1018 0 0 32 48 2 0
+2 404 3 269 700074 0 1238 402 403 32 18 0 ffffffff ffffffef 10 0 0
+2 405 6 269 700078 0 1238 401 404 32 18 0 ffffffff ffffffe8 7 10 0
+2 406 24 269 6a0080 0 1030 400 405 8 18 0 ff 0 0 0 0 DATAO
+2 407 0 269 640064 0 1408 0 0 32 48 8 0
+2 408 0 269 600060 0 1408 0 0 32 48 2 0
+2 409 3 269 600064 0 1608 407 408 32 18 0 ffffffff ffffffef 10 0 0
+2 410 0 269 5d005d 0 1408 0 0 32 48 7 0
+2 411 0 269 590059 0 1408 0 0 32 48 8 0
+2 412 0 269 550055 0 1408 0 0 32 48 2 0
+2 413 3 269 550059 0 1608 411 412 32 18 0 ffffffff ffffffef 10 0 0
+2 414 6 269 55005d 0 1608 410 413 32 18 0 ffffffff ffffffe8 7 10 0
+2 415 24 269 540065 0 1400 409 414 8 18 0 ff 0 0 0 0 MEM
+2 416 0 269 510051 0 1408 0 0 32 48 2 0
+2 417 0 269 4f004f 0 1408 0 0 32 48 1 0
+2 418 0 269 4b004c 0 1408 0 0 32 48 c 0
+2 419 7 269 4b004f 0 1608 417 418 32 18 0 ffffffff fffffff2 1 c 0
+2 420 24 269 450052 0 1400 416 419 10 18 0 3ff 0 0 0 0 DADDR
+2 421 23 269 440053 0 1400 0 420 32 18 0 ffffffff 0 0 0 0 MEM
+2 422 58 269 410065 0 400 415 421
+2 423 38 269 410080 0 22 406 422
+2 424 0 268 7f007f 0 1018 0 0 32 48 8 0
+2 425 0 268 7b007b 0 1018 0 0 32 48 3 0
+2 426 3 268 7b007f 0 1238 424 425 32 18 0 ffffffff ffffffe7 18 0 0
+2 427 0 268 780078 0 1018 0 0 32 48 7 0
+2 428 0 268 740074 0 1018 0 0 32 48 8 0
+2 429 0 268 700070 0 1018 0 0 32 48 3 0
+2 430 3 268 700074 0 1238 428 429 32 18 0 ffffffff ffffffe7 18 0 0
+2 431 6 268 700078 0 1238 427 430 32 18 0 ffffffff ffffffe0 7 18 0
+2 432 24 268 6a0080 0 1030 426 431 8 18 0 ff 0 0 0 0 DATAO
+2 433 0 268 640064 0 1408 0 0 32 48 8 0
+2 434 0 268 600060 0 1408 0 0 32 48 3 0
+2 435 3 268 600064 0 1608 433 434 32 18 0 ffffffff ffffffe7 18 0 0
+2 436 0 268 5d005d 0 1408 0 0 32 48 7 0
+2 437 0 268 590059 0 1408 0 0 32 48 8 0
+2 438 0 268 550055 0 1408 0 0 32 48 3 0
+2 439 3 268 550059 0 1608 437 438 32 18 0 ffffffff ffffffe7 18 0 0
+2 440 6 268 55005d 0 1608 436 439 32 18 0 ffffffff ffffffe0 7 18 0
+2 441 24 268 540065 0 1400 435 440 8 18 0 ff 0 0 0 0 MEM
+2 442 0 268 510051 0 1408 0 0 32 48 2 0
+2 443 0 268 4f004f 0 1408 0 0 32 48 1 0
+2 444 0 268 4b004c 0 1408 0 0 32 48 c 0
+2 445 7 268 4b004f 0 1608 443 444 32 18 0 ffffffff fffffff2 1 c 0
+2 446 24 268 450052 0 1400 442 445 10 18 0 3ff 0 0 0 0 DADDR
+2 447 23 268 440053 0 1400 0 446 32 18 0 ffffffff 0 0 0 0 MEM
+2 448 58 268 410065 0 400 441 447
+2 449 38 268 410080 0 22 432 448
+4 289 268 8 11 449 302 289
+4 449 268 65 6 302 302 289
+4 302 269 8 0 423 315 289
+4 423 269 65 6 315 315 289
+4 315 270 8 0 397 328 289
+4 397 270 65 6 328 328 289
+4 328 271 8 0 371 331 289
+4 371 271 65 6 331 331 289
+4 331 275 8 0 345 345 289
+4 345 276 8 0 0 0 289
+3 1 darksocv.$u9 "top.soc0.$u9" 0 rtl/darksocv.v 0 367 1000
+2 450 0 315 26002c 1 21008 0 0 4 16 8 0
+2 451 0 315 220022 1 1004 0 0 32 48 0 0
+2 452 0 315 200020 1 1008 0 0 32 48 3 0
+2 453 24 315 1a0023 1 1100 451 452 4 18 0 f 0 0 0 0 DADDR
+2 454 11 315 1a002c 1 1000 450 453 1 18 0 1 0 0 0 0
+2 455 0 315 150016 1 1008 0 0 32 48 1f 0
+2 456 23 315 f0017 1 1000 0 455 1 18 0 1 0 0 0 0 DADDR
+2 457 1 315 b000c 33 100c 0 0 1 1 WR
+2 458 18 315 b0017 33 1004 456 457 1 18 0 1 1 0 0 0
+2 459 18 315 b002c 33 1004 454 458 1 18 0 1 1 0 0 0
+2 460 39 315 8002d 1389 6 459 0
+2 461 0 320 26002c 1 21008 0 0 4 16 a 0
+2 462 0 320 220022 1 1004 0 0 32 48 0 0
+2 463 0 320 200020 1 1008 0 0 32 48 3 0
+2 464 24 320 1a0023 1 1100 462 463 4 18 0 f 0 0 0 0 DADDR
+2 465 11 320 1a002c 1 1000 461 464 1 18 0 1 0 0 0 0
+2 466 0 320 150016 1 1008 0 0 32 48 1f 0
+2 467 23 320 f0017 1 1000 0 466 1 18 0 1 0 0 0 0 DADDR
+2 468 1 320 b000c 33 100c 0 0 1 1 WR
+2 469 18 320 b0017 33 1004 467 468 1 18 0 1 1 0 0 0
+2 470 18 320 b002c 33 1004 465 469 1 18 0 1 1 0 0 0
+2 471 39 320 8002d 1389 6 470 0
+2 472 1 325 b000d 2 100c 0 0 1 1 RES
+2 473 39 325 8000e 1389 e 472 0
+2 474 0 328 26002c 1 21008 0 0 4 16 c 0
+2 475 0 328 220022 1 1004 0 0 32 48 0 0
+2 476 0 328 200020 1 1008 0 0 32 48 3 0
+2 477 24 328 1a0023 1 1100 475 476 4 18 0 f 0 0 0 0 DADDR
+2 478 11 328 1a002c 1 1000 474 477 1 18 0 1 0 0 0 0
+2 479 0 328 150016 1 1008 0 0 32 48 1f 0
+2 480 23 328 f0017 1 1000 0 479 1 18 0 1 0 0 0 0 DADDR
+2 481 1 328 b000c 33 100c 0 0 1 1 WR
+2 482 18 328 b0017 33 1004 480 481 1 18 0 1 1 0 0 0
+2 483 18 328 b002c 33 1004 478 482 1 18 0 1 1 0 0 0
+2 484 39 328 8002d 1289 6 483 0
+2 485 1 333 b000d 2 100c 0 0 1 1 RES
+2 486 39 333 8000e 1389 e 485 0
+2 487 0 336 26002c 1 21008 0 0 4 16 3 0
+2 488 0 336 220022 1 1004 0 0 32 48 0 0
+2 489 0 336 200020 1 1008 0 0 32 48 3 0
+2 490 24 336 1a0023 1 1100 488 489 4 18 0 f 0 0 0 0 DADDR
+2 491 11 336 1a002c 1 1000 487 490 1 18 0 1 0 0 0 0
+2 492 0 336 150016 1 1008 0 0 32 48 1f 0
+2 493 23 336 f0017 1 1000 0 492 1 18 0 1 0 0 0 0 DADDR
+2 494 1 336 b000c 33 100c 0 0 1 1 WR
+2 495 18 336 b0017 33 1004 493 494 1 18 0 1 1 0 0 0
+2 496 18 336 b002c 33 1004 491 495 1 18 0 1 1 0 0 0
+2 497 39 336 8002d 1289 6 496 0
+2 498 1 350 b000d 2 100c 0 0 1 1 RES
+2 499 39 350 8000e 1389 e 498 0
+2 500 1 353 b0011 1 1004 0 0 32 1 TIMERFF
+2 501 39 353 80012 1289 6 500 0
+2 502 3d 354 8000c 0 5002 0 0 1 18 0 1 0 0 0 0 $u14
+2 503 0 351 140014 1 1004 0 0 32 48 0 0
+2 504 1 351 c000f 0 1410 0 0 8 1 IREQ
+2 505 38 351 c0014 100 6 503 504
+2 506 3d 337 8000c 0 5002 0 0 1 18 0 1 0 0 0 0 $u13
+2 507 0 334 140014 1 1004 0 0 32 48 0 0
+2 508 1 334 c000f 0 1410 0 0 8 1 IACK
+2 509 38 334 c0014 100 6 507 508
+2 510 3d 329 8000c 0 5002 0 0 1 18 0 1 0 0 0 0 $u12
+2 511 0 326 2c002c 1 1008 0 0 32 48 1 0
+2 512 0 326 230029 1 1008 0 0 32 48 f4240 0
+2 513 0 326 180020 1 1008 0 0 32 48 5f5e100 0
+2 514 4 326 180029 1 201208 512 513 32 18 0 ffffffff ffffff9b 64 0 0
+2 515 7 326 17002c 1 1208 511 514 32 18 0 ffffffff ffffff9a 1 64 0
+2 516 1 326 c0012 0 1410 0 0 32 1 TIMERFF
+2 517 38 326 c002c 100 a 515 516
+2 518 3d 321 8000c 0 5002 0 0 1 18 0 1 0 0 0 0 $u11
+2 519 3d 316 8000c 0 5002 0 0 1 18 0 1 0 0 0 0 $u10
+4 460 315 8 11 519 471 460
+4 519 316 8 6 471 0 460
+4 471 320 8 0 518 473 460
+4 518 321 8 6 473 0 460
+4 473 325 8 0 517 484 460
+4 517 326 12 6 486 486 460
+4 484 328 8 0 510 486 460
+4 510 329 8 6 486 0 460
+4 486 333 8 0 509 497 460
+4 509 334 12 6 499 499 460
+4 497 336 8 0 506 499 460
+4 506 337 8 6 499 0 460
+4 499 350 8 0 505 501 460
+4 505 351 12 0 0 0 460
+4 501 353 8 0 502 0 460
+4 502 354 8 0 0 0 460
+3 1 darksocv.$u9.$u10 "top.soc0.$u9.$u10" 0 rtl/darksocv.v 0 318 1000
+2 520 0 317 1e001e 0 1014 0 0 32 48 0 0
+2 521 0 317 1b001c 0 1018 0 0 32 48 f 0
+2 522 24 317 15001f 0 1030 520 521 16 18 0 ffff 0 0 0 0 DATAO
+2 523 1 317 c0010 0 1410 0 0 16 1 LEDFF
+2 524 38 317 c001f 0 32 522 523
+4 524 317 12 11 0 0 524
+3 1 darksocv.$u9.$u11 "top.soc0.$u9.$u11" 0 rtl/darksocv.v 0 323 1000
+2 525 0 322 1f0020 0 1018 0 0 32 48 10 0
+2 526 0 322 1c001d 0 1018 0 0 32 48 1f 0
+2 527 24 322 160021 0 1030 525 526 16 18 0 ffff 0 0 0 0 DATAO
+2 528 1 322 c0011 0 1410 0 0 16 1 GPIOFF
+2 529 38 322 c0021 0 32 527 528
+4 529 322 12 11 0 0 529
+3 1 darksocv.$u9.$u12 "top.soc0.$u9.$u12" 0 rtl/darksocv.v 0 331 1000
+2 530 0 330 200020 0 1014 0 0 32 48 0 0
+2 531 0 330 1d001e 0 1018 0 0 32 48 1f 0
+2 532 24 330 170021 0 1030 530 531 32 18 0 ffffffff 0 0 0 0 DATAO
+2 533 1 330 c0012 0 1410 0 0 32 1 TIMERFF
+2 534 38 330 c0021 0 32 532 533
+4 534 330 12 11 0 0 534
+3 1 darksocv.$u9.$u13 "top.soc0.$u9.$u13" 0 rtl/darksocv.v 0 348 1000
+2 535 0 340 340034 0 1010 0 0 32 48 7 0
+2 536 23 340 2f0035 0 1010 0 535 1 18 0 1 0 0 0 0 IACK
+2 537 0 340 2a002a 0 1010 0 0 32 48 7 0
+2 538 23 340 25002b 0 1010 0 537 1 18 0 1 0 0 0 0 IREQ
+2 539 1a 340 17002b 0 1030 536 538 1 18 0 1 0 0 0 0
+2 540 0 340 1f0020 0 1010 0 0 32 48 18 0
+2 541 0 340 1d001d 0 1010 0 0 32 48 7 0
+2 542 6 340 1d0020 0 1030 540 541 32 18 0 ffffffff 0 0 0 0
+2 543 23 340 170021 0 1010 0 542 1 18 0 1 0 0 0 0 DATAO
+2 544 19 340 170035 0 1030 539 543 1 18 0 1 0 0 0 0
+2 545 0 340 110011 0 1400 0 0 32 48 7 0
+2 546 23 340 c0012 0 1410 0 545 1 18 0 1 0 0 0 0 IACK
+2 547 38 340 c0035 0 32 544 546
+2 548 0 341 340034 0 1010 0 0 32 48 6 0
+2 549 23 341 2f0035 0 1010 0 548 1 18 0 1 0 0 0 0 IACK
+2 550 0 341 2a002a 0 1010 0 0 32 48 6 0
+2 551 23 341 25002b 0 1010 0 550 1 18 0 1 0 0 0 0 IREQ
+2 552 1a 341 17002b 0 1030 549 551 1 18 0 1 0 0 0 0
+2 553 0 341 1f0020 0 1010 0 0 32 48 18 0
+2 554 0 341 1d001d 0 1010 0 0 32 48 6 0
+2 555 6 341 1d0020 0 1030 553 554 32 18 0 ffffffff 0 0 0 0
+2 556 23 341 170021 0 1010 0 555 1 18 0 1 0 0 0 0 DATAO
+2 557 19 341 170035 0 1030 552 556 1 18 0 1 0 0 0 0
+2 558 0 341 110011 0 1400 0 0 32 48 6 0
+2 559 23 341 c0012 0 1410 0 558 1 18 0 1 0 0 0 0 IACK
+2 560 38 341 c0035 0 32 557 559
+2 561 0 342 340034 0 1010 0 0 32 48 5 0
+2 562 23 342 2f0035 0 1010 0 561 1 18 0 1 0 0 0 0 IACK
+2 563 0 342 2a002a 0 1010 0 0 32 48 5 0
+2 564 23 342 25002b 0 1010 0 563 1 18 0 1 0 0 0 0 IREQ
+2 565 1a 342 17002b 0 1030 562 564 1 18 0 1 0 0 0 0
+2 566 0 342 1f0020 0 1010 0 0 32 48 18 0
+2 567 0 342 1d001d 0 1010 0 0 32 48 5 0
+2 568 6 342 1d0020 0 1030 566 567 32 18 0 ffffffff 0 0 0 0
+2 569 23 342 170021 0 1010 0 568 1 18 0 1 0 0 0 0 DATAO
+2 570 19 342 170035 0 1030 565 569 1 18 0 1 0 0 0 0
+2 571 0 342 110011 0 1400 0 0 32 48 5 0
+2 572 23 342 c0012 0 1410 0 571 1 18 0 1 0 0 0 0 IACK
+2 573 38 342 c0035 0 32 570 572
+2 574 0 343 340034 0 1010 0 0 32 48 4 0
+2 575 23 343 2f0035 0 1010 0 574 1 18 0 1 0 0 0 0 IACK
+2 576 0 343 2a002a 0 1010 0 0 32 48 4 0
+2 577 23 343 25002b 0 1010 0 576 1 18 0 1 0 0 0 0 IREQ
+2 578 1a 343 17002b 0 1030 575 577 1 18 0 1 0 0 0 0
+2 579 0 343 1f0020 0 1010 0 0 32 48 18 0
+2 580 0 343 1d001d 0 1010 0 0 32 48 4 0
+2 581 6 343 1d0020 0 1030 579 580 32 18 0 ffffffff 0 0 0 0
+2 582 23 343 170021 0 1010 0 581 1 18 0 1 0 0 0 0 DATAO
+2 583 19 343 170035 0 1030 578 582 1 18 0 1 0 0 0 0
+2 584 0 343 110011 0 1400 0 0 32 48 4 0
+2 585 23 343 c0012 0 1410 0 584 1 18 0 1 0 0 0 0 IACK
+2 586 38 343 c0035 0 32 583 585
+2 587 0 344 340034 0 1010 0 0 32 48 3 0
+2 588 23 344 2f0035 0 1010 0 587 1 18 0 1 0 0 0 0 IACK
+2 589 0 344 2a002a 0 1010 0 0 32 48 3 0
+2 590 23 344 25002b 0 1010 0 589 1 18 0 1 0 0 0 0 IREQ
+2 591 1a 344 17002b 0 1030 588 590 1 18 0 1 0 0 0 0
+2 592 0 344 1f0020 0 1010 0 0 32 48 18 0
+2 593 0 344 1d001d 0 1010 0 0 32 48 3 0
+2 594 6 344 1d0020 0 1030 592 593 32 18 0 ffffffff 0 0 0 0
+2 595 23 344 170021 0 1010 0 594 1 18 0 1 0 0 0 0 DATAO
+2 596 19 344 170035 0 1030 591 595 1 18 0 1 0 0 0 0
+2 597 0 344 110011 0 1400 0 0 32 48 3 0
+2 598 23 344 c0012 0 1410 0 597 1 18 0 1 0 0 0 0 IACK
+2 599 38 344 c0035 0 32 596 598
+2 600 0 345 340034 0 1010 0 0 32 48 2 0
+2 601 23 345 2f0035 0 1010 0 600 1 18 0 1 0 0 0 0 IACK
+2 602 0 345 2a002a 0 1010 0 0 32 48 2 0
+2 603 23 345 25002b 0 1010 0 602 1 18 0 1 0 0 0 0 IREQ
+2 604 1a 345 17002b 0 1030 601 603 1 18 0 1 0 0 0 0
+2 605 0 345 1f0020 0 1010 0 0 32 48 18 0
+2 606 0 345 1d001d 0 1010 0 0 32 48 2 0
+2 607 6 345 1d0020 0 1030 605 606 32 18 0 ffffffff 0 0 0 0
+2 608 23 345 170021 0 1010 0 607 1 18 0 1 0 0 0 0 DATAO
+2 609 19 345 170035 0 1030 604 608 1 18 0 1 0 0 0 0
+2 610 0 345 110011 0 1400 0 0 32 48 2 0
+2 611 23 345 c0012 0 1410 0 610 1 18 0 1 0 0 0 0 IACK
+2 612 38 345 c0035 0 32 609 611
+2 613 0 346 340034 0 1010 0 0 32 48 1 0
+2 614 23 346 2f0035 0 1010 0 613 1 18 0 1 0 0 0 0 IACK
+2 615 0 346 2a002a 0 1010 0 0 32 48 1 0
+2 616 23 346 25002b 0 1010 0 615 1 18 0 1 0 0 0 0 IREQ
+2 617 1a 346 17002b 0 1030 614 616 1 18 0 1 0 0 0 0
+2 618 0 346 1f0020 0 1010 0 0 32 48 18 0
+2 619 0 346 1d001d 0 1010 0 0 32 48 1 0
+2 620 6 346 1d0020 0 1030 618 619 32 18 0 ffffffff 0 0 0 0
+2 621 23 346 170021 0 1010 0 620 1 18 0 1 0 0 0 0 DATAO
+2 622 19 346 170035 0 1030 617 621 1 18 0 1 0 0 0 0
+2 623 0 346 110011 0 1400 0 0 32 48 1 0
+2 624 23 346 c0012 0 1410 0 623 1 18 0 1 0 0 0 0 IACK
+2 625 38 346 c0035 0 32 622 624
+2 626 0 347 340034 0 1010 0 0 32 48 0 0
+2 627 23 347 2f0035 0 1010 0 626 1 18 0 1 0 0 0 0 IACK
+2 628 0 347 2a002a 0 1010 0 0 32 48 0 0
+2 629 23 347 25002b 0 1010 0 628 1 18 0 1 0 0 0 0 IREQ
+2 630 1a 347 17002b 0 1030 627 629 1 18 0 1 0 0 0 0
+2 631 0 347 1f0020 0 1010 0 0 32 48 18 0
+2 632 0 347 1d001d 0 1010 0 0 32 48 0 0
+2 633 6 347 1d0020 0 1030 631 632 32 18 0 ffffffff 0 0 0 0
+2 634 23 347 170021 0 1010 0 633 1 18 0 1 0 0 0 0 DATAO
+2 635 19 347 170035 0 1030 630 634 1 18 0 1 0 0 0 0
+2 636 0 347 110011 0 1400 0 0 32 48 0 0
+2 637 23 347 c0012 0 1410 0 636 1 18 0 1 0 0 0 0 IACK
+2 638 38 347 c0035 0 32 635 637
+4 547 340 12 11 560 560 547
+4 560 341 12 0 573 573 547
+4 573 342 12 0 586 586 547
+4 586 343 12 0 599 599 547
+4 599 344 12 0 612 612 547
+4 612 345 12 0 625 625 547
+4 625 346 12 0 638 638 547
+4 638 347 12 0 0 0 547
+3 1 darksocv.$u9.$u14 "top.soc0.$u9.$u14" 0 rtl/darksocv.v 0 366 1000
+2 639 1 355 27002d 0 1010 0 0 32 1 TIMERFF
+2 640 0 355 230023 0 1010 0 0 32 48 1 0
+2 641 1 355 1d0021 0 1010 0 0 32 1 TIMER
+2 642 7 355 1d0023 0 1030 640 641 32 18 0 ffffffff 0 0 0 0
+2 643 1a 355 150023 0 1030 639 642 32 18 0 ffffffff 0 0 0 0
+2 644 1 355 150019 0 1010 0 0 32 1 TIMER
+2 645 19 355 15002d 0 1030 643 644 32 18 0 ffffffff 0 0 0 0
+2 646 1 355 c0010 0 1410 0 0 32 1 TIMER
+2 647 38 355 c002d 0 32 645 646
+2 648 1 357 210024 0 1010 0 0 8 1 IACK
+2 649 1 357 1b001e 0 1010 0 0 8 1 IREQ
+2 650 11 357 1b0024 0 1030 648 649 1 18 0 1 0 0 0 0
+2 651 0 357 160016 0 1010 0 0 32 48 0 0
+2 652 1 357 f0013 0 1010 0 0 32 1 TIMER
+2 653 11 357 f0016 0 1030 651 652 1 18 0 1 0 0 0 0
+2 654 18 357 f0024 0 1030 650 653 1 18 0 1 0 0 0 0
+2 655 39 357 c0025 0 22 654 0
+2 656 0 364 260026 0 1010 0 0 32 48 0 0
+2 657 1 364 1f0023 0 1010 0 0 32 1 TIMER
+2 658 11 364 1f0026 0 201030 656 657 1 18 0 1 0 0 0 0
+2 659 1 364 17001c 0 1010 0 0 1 1 XTIMER
+2 660 6 364 170027 0 1030 658 659 1 18 0 1 0 0 0 0
+2 661 1 364 c0011 0 1410 0 0 1 1 XTIMER
+2 662 38 364 c0027 0 32 660 661
+2 663 1 365 3b0040 0 1010 0 0 32 1 TIMEUS
+2 664 0 365 340037 0 21010 0 0 1 16 1 0
+2 665 1 365 2b0030 0 1010 0 0 32 1 TIMEUS
+2 666 6 365 2b0037 0 1030 664 665 32 18 0 ffffffff 0 0 0 0
+2 667 1a 365 160037 0 1030 663 666 32 18 0 ffffffff 0 0 0 0
+2 668 1 365 200026 0 1010 0 0 32 1 TIMERFF
+2 669 1 365 17001b 0 1010 0 0 32 1 TIMER
+2 670 11 365 170026 0 201030 668 669 1 18 0 1 0 0 0 0
+2 671 19 365 160040 0 1030 667 670 32 18 0 ffffffff 0 0 0 0
+2 672 1 365 c0011 0 1410 0 0 32 1 TIMEUS
+2 673 38 365 c0040 0 32 671 672
+2 674 3d 358 c0010 0 5002 0 0 1 18 0 1 0 0 0 0 $u15
+4 647 355 12 11 655 655 647
+4 655 357 12 0 674 662 647
+4 674 358 12 6 662 0 647
+4 662 364 12 0 673 673 647
+4 673 365 12 0 0 0 647
+3 1 darksocv.$u9.$u14.$u15 "top.soc0.$u9.$u14.$u15" 0 rtl/darksocv.v 0 362 1000
+2 675 0 359 210021 0 1010 0 0 32 48 7 0
+2 676 23 359 1c0022 0 1010 0 675 1 18 0 1 0 0 0 0 IACK
+2 677 1d 359 1b001b 0 1020 676 0 1 18 0 1 0 0 0 0
+2 678 0 359 150015 0 1400 0 0 32 48 7 0
+2 679 23 359 100016 0 1410 0 678 1 18 0 1 0 0 0 0 IREQ
+2 680 38 359 100022 0 32 677 679
+4 680 359 16 11 0 0 680
+3 0 darkriscv "top.soc0.core0" 0 rtl/darkriscv.v 57 588 1000
+2 681 0 98 180018 1 1004 0 0 32 48 0 0
+2 682 1 98 100013 0 1400 0 0 32 1 ALL0
+2 683 36 98 100018 2 6 681 682
+2 684 0 99 190019 1 1008 0 0 32 48 1 0
+2 685 4d 99 180018 1 1008 684 0 32 50 0 ffffffff 0 ffffffff 0 0
+2 686 1 99 100013 0 1400 0 0 32 1 ALL1
+2 687 36 99 100019 2 a 685 686
+2 688 0 101 f000f 1 1008 0 0 32 48 1 0
+2 689 1 101 8000b 0 1410 0 0 1 1 XRES
+2 690 48 101 8000f 1 1a 688 689
+2 691 1 120 140016 2712 100c 0 0 1 1 CLK
+2 692 27 120 c0016 3a9c 100a 691 0 1 18 0 1 0 0 0 0
+2 693 3d 121 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u0
+2 694 0 159 170017 1 1008 0 0 32 48 1 0
+2 695 4d 159 160016 1 1008 694 0 2 50 0 3 0 3 0 0
+2 696 1 159 e0012 0 1410 0 0 2 1 FLUSH
+2 697 48 159 e0017 1 1a 695 696
+2 698 0 231 320032 1 1008 0 0 32 48 7 0
+2 699 0 231 2e002f 1 1008 0 0 32 48 b 0
+2 700 24 231 270033 1 1200 698 699 5 18 0 1f 0 0 0 0 XIDATA
+2 701 0 231 230023 1 1004 0 0 32 48 0 0
+2 702 1a 231 1c0023 1 1004 700 701 32 18 0 ffffffff ffffffff 0 0 0
+2 703 1 231 1c001f 1 1008 0 0 1 1 XRES
+2 704 19 231 1c0033 1 1004 702 703 5 18 0 1f 1f 0 0 0
+2 705 1 231 130016 0 1400 0 0 5 1 DPTR
+2 706 36 231 130033 2 6 704 705
+2 707 0 232 260027 1 1008 0 0 32 48 f 0
+2 708 0 232 230024 1 1008 0 0 32 48 13 0
+2 709 24 232 1c0028 1 1200 707 708 5 18 0 1f 0 0 0 0 XIDATA
+2 710 1 232 130017 0 1400 0 0 5 1 S1PTR
+2 711 36 232 130028 2 2 709 710
+2 712 0 233 260027 1 1008 0 0 32 48 14 0
+2 713 0 233 230024 1 1008 0 0 32 48 18 0
+2 714 24 233 1c0028 1 1200 712 713 5 18 0 1f 0 0 0 0 XIDATA
+2 715 1 233 130017 0 1400 0 0 5 1 S2PTR
+2 716 36 233 130028 2 2 714 715
+2 717 0 237 2d002d 1 1004 0 0 32 48 0 0
+2 718 0 237 2b002b 1 1008 0 0 32 48 6 0
+2 719 24 237 24002e 1 1100 717 718 7 18 0 7f 0 0 0 0 XIDATA
+2 720 0 237 200020 1 1004 0 0 32 48 0 0
+2 721 1a 237 180020 1 1004 719 720 32 18 0 ffffffff ffffffff 0 0 0
+2 722 1 237 18001c 1 1008 0 0 2 1 FLUSH
+2 723 19 237 18002e 1 1004 721 722 7 18 0 7f 7f 0 0 0
+2 724 1 237 f0014 0 1400 0 0 7 1 OPCODE
+2 725 36 237 f002e 2 6 723 724
+2 726 0 238 220023 1 1008 0 0 32 48 c 0
+2 727 0 238 1f0020 1 1008 0 0 32 48 e 0
+2 728 24 238 180024 1 1200 726 727 3 18 0 7 0 0 0 0 XIDATA
+2 729 1 238 f0012 0 1400 0 0 3 1 FCT3
+2 730 36 238 f0024 2 2 728 729
+2 731 0 239 220023 1 1008 0 0 32 48 19 0
+2 732 0 239 1f0020 1 1008 0 0 32 48 1f 0
+2 733 24 239 180024 1 1200 731 732 7 18 0 7f 0 0 0 0 XIDATA
+2 734 1 239 f0012 0 1400 0 0 7 1 FCT7
+2 735 36 239 f0024 2 2 733 734
+2 736 1 241 18001c 0 1000 0 0 32 1 XSIMM
+2 737 1 241 100013 0 1400 0 0 32 1 SIMM
+2 738 36 241 10001c 1 2 736 737
+2 739 1 242 18001c 0 1000 0 0 32 1 XUIMM
+2 740 1 242 100013 0 1400 0 0 32 1 UIMM
+2 741 36 242 10001c 1 2 739 740
+2 742 1 246 1e0021 1 1004 0 0 1 1 XLUI
+2 743 0 246 1a001a 1 1004 0 0 32 48 0 0
+2 744 1a 246 12001a 2 1044 742 743 32 18 0 ffffffff ffffffff 0 0 0
+2 745 1 246 120016 1 1008 0 0 2 1 FLUSH
+2 746 19 246 120021 2 1004 744 745 1 18 0 1 1 0 0 0
+2 747 1 246 c000e 0 1410 0 0 1 1 LUI
+2 748 36 246 c0021 2 6 746 747
+2 749 1 247 1e0023 83f 100c 0 0 1 1 XAUIPC
+2 750 0 247 1a001a 1 1004 0 0 32 48 0 0
+2 751 1a 247 12001a 840 10c4 749 750 32 18 0 ffffffff ffffffff 0 0 0
+2 752 1 247 120016 1 1008 0 0 2 1 FLUSH
+2 753 19 247 120023 840 1004 751 752 1 18 0 1 1 0 0 0
+2 754 1 247 a000e 0 1410 0 0 1 1 AUIPC
+2 755 36 247 a0023 2 6 753 754
+2 756 1 248 1e0021 1 1004 0 0 1 1 XJAL
+2 757 0 248 1a001a 1 1004 0 0 32 48 0 0
+2 758 1a 248 12001a 2 1044 756 757 32 18 0 ffffffff ffffffff 0 0 0
+2 759 1 248 120016 1 1008 0 0 2 1 FLUSH
+2 760 19 248 120021 2 1004 758 759 1 18 0 1 1 0 0 0
+2 761 1 248 c000e 0 1410 0 0 1 1 JAL
+2 762 36 248 c0021 2 6 760 761
+2 763 1 249 1e0022 83f 100c 0 0 1 1 XJALR
+2 764 0 249 1a001a 1 1004 0 0 32 48 0 0
+2 765 1a 249 12001a 840 10c4 763 764 32 18 0 ffffffff ffffffff 0 0 0
+2 766 1 249 120016 1 1008 0 0 2 1 FLUSH
+2 767 19 249 120022 840 1004 765 766 1 18 0 1 1 0 0 0
+2 768 1 249 b000e 0 1410 0 0 1 1 JALR
+2 769 36 249 b0022 2 6 767 768
+2 770 1 251 1e0021 1 1004 0 0 1 1 XBCC
+2 771 0 251 1a001a 1 1004 0 0 32 48 0 0
+2 772 1a 251 12001a 2 1044 770 771 32 18 0 ffffffff ffffffff 0 0 0
+2 773 1 251 120016 1 1008 0 0 2 1 FLUSH
+2 774 19 251 120021 2 1004 772 773 1 18 0 1 1 0 0 0
+2 775 1 251 c000e 0 1410 0 0 1 1 BCC
+2 776 36 251 c0021 2 6 774 775
+2 777 1 252 1e0021 1b 100c 0 0 1 1 XLCC
+2 778 0 252 1a001a 1 1004 0 0 32 48 0 0
+2 779 1a 252 12001a 1c 10c4 777 778 32 18 0 ffffffff ffffffff 0 0 0
+2 780 1 252 120016 1 1008 0 0 2 1 FLUSH
+2 781 19 252 120021 1c 1004 779 780 1 18 0 1 1 0 0 0
+2 782 1 252 c000e 0 1410 0 0 1 1 LCC
+2 783 36 252 c0021 2 6 781 782
+2 784 1 253 1e0021 33 100c 0 0 1 1 XSCC
+2 785 0 253 1a001a 1 1004 0 0 32 48 0 0
+2 786 1a 253 12001a 34 10c4 784 785 32 18 0 ffffffff ffffffff 0 0 0
+2 787 1 253 120016 1 1008 0 0 2 1 FLUSH
+2 788 19 253 120021 34 1004 786 787 1 18 0 1 1 0 0 0
+2 789 1 253 c000e 0 1410 0 0 1 1 SCC
+2 790 36 253 c0021 2 6 788 789
+2 791 1 254 1e0021 ff 100c 0 0 1 1 XMCC
+2 792 0 254 1a001a 1 1004 0 0 32 48 0 0
+2 793 1a 254 12001a 100 10c4 791 792 32 18 0 ffffffff ffffffff 0 0 0
+2 794 1 254 120016 1 1008 0 0 2 1 FLUSH
+2 795 19 254 120021 100 1004 793 794 1 18 0 1 1 0 0 0
+2 796 1 254 c000e 0 1410 0 0 1 1 MCC
+2 797 36 254 c0021 2 6 795 796
+2 798 1 256 1e0021 d5 100c 0 0 1 1 XRCC
+2 799 0 256 1a001a 1 1004 0 0 32 48 0 0
+2 800 1a 256 12001a d6 10c4 798 799 32 18 0 ffffffff ffffffff 0 0 0
+2 801 1 256 120016 1 1008 0 0 2 1 FLUSH
+2 802 19 256 120021 d6 1004 800 801 1 18 0 1 1 0 0 0
+2 803 1 256 c000e 0 1410 0 0 1 1 RCC
+2 804 36 256 c0021 2 6 802 803
+2 805 1 257 1e0021 1 1004 0 0 1 1 XCUS
+2 806 0 257 1a001a 1 1004 0 0 32 48 0 0
+2 807 1a 257 12001a 2 1044 805 806 32 18 0 ffffffff ffffffff 0 0 0
+2 808 1 257 120016 1 1008 0 0 2 1 FLUSH
+2 809 19 257 120021 2 1004 807 808 1 18 0 1 1 0 0 0
+2 810 1 257 c000e 0 1410 0 0 1 1 CUS
+2 811 36 257 c0021 2 6 809 810
+2 812 1 259 1e0021 1 1004 0 0 1 1 XCCC
+2 813 0 259 1a001a 1 1004 0 0 32 48 0 0
+2 814 1a 259 12001a 2 1044 812 813 32 18 0 ffffffff ffffffff 0 0 0
+2 815 1 259 120016 1 1008 0 0 2 1 FLUSH
+2 816 19 259 120021 2 1004 814 815 1 18 0 1 1 0 0 0
+2 817 1 259 c000e 0 1410 0 0 1 1 CCC
+2 818 36 259 c0021 2 6 816 817
+2 819 3d 289 c000e 1 5002 0 0 1 18 0 1 0 0 0 0 $u1
+2 820 1 294 26002a 1 1000 0 0 5 1 S1PTR
+2 821 23 294 21002b 1 1004 0 820 32 18 0 ffffffff 0 0 0 0 REGS
+2 822 1 294 19001d 0 1400 0 0 32 1 U1REG
+2 823 36 294 19002b 1 2 821 822
+2 824 1 295 26002a 1 1000 0 0 5 1 S2PTR
+2 825 23 295 21002b 1 1004 0 824 32 18 0 ffffffff 0 0 0 0 REGS
+2 826 1 295 19001d 0 1400 0 0 32 1 U2REG
+2 827 36 295 19002b 1 2 825 826
+2 828 1 297 210025 0 1000 0 0 32 1 U1REG
+2 829 1 297 19001d 0 1400 0 0 32 33 S1REG
+2 830 36 297 190025 1 2 828 829
+2 831 1 298 210025 0 1000 0 0 32 1 U2REG
+2 832 1 298 19001d 0 1400 0 0 32 33 S2REG
+2 833 36 298 190025 1 2 831 832
+2 834 1 315 2d0031 0 1000 0 0 32 1 DATAI
+2 835 0 314 780078 1 1004 0 0 32 48 0 0
+2 836 0 314 740075 1 1008 0 0 32 48 f 0
+2 837 24 314 6e0079 1 1100 835 836 16 18 0 ffff 0 0 0 0 DATAI
+2 838 0 314 680069 1 1008 0 0 32 48 10 0
+2 839 0 314 650066 1 1008 0 0 32 48 1f 0
+2 840 24 314 60006a 1 1200 838 839 16 18 0 ffff 0 0 0 0 ALL0
+2 841 0 314 5c005d 1 1008 0 0 32 48 10 0
+2 842 0 314 59005a 1 1008 0 0 32 48 1f 0
+2 843 24 314 54005e 1 1200 841 842 16 18 0 ffff 0 0 0 0 ALL1
+2 844 1a 314 3f005e 1 1000 840 843 16 18 0 ffff 0 0 0 0
+2 845 0 314 4e004f 1 1008 0 0 32 48 f 0
+2 846 23 314 480050 1 1000 0 845 1 18 0 1 0 0 0 0 DATAI
+2 847 0 314 450045 1 1008 0 0 32 48 1 0
+2 848 1 314 3f0042 0 1000 0 0 3 1 FCT3
+2 849 11 314 3f0045 1 1000 847 848 1 18 0 1 0 0 0 0
+2 850 18 314 3f0050 1 1000 846 849 1 18 0 1 0 0 0 0
+2 851 19 314 3f006a 1 1000 844 850 16 18 0 ffff 0 0 0 0
+2 852 31 314 3f0079 1 1000 837 851 32 18 0 ffffffff 0 0 0 0
+2 853 26 314 3d007b 1 1000 852 0 32 18 0 ffffffff 0 0 0 0
+2 854 0 313 770078 1 1008 0 0 32 48 10 0
+2 855 0 313 740075 1 1008 0 0 32 48 1f 0
+2 856 24 313 6e0079 1 1200 854 855 16 18 0 ffff 0 0 0 0 DATAI
+2 857 0 313 680069 1 1008 0 0 32 48 10 0
+2 858 0 313 650066 1 1008 0 0 32 48 1f 0
+2 859 24 313 60006a 1 1200 857 858 16 18 0 ffff 0 0 0 0 ALL0
+2 860 0 313 5c005d 1 1008 0 0 32 48 10 0
+2 861 0 313 59005a 1 1008 0 0 32 48 1f 0
+2 862 24 313 54005e 1 1200 860 861 16 18 0 ffff 0 0 0 0 ALL1
+2 863 1a 313 3f005e 1 1000 859 862 16 18 0 ffff 0 0 0 0
+2 864 0 313 4e004f 1 1008 0 0 32 48 1f 0
+2 865 23 313 480050 1 1000 0 864 1 18 0 1 0 0 0 0 DATAI
+2 866 0 313 450045 1 1008 0 0 32 48 1 0
+2 867 1 313 3f0042 0 1000 0 0 3 1 FCT3
+2 868 11 313 3f0045 1 1000 866 867 1 18 0 1 0 0 0 0
+2 869 18 313 3f0050 1 1000 865 868 1 18 0 1 0 0 0 0
+2 870 19 313 3f006a 1 1000 863 869 16 18 0 ffff 0 0 0 0
+2 871 31 313 3f0079 1 1000 856 870 32 18 0 ffffffff 0 0 0 0
+2 872 26 313 3d007b 1 1000 871 0 32 18 0 ffffffff 0 0 0 0
+2 873 1a 313 2d007b 1 1000 853 872 32 18 0 ffffffff 0 0 0 0
+2 874 0 313 370037 1 1008 0 0 32 48 1 0
+2 875 0 313 330033 1 1008 0 0 32 48 1 0
+2 876 23 313 2d0034 1 1000 0 875 1 18 0 1 0 0 0 0 DADDR
+2 877 11 313 2d0037 1 1000 874 876 1 18 0 1 0 0 0 0
+2 878 19 313 2d007b 1 201000 873 877 32 18 0 ffffffff 0 0 0 0
+2 879 1a 313 18007d 1 1000 834 878 32 18 0 ffffffff 0 0 0 0
+2 880 0 313 270027 1 1008 0 0 32 48 5 0
+2 881 1 313 210024 0 1000 0 0 3 1 FCT3
+2 882 11 313 210027 1 1000 880 881 1 18 0 1 0 0 0 0
+2 883 0 313 1e001e 1 1008 0 0 32 48 1 0
+2 884 1 313 18001b 0 1000 0 0 3 1 FCT3
+2 885 11 313 18001e 1 1000 883 884 1 18 0 1 0 0 0 0
+2 886 17 313 180027 1 1000 882 885 1 18 0 1 0 0 0 0
+2 887 19 313 180031 1 1000 879 886 32 18 0 ffffffff 0 0 0 0
+2 888 0 312 780078 1 1004 0 0 32 48 0 0
+2 889 0 312 750075 1 1008 0 0 32 48 7 0
+2 890 24 312 6e0079 1 1100 888 889 8 18 0 ff 0 0 0 0 DATAI
+2 891 0 312 690069 1 1008 0 0 32 48 8 0
+2 892 0 312 650066 1 1008 0 0 32 48 1f 0
+2 893 24 312 60006a 1 1200 891 892 24 18 0 ffffff 0 0 0 0 ALL0
+2 894 0 312 5d005d 1 1008 0 0 32 48 8 0
+2 895 0 312 59005a 1 1008 0 0 32 48 1f 0
+2 896 24 312 54005e 1 1200 894 895 24 18 0 ffffff 0 0 0 0 ALL1
+2 897 1a 312 3f005e 1 1000 893 896 24 18 0 ffffff 0 0 0 0
+2 898 0 312 4f004f 1 1008 0 0 32 48 7 0
+2 899 23 312 480050 1 1000 0 898 1 18 0 1 0 0 0 0 DATAI
+2 900 0 312 450045 1 1004 0 0 32 48 0 0
+2 901 1 312 3f0042 0 1000 0 0 3 1 FCT3
+2 902 11 312 3f0045 1 1000 900 901 1 18 0 1 0 0 0 0
+2 903 18 312 3f0050 1 1000 899 902 1 18 0 1 0 0 0 0
+2 904 19 312 3f006a 1 1000 897 903 24 18 0 ffffff 0 0 0 0
+2 905 31 312 3f0079 1 1000 890 904 32 18 0 ffffffff 0 0 0 0
+2 906 26 312 3d007b 1 1000 905 0 32 18 0 ffffffff 0 0 0 0
+2 907 0 311 780078 1 1008 0 0 32 48 8 0
+2 908 0 311 740075 1 1008 0 0 32 48 f 0
+2 909 24 311 6e0079 1 1200 907 908 8 18 0 ff 0 0 0 0 DATAI
+2 910 0 311 690069 1 1008 0 0 32 48 8 0
+2 911 0 311 650066 1 1008 0 0 32 48 1f 0
+2 912 24 311 60006a 1 1200 910 911 24 18 0 ffffff 0 0 0 0 ALL0
+2 913 0 311 5d005d 1 1008 0 0 32 48 8 0
+2 914 0 311 59005a 1 1008 0 0 32 48 1f 0
+2 915 24 311 54005e 1 1200 913 914 24 18 0 ffffff 0 0 0 0 ALL1
+2 916 1a 311 3f005e 1 1000 912 915 24 18 0 ffffff 0 0 0 0
+2 917 0 311 4e004f 1 1008 0 0 32 48 f 0
+2 918 23 311 480050 1 1000 0 917 1 18 0 1 0 0 0 0 DATAI
+2 919 0 311 450045 1 1004 0 0 32 48 0 0
+2 920 1 311 3f0042 0 1000 0 0 3 1 FCT3
+2 921 11 311 3f0045 1 1000 919 920 1 18 0 1 0 0 0 0
+2 922 18 311 3f0050 1 1000 918 921 1 18 0 1 0 0 0 0
+2 923 19 311 3f006a 1 1000 916 922 24 18 0 ffffff 0 0 0 0
+2 924 31 311 3f0079 1 1000 909 923 32 18 0 ffffffff 0 0 0 0
+2 925 26 311 3d007b 1 1000 924 0 32 18 0 ffffffff 0 0 0 0
+2 926 1a 311 2d007b 1 1000 906 925 32 18 0 ffffffff 0 0 0 0
+2 927 0 311 390039 1 1008 0 0 32 48 1 0
+2 928 0 311 350035 1 1004 0 0 32 48 0 0
+2 929 0 311 330033 1 1008 0 0 32 48 1 0
+2 930 24 311 2d0036 1 1100 928 929 2 18 0 3 0 0 0 0 DADDR
+2 931 11 311 2d0039 1 1000 927 930 1 18 0 1 0 0 0 0
+2 932 19 311 2d007b 1 1000 926 931 32 18 0 ffffffff 0 0 0 0
+2 933 0 310 770078 1 1008 0 0 32 48 10 0
+2 934 0 310 740075 1 1008 0 0 32 48 17 0
+2 935 24 310 6e0079 1 1200 933 934 8 18 0 ff 0 0 0 0 DATAI
+2 936 0 310 690069 1 1008 0 0 32 48 8 0
+2 937 0 310 650066 1 1008 0 0 32 48 1f 0
+2 938 24 310 60006a 1 1200 936 937 24 18 0 ffffff 0 0 0 0 ALL0
+2 939 0 310 5d005d 1 1008 0 0 32 48 8 0
+2 940 0 310 59005a 1 1008 0 0 32 48 1f 0
+2 941 24 310 54005e 1 1200 939 940 24 18 0 ffffff 0 0 0 0 ALL1
+2 942 1a 310 3f005e 1 1000 938 941 24 18 0 ffffff 0 0 0 0
+2 943 0 310 4e004f 1 1008 0 0 32 48 17 0
+2 944 23 310 480050 1 1000 0 943 1 18 0 1 0 0 0 0 DATAI
+2 945 0 310 450045 1 1004 0 0 32 48 0 0
+2 946 1 310 3f0042 0 1000 0 0 3 1 FCT3
+2 947 11 310 3f0045 1 1000 945 946 1 18 0 1 0 0 0 0
+2 948 18 310 3f0050 1 1000 944 947 1 18 0 1 0 0 0 0
+2 949 19 310 3f006a 1 1000 942 948 24 18 0 ffffff 0 0 0 0
+2 950 31 310 3f0079 1 1000 935 949 32 18 0 ffffffff 0 0 0 0
+2 951 26 310 3d007b 1 1000 950 0 32 18 0 ffffffff 0 0 0 0
+2 952 1a 310 2d007b 1 1000 932 951 32 18 0 ffffffff 0 0 0 0
+2 953 0 310 390039 1 1008 0 0 32 48 2 0
+2 954 0 310 350035 1 1004 0 0 32 48 0 0
+2 955 0 310 330033 1 1008 0 0 32 48 1 0
+2 956 24 310 2d0036 1 1100 954 955 2 18 0 3 0 0 0 0 DADDR
+2 957 11 310 2d0039 1 1000 953 956 1 18 0 1 0 0 0 0
+2 958 19 310 2d007b 1 1000 952 957 32 18 0 ffffffff 0 0 0 0
+2 959 0 309 770078 1 1008 0 0 32 48 18 0
+2 960 0 309 740075 1 1008 0 0 32 48 1f 0
+2 961 24 309 6e0079 1 1200 959 960 8 18 0 ff 0 0 0 0 DATAI
+2 962 0 309 690069 1 1008 0 0 32 48 8 0
+2 963 0 309 650066 1 1008 0 0 32 48 1f 0
+2 964 24 309 60006a 1 1200 962 963 24 18 0 ffffff 0 0 0 0 ALL0
+2 965 0 309 5d005d 1 1008 0 0 32 48 8 0
+2 966 0 309 59005a 1 1008 0 0 32 48 1f 0
+2 967 24 309 54005e 1 1200 965 966 24 18 0 ffffff 0 0 0 0 ALL1
+2 968 1a 309 3f005e 1 1000 964 967 24 18 0 ffffff 0 0 0 0
+2 969 0 309 4e004f 1 1008 0 0 32 48 1f 0
+2 970 23 309 480050 1 1000 0 969 1 18 0 1 0 0 0 0 DATAI
+2 971 0 309 450045 1 1004 0 0 32 48 0 0
+2 972 1 309 3f0042 0 1000 0 0 3 1 FCT3
+2 973 11 309 3f0045 1 1000 971 972 1 18 0 1 0 0 0 0
+2 974 18 309 3f0050 1 1000 970 973 1 18 0 1 0 0 0 0
+2 975 19 309 3f006a 1 1000 968 974 24 18 0 ffffff 0 0 0 0
+2 976 31 309 3f0079 1 1000 961 975 32 18 0 ffffffff 0 0 0 0
+2 977 26 309 3d007b 1 1000 976 0 32 18 0 ffffffff 0 0 0 0
+2 978 1a 309 2d007b 1 1000 958 977 32 18 0 ffffffff 0 0 0 0
+2 979 0 309 390039 1 1008 0 0 32 48 3 0
+2 980 0 309 350035 1 1004 0 0 32 48 0 0
+2 981 0 309 330033 1 1008 0 0 32 48 1 0
+2 982 24 309 2d0036 1 1100 980 981 2 18 0 3 0 0 0 0 DADDR
+2 983 11 309 2d0039 1 1000 979 982 1 18 0 1 0 0 0 0
+2 984 19 309 2d007b 1 201000 978 983 32 18 0 ffffffff 0 0 0 0
+2 985 1a 309 18007d 1 1000 887 984 32 18 0 ffffffff 0 0 0 0
+2 986 0 309 270027 1 1008 0 0 32 48 4 0
+2 987 1 309 210024 0 1000 0 0 3 1 FCT3
+2 988 11 309 210027 1 1000 986 987 1 18 0 1 0 0 0 0
+2 989 0 309 1e001e 1 1004 0 0 32 48 0 0
+2 990 1 309 18001b 0 1000 0 0 3 1 FCT3
+2 991 11 309 18001e 1 1000 989 990 1 18 0 1 0 0 0 0
+2 992 17 309 180027 1 1000 988 991 1 18 0 1 0 0 0 0
+2 993 19 309 180031 1 1000 985 992 32 18 0 ffffffff 0 0 0 0
+2 994 1 309 100014 0 1400 0 0 32 1 LDATA
+2 995 36 309 100031 1 2 993 994
+2 996 1 332 240028 0 1000 0 0 32 1 U2REG
+2 997 0 331 4d004d 1 1004 0 0 32 48 0 0
+2 998 0 331 4a004b 1 1008 0 0 32 48 f 0
+2 999 24 331 44004e 1 1100 997 998 16 18 0 ffff 0 0 0 0 U2REG
+2 1000 0 331 3f0040 1 1008 0 0 32 48 10 0
+2 1001 0 331 3c003d 1 1008 0 0 32 48 1f 0
+2 1002 24 331 360041 1 1200 1000 1001 16 18 0 ffff 0 0 0 0 ALL0
+2 1003 31 331 36004e 1 1000 999 1002 32 18 0 ffffffff 0 0 0 0
+2 1004 26 331 340050 1 1000 1003 0 32 18 0 ffffffff 0 0 0 0
+2 1005 0 330 4d004d 1 1004 0 0 32 48 0 0
+2 1006 0 330 4a004b 1 1008 0 0 32 48 f 0
+2 1007 24 330 44004e 1 1100 1005 1006 16 18 0 ffff 0 0 0 0 ALL0
+2 1008 0 330 400040 1 1004 0 0 32 48 0 0
+2 1009 0 330 3c003d 1 1008 0 0 32 48 f 0
+2 1010 24 330 360041 1 1100 1008 1009 16 18 0 ffff 0 0 0 0 U2REG
+2 1011 31 330 36004e 1 1000 1007 1010 32 18 0 ffffffff 0 0 0 0
+2 1012 26 330 340050 1 1000 1011 0 32 18 0 ffffffff 0 0 0 0
+2 1013 1a 330 240050 1 1000 1004 1012 32 18 0 ffffffff 0 0 0 0
+2 1014 0 330 2e002e 1 1008 0 0 32 48 1 0
+2 1015 0 330 2a002a 1 1008 0 0 32 48 1 0
+2 1016 23 330 24002b 1 1000 0 1015 1 18 0 1 0 0 0 0 DADDR
+2 1017 11 330 24002e 1 1000 1014 1016 1 18 0 1 0 0 0 0
+2 1018 19 330 240050 1 201000 1013 1017 32 18 0 ffffffff 0 0 0 0
+2 1019 1a 330 180052 1 1000 996 1018 32 18 0 ffffffff 0 0 0 0
+2 1020 0 330 1e001e 1 1008 0 0 32 48 1 0
+2 1021 1 330 18001b 0 1000 0 0 3 1 FCT3
+2 1022 11 330 18001e 1 1000 1020 1021 1 18 0 1 0 0 0 0
+2 1023 19 330 180028 1 1000 1019 1022 32 18 0 ffffffff 0 0 0 0
+2 1024 0 329 4d004d 1 1004 0 0 32 48 0 0
+2 1025 0 329 4b004b 1 1008 0 0 32 48 7 0
+2 1026 24 329 44004e 1 1100 1024 1025 8 18 0 ff 0 0 0 0 U2REG
+2 1027 0 329 400040 1 1008 0 0 32 48 8 0
+2 1028 0 329 3c003d 1 1008 0 0 32 48 1f 0
+2 1029 24 329 360041 1 1200 1027 1028 24 18 0 ffffff 0 0 0 0 ALL0
+2 1030 31 329 36004e 1 1000 1026 1029 32 18 0 ffffffff 0 0 0 0
+2 1031 26 329 340050 1 1000 1030 0 32 18 0 ffffffff 0 0 0 0
+2 1032 0 328 580058 1 1004 0 0 32 48 0 0
+2 1033 0 328 560056 1 1008 0 0 32 48 7 0
+2 1034 24 328 510059 1 1100 1032 1033 8 18 0 ff 0 0 0 0 ALL0
+2 1035 0 328 4d004d 1 1004 0 0 32 48 0 0
+2 1036 0 328 4b004b 1 1008 0 0 32 48 7 0
+2 1037 24 328 44004e 1 1100 1035 1036 8 18 0 ff 0 0 0 0 U2REG
+2 1038 0 328 3f0040 1 1008 0 0 32 48 10 0
+2 1039 0 328 3c003d 1 1008 0 0 32 48 1f 0
+2 1040 24 328 360041 1 1200 1038 1039 16 18 0 ffff 0 0 0 0 ALL0
+2 1041 31 328 36004e 1 1000 1037 1040 24 18 0 ffffff 0 0 0 0
+2 1042 31 328 360059 1 1000 1034 1041 32 18 0 ffffffff 0 0 0 0
+2 1043 26 328 34005b 1 1000 1042 0 32 18 0 ffffffff 0 0 0 0
+2 1044 1a 328 24005b 1 1000 1031 1043 32 18 0 ffffffff 0 0 0 0
+2 1045 0 328 300030 1 1008 0 0 32 48 1 0
+2 1046 0 328 2c002c 1 1004 0 0 32 48 0 0
+2 1047 0 328 2a002a 1 1008 0 0 32 48 1 0
+2 1048 24 328 24002d 1 1100 1046 1047 2 18 0 3 0 0 0 0 DADDR
+2 1049 11 328 240030 1 1000 1045 1048 1 18 0 1 0 0 0 0
+2 1050 19 328 240050 1 1000 1044 1049 32 18 0 ffffffff 0 0 0 0
+2 1051 0 327 590059 1 1004 0 0 32 48 0 0
+2 1052 0 327 560057 1 1008 0 0 32 48 f 0
+2 1053 24 327 51005a 1 1100 1051 1052 16 18 0 ffff 0 0 0 0 ALL0
+2 1054 0 327 4d004d 1 1004 0 0 32 48 0 0
+2 1055 0 327 4b004b 1 1008 0 0 32 48 7 0
+2 1056 24 327 44004e 1 1100 1054 1055 8 18 0 ff 0 0 0 0 U2REG
+2 1057 0 327 3f0040 1 1008 0 0 32 48 18 0
+2 1058 0 327 3c003d 1 1008 0 0 32 48 1f 0
+2 1059 24 327 360041 1 1200 1057 1058 8 18 0 ff 0 0 0 0 ALL0
+2 1060 31 327 36004e 1 1000 1056 1059 16 18 0 ffff 0 0 0 0
+2 1061 31 327 36005a 1 1000 1053 1060 32 18 0 ffffffff 0 0 0 0
+2 1062 26 327 34005c 1 1000 1061 0 32 18 0 ffffffff 0 0 0 0
+2 1063 1a 327 24005c 1 1000 1050 1062 32 18 0 ffffffff 0 0 0 0
+2 1064 0 327 300030 1 1008 0 0 32 48 2 0
+2 1065 0 327 2c002c 1 1004 0 0 32 48 0 0
+2 1066 0 327 2a002a 1 1008 0 0 32 48 1 0
+2 1067 24 327 24002d 1 1100 1065 1066 2 18 0 3 0 0 0 0 DADDR
+2 1068 11 327 240030 1 1000 1064 1067 1 18 0 1 0 0 0 0
+2 1069 19 327 240050 1 1000 1063 1068 32 18 0 ffffffff 0 0 0 0
+2 1070 0 326 4d004d 1 1004 0 0 32 48 0 0
+2 1071 0 326 4a004b 1 1008 0 0 32 48 17 0
+2 1072 24 326 44004e 1 1100 1070 1071 24 18 0 ffffff 0 0 0 0 ALL0
+2 1073 0 326 400040 1 1004 0 0 32 48 0 0
+2 1074 0 326 3d003d 1 1008 0 0 32 48 7 0
+2 1075 24 326 360041 1 1100 1073 1074 8 18 0 ff 0 0 0 0 U2REG
+2 1076 31 326 36004e 1 1000 1072 1075 32 18 0 ffffffff 0 0 0 0
+2 1077 26 326 340050 1 1000 1076 0 32 18 0 ffffffff 0 0 0 0
+2 1078 1a 326 240050 1 1000 1069 1077 32 18 0 ffffffff 0 0 0 0
+2 1079 0 326 300030 1 1008 0 0 32 48 3 0
+2 1080 0 326 2c002c 1 1004 0 0 32 48 0 0
+2 1081 0 326 2a002a 1 1008 0 0 32 48 1 0
+2 1082 24 326 24002d 1 1100 1080 1081 2 18 0 3 0 0 0 0 DADDR
+2 1083 11 326 240030 1 1000 1079 1082 1 18 0 1 0 0 0 0
+2 1084 19 326 240050 1 201000 1078 1083 32 18 0 ffffffff 0 0 0 0
+2 1085 1a 326 180052 1 1000 1023 1084 32 18 0 ffffffff 0 0 0 0
+2 1086 0 326 1e001e 1 1004 0 0 32 48 0 0
+2 1087 1 326 18001b 0 1000 0 0 3 1 FCT3
+2 1088 11 326 18001e 1 1000 1086 1087 1 18 0 1 0 0 0 0
+2 1089 19 326 180028 1 1000 1085 1088 32 18 0 ffffffff 0 0 0 0
+2 1090 1 326 100014 0 1400 0 0 32 1 SDATA
+2 1091 36 326 100028 1 2 1089 1090
+2 1092 0 354 290029 1 1008 0 0 32 48 1 0
+2 1093 1 354 220026 0 1000 0 0 5 1 S2PTR
+2 1094 11 354 220029 1 1000 1092 1093 1 18 0 1 0 0 0 0
+2 1095 0 354 1d001d 1 1004 0 0 32 48 0 0
+2 1096 1 354 17001a 0 1000 0 0 3 1 FCT3
+2 1097 11 354 17001d 1 1000 1095 1096 1 18 0 1 0 0 0 0
+2 1098 1 354 100012 1 1004 0 0 1 1 CCC
+2 1099 18 354 10001d 2 1004 1097 1098 1 18 0 1 1 0 0 0
+2 1100 18 354 100029 2 1004 1094 1099 1 18 0 1 1 0 0 0
+2 1101 1 354 9000c 0 1410 0 0 1 1 EBRK
+2 1102 36 354 90029 2 6 1100 1101
+2 1103 1 358 2e0032 0 1000 0 0 32 33 S2REG
+2 1104 1 358 27002a 0 1000 0 0 32 1 SIMM
+2 1105 1a 358 20002a ff 1000 1103 1104 32 18 0 ffffffff 0 0 0 0
+2 1106 1 358 200023 ff 100c 0 0 1 1 XMCC
+2 1107 19 358 200032 ff 1000 1105 1106 32 18 0 ffffffff 0 0 0 0
+2 1108 1 358 17001c 0 1400 0 0 32 33 S2REGX
+2 1109 36 358 170032 2 2 1107 1108
+2 1110 1 359 2e0032 0 1000 0 0 32 1 U2REG
+2 1111 1 359 27002a 0 1000 0 0 32 1 UIMM
+2 1112 1a 359 20002a ff 1000 1110 1111 32 18 0 ffffffff 0 0 0 0
+2 1113 1 359 200023 ff 100c 0 0 1 1 XMCC
+2 1114 19 359 200032 ff 1000 1112 1113 32 18 0 ffffffff 0 0 0 0
+2 1115 1 359 17001c 0 1400 0 0 32 1 U2REGX
+2 1116 36 359 170032 2 2 1114 1115
+2 1117 0 373 3d003d 1 1004 0 0 32 48 0 0
+2 1118 0 373 3b003b 1 1008 0 0 32 48 4 0
+2 1119 24 373 34003e 1 1100 1117 1118 5 18 0 1f 0 0 0 0 U2REGX
+2 1120 1 373 2b002f 1 1000 0 0 32 33 S1REG
+2 1121 78 373 230030 1 1000 0 1120 32 50 0 ffffffff 0 0 0 0
+2 1122 44 373 23003e 1 1000 1119 1121 32 18 0 ffffffff 0 0 0 0
+2 1123 0 369 340034 1 1004 0 0 32 48 0 0
+2 1124 0 369 320032 1 1008 0 0 32 48 4 0
+2 1125 24 369 2b0035 1 1100 1123 1124 5 18 0 1f 0 0 0 0 U2REGX
+2 1126 1 369 240028 0 1000 0 0 32 33 S1REG
+2 1127 10 369 240035 1 1000 1125 1126 32 18 0 ffffffff 0 0 0 0
+2 1128 1a 369 190035 1 1000 1122 1127 32 18 0 ffffffff 0 0 0 0
+2 1129 0 369 1f001f 1 1008 0 0 32 48 5 0
+2 1130 23 369 1a0020 1 1000 0 1129 1 18 0 1 0 0 0 0 FCT7
+2 1131 1d 369 190019 1 1000 1130 0 1 18 0 1 0 0 0 0
+2 1132 19 369 19003e 1 1000 1128 1131 32 18 0 ffffffff 0 0 0 0
+2 1133 0 367 330033 1 1004 0 0 32 48 0 0
+2 1134 0 367 310031 1 1008 0 0 32 48 4 0
+2 1135 24 367 2a0034 1 1100 1133 1134 5 18 0 1f 0 0 0 0 U2REGX
+2 1136 1 367 230027 0 1000 0 0 32 33 S1REG
+2 1137 f 367 230034 1 1000 1135 1136 32 18 0 ffffffff 0 0 0 0
+2 1138 1a 367 190034 1 1000 1132 1137 32 18 0 ffffffff 0 0 0 0
+2 1139 0 367 1f001f 1 1008 0 0 32 48 1 0
+2 1140 1 367 19001c 0 1000 0 0 3 1 FCT3
+2 1141 11 367 19001f 1 1000 1139 1140 1 18 0 1 0 0 0 0
+2 1142 19 367 19003e 1 1000 1138 1141 32 18 0 ffffffff 0 0 0 0
+2 1143 1 366 49004e 0 1000 0 0 32 33 S2REGX
+2 1144 1 366 430047 0 1000 0 0 32 1 U1REG
+2 1145 6 366 43004e 0 1000 1143 1144 32 18 0 ffffffff 0 0 0 0
+2 1146 1 366 3a003f 0 1000 0 0 32 33 S2REGX
+2 1147 1 366 340038 0 1000 0 0 32 1 U1REG
+2 1148 7 366 34003f 0 1000 1146 1147 32 18 0 ffffffff 0 0 0 0
+2 1149 1a 366 24003f d6 1000 1145 1148 32 18 0 ffffffff 0 0 0 0
+2 1150 0 366 2f002f 1 1008 0 0 32 48 5 0
+2 1151 23 366 2a0030 1 1000 0 1150 1 18 0 1 0 0 0 0 FCT7
+2 1152 1 366 240027 d5 100c 0 0 1 1 XRCC
+2 1153 18 366 240030 d6 1004 1151 1152 1 18 0 1 1 0 0 0
+2 1154 19 366 24004e d6 201000 1149 1153 32 18 0 ffffffff 0 0 0 0
+2 1155 1a 366 19004f d6 1000 1142 1154 32 18 0 ffffffff 0 0 0 0
+2 1156 0 366 1f001f 1 1004 0 0 32 48 0 0
+2 1157 1 366 19001c 0 1000 0 0 3 1 FCT3
+2 1158 11 366 19001f 1 1000 1156 1157 1 18 0 1 0 0 0 0
+2 1159 19 366 19003e d6 1000 1155 1158 32 18 0 ffffffff 0 0 0 0
+2 1160 1 365 29002e 0 1000 0 0 32 33 S2REGX
+2 1161 1 365 230027 0 1000 0 0 32 33 S1REG
+2 1162 d 365 23002e 0 1000 1160 1161 1 50 0 1 0 0 0 0
+2 1163 1a 365 19002e d6 1000 1159 1162 32 18 0 ffffffff 0 0 0 0
+2 1164 0 365 1f001f 1 1008 0 0 32 48 2 0
+2 1165 1 365 19001c 0 1000 0 0 3 1 FCT3
+2 1166 11 365 19001f 1 1000 1164 1165 1 18 0 1 0 0 0 0
+2 1167 19 365 19003e d6 1000 1163 1166 32 18 0 ffffffff 0 0 0 0
+2 1168 1 364 29002e 0 1000 0 0 32 1 U2REGX
+2 1169 1 364 230027 0 1000 0 0 32 1 U1REG
+2 1170 d 364 23002e 0 1000 1168 1169 1 18 0 1 0 0 0 0
+2 1171 1a 364 19002e d6 1000 1167 1170 32 18 0 ffffffff 0 0 0 0
+2 1172 0 364 1f001f 1 1008 0 0 32 48 3 0
+2 1173 1 364 19001c 0 1000 0 0 3 1 FCT3
+2 1174 11 364 19001f 1 1000 1172 1173 1 18 0 1 0 0 0 0
+2 1175 19 364 19003e d6 1000 1171 1174 32 18 0 ffffffff 0 0 0 0
+2 1176 1 363 29002e 0 1000 0 0 32 33 S2REGX
+2 1177 1 363 230027 0 1000 0 0 32 1 U1REG
+2 1178 2 363 23002e 0 1000 1176 1177 32 18 0 ffffffff 0 0 0 0
+2 1179 1a 363 19002e d6 1000 1175 1178 32 18 0 ffffffff 0 0 0 0
+2 1180 0 363 1f001f 1 1008 0 0 32 48 4 0
+2 1181 1 363 19001c 0 1000 0 0 3 1 FCT3
+2 1182 11 363 19001f 1 1000 1180 1181 1 18 0 1 0 0 0 0
+2 1183 19 363 19003e d6 1000 1179 1182 32 18 0 ffffffff 0 0 0 0
+2 1184 1 362 29002e 0 1000 0 0 32 33 S2REGX
+2 1185 1 362 230027 0 1000 0 0 32 1 U1REG
+2 1186 9 362 23002e 0 1000 1184 1185 32 18 0 ffffffff 0 0 0 0
+2 1187 1a 362 19002e d6 1000 1183 1186 32 18 0 ffffffff 0 0 0 0
+2 1188 0 362 1f001f 1 1008 0 0 32 48 6 0
+2 1189 1 362 19001c 0 1000 0 0 3 1 FCT3
+2 1190 11 362 19001f 1 1000 1188 1189 1 18 0 1 0 0 0 0
+2 1191 19 362 19003e d6 1000 1187 1190 32 18 0 ffffffff 0 0 0 0
+2 1192 1 361 29002e 0 1000 0 0 32 33 S2REGX
+2 1193 1 361 230027 0 1000 0 0 32 1 U1REG
+2 1194 8 361 23002e 0 1000 1192 1193 32 18 0 ffffffff 0 0 0 0
+2 1195 1a 361 19002e d6 1000 1191 1194 32 18 0 ffffffff 0 0 0 0
+2 1196 0 361 1f001f 1 1008 0 0 32 48 7 0
+2 1197 1 361 19001c 0 1000 0 0 3 1 FCT3
+2 1198 11 361 19001f 1 1000 1196 1197 1 18 0 1 0 0 0 0
+2 1199 19 361 19003e d6 1000 1195 1198 32 18 0 ffffffff 0 0 0 0
+2 1200 1 361 100015 0 1400 0 0 32 1 RMDATA
+2 1201 36 361 10003e 1 2 1199 1200
+2 1202 1 401 28002d 0 1000 0 0 32 1 U2REGX
+2 1203 1 401 210025 0 1000 0 0 32 1 U1REG
+2 1204 11 401 21002d 0 1000 1202 1203 1 18 0 1 0 0 0 0
+2 1205 0 401 1c001c 1 1004 0 0 32 48 0 0
+2 1206 1 401 160019 0 1000 0 0 3 1 FCT3
+2 1207 11 401 16001c 1 1000 1205 1206 1 18 0 1 0 0 0 0
+2 1208 18 401 16002d 1 1000 1204 1207 1 18 0 1 0 0 0 0
+2 1209 1 400 28002d 0 1000 0 0 32 1 U2REGX
+2 1210 1 400 210025 0 1000 0 0 32 1 U1REG
+2 1211 15 400 21002d 0 1000 1209 1210 1 18 0 1 0 0 0 0
+2 1212 0 400 1c001c 1 1008 0 0 32 48 1 0
+2 1213 1 400 160019 0 1000 0 0 3 1 FCT3
+2 1214 11 400 16001c 1 1000 1212 1213 1 18 0 1 0 0 0 0
+2 1215 18 400 16002d 1 1000 1211 1214 1 18 0 1 0 0 0 0
+2 1216 1 399 28002d 0 1000 0 0 32 33 S2REGX
+2 1217 1 399 210025 0 1000 0 0 32 33 S1REG
+2 1218 d 399 21002d 0 1000 1216 1217 1 50 0 1 0 0 0 0
+2 1219 0 399 1c001c 1 1008 0 0 32 48 4 0
+2 1220 1 399 160019 0 1000 0 0 3 1 FCT3
+2 1221 11 399 16001c 1 1000 1219 1220 1 18 0 1 0 0 0 0
+2 1222 18 399 16002d 1 1000 1218 1221 1 18 0 1 0 0 0 0
+2 1223 1 398 28002c 0 1000 0 0 32 33 S2REG
+2 1224 1 398 210025 0 1000 0 0 32 33 S1REG
+2 1225 14 398 21002c 0 1000 1223 1224 1 50 0 1 0 0 0 0
+2 1226 0 398 1c001c 1 1008 0 0 32 48 5 0
+2 1227 1 398 160019 0 1000 0 0 3 1 FCT3
+2 1228 11 398 16001c 1 1000 1226 1227 1 18 0 1 0 0 0 0
+2 1229 18 398 16002c 1 1000 1225 1228 1 18 0 1 0 0 0 0
+2 1230 1 397 28002d 0 1000 0 0 32 1 U2REGX
+2 1231 1 397 210025 0 1000 0 0 32 1 U1REG
+2 1232 d 397 21002d 0 1000 1230 1231 1 18 0 1 0 0 0 0
+2 1233 0 397 1c001c 1 1008 0 0 32 48 6 0
+2 1234 1 397 160019 0 1000 0 0 3 1 FCT3
+2 1235 11 397 16001c 1 1000 1233 1234 1 18 0 1 0 0 0 0
+2 1236 18 397 16002d 1 1000 1232 1235 1 18 0 1 0 0 0 0
+2 1237 1 396 28002c 0 1000 0 0 32 1 U2REG
+2 1238 1 396 210025 0 1000 0 0 32 1 U1REG
+2 1239 14 396 21002c 0 1000 1237 1238 1 18 0 1 0 0 0 0
+2 1240 0 396 1c001c 1 1008 0 0 32 48 7 0
+2 1241 1 396 160019 0 1000 0 0 3 1 FCT3
+2 1242 11 396 16001c 1 1000 1240 1241 1 18 0 1 0 0 0 0
+2 1243 18 396 16002c 1 1000 1239 1242 1 18 0 1 0 0 0 0
+2 1244 17 396 16002d 1 1000 1236 1243 1 18 0 1 0 0 0 0
+2 1245 17 396 16002c 1 1000 1229 1244 1 18 0 1 0 0 0 0
+2 1246 17 396 16002d 1 1000 1222 1245 1 18 0 1 0 0 0 0
+2 1247 17 396 16002d 1 1000 1215 1246 1 18 0 1 0 0 0 0
+2 1248 17 396 16002d 1 1000 1208 1247 1 18 0 1 0 0 0 0
+2 1249 1 396 9000c 0 1410 0 0 1 1 BMUX
+2 1250 36 396 9002d 1 2 1248 1249
+2 1251 1 403 1c001f 0 1000 0 0 32 1 SIMM
+2 1252 1 403 19001a 0 1000 0 0 32 1 PC
+2 1253 6 403 19001f 0 1000 1251 1252 32 18 0 ffffffff 0 0 0 0
+2 1254 1 403 100015 0 1400 0 0 32 1 PCSIMM
+2 1255 36 403 10001f 1 2 1253 1254
+2 1256 1 404 2a002d 96e 100c 0 0 1 1 BMUX
+2 1257 1 404 230025 1 1004 0 0 1 1 BCC
+2 1258 18 404 23002d 96e 2010c4 1256 1257 1 18 0 1 1 1 0 0
+2 1259 1 404 1c001f 83f 100c 0 0 1 1 JALR
+2 1260 1 404 170019 1 1004 0 0 1 1 JAL
+2 1261 17 404 17001f 83f 10cc 1259 1260 1 18 0 1 0 1 1 0
+2 1262 17 404 17002e 96e 114c 1258 1261 1 18 0 1 1 0 1 0
+2 1263 1 404 100013 0 1410 0 0 1 1 JREQ
+2 1264 36 404 10002e 840 e 1262 1263
+2 1265 1 405 26002b 0 1000 0 0 32 1 PCSIMM
+2 1266 1 405 1e0022 0 1000 0 0 32 1 DADDR
+2 1267 1a 405 170022 83f 1000 1265 1266 32 18 0 ffffffff 0 0 0 0
+2 1268 1 405 17001a 83f 100c 0 0 1 1 JALR
+2 1269 19 405 17002b 83f 1000 1267 1268 32 18 0 ffffffff 0 0 0 0
+2 1270 1 405 100013 0 1400 0 0 32 1 JVAL
+2 1271 36 405 10002b 2 2 1269 1270
+2 1272 1 407 140016 2712 100c 0 0 1 1 CLK
+2 1273 27 407 c0016 3a9c 100a 1272 0 1 18 0 1 0 0 0 0
+2 1274 3d 408 40008 1389 5002 0 0 1 18 0 1 0 0 0 0 $u2
+2 1275 1 549 130017 0 1000 0 0 32 1 SDATA
+2 1276 1 549 b000f 0 1400 0 0 32 1 DATAO
+2 1277 35 549 b0017 1 2 1275 1276
+2 1278 1 550 1b001e 0 1000 0 0 32 1 SIMM
+2 1279 1 550 130017 0 1000 0 0 32 1 U1REG
+2 1280 6 550 13001e 0 1000 1278 1279 32 18 0 ffffffff 0 0 0 0
+2 1281 1 550 b000f 0 1400 0 0 32 1 DADDR
+2 1282 35 550 b001e 1 2 1280 1281
+2 1283 1 560 100012 1b 100c 0 0 1 1 LCC
+2 1284 1 560 b000c 0 1410 0 0 1 1 RD
+2 1285 35 560 b0012 1c e 1283 1284
+2 1286 1 561 100012 33 100c 0 0 1 1 SCC
+2 1287 1 561 b000c 0 1410 0 0 1 1 WR
+2 1288 35 561 b0012 34 e 1286 1287
+2 1289 0 568 35003b 1 21008 0 0 4 16 f 0
+2 1290 0 567 35003b 1 21008 0 0 4 16 3 0
+2 1291 0 566 35003b 1 21008 0 0 4 16 c 0
+2 1292 1a 566 25003b 1 1200 1290 1291 4 18 0 f 0 0 0 0
+2 1293 0 566 2f002f 1 1008 0 0 32 48 1 0
+2 1294 0 566 2b002b 1 1008 0 0 32 48 1 0
+2 1295 23 566 25002c 1 1000 0 1294 1 18 0 1 0 0 0 0 DADDR
+2 1296 11 566 25002f 1 1000 1293 1295 1 18 0 1 0 0 0 0
+2 1297 19 566 25003b 1 201000 1292 1296 4 18 0 f 0 0 0 0
+2 1298 1a 566 10003d 1 1000 1289 1297 4 18 0 f 0 0 0 0
+2 1299 0 566 1f001f 1 1008 0 0 32 48 5 0
+2 1300 1 566 19001c 0 1000 0 0 3 1 FCT3
+2 1301 11 566 19001f 1 1000 1299 1300 1 18 0 1 0 0 0 0
+2 1302 0 566 160016 1 1008 0 0 32 48 1 0
+2 1303 1 566 100013 0 1000 0 0 3 1 FCT3
+2 1304 11 566 100016 1 1000 1302 1303 1 18 0 1 0 0 0 0
+2 1305 17 566 10001f 1 1000 1301 1304 1 18 0 1 0 0 0 0
+2 1306 19 566 10003b 1 1000 1298 1305 4 18 0 f 0 0 0 0
+2 1307 0 565 35003b 1 21008 0 0 4 16 1 0
+2 1308 0 564 35003b 1 21008 0 0 4 16 2 0
+2 1309 1a 564 25003b 1 1200 1307 1308 4 18 0 f 0 0 0 0
+2 1310 0 564 310031 1 1008 0 0 32 48 1 0
+2 1311 0 564 2d002d 1 1004 0 0 32 48 0 0
+2 1312 0 564 2b002b 1 1008 0 0 32 48 1 0
+2 1313 24 564 25002e 1 1100 1311 1312 2 18 0 3 0 0 0 0 DADDR
+2 1314 11 564 250031 1 1000 1310 1313 1 18 0 1 0 0 0 0
+2 1315 19 564 25003b 1 1000 1309 1314 4 18 0 f 0 0 0 0
+2 1316 0 563 35003b 1 21008 0 0 4 16 4 0
+2 1317 1a 563 25003b 1 1000 1315 1316 4 18 0 f 0 0 0 0
+2 1318 0 563 310031 1 1008 0 0 32 48 2 0
+2 1319 0 563 2d002d 1 1004 0 0 32 48 0 0
+2 1320 0 563 2b002b 1 1008 0 0 32 48 1 0
+2 1321 24 563 25002e 1 1100 1319 1320 2 18 0 3 0 0 0 0 DADDR
+2 1322 11 563 250031 1 1000 1318 1321 1 18 0 1 0 0 0 0
+2 1323 19 563 25003b 1 1000 1317 1322 4 18 0 f 0 0 0 0
+2 1324 0 562 35003b 1 21008 0 0 4 16 8 0
+2 1325 1a 562 25003b 1 1000 1323 1324 4 18 0 f 0 0 0 0
+2 1326 0 562 310031 1 1008 0 0 32 48 3 0
+2 1327 0 562 2d002d 1 1004 0 0 32 48 0 0
+2 1328 0 562 2b002b 1 1008 0 0 32 48 1 0
+2 1329 24 562 25002e 1 1100 1327 1328 2 18 0 3 0 0 0 0 DADDR
+2 1330 11 562 250031 1 1000 1326 1329 1 18 0 1 0 0 0 0
+2 1331 19 562 25003b 1 201000 1325 1330 4 18 0 f 0 0 0 0
+2 1332 1a 562 10003d 1 1000 1306 1331 4 18 0 f 0 0 0 0
+2 1333 0 562 1f001f 1 1008 0 0 32 48 4 0
+2 1334 1 562 19001c 0 1000 0 0 3 1 FCT3
+2 1335 11 562 19001f 1 1000 1333 1334 1 18 0 1 0 0 0 0
+2 1336 0 562 160016 1 1004 0 0 32 48 0 0
+2 1337 1 562 100013 0 1000 0 0 3 1 FCT3
+2 1338 11 562 100016 1 1000 1336 1337 1 18 0 1 0 0 0 0
+2 1339 17 562 10001f 1 1000 1335 1338 1 18 0 1 0 0 0 0
+2 1340 19 562 10003b 1 1000 1332 1339 4 18 0 f 0 0 0 0
+2 1341 1 562 b000c 0 1400 0 0 4 1 BE
+2 1342 35 562 b003b 1 2 1340 1341
+2 1343 1 575 17001b 0 1000 0 0 32 1 NXPC2
+2 1344 1 575 f0013 0 1400 0 0 32 1 IADDR
+2 1345 35 575 f001b 1 2 1343 1344
+2 1346 1 581 130017 1 1008 0 0 2 1 FLUSH
+2 1347 1e 581 120012 1 1008 1346 0 1 18 0 1 0 1 0 0
+2 1348 1 581 b000e 0 1410 0 0 1 1 IDLE
+2 1349 35 581 b0017 2 a 1347 1348
+2 1350 1 585 260028 1b 100c 0 0 1 1 LCC
+2 1351 1 585 210023 33 100c 0 0 1 1 SCC
+2 1352 1 585 1b001e 83f 100c 0 0 1 1 IDLE
+2 1353 1 585 150018 1 1008 0 0 1 1 XRES
+2 1354 31 585 15001e 840 1308 1352 1353 2 18 0 3 1 3 0 0
+2 1355 31 585 150023 872 1308 1351 1354 3 18 0 7 3 7 0 0
+2 1356 31 585 150028 88c 1308 1350 1355 4 18 0 f 7 f 0 0
+2 1357 26 585 13002a 88c 1008 1356 0 4 18 0 f 7 f 0 0
+2 1358 1 585 b000f 0 1400 0 0 4 1 DEBUG
+2 1359 35 585 b002a 88d a 1357 1358
+1 CLK 55 63 16 1 0 0 0 1 17 1 1 0 1 1 0
+1 RES 56 64 16 1 0 0 0 1 17 1 1 0 0 1 0
+1 HLT 57 65 16 1 0 0 0 1 17 1 1 0 1 1 0
+1 IDATA 58 75 16 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 IADDR 59 76 20016 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DATAI 60 78 16 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DATAO 61 79 20016 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 DADDR 62 80 20016 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 BE 63 86 20016 1 0 3 0 4 17 f f 0 0 0 0
+1 WR 64 87 20016 1 0 0 0 1 17 1 1 0 1 1 0
+1 RD 65 88 20016 1 0 0 0 1 17 1 1 0 1 1 0
+1 IDLE 66 91 20016 1 0 0 0 1 17 1 1 0 1 1 0
+1 DEBUG 67 93 20012 1 0 3 0 4 17 f f 0 0 0 0
+1 ALL0 68 98 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 ALL1 69 99 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 XRES 70 101 1070008 1 0 0 0 1 17 0 1 0 0 0 0
+1 XIDATA 71 113 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 XLUI 72 115 70008 1 0 0 0 1 17 0 1 0 0 0 0
+1 XAUIPC 73 115 7000e 1 0 0 0 1 17 0 1 0 1 1 0
+1 XJAL 74 115 70016 1 0 0 0 1 17 0 1 0 0 0 0
+1 XJALR 75 115 7001c 1 0 0 0 1 17 0 1 0 1 1 0
+1 XBCC 76 115 70023 1 0 0 0 1 17 0 1 0 0 0 0
+1 XLCC 77 115 70029 1 0 0 0 1 17 0 1 0 1 1 0
+1 XSCC 78 115 7002f 1 0 0 0 1 17 0 1 0 1 1 0
+1 XMCC 79 115 70035 1 0 0 0 1 17 0 1 0 1 1 0
+1 XRCC 80 115 7003b 1 0 0 0 1 17 0 1 0 1 1 0
+1 XCUS 81 115 70041 1 0 0 0 1 17 0 1 0 0 0 0
+1 XCCC 82 115 70047 1 0 0 0 1 17 0 1 0 0 0 0
+1 XSIMM 83 117 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 XUIMM 84 118 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 FLUSH 85 159 107000e 1 0 1 0 2 17 0 3 0 0 0 0
+1 DPTR 86 231 60013 1 0 4 0 5 17 1f 1f 0 0 0 0
+1 S1PTR 87 232 60013 1 0 4 0 5 17 1f 1f 0 0 0 0
+1 S2PTR 88 233 60013 1 0 4 0 5 17 1f 1f 0 0 0 0
+1 OPCODE 89 237 6000f 1 0 6 0 7 17 7f 7f 0 0 0 0
+1 FCT3 90 238 6000f 1 0 2 0 3 17 7 7 0 0 0 0
+1 FCT7 91 239 6000f 1 0 6 0 7 17 7f 7f 0 0 0 0
+1 SIMM 92 241 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 UIMM 93 242 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 LUI 94 246 6000c 1 0 0 0 1 17 1 1 0 0 0 0
+1 AUIPC 95 247 6000a 1 0 0 0 1 17 1 1 0 1 1 0
+1 JAL 96 248 6000c 1 0 0 0 1 17 1 1 0 0 0 0
+1 JALR 97 249 6000b 1 0 0 0 1 17 1 1 0 1 1 0
+1 BCC 98 251 6000c 1 0 0 0 1 17 1 1 0 0 0 0
+1 LCC 99 252 6000c 1 0 0 0 1 17 1 1 0 1 1 0
+1 SCC 100 253 6000c 1 0 0 0 1 17 1 1 0 1 1 0
+1 MCC 101 254 6000c 1 0 0 0 1 17 1 1 0 1 1 0
+1 RCC 102 256 6000c 1 0 0 0 1 17 1 1 0 1 1 0
+1 CUS 103 257 6000c 1 0 0 0 1 17 1 1 0 0 0 0
+1 CCC 104 259 6000c 1 0 0 0 1 17 1 1 0 0 0 0
+1 NXPC2 105 273 70013 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 REGS 106 279 30f0013 1 1 0 31 31 0 1024 19 0 ffffffffffffffff 0 0 0 ffffffffffffffff ffffffff 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0 0 ffffffffffffffff 0 0
+1 NXPC 107 283 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 PC 108 284 7000f 1 0 31 0 32 17 0 ffffffff 0 0 0 0
+1 i 109 287 107000c 1 0 31 0 32 49 0 ffffffff 0 3f 1f 0
+1 U1REG 110 294 60019 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 U2REG 111 295 60019 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 S1REG 112 297 60019 1 0 31 0 32 49 ffffffff ffffffff 0 0 0 0
+1 S2REG 113 298 60019 1 0 31 0 32 49 ffffffff ffffffff 0 0 0 0
+1 LDATA 114 309 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 SDATA 115 326 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 EBRK 116 354 60009 1 0 0 0 1 17 1 1 0 0 0 0
+1 S2REGX 117 358 60017 1 0 31 0 32 49 ffffffff ffffffff 0 0 0 0
+1 U2REGX 118 359 60017 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 RMDATA 119 361 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 BMUX 120 396 60009 1 0 0 0 1 17 1 1 0 1 1 0
+1 PCSIMM 121 403 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+1 JREQ 122 404 60010 1 0 0 0 1 17 1 1 0 1 1 0
+1 JVAL 123 405 60010 1 0 31 0 32 17 ffffffff ffffffff 0 0 0 0
+4 683 98 16 f 683 683 683
+4 687 99 16 f 687 687 687
+4 690 101 8 7 0 0 690
+4 692 120 12 1 693 0 692
+4 693 121 4 6 692 0 692
+4 697 159 14 7 0 0 697
+4 706 231 19 f 706 706 706
+4 711 232 19 f 711 711 711
+4 716 233 19 f 716 716 716
+4 725 237 15 f 725 725 725
+4 730 238 15 f 730 730 730
+4 735 239 15 f 735 735 735
+4 738 241 16 f 738 738 738
+4 741 242 16 f 741 741 741
+4 748 246 12 f 748 748 748
+4 755 247 10 f 755 755 755
+4 762 248 12 f 762 762 762
+4 769 249 11 f 769 769 769
+4 776 251 12 f 776 776 776
+4 783 252 12 f 783 783 783
+4 790 253 12 f 790 790 790
+4 797 254 12 f 797 797 797
+4 804 256 12 f 804 804 804
+4 811 257 12 f 811 811 811
+4 818 259 12 f 818 818 818
+4 819 289 12 1 0 0 819
+4 823 294 25 f 823 823 823
+4 827 295 25 f 827 827 827
+4 830 297 25 f 830 830 830
+4 833 298 25 f 833 833 833
+4 995 309 16 f 995 995 995
+4 1091 326 16 f 1091 1091 1091
+4 1102 354 9 f 1102 1102 1102
+4 1109 358 23 f 1109 1109 1109
+4 1116 359 23 f 1116 1116 1116
+4 1201 361 16 f 1201 1201 1201
+4 1250 396 9 f 1250 1250 1250
+4 1255 403 16 f 1255 1255 1255
+4 1264 404 16 f 1264 1264 1264
+4 1271 405 16 f 1271 1271 1271
+4 1273 407 12 1 1274 0 1273
+4 1274 408 4 6 1273 0 1273
+4 1277 549 11 f 1277 1277 1277
+4 1282 550 11 f 1282 1282 1282
+4 1285 560 11 f 1285 1285 1285
+4 1288 561 11 f 1288 1288 1288
+4 1342 562 11 f 1342 1342 1342
+4 1345 575 15 f 1345 1345 1345
+4 1349 581 11 f 1349 1349 1349
+4 1359 585 11 f 1359 1359 1359
+3 1 darkriscv.$u0 "top.soc0.core0.$u0" 0 rtl/darkriscv.v 0 157 1000
+2 1360 1 122 2c0030 0 1000 0 0 32 1 IDATA
+2 1361 1 122 230028 0 1000 0 0 32 1 XIDATA
+2 1362 1a 122 1d0028 1b 1000 1360 1361 32 18 0 ffffffff 0 0 0 0
+2 1363 1 122 1d001f 1b 100c 0 0 1 1 HLT
+2 1364 19 122 1d0030 1b 1000 1362 1363 32 18 0 ffffffff 0 0 0 0
+2 1365 0 122 190019 1 1004 0 0 32 48 0 0
+2 1366 1a 122 120019 1b 1004 1364 1365 32 18 0 ffffffff ffffffff 0 0 0
+2 1367 1 122 120015 1 1008 0 0 1 1 XRES
+2 1368 19 122 120030 1b 1004 1366 1367 32 18 0 ffffffff ffffffff 0 0 0
+2 1369 1 122 8000d 0 1400 0 0 32 1 XIDATA
+2 1370 38 122 80030 1389 6 1368 1369
+2 1371 0 124 380042 1 21008 0 0 7 16 37 0
+2 1372 0 124 340034 1 1004 0 0 32 48 0 0
+2 1373 0 124 320032 1 1008 0 0 32 48 6 0
+2 1374 24 124 2c0035 1 1100 1372 1373 7 18 0 7f 0 0 0 0 IDATA
+2 1375 11 124 2c0042 1 1000 1371 1374 1 18 0 1 0 0 0 0
+2 1376 1 124 230026 1 1004 0 0 1 1 XLUI
+2 1377 1a 124 1d0026 1c 1004 1375 1376 1 18 0 1 1 0 0 0
+2 1378 1 124 1d001f 1b 100c 0 0 1 1 HLT
+2 1379 19 124 1d0042 1c 1004 1377 1378 1 18 0 1 1 0 0 0
+2 1380 0 124 190019 1 1004 0 0 32 48 0 0
+2 1381 1a 124 120019 1c 1044 1379 1380 32 18 0 ffffffff ffffffff 0 0 0
+2 1382 1 124 120015 1 1008 0 0 1 1 XRES
+2 1383 19 124 120042 1c 1004 1381 1382 1 18 0 1 1 0 0 0
+2 1384 1 124 8000b 0 1410 0 0 1 1 XLUI
+2 1385 38 124 80042 1389 6 1383 1384
+2 1386 0 125 380042 1 21008 0 0 7 16 17 0
+2 1387 0 125 340034 1 1004 0 0 32 48 0 0
+2 1388 0 125 320032 1 1008 0 0 32 48 6 0
+2 1389 24 125 2c0035 1 1100 1387 1388 7 18 0 7f 0 0 0 0 IDATA
+2 1390 11 125 2c0042 1 1000 1386 1389 1 18 0 1 0 0 0 0
+2 1391 1 125 230028 83f 100c 0 0 1 1 XAUIPC
+2 1392 1a 125 1d0028 85a 1004 1390 1391 1 18 0 1 1 0 0 0
+2 1393 1 125 1d001f 1b 100c 0 0 1 1 HLT
+2 1394 19 125 1d0042 85a 1004 1392 1393 1 18 0 1 1 0 0 0
+2 1395 0 125 190019 1 1004 0 0 32 48 0 0
+2 1396 1a 125 120019 85a 1044 1394 1395 32 18 0 ffffffff ffffffff 0 0 0
+2 1397 1 125 120015 1 1008 0 0 1 1 XRES
+2 1398 19 125 120042 85a 1004 1396 1397 1 18 0 1 1 0 0 0
+2 1399 1 125 8000d 0 1410 0 0 1 1 XAUIPC
+2 1400 38 125 80042 1389 6 1398 1399
+2 1401 0 126 380042 1 21008 0 0 7 16 6f 0
+2 1402 0 126 340034 1 1004 0 0 32 48 0 0
+2 1403 0 126 320032 1 1008 0 0 32 48 6 0
+2 1404 24 126 2c0035 1 1100 1402 1403 7 18 0 7f 0 0 0 0 IDATA
+2 1405 11 126 2c0042 1 1000 1401 1404 1 18 0 1 0 0 0 0
+2 1406 1 126 230026 1 1004 0 0 1 1 XJAL
+2 1407 1a 126 1d0026 1c 1004 1405 1406 1 18 0 1 1 0 0 0
+2 1408 1 126 1d001f 1b 100c 0 0 1 1 HLT
+2 1409 19 126 1d0042 1c 1004 1407 1408 1 18 0 1 1 0 0 0
+2 1410 0 126 190019 1 1004 0 0 32 48 0 0
+2 1411 1a 126 120019 1c 1044 1409 1410 32 18 0 ffffffff ffffffff 0 0 0
+2 1412 1 126 120015 1 1008 0 0 1 1 XRES
+2 1413 19 126 120042 1c 1004 1411 1412 1 18 0 1 1 0 0 0
+2 1414 1 126 8000b 0 1410 0 0 1 1 XJAL
+2 1415 38 126 80042 1389 6 1413 1414
+2 1416 0 127 380042 1 21008 0 0 7 16 67 0
+2 1417 0 127 340034 1 1004 0 0 32 48 0 0
+2 1418 0 127 320032 1 1008 0 0 32 48 6 0
+2 1419 24 127 2c0035 1 1100 1417 1418 7 18 0 7f 0 0 0 0 IDATA
+2 1420 11 127 2c0042 1 1000 1416 1419 1 18 0 1 0 0 0 0
+2 1421 1 127 230027 83f 100c 0 0 1 1 XJALR
+2 1422 1a 127 1d0027 85a 1004 1420 1421 1 18 0 1 1 0 0 0
+2 1423 1 127 1d001f 1b 100c 0 0 1 1 HLT
+2 1424 19 127 1d0042 85a 1004 1422 1423 1 18 0 1 1 0 0 0
+2 1425 0 127 190019 1 1004 0 0 32 48 0 0
+2 1426 1a 127 120019 85a 1044 1424 1425 32 18 0 ffffffff ffffffff 0 0 0
+2 1427 1 127 120015 1 1008 0 0 1 1 XRES
+2 1428 19 127 120042 85a 1004 1426 1427 1 18 0 1 1 0 0 0
+2 1429 1 127 8000c 0 1410 0 0 1 1 XJALR
+2 1430 38 127 80042 1389 6 1428 1429
+2 1431 0 129 380042 1 21008 0 0 7 16 63 0
+2 1432 0 129 340034 1 1004 0 0 32 48 0 0
+2 1433 0 129 320032 1 1008 0 0 32 48 6 0
+2 1434 24 129 2c0035 1 1100 1432 1433 7 18 0 7f 0 0 0 0 IDATA
+2 1435 11 129 2c0042 1 1000 1431 1434 1 18 0 1 0 0 0 0
+2 1436 1 129 230026 1 1004 0 0 1 1 XBCC
+2 1437 1a 129 1d0026 1c 1004 1435 1436 1 18 0 1 1 0 0 0
+2 1438 1 129 1d001f 1b 100c 0 0 1 1 HLT
+2 1439 19 129 1d0042 1c 1004 1437 1438 1 18 0 1 1 0 0 0
+2 1440 0 129 190019 1 1004 0 0 32 48 0 0
+2 1441 1a 129 120019 1c 1044 1439 1440 32 18 0 ffffffff ffffffff 0 0 0
+2 1442 1 129 120015 1 1008 0 0 1 1 XRES
+2 1443 19 129 120042 1c 1004 1441 1442 1 18 0 1 1 0 0 0
+2 1444 1 129 8000b 0 1410 0 0 1 1 XBCC
+2 1445 38 129 80042 1389 6 1443 1444
+2 1446 0 130 380042 1 21008 0 0 7 16 3 0
+2 1447 0 130 340034 1 1004 0 0 32 48 0 0
+2 1448 0 130 320032 1 1008 0 0 32 48 6 0
+2 1449 24 130 2c0035 1 1100 1447 1448 7 18 0 7f 0 0 0 0 IDATA
+2 1450 11 130 2c0042 1 1000 1446 1449 1 18 0 1 0 0 0 0
+2 1451 1 130 230026 1b 100c 0 0 1 1 XLCC
+2 1452 1a 130 1d0026 29 1008 1450 1451 1 18 0 1 0 1 0 0
+2 1453 1 130 1d001f 1b 100c 0 0 1 1 HLT
+2 1454 19 130 1d0042 29 1008 1452 1453 1 18 0 1 0 1 0 0
+2 1455 0 130 190019 1 1004 0 0 32 48 0 0
+2 1456 1a 130 120019 29 1084 1454 1455 32 18 0 ffffffff ffffffff 0 0 0
+2 1457 1 130 120015 1 1008 0 0 1 1 XRES
+2 1458 19 130 120042 29 1004 1456 1457 1 18 0 1 1 0 0 0
+2 1459 1 130 8000b 0 1410 0 0 1 1 XLCC
+2 1460 38 130 80042 1389 6 1458 1459
+2 1461 0 131 380042 1 21008 0 0 7 16 23 0
+2 1462 0 131 340034 1 1004 0 0 32 48 0 0
+2 1463 0 131 320032 1 1008 0 0 32 48 6 0
+2 1464 24 131 2c0035 1 1100 1462 1463 7 18 0 7f 0 0 0 0 IDATA
+2 1465 11 131 2c0042 1 1000 1461 1464 1 18 0 1 0 0 0 0
+2 1466 1 131 230026 33 100c 0 0 1 1 XSCC
+2 1467 1a 131 1d0026 4e 1004 1465 1466 1 18 0 1 1 0 0 0
+2 1468 1 131 1d001f 1b 100c 0 0 1 1 HLT
+2 1469 19 131 1d0042 4e 1004 1467 1468 1 18 0 1 1 0 0 0
+2 1470 0 131 190019 1 1004 0 0 32 48 0 0
+2 1471 1a 131 120019 4e 1044 1469 1470 32 18 0 ffffffff ffffffff 0 0 0
+2 1472 1 131 120015 1 1008 0 0 1 1 XRES
+2 1473 19 131 120042 4e 1004 1471 1472 1 18 0 1 1 0 0 0
+2 1474 1 131 8000b 0 1410 0 0 1 1 XSCC
+2 1475 38 131 80042 1389 6 1473 1474
+2 1476 0 132 380042 1 21008 0 0 7 16 13 0
+2 1477 0 132 340034 1 1004 0 0 32 48 0 0
+2 1478 0 132 320032 1 1008 0 0 32 48 6 0
+2 1479 24 132 2c0035 1 1100 1477 1478 7 18 0 7f 0 0 0 0 IDATA
+2 1480 11 132 2c0042 1 1000 1476 1479 1 18 0 1 0 0 0 0
+2 1481 1 132 230026 ff 100c 0 0 1 1 XMCC
+2 1482 1a 132 1d0026 10d 1004 1480 1481 1 18 0 1 1 0 0 0
+2 1483 1 132 1d001f 1b 100c 0 0 1 1 HLT
+2 1484 19 132 1d0042 10d 1004 1482 1483 1 18 0 1 1 0 0 0
+2 1485 0 132 190019 1 1004 0 0 32 48 0 0
+2 1486 1a 132 120019 10d 1044 1484 1485 32 18 0 ffffffff ffffffff 0 0 0
+2 1487 1 132 120015 1 1008 0 0 1 1 XRES
+2 1488 19 132 120042 10d 1004 1486 1487 1 18 0 1 1 0 0 0
+2 1489 1 132 8000b 0 1410 0 0 1 1 XMCC
+2 1490 38 132 80042 1389 6 1488 1489
+2 1491 0 134 380042 1 21008 0 0 7 16 33 0
+2 1492 0 134 340034 1 1004 0 0 32 48 0 0
+2 1493 0 134 320032 1 1008 0 0 32 48 6 0
+2 1494 24 134 2c0035 1 1100 1492 1493 7 18 0 7f 0 0 0 0 IDATA
+2 1495 11 134 2c0042 1 1000 1491 1494 1 18 0 1 0 0 0 0
+2 1496 1 134 230026 d5 100c 0 0 1 1 XRCC
+2 1497 1a 134 1d0026 f0 1004 1495 1496 1 18 0 1 1 0 0 0
+2 1498 1 134 1d001f 1b 100c 0 0 1 1 HLT
+2 1499 19 134 1d0042 f0 1004 1497 1498 1 18 0 1 1 0 0 0
+2 1500 0 134 190019 1 1004 0 0 32 48 0 0
+2 1501 1a 134 120019 f0 1044 1499 1500 32 18 0 ffffffff ffffffff 0 0 0
+2 1502 1 134 120015 1 1008 0 0 1 1 XRES
+2 1503 19 134 120042 f0 1004 1501 1502 1 18 0 1 1 0 0 0
+2 1504 1 134 8000b 0 1410 0 0 1 1 XRCC
+2 1505 38 134 80042 1389 6 1503 1504
+2 1506 0 135 380042 1 21008 0 0 7 16 b 0
+2 1507 0 135 340034 1 1004 0 0 32 48 0 0
+2 1508 0 135 320032 1 1008 0 0 32 48 6 0
+2 1509 24 135 2c0035 1 1100 1507 1508 7 18 0 7f 0 0 0 0 IDATA
+2 1510 11 135 2c0042 1 1000 1506 1509 1 18 0 1 0 0 0 0
+2 1511 1 135 230026 d5 100c 0 0 1 1 XRCC
+2 1512 1a 135 1d0026 f0 1004 1510 1511 1 18 0 1 1 0 0 0
+2 1513 1 135 1d001f 1b 100c 0 0 1 1 HLT
+2 1514 19 135 1d0042 f0 1004 1512 1513 1 18 0 1 1 0 0 0
+2 1515 0 135 190019 1 1004 0 0 32 48 0 0
+2 1516 1a 135 120019 f0 1044 1514 1515 32 18 0 ffffffff ffffffff 0 0 0
+2 1517 1 135 120015 1 1008 0 0 1 1 XRES
+2 1518 19 135 120042 f0 1004 1516 1517 1 18 0 1 1 0 0 0
+2 1519 1 135 8000b 0 1410 0 0 1 1 XCUS
+2 1520 38 135 80042 1389 6 1518 1519
+2 1521 0 137 380042 1 21008 0 0 7 16 73 0
+2 1522 0 137 340034 1 1004 0 0 32 48 0 0
+2 1523 0 137 320032 1 1008 0 0 32 48 6 0
+2 1524 24 137 2c0035 1 1100 1522 1523 7 18 0 7f 0 0 0 0 IDATA
+2 1525 11 137 2c0042 1 1000 1521 1524 1 18 0 1 0 0 0 0
+2 1526 1 137 230026 1 1004 0 0 1 1 XCCC
+2 1527 1a 137 1d0026 1c 1004 1525 1526 1 18 0 1 1 0 0 0
+2 1528 1 137 1d001f 1b 100c 0 0 1 1 HLT
+2 1529 19 137 1d0042 1c 1004 1527 1528 1 18 0 1 1 0 0 0
+2 1530 0 137 190019 1 1004 0 0 32 48 0 0
+2 1531 1a 137 120019 1c 1044 1529 1530 32 18 0 ffffffff ffffffff 0 0 0
+2 1532 1 137 120015 1 1008 0 0 1 1 XRES
+2 1533 19 137 120042 1c 1004 1531 1532 1 18 0 1 1 0 0 0
+2 1534 1 137 8000b 0 1410 0 0 1 1 XCCC
+2 1535 38 137 80042 1389 6 1533 1534
+2 1536 0 147 560057 1 1008 0 0 32 48 14 0
+2 1537 0 147 530054 1 1008 0 0 32 48 1f 0
+2 1538 24 147 4d0058 1 1200 1536 1537 12 18 0 fff 0 0 0 0 IDATA
+2 1539 0 147 480049 1 1008 0 0 32 48 c 0
+2 1540 0 147 450046 1 1008 0 0 32 48 1f 0
+2 1541 24 147 40004a 1 1200 1539 1540 20 18 0 fffff 0 0 0 0 ALL0
+2 1542 0 147 3c003d 1 1008 0 0 32 48 c 0
+2 1543 0 147 39003a 1 1008 0 0 32 48 1f 0
+2 1544 24 147 34003e 1 1200 1542 1543 20 18 0 fffff 0 0 0 0 ALL1
+2 1545 1a 147 28003e 1 1000 1541 1544 20 18 0 fffff 0 0 0 0
+2 1546 0 147 2e002f 1 1008 0 0 32 48 1f 0
+2 1547 23 147 280030 1 1000 0 1546 1 18 0 1 0 0 0 0 IDATA
+2 1548 19 147 28004a 1 1000 1545 1547 20 18 0 fffff 0 0 0 0
+2 1549 31 147 280058 1 1000 1538 1548 32 18 0 ffffffff 0 0 0 0
+2 1550 26 147 26005a 1 1000 1549 0 32 18 0 ffffffff 0 0 0 0
+2 1551 0 146 490049 1 1004 0 0 32 48 0 0
+2 1552 0 146 460047 1 1008 0 0 32 48 b 0
+2 1553 24 146 41004a 1 1100 1551 1552 12 18 0 fff 0 0 0 0 ALL0
+2 1554 0 146 3c003d 1 1008 0 0 32 48 c 0
+2 1555 0 146 39003a 1 1008 0 0 32 48 1f 0
+2 1556 24 146 33003e 1 1200 1554 1555 20 18 0 fffff 0 0 0 0 IDATA
+2 1557 31 146 33004a 1 1000 1553 1556 32 18 0 ffffffff 0 0 0 0
+2 1558 26 146 31004c 1 1000 1557 0 32 18 0 ffffffff 0 0 0 0
+2 1559 1a 146 11004c 1 1000 1550 1558 32 18 0 ffffffff 0 0 0 0
+2 1560 0 146 1d0027 1 21008 0 0 7 16 17 0
+2 1561 0 146 190019 1 1004 0 0 32 48 0 0
+2 1562 0 146 170017 1 1008 0 0 32 48 6 0
+2 1563 24 146 11001a 1 1100 1561 1562 7 18 0 7f 0 0 0 0 IDATA
+2 1564 11 146 110027 1 1000 1560 1563 1 18 0 1 0 0 0 0
+2 1565 0 145 1d0027 1 21008 0 0 7 16 37 0
+2 1566 0 145 190019 1 1004 0 0 32 48 0 0
+2 1567 0 145 170017 1 1008 0 0 32 48 6 0
+2 1568 24 145 11001a 1 1100 1566 1567 7 18 0 7f 0 0 0 0 IDATA
+2 1569 11 145 110027 1 1000 1565 1568 1 18 0 1 0 0 0 0
+2 1570 17 145 110027 1 1000 1564 1569 1 18 0 1 0 0 0 0
+2 1571 19 145 11005a 1 1000 1559 1570 32 18 0 ffffffff 0 0 0 0
+2 1572 0 144 8f008f 1 1004 0 0 32 48 0 0
+2 1573 23 144 8a0090 1 1000 0 1572 1 18 0 1 0 0 0 0 ALL0
+2 1574 0 144 850086 1 1008 0 0 32 48 15 0
+2 1575 0 144 820083 1 1008 0 0 32 48 1e 0
+2 1576 24 144 7c0087 1 1200 1574 1575 10 18 0 3ff 0 0 0 0 IDATA
+2 1577 0 144 770078 1 1008 0 0 32 48 14 0
+2 1578 23 144 710079 1 1000 0 1577 1 18 0 1 0 0 0 0 IDATA
+2 1579 0 144 6c006d 1 1008 0 0 32 48 c 0
+2 1580 0 144 69006a 1 1008 0 0 32 48 13 0
+2 1581 24 144 63006e 1 1200 1579 1580 8 18 0 ff 0 0 0 0 IDATA
+2 1582 0 144 5e005f 1 1008 0 0 32 48 1f 0
+2 1583 23 144 580060 1 1000 0 1582 1 18 0 1 0 0 0 0 IDATA
+2 1584 0 144 530054 1 1008 0 0 32 48 15 0
+2 1585 0 144 500051 1 1008 0 0 32 48 1f 0
+2 1586 24 144 4b0055 1 1200 1584 1585 11 18 0 7ff 0 0 0 0 ALL0
+2 1587 0 144 470048 1 1008 0 0 32 48 15 0
+2 1588 0 144 440045 1 1008 0 0 32 48 1f 0
+2 1589 24 144 3f0049 1 1200 1587 1588 11 18 0 7ff 0 0 0 0 ALL1
+2 1590 1a 144 330049 1 1000 1586 1589 11 18 0 7ff 0 0 0 0
+2 1591 0 144 39003a 1 1008 0 0 32 48 1f 0
+2 1592 23 144 33003b 1 1000 0 1591 1 18 0 1 0 0 0 0 IDATA
+2 1593 19 144 330055 1 1000 1590 1592 11 18 0 7ff 0 0 0 0
+2 1594 31 144 330060 1 1000 1583 1593 12 18 0 fff 0 0 0 0
+2 1595 31 144 33006e 1 1000 1581 1594 20 18 0 fffff 0 0 0 0
+2 1596 31 144 330079 1 1000 1578 1595 21 18 0 1fffff 0 0 0 0
+2 1597 31 144 330087 1 1000 1576 1596 31 18 0 7fffffff 0 0 0 0
+2 1598 31 144 330090 1 1000 1573 1597 32 18 0 ffffffff 0 0 0 0
+2 1599 26 144 310092 1 1000 1598 0 32 18 0 ffffffff 0 0 0 0
+2 1600 1a 144 110092 1 1000 1571 1599 32 18 0 ffffffff 0 0 0 0
+2 1601 0 144 1d0027 1 21008 0 0 7 16 6f 0
+2 1602 0 144 190019 1 1004 0 0 32 48 0 0
+2 1603 0 144 170017 1 1008 0 0 32 48 6 0
+2 1604 24 144 11001a 1 1100 1602 1603 7 18 0 7f 0 0 0 0 IDATA
+2 1605 11 144 110027 1 1000 1601 1604 1 18 0 1 0 0 0 0
+2 1606 19 144 11005a 1 1000 1600 1605 32 18 0 ffffffff 0 0 0 0
+2 1607 0 143 890089 1 1004 0 0 32 48 0 0
+2 1608 23 143 84008a 1 1000 0 1607 1 18 0 1 0 0 0 0 ALL0
+2 1609 0 143 810081 1 1008 0 0 32 48 8 0
+2 1610 0 143 7e007f 1 1008 0 0 32 48 b 0
+2 1611 24 143 780082 1 1200 1609 1610 4 18 0 f 0 0 0 0 IDATA
+2 1612 0 143 740075 1 1008 0 0 32 48 19 0
+2 1613 0 143 710072 1 1008 0 0 32 48 1e 0
+2 1614 24 143 6b0076 1 1200 1612 1613 6 18 0 3f 0 0 0 0 IDATA
+2 1615 0 143 680068 1 1008 0 0 32 48 7 0
+2 1616 23 143 620069 1 1000 0 1615 1 18 0 1 0 0 0 0 IDATA
+2 1617 0 143 5e005f 1 1008 0 0 32 48 1f 0
+2 1618 23 143 580060 1 1000 0 1617 1 18 0 1 0 0 0 0 IDATA
+2 1619 0 143 530054 1 1008 0 0 32 48 d 0
+2 1620 0 143 500051 1 1008 0 0 32 48 1f 0
+2 1621 24 143 4b0055 1 1200 1619 1620 19 18 0 7ffff 0 0 0 0 ALL0
+2 1622 0 143 470048 1 1008 0 0 32 48 d 0
+2 1623 0 143 440045 1 1008 0 0 32 48 1f 0
+2 1624 24 143 3f0049 1 1200 1622 1623 19 18 0 7ffff 0 0 0 0 ALL1
+2 1625 1a 143 330049 1 1000 1621 1624 19 18 0 7ffff 0 0 0 0
+2 1626 0 143 39003a 1 1008 0 0 32 48 1f 0
+2 1627 23 143 33003b 1 1000 0 1626 1 18 0 1 0 0 0 0 IDATA
+2 1628 19 143 330055 1 1000 1625 1627 19 18 0 7ffff 0 0 0 0
+2 1629 31 143 330060 1 1000 1618 1628 20 18 0 fffff 0 0 0 0
+2 1630 31 143 330069 1 1000 1616 1629 21 18 0 1fffff 0 0 0 0
+2 1631 31 143 330076 1 1000 1614 1630 27 18 0 7ffffff 0 0 0 0
+2 1632 31 143 330082 1 1000 1611 1631 31 18 0 7fffffff 0 0 0 0
+2 1633 31 143 33008a 1 1000 1608 1632 32 18 0 ffffffff 0 0 0 0
+2 1634 26 143 31008c 1 1000 1633 0 32 18 0 ffffffff 0 0 0 0
+2 1635 1a 143 11008c 1 1000 1606 1634 32 18 0 ffffffff 0 0 0 0
+2 1636 0 143 1d0027 1 21008 0 0 7 16 63 0
+2 1637 0 143 190019 1 1004 0 0 32 48 0 0
+2 1638 0 143 170017 1 1008 0 0 32 48 6 0
+2 1639 24 143 11001a 1 1100 1637 1638 7 18 0 7f 0 0 0 0 IDATA
+2 1640 11 143 110027 1 1000 1636 1639 1 18 0 1 0 0 0 0
+2 1641 19 143 11005a 1 1000 1635 1640 32 18 0 ffffffff 0 0 0 0
+2 1642 0 142 6e006e 1 1008 0 0 32 48 7 0
+2 1643 0 142 6b006c 1 1008 0 0 32 48 b 0
+2 1644 24 142 65006f 1 1200 1642 1643 5 18 0 1f 0 0 0 0 IDATA
+2 1645 0 142 610062 1 1008 0 0 32 48 19 0
+2 1646 0 142 5e005f 1 1008 0 0 32 48 1f 0
+2 1647 24 142 580063 1 1200 1645 1646 7 18 0 7f 0 0 0 0 IDATA
+2 1648 0 142 530054 1 1008 0 0 32 48 c 0
+2 1649 0 142 500051 1 1008 0 0 32 48 1f 0
+2 1650 24 142 4b0055 1 1200 1648 1649 20 18 0 fffff 0 0 0 0 ALL0
+2 1651 0 142 470048 1 1008 0 0 32 48 c 0
+2 1652 0 142 440045 1 1008 0 0 32 48 1f 0
+2 1653 24 142 3f0049 1 1200 1651 1652 20 18 0 fffff 0 0 0 0 ALL1
+2 1654 1a 142 330049 1 1000 1650 1653 20 18 0 fffff 0 0 0 0
+2 1655 0 142 39003a 1 1008 0 0 32 48 1f 0
+2 1656 23 142 33003b 1 1000 0 1655 1 18 0 1 0 0 0 0 IDATA
+2 1657 19 142 330055 1 1000 1654 1656 20 18 0 fffff 0 0 0 0
+2 1658 31 142 330063 1 1000 1647 1657 27 18 0 7ffffff 0 0 0 0
+2 1659 31 142 33006f 1 1000 1644 1658 32 18 0 ffffffff 0 0 0 0
+2 1660 26 142 310071 1 1000 1659 0 32 18 0 ffffffff 0 0 0 0
+2 1661 1a 142 110071 1 1000 1641 1660 32 18 0 ffffffff 0 0 0 0
+2 1662 0 142 1d0027 1 21008 0 0 7 16 23 0
+2 1663 0 142 190019 1 1004 0 0 32 48 0 0
+2 1664 0 142 170017 1 1008 0 0 32 48 6 0
+2 1665 24 142 11001a 1 1100 1663 1664 7 18 0 7f 0 0 0 0 IDATA
+2 1666 11 142 110027 1 1000 1662 1665 1 18 0 1 0 0 0 0
+2 1667 19 142 11005a 1 1000 1661 1666 32 18 0 ffffffff 0 0 0 0
+2 1668 1 141 230027 0 1000 0 0 32 1 XSIMM
+2 1669 1a 141 1d0027 1b 1000 1667 1668 32 18 0 ffffffff 0 0 0 0
+2 1670 1 141 1d001f 1b 100c 0 0 1 1 HLT
+2 1671 19 141 1d005a 1b 1000 1669 1670 32 18 0 ffffffff 0 0 0 0
+2 1672 0 141 190019 1 1004 0 0 32 48 0 0
+2 1673 1a 141 120019 1b 1004 1671 1672 32 18 0 ffffffff ffffffff 0 0 0
+2 1674 1 141 120015 1 1008 0 0 1 1 XRES
+2 1675 19 141 12005a 1b 1004 1673 1674 32 18 0 ffffffff ffffffff 0 0 0
+2 1676 1 141 8000c 0 1400 0 0 32 1 XSIMM
+2 1677 38 141 8005a 1389 6 1675 1676
+2 1678 0 156 3e003f 1 1008 0 0 32 48 14 0
+2 1679 0 156 3b003c 1 1008 0 0 32 48 1f 0
+2 1680 24 156 350040 1 1200 1678 1679 12 18 0 fff 0 0 0 0 IDATA
+2 1681 0 156 300031 1 1008 0 0 32 48 c 0
+2 1682 0 156 2d002e 1 1008 0 0 32 48 1f 0
+2 1683 24 156 280032 1 1200 1681 1682 20 18 0 fffff 0 0 0 0 ALL0
+2 1684 31 156 280040 1 1000 1680 1683 32 18 0 ffffffff 0 0 0 0
+2 1685 26 156 260042 1 1000 1684 0 32 18 0 ffffffff 0 0 0 0
+2 1686 0 155 490049 1 1004 0 0 32 48 0 0
+2 1687 0 155 460047 1 1008 0 0 32 48 b 0
+2 1688 24 155 41004a 1 1100 1686 1687 12 18 0 fff 0 0 0 0 ALL0
+2 1689 0 155 3c003d 1 1008 0 0 32 48 c 0
+2 1690 0 155 39003a 1 1008 0 0 32 48 1f 0
+2 1691 24 155 33003e 1 1200 1689 1690 20 18 0 fffff 0 0 0 0 IDATA
+2 1692 31 155 33004a 1 1000 1688 1691 32 18 0 ffffffff 0 0 0 0
+2 1693 26 155 31004c 1 1000 1692 0 32 18 0 ffffffff 0 0 0 0
+2 1694 1a 155 11004c 1 1000 1685 1693 32 18 0 ffffffff 0 0 0 0
+2 1695 0 155 1d0027 1 21008 0 0 7 16 17 0
+2 1696 0 155 190019 1 1004 0 0 32 48 0 0
+2 1697 0 155 170017 1 1008 0 0 32 48 6 0
+2 1698 24 155 11001a 1 1100 1696 1697 7 18 0 7f 0 0 0 0 IDATA
+2 1699 11 155 110027 1 1000 1695 1698 1 18 0 1 0 0 0 0
+2 1700 0 154 1d0027 1 21008 0 0 7 16 37 0
+2 1701 0 154 190019 1 1004 0 0 32 48 0 0
+2 1702 0 154 170017 1 1008 0 0 32 48 6 0
+2 1703 24 154 11001a 1 1100 1701 1702 7 18 0 7f 0 0 0 0 IDATA
+2 1704 11 154 110027 1 1000 1700 1703 1 18 0 1 0 0 0 0
+2 1705 17 154 110027 1 1000 1699 1704 1 18 0 1 0 0 0 0
+2 1706 19 154 110042 1 1000 1694 1705 32 18 0 ffffffff 0 0 0 0
+2 1707 0 153 770077 1 1004 0 0 32 48 0 0
+2 1708 23 153 720078 1 1000 0 1707 1 18 0 1 0 0 0 0 ALL0
+2 1709 0 153 6d006e 1 1008 0 0 32 48 15 0
+2 1710 0 153 6a006b 1 1008 0 0 32 48 1e 0
+2 1711 24 153 64006f 1 1200 1709 1710 10 18 0 3ff 0 0 0 0 IDATA
+2 1712 0 153 5f0060 1 1008 0 0 32 48 14 0
+2 1713 23 153 590061 1 1000 0 1712 1 18 0 1 0 0 0 0 IDATA
+2 1714 0 153 540055 1 1008 0 0 32 48 c 0
+2 1715 0 153 510052 1 1008 0 0 32 48 13 0
+2 1716 24 153 4b0056 1 1200 1714 1715 8 18 0 ff 0 0 0 0 IDATA
+2 1717 0 153 460047 1 1008 0 0 32 48 1f 0
+2 1718 23 153 400048 1 1000 0 1717 1 18 0 1 0 0 0 0 IDATA
+2 1719 0 153 3b003c 1 1008 0 0 32 48 15 0
+2 1720 0 153 380039 1 1008 0 0 32 48 1f 0
+2 1721 24 153 33003d 1 1200 1719 1720 11 18 0 7ff 0 0 0 0 ALL0
+2 1722 31 153 330048 1 1000 1718 1721 12 18 0 fff 0 0 0 0
+2 1723 31 153 330056 1 1000 1716 1722 20 18 0 fffff 0 0 0 0
+2 1724 31 153 330061 1 1000 1713 1723 21 18 0 1fffff 0 0 0 0
+2 1725 31 153 33006f 1 1000 1711 1724 31 18 0 7fffffff 0 0 0 0
+2 1726 31 153 330078 1 1000 1708 1725 32 18 0 ffffffff 0 0 0 0
+2 1727 26 153 31007a 1 1000 1726 0 32 18 0 ffffffff 0 0 0 0
+2 1728 1a 153 11007a 1 1000 1706 1727 32 18 0 ffffffff 0 0 0 0
+2 1729 0 153 1d0027 1 21008 0 0 7 16 6f 0
+2 1730 0 153 190019 1 1004 0 0 32 48 0 0
+2 1731 0 153 170017 1 1008 0 0 32 48 6 0
+2 1732 24 153 11001a 1 1100 1730 1731 7 18 0 7f 0 0 0 0 IDATA
+2 1733 11 153 110027 1 1000 1729 1732 1 18 0 1 0 0 0 0
+2 1734 19 153 110042 1 1000 1728 1733 32 18 0 ffffffff 0 0 0 0
+2 1735 0 152 710071 1 1004 0 0 32 48 0 0
+2 1736 23 152 6c0072 1 1000 0 1735 1 18 0 1 0 0 0 0 ALL0
+2 1737 0 152 690069 1 1008 0 0 32 48 8 0
+2 1738 0 152 660067 1 1008 0 0 32 48 b 0
+2 1739 24 152 60006a 1 1200 1737 1738 4 18 0 f 0 0 0 0 IDATA
+2 1740 0 152 5c005d 1 1008 0 0 32 48 19 0
+2 1741 0 152 59005a 1 1008 0 0 32 48 1e 0
+2 1742 24 152 53005e 1 1200 1740 1741 6 18 0 3f 0 0 0 0 IDATA
+2 1743 0 152 500050 1 1008 0 0 32 48 7 0
+2 1744 23 152 4a0051 1 1000 0 1743 1 18 0 1 0 0 0 0 IDATA
+2 1745 0 152 460047 1 1008 0 0 32 48 1f 0
+2 1746 23 152 400048 1 1000 0 1745 1 18 0 1 0 0 0 0 IDATA
+2 1747 0 152 3b003c 1 1008 0 0 32 48 d 0
+2 1748 0 152 380039 1 1008 0 0 32 48 1f 0
+2 1749 24 152 33003d 1 1200 1747 1748 19 18 0 7ffff 0 0 0 0 ALL0
+2 1750 31 152 330048 1 1000 1746 1749 20 18 0 fffff 0 0 0 0
+2 1751 31 152 330051 1 1000 1744 1750 21 18 0 1fffff 0 0 0 0
+2 1752 31 152 33005e 1 1000 1742 1751 27 18 0 7ffffff 0 0 0 0
+2 1753 31 152 33006a 1 1000 1739 1752 31 18 0 7fffffff 0 0 0 0
+2 1754 31 152 330072 1 1000 1736 1753 32 18 0 ffffffff 0 0 0 0
+2 1755 26 152 310074 1 1000 1754 0 32 18 0 ffffffff 0 0 0 0
+2 1756 1a 152 110074 1 1000 1734 1755 32 18 0 ffffffff 0 0 0 0
+2 1757 0 152 1d0027 1 21008 0 0 7 16 63 0
+2 1758 0 152 190019 1 1004 0 0 32 48 0 0
+2 1759 0 152 170017 1 1008 0 0 32 48 6 0
+2 1760 24 152 11001a 1 1100 1758 1759 7 18 0 7f 0 0 0 0 IDATA
+2 1761 11 152 110027 1 1000 1757 1760 1 18 0 1 0 0 0 0
+2 1762 19 152 110042 1 1000 1756 1761 32 18 0 ffffffff 0 0 0 0
+2 1763 0 151 560056 1 1008 0 0 32 48 7 0
+2 1764 0 151 530054 1 1008 0 0 32 48 b 0
+2 1765 24 151 4d0057 1 1200 1763 1764 5 18 0 1f 0 0 0 0 IDATA
+2 1766 0 151 49004a 1 1008 0 0 32 48 19 0
+2 1767 0 151 460047 1 1008 0 0 32 48 1f 0
+2 1768 24 151 40004b 1 1200 1766 1767 7 18 0 7f 0 0 0 0 IDATA
+2 1769 0 151 3b003c 1 1008 0 0 32 48 c 0
+2 1770 0 151 380039 1 1008 0 0 32 48 1f 0
+2 1771 24 151 33003d 1 1200 1769 1770 20 18 0 fffff 0 0 0 0 ALL0
+2 1772 31 151 33004b 1 1000 1768 1771 27 18 0 7ffffff 0 0 0 0
+2 1773 31 151 330057 1 1000 1765 1772 32 18 0 ffffffff 0 0 0 0
+2 1774 26 151 310059 1 1000 1773 0 32 18 0 ffffffff 0 0 0 0
+2 1775 1a 151 110059 1 1000 1762 1774 32 18 0 ffffffff 0 0 0 0
+2 1776 0 151 1d0027 1 21008 0 0 7 16 23 0
+2 1777 0 151 190019 1 1004 0 0 32 48 0 0
+2 1778 0 151 170017 1 1008 0 0 32 48 6 0
+2 1779 24 151 11001a 1 1100 1777 1778 7 18 0 7f 0 0 0 0 IDATA
+2 1780 11 151 110027 1 1000 1776 1779 1 18 0 1 0 0 0 0
+2 1781 19 151 110042 1 1000 1775 1780 32 18 0 ffffffff 0 0 0 0
+2 1782 1 150 220026 0 1000 0 0 32 1 XUIMM
+2 1783 1a 150 1c0026 1b 1000 1781 1782 32 18 0 ffffffff 0 0 0 0
+2 1784 1 150 1c001e 1b 100c 0 0 1 1 HLT
+2 1785 19 150 1c0042 1b 1000 1783 1784 32 18 0 ffffffff 0 0 0 0
+2 1786 0 150 190019 1 1004 0 0 32 48 0 0
+2 1787 1a 150 120019 1b 1004 1785 1786 32 18 0 ffffffff ffffffff 0 0 0
+2 1788 1 150 120015 1 1008 0 0 1 1 XRES
+2 1789 19 150 120042 1b 1004 1787 1788 32 18 0 ffffffff ffffffff 0 0 0
+2 1790 1 150 8000c 0 1400 0 0 32 1 XUIMM
+2 1791 38 150 80042 1389 6 1789 1790
+4 1370 122 8 11 1385 1385 1370
+4 1385 124 8 0 1400 1400 1370
+4 1400 125 8 0 1415 1415 1370
+4 1415 126 8 0 1430 1430 1370
+4 1430 127 8 0 1445 1445 1370
+4 1445 129 8 0 1460 1460 1370
+4 1460 130 8 0 1475 1475 1370
+4 1475 131 8 0 1490 1490 1370
+4 1490 132 8 0 1505 1505 1370
+4 1505 134 8 0 1520 1520 1370
+4 1520 135 8 0 1535 1535 1370
+4 1535 137 8 0 1677 1677 1370
+4 1677 141 8 0 1791 1791 1370
+4 1791 150 8 0 0 0 1370
+3 1 darkriscv.$u1 "top.soc0.core0.$u1" 0 rtl/darkriscv.v 0 0 1000
+2 1792 0 289 120012 1 1004 0 0 32 48 0 0
+2 1793 1 289 100010 0 1410 0 0 32 33 i
+2 1794 37 289 100012 1 16 1792 1793
+2 1795 0 289 170018 1 1008 0 0 32 48 20 0
+2 1796 1 289 140014 21 100c 0 0 32 33 i
+2 1797 15 289 140018 21 128e 1795 1796 1 50 0 1 1 1 0 0
+2 1798 0 289 2b002b 1 1004 0 0 32 48 0 0
+2 1799 1 289 260026 20 141c 0 0 32 33 i
+2 1800 23 289 210027 0 1410 0 1799 32 18 0 ffffffff 0 0 0 0 REGS
+2 1801 37 289 21002b 20 16 1798 1800
+2 1802 0 289 1e001e 1 1008 0 0 32 48 1 0
+2 1803 1 289 1c001c 20 101c 0 0 32 33 i
+2 1804 6 289 1c001e 20 1298 1802 1803 32 50 0 ffffffff fffffffe 1 1e 1
+2 1805 1 289 1a001a 0 1410 0 0 32 33 i
+2 1806 37 289 1a001e 20 3a 1804 1805
+4 1794 289 16 11 1797 1797 1794
+4 1797 289 20 0 1801 0 1794
+4 1806 289 26 6 1797 1797 1794
+4 1801 289 33 0 1806 1806 1794
+3 1 darkriscv.$u2 "top.soc0.core0.$u2" 0 rtl/darkriscv.v 0 545 1000
+2 1807 1 413 100012 2 100c 0 0 1 1 RES
+2 1808 1 413 8000b 0 1410 0 0 1 1 XRES
+2 1809 38 413 80012 1389 e 1807 1808
+2 1810 0 422 230023 1 1004 0 0 32 48 0 0
+2 1811 0 422 1f001f 1 1008 0 0 32 48 2 0
+2 1812 1a 422 18001f 83f 110c 1810 1811 32 18 0 ffffffff ffffffff 2 0 0
+2 1813 1 422 18001b 83f 100c 0 0 1 1 JREQ
+2 1814 19 422 180023 83f 100c 1812 1813 32 18 0 ffffffff ffffffff 2 0 0
+2 1815 0 418 260026 1 1008 0 0 32 48 1 0
+2 1816 1 418 200024 1 1008 0 0 2 1 FLUSH
+2 1817 7 418 200026 1 1208 1815 1816 32 18 0 ffffffff fffffffc 0 2 1
+2 1818 1a 418 180026 83f 1308 1814 1817 32 18 0 ffffffff fffffffd 2 0 0
+2 1819 1 418 18001c 1 1008 0 0 2 1 FLUSH
+2 1820 19 418 180023 83f 1008 1818 1819 32 18 0 ffffffff fffffffd 2 0 0
+2 1821 1 417 1f0023 1 1008 0 0 2 1 FLUSH
+2 1822 1a 417 190023 859 1208 1820 1821 32 18 0 ffffffff fffffffd 3 0 0
+2 1823 1 417 19001b 1b 100c 0 0 1 1 HLT
+2 1824 19 417 190023 859 1008 1822 1823 32 18 0 ffffffff fffffffd 3 0 0
+2 1825 0 417 150015 1 1008 0 0 32 48 2 0
+2 1826 1a 417 e0015 859 1208 1824 1825 32 18 0 ffffffff fffffffd 2 0 0
+2 1827 1 417 e0011 1 1008 0 0 1 1 XRES
+2 1828 19 417 e0023 859 1008 1826 1827 2 18 0 3 1 2 0 0
+2 1829 1 417 50009 0 1410 0 0 2 1 FLUSH
+2 1830 38 417 50023 1389 a 1828 1829
+2 1831 1 482 220025 1 1000 0 0 5 1 DPTR
+2 1832 23 482 1d0026 1 1004 0 1831 32 18 0 ffffffff 0 0 0 0 REGS
+2 1833 1 474 1d0022 0 1000 0 0 32 1 RMDATA
+2 1834 1a 474 120022 111 1004 1832 1833 32 18 0 ffffffff ffffffff 0 0 0
+2 1835 1 474 170019 d5 100c 0 0 1 1 RCC
+2 1836 1 474 120014 ff 100c 0 0 1 1 MCC
+2 1837 17 474 120019 111 11cc 1835 1836 1 18 0 1 1 1 1 0
+2 1838 19 474 120026 111 1004 1834 1837 32 18 0 ffffffff ffffffff 0 0 0
+2 1839 1 473 1d0020 0 1000 0 0 32 1 SIMM
+2 1840 1a 473 170020 111 1004 1838 1839 32 18 0 ffffffff ffffffff 0 0 0
+2 1841 1 473 170019 1 1004 0 0 1 1 LUI
+2 1842 19 473 170026 111 1004 1840 1841 32 18 0 ffffffff ffffffff 0 0 0
+2 1843 1 472 1d0020 0 1000 0 0 32 1 NXPC
+2 1844 1a 472 160020 94f 1004 1842 1843 32 18 0 ffffffff ffffffff 0 0 0
+2 1845 1 472 160019 83f 100c 0 0 1 1 JALR
+2 1846 1 471 160018 1 1004 0 0 1 1 JAL
+2 1847 17 471 160019 83f 10cc 1845 1846 1 18 0 1 0 1 1 0
+2 1848 19 471 160026 94f 1004 1844 1847 32 18 0 ffffffff ffffffff 0 0 0
+2 1849 1 470 1d0022 0 1000 0 0 32 1 PCSIMM
+2 1850 1a 470 150022 d6d 1004 1848 1849 32 18 0 ffffffff ffffffff 0 0 0
+2 1851 1 470 150019 83f 100c 0 0 1 1 AUIPC
+2 1852 19 470 150026 d6d 1004 1850 1851 32 18 0 ffffffff ffffffff 0 0 0
+2 1853 1 469 1d0021 0 1000 0 0 32 1 LDATA
+2 1854 1a 469 170021 d6d 1004 1852 1853 32 18 0 ffffffff ffffffff 0 0 0
+2 1855 1 469 170019 1b 100c 0 0 1 1 LCC
+2 1856 19 469 170026 d6d 1004 1854 1855 32 18 0 ffffffff ffffffff 0 0 0
+2 1857 1 468 220025 1 1000 0 0 5 1 DPTR
+2 1858 23 468 1d0026 1 1004 0 1857 32 18 0 ffffffff 0 0 0 0 REGS
+2 1859 1a 468 170026 d7a 1044 1856 1858 32 18 0 ffffffff ffffffff 0 0 0
+2 1860 1 468 170019 1b 100c 0 0 1 1 HLT
+2 1861 19 468 170026 d7a 1004 1859 1860 32 18 0 ffffffff ffffffff 0 0 0
+2 1862 0 466 2d002d 1 1004 0 0 32 48 0 0
+2 1863 1a 466 18002d d7a 1044 1861 1862 32 18 0 ffffffff ffffffff 0 0 0
+2 1864 0 466 290029 1 1004 0 0 32 48 0 0
+2 1865 0 466 250025 1 1004 0 0 32 48 0 0
+2 1866 0 466 230023 1 1008 0 0 32 48 4 0
+2 1867 24 466 1e0026 1 1100 1865 1866 5 18 0 1f 0 0 0 0 DPTR
+2 1868 11 466 1e0029 1 1000 1864 1867 1 18 0 1 0 0 0 0
+2 1869 1 466 18001b 1 1008 0 0 1 1 XRES
+2 1870 17 466 180029 1 1008 1868 1869 1 18 0 1 1 0 0 0
+2 1871 19 466 180026 d7a 1004 1863 1870 32 18 0 ffffffff ffffffff 0 0 0
+2 1872 1 466 d0010 1389 1400 0 0 5 1 DPTR
+2 1873 23 466 80011 0 1410 0 1872 32 18 0 ffffffff 0 0 0 0 REGS
+2 1874 38 466 80026 1389 6 1871 1873
+2 1875 1 500 37003b 0 1000 0 0 32 1 NXPC2
+2 1876 1 500 300033 0 1000 0 0 32 1 NXPC
+2 1877 1a 500 2a0033 1b 1000 1875 1876 32 18 0 ffffffff 0 0 0 0
+2 1878 1 500 2a002c 1b 100c 0 0 1 1 HLT
+2 1879 19 500 2a003b 1b 1000 1877 1878 32 18 0 ffffffff 0 0 0 0
+2 1880 1 500 8000b 0 1400 0 0 32 1 NXPC
+2 1881 38 500 8003b 1389 2 1879 1880
+2 1882 0 508 1f001f 1 1008 0 0 32 48 4 0
+2 1883 1 508 19001d 0 1000 0 0 32 1 NXPC2
+2 1884 6 508 19001f 1 1000 1882 1883 32 18 0 ffffffff 0 0 0 0
+2 1885 1 507 19001c 0 1000 0 0 32 1 JVAL
+2 1886 1a 507 12001c 83f 1000 1884 1885 32 18 0 ffffffff 0 0 0 0
+2 1887 1 507 120015 83f 100c 0 0 1 1 JREQ
+2 1888 19 507 12001f 83f 1000 1886 1887 32 18 0 ffffffff 0 0 0 0
+2 1889 1 502 250029 0 1000 0 0 32 1 NXPC2
+2 1890 1a 502 1f0029 859 1000 1888 1889 32 18 0 ffffffff 0 0 0 0
+2 1891 1 502 1f0021 1b 100c 0 0 1 1 HLT
+2 1892 19 502 1f001f 859 1000 1890 1891 32 18 0 ffffffff 0 0 0 0
+2 1893 0 502 16001a 1 1004 0 0 32 16 0 0
+2 1894 1a 502 f001a 859 1004 1892 1893 32 18 0 ffffffff ffffffff 0 0 0
+2 1895 1 502 f0012 1 1008 0 0 1 1 XRES
+2 1896 19 502 f001f 859 1004 1894 1895 32 18 0 ffffffff ffffffff 0 0 0
+2 1897 1 502 50009 0 1400 0 0 32 1 NXPC2
+2 1898 38 502 5001f 1389 6 1896 1897
+2 1899 1 521 350038 0 1000 0 0 32 1 NXPC
+2 1900 1 521 300031 0 1000 0 0 32 1 PC
+2 1901 1a 521 2a0031 1b 1000 1899 1900 32 18 0 ffffffff 0 0 0 0
+2 1902 1 521 2a002c 1b 100c 0 0 1 1 HLT
+2 1903 19 521 2a0038 1b 1000 1901 1902 32 18 0 ffffffff 0 0 0 0
+2 1904 1 521 80009 0 1400 0 0 32 1 PC
+2 1905 38 521 80038 1389 2 1903 1904
+4 1809 413 8 11 1830 1830 1809
+4 1830 417 5 0 1874 1874 1809
+4 1874 466 8 0 1881 1881 1809
+4 1881 500 8 0 1898 1898 1809
+4 1898 502 5 0 1905 1905 1809
+4 1905 521 8 0 0 0 1809

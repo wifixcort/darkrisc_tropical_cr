@@ -1,0 +1,2012 @@
+
+`line 1 "rtl/../rtl/config.vh" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+//`timescale 1ns / 1ps
+
+////////////////////////////////////////////////////////////////////////////////
+// darkriscv configuration
+////////////////////////////////////////////////////////////////////////////////
+
+// pipeline stages:
+//
+// 2-stage version: core and memory in different clock edges result in less
+// clock performance, but less losses when the program counter changes
+// (pipeline flush = 1 clock).  Works like a 4-stage pipeline and remember
+// the 68040 clock scheme, with instruction per clock = 1.  alternatively,
+// it is possible work w/ 1 wait-state and 1 clock edge, but with a penalty
+// in performance (instruction per clock = 0.5).
+//
+// 3-stage version: core and memory in the same clock edge require one extra
+// stage in the pipeline, but keep a good performance most of time
+// (instruction per clock = 1).  of course, read operations require 1
+// wait-state, which means sometimes the read performance is reduced.
+
+
+// RV32I vs RV32E:
+//
+// The difference between the RV32I and RV32E regarding the logic space is
+// minimal in typical applications with modern 5 or 6 input LUT based FPGAs,
+// but the RV32E is better with old 4 input LUT based FPGAs.
+//`define __RV32E__  //MODIFIED: comented for use RV32I
+
+// muti-threading support:
+//
+// Decreases clock performance by 20% (80MHz), but enables two or more
+// contexts (threads) in the core. The threads work in symmetrical way,
+// which means that they will start with the same exactly core parameters
+// (same initial PC, same initial SP, etc). The boot.s code is designed
+// to handle this difference and set each thread to different
+// applications.
+// Notes:
+// a) threading is currently supported only in the 3-stage pipeline version.
+// b) the old experimental "interrupt mode" was removed, which means that
+//    the multi-thread mode does not make anything "visible" other than
+//    increment the gpio register.
+// c) the threading in the non-interrupt mode switches when the program flow
+//    changes, i.e. every jal instruction. When the core is idle, it is
+//    probably in a jal loop.
+// The number of threads must be 2**n (i.e. THREADS = 3 means 8 threads)
+//`define __THREADS__ 3
+//
+// mac instruction:
+//
+// The mac instruction is similar to other register to register
+// instructions, but with a different opcode 7'h1111111.  the format is mac
+// rd,r1,r2, but is not currently possible encode in asm, by this way it is
+// available in licb as int mac(int rd, short r1, short r2).  Although it
+// can be used to accelerate the mul/div operations, the mac operation is
+// designed for DSP applications.  with some effort (low level machine
+// code), it is possible peak 100MMAC/s @100MHz.
+//`define __MAC16X16__
+
+// flexbuzz interface (experimental):
+//
+// A new data bus interface similar to a well known c*ldfire bus interface, in
+// a way that part of the bus routing is moved to the core, in a way that
+// is possible support different bus widths (8, 16 or 32 bit) and endians more
+// easily (the new interface is natively big-endian, but the endian can be adjusted
+// in the bus interface dinamically). Similarly to the standard 32-bit interface,
+// the external logic must detect the RD/WR operation quick enough and assert HLT
+// in order to insert wait-states and perform the required multiplexing to fit
+// the DLEN operand size in the data bus width available.
+//`define __FLEXBUZZ__
+
+// interrupt support
+//
+// The interrupt support in the core uses the machine registers mtvec and
+// mepc, which means support the control special register instruction csrrw,
+// in a way that is possible read/write the mtvec and mepc.
+// the interrupt itself works like the thread switch, with the difference
+// that:
+// a) the PC will be saved in the mepc register
+// b)the PC will receive the mtvec value
+// c) single interrupt, which means that the mtvec offset is always zero
+// The interrupt support cannot be used with threading (because makes no
+// much sense?)... also, it requires the 3 stage pipeline (again, makes no
+// much sense use it with the 2-stage pipeline).
+//`define __INTERRUPT__
+
+// initial PC
+//
+// Typically, the PC is set [by HW] to address 0, representing the start of
+// ROM memory and the SP is set [by SW] to the final of RAM memory.  In the
+// linker, the start of ROM memory matches with the .text area, which is
+// defined in the boot.c code and the start of RAM memory matches with the
+// .data and other volatile data, in a way that the stack can be positioned
+// in the top of RAM and does not match with the .data.
+
+
+////////////////////////////////////////////////////////////////////////////////
+// darksocv configuration:
+////////////////////////////////////////////////////////////////////////////////
+
+// interactive simulation:
+//
+// When enabled, will trick the simulator in order to enable interactive
+// access via the stdin, in a way that is possible type interactive commands,
+// which will make your simulator crazy! unfortunately, it works only with
+// iverilog... at least, Xilinx ISIM does not liket the $fgetc()
+//`define __INTERACTIVE__
+
+// performance measurement:
+//
+// The performance measurement can be done in the simulation level by
+// eabling the __PERFMETER__ define, in order to check how the clock cycles
+// are used in the core. The report is displayed when the FINISH_REQ signal
+// is actived by the UART.
+
+
+// icarus register debug:
+//
+// As most people observed, the icarus verilog does not dump the register
+// bank because icarus does not dump arrays by default. However, it is possible
+// activate this special option in order to dump the register bank. This
+// makes no effect in other simulators, but it appears as a warning.
+//`define __REGDUMP__
+
+// full harvard architecture:
+//
+// When defined, enforses that the instruction and data buses are connected
+// to fully separate memory banks.  Although the darkriscv always use
+// harvard architecture in the core, with separate instruction and data
+// buses, the logic levels outside the core can use different architectures
+// and concepts, including von neumann, wich a single bus shared by
+// instruction and data access, as well a mix between harvard and von
+// neumann, which is possible in the case of dual-port blockrams, where is
+// possible connect two separate buses in a single memory bank.  the main
+// advantage of a single memory bank is that the .text and .data areas can
+// be better allocated, but in this case is not possible protect the .text
+// area as in the case of separate memory banks.
+// WARNING: this setup must match with the src/darksocv.ld.src file!
+//`define __HARVARD__
+
+// memory size:
+//
+// The current test firmware requires 8KB of memory, but it depends of the
+// memory layout: whenthe I-bus and D-bus are both attached in the same BRAM,
+// it is possible assume that 8MB is enough, but when the I-bus and D-bus are
+// attached to separate memories, the I-BRAM requires around 5KB and the
+// D-BRAM requires about 1.5KB. A safe solution is just simply and set the
+// size as the same.
+// The size is defined as 2**MLEN, i.e. the address bits used in the memory.
+// WARNING: this setup must match with the src/darksocv.ld.src file!
+
+
+
+    
+    //`define MLEN 15 // MEM[12:0] -> 32KBytes LENGTH = 0x8000 for coremark!
+
+
+// read-modify-write cycle:
+//
+// Generate RMW cycles when writing in the memory. This option basically
+// makes the read and write cycle symmetric and may work better in the cases
+// when the 32-bit memory does not support separate write enables for
+// separate 16-bit and 8-bit words. Typically, the RMW cycle results in a
+// decrease of 5% in the performance (not the clock, but the instruction
+// pipeline eficiency) due to memory wait-states.
+//`define __RMW_CYCLE__
+
+// UART speed is set in bits per second, typically 115200 bps:
+//`define __UARTSPEED__ 115200
+
+// UART queue:
+//
+// Optional RX/TX queue for communication oriented applications. The concept
+// foreseen 256 bytes for TX and RX, in a way that frames up to 128 bytes can
+// be easily exchanged via UART.
+//`define __UARTQUEUE__
+
+////////////////////////////////////////////////////////////////////////////////
+// board definition:
+////////////////////////////////////////////////////////////////////////////////
+
+// The board is automatically defined in the xst/xise files via Makefile or
+// ISE. Case it is not the case, please define you board name here:
+//`define AVNET_MICROBOARD_LX9
+//`define XILINX_AC701_A200
+//`define QMTECH_SDRAM_LX16
+
+// the following defines are automatically defined:
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// the board definition is done on the tool, otherwise we assume simulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// to port to a new board, use TESTMODE to test:
+// - the reset button is working
+// - the LED is blinking at 1Hz
+// - the UART is looped
+//`define TESTMODE
+
+
+    
+    
+
+
+
+
+
+
+// darkuart baudrate automtically calculated according to board clock:
+
+
+  
+
+
+
+
+// register number depends of CPU type RV32[EI] and number of threads
+
+
+
+
+
+
+
+
+
+
+    
+
+
+        
+
+
+`line 2 "rtl/design.sv" 2
+
+`line 1 "rtl/../testbench/intf_mem_rd.sv" 1
+/* ============================================
+    darksocv inputs and outputs interface
+ ============================================ */
+
+interface intf_mem_rd(input clk);
+    logic [31:0]    IADDR;
+    logic [31:0]    IDATA;
+endinterface
+`line 3 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/top_hdl.sv" 1
+//`include "uvm_macros.svh"
+import uvm_pkg::*;
+
+module top();
+
+   // external clk generator
+   reg CLK = 1;
+   always begin
+      #(500e6/100000000) CLK = !CLK;
+   end 
+   
+   // Interface
+   /*
+   intf_soc intf(CLK);
+   intf_soc intf2(CLK);
+   intf_mem_rd mem_rd_chan(CLK);
+   
+   //logic reset_x;
+
+   assign mem_rd_chan.IADDR = soc0.IADDR;
+   assign mem_rd_chan.IDATA = soc0.IDATA;
+   */
+
+   // DUT connection	
+   darksocv soc0 (
+				  .XCLK(CLK),
+				  .XRES(0),
+     			  .UART_RXD(0),
+				  .UART_TXD(0),
+				  .LED(0),
+				  .DEBUG(0));
+
+   // generate dumps
+   /*
+   genvar q;
+   generate 
+      for(q=0; q<32; q=q+1)begin 
+    	 logic [31:0] reg_dmpd;
+         assign reg_dmpd = soc0.core0.REGS[q];
+      end
+   endgenerate
+   
+   genvar			  inst;
+   generate
+      // for(inst=(2**`MLEN/4)-5; inst<(2**`MLEN/4); inst=inst+1)begin
+      for(inst=0; inst<20; inst=inst+1)begin
+         logic [31:0] inst_dmpd;
+         assign inst_dmpd = soc0.MEM[inst];
+      end
+   endgenerate
+
+   // .vcd generator
+   */
+
+   initial begin
+        $dumpfile("darksocv.vcd");
+        $dumpvars();
+        /*
+        uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
+        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
+        uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
+        */
+     	//reset_x = 1;
+     	//#3000
+     	//reset_x = 0;
+   end
+   
+   //Test case
+   //testcase test(intf);  Para el port a UVM esta linea se pone en el top_hvl  
+
+   /*
+   logic [31:0] scbdreg_dmpd1;
+   logic [31:0]	scbdreg_dmpd0;
+   logic [31:0]	scbdreg_dmpd2;
+   logic [31:0]	scbdreg_dmpd3;
+   logic [31:0]	scbdreg_dmpd4;
+   logic [31:0]	scbdreg_dmpd5;
+   logic [31:0]	scbdreg_dmpd6;
+   logic [31:0]	scbdreg_dmpd7;
+   logic [31:0]	scbdreg_dmpd8;
+   logic [31:0]	scbdreg_dmpd9;
+   logic [31:0]	scbdreg_dmpd10;
+   logic [31:0]	scbdreg_dmpd11;
+   logic [31:0]	scbdreg_dmpd12;
+   logic [31:0]	scbdreg_dmpd13;
+   logic [31:0]	scbdreg_dmpd14;
+   logic [31:0]	scbdreg_dmpd15;
+   logic [31:0]	scbdreg_dmpd16;
+   logic [31:0]	scbdreg_dmpd17;
+   logic [31:0]	scbdreg_dmpd18;
+   logic [31:0]	scbdreg_dmpd19;
+   logic [31:0]	scbdreg_dmpd20;
+   logic [31:0]	scbdreg_dmpd21;
+   logic [31:0]	scbdreg_dmpd22;
+   logic [31:0]	scbdreg_dmpd23;
+   logic [31:0]	scbdreg_dmpd24;
+   logic [31:0]	scbdreg_dmpd25;
+   logic [31:0]	scbdreg_dmpd26;
+   logic [31:0]	scbdreg_dmpd27;
+   logic [31:0]	scbdreg_dmpd28;
+   logic [31:0]	scbdreg_dmpd29;
+   logic [31:0]	scbdreg_dmpd30;
+   logic [31:0]	scbdreg_dmpd31;  
+   */
+
+
+endmodule`line 4 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darksocv.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+`timescale 1ns / 1ps
+//`include "../config.vh" //MODIFIED: path
+
+module darksocv
+(
+    input        XCLK,      // external clock
+    input        XRES,      // external reset
+
+    input        UART_RXD,  // UART receive line
+    output       UART_TXD,  // UART transmit line
+
+    output [3:0] LED,       // on-board leds
+    output [3:0] DEBUG      // osciloscope
+);
+
+    wire CLK,RES;
+    
+    darkpll darkpll0(.XCLK(XCLK),.XRES(XRES),.CLK(CLK),.RES(RES));
+
+    // ro/rw memories
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    reg [31:0] MEM [0:2**12 /4-1]; // ro memory
+
+    // memory initialization
+
+    integer i;
+    initial
+    begin
+
+
+        for(i=0;i!=2**12 /4;i=i+1)
+        begin
+            MEM[i] = 32'd0;
+        end
+
+
+        // workaround for vivado: no path in simulation and .mem extension
+
+    
+
+
+
+
+      	$readmemh("darksocv.mem",MEM,0);	//MODIFIED: path
+
+    end
+
+
+
+    // darkriscv bus interface
+
+    wire [31:0] IADDR;
+    wire [31:0] DADDR;
+    wire [31:0] IDATA;
+    wire [31:0] DATAO;
+    wire [31:0] DATAI;
+    wire        WR,RD;
+    wire [3:0]  BE;
+
+
+
+
+
+
+
+
+    wire [31:0] IOMUX [0:4];
+
+    reg  [15:0] GPIOFF = 0;
+    reg  [15:0] LEDFF  = 0;
+
+    wire HLT;
+
+    // instruction bus
+
+    reg [31:0] ROMFF;
+
+    wire IHIT = 1;
+
+    reg [31:0] ROMFF2 = 0;
+    reg        HLT2   = 0;
+
+    always@(posedge CLK) // stage #0.5
+    begin
+        if(HLT^HLT2)
+        begin
+            ROMFF2 <= ROMFF;
+        end
+
+        HLT2 <= HLT;
+    end
+
+    assign IDATA = HLT2 ? ROMFF2 : ROMFF;
+
+    always@(posedge CLK) // stage #0.5
+    begin
+
+
+
+        ROMFF <= MEM[IADDR[12 -1:2]];
+
+    end
+
+    // data bus
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    reg [31:0] RAMFF;
+
+    // for single phase clock: 1 wait state in read op always required!
+
+    reg [1:0] DACK = 0;
+
+    wire WHIT = 1;
+    wire DHIT = !((RD
+            
+
+
+                    ) && DACK!=1); // the WR operatio does not need ws. in this config.
+
+    always@(posedge CLK) // stage #1.0
+    begin
+        DACK <= RES ? 0 : DACK ? DACK-1 : (RD
+            
+
+
+                    ) ? 1 : 0; // wait-states
+    end
+
+    always@(posedge CLK) // stage #1.5
+    begin
+
+
+
+        RAMFF <= MEM[DADDR[12 -1:2]];
+
+    end
+
+    //assign DATAI = DADDR[31] ? IOMUX  : RAM[DADDR[`MLEN-1:2]];
+
+    reg [31:0] IOMUXFF = 0;
+    reg [31:0] XADDR   = 0;
+
+    //individual byte/word/long selection, thanks to HYF!
+
+    always@(posedge CLK)
+    begin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // write-only operation w/ 0 wait-states:
+    
+
+
+
+
+
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[3]) MEM[DADDR[12 -1:2]][3 * 8 + 7: 3 * 8] <= DATAO[3 * 8 + 7: 3 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[2]) MEM[DADDR[12 -1:2]][2 * 8 + 7: 2 * 8] <= DATAO[2 * 8 + 7: 2 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[1]) MEM[DADDR[12 -1:2]][1 * 8 + 7: 1 * 8] <= DATAO[1 * 8 + 7: 1 * 8];
+        if(!HLT&&WR&&DADDR[31]==0&&/*DADDR[`MLEN-1]==1&&*/BE[0]) MEM[DADDR[12 -1:2]][0 * 8 + 7: 0 * 8] <= DATAO[0 * 8 + 7: 0 * 8];
+
+
+
+        XADDR <= DADDR; // 1 clock delayed
+        IOMUXFF <= IOMUX[DADDR[4:2]==3'b100 ? 3'b100 : DADDR[3:2]]; // read w/ 2 wait-states
+    end
+
+    //assign DATAI = DADDR[31] ? IOMUX[DADDR[3:2]]  : RAMFF;
+    //assign DATAI = DADDR[31] ? IOMUXFF : RAMFF;
+    assign DATAI = XADDR[31] ? IOMUX[XADDR[4:2]==3'b100 ? 3'b100 : XADDR[3:2]] : RAMFF;
+
+    // io for debug
+
+    reg [7:0] IREQ = 0;
+    reg [7:0] IACK = 0;
+
+    reg [31:0] TIMERFF = 0;
+    reg [31:0] TIMEUS = 0;
+
+    wire [7:0] BOARD_IRQ;
+
+    wire   [7:0] BOARD_ID = 0;              // board id
+    wire   [7:0] BOARD_CM = (100000000/2000000);    // board clock (MHz)
+
+
+
+
+
+    wire   [7:0] CORE_ID = 0;                       // core id
+
+
+    assign IOMUX[0] = { BOARD_IRQ, CORE_ID, BOARD_CM, BOARD_ID };
+    //assign IOMUX[1] = from UART!
+    assign IOMUX[2] = { GPIOFF, LEDFF };
+    assign IOMUX[3] = TIMERFF;
+    assign IOMUX[4] = TIMEUS;
+
+    reg [31:0] TIMER = 0;
+
+    reg XTIMER = 0;
+
+    always@(posedge CLK)
+    begin
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1000)
+        begin
+            LEDFF <= DATAO[15:0];
+        end
+
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1010)
+        begin
+            GPIOFF <= DATAO[31:16];
+        end
+
+        if(RES)
+            TIMERFF <= (100000000/1000000)-1; // timer set to 1MHz by default
+        else
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b1100)
+        begin
+            TIMERFF <= DATAO[31:0];
+        end
+
+        if(RES)
+            IACK <= 0;
+        else
+        if(WR&&DADDR[31]&&DADDR[3:0]==4'b0011)
+        begin
+            //$display("clear io.irq = %x (ireq=%x, iack=%x)",DATAO[32:24],IREQ,IACK);
+
+            IACK[7] <= DATAO[7+24] ? IREQ[7] : IACK[7];
+            IACK[6] <= DATAO[6+24] ? IREQ[6] : IACK[6];
+            IACK[5] <= DATAO[5+24] ? IREQ[5] : IACK[5];
+            IACK[4] <= DATAO[4+24] ? IREQ[4] : IACK[4];
+            IACK[3] <= DATAO[3+24] ? IREQ[3] : IACK[3];
+            IACK[2] <= DATAO[2+24] ? IREQ[2] : IACK[2];
+            IACK[1] <= DATAO[1+24] ? IREQ[1] : IACK[1];
+            IACK[0] <= DATAO[0+24] ? IREQ[0] : IACK[0];
+        end
+
+        if(RES)
+            IREQ <= 0;
+        else
+        if(TIMERFF)
+        begin
+            TIMER <= TIMER ? TIMER-1 : TIMERFF;
+
+            if(TIMER==0 && IREQ==IACK)
+            begin
+                IREQ[7] <= !IACK[7];
+
+                //$display("timr0 set");
+            end
+
+            XTIMER  <= XTIMER+(TIMER==0);
+            TIMEUS <= (TIMER == TIMERFF) ? TIMEUS + 1'b1 : TIMEUS;
+        end
+    end
+
+    assign BOARD_IRQ = IREQ^IACK;
+
+    assign HLT = !IHIT||!DHIT||!WHIT;
+
+    // darkuart
+
+    wire [3:0] UDEBUG;
+
+    wire FINISH_REQ;
+
+    darkuart
+//    #(
+//      .BAUD((`BOARD_CK/115200))
+//    )
+    uart0
+    (
+      .CLK(CLK),
+      .RES(RES),
+      .RD(!HLT&&RD&&DADDR[31]&&DADDR[3:2]==1),
+      .WR(!HLT&&WR&&DADDR[31]&&DADDR[3:2]==1),
+      .BE(BE),
+      .DATAI(DATAO),
+      .DATAO(IOMUX[1]),
+      //.IRQ(UART_IRQ),
+
+
+      .RXD(UART_RXD),
+      .TXD(UART_TXD),
+
+		
+      .FINISH_REQ(FINISH_REQ),
+
+      .DEBUG(UDEBUG)
+    );
+
+    // darkriscv
+
+    wire [3:0] KDEBUG;
+
+    wire IDLE;
+
+    darkriscv
+//    #(
+//        .RESET_PC(32'h00000000),
+//        .RESET_SP(32'h00002000)
+//    )
+    core0
+    (
+        .CLK(CLK),
+        .RES(RES),
+        .HLT(HLT),
+
+
+
+
+
+
+        .IDATA(IDATA),
+        .IADDR(IADDR),
+        .DADDR(DADDR),
+
+
+
+
+
+
+
+        .DATAI(DATAI),
+        .DATAO(DATAO),
+        .BE(BE),
+        .WR(WR),
+        .RD(RD),
+
+
+        .IDLE(IDLE),
+
+        .DEBUG(KDEBUG)
+    );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    assign LED   = LEDFF[3:0];
+
+	 
+    assign DEBUG = { XTIMER, KDEBUG[2:0] }; // UDEBUG;
+
+
+
+    
+
+        integer clocks=0, running=0, load=0, store=0, flush=0, halt=0;
+
+    
+
+
+
+
+
+
+        always@(posedge CLK)
+        begin
+            if(!RES)
+            begin
+                clocks = clocks+1;
+
+                if(HLT)
+                begin
+                         if(WR)	store = store+1;
+                    else if(RD)	load  = load +1;
+                    else 		halt  = halt +1;
+                end
+                else
+                if(IDLE)
+                begin
+                    flush=flush+1;
+                end
+                else
+                begin
+
+        
+
+
+
+
+
+
+
+
+
+                    running = running +1;
+                end
+
+                if(FINISH_REQ)
+                begin
+                    $display("****************************************************************************");
+                    $display("DarkRISCV Pipeline Report (%0d clocks):",clocks);
+
+                    $display("core0: %0d%% run, %0d%% wait (%0d%% i-bus, %0d%% d-bus/rd, %0d%% d-bus/wr), %0d%% idle",
+                        100.0*running/clocks,
+                        100.0*(load+store+halt)/clocks,
+                        100.0*halt/clocks,
+                        100.0*load/clocks,
+                        100.0*store/clocks,
+                        100.0*flush/clocks);
+
+         
+
+
+
+
+                    $display("****************************************************************************");
+                    $finish();
+                end
+            end
+        end
+
+
+
+
+
+
+endmodule
+`line 5 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darkriscv.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ *
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+`timescale 1ns / 1ps
+
+// implemented opcodes:
+
+
+
+
+
+
+
+
+
+
+
+
+// proprietary extension (custom-0)
+
+
+// not implemented opcodes:
+//`define FCC     7'b00011_11      // fencex
+
+
+// configuration file
+
+//`include "config.vh"  //MODIFIED: path
+
+module darkriscv
+//#(
+//    parameter [31:0] RESET_PC = 0,
+//    parameter [31:0] RESET_SP = 4096
+//)
+(
+    input             CLK,   // clock
+    input             RES,   // reset
+    input             HLT,   // halt
+
+
+
+
+
+
+
+
+
+    input      [31:0] IDATA, // instruction data bus
+    output     [31:0] IADDR, // instruction addr bus
+
+    input      [31:0] DATAI, // data bus (input)
+    output     [31:0] DATAO, // data bus (output)
+    output     [31:0] DADDR, // addr bus
+
+
+
+
+
+    output     [ 3:0] BE,   // byte enable
+    output            WR,    // write enable
+    output            RD,    // read enable
+
+
+    output            IDLE,   // idle output
+
+    output [3:0]  DEBUG       // old-school osciloscope based debug! :)
+);
+
+    // dummy 32-bit words w/ all-0s and all-1s:
+
+    wire [31:0] ALL0  = 0;
+    wire [31:0] ALL1  = -1;
+
+    reg XRES = 1;
+
+
+
+
+
+
+
+    // decode: IDATA is break apart as described in the RV32I specification
+
+
+
+    reg [31:0] XIDATA;
+
+    reg XLUI, XAUIPC, XJAL, XJALR, XBCC, XLCC, XSCC, XMCC, XRCC, XCUS, XCCC; //, XFCC, XCCC;
+
+    reg [31:0] XSIMM;
+    reg [31:0] XUIMM;
+
+    always@(posedge CLK)
+    begin
+        XIDATA <= XRES ? 0 : HLT ? XIDATA : IDATA;
+
+        XLUI   <= XRES ? 0 : HLT ? XLUI   : IDATA[6:0]==7'b01101_11      ;
+        XAUIPC <= XRES ? 0 : HLT ? XAUIPC : IDATA[6:0]==7'b00101_11      ;
+        XJAL   <= XRES ? 0 : HLT ? XJAL   : IDATA[6:0]==7'b11011_11      ;
+        XJALR  <= XRES ? 0 : HLT ? XJALR  : IDATA[6:0]==7'b11001_11      ;
+
+        XBCC   <= XRES ? 0 : HLT ? XBCC   : IDATA[6:0]==7'b11000_11      ;
+        XLCC   <= XRES ? 0 : HLT ? XLCC   : IDATA[6:0]==7'b00000_11      ;
+        XSCC   <= XRES ? 0 : HLT ? XSCC   : IDATA[6:0]==7'b01000_11      ;
+        XMCC   <= XRES ? 0 : HLT ? XMCC   : IDATA[6:0]==7'b00100_11      ;
+
+        XRCC   <= XRES ? 0 : HLT ? XRCC   : IDATA[6:0]==7'b01100_11      ;
+        XCUS   <= XRES ? 0 : HLT ? XRCC   : IDATA[6:0]==7'b00010_11      ;
+        //XFCC   <= XRES ? 0 : HLT ? XFCC   : IDATA[6:0]==`FCC;
+        XCCC   <= XRES ? 0 : HLT ? XCCC   : IDATA[6:0]==7'b11100_11      ;
+
+        // signal extended immediate, according to the instruction type:
+
+        XSIMM  <= XRES ? 0 : HLT ? XSIMM :
+                 IDATA[6:0]==7'b01000_11       ? { IDATA[31] ? ALL1[31:12]:ALL0[31:12], IDATA[31:25],IDATA[11:7] } : // s-type
+                 IDATA[6:0]==7'b11000_11       ? { IDATA[31] ? ALL1[31:13]:ALL0[31:13], IDATA[31],IDATA[7],IDATA[30:25],IDATA[11:8],ALL0[0] } : // b-type
+                 IDATA[6:0]==7'b11011_11       ? { IDATA[31] ? ALL1[31:21]:ALL0[31:21], IDATA[31], IDATA[19:12], IDATA[20], IDATA[30:21], ALL0[0] } : // j-type
+                 IDATA[6:0]==7'b01101_11      ||
+                 IDATA[6:0]==7'b00101_11       ? { IDATA[31:12], ALL0[11:0] } : // u-type
+                                      { IDATA[31] ? ALL1[31:12]:ALL0[31:12], IDATA[31:20] }; // i-type
+        // non-signal extended immediate, according to the instruction type:
+
+        XUIMM  <= XRES ? 0: HLT ? XUIMM :
+                 IDATA[6:0]==7'b01000_11       ? { ALL0[31:12], IDATA[31:25],IDATA[11:7] } : // s-type
+                 IDATA[6:0]==7'b11000_11       ? { ALL0[31:13], IDATA[31],IDATA[7],IDATA[30:25],IDATA[11:8],ALL0[0] } : // b-type
+                 IDATA[6:0]==7'b11011_11       ? { ALL0[31:21], IDATA[31], IDATA[19:12], IDATA[20], IDATA[30:21], ALL0[0] } : // j-type
+                 IDATA[6:0]==7'b01101_11      ||
+                 IDATA[6:0]==7'b00101_11       ? { IDATA[31:12], ALL0[11:0] } : // u-type
+                                      { ALL0[31:12], IDATA[31:20] }; // i-type
+    end
+
+    reg [1:0] FLUSH = -1;  // flush instruction pipeline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+        wire [4:0] DPTR   = XRES ? 0 : XIDATA[11: 7]; // set SP_RESET when RES==1
+        wire [4:0] S1PTR  = XIDATA[19:15];
+        wire [4:0] S2PTR  = XIDATA[24:20];
+
+
+
+    wire [6:0] OPCODE = FLUSH ? 0 : XIDATA[6:0];
+    wire [2:0] FCT3   = XIDATA[14:12];
+    wire [6:0] FCT7   = XIDATA[31:25];
+
+    wire [31:0] SIMM  = XSIMM;
+    wire [31:0] UIMM  = XUIMM;
+
+    // main opcode decoder:
+
+    wire    LUI = FLUSH ? 0 : XLUI;   // OPCODE==7'b0110111;
+    wire  AUIPC = FLUSH ? 0 : XAUIPC; // OPCODE==7'b0010111;
+    wire    JAL = FLUSH ? 0 : XJAL;   // OPCODE==7'b1101111;
+    wire   JALR = FLUSH ? 0 : XJALR;  // OPCODE==7'b1100111;
+
+    wire    BCC = FLUSH ? 0 : XBCC; // OPCODE==7'b1100011; //FCT3
+    wire    LCC = FLUSH ? 0 : XLCC; // OPCODE==7'b0000011; //FCT3
+    wire    SCC = FLUSH ? 0 : XSCC; // OPCODE==7'b0100011; //FCT3
+    wire    MCC = FLUSH ? 0 : XMCC; // OPCODE==7'b0010011; //FCT3
+
+    wire    RCC = FLUSH ? 0 : XRCC; // OPCODE==7'b0110011; //FCT3
+    wire    CUS = FLUSH ? 0 : XCUS; // OPCODE==7'b0110011; //FCT3
+    //wire    FCC = FLUSH ? 0 : XFCC; // OPCODE==7'b0001111; //FCT3
+    wire    CCC = FLUSH ? 0 : XCCC; // OPCODE==7'b1110011; //FCT3
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        reg [31:0] NXPC2;       // 32-bit program counter t+2
+
+
+    
+
+
+        reg [31:0] REGS [0:31];	// general-purpose 32x32-bit registers (s1)
+
+
+
+    reg [31:0] NXPC;        // 32-bit program counter t+1
+    reg [31:0] PC;		    // 32-bit program counter t+0
+
+
+    integer i;
+    
+    initial for(i=0;i!=32;i=i+1) REGS[i] = 0;
+
+
+    // source-1 and source-1 register selection
+
+    wire          [31:0] U1REG = REGS[S1PTR];
+    wire          [31:0] U2REG = REGS[S2PTR];
+
+    wire signed   [31:0] S1REG = U1REG;
+    wire signed   [31:0] S2REG = U2REG;
+
+
+    // L-group of instructions (OPCODE==7'b0000011)
+
+
+
+
+
+
+
+    wire [31:0] LDATA = FCT3==0||FCT3==4 ? ( DADDR[1:0]==3 ? { FCT3==0&&DATAI[31] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[31:24] } :
+                                             DADDR[1:0]==2 ? { FCT3==0&&DATAI[23] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[23:16] } :
+                                             DADDR[1:0]==1 ? { FCT3==0&&DATAI[15] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[15: 8] } :
+                                                             { FCT3==0&&DATAI[ 7] ? ALL1[31: 8]:ALL0[31: 8] , DATAI[ 7: 0] } ):
+                        FCT3==1||FCT3==5 ? ( DADDR[1]==1   ? { FCT3==1&&DATAI[31] ? ALL1[31:16]:ALL0[31:16] , DATAI[31:16] } :
+                                                             { FCT3==1&&DATAI[15] ? ALL1[31:16]:ALL0[31:16] , DATAI[15: 0] } ) :
+                                             DATAI;
+
+
+    // S-group of instructions (OPCODE==7'b0100011)
+
+
+
+
+
+
+
+    wire [31:0] SDATA = FCT3==0 ? ( DADDR[1:0]==3 ? { U2REG[ 7: 0], ALL0 [23:0] } :
+                                    DADDR[1:0]==2 ? { ALL0 [31:24], U2REG[ 7:0], ALL0[15:0] } :
+                                    DADDR[1:0]==1 ? { ALL0 [31:16], U2REG[ 7:0], ALL0[7:0] } :
+                                                    { ALL0 [31: 8], U2REG[ 7:0] } ) :
+                        FCT3==1 ? ( DADDR[1]==1   ? { U2REG[15: 0], ALL0 [15:0] } :
+                                                    { ALL0 [31:16], U2REG[15:0] } ) :
+                                    U2REG;
+
+
+    // C-group: CSRRW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    wire EBRK = CCC && FCT3==0 && S2PTR==1;
+
+    // RM-group of instructions (OPCODEs==7'b0010011/7'b0110011), merged! src=immediate(M)/register(R)
+
+    wire signed [31:0] S2REGX = XMCC ? SIMM : S2REG;
+    wire        [31:0] U2REGX = XMCC ? UIMM : U2REG;
+
+    wire [31:0] RMDATA = FCT3==7 ? U1REG&S2REGX :
+                         FCT3==6 ? U1REG|S2REGX :
+                         FCT3==4 ? U1REG^S2REGX :
+                         FCT3==3 ? U1REG<U2REGX : // unsigned
+                         FCT3==2 ? S1REG<S2REGX : // signed
+                         FCT3==0 ? (XRCC&&FCT7[5] ? U1REG-S2REGX : U1REG+S2REGX) :
+                         FCT3==1 ? S1REG<<U2REGX[4:0] :
+                         //FCT3==5 ?
+                         !FCT7[5] ? S1REG>>U2REGX[4:0] :
+
+
+
+                                   $signed(S1REG)>>>U2REGX[4:0];  // (FCT7[5] ? U1REG>>>U2REG[4:0] :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // J/B-group of instructions (OPCODE==7'b1100011)
+
+    wire BMUX       = FCT3==7 && U1REG>=U2REG  || // bgeu
+                      FCT3==6 && U1REG< U2REGX || // bltu
+                      FCT3==5 && S1REG>=S2REG  || // bge
+                      FCT3==4 && S1REG< S2REGX || // blt
+                      FCT3==1 && U1REG!=U2REGX || // bne
+                      FCT3==0 && U1REG==U2REGX; // beq
+
+    wire [31:0] PCSIMM = PC+SIMM;
+    wire        JREQ = JAL||JALR||(BCC && BMUX);
+    wire [31:0] JVAL = JALR ? DADDR : PCSIMM; // SIMM + (JALR ? U1REG : PC);
+
+    always@(posedge CLK)
+    begin
+
+
+
+
+        XRES <= RES;
+
+
+
+	    FLUSH <= XRES ? 2 : HLT ? FLUSH :        // reset and halt
+	                       FLUSH ? FLUSH-1 :
+    
+
+
+	                       JREQ ? 2 : 0;  // flush the pipeline!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        REGS[DPTR] <=   XRES||DPTR[4:0]==0 ? 0  :        // reset sp
+
+                       HLT ? REGS[DPTR] :        // halt
+                       LCC ? LDATA :
+                     AUIPC ? PCSIMM :
+                      JAL||
+                      JALR ? NXPC :
+                       LUI ? SIMM :
+                  MCC||RCC ? RMDATA:
+
+
+
+
+
+
+
+                             REGS[DPTR];
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+        NXPC <= /*XRES ? `__RESETPC__ :*/ HLT ? NXPC : NXPC2;
+
+	    NXPC2 <=  XRES ? 32'd0 : HLT ? NXPC2 :   // reset and halt
+        
+
+
+
+	                 JREQ ? JVAL :                    // jmp/bra
+	                        NXPC2+4;                   // normal flow
+
+
+
+
+
+
+
+
+
+
+
+
+        PC   <= /*XRES ? `__RESETPC__ :*/ HLT ? PC : NXPC; // current program counter
+
+
+
+        if(EBRK)
+        begin
+            $display("breakpoint at %x",PC);
+            $stop();
+        end
+        
+        if(!FLUSH && IDATA===32'dx)
+        begin
+            $display("invalid IDATA at %x",PC);
+            $stop();  
+        end
+        
+        if(LCC && !HLT && DATAI===32'dx)
+        begin
+            $display("invalid DATAI@%x at %x",DADDR,PC);
+            $stop();
+        end
+
+
+    end
+
+    // IO and memory interface
+
+    assign DATAO = SDATA; // SCC ? SDATA : 0;
+    assign DADDR = U1REG + SIMM; // (SCC||LCC) ? U1REG + SIMM : 0;
+
+    // based in the Scc and Lcc
+
+
+
+
+
+
+
+    assign RD = LCC;
+    assign WR = SCC;
+    assign BE = FCT3==0||FCT3==4 ? ( DADDR[1:0]==3 ? 4'b1000 : // sb/lb
+                                     DADDR[1:0]==2 ? 4'b0100 :
+                                     DADDR[1:0]==1 ? 4'b0010 :
+                                                     4'b0001 ) :
+                FCT3==1||FCT3==5 ? ( DADDR[1]==1   ? 4'b1100 : // sh/lh
+                                                     4'b0011 ) :
+                                                     4'b1111; // sw/lw
+
+
+
+    
+
+
+        assign IADDR = NXPC2;
+
+
+
+
+
+    assign IDLE = |FLUSH;
+
+
+
+    assign DEBUG = { XRES, IDLE, SCC, LCC };
+
+
+endmodule
+`line 6 "rtl/design.sv" 2
+
+`line 1 "rtl/../rtl/darkuart.v" 1
+/*
+ * Copyright (c) 2018, Marcelo Samsoniuk
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ * * Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ * 
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions and the following disclaimer in the documentation
+ *   and/or other materials provided with the distribution.
+ * 
+ * * Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ */
+
+`timescale 1ns / 1ps
+//`include "config.vh"				// MODIFIED: path
+
+// the following defines are automatically defined:
+/*
+`ifdef __ICARUS__
+    `define SIMULATION 1
+`endif
+
+`ifdef XILINX_ISIM
+    `define SIMULATION 2
+`endif
+
+`ifdef MODEL_TECH
+    `define SIMULATION 3
+`endif
+
+`ifdef XILINX_SIMULATOR
+    `define SIMULATION 4
+`endif
+*/
+// uart states
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// UART registers
+// 
+// 0: status register ro, 1 = xmit busy, 2 = recv bfusy
+// 1: buffer register rw, w = xmit fifo, r = recv fifo
+// 2: baud rate msb   rw (not used)
+// 3: baud rate lsb   rw (not used)
+
+module darkuart
+//#(
+// parameter [15:0] BAUD = 0
+//) 
+(
+    input           CLK,            // clock
+    input           RES,            // reset
+        
+    input           RD,             // bus read
+    input           WR,             // bus write
+    input  [ 3:0]   BE,             // byte enable
+    input  [31:0]   DATAI,          // data input
+    output [31:0]   DATAO,          // data output
+    output          IRQ,            // interrupt req
+
+    input           RXD,            // UART recv line
+    output          TXD,            // UART xmit line
+
+
+    output reg	    FINISH_REQ = 0,
+
+    
+    output [3:0]    DEBUG           // osc debug
+);
+
+    reg [15:0]  UART_TIMER = ((100000000/115200));  // baud rate from config.vh
+    reg         UART_IREQ  = 0;     // UART interrupt req
+    reg         UART_IACK  = 0;     // UART interrupt ack
+
+
+
+
+
+
+
+    reg [ 7:0]  UART_XFIFO = 0;     // UART TX FIFO
+    reg         UART_XREQ  = 0;     // xmit request (core side)
+    reg         UART_XACK  = 0;     // xmit ack (uart side)
+
+    reg [15:0]  UART_XBAUD = 0;     // baud rate counter
+    reg [ 3:0]  UART_XSTATE= 0;     // idle state
+
+
+
+
+
+
+
+    reg [ 7:0]  UART_RFIFO = 0;     // UART RX FIFO
+    reg         UART_RREQ  = 0;     // request (uart side)
+    reg         UART_RACK  = 0;     // ack (core side)
+
+    reg [15:0]  UART_RBAUD = 0;     // baud rate counter
+    reg [ 3:0]  UART_RSTATE= 0;     // idle state
+
+    reg [2:0]   UART_RXDFF = -1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    wire [7:0]  UART_STATE = { 6'd0, UART_RREQ!=UART_RACK, UART_XREQ!=UART_XACK };    
+
+    reg [7:0]   UART_STATEFF = 0;
+
+    // bus interface
+
+    reg [31:0] DATAOFF = 0;
+
+    reg [1:0] IOREQ = 0;
+    reg [1:0] IOACK = 0;
+
+    always@(posedge CLK)
+    begin
+        if(WR)
+        begin
+            if(BE[1])
+            begin
+
+
+                // print the UART output to console! :)
+                if(DATAI[15:8]!=13) // remove the '\r'
+                begin
+                    UART_XFIFO <= DATAI[15:8];
+                    $write("%c",DATAI[15:8]);
+                    $fflush();
+                    
+                    if(IOREQ==1&&DATAI[15:8]==" ")
+                    begin
+                        $fflush(32'h8000_0001);
+                        IOREQ <= 2;
+                    end
+                    else
+                        IOREQ <= 0;
+                end
+                
+                //if(DATAI[15:8]=="#") // break point
+                //begin
+                //    $display("[checkpoint #]");
+                //    $stop();
+                //end
+                
+                if(DATAI[15:8]==">") // prompt '>'
+                begin
+                
+    
+                    $display(" the __INTERACTIVE__ option is disabled, ending simulation...");
+                    FINISH_REQ <= 1;
+
+                    if(IOACK==0) IOREQ <= 1;
+                end
+
+
+
+
+
+
+
+
+
+
+
+
+            end
+            //if(BE[2]) UART_TIMER[ 7:0] <= DATAI[23:16];
+            //if(BE[3]) UART_TIMER[15:8] <= DATAI[31:24];           
+        end
+    
+        if(RES)
+        begin
+            UART_RACK <= UART_RREQ;
+            UART_STATEFF <= UART_STATE;
+        end
+        else
+        if(RD)
+        begin
+
+
+
+            if(BE[1]) UART_RACK     <= UART_RREQ; // fifo ready
+
+            if(BE[0]) UART_STATEFF <= UART_STATE; // state update, clear irq
+        end
+    end
+    
+    assign IRQ   = |(UART_STATE^UART_STATEFF);
+
+
+
+    assign DATAO = { UART_TIMER, UART_RFIFO, UART_STATE };
+
+
+    // xmit path: 6(IDLE), 7(START), 8, 9, 10, 11, 12, 13, 14, 15, 0(STOP), 1(ACK)
+    
+    always@(posedge CLK)
+    begin    
+        UART_XBAUD <= UART_XSTATE==6 ? UART_TIMER :      // xbaud=timer
+                      UART_XBAUD ? UART_XBAUD-1 : UART_TIMER;           // while() { while(xbaud--); xbaud=timer }
+
+        UART_XSTATE <= RES||UART_XSTATE==1  ? 6 :
+                            UART_XSTATE==6 ? UART_XSTATE+(UART_XREQ!=UART_XACK) :
+                                                            UART_XSTATE+(UART_XBAUD==0);
+
+
+
+        UART_XACK   <= RES||UART_XSTATE==1  ? UART_XREQ : UART_XACK;
+
+    end
+
+
+
+
+
+
+    assign TXD = UART_XSTATE[3] ? UART_XFIFO[UART_XSTATE[2:0]] : UART_XSTATE==7 ? 0 : 1;
+
+
+    // recv path: 6(IDLE), 7(START), 8, 9, 10, 11, 12, 13, 14, 15, 0(STOP), 1(ACK)
+
+    always@(posedge CLK)
+    begin
+        UART_RXDFF <= (UART_RXDFF<<1)|RXD;
+
+        UART_RBAUD <= UART_RSTATE==6 ? { 1'b0, UART_TIMER[15:1] } :    // rbaud=timer/2
+                      UART_RBAUD ? UART_RBAUD-1 : UART_TIMER;               // while() { while(rbaud--); rbaud=timer }
+
+        UART_RSTATE <= RES||UART_RSTATE==1  ? 6 :
+                            UART_RSTATE==6 ? UART_RSTATE+(UART_RXDFF[2:1]==2'b10) : // start bit detection
+                                                            UART_RSTATE+(UART_RBAUD==0);
+                                                            
+
+
+
+
+
+
+
+        UART_RREQ <= (IOACK==2 || UART_RSTATE==1) ? !UART_RACK : UART_RREQ;
+
+        if(UART_RSTATE[3]) 
+        begin
+
+
+
+            UART_RFIFO[UART_RSTATE[2:0]] <= UART_RXDFF[2];
+
+        end
+
+        else
+        if(IOACK==1)
+        begin
+            UART_RFIFO <= $fgetc(32'h8000_0000);
+            IOACK <= 2;
+        end
+        else
+        if(IOACK==2)
+        begin
+            IOACK <= UART_RREQ^UART_RACK ? 3 : 2;
+        end
+        else
+        if(IOACK==3)
+        begin
+            IOACK <= UART_RRE
