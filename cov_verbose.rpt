@@ -1,0 +1,209 @@
+                             ::::::::::::::::::::::::::::::::::::::::::::::::::
+                             ::                                              ::
+                             ::  Covered -- Verilog Coverage Verbose Report  ::
+                             ::                                              ::
+                             ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   GENERAL INFORMATION   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Report generated from CDD file : /home/aqua/Desktop/Project_Dsim/darkrisc_tropical_cr/cov.cdd
+
+* Reported by                    : Module
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   LINE COVERAGE RESULTS   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Module/Task/Function      Filename                 Hit/ Miss/Total    Percent hit
+---------------------------------------------------------------------------------------------------------------------
+  $root                   NA                         0/    0/    0      100%
+  top                     top_hdl.sv                 1/    0/    1      100%
+  darksocv                darksocv.v                45/   20/   65       69%
+  darkriscv               darkriscv.v               69/    0/   69      100%
+---------------------------------------------------------------------------------------------------------------------
+  Accumulated                                      115/   20/  135       85%
+---------------------------------------------------------------------------------------------------------------------
+
+    Module: top, File: rtl/top_hdl.sv
+    -------------------------------------------------------------------------------------------------------------
+    Hit Lines
+
+            9:    CLK = !CLK
+
+
+    Module: darksocv, File: rtl/darksocv.v
+    -------------------------------------------------------------------------------------------------------------
+    Hit Lines
+
+          138:    IHIT = 1
+          143:    @(posedge CLK)
+          145:    if( HLT ^ HLT2 )
+          147:    ROMFF2 <= ROMFF
+          150:    HLT2 <= HLT
+          153:    assign IDATA = HLT2 ? ROMFF2 : ROMFF
+          155:    @(posedge CLK)
+          160:    ROMFF <= MEM[IADDR[12 - 1:2]]
+          206:    WHIT = 1
+          207:    DHIT = !( RD && ...
+          213:    @(posedge CLK)
+          215:    DACK <= RES ? 0 : DACK ? DACK - 1 :  RD ? ...
+          222:    @(posedge CLK)
+          227:    RAMFF <= MEM[DADDR[12 - 1:2]]
+          238:    @(posedge CLK)
+          268:    if( !HLT &&  WR && DADDR[31] == 0 && BE[3] )
+          269:    if( !HLT &&  WR && DADDR[31] == 0 && BE[2] )
+          270:    if( !HLT &&  WR && DADDR[31] == 0 && BE[1] )
+          271:    if( !HLT &&  WR && DADDR[31] == 0 && BE[0] )
+          275:    XADDR <= DADDR
+          276:    IOMUXFF <= IOMUX[DADDR[4:2] == 3'b100 ? 3'b100 : DADDR[3:2]]
+          281:    assign DATAI = XADDR[31] ? IOMUX[XADDR[4:2] == 3'b100 ? 3'b100 : XADDR[3:2]] : RAMFF
+          293:    BOARD_ID = 0
+          294:    BOARD_CM = (100000000 / 2000000)
+          300:    CORE_ID = 0
+          303:    assign IOMUX[0] = {BOARD_IRQ, CORE_ID, BOARD_CM, BOARD_ID}
+          305:    assign IOMUX[2] = {GPIOFF, LEDFF}
+          306:    assign IOMUX[3] = TIMERFF
+          307:    assign IOMUX[4] = TIMEUS
+          313:    @(posedge CLK)
+          315:    if(  WR && DADDR[31] && DADDR[3:0] == 4'b1000 )
+          320:    if(  WR && DADDR[31] && DADDR[3:0] == 4'b1010 )
+          325:    if( RES )
+          326:    TIMERFF <= (100000000 / 1000000) - 1
+          328:    if(  WR && DADDR[31] && DADDR[3:0] == 4'b1100 )
+          333:    if( RES )
+          334:    IACK <= 0
+          336:    if(  WR && DADDR[31] && DADDR[3:0] == 4'b11 )
+          350:    if( RES )
+          351:    IREQ <= 0
+          353:    if( TIMERFF )
+          369:    assign BOARD_IRQ = IREQ ^ IACK
+          371:    assign HLT = !IHIT || !DHIT || !WHIT
+          469:    assign LED = LEDFF[3:0]
+          472:    assign DEBUG = {XTIMER, KDEBUG[2:0]}
+
+
+    Module: darkriscv, File: rtl/darkriscv.v
+    -------------------------------------------------------------------------------------------------------------
+    Hit Lines
+
+           98:    ALL0 = 0
+           99:    ALL1 = -1 
+          120:    @(posedge CLK)
+          122:    XIDATA <= XRES ? 0 : HLT ? XIDATA : IDATA
+          124:    XLUI <= XRES ? 0 : HLT ? XLUI : IDATA[6:0] == 7'b110111
+          125:    XAUIPC <= XRES ? 0 : HLT ? XAUIPC : IDATA[6:0] == 7'b10111
+          126:    XJAL <= XRES ? 0 : HLT ? XJAL : IDATA[6:0] == 7'b1101111
+          127:    XJALR <= XRES ? 0 : HLT ? XJALR : IDATA[6:0] == 7'b1100111
+          129:    XBCC <= XRES ? 0 : HLT ? XBCC : IDATA[6:0] == 7'b1100011
+          130:    XLCC <= XRES ? 0 : HLT ? XLCC : IDATA[6:0] == 7'b11
+          131:    XSCC <= XRES ? 0 : HLT ? XSCC : IDATA[6:0] == 7'b100011
+          132:    XMCC <= XRES ? 0 : HLT ? XMCC : IDATA[6:0] == 7'b10011
+          134:    XRCC <= XRES ? 0 : HLT ? XRCC : IDATA[6:0] == 7'b110011
+          135:    XCUS <= XRES ? 0 : HLT ? XRCC : IDATA[6:0] == 7'b1011
+          137:    XCCC <= XRES ? 0 : HLT ? XCCC : IDATA[6:0] == 7'b1110011
+          141:    XSIMM <= XRES ? 0 : HLT ? XSIMM : ...
+          150:    XUIMM <= XRES ? 0 : HLT ? XUIMM : ...
+          231:    DPTR = XRES ? 0 : XIDATA[11:7]
+          232:    S1PTR = XIDATA[19:15]
+          233:    S2PTR = XIDATA[24:20]
+          237:    OPCODE = FLUSH ? 0 : XIDATA[6:0]
+          238:    FCT3 = XIDATA[14:12]
+          239:    FCT7 = XIDATA[31:25]
+          241:    SIMM = XSIMM
+          242:    UIMM = XUIMM
+          246:    LUI = FLUSH ? 0 : XLUI
+          247:    AUIPC = FLUSH ? 0 : XAUIPC
+          248:    JAL = FLUSH ? 0 : XJAL
+          249:    JALR = FLUSH ? 0 : XJALR
+          251:    BCC = FLUSH ? 0 : XBCC
+          252:    LCC = FLUSH ? 0 : XLCC
+          253:    SCC = FLUSH ? 0 : XSCC
+          254:    MCC = FLUSH ? 0 : XMCC
+          256:    RCC = FLUSH ? 0 : XRCC
+          257:    CUS = FLUSH ? 0 : XCUS
+          259:    CCC = FLUSH ? 0 : XCCC
+          289:     i  = 0
+          289:     i  != 32
+          289:     i  =  i  + 1
+          289:    REGS[ i ] = 0
+          294:    U1REG = REGS[S1PTR]
+          295:    U2REG = REGS[S2PTR]
+          297:    S1REG = U1REG
+          298:    S2REG = U2REG
+          309:    LDATA = FCT3 == 0 || FCT3 == 4 ? DADDR[1:0] == 3 ? {FCT3 == 0 && DATAI[31] ? ALL1[31:8] : ALL0[31:8], DATAI[31:24]} : ...
+          326:    SDATA = FCT3 == 0 ? DADDR[1:0] == 3 ? {U2REG[7:0], ALL0[23:0]} : ...
+          354:    EBRK = CCC && FCT3 == 0 && S2PTR == 1
+          358:    S2REGX = XMCC ? SIMM : S2REG
+          359:    U2REGX = XMCC ? UIMM : U2REG
+          361:    RMDATA = FCT3 == 7 ? U1REG & S2REGX : ...
+          396:    BMUX = FCT3 == 7 && U1REG >= U2REG || ...
+          403:    PCSIMM =  PC + SIMM
+          404:    JREQ = JAL || JALR || (BCC && BMUX)
+          405:    JVAL = JALR ? DADDR : PCSIMM
+          407:    @(posedge CLK)
+          413:    XRES <= RES
+          417:    FLUSH <= XRES ? 2 : HLT ? FLUSH : ...
+          466:    REGS[DPTR] <= XRES || DPTR[4:0] == 0 ? 0 : ...
+          500:    NXPC <= HLT ? NXPC : NXPC2
+          502:    NXPC2 <= XRES ? 0 : HLT ? NXPC2 : ...
+          521:     PC <= HLT ?  PC : NXPC
+          549:    assign DATAO = SDATA
+          550:    assign DADDR = U1REG + SIMM
+          560:    assign  RD = LCC
+          561:    assign  WR = SCC
+          562:    assign  BE = FCT3 == 0 || FCT3 == 4 ? DADDR[1:0] == 3 ? 4'b1000 : ...
+          575:    assign IADDR = NXPC2
+          581:    assign IDLE = |FLUSH
+          585:    assign DEBUG = {XRES, IDLE, SCC, LCC}
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   TOGGLE COVERAGE RESULTS   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                                           Toggle 0 -> 1                       Toggle 1 -> 0
+Module/Task/Function      Filename                 Hit/ Miss/Total    Percent hit      Hit/ Miss/Total    Percent hit
+---------------------------------------------------------------------------------------------------------------------
+  $root                   NA                         0/    0/    0      100%             0/    0/    0      100%
+  top                     top_hdl.sv                 0/    1/    1        0%             1/    0/    1      100%
+  darksocv                darksocv.v                 6/  720/  726        1%             9/  717/  726        1%
+  darkriscv               darkriscv.v               19/  919/  938        2%            20/  918/  938        2%
+---------------------------------------------------------------------------------------------------------------------
+  Accumulated                                       25/ 1640/ 1665        2%            30/ 1635/ 1665        2%
+---------------------------------------------------------------------------------------------------------------------
+
+    Module: darksocv, File: rtl/darksocv.v
+    -------------------------------------------------------------------------------------------------------------
+    Signals getting 100% toggle coverage
+
+      ---------------------------------------------------------------------------------------------------------
+      XCLK                    
+      CLK                     
+      WR                      
+      RD                      
+      HLT                     
+      DHIT                    
+
+
+    Module: darkriscv, File: rtl/darkriscv.v
+    -------------------------------------------------------------------------------------------------------------
+    Signals getting 100% toggle coverage
+
+      ---------------------------------------------------------------------------------------------------------
+      CLK                     
+      HLT                     
+      WR                      
+      RD                      
+      XLCC                    
+      XSCC                    
+      XMCC                    
+      XRCC                    
+      LCC                     
+      SCC                     
+      MCC                     
+      RCC                     
+      BMUX                    
+
+
+
