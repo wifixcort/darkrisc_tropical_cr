@@ -32,7 +32,7 @@
 //`include "config.vh"				// MODIFIED: path
 
 // the following defines are automatically defined:
-/*
+
 `ifdef __ICARUS__
     `define SIMULATION 1
 `endif
@@ -48,7 +48,7 @@
 `ifdef XILINX_SIMULATOR
     `define SIMULATION 4
 `endif
-*/
+
 // uart states
 
 `define UART_STATE_IDLE  6
@@ -157,7 +157,7 @@ module darkuart
         begin
             if(BE[1])
             begin
-
+/*
 `ifdef SIMULATION
                 // print the UART output to console! :)
                 if(DATAI[15:8]!=13) // remove the '\r'
@@ -201,7 +201,7 @@ module darkuart
                 UART_XFIFO <= DATAI[15:8];
                 UART_XREQ <= !UART_XACK;    // activate UART!
     `endif
-`endif
+`endif */
             end
             //if(BE[2]) UART_TIMER[ 7:0] <= DATAI[23:16];
             //if(BE[3]) UART_TIMER[15:8] <= DATAI[31:24];           

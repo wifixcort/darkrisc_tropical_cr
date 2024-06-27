@@ -10,25 +10,22 @@ module top();
    end 
    
    // Interface
-   /*
-   intf_soc intf(CLK);
-   intf_soc intf2(CLK);
-   intf_mem_rd mem_rd_chan(CLK);
-   
+   //intf_soc intf(CLK);
+   //intf_soc intf2(CLK);
+   //intf_mem_rd mem_rd_chan(CLK);
    //logic reset_x;
 
-   assign mem_rd_chan.IADDR = soc0.IADDR;
-   assign mem_rd_chan.IDATA = soc0.IDATA;
-   */
+   //assign mem_rd_chan.IADDR = soc0.IADDR;
+   //assign mem_rd_chan.IDATA = soc0.IDATA;
 
    // DUT connection	
    darksocv soc0 (
 				  .XCLK(CLK),
-				  .XRES(0),
-     			  .UART_RXD(0),
-				  .UART_TXD(0),
-				  .LED(0),
-				  .DEBUG(0));
+				  .XRES(intf.rst),
+     			  .UART_RXD(intf.uart_rx),
+				  .UART_TXD(intf.uart_tx),
+				  .LED(intf.leds),
+				  .DEBUG(intf.debug));
 
    // generate dumps
    /*
@@ -55,11 +52,9 @@ module top();
    initial begin
         //$dumpfile("darksocv.vcd");
         //$dumpvars();
-        /*
-        uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
-        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
-        uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
-        */
+        //uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
+        //uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
+        //uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
      	//reset_x = 1;
      	//#3000
      	//reset_x = 0;

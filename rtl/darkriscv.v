@@ -108,7 +108,7 @@ module darkriscv
 
     // decode: IDATA is break apart as described in the RV32I specification
 
-`ifdef __3STAGE__
+
 
     reg [31:0] XIDATA;
 
@@ -158,7 +158,7 @@ module darkriscv
 
     reg [1:0] FLUSH = -1;  // flush instruction pipeline
 
-`else
+`ifndef __3STAGE__
 
     wire [31:0] XIDATA;
 

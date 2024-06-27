@@ -375,7 +375,7 @@ module darksocv
     wire [3:0] UDEBUG;
 
     wire FINISH_REQ;
-/*
+
     darkuart
 //    #(
 //      .BAUD((`BOARD_CK/115200))
@@ -388,7 +388,7 @@ module darksocv
       .WR(!HLT&&WR&&DADDR[31]&&DADDR[3:2]==1),
       .BE(BE),
       .DATAI(DATAO),
-      .DATAO(IOMUX[1]),
+      .DATAO(IOMUX[1])/*,
       //.IRQ(UART_IRQ),
 
 `ifndef TESTMODE
@@ -399,8 +399,8 @@ module darksocv
       .FINISH_REQ(FINISH_REQ),
 `endif
       .DEBUG(UDEBUG)
-    );
-*/
+    */);
+
     // darkriscv
 
     wire [3:0] KDEBUG;
