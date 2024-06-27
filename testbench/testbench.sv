@@ -10,6 +10,7 @@
 `include "../testbench/monitor_tr.sv"
 `include "../testbench/monitor_1.sv"
 `include "../testbench/monitor_2.sv"
+`include "../testbench/coverage.sv"
 `include "../testbench/uvc1_active_agent.sv"
 `include "../testbench/uvc2_passive_agent.sv"
 `include "../testbench/uvc1_env.sv"
