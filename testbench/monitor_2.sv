@@ -1,22 +1,6 @@
 import instructions_data_struc::*;
 
-`define RMDATA top.soc0.core0.RMDATA
-`define LDATA top.soc0.core0.LDATA
-`define SDATA top.soc0.core0.SDATA
 `define CORE top.soc0.core0
-
-`define XIDATA top.soc0.core0.XIDATA
-`define DPTR top.soc0.core0.DPTR
-`define S1PTR top.soc0.core0.S1PTR
-`define S1REG top.soc0.core0.S1REG
-`define U1REG top.soc0.core0.U1REG
-`define S2PTR top.soc0.core0.S2PTR
-`define S2REG top.soc0.core0.S2REG
-`define U2REG top.soc0.core0.U2REG
-`define XSIMM top.soc0.core0.XSIMM
-`define XUIMM top.soc0.core0.XUIMM
-`define DATAO top.soc0.core0.DATAO
-`define DATAI top.soc0.core0.DATAI
 
 `define FALSE 0
 `define TRUE 1
@@ -473,7 +457,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
-						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
+						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
 						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0, risc_sdata : intf2.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
             
          end
