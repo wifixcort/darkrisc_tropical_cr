@@ -204,7 +204,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             // // end 
             case (intf2.XIDATA[6:0])
               R_TYPE: begin
-				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.RMDATA;
+				 risc_rd_reg_value = (intf2.DPTR==0)? `CORE.REGS[intf2.DPTR] : intf2.RMDATA;
 				 case({intf2.XIDATA[31:25], intf2.XIDATA[14:12]})
                    10'h0: begin //add
 					  //   $display("------------- ADD -------------");
@@ -267,7 +267,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end
 			  
               I_TYPE: begin
-				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.RMDATA;
+				 risc_rd_reg_value = (intf2.DPTR==0)? `CORE.REGS[intf2.DPTR] : intf2.RMDATA;
 				 if(top.soc0.core0.FCT3 == 3'b101) begin
 					case(intf2.XIDATA[31:25])
 					  10'h000: begin //srli
@@ -338,7 +338,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end	
               
               I_L_TYPE: begin
-				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.LDATA;
+				 risc_rd_reg_value = (intf2.DPTR==0)? `CORE.REGS[intf2.DPTR] : intf2.LDATA;
 				 case(top.soc0.core0.FCT3)
                    LB_FC: begin //lb
 					  ex_dbuf.inst = "LB";
