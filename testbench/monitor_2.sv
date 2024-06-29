@@ -6,29 +6,29 @@ import instructions_data_struc::*;
 `define TRUE 1
 
 typedef struct {
-   string	         inst;
+   string            inst;
    logic [7:0]       instruccion;
 
    logic [4:0]       risc_rd_p;     // riscv rd register pointer
-   logic [31:0]	   risc_rd_v;     // riscv rd register value
-   logic [4:0]	      risc_rs1_p;    // riscv rs1 register pointer
-   logic [31:0]	   risc_rs1_v;    // riscv rs1 register value
-   logic [4:0]	      risc_rs2_p;    // riscv rs1 register pointer
-   logic [31:0]	   risc_rs2_v;    // riscv rs1 register value
-   logic [31:0]	   risc_imm;      // riscv immidiate value
-   // logic [31:0]	sb_rd_p;    // sb rd register pointer
-   // logic [31:0]	sb_rd_v;    // sb rd register value
-   // logic [31:0]	sb_rs1_p;   // sb rs1 register pointer
-   // logic [31:0]	sb_rs1_v;   // sb rs1 register value
-   // logic [31:0]	sb_rs2_p;   // sb rs1 register pointer
-   // logic [31:0]	sb_rs2_v;   // sb rs1 register value
-   // logic [31:0]	sb_imm;  // sb immidiate value
-   logic [31:0]	   inst_PC;
-   logic [31:0]	   inst_XIDATA;
-   logic [15:0]	   inst_counter;
-   logic [31:0]	   risc_sdata;
-   logic [31:0]	   risc_daddr;
-   bit			      be;
+   logic [31:0]      risc_rd_v;     // riscv rd register value
+   logic [4:0]       risc_rs1_p;    // riscv rs1 register pointer
+   logic [31:0]      risc_rs1_v;    // riscv rs1 register value
+   logic [4:0]       risc_rs2_p;    // riscv rs1 register pointer
+   logic [31:0]      risc_rs2_v;    // riscv rs1 register value
+   logic [31:0]      risc_imm;      // riscv immidiate value
+   // logic [31:0]   sb_rd_p;    // sb rd register pointer
+   // logic [31:0]   sb_rd_v;    // sb rd register value
+   // logic [31:0]   sb_rs1_p;   // sb rs1 register pointer
+   // logic [31:0]   sb_rs1_v;   // sb rs1 register value
+   // logic [31:0]   sb_rs2_p;   // sb rs1 register pointer
+   // logic [31:0]   sb_rs2_v;   // sb rs1 register value
+   // logic [31:0]   sb_imm;  // sb immidiate value
+   logic [31:0]      inst_PC;
+   logic [31:0]      inst_XIDATA;
+   logic [15:0]      inst_counter;
+   logic [31:0]      risc_sdata;
+   logic [31:0]      risc_daddr;
+   bit               be;
    // logic [31:0]	sb_DADDR;
    // logic [31:0]	sb_DATAI;
 }ExData;
@@ -42,6 +42,12 @@ class uvc2_mon extends uvm_monitor;
    
    
    ExData            ex_dbuf;
+
+   //Auxiliar variables (Instead of creating a lot of virt interfaces or anything similar, we
+   //take the data from our available sources)
+
+   logic [2:0]       FCT3;
+   logic [6:0]       FCT7;
 
    logic [15:0]	   inst_counter;
    int			      err_count;
@@ -90,6 +96,10 @@ task uvc2_mon:: run_phase(uvm_phase phase);
    forever begin
 
       @ (posedge intf2.clk);// begin//
+
+      //Creates auxiliar variables
+      FCT3 = intf2.XIDATA[14:12];
+      FCT7 = intf2.XIDATA[31:25];
       
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
          if (`CORE.HLT == 0) begin
@@ -102,7 +112,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                ex_dbuf.instruccion == AND || ex_dbuf.instruccion == OR)begin
                // $display("------------------------- R type -------------------------");
                ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-               //I TYPE
+         //I TYPE
          end else if(ex_dbuf.instruccion == ADDI || ex_dbuf.instruccion == SLTI || ex_dbuf.instruccion == SLTIU || ex_dbuf.instruccion == XORI ||
                ex_dbuf.instruccion == ORI || ex_dbuf.instruccion == ANDI || ex_dbuf.instruccion == SLLI || ex_dbuf.instruccion == SRLI ||
                ex_dbuf.instruccion == SRAI)begin
@@ -263,7 +273,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                ////////////////////////////////////////////////////////////			  
                I_TYPE: begin
                   risc_rd_reg_value = (intf2.DPTR==0)? `CORE.REGS[intf2.DPTR] : intf2.RMDATA;
-                  if(top.soc0.core0.FCT3 == 3'b101) begin
+                  if(FCT3 == 3'b101) begin
                      case(intf2.XIDATA[31:25])
                      10'h000: begin //srli
                         //  $display("------------- SRLI -------------");
@@ -282,7 +292,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                         // inst_counter++;
                      end
                      endcase
-                  end else if(top.soc0.core0.FCT3 == 3'b001)begin
+                  end else if(FCT3 == 3'b001)begin
                      case(intf2.XIDATA[31:25])
                      10'h000: begin //slli
                         ex_dbuf.inst = "SLLI";
@@ -296,7 +306,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                      end
                      endcase
                   end else begin
-                     case(top.soc0.core0.FCT3)
+                     case(FCT3)
                      ADDI_FC:begin //addi , logic'(ADDI)
                         ex_dbuf.inst = "ADDI";
                         ex_dbuf.instruccion = ADDI;
@@ -336,7 +346,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                ////////////////////////////////////////////////////////////               
                I_L_TYPE: begin
                   risc_rd_reg_value = (intf2.DPTR==0)? `CORE.REGS[intf2.DPTR] : intf2.LDATA;
-                  case(top.soc0.core0.FCT3)
+                  case(FCT3)
                      LB_FC: begin //lb
                         ex_dbuf.inst = "LB";
                         ex_dbuf.instruccion = LB;	
@@ -369,7 +379,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                //          I(JALR)-Type instruction was detected
                ////////////////////////////////////////////////////////////               
                I_JALR_TYPE: begin //jalr
-                  case(top.soc0.core0.FCT3)
+                  case(FCT3)
                      JALR_C: begin
                         // inst_counter++;
                         //  $display("*********************ALERTA**********************     I_JALR    ");
@@ -386,7 +396,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                //          S-Type instruction was detected
                ////////////////////////////////////////////////////////////                	
                S_TYPE: begin
-                  case(top.soc0.core0.FCT3)
+                  case(FCT3)
                      SB_FC:begin //sb
                         ex_dbuf.inst = "SB";
                         ex_dbuf.instruccion = SB;			 
@@ -411,7 +421,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                //          S-B-Type instruction was detected
                ////////////////////////////////////////////////////////////               
                S_B_TYPE: begin
-                  case(top.soc0.core0.FCT3)
+                  case(FCT3)
                      BEQ_FC: begin //beq
                         `uvm_info("ALERTA", "BEQ instruction found", UVM_MEDIUM);
                      //$display("*********************ALERTA**********************     BEQ    ");
