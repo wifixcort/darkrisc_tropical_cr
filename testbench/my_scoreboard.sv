@@ -34,6 +34,7 @@ class my_scoreboard extends uvm_scoreboard;
    logic [31:0]		   rdd_val_init;
 
    logic [31:0]		   sdata;
+   logic [31:0]		   ldata;
 
    function new(string name, uvm_component parent);
       super.new(name, parent);
@@ -84,9 +85,10 @@ class my_scoreboard extends uvm_scoreboard;
 		 //  $display("-------------------------------------------------------------------------------------------->");
 		//   $display("------------------------- IL type -------------------------");
 		 i_l_type_cheker_rd_imm_rs1(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
-									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.rdd_val_final,
+									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.DATAI,
 									this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
-         
+         $display("R DADDR = %h, SB DADDR = %h", tr.risc_daddr, this.DADDR);
+		 $display("R LDATA = %h, SB LDATA = %h", tr.risc_ldata, this.ldata);
 		//  $display("r DATAI = %h, s DATAI = %h", DATAI, DATAI);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
@@ -155,6 +157,7 @@ class my_scoreboard extends uvm_scoreboard;
          DADDR = ref_model.DADDR;
          pc_val = ref_model.pc_val_upd;
 		 sdata = ref_model.sdata;
+		 ldata = ref_model.ldata;
          //rx_funct
 
       end else begin
@@ -300,7 +303,8 @@ class my_scoreboard extends uvm_scoreboard;
    		 if(!function_check || !rd_p_check || !rd_v_check || !rs1_p_check || !rs1_v_check || !imm_check)begin // || !ldata_check
    			general_check = `FALSE;//No paso la pueba
 			   `uvm_error("TEST NOT PASSED", $sformatf("\n     # | Type  |  ST  | risc_rd | sb_rd |  ST  | risc_rd_v | sb_rd_v  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v |  ST  | risc_imm |  sb_imm  |  ST  |\n %d | %s | %s |    %h   |   %h  | %s | %h  | %h | %s |    %h    |   %h   | %s |  %h  | %h | %s | %h | %h | %s |", inst_counter, inst, function_check?"PASS":"ERR", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"ERR", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"ERR", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"ERR", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"ERR", risc_imm, sb_imm, imm_check?"PASS":"ERR"))
-   			// `uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***",                                                                                                   inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
+   			// $display("DADDR = ");
+			// `uvm_error("TEST NOT PASSED", $sformatf("\n %d | %s | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | %h | %h | %s | -------- | -------- | --- | -------- | -------- | --- | %h | %h | %s |                              *** %s ***",                                                                                                   inst_counter, inst, function_check?"PASS":"X", risc_rd_p, sb_rd_p, rd_p_check?"PASS":"X", risc_rd_v, sb_rd_v, rd_v_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", general_check?"PASS":"ERROR"))
    			// $display("PC = %h, inst = %h", ex_dbuf.inst_PC, ex_dbuf.inst_XIDATA );
    			// $display("sb DADDR = %h , sb DATAI = %h", ex_dbuf.sb_DADDR, ex_dbuf.sb_DATAI);
    			// err_count++; 

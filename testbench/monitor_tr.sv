@@ -12,7 +12,8 @@ class monitor_tr extends uvm_sequence_item;
    logic [31:0]	risc_imm; // riscv immidiate value
    // logic [31:0] risc_datao;
    logic [31:0]	risc_sdata;
-   // logic [31:0] risc_daddr;
+   logic [31:0]   risc_daddr;
+   logic [31:0]   risc_ldata;
 
    // SCB
    /*
@@ -31,7 +32,7 @@ class monitor_tr extends uvm_sequence_item;
    logic [15:0]	inst_counter;
    // Mon1
    logic [31:0]	pc_val_mon1 = 0;
-   logic [7:0]	rx_funct_mon1 = 0;
+   logic [7:0]	   rx_funct_mon1 = 0;
    logic signed [20:0] imm_val_mon1 = 0;
    logic [4:0]		   rs1_val_mon1 = 0;
    logic [4:0]		   rs2_val_mon1 = 0;

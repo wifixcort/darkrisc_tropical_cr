@@ -8,6 +8,7 @@ class darksocv_env extends uvm_env;
   
   darksocv_uvc1_env uvc1_env;
   darksocv_uvc2_env uvc2_env;
+  funct_coverage cov;
 
   virtual function void build_phase(uvm_phase phase);
     super.build_phase(phase);
@@ -16,6 +17,8 @@ class darksocv_env extends uvm_env;
     uvc2_env  = darksocv_uvc2_env::type_id::create ("uvc2_env", this);
   
     scoreboard = my_scoreboard::type_id::create("scoreboard", this);
+
+    cov = funct_coverage::type_id::create ("cov", this);
 
     uvm_report_info(get_full_name(),"End_of_build_phase", UVM_LOW);
   endfunction

@@ -28,6 +28,7 @@ class riscv_ref_model extends uvm_component;
    logic [31:0]		   pc_val_in;
    logic [31:0]		   fake_reg0;
    logic [31:0]		   sdata;
+   logic [31:0]		   ldata;
    // General Purpose 32x32 bit registers 
    logic [31:0]		   REGS [0:31];
    integer			   i;
@@ -49,6 +50,7 @@ class riscv_ref_model extends uvm_component;
       JREQ  = '0;
       FLUSH = '0;
       sdata = '0;
+	  ldata = '0;
       // Loop to initialize all registers to zero
       for (i = 0; i < 32; i = i + 1) begin
 		 REGS[i] = '0;
@@ -222,6 +224,7 @@ class riscv_ref_model extends uvm_component;
 				4'b0001: DATAI = {{24{DATAI[7 ]}},DATAI[7:0  ]};
 			  endcase
 			  REGS[rdd] = DATAI;
+			  ldata = REGS[rdd];
            end
            pc_val = pc_val + 4;
 		end
@@ -239,6 +242,7 @@ class riscv_ref_model extends uvm_component;
 				4'b0011: DATAI = {{16{DATAI[15]}},DATAI[15:0]};
 			  endcase
 			  REGS[rdd] = DATAI;
+			  ldata = REGS[rdd];
            end
            pc_val = pc_val + 4;
 		end
@@ -249,6 +253,7 @@ class riscv_ref_model extends uvm_component;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
 			  BE = 4'b1111;
 			  REGS[rdd] = DATAI;
+			  ldata = REGS[rdd];
            end
            pc_val = pc_val + 4;
 		end
@@ -256,7 +261,7 @@ class riscv_ref_model extends uvm_component;
            if (!(|FLUSH)) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
-			  DATAI = MEM[DADDR[`MLEN-1:2]]; 
+			  DATAI = MEM[DADDR[`MLEN-1:2]];
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;
@@ -270,6 +275,7 @@ class riscv_ref_model extends uvm_component;
 				4'b0001: DATAI = {{24{1'b0}},DATAI[7:0]};
 			  endcase
 			  REGS[rdd] = DATAI;
+			  ldata = REGS[rdd];
            end
            pc_val = pc_val + 4;
 		end
@@ -287,6 +293,7 @@ class riscv_ref_model extends uvm_component;
 				4'b0011: DATAI = {{16{1'b0}},DATAI[15:0]};
 			  endcase
 			  REGS[rdd] = DATAI;
+			  ldata = REGS[rdd];
            end
            pc_val = pc_val + 4;
 		end 

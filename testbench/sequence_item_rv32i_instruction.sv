@@ -51,8 +51,8 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   constraint opcode_cases{
   soft opcode dist  {R_TYPE   :/ 44,
                     I_TYPE    :/ 44,
-                    I_L_TYPE  :/ 5,
-                    S_TYPE    :/ 5
+                    I_L_TYPE  :/ 5
+                    // S_TYPE    :/ 5
                     /*S_B_TYPE,
                     J_TYPE,
                     I_JALR_TYPE,
