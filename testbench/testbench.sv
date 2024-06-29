@@ -1,6 +1,7 @@
 `include "../rtl/config.vh"
 `include "../testbench/instructions_data_struc.sv"
 `include "../testbench/intf_soc.sv"
+`include "../testbench/intf_mon2.sv"
 `include "../testbench/intf_mem_rd.sv"
 `include "../testbench/top_hvl.sv"
 `include "../testbench/sequence_item_rv32i_instruction.sv"

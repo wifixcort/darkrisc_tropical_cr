@@ -67,7 +67,7 @@ class uvc2_mon extends uvm_monitor;
    int			debug_counter_num_inst;
    string		rx_funct_str = "";
 
-   virtual		intf_soc intf2;
+   virtual		intf_mon2 intf2;
 
    // Standard UVM Methods:
    extern function new (string name = "uvc2_mon", uvm_component parent = null);
@@ -153,7 +153,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                   endcase
                end else if(ex_dbuf.instruccion == SW) begin
                   ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]];
-                  // ex_dbuf.risc_sdata = `CORE.SDATA;
+                  // ex_dbuf.risc_sdata = intf2.SDATA;
                end
 			   
 			end
@@ -202,10 +202,10 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             // end
             // sb_rd_reg_value = sb.ref_model.REGS[sb.rdd];//(top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd];
             // // end 
-            case (`CORE.XIDATA[6:0])
+            case (intf2.XIDATA[6:0])
               R_TYPE: begin
-				 risc_rd_reg_value = (`CORE.DPTR==0)? `CORE.REGS[`DPTR] : `RMDATA;
-				 case({`CORE.XIDATA[31:25], `CORE.XIDATA[14:12]})
+				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.RMDATA;
+				 case({intf2.XIDATA[31:25], intf2.XIDATA[14:12]})
                    10'h0: begin //add
 					  //   $display("------------- ADD -------------");
 					  ex_dbuf.inst = "ADD";
@@ -267,9 +267,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end
 			  
               I_TYPE: begin
-				 risc_rd_reg_value = (top.soc0.core0.DPTR==0)? top.soc0.core0.REGS[`DPTR] : `RMDATA;
+				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.RMDATA;
 				 if(top.soc0.core0.FCT3 == 3'b101) begin
-					case(top.soc0.core0.XIDATA[31:25])
+					case(intf2.XIDATA[31:25])
 					  10'h000: begin //srli
 						 //  $display("------------- SRLI -------------");
 						 ex_dbuf.inst = "SRLI";
@@ -282,20 +282,20 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  default: begin
 //  `ifdef __DB_ENABLE__ 
 						 //  $display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
-						 $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
+						 $display("FC3 = %b", intf2.XIDATA[14:12]);
 						 err_count++;
 						 // inst_counter++;
 					  end
 					endcase
 				 end else if(top.soc0.core0.FCT3 == 3'b001)begin
-					case(top.soc0.core0.XIDATA[31:25])
+					case(intf2.XIDATA[31:25])
 					  10'h000: begin //slli
 						 ex_dbuf.inst = "SLLI";
 						 ex_dbuf.instruccion = SLLI;
 					  end
 					  default: begin
 
-						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 						 //  $display("FC3 = %b", top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
 					  end
@@ -327,7 +327,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						 ex_dbuf.instruccion = ANDI;
 					  end
 					  default: begin
-						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+						 `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 						 //  $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 						 //  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 						 err_count++;
@@ -338,7 +338,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end	
               
               I_L_TYPE: begin
-				 risc_rd_reg_value = (top.soc0.core0.DPTR==0)? top.soc0.core0.REGS[`DPTR] : `LDATA;
+				 risc_rd_reg_value = (intf2.DPTR==0)? intf2.REGS[intf2.DPTR] : intf2.LDATA;
 				 case(top.soc0.core0.FCT3)
                    LB_FC: begin //lb
 					  ex_dbuf.inst = "LB";
@@ -361,7 +361,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = LHU;
                    end
                    default: begin
-                      `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -375,7 +375,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  //  $display("*********************ALERTA**********************     I_JALR    ");
                    end
                    default: begin
-                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -397,7 +397,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  ex_dbuf.instruccion = SW;
                    end
                    default: begin
-                      `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
 					  err_count++;
@@ -436,7 +436,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 					  //   $display("*********************ALERTA**********************     BGEU    ");
                    end
                    default: begin
-                      `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+                      `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 					  //   $display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					  err_count++;
                    end
@@ -456,8 +456,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end	
               
               default: begin
-				 if(top.soc0.core0.XIDATA != 0) begin
-					`uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", top.soc0.core0.XIDATA, top.soc0.core0.PC))
+				 if(intf2.XIDATA != 0) begin
+					`uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", intf2.XIDATA, top.soc0.core0.PC))
 					// $display("**** Instruccion not found ****");
 					// $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
 					err_count++; 
@@ -472,9 +472,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM), sb_rd_p : sb.rdd, sb_rd_v : sb_rd_reg_value,
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
-            ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
-						risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
-						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0, risc_sdata : `CORE.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
+            ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
+						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM),
+						inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, inst_counter : '0, risc_sdata : intf2.SDATA, risc_daddr : `CORE.DADDR, be : `CORE.BE};//
             
          end
          
@@ -503,7 +503,7 @@ function void uvc2_mon::build_phase(uvm_phase phase);
    super.build_phase(phase);
 
    mon2_txn = new("mon2_txn", this);
-   if(uvm_config_db #(virtual intf_soc)::get(this, "", "VIRTUAL_INTERFACE", intf2) == 0) begin
+   if(uvm_config_db #(virtual intf_mon2)::get(this, "", "VIRTUAL_INTERFACE_MONITOR2", intf2) == 0) begin
       `uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface 2 for the TB")
    end
    

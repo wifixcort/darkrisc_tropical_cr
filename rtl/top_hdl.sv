@@ -11,12 +11,32 @@ module top();
    
    // Interface
    intf_soc intf(CLK);
-   intf_soc intf2(CLK);
+   intf_mon2 intf2(CLK);
    intf_mem_rd mem_rd_chan(CLK);
    //logic reset_x;
 
+   //Assign data to the virtual interface used by the monitor 1
    assign mem_rd_chan.IADDR = soc0.IADDR;
    assign mem_rd_chan.IDATA = soc0.IDATA;
+
+   //Assign data to the virtual interface used by the monitor 2
+   assign intf2.RMDATA = top.soc0.core0.RMDATA;
+   assign intf2.LDATA  = top.soc0.core0.LDATA;
+   assign intf2.SDATA  = top.soc0.core0.SDATA;
+
+   assign intf2.XSIMM  = top.soc0.core0.XSIMM;
+   assign intf2.XUIMM  = top.soc0.core0.XUIMM;
+   assign intf2.XIDATA = top.soc0.core0.XIDATA;
+
+   assign intf2.DPTR   = top.soc0.core0.DPTR;
+   assign intf2.S1PTR  = top.soc0.core0.S1PTR;
+   assign intf2.S1REG  = top.soc0.core0.S1REG;
+   assign intf2.U1REG  = top.soc0.core0.U1REG;
+   assign intf2.S2PTR  = top.soc0.core0.S2PTR;
+   assign intf2.S2REG  = top.soc0.core0.S2REG;
+   assign intf2.U2REG  = top.soc0.core0.U2REG;
+   assign intf2.DATAO  = top.soc0.core0.DATAO;
+   assign intf2.DATAI  = top.soc0.core0.DATAI;
 
    // DUT connection	
    darksocv soc0 (
@@ -53,7 +73,7 @@ module top();
         $dumpfile("darksocv.vcd");
         $dumpvars();
         uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
-        uvm_config_db #(virtual intf_soc)::set (null, "uvm_test_top", "VIRTUAL_INTERFACE", intf2);
+        uvm_config_db #(virtual intf_mon2)::set (null, "*", "VIRTUAL_INTERFACE_MONITOR2", intf2);
         uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
      	//reset_x = 1;
      	//#3000
