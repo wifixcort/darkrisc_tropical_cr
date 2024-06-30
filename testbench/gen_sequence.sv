@@ -15,6 +15,8 @@ class gen_sequence extends uvm_sequence;
 
     logic shared_data;
 
+    rand logic [31:0]   random_try;
+
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
         sequence_item_rv32i_instruction item_1 = sequence_item_rv32i_instruction::type_id::create("item_1"); // Instruction i-1
@@ -45,6 +47,13 @@ class gen_sequence extends uvm_sequence;
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
                     reg_addr = item_0.rs1 ; // reg where store/load going to search base adrress
 
+                    randomize(random_try) with { random_try inside { (random_try + item_0.imm > 1024) && (random_try + item_0.imm < 4098) }; };
+
+                    item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:0]==12'd0;};
+
+                    item_1.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:0]==random_try;};
+
+                    /*
                     // loop if effective_addr out of range
                     //todo: cambiar a while normal y eliminar dependencia de opt_addr_select (opcional porque como está parece funcionar bien esta funcionalidad)
                     item_2.opt_addr_select = 1'b1; 
@@ -63,7 +72,7 @@ class gen_sequence extends uvm_sequence;
 
                     // Generacion de SLLI para tener el valor base deseado
                     item_1.randomize() with {opcode==I_TYPE && funct3==SLLI_FC && rd==reg_addr && rs1==reg_addr && imm[4:0] == 5'h001;};
-                    
+                    */
                     // Transacciones
                     start_item(item_2);
                     finish_item(item_2);
