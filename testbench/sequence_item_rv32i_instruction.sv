@@ -6,7 +6,6 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     super.new(name);
   endfunction
 
-
   // random variables 
   rand bit [31:0] full_inst;
   rand bit [6:0]  opcode;
@@ -17,20 +16,21 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   rand bit [2:0]  funct3;
   rand bit [11:0] imm;
 
+  // operation variables
+  rand bit sign_bit;
+
   //*******************************************************
   `uvm_object_utils_begin(sequence_item_rv32i_instruction)
     `uvm_field_int (full_inst, UVM_DEFAULT)
-    `uvm_field_int (opcode, UVM_DEFAULT)
-    `uvm_field_int (rs1, UVM_DEFAULT)
-    `uvm_field_int (rs2, UVM_DEFAULT)
-    `uvm_field_int (rd, UVM_DEFAULT)
-    `uvm_field_int (funct7, UVM_DEFAULT)
-    `uvm_field_int (funct3, UVM_DEFAULT)
-    `uvm_field_int (imm, UVM_DEFAULT)
+    // `uvm_field_int (opcode, UVM_DEFAULT)
+    // `uvm_field_int (rs1, UVM_DEFAULT)
+    // `uvm_field_int (rs2, UVM_DEFAULT)
+    // `uvm_field_int (rd, UVM_DEFAULT)
+    // `uvm_field_int (funct7, UVM_DEFAULT)
+    // `uvm_field_int (funct3, UVM_DEFAULT)
+    // `uvm_field_int (imm, UVM_DEFAULT)
   `uvm_object_utils_end
 
-  // operation variables
-  logic opt_addr_select = 1'b0; //optimize for generate address
 
   //==============================================================
   //         Constraints for instruction generator
@@ -133,29 +133,36 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   // "the effective address for all loads and stores should be naturally aligned for each data type"  - riscv_spec
   //*******************************************************
   constraint offset_load_store {
-    solve funct3 before imm;
-    if (!opt_addr_select) {   
-      // ALINEADORES  
-      if (opcode == I_L_TYPE){
-        (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == LW_FC) 	->	imm[1:0] == 2'b00;
-      } else if (opcode == S_TYPE){
-        (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
+    solve funct3,sign_bit before imm;  
+    // ALINEADORES  
+    if (opcode == I_L_TYPE){
+      (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == LW_FC) 	->	imm[1:0] == 2'b00;
+      //Acotador
+      if(sign_bit == 0){
+        //pos sign extend
+        imm[11:8] == 4'b0000;
+      } else if (sign_bit == 1){
+        //neg sign extend
+        imm[11:8] == 4'b1111;
       }
-
-      //todo; puede ser necesario meter esto dentro del if( L || S ) y quitar el opt_addres select
+    } else if (opcode == S_TYPE){
+      (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
+      //Acotador
+      if(sign_bit == 0){
+        //pos sign extend
+        imm[11:8] == 4'b0000;
+      } else if (sign_bit == 1){
+        //neg sign extend
+        imm[11:8] == 4'b1111;
+      }
+        
+      }
       // -----> "The effective byte address is obtained by adding register rs1 to the sign-extended 12-bit offset" - riscv_spec
       //        El offset de 12 bits es demasiado para el darkriscv.
       // //ACOTADORES de offset a +127 -127
-      if(imm[11] == 0){
-        //pos sign extend
-        imm[10:8] == 3'b000;
-      } else if (imm[11] == 1){
-        //neg sign extend
-        imm[10:8] == 3'b111;
-      }
-    }
+
   } 
 endclass
