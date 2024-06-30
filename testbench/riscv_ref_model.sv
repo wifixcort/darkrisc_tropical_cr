@@ -225,6 +225,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]]; 
+			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;
@@ -247,7 +248,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h, MEM465 = %h", DADDR[`MLEN-1:2], DATAI, MEM[465]);
+			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			//   int_dmp.sb_dump =  MEM[465];
 			  case (DADDR[1])
 				1: BE = 4'b1100;
@@ -267,6 +268,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
+			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  BE = 4'b1111;
 			  REGS[rdd] = DATAI;
 			  ldata = REGS[rdd];
@@ -278,6 +280,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
+			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;
@@ -300,6 +303,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
+			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1])
 				1: BE = 4'b1100;
 				0: BE = 4'b0011;
