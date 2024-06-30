@@ -39,7 +39,7 @@ class test_01 extends uvm_test;
     seq = gen_sequence::type_id::create("seq");
     seq.start(env.uvc1_env.agent_active.seqr);
 
- 	  env.uvc1_env.agent_active.drv.mem_load();
+ 	  //env.uvc1_env.agent_active.drv.mem_load();
  	  env.uvc1_env.agent_active.drv.reset();
 
     // Tiempo de simulación
