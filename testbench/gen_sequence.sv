@@ -52,7 +52,7 @@ class gen_sequence extends uvm_sequence;
                         //Generacion de ADDI con valor positivo y > 2048 si se le hace un shift l, el valor queda debidamente alineado segun la instruccion STORE
                         //Hace falta el shift left porque si no el ADDI detecta el imm como un numero negativo (es suma con signo)
                         if (  (item_0.funct3==SW_FC) || (item_2.funct3==LW_FC) )                                                          //  ** Alineaciones. todo: revisar que tengan el mayor sentido posible                               
-                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:10]==2'b01 && imm[1:0]==2'b00;}; 
+                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:10]==2'b01 && imm[1:0]==2'b00;};
                         else if ( (item_0.funct3=SH_FC) || (item_0.funct3==LH_FC) || (item_0.funct3==LHU_FC) )
                             item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:10]==2'b01 && imm[0]==1'b0;};
                         else if ( (item_0.funct3==SB_FC) || (item_0.funct3==LB_FC) || (item_0.funct3==LBU_FC) )
@@ -112,3 +112,5 @@ class gen_sequence extends uvm_sequence;
         end
     endtask
 endclass
+
+//This is a very good reference for this component: https://verificationguide.com/uvm/uvm-sequence/
