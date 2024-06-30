@@ -22,5 +22,6 @@ interface intf_mon2(input clk);
   logic [31:0]  U2REG;
   logic [31:0]  DATAO;
   logic [31:0]  DATAI;
+  bit           HLT;
   // logic [31:0]  REGS [0:31];
 endinterface

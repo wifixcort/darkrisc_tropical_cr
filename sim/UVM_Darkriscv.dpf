@@ -30,31 +30,6 @@ simulations:
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
       2342346 +acc+b
-  - name: test_02 seed_01
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
-  - name: test_02 seed_02
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 666
-      +acc+b
-  - name: test_02 seed_03
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed 123456
-      +acc+b
-  - name: test_02 seed_04
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02  -timescale 1ns/1ps  -sv_seed 63536
-      +acc+b
-  - name: test_02 seed_05
-    options: >-
-      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_02 -timescale 1ns/1ps  -sv_seed
-      2342346 +acc+b
   - name: test_01 seed_02_l1
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2

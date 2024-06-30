@@ -1,6 +1,5 @@
 import instructions_data_struc::*;
 
-`include "../rtl/config.vh"
 
 class riscv_ref_model extends uvm_component;
    `uvm_component_utils(riscv_ref_model);
@@ -37,6 +36,8 @@ class riscv_ref_model extends uvm_component;
    // FLUSH Counter
    logic [1:0]		   FLUSH;
    // Nota: Funcionalidad de Reset despues del primer reset no implementada, por tanto reset no levanta FLUSH en modelo
+
+   virtual		intf_dmp int_dmp;
    
    // Constructor
    function new(string name = "ref_model", uvm_component parent);
@@ -65,9 +66,22 @@ class riscv_ref_model extends uvm_component;
       // Instance of the analysis ports
       //ap_ref_model = new("ap_ref_model", this);
       //ref_model_fifo = new("ref_model_fifo", this);
+	  if(uvm_config_db #(virtual intf_dmp)::get(this, "", "VIRTUAL_INTERFACE_DMP", int_dmp) == 0) begin
+		`uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface dmp for the TB")
+	 end
+	 
    endfunction 
 
+
+   virtual task run_phase(uvm_phase phase);
+   super.run_phase(phase);
+   int_dmp.sb_dump =  MEM[465];
+
+endtask
+
+
    function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1,logic [4:0] rs2,logic [4:0] rdd);
+	
       // L/S: DADDR[31] must equal 0, if not we access I/O peripherals.
       // All instructions shouldnt be allowed to modify register 0 value
       pc_val_in = pc_val; // Copy of the input PC for debug
@@ -233,6 +247,8 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
+			  $display("IADDR = %d, MEM = %h, MEM465 = %h", DADDR[`MLEN-1:2], DATAI, MEM[465]);
+			//   int_dmp.sb_dump =  MEM[465];
 			  case (DADDR[1])
 				1: BE = 4'b1100;
 				0: BE = 4'b0011;

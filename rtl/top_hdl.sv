@@ -13,11 +13,13 @@ module top();
    intf_soc intf(CLK);
    intf_mon2 intf2(CLK);
    intf_mem_rd mem_rd_chan(CLK);
+   intf_dmp int_dmp(CLK);
    //logic reset_x;
 
    //Assign data to the virtual interface used by the monitor 1
    assign mem_rd_chan.IADDR = soc0.IADDR;
    assign mem_rd_chan.IDATA = soc0.IDATA;
+
 
    //Assign data to the virtual interface used by the monitor 2
    assign intf2.RMDATA = top.soc0.core0.RMDATA;
@@ -37,6 +39,7 @@ module top();
    assign intf2.U2REG  = top.soc0.core0.U2REG;
    assign intf2.DATAO  = top.soc0.core0.DATAO;
    assign intf2.DATAI  = top.soc0.core0.DATAI;
+   assign intf2.HLT    = top.soc0.core0.HLT;
    // assign intf2.REGS = top.soc0.core0.REGS;
 
    // DUT connection	
@@ -76,6 +79,7 @@ module top();
         uvm_config_db #(virtual intf_soc)::set (null, "*", "VIRTUAL_INTERFACE", intf);
         uvm_config_db #(virtual intf_mon2)::set (null, "*", "VIRTUAL_INTERFACE_MONITOR2", intf2);
         uvm_config_db #(virtual intf_mem_rd)::set (null, "*", "VIRTUAL_INTERFACE_MEM_RD", mem_rd_chan);
+        uvm_config_db #(virtual intf_dmp)::set (null, "*", "VIRTUAL_INTERFACE_DMP", int_dmp);
      	//reset_x = 1;
      	//#3000
      	//reset_x = 0;

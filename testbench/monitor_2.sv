@@ -94,7 +94,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
       FCT7 = intf2.XIDATA[31:25];
       
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
-         if (`CORE.HLT == 0) begin
+         if (intf2.HLT == 0) begin
 			// mn_txn = monitor_tr::type_id::create("tr", this);
 			// mn_txn.data = '0; //Generar el dato a enviar
 
@@ -179,7 +179,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
       end
       
       if (`CORE.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
-         if (`CORE.HLT == 0) begin //For get correct values from two clock cicle instructions
+         if (intf2.HLT == 0) begin //For get correct values from two clock cicle instructions
             // if (inst_counter == 0)begin
             //  sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
             //  inst_counter++;
@@ -479,7 +479,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               end              
             endcase
             
-            inst_counter++;
+            this.ex_dbuf.inst_counter++;
             // ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
             //       risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM), sb_rd_p : sb.rdd, sb_rd_v : sb_rd_reg_value,
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,

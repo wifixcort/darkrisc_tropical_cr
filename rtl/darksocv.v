@@ -48,7 +48,7 @@ module darksocv
     darkpll darkpll0(.XCLK(XCLK),.XRES(XRES),.CLK(CLK),.RES(RES));
 
     // ro/rw memories
-
+    
 `ifdef __HARVARD__
 
     reg [31:0] ROM [0:2**`MLEN/4-1]; // ro memory
@@ -80,6 +80,8 @@ module darksocv
 
 
     reg [31:0] MEM [0:2**`MLEN/4-1]; // ro memory
+    logic [31:0] memoria_dumpeada;
+    assign memoria_dumpeada = MEM[465];
 
     // memory initialization
 
@@ -158,6 +160,7 @@ module darksocv
         ROMFF <= ROM[IADDR[`MLEN-1:2]];
 `else
         ROMFF <= MEM[IADDR[`MLEN-1:2]];
+        // assign memoria_dumpeada = MEM[00000744];
 `endif
     end
 

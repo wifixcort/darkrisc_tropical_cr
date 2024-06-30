@@ -20,4 +20,5 @@
 `include "../testbench/my_scoreboard.sv"
 `include "../testbench/env.sv"
 `include "../testbench/test_01.sv"
+`include "../testbench/intf_dmp.sv"
 //`include "../testbench/test_02.sv"
