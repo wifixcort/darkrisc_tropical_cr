@@ -39,7 +39,22 @@ simulations:
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
-      769654 +acc+b
+      7696542 +acc+b
+  - name: test_01 seed_l4
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      63579566 +acc+b
+  - name: test_01 seed_02_l5
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      76826454 +acc+b
+  - name: test_01 seed_02_l6
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      168710554 +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt

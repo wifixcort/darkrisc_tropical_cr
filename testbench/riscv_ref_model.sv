@@ -75,7 +75,7 @@ class riscv_ref_model extends uvm_component;
 
    virtual task run_phase(uvm_phase phase);
    super.run_phase(phase);
-   int_dmp.sb_dump =  MEM[465];
+//    int_dmp.sb_dump =  MEM[465];
 
 endtask
 
@@ -248,7 +248,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			//   int_dmp.sb_dump =  MEM[465];
 			  case (DADDR[1])
 				1: BE = 4'b1100;
