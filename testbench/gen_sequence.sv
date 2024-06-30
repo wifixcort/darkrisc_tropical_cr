@@ -70,7 +70,7 @@ class gen_sequence extends uvm_sequence;
                     //
                     start_item(item_1);
                     finish_item(item_1);
-                    //
+                    //XDDDD
                     start_item(item_0);
                     finish_item(item_0);
                     
