@@ -7,12 +7,12 @@ class gen_sequence extends uvm_sequence;
     endfunction
 
     // Variables Internas para generacion de direcciones Validas 
-    int min_rs1;
-    int max_rs1;
+    logic signed [31:0] min_rs1;
+    logic signed [31:0] max_rs1;
 
     //logic signed [31:0] imm_offset;
     logic signed [11:0] imm_offset_signed;
-    logic signed [11:0] imm_t;
+    logic signed [31:0] imm_t;
 
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
@@ -51,10 +51,6 @@ class gen_sequence extends uvm_sequence;
                     min_rs1 = (512 - imm_offset_signed > 0) ? 512 - imm_offset_signed : 0;
                     max_rs1 = (1024 - imm_offset_signed > 4095) ? 4095 : 1024 - imm_offset_signed;
 
-                    // Ensure min_rs1 and max_rs1 are within the 12-bit range
-                    min_rs1 = (min_rs1 > 4095) ? 4095 : min_rs1;
-                    max_rs1 = (max_rs1 > 4095) ? 4095 : max_rs1;
-                    
                     `uvm_info("min_rs1", $sformatf("#%d: ", min_rs1), UVM_MEDIUM)
                     `uvm_info("max_rs1", $sformatf("#%d: ", max_rs1), UVM_MEDIUM)
 
