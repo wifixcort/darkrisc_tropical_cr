@@ -7,8 +7,9 @@ class gen_sequence extends uvm_sequence;
     endfunction
 
     // Variables para generacion de direcciones
-    logic [4:0]	    reg_addr;
+    logic [4:0]	    reg_base;
     logic [11:0]    effective_addr = 12'h000;  //[2**`MLEN/2-1:0]
+    logic [31:0]    target_addr    = 32'h00000000;  //for JALR
 
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
@@ -33,33 +34,27 @@ class gen_sequence extends uvm_sequence;
             //*** Insertando instrucciones teniendo en cuenta las direcciones base en caso de LOAD/STORE (Instrucciones 31-509)
             //    Para esto actualmente se están insertando un ADDI y un SLLI (debido a la arquitectura de las instrucciones y del tamaño de la memoria)
             //    Se puede hacer mas escalable para tamaños de memoria mas grandes si se implementan instrucciones LUI
-            else if (i < 2**`MLEN/(4*2) ) begin //-2
-                item_0.randomize();
+            else if (i < 2**`MLEN/(4*2) - 1 - 3) begin // -1 Para dejar campo para jump final   -3 por si se genera l/s, no interfiera el jump final
+                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE};};
                 
                 // Si la instruccion item_00 es un STORE o un LOAD
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
-                    reg_addr = item_0.rs1 ; // reg where store/load going to search base adrress
+                    reg_base = item_0.rs1 ; // reg where store/load going to search base adrress
 
                     // loop if effective_addr out of range
-                    //todo: cambiar a while normal
-
+                    effective_addr = 12'h000;
                     while ((effective_addr < 2**`MLEN/2) || (effective_addr >= 2**`MLEN) ) begin        
                         //Generacion de ADDI con valor positivo y > 2048 si se le hace un shift l, el valor queda debidamente alineado segun la instruccion STORE
                         //Hace falta el shift left porque si no el ADDI detecta el imm como un numero negativo (es suma con signo)
                         if (  (item_0.funct3==SW_FC) || (item_2.funct3==LW_FC) )                                                                                        
-                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:10]==2'b01 && imm[1:0]==2'b0;}; 
+                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_base && rs1==5'h00 && imm[11:10]==2'b01 && imm[0]==1'b0;}; 
                         else
-                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_addr && rs1==5'h00 && imm[11:10]==2'b01;}; // half y byte quedarian con un 0 en el LSB siempre, el offset se encarga de ejercitar los demas casos de byte
+                            item_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rd==reg_base && rs1==5'h00 && imm[11:10]==2'b01;}; // half y byte quedarian con un 0 en el LSB siempre, el offset se encarga de ejercitar los demas casos de byte
                         effective_addr = (item_2.imm << 1) + item_0.imm ; // Effective Address = base + offset
                     end
-                    effective_addr = 12'h000;
-                
                     
-                    //do begin
-                    //end while(  && );  //ACOTADORES effective_address
-
                     // Generacion de SLLI para tener el valor base deseado
-                    item_1.randomize() with {opcode==I_TYPE && funct3==SLLI_FC && rd==reg_addr && rs1==reg_addr && imm[4:0] == 5'h001;};
+                    item_1.randomize() with {opcode==I_TYPE && funct3==SLLI_FC && rd==reg_base && rs1==reg_base && imm[4:0] == 5'h001;};
                     
                     // Transacciones
                     start_item(item_2);
@@ -102,6 +97,26 @@ class gen_sequence extends uvm_sequence;
                     //`uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0]), UVM_MEDIUM)
     	            //item_0.print();
                 end
+            end
+
+
+            // Cuando llegue la ultima instruccion, retroceder minimo unas  posiciones ( instrucciones)
+            else if ( i == 2**`MLEN/(4*2) - 1 ) begin
+                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:9]==12'hfff ;};
+                    // Transaccion JALR
+                    start_item(item_0);
+                    finish_item(item_0);
+
+                    $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h", i[15:0]+1'h1, item_0.full_inst);
+                    $display("Offset: %b   (bin) ", item_0.imm_jal);
+            end
+
+            // En cualquier otro caso. ->Casos anteriores a jump final
+            else begin
+                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE};};
+                //Transaccion
+                start_item(item_0);
+                finish_item(item_0);  
             end
 
             //*** Insertando instrucciones para crear loop al final del programa (Instrucciones 510-511)
