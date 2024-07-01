@@ -6,18 +6,13 @@ class gen_sequence extends uvm_sequence;
         super.new(name);
     endfunction
 
-    logic [31:0]    MEM [0:2**`MLEN/4-1];  // Puede que no se use porque ahora se envian a como se van generando
+    // Variables Internas para generacion de direcciones Validas 
+    int min_rs1;
+    int max_rs1;
 
-    // Variables para generacion de direcciones
-    logic [4:0]	    reg_addr;
-    logic [31:0]    effective_addr = 32'h00000000;
-
-    logic shared_data;
-
-    int min_imm;
-    int max_imm;
-
-    //rand logic [31:0]   random_try;
+    //logic signed [31:0] imm_offset;
+    logic signed [11:0] imm_offset_signed;
+    logic signed [11:0] imm_t;
 
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
@@ -45,28 +40,41 @@ class gen_sequence extends uvm_sequence;
                 
                 // Si la instruccion item_0 es un STORE o un LOAD
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
+                    
+                    imm_offset_signed = item_0.imm; // Now is a signed value
 
-                    reg_addr = item_0.rs1 ; 
+                    //imm_offset_signed = {{21{item_0.imm[11]}}, item_0.imm};
 
-                    // Generate imm random value
-                    imm_rand[11:0] inside {[512:1024]};
-
+                    `uvm_info("IMM_VAL_OFFSET_L/S", $sformatf("#%d: ", imm_offset_signed), UVM_MEDIUM)
+                    
                     // Calculate the minimum and maximum values for rs1_val such that the sum is within [512, 1024]
-                    min_imm = (512 - rs1_val > 0) ? 512 - rs1_val : 0;
-                    max_imm = (1024 - rs1_val > 4095) ? 4095 : 1024 - rs1_val;
+                    min_rs1 = (512 - imm_offset_signed > 0) ? 512 - imm_offset_signed : 0;
+                    max_rs1 = (1024 - imm_offset_signed > 4095) ? 4095 : 1024 - imm_offset_signed;
 
+                    // Ensure min_rs1 and max_rs1 are within the 12-bit range
+                    min_rs1 = (min_rs1 > 4095) ? 4095 : min_rs1;
+                    max_rs1 = (max_rs1 > 4095) ? 4095 : max_rs1;
+                    
+                    `uvm_info("min_rs1", $sformatf("#%d: ", min_rs1), UVM_MEDIUM)
+                    `uvm_info("max_rs1", $sformatf("#%d: ", max_rs1), UVM_MEDIUM)
+
+                    // ADDI
                     item_1.randomize() with {
                         opcode==I_TYPE &&
                         funct3==ADDI_FC && 
-                        rd==reg_addr && // rs1 pointer, base for L-I MEM-address
-                        rs1==5'h00 && 
-                        imm[11:0]==imm_rand;
+                        rd==item_0.rs1 && 
+                        rs1==5'h00 &&   // rs1 pointer = 0, rs1_v = 0
+                        imm == $urandom_range(min_rs1, max_rs1);
                     };
 
-                    // Transacciones
+                    `uvm_info("RS1_V_L/S", $sformatf("#%d: ", item_1.imm), UVM_MEDIUM)
+
+                    `uvm_info("SUMA_L/S", $sformatf("#%d: ", item_1.imm + imm_offset_signed), UVM_MEDIUM)
+
+                    // Addi Transaction
                     start_item(item_1);
                     finish_item(item_1);
-                    //
+                    // Load/Store Transaction
                     start_item(item_0);
                     finish_item(item_0);
                     
