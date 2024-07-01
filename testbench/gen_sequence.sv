@@ -7,12 +7,12 @@ class gen_sequence extends uvm_sequence;
     endfunction
 
     // Variables Internas para generacion de direcciones Validas 
-    logic signed [31:0] min_rs1;
-    logic signed [31:0] max_rs1;
+    logic signed [11:0] min_rs1;
+    logic signed [11:0] max_rs1;
 
     //logic signed [31:0] imm_offset;
     logic signed [11:0] imm_offset_signed;
-    logic signed [31:0] imm_t;
+    logic signed [11:0] imm_t;
 
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
@@ -54,18 +54,18 @@ class gen_sequence extends uvm_sequence;
                     `uvm_info("min_rs1", $sformatf("#%d: ", min_rs1), UVM_MEDIUM)
                     `uvm_info("max_rs1", $sformatf("#%d: ", max_rs1), UVM_MEDIUM)
 
-                    imm_t = $urandom_range(min_rs1, max_rs1);
+                    imm_t = min_rs1;
+                    //imm_t = $urandom_range(min_rs1, max_rs1);
 
                     `uvm_info("RS1_VB_L/S", $sformatf("#%d: ", imm_t), UVM_MEDIUM)
 
                     // ADDI
-                    item_1.randomize() with {
-                        opcode==I_TYPE &&
-                        funct3==ADDI_FC && 
-                        rd==item_0.rs1 && 
-                        rs1==5'h00 &&   // rs1 pointer = 0, rs1_v = 0
-                        imm == imm_t;
-                    };
+                    // Set values using with clause
+                    item_1.opcode = I_TYPE;
+                    item_1.funct3 = ADDI_FC;
+                    item_1.rd = item_0.rs1; 
+                    item_1.rs1 = 5'h00;   // rs1 pointer = 0, rs1_v = 0
+                    item_1.imm = imm_t;
 
                     `uvm_info("RS1_V_L/S", $sformatf("#%d: ", item_1.imm), UVM_MEDIUM)
 

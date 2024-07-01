@@ -15,7 +15,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   rand bit [4:0]  rd;
   rand bit [6:0]  funct7;
   rand bit [2:0]  funct3;
-  rand bit [11:0] imm;
+  rand logic signed [11:0] imm;
 
   //*******************************************************
   `uvm_object_utils_begin(sequence_item_rv32i_instruction)
