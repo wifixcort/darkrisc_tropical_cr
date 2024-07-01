@@ -54,8 +54,7 @@ class gen_sequence extends uvm_sequence;
                     `uvm_info("min_rs1", $sformatf("#%d: ", min_rs1), UVM_MEDIUM)
                     `uvm_info("max_rs1", $sformatf("#%d: ", max_rs1), UVM_MEDIUM)
 
-                    imm_t = min_rs1;
-                    //imm_t = $urandom_range(min_rs1, max_rs1);
+                    imm_t = $urandom_range(min_rs1, max_rs1);
 
                     `uvm_info("RS1_VB_L/S", $sformatf("#%d: ", imm_t), UVM_MEDIUM)
 
