@@ -58,13 +58,17 @@ class gen_sequence extends uvm_sequence;
                     `uvm_info("min_rs1", $sformatf("#%d: ", min_rs1), UVM_MEDIUM)
                     `uvm_info("max_rs1", $sformatf("#%d: ", max_rs1), UVM_MEDIUM)
 
+                    imm_t = $urandom_range(min_rs1, max_rs1);
+
+                    `uvm_info("RS1_VB_L/S", $sformatf("#%d: ", imm_t), UVM_MEDIUM)
+
                     // ADDI
                     item_1.randomize() with {
                         opcode==I_TYPE &&
                         funct3==ADDI_FC && 
                         rd==item_0.rs1 && 
                         rs1==5'h00 &&   // rs1 pointer = 0, rs1_v = 0
-                        imm == $urandom_range(min_rs1, max_rs1);
+                        imm == imm_t;
                     };
 
                     `uvm_info("RS1_V_L/S", $sformatf("#%d: ", item_1.imm), UVM_MEDIUM)
