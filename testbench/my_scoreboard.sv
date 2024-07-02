@@ -36,16 +36,19 @@ class my_scoreboard extends uvm_scoreboard;
    logic [31:0]		   sdata;
    logic [31:0]		   ldata;
 
+   logic [31:0]			r_daddr_calc;
+
    function new(string name, uvm_component parent);
       super.new(name, parent);
       txn_mon1 = new("txn_mon1", this);
       txn_mon2 = new("txn_mon2", this);
       ref_model = riscv_ref_model::type_id::create("ref_model", this);
+
    endfunction
    
    virtual function void build_phase(uvm_phase phase);
       //super.new(phase);
-	
+		r_daddr_calc = '0;
    endfunction
 
    // virtual function void connect_phase(uvm_phase phase);
@@ -87,6 +90,9 @@ class my_scoreboard extends uvm_scoreboard;
 		 i_l_type_cheker_rd_imm_rs1(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p], 
 									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.DATAI,
 									this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
+		//  r_daddr_calc = `CORE.REGS[tr.risc_rs1_p] +  tr.risc_imm;
+		//  $display("RISC MEM ADDR = %d, MEM = %h", r_daddr_calc[`MLEN-1:2], top.soc0.MEM[r_daddr_calc[`MLEN-1:2]]);
+
          $display("R DADDR = %h, SB DADDR = %h", tr.risc_daddr, this.DADDR);
 		 $display("R LDATA = %h, SB LDATA = %h", tr.risc_ldata, this.ldata);
 		//  $display("r DATAI = %h, s DATAI = %h", DATAI, DATAI);
