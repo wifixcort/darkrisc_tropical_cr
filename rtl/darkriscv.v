@@ -370,7 +370,7 @@ module darkriscv
 `ifdef MODEL_TECH
                                    -((-S1REG)>>U2REGX[4:0]); // workaround for modelsim
 `else
-                                   $signed(S1REG)>>>U2REGX[4:0];  // (FCT7[5] ? U1REG>>>U2REG[4:0] :
+                                   $signed( $signed(S1REG)>>>S2REGX[4:0] );  // (FCT7[5] ? U1REG>>>U2REG[4:0] :
 `endif
 
 `ifdef __MAC16X16__
