@@ -75,14 +75,14 @@ class gen_sequence extends uvm_sequence;
     	            //item_0.print();
                     // todo: quitar displays
                     $display("\n(force ADDI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0], item_2.full_inst);
-                    $display("(force XORI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]+2'h1, item_1.full_inst);
+                    $display("(force SLLI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]+2'h1, item_1.full_inst);
                     if (item_0.opcode==S_TYPE)
                         $display("(for STORE)\t\tInstruct #%d\t\tinstruct: %h\tIADDR: %h", i[15:0]+2'h2, item_0.full_inst, i*3'h4);
                     else
                         $display("(for LOAD)\t\tInstruct #%d\t\tinstruct: %h", i[15:0]+2'h2, item_0.full_inst);
                     $display("Effective Address: %d   (decimal)", (item_2.imm << 1) + item_0.imm); // Efective address = base address + offset
                     // `uvm_info("opt_addr()", $sformatf("\n(force ADDI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]-2'h2, MEM[i-2]), UVM_LOW)
-                    // `uvm_info("opt_addr()", $sformatf("(force XORI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]-2'h1, MEM[i-1]), UVM_LOW)
+                    // `uvm_info("opt_addr()", $sformatf("(force SLLI)\tInstruct fixed #%d\t\tnew instruct:%h", i[15:0]-2'h1, MEM[i-1]), UVM_LOW)
                     // `uvm_info("opt_addr()", $sformatf("(for STORE)\t\tInstruct #%d\t\tinstruct: %h", i[15:0], MEM[i]), UVM_LOW)
 
                     //Compensar el iterador por las 2 instrucciones extra enviadas

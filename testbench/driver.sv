@@ -75,7 +75,7 @@ endtask
 
   // Load .mem in SoC MEM
   //*******************************************************
-  function mem_load();                                        //todo: llamar en write_mem_file para eliminar llamadas al driver desde el test
+  function mem_load();                                        //No necesario porque ya lo hace el soc
     $readmemh("darksocv.mem", top.soc0.MEM,0);      
   endfunction
 
