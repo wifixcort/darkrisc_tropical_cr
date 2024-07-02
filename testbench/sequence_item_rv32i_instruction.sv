@@ -68,54 +68,54 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //********************************************************
   constraint funct3_cases{
     solve opcode before funct3;
-    (opcode == R_TYPE) -> funct3 inside {ADD_o_SUB_FC,
-                                        XOR_FC,
-                                        OR_FC,
-                                        AND_FC,
-                                        SLL_FC,
-                                        SRL_o_SRA_FC,
-                                        SLT_FC,
-                                        SLTU_FC};
+      (opcode == R_TYPE) -> funct3 inside {ADD_o_SUB_FC,
+                                          XOR_FC,
+                                          OR_FC,
+                                          AND_FC,
+                                          SLL_FC,
+                                          SRL_o_SRA_FC,
+                                          SLT_FC,
+                                          SLTU_FC};
 
-    (opcode == I_TYPE) -> funct3 inside {ADDI_FC,
-                                        XORI_FC,
-                                        ORI_FC,
-                                        ANDI_FC,
-                                        SLLI_FC,
-                                        SRLI_FC,
-                                        SRAI_FC,
-                                        SLTI_FC,
-                                        SLTIU_FC};
+      (opcode == I_TYPE) -> funct3 inside {ADDI_FC,
+                                          XORI_FC,
+                                          ORI_FC,
+                                          ANDI_FC,
+                                          SLLI_FC,
+                                          SRLI_FC,
+                                          SRAI_FC,
+                                          SLTI_FC,
+                                          SLTIU_FC};
 
-    (opcode == I_L_TYPE) -> funct3 inside {LB_FC,
-                                          LH_FC, 
-                                          LW_FC,
-                                          LBU_FC,     
-                                          LHU_FC};
+      (opcode == I_L_TYPE) -> funct3 inside {LB_FC,
+                                            LH_FC, 
+                                            LW_FC,
+                                            LBU_FC,     
+                                            LHU_FC};
 
-    (opcode == S_TYPE) -> funct3 inside   {SB_FC,
-                                          SH_FC,
-                                          SW_FC};
+      (opcode == S_TYPE) -> funct3 inside   {SB_FC,
+                                            SH_FC,
+                                            SW_FC};
   }
 
   // for R_TYPE and some I_TYPE instructions
   //********************************************************
   constraint func7_cases{
     solve funct3 before funct7;
-    if (opcode == R_TYPE) {
-      (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
-                                                  h20_FC7};
-      (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
-                                                  h20_FC7};
-      (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
-      (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
-    } 
-    //special cases of I_TYPE instructions
-    if (opcode == I_TYPE) { 
-      (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
-                                                h00_FC7};
-      (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
-    }
+      if (opcode == R_TYPE) {
+        (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
+                                                    h20_FC7};
+        (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
+                                                    h20_FC7};
+        (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
+        (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
+      } 
+      //special cases of I_TYPE instructions
+      if (opcode == I_TYPE) { 
+        (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
+                                                  h00_FC7};
+        (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
+      }
   }
    
   // special cases for regs

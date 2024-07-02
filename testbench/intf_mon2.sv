@@ -2,7 +2,7 @@
     darksocv inputs and outputs interface
  ============================================ */
 
-interface intf_mon2(input clk);
+interface intf_mon2(input clk, input res);
   //Data being produced or used in the ALU(s)
   //Produced
   logic [31:0]	RMDATA;
@@ -23,5 +23,21 @@ interface intf_mon2(input clk);
   logic [31:0]  DATAO;
   logic [31:0]  DATAI;
   bit           HLT;
+  //MEM Interface
+  logic [31:0]  DADDR;
   // logic [31:0]  REGS [0:31];
 endinterface
+
+module mon2_assertion (
+    input logic CLK,
+    input logic RES,
+    input logic [31:0] XIDATA,
+    input logic [31:0] DADDR
+);
+
+    assert property (
+        @(posedge CLK) disable iff (RES === 1)
+        ( XIDATA[6:0]==I_L_TYPE |-> ((DADDR/4)>511) && ((DADDR/4)<1024) )
+    );
+
+endmodule

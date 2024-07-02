@@ -11,7 +11,7 @@ module top();
    
    // Interface
    intf_soc intf(CLK);
-   intf_mon2 intf2(CLK);
+   intf_mon2 intf2(CLK, RES);
    intf_mem_rd mem_rd_chan(CLK);
    intf_dmp int_dmp(CLK);
    //logic reset_x;
@@ -40,6 +40,8 @@ module top();
    assign intf2.DATAO  = top.soc0.core0.DATAO;
    assign intf2.DATAI  = top.soc0.core0.DATAI;
    assign intf2.HLT    = top.soc0.core0.HLT;
+   
+   assign intf2.DADDR    = top.soc0.core0.DADDR;
    // assign intf2.REGS = top.soc0.core0.REGS;
 
    // DUT connection	

@@ -56,8 +56,7 @@ class riscv_ref_model extends uvm_component;
       for (i = 0; i < 32; i = i + 1) begin
 		 REGS[i] = '0;
       end
-      // Intialize Memory
-      $readmemh("darksocv.mem",MEM,0);
+	  //$readmemh("darksocv.mem",MEM,0);
    endfunction
    
    // Build Phase 
@@ -69,15 +68,14 @@ class riscv_ref_model extends uvm_component;
 	  if(uvm_config_db #(virtual intf_dmp)::get(this, "", "VIRTUAL_INTERFACE_DMP", int_dmp) == 0) begin
 		`uvm_fatal("INTERFACE_CONNECT", "Could not get from the database the virtual interface dmp for the TB")
 	 end
-	 
    endfunction 
 
-
    virtual task run_phase(uvm_phase phase);
-   super.run_phase(phase);
-   int_dmp.sb_dump =  MEM[465];
-
-endtask
+   		super.run_phase(phase);
+		// Intialize Memory
+   		$readmemh("darksocv.mem",MEM,0);
+		// int_dmp.sb_dump =  MEM[465];
+	endtask
 
 
    function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1,logic [4:0] rs2,logic [4:0] rdd);
@@ -248,7 +246,7 @@ endtask
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			//   int_dmp.sb_dump =  MEM[465];
 			  case (DADDR[1])
 				1: BE = 4'b1100;
