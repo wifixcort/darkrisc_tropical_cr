@@ -42,6 +42,7 @@ module top();
    assign intf2.HLT    = top.soc0.core0.HLT;
    
    assign intf2.DADDR    = top.soc0.core0.DADDR;
+   assign intf2.MEM      = top.soc0.MEM;
    // assign intf2.REGS = top.soc0.core0.REGS;
 
    // DUT connection	
