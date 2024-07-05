@@ -28,7 +28,7 @@ class darksocv_driver extends uvm_driver #(sequence_item_rv32i_instruction);
     super.run_phase(phase);
     forever begin
       sequence_item_rv32i_instruction item;
-      `uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
+      //`uvm_info("DRV", $sformatf("Wait for item from sequencer"), UVM_LOW)
       seq_item_port.get_next_item(item);
       fork
         add_instruct_to_mem(item);
@@ -75,7 +75,7 @@ endtask
 
   // Load .mem in SoC MEM
   //*******************************************************
-  function mem_load();  
+  function mem_load();                                        //No necesario porque ya lo hace el soc
     $readmemh("darksocv.mem", top.soc0.MEM,0);      
   endfunction
 
