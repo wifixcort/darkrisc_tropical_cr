@@ -114,7 +114,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
 						ex_dbuf.instruccion == LHU) begin
                // $display("------------------------- IL type -------------------------");
-               $display("DATAI mon2 = %h", top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]]);
+               $display("DATAI mon2 = %h", intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]]);
                ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
 			end else if(ex_dbuf.instruccion == SB || ex_dbuf.instruccion == SH || ex_dbuf.instruccion == SW) begin
 			   // $display("------------------------- S type -------------------------");
@@ -123,29 +123,29 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                if(ex_dbuf.instruccion == SB )begin
                   case (ex_dbuf.be)
                     4'b1000: begin 
-                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][31:24];
+                       ex_dbuf.risc_sdata = intf2.MEM[`CORE.DADDR[`MLEN-1:2]][31:24];
                     end 
                     4'b0100: begin
-                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][23:16];
+                       ex_dbuf.risc_sdata = intf2.MEM[`CORE.DADDR[`MLEN-1:2]][23:16];
                     end
                     4'b0010: begin 
-                       ex_dbuf.risc_sdata = top.soc0.MEM[`CORE.DADDR[`MLEN-1:2]][15:8];
+                       ex_dbuf.risc_sdata = intf2.MEM[`CORE.DADDR[`MLEN-1:2]][15:8];
                     end
                     4'b0001: begin 
-                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][7:0];
+                       ex_dbuf.risc_sdata = intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][7:0];
                     end
                   endcase
                end else if(ex_dbuf.instruccion == SH) begin
                   case (ex_dbuf.be)
                     4'b1100: begin 
-                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][31:16];
+                       ex_dbuf.risc_sdata = intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][31:16];
                     end
                     4'b0011: begin 
-                       ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][15:0];
+                       ex_dbuf.risc_sdata = intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]][15:0];
                     end 
                   endcase
                end else if(ex_dbuf.instruccion == SW) begin
-                  ex_dbuf.risc_sdata = top.soc0.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]];
+                  ex_dbuf.risc_sdata = intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]];
                   // ex_dbuf.risc_sdata = intf2.SDATA;
                end			   
 			end

@@ -7,3 +7,5 @@ sim/dsim_work/sfe*
 sim/dsim_work/obj*
 sim/dsim_work/sir*
 sim/dsim_work/image.so
+testbench/idea_sequences.sv
+testbench/LEGACY_gen_sequence.sv

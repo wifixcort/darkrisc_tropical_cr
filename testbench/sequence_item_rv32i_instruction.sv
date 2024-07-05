@@ -6,7 +6,6 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     super.new(name);
   endfunction
 
-
   // random variables 
   rand bit [31:0] full_inst;
   rand bit [6:0]  opcode;
@@ -16,21 +15,23 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   rand bit [6:0]  funct7;
   rand bit [2:0]  funct3;
   rand bit [11:0] imm;
+  rand bit [20:1] imm_jal;
+
+  // operation variables
+  rand bit sign_bit;
 
   //*******************************************************
   `uvm_object_utils_begin(sequence_item_rv32i_instruction)
     `uvm_field_int (full_inst, UVM_DEFAULT)
-    `uvm_field_int (opcode, UVM_DEFAULT)
-    `uvm_field_int (rs1, UVM_DEFAULT)
-    `uvm_field_int (rs2, UVM_DEFAULT)
-    `uvm_field_int (rd, UVM_DEFAULT)
-    `uvm_field_int (funct7, UVM_DEFAULT)
-    `uvm_field_int (funct3, UVM_DEFAULT)
-    `uvm_field_int (imm, UVM_DEFAULT)
+    // `uvm_field_int (opcode, UVM_DEFAULT)
+    // `uvm_field_int (rs1, UVM_DEFAULT)
+    // `uvm_field_int (rs2, UVM_DEFAULT)
+    // `uvm_field_int (rd, UVM_DEFAULT)
+    // `uvm_field_int (funct7, UVM_DEFAULT)
+    // `uvm_field_int (funct3, UVM_DEFAULT)
+    // `uvm_field_int (imm, UVM_DEFAULT)
   `uvm_object_utils_end
 
-  // operation variables
-  logic opt_addr_select = 1'b0; //optimize for generate address
 
   //==============================================================
   //         Constraints for instruction generator
@@ -41,23 +42,25 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //**************************************************************
   constraint construct_full_inst{
     solve opcode,rd,rs1,rs2,funct7,funct3,imm before full_inst;
-    (opcode == R_TYPE)   -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
-    (opcode == I_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
-    (opcode == I_L_TYPE) -> full_inst == {imm,rs1,funct3,rd,opcode};
-    (opcode == S_TYPE)   -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};   
+    (opcode == R_TYPE)        -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
+    (opcode == I_TYPE)        -> full_inst == {imm,rs1,funct3,rd,opcode};
+    (opcode == I_L_TYPE)      -> full_inst == {imm,rs1,funct3,rd,opcode};
+    (opcode == S_TYPE)        -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};   
+    (opcode == I_JALR_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
+    (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
    }
    
    //********************************************************
   constraint opcode_cases{
-  soft opcode dist  {R_TYPE   :/ 44,
-                    I_TYPE    :/ 44,
-                    I_L_TYPE  :/ 5,
-                    S_TYPE    :/ 5
-                    /*S_B_TYPE,
-                    J_TYPE,
-                    I_JALR_TYPE,
-                    LUI_TYPE,
-                    AUIPC_TYPE */
+  soft opcode dist  {R_TYPE     :/ 44,
+                    I_TYPE      :/ 44,
+                    I_L_TYPE    :/ 5,
+                    S_TYPE      :/ 5,
+                    I_JALR_TYPE :/ 2,
+                    J_TYPE      :/ 2
+                   // S_B_TYPE    :/ 0,
+                   // LUI_TYPE    :/ 0,
+                   // AUIPC_TYPE  :/ 0
                   };
   }
    
@@ -65,54 +68,54 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //********************************************************
   constraint funct3_cases{
     solve opcode before funct3;
-    (opcode == R_TYPE) -> funct3 inside {ADD_o_SUB_FC,
-                                        XOR_FC,
-                                        OR_FC,
-                                        AND_FC,
-                                        SLL_FC,
-                                        SRL_o_SRA_FC,
-                                        SLT_FC,
-                                        SLTU_FC};
+      (opcode == R_TYPE) -> funct3 inside {ADD_o_SUB_FC,
+                                          XOR_FC,
+                                          OR_FC,
+                                          AND_FC,
+                                          SLL_FC,
+                                          SRL_o_SRA_FC,
+                                          SLT_FC,
+                                          SLTU_FC};
 
-    (opcode == I_TYPE) -> funct3 inside {ADDI_FC,
-                                        XORI_FC,
-                                        ORI_FC,
-                                        ANDI_FC,
-                                        SLLI_FC,
-                                        SRLI_FC,
-                                        SRAI_FC,
-                                        SLTI_FC,
-                                        SLTIU_FC};
+      (opcode == I_TYPE) -> funct3 inside {ADDI_FC,
+                                          XORI_FC,
+                                          ORI_FC,
+                                          ANDI_FC,
+                                          SLLI_FC,
+                                          SRLI_FC,
+                                          SRAI_FC,
+                                          SLTI_FC,
+                                          SLTIU_FC};
 
-    (opcode == I_L_TYPE) -> funct3 inside {LB_FC,
-                                          LH_FC, 
-                                          LW_FC,
-                                          LBU_FC,     
-                                          LHU_FC};
+      (opcode == I_L_TYPE) -> funct3 inside {LB_FC,
+                                            LH_FC, 
+                                            LW_FC,
+                                            LBU_FC,     
+                                            LHU_FC};
 
-    (opcode == S_TYPE) -> funct3 inside   {SB_FC,
-                                          SH_FC,
-                                          SW_FC};
+      (opcode == S_TYPE) -> funct3 inside   {SB_FC,
+                                            SH_FC,
+                                            SW_FC};
   }
 
   // for R_TYPE and some I_TYPE instructions
   //********************************************************
   constraint func7_cases{
     solve funct3 before funct7;
-    if (opcode == R_TYPE) {
-      (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
-                                                  h20_FC7};
-      (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
-                                                  h20_FC7};
-      (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
-      (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
-    } 
-    //special cases of I_TYPE instructions
-    if (opcode == I_TYPE) { 
-      (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
-                                                h00_FC7};
-      (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
-    }
+      if (opcode == R_TYPE) {
+        (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
+                                                    h20_FC7};
+        (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
+                                                    h20_FC7};
+        (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
+        (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
+      } 
+      //special cases of I_TYPE instructions
+      if (opcode == I_TYPE) { 
+        (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
+                                                  h00_FC7};
+        (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
+      }
   }
    
   // special cases for regs
@@ -129,33 +132,56 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     }
    }
    
-  // Offseft for calc effective direction
+  // Offset for calc effective direction
   // "the effective address for all loads and stores should be naturally aligned for each data type"  - riscv_spec
   //*******************************************************
   constraint offset_load_store {
-    solve funct3 before imm;
-    if (!opt_addr_select) {   
-      // ALINEADORES  
-      if (opcode == I_L_TYPE){
-        (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == LW_FC) 	->	imm[1:0] == 2'b00;
-      } else if (opcode == S_TYPE){
-        (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
-        (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
-      }
-
-      //todo; puede ser necesario meter esto dentro del if( L || S ) y quitar el opt_addres select
+    solve funct3,sign_bit before imm;  
       // -----> "The effective byte address is obtained by adding register rs1 to the sign-extended 12-bit offset" - riscv_spec
-      //        El offset de 12 bits es demasiado para el darkriscv.
-      // //ACOTADORES de offset a +127 -127
-      if(imm[11] == 0){
+      //        Acotadores a 512. todo: probar sin restriccion al offset
+    // ALINEADORES  
+    if (opcode == I_L_TYPE){
+      (funct3 == LH_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == LHU_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == LW_FC) 	->	imm[1:0] == 2'b00;
+      //ACOTADOR
+      if(sign_bit == 0){
         //pos sign extend
-        imm[10:8] == 3'b000;
-      } else if (imm[11] == 1){
+        imm[11:10] == 2'b00;
+      } else if (sign_bit == 1){
         //neg sign extend
-        imm[10:8] == 3'b111;
+        imm[11:10] == 2'b11;
       }
+    } else if (opcode == S_TYPE){
+      (funct3 == SH_FC) 	->	imm[0]   == 1'b0;
+      (funct3 == SW_FC) 	->	imm[1:0] == 2'b00;
+       //ACOTADOR
+      if(sign_bit == 0){
+        //pos sign extend
+        imm[11:10] == 2'b00;
+      } else if (sign_bit == 1){
+        //neg sign extend
+        imm[11:10] == 2'b11;
+      }
+        
     }
   } 
+
+
+  // for jump offset
+  //*******************************************************
+  constraint offset_jumps {
+    if (opcode == I_JALR_TYPE ) {
+      funct3 == 3'b000;
+      imm[1:0] == 2'b00;
+    }
+
+    if (opcode == J_TYPE ) {  //Es mejor dejar las cotas para generar desde el gen sequence
+      imm_jal[1:0]   == 2'b00;
+      //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
+    }
+  }
+
+//(opcode == I_JALR_TYPE) -> funct3 == 3'b000;
+
 endclass

@@ -35,6 +35,8 @@ class my_scoreboard extends uvm_scoreboard;
 
    logic [31:0]		   sdata;
    logic [31:0]		   ldata;
+   
+   logic [11:0]		   dbg_efctv_addr = 0;
 
    logic [31:0]			r_daddr_calc;
 
@@ -95,6 +97,14 @@ class my_scoreboard extends uvm_scoreboard;
 
          $display("R DADDR = %h, SB DADDR = %h", tr.risc_daddr, this.DADDR);
 		 $display("R LDATA = %h, SB LDATA = %h", tr.risc_ldata, this.ldata);
+
+		$display("Direccion efectiva: %h", this.dbg_efctv_addr);
+		
+		this.dbg_efctv_addr = this.DADDR[12:2];
+		if (this.dbg_efctv_addr<513) begin
+			$display("WARNINCITO: SU EFECTIVE ADDR ESTA ROTO ||| %h", this.dbg_efctv_addr);
+		end
+
 		//  $display("r DATAI = %h, s DATAI = %h", DATAI, DATAI);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
