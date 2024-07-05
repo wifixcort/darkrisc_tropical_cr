@@ -41,13 +41,14 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   // Generate the full instruction in last contraint solver
   //**************************************************************
   constraint construct_full_inst{
-    solve opcode,rd,rs1,rs2,funct7,funct3,imm before full_inst;
+    solve opcode,rd,rs1,rs2,funct7,funct3,imm,imm_jal before full_inst;
     (opcode == R_TYPE)        -> full_inst == {funct7,rs2,rs1,funct3,rd,opcode};
     (opcode == I_TYPE)        -> full_inst == {imm,rs1,funct3,rd,opcode};
     (opcode == I_L_TYPE)      -> full_inst == {imm,rs1,funct3,rd,opcode};
     (opcode == S_TYPE)        -> full_inst == {imm[11:5],rs2, rs1,funct3,imm[4:0],opcode};   
     (opcode == I_JALR_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
     (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
+    (opcode == S_B_TYPE)      -> full_inst == {imm[11],imm[9:4],rs2,rs1,funct3,imm[3:0],imm[10],opcode};
    }
    
    //********************************************************
@@ -57,8 +58,8 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
                     I_L_TYPE    :/ 5,
                     S_TYPE      :/ 5,
                     I_JALR_TYPE :/ 2,
-                    J_TYPE      :/ 2
-                   // S_B_TYPE    :/ 0,
+                    J_TYPE      :/ 2,
+                    S_B_TYPE    :/ 5
                    // LUI_TYPE    :/ 0,
                    // AUIPC_TYPE  :/ 0
                   };
@@ -96,6 +97,14 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
       (opcode == S_TYPE) -> funct3 inside   {SB_FC,
                                             SH_FC,
                                             SW_FC};
+
+      (opcode == S_B_TYPE) -> funct3 inside {BEQ_FC,        
+                                            BNE_FC,        
+                                            BLT_FC,        
+                                            BGE_FC,    
+                                            BLTU_FC,      
+                                            BGEU_FC};
+      
   }
 
   // for R_TYPE and some I_TYPE instructions
@@ -168,7 +177,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   } 
 
 
-  // for jump offset
+  // offset for jumps
   //*******************************************************
   constraint offset_jumps {
     if (opcode == I_JALR_TYPE ) {
@@ -176,12 +185,30 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
       imm[1:0] == 2'b00;
     }
 
-    if (opcode == J_TYPE ) {  //Es mejor dejar las cotas para generar desde el gen sequence
-      imm_jal[1:0]   == 2'b00;
+    if (opcode == J_TYPE ) {  //Es mejor  generar las desde el gen sequence
+      imm_jal[1:0] == 2'b00;
       //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
     }
   }
 
-//(opcode == I_JALR_TYPE) -> funct3 == 3'b000;
+  constraint offset_branch {
+    if (opcode == S_B_TYPE) {
+      imm[0] == 1'b0;
+      if(sign_bit == 0){
+        //pos sign extend
+        imm[11:8] == 4'b0000;
+      } else if (sign_bit == 1){
+        //neg sign extend
+        imm[11:8] == 4'b0000;
+      }
+    
+    
+    }
+
+
+
+  }
+
+
 
 endclass
