@@ -21,4 +21,5 @@
 `include "../testbench/env.sv"
 `include "../testbench/test_01.sv"
 `include "../testbench/intf_dmp.sv"
+`include "../testbench/assertions.sv"
 //`include "../testbench/test_02.sv"
