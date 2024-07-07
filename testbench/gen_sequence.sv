@@ -10,6 +10,7 @@ class gen_sequence extends uvm_sequence;
     logic [4:0]	    reg_base;
     logic [11:0]    effective_addr = 12'h000;  //[2**`MLEN/2-1:0]
     logic [31:0]    target_addr    = 32'h00000000;  //for JALR
+    logic [31:0]    branch_addr  = 32'h00000000;  //for Branches
 
     virtual task body();
         sequence_item_rv32i_instruction item_0 = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i
@@ -26,7 +27,8 @@ class gen_sequence extends uvm_sequence;
                 item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
                 //Transaccion
                 start_item(item_0);
-                finish_item(item_0);  
+                finish_item(item_0);
+                $display("\n(ADDI for set regs)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst);  
                 //`uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0]), UVM_MEDIUM)
     	        //item_0.print();   
             end
@@ -35,7 +37,7 @@ class gen_sequence extends uvm_sequence;
             //    Para esto actualmente se están insertando un ADDI y un SLLI (debido a la arquitectura de las instrucciones y del tamaño de la memoria)
             //    Se puede hacer mas escalable para tamaños de memoria mas grandes si se implementan instrucciones LUI
             else if (i < 2**`MLEN/(4*2) - 1 - 3) begin // -1 Para dejar campo para jump final   -3 por si se genera l/s, no interfiera el jump final
-                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE};};
+                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE};}; //S_B_TYPE
                 
                 // Si la instruccion item_00 es un STORE o un LOAD
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
@@ -89,11 +91,29 @@ class gen_sequence extends uvm_sequence;
                     i = i+2;
                 end
 
+                // Si la instruccion item 0 es un BRANCH
+                else if (item_0.opcode == S_B_TYPE) begin
+                    // loop if effective_addr out of range
+                    branch_addr =  32'h00000000;
+                    while ( (branch_addr <= 0)  || (branch_addr >= 2**`MLEN/2) ) begin
+                        //forzar que los branchs sean con offset positivo y de 6 bits (<64)
+                        item_0.randomize() with {opcode==S_B_TYPE && imm[11:6]==6'b000000;};
+                        branch_addr = item_0.imm + i*4; 
+                        $display("WHILE BRANCH OFFSET");
+                    end
+                    //Transaccion
+                    start_item(item_0);
+                    finish_item(item_0);
+                    //INFO
+                    $display("\n(BRANCH)\tInstruct #%d\t\tInstruction :%h\t offset: %d\t branch addr: ", i[15:0], item_0.full_inst, item_0.imm, branch_addr);
+                end
+
                 // Si la instruccion item_0 es REGISTER o IMMEDIATE
                 else begin
                     //Transaccion normal
                     start_item(item_0);
                     finish_item(item_0);
+                    $display("\n(R/I)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst);
                     //`uvm_info("SEQUENCER", $sformatf("Generate instruction #%d: ",i[15:0]), UVM_MEDIUM)
     	            //item_0.print();
                 end
@@ -107,8 +127,7 @@ class gen_sequence extends uvm_sequence;
                     start_item(item_0);
                     finish_item(item_0);
 
-                    $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h", i[15:0]+1'h1, item_0.full_inst);
-                    $display("Offset: %b   (bin) ", item_0.imm_jal);
+                    $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
             end
 
             // En cualquier otro caso. ->Casos anteriores a jump final
@@ -116,11 +135,12 @@ class gen_sequence extends uvm_sequence;
                 item_0.randomize() with {opcode inside {R_TYPE, I_TYPE};};
                 //Transaccion
                 start_item(item_0);
-                finish_item(item_0);  
+                finish_item(item_0); 
+                //
+                $display("\n(R/I)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
             end
 
-            //*** Insertando instrucciones para crear loop al final del programa (Instrucciones 510-511)
-            //todo: el item tiene que soportar AUIPC y JALR para poder hacerlo bien mediante transacciones de item
+            //todo: soportar lui para escalar generacion de direcciones y preprocesamiento de registros para load/store, branches, jumps 
             //else
         end
     endtask

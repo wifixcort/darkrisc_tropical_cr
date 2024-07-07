@@ -49,28 +49,32 @@ endtask
 
   // For build .mem file instruction by instruction
   //*******************************************************
-  function add_instruct_to_mem(sequence_item_rv32i_instruction item);
+  task add_instruct_to_mem(sequence_item_rv32i_instruction item);
     MEM[i] = item.full_inst;
     i = i+1;
     // Si ya era la ultima instruccion
     if (i == 2**`MLEN/(4*2))
       write_mem_file();
-  endfunction
+  endtask
 
 
   // Write .mem file
   //*******************************************************
-  function write_mem_file (); 
+  task write_mem_file (); 
     //Llenar memoria de datos con 0x00000000
     while (i <= 2**`MLEN/(4)) begin
       if (i < 2**`MLEN/(4))
         MEM[i] = 32'h00000000; //Llenar memoria de datos con 0s
       //si ya era el ultimo espacio de memoria
-      else if (i == 2**`MLEN/(4)) //-1
+      else if (i == 2**`MLEN/(4)) begin //-1
         $writememh("darksocv.mem", MEM);
+        #20
+        reset();  
+        //mem_load();
+      end
       i = i+1;
     end 
-  endfunction
+  endtask
   
 
   // Load .mem in SoC MEM
