@@ -23,4 +23,5 @@
 `include "../testbench/test_basic.sv"
 `include "../testbench/test_R.sv"
 `include "../testbench/intf_dmp.sv"
+`include "../testbench/assertions.sv"
 //`include "../testbench/test_02.sv"

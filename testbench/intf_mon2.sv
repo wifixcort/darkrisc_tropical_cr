@@ -26,6 +26,7 @@ interface intf_mon2(input clk, input res);
   //MEM Interface
   logic [31:0]  DADDR;
   // logic [31:0]  REGS [0:31];
+  logic [31:0] MEM [0:2**`MLEN/4-1];
 endinterface
 
 module mon2_assertion (
