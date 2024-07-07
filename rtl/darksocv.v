@@ -103,6 +103,7 @@ module darksocv
 	 `elsif MODEL_TECH
 		$readmemh("darksocv.mem",MEM);      //MODIFIED: path
     `else
+        #10                                //MODIFIED: delay to avoid race conditions
       	$readmemh("darksocv.mem",MEM,0);	//MODIFIED: path
     `endif
     end

@@ -5,56 +5,66 @@ version: '0.2'
 work_dir: .
 design_root_dir: ..\..
 simulations:
-  - name: test_01 seed_01
+  - name: test_basic seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
-  - name: test_01 seed_02 (2 errors)
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
+      12345 +acc+b
+  - name: test_basic seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 666
-      +acc+b
-  - name: test_01 seed_03
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
+      666 +acc+b
+  - name: test_basic seed_03
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       123456 +acc+b
-  - name: test_01 seed_04
+  - name: test_basic seed_04
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed 63536
-      +acc+b
-  - name: test_01 seed_05-unkown_inst
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
+      63536 +acc+b
+  - name: test_basic seed_05-unkown_inst
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       2342346 +acc+b
-  - name: test_01 seed_02_l1
+  - name: test_basic seed_02_l1
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       56981654 +acc+b
-  - name: test_01 seed_02_l3
+  - name: test_basic seed_02_l3
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       7696542 +acc+b
-  - name: test_01 seed_l4
+  - name: test_basic seed_l4
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       63579566 +acc+b
-  - name: test_01 seed_02_l5
+  - name: test_basic seed_02_l5
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       76826454 +acc+b
-  - name: test_01 seed_02_l6
+  - name: test_basic seed_02_l6
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_01  -timescale 1ns/1ps  -sv_seed
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
       168710554 +acc+b
+  - name: test_R seed_01
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed 12345
+      +acc+b
+  - name: test_R seed_02
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed 666
+      +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt

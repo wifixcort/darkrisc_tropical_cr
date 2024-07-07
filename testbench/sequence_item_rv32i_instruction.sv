@@ -52,18 +52,18 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
    }
    
    //********************************************************
-  constraint opcode_cases{
-  soft opcode dist  {R_TYPE     :/ 44,
-                    I_TYPE      :/ 44,
-                    I_L_TYPE    :/ 5,
-                    S_TYPE      :/ 5,
-                    I_JALR_TYPE :/ 2,
-                    J_TYPE      :/ 2,
-                    S_B_TYPE    :/ 5
-                   // LUI_TYPE    :/ 0,
-                   // AUIPC_TYPE  :/ 0
-                  };
-  }
+  // constraint opcode_cases{
+  // soft opcode dist  {R_TYPE     :/ 44,
+  //                   I_TYPE      :/ 44,
+  //                   I_L_TYPE    :/ 5,
+  //                   S_TYPE      :/ 5,
+  //                   I_JALR_TYPE :/ 2,
+  //                   J_TYPE      :/ 2,
+  //                   S_B_TYPE    :/ 5
+  //                  // LUI_TYPE    :/ 0,
+  //                  // AUIPC_TYPE  :/ 0
+  //                 };
+  // }
    
   // funct3
   //********************************************************

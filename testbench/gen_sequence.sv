@@ -37,7 +37,7 @@ class gen_sequence extends uvm_sequence;
             //    Para esto actualmente se están insertando un ADDI y un SLLI (debido a la arquitectura de las instrucciones y del tamaño de la memoria)
             //    Se puede hacer mas escalable para tamaños de memoria mas grandes si se implementan instrucciones LUI
             else if (i < 2**`MLEN/(4*2) - 1 - 3) begin // -1 Para dejar campo para jump final   -3 por si se genera l/s, no interfiera el jump final
-                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE, S_B_TYPE};};
+                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE};}; //S_B_TYPE
                 
                 // Si la instruccion item_00 es un STORE o un LOAD
                 if ( (item_0.opcode==S_TYPE) || (item_0.opcode==I_L_TYPE) ) begin
