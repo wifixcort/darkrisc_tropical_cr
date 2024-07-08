@@ -99,7 +99,7 @@ class gen_sequence extends uvm_sequence;
                         //forzar que los branchs sean con offset positivo y de 6 bits (<64)
                         item_0.randomize() with {opcode==S_B_TYPE && imm[11:6]==6'b000000;};
                         branch_addr = item_0.imm + i*4; 
-                        $display("WHILE BRANCH OFFSET");
+                        //$display("WHILE BRANCH OFFSET");
                     end
                     //Transaccion
                     start_item(item_0);
@@ -120,14 +120,13 @@ class gen_sequence extends uvm_sequence;
             end
 
 
-            // Cuando llegue la ultima instruccion, retroceder minimo unas  posiciones ( instrucciones)
+            // Cuando llegue la ultima instruccion, que retroceda hasta el inicio
             else if ( i == 2**`MLEN/(4*2) - 1 ) begin
-                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:9]==12'hfff ;};
-                    // Transaccion JALR
-                    start_item(item_0);
-                    finish_item(item_0);
-
-                    $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
+                item_0.randomize() with {opcode==I_JALR_TYPE && rs1==0 && imm==12'h000 ;};
+                $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm);
+                // Transaccion JALR
+                start_item(item_0);
+                finish_item(item_0);
             end
 
             // En cualquier otro caso. ->Casos anteriores a jump final
