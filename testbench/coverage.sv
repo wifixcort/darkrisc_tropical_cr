@@ -5,7 +5,20 @@ class funct_coverage extends uvm_component;
     virtual intf_mon2   intf2;
   
     covergroup cov_R;
-                        
+        //''''''''''''''''''''''''''''''''''''''''''
+        // Essential coverpoints
+        //''''''''''''''''''''''''''''''''''''''''''
+        // Coverpoint instruction for variable fct7_fct3_conct. Create bins called "instructions"
+        // that count if value is between the range or if it takes the special values for SUB
+        // or SRA.
+        cvr_instr : coverpoint fct7_fct3_conct {bins instructions[] = { [ADD_CVRG_ID:AND_CVRG_ID], SUB_CVRG_ID, SRA_CVRG_ID }; } 
+        // Coverpoint register source 1. Check which value does rs1 take.
+        cvr_rs1 : coverpoint intf2.XIDATA[18:15] {bins rx_rs1[] = { [0:31] }; }
+        // Coverpoint register source 2. Check which value does rs2 take.
+        cvr_rs2 : coverpoint intf2.XIDATA[19:15] {bins rx_rs2[] = { [0:31] }; }
+        // Coverpoint register destination. Check which value does rd take.
+        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [1:31] }; 
+                                                illegal_bins il_rx_rd = { 0 };       }                             
     endgroup 
 
     function new (string name = "funct_coverage", uvm_component parent = null);
@@ -32,8 +45,5 @@ class funct_coverage extends uvm_component;
         end
         end
     endtask
-
-
-
 
 endclass
