@@ -51,7 +51,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
     (opcode == S_B_TYPE)      -> full_inst == {imm[11],imm[9:4],rs2,rs1,funct3,imm[3:0],imm[10],opcode};
     (opcode == LUI_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
-    (opcode == AUIPC_FC)      -> full_inst == {imm_U[31:12],rd,opcode};
+    (opcode == AUIPC_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
    }
    
    //********************************************************
@@ -189,7 +189,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     }
 
     if (opcode == J_TYPE ) {  //Es mejor  generar las desde el gen sequence
-      imm_jal[1:0] == 2'b00;
+      imm_jal[2:1] == 2'b00;
       //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
     }
   }

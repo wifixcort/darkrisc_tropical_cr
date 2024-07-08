@@ -119,24 +119,13 @@ class gen_sequence extends uvm_sequence;
                 end
             end
 
-
-            // Cuando llegue la ultima instruccion, que retroceda hasta el inicio
-            else if ( i == 2**`MLEN/(4*2) - 1 ) begin
+            // JALR al final
+            else begin
                 item_0.randomize() with {opcode==I_JALR_TYPE && rs1==0 && imm==12'h000 ;};
                 $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm);
                 // Transaccion JALR
                 start_item(item_0);
                 finish_item(item_0);
-            end
-
-            // En cualquier otro caso. ->Casos anteriores a jump final
-            else begin
-                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE};};
-                //Transaccion
-                start_item(item_0);
-                finish_item(item_0); 
-                //
-                $display("\n(R/I)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
             end
 
             //todo: soportar lui para escalar generacion de direcciones y preprocesamiento de registros para load/store, branches, jumps 
