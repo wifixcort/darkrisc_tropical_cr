@@ -28,6 +28,7 @@ class monitor_tr extends uvm_sequence_item;
     logic [31:0]	sb_DATAI;
     */
    logic [31:0]	inst_PC;
+   logic [31:0]   inst_NXPC2;
    logic [31:0]	inst_XIDATA;
    logic [15:0]	inst_counter;
    // Mon1

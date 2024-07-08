@@ -463,7 +463,7 @@ class riscv_ref_model extends uvm_component;
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = pc_val+4;
-        	  pc_val = pc_val + imm_val_sign_ext;  
+        	  pc_val = pc_val + imm_val_sign_ext;
         	  JREQ = 1;
            end else begin
       		  pc_val = pc_val + 4; 
