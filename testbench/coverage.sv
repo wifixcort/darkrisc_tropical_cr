@@ -46,4 +46,19 @@ class funct_coverage extends uvm_component;
         end
     endtask
 
+    virtual function void report_phase(uvm_phase phase);
+        super.report_phase(phase);
+        //Report coverage
+        $display("cov_R Overall: %3.2f%% coverage achieved.",
+        cov_R.get_coverage());
+        $display("cov_R instructions: %3.2f%% coverage achieved.",
+        cov_R.cvr_instr.get_coverage());
+        $display("cov_R rd registers: %3.2f%% coverage achieved.",
+        cov_R.cvr_rd.get_coverage());
+        $display("cov_R rs1 registers: %3.2f%% coverage achieved.",
+        cov_R.cvr_rs1.get_coverage());
+        $display("cov_R rs2 registers: %3.2f%% coverage achieved.",
+        cov_R.cvr_rs2.get_coverage());
+    endfunction
+
 endclass
