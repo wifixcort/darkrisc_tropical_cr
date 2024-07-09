@@ -28,7 +28,7 @@ typedef struct {
    logic [31:0]	risc_sdata;
    logic [31:0]	risc_ldata;
    logic [31:0]	risc_daddr;
-   bit			be;
+   logic [3:0]			be;
    // logic [31:0]	sb_DATAI;
 }ExData;
 
@@ -172,7 +172,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			//Clear this buffer
 			this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
 							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
-							 inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr : '0, be : '0};//
+							 inst_XIDATA : '0, inst_counter : ex_dbuf.inst_counter, risc_sdata : '0, risc_ldata : '0, risc_daddr : '0, be : '0};//
          end
       end
       
@@ -432,9 +432,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    end
                    BGE_FC: begin //beg
                       //$display("-> func: BEG <-");
-                      `uvm_warning("ALERTA", "BEG instruction found");
-                     ex_dbuf.inst = "BEG";
-                     ex_dbuf.instruccion = BEG;
+                      `uvm_warning("ALERTA", "BGE instruction found");
+                     ex_dbuf.inst = "BGE";
+                     ex_dbuf.instruccion = BGE;
                       //$display("*********************ALERTA**********************     BEG    ");
                    end
                    BLTU_FC: begin //bltu
@@ -481,6 +481,9 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               //          AUIPC-Type instruction was detected
               ////////////////////////////////////////////////////////////               
               AUIPC_TYPE: begin
+               `uvm_warning("ALERTA", "AUIPC_TYPE instruction found");
+               ex_dbuf.inst = "AUIPC";
+               ex_dbuf.instruccion = AUIPC;	
                  // $display("*********************ALERTA**********************     AUIPC    ");
               end	
               
@@ -501,7 +504,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
 						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
-						inst_PC : intf2.PC, inst_XIDATA : intf2.XIDATA, inst_counter : '0, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : `CORE.BE};//
+						inst_PC : intf2.PC, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
             
          end         
          //  end//Work out of reset
