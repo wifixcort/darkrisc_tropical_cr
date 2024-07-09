@@ -17,8 +17,8 @@ class funct_coverage extends uvm_component;
         // Coverpoint register source 2. Check which value does rs2 take.
         cvr_rs2 : coverpoint intf2.XIDATA[24:20] {bins rx_rs2[] = { [0:31] }; }
         // Coverpoint register destination. Check which value does rd take.
-        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [1:31] }; 
-                                                illegal_bins il_rx_rd = { 0 };       }                             
+        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
+        //Make an asertion to avoid save values in rd[0]
     endgroup 
 
     function new (string name = "funct_coverage", uvm_component parent = null);
@@ -41,6 +41,7 @@ class funct_coverage extends uvm_component;
         @(posedge intf2.clk) begin
             if (intf2.XIDATA[6:0]==R_TYPE)begin
                 cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
+                // $display("Instruction = %h", intf2.IDATA);
             end
         end
         end
@@ -49,9 +50,10 @@ class funct_coverage extends uvm_component;
     virtual function void report_phase(uvm_phase phase);
         super.report_phase(phase);
         //Report coverage
+        $display("\n--------------Coverage R type instructions results-------------------");
         $display("cov_R Overall: %3.2f%% coverage achieved.",
         cov_R.get_coverage());
-        $display("cov_R instructions: %3.2f%% coverage achieved.",
+        $display("cov_R instruction type: %3.2f%% coverage achieved.",
         cov_R.cvr_instr.get_coverage());
         $display("cov_R rd registers: %3.2f%% coverage achieved.",
         cov_R.cvr_rd.get_coverage());
@@ -59,6 +61,7 @@ class funct_coverage extends uvm_component;
         cov_R.cvr_rs1.get_coverage());
         $display("cov_R rs2 registers: %3.2f%% coverage achieved.",
         cov_R.cvr_rs2.get_coverage());
+        $display("------------------------------------------------------------------------\n");
     endfunction
 
 endclass
