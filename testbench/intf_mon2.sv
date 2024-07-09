@@ -12,6 +12,7 @@ interface intf_mon2(input clk, input res);
   logic [31:0]  XSIMM;
   logic [31:0]  XUIMM;
   logic [31:0]  XIDATA;
+  logic [31:0]  IDATA;
   //Register connections
   logic [4:0]   DPTR;
   logic [4:0]   S1PTR;

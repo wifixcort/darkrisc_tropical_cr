@@ -29,6 +29,7 @@ module top();
    assign intf2.XSIMM  = top.soc0.core0.XSIMM;
    assign intf2.XUIMM  = top.soc0.core0.XUIMM;
    assign intf2.XIDATA = top.soc0.core0.XIDATA;
+   assign intf2.IDATA = top.soc0.core0.IDATA;
 
    assign intf2.DPTR   = top.soc0.core0.DPTR;
    assign intf2.S1PTR  = top.soc0.core0.S1PTR;
