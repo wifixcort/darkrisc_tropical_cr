@@ -61,6 +61,11 @@ module top();
 
    // generate dumps
 
+   assertions assertions0 (
+				  .CLK(CLK),
+				  .RES(intf.rst)
+   );
+
    genvar q;
    generate 
       for(q=0; q<32; q=q+1)begin 
