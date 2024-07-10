@@ -64,7 +64,7 @@ class funct_coverage extends uvm_component;
         @(posedge intf2.clk) begin
             if (intf2.XIDATA[6:0]==R_TYPE)begin
                 cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
-                // $display("Instruction = %h", intf2.IDATA);
+                uvm_report_info(get_full_name(), $sformatf("\n Covergroup R sampled the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h ", intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                
             end
         end
         end
