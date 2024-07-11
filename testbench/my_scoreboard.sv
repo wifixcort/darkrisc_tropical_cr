@@ -93,7 +93,7 @@ class my_scoreboard extends uvm_scoreboard;
 									tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_imm,  this.rdd_val, this.DATAI,
 									this.rs1_val, this.rs1_val_init, this.imm_val_sign_ext, tr.inst_counter);
 		 //  r_daddr_calc = `CORE.REGS[tr.risc_rs1_p] +  tr.risc_imm;
-		 //  $display("RISC MEM ADDR = %d, MEM = %h", r_daddr_calc[`MLEN-1:2], top.soc0.MEM[r_daddr_calc[`MLEN-1:2]]);
+		//   $display("RISC MEM ADDR = %d, MEM = %h", r_daddr_calc[`MLEN-1:2], top.soc0.MEM[r_daddr_calc[`MLEN-1:2]]);
 
          $display("R DADDR = %h, SB DADDR = %h", tr.risc_daddr, this.DADDR);
 		 $display("R LDATA = %h, SB LDATA = %h", tr.risc_ldata, this.ldata);
@@ -115,9 +115,9 @@ class my_scoreboard extends uvm_scoreboard;
 		 s_type_cheker_rs2_imm_rs1(tr.inst ,tr.instruction, tr.risc_sdata, tr.risc_rs2_p, `CORE.REGS[tr.risc_rs2_p],
 								   tr.risc_imm, tr.risc_rs1_p, tr.risc_rs1_v, this.sdata, this.rs2_val, ref_model.REGS[this.rs2_val], this.imm_val_sign_ext,
 								   this.rs1_val, this.rs1_val_init, tr.inst_counter);
-		 //  $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
-		 //  $display("MEM sdata = %h, SB sdata = %h", tr.risc_sdata, sdata);
-		 //  $display("r DATAO = %h, s DATAO = %h", tr.risc_datao, DATAO);
+		  $display("PC = %h, inst = %h", tr.inst_PC, tr.inst_XIDATA );
+		  $display("MEM sdata = %h, SB sdata = %h", tr.risc_sdata, sdata);
+		//   $display("r DATAO = %h, s DATAO = %h", tr.risc_datao, DATAO);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
 	  end else if(tr.instruction == JAL) begin

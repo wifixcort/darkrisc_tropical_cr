@@ -330,22 +330,22 @@ class riscv_ref_model extends uvm_component;
 				4'b1000: begin 
 				   DATAO = {REGS[rs2][7:0],{24{1'b0}}};
 				   MEM[DADDR[`MLEN-1:2]][31:24] = DATAO[31:24];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][31:24];
 				end 
 				4'b0100: begin
 				   DATAO = {{8{1'b0}},REGS[rs2][7:0],{16{1'b0}}};
 				   MEM[DADDR[`MLEN-1:2]][23:16] = DATAO[23:16];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][23:16];
 				end
 				4'b0010: begin 
 				   DATAO = {{16{1'b0}},REGS[rs2][7:0],{8{1'b0}}};
 				   MEM[DADDR[`MLEN-1:2]][15:8] = DATAO[15:8];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][15:8];
 				end
 				4'b0001: begin 
 				   DATAO = {{24{1'b0}},REGS[rs2][7:0]};
 				   MEM[DADDR[`MLEN-1:2]][7:0] = DATAO[7:0];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][7:0];
 				end 
 			  endcase
            end
@@ -363,12 +363,12 @@ class riscv_ref_model extends uvm_component;
 				4'b1100: begin 
 				   DATAO = {REGS[rs2][15:0],{16{1'b0}}};
 				   MEM[DADDR[`MLEN-1:2]][31:16] = DATAO[31:16];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][31:16];
 				end
 				4'b0011: begin 
 				   DATAO = {{16{1'b0}},REGS[rs2][15:0]};
 				   MEM[DADDR[`MLEN-1:2]][15:0] = DATAO[15:0];
-				   sdata = DATAO;
+				   sdata = MEM[DADDR[`MLEN-1:2]][15:0];
 				end 
 			  endcase
            end
@@ -462,7 +462,7 @@ class riscv_ref_model extends uvm_component;
 		JAL  : begin  // JAL with rd = 0x is a plain jump
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-        	  REGS[rdd] = pc_val+4;
+        	  REGS[rdd] = pc_val+ 4;
         	  pc_val = pc_val + imm_val_sign_ext;
         	  JREQ = 1;
            end else begin

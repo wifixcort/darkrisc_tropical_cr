@@ -70,7 +70,7 @@ endtask
         $writememh("darksocv.mem", MEM);
         #20
         reset();  
-        //mem_load();
+        // mem_load();
       end
       i = i+1;
     end 
