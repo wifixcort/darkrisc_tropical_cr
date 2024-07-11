@@ -36,7 +36,7 @@ class gen_sequence extends uvm_sequence;
             //*** Insertando instrucciones teniendo en cuenta las direcciones base en caso de LOAD/STORE (Instrucciones 31-509)
             //    Para esto actualmente se están insertando un ADDI y un SLLI (debido a la arquitectura de las instrucciones y del tamaño de la memoria)
             //    Se puede hacer mas escalable para tamaños de memoria mas grandes si se implementan instrucciones LUI
-            else if (i < 2**`MLEN/(4*2) - 1 - 3) begin // -1 Para dejar campo para jump final   -3 por si se genera l/s, no interfiera el jump final
+            else if (i < 2**`MLEN/(4*2) - 16) begin // -1 Para dejar campo para jump final   -3 por si se genera l/s, no interfiera el jump final
                 item_0.randomize() with {opcode inside {R_TYPE, I_TYPE, S_TYPE, I_L_TYPE};}; //S_B_TYPE
                 
                 // Si la instruccion item_00 es un STORE o un LOAD
@@ -99,7 +99,7 @@ class gen_sequence extends uvm_sequence;
                         //forzar que los branchs sean con offset positivo y de 6 bits (<64)
                         item_0.randomize() with {opcode==S_B_TYPE && imm[11:6]==6'b000000;};
                         branch_addr = item_0.imm + i*4; 
-                        //$display("WHILE BRANCH OFFSET");
+                        $display("WHILE BRANCH OFFSET");
                     end
                     //Transaccion
                     start_item(item_0);
@@ -119,13 +119,25 @@ class gen_sequence extends uvm_sequence;
                 end
             end
 
-            // JALR al final
+
+            // Cuando llegue una de las ultimas instrucciones, retroceder minimo unas  posiciones ( instrucciones)
+            else if ( i == 2**`MLEN/(4*2) - 3 ) begin
+                item_0.randomize() with {opcode==J_TYPE && imm_jal==20'hffff_c ;};
+                    // Transaccion JAL
+                    start_item(item_0);
+                    finish_item(item_0);
+
+                    $display("\n(for JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
+            end
+
+            // En cualquier otro caso. ->Casos anteriores a jump final
             else begin
-                item_0.randomize() with {opcode==I_JALR_TYPE && rs1==0 && imm==12'h000 ;};
-                $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm);
-                // Transaccion JALR
+                item_0.randomize() with {opcode inside {R_TYPE, I_TYPE};};
+                //Transaccion
                 start_item(item_0);
-                finish_item(item_0);
+                finish_item(item_0); 
+                //
+                $display("\n(R/I)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
             end
 
             //todo: soportar lui para escalar generacion de direcciones y preprocesamiento de registros para load/store, branches, jumps 
