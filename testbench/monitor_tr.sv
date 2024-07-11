@@ -1,19 +1,19 @@
 class monitor_tr extends uvm_sequence_item;
 
    // Mon2
-   string	   inst;
-   logic [7:0] instruction;
-   logic [4:0] risc_rd_p; // riscv rd register pointer
-   logic [31:0]	risc_rd_v; // riscv rd register value
-   logic [4:0]	risc_rs1_p; // riscv rs1 register pointer
-   logic [31:0]	risc_rs1_v; // riscv rs1 register value
-   logic [4:0]	risc_rs2_p; // riscv rs1 register pointer
-   logic [31:0]	risc_rs2_v; // riscv rs1 register value
-   logic [31:0]	risc_imm; // riscv immidiate value
+   string	        inst;
+   logic [7:0]		instruction;
+   logic [4:0]		risc_rd_p; // riscv rd register pointer
+   logic [31:0]		risc_rd_v; // riscv rd register value
+   logic [4:0]		risc_rs1_p; // riscv rs1 register pointer
+   logic [31:0]		risc_rs1_v; // riscv rs1 register value
+   logic [4:0]		risc_rs2_p; // riscv rs1 register pointer
+   logic [31:0]		risc_rs2_v; // riscv rs1 register value
+   logic [31:0]		risc_imm; // riscv immidiate value
    // logic [31:0] risc_datao;
-   logic [31:0]	risc_sdata;
-   logic [31:0]   risc_daddr;
-   logic [31:0]   risc_ldata;
+   logic [31:0]		risc_sdata;
+   logic [31:0]		risc_daddr;
+   logic [31:0]		risc_ldata;
 
    // SCB
    /*
@@ -27,12 +27,13 @@ class monitor_tr extends uvm_sequence_item;
     logic [31:0]	sb_DADDR;
     logic [31:0]	sb_DATAI;
     */
-   logic [31:0]	inst_PC;
-   logic [31:0]	inst_XIDATA;
-   logic [15:0]	inst_counter;
+   logic [31:0]		inst_PC;
+   logic [31:0]		inst_NXPC2;
+   logic [31:0]		inst_XIDATA;
+   logic [15:0]		inst_counter;
    // Mon1
-   logic [31:0]	pc_val_mon1 = 0;
-   logic [7:0]	   rx_funct_mon1 = 0;
+   logic [31:0]		pc_val_mon1 = 0;
+   logic [7:0]		rx_funct_mon1 = 0;
    logic signed [20:0] imm_val_mon1 = 0;
    logic [4:0]		   rs1_val_mon1 = 0;
    logic [4:0]		   rs2_val_mon1 = 0;

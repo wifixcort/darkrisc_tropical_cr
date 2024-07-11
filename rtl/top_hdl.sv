@@ -29,6 +29,7 @@ module top();
    assign intf2.XSIMM  = top.soc0.core0.XSIMM;
    assign intf2.XUIMM  = top.soc0.core0.XUIMM;
    assign intf2.XIDATA = top.soc0.core0.XIDATA;
+   assign intf2.IDATA = top.soc0.core0.IDATA;
 
    assign intf2.DPTR   = top.soc0.core0.DPTR;
    assign intf2.S1PTR  = top.soc0.core0.S1PTR;
@@ -40,6 +41,10 @@ module top();
    assign intf2.DATAO  = top.soc0.core0.DATAO;
    assign intf2.DATAI  = top.soc0.core0.DATAI;
    assign intf2.HLT    = top.soc0.core0.HLT;
+   assign intf2.IDLE   = top.soc0.core0.IDLE;
+   assign intf2.PC     = top.soc0.core0.PC;
+   assign intf2.NXPC2  = top.soc0.core0.NXPC2;
+   assign intf2.BE     = top.soc0.core0.BE;
    
    assign intf2.DADDR    = top.soc0.core0.DADDR;
    assign intf2.MEM      = top.soc0.MEM;
@@ -55,6 +60,11 @@ module top();
 				  .DEBUG(intf.debug));
 
    // generate dumps
+
+   assertions assertions0 (
+				  .CLK(CLK),
+				  .RES(intf.rst)
+   );
 
    genvar q;
    generate 

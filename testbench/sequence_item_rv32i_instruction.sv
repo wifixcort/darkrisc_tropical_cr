@@ -114,20 +114,12 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //********************************************************
   constraint func7_cases{
     solve funct3 before funct7;
-      if (opcode == R_TYPE) {
-        (funct3 == ADD_o_SUB_FC)  -> funct7 inside {h00_FC7,
-                                                    h20_FC7};
-        (funct3 == SRL_o_SRA_FC ) -> funct7 inside {h00_FC7,
-                                                    h20_FC7};
-        (funct3 != ADD_o_SUB_FC ) -> funct7 ==      h00_FC7; 
-        (funct3 != SRL_o_SRA_FC ) -> funct7 ==      h00_FC7; 
-      } 
+      if      ( (opcode == R_TYPE)&&(funct3 == ADD_o_SUB_FC) ) funct7 inside {h00_FC7, h20_FC7};
+      else if ( (opcode == R_TYPE)&&(funct3 == SRL_o_SRA_FC) ) funct7 inside {h00_FC7, h20_FC7};
+      else funct7 == h00_FC7;
       //special cases of I_TYPE instructions
-      if (opcode == I_TYPE) { 
-        (funct3 == SRLI_FC)  -> imm[11:5] inside {h20_FC7,
-                                                  h00_FC7};
-        (funct3 == SLLI_FC)  -> imm[11:5]      == h00_FC7;
-      }
+      if ( (opcode == I_TYPE)&&(funct3 == SRLI_FC) ) imm[11:5] inside {h20_FC7, h00_FC7};
+      else if ( (opcode == I_TYPE)&&(funct3 == SLLI_FC) ) imm[11:5] == h00_FC7;
   }
    
   // special cases for regs
@@ -204,14 +196,10 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
         //neg sign extend
         imm[11:8] == 4'b0000;
       }
-    
-    
     }
-
-
-
   }
 
-
-
 endclass
+
+//Excellent reference for conditional constraints:
+//  https://vlsiverify.com/system-verilog/if-else-in-constraints/

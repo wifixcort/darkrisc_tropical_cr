@@ -223,7 +223,7 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]]; 
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;
@@ -266,7 +266,7 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  BE = 4'b1111;
 			  REGS[rdd] = DATAI;
 			  ldata = REGS[rdd];
@@ -278,7 +278,7 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;
@@ -301,7 +301,7 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
-			  $display("IADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			  $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1])
 				1: BE = 4'b1100;
 				0: BE = 4'b0011;
@@ -463,7 +463,7 @@ class riscv_ref_model extends uvm_component;
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = pc_val+4;
-        	  pc_val = pc_val + imm_val_sign_ext;  
+        	  pc_val = pc_val + imm_val_sign_ext;
         	  JREQ = 1;
            end else begin
       		  pc_val = pc_val + 4; 

@@ -10,6 +10,7 @@
 `include "../testbench/gen_sequence_SB.sv"
 `include "../testbench/gen_sequence_LOAD.sv"
 `include "../testbench/gen_sequence_LUI_AUIPC.sv"
+`include "../testbench/gen_sequence_I.sv" 
 `include "../testbench/driver.sv"
 `include "../testbench/monitor_tr.sv"
 `include "../testbench/monitor_1.sv"
