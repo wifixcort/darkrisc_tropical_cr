@@ -25,5 +25,4 @@
 `include "../testbench/test_R.sv"
 `include "../testbench/test_I.sv"
 `include "../testbench/intf_dmp.sv"
-`include "../testbench/assertions.sv"
 //`include "../testbench/test_02.sv"
