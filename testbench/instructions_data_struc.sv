@@ -87,6 +87,7 @@ package instructions_data_struc;
   localparam AND_FC        = 7;
   localparam SLL_FC        = 1;
   localparam SRL_o_SRA_FC  = 5;
+  localparam SRL_FC        = 5;
   localparam SRA_FC        = 5; //Special case. Uses funct7=0x20
   localparam SLT_FC        = 2;
   localparam SLTU_FC       = 3;

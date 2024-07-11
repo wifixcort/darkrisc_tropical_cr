@@ -22,15 +22,36 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
         //Make an asertion to avoid save values in rd[0]
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1;
+        cvrx_ints_rs2: cross cvr_instr , cvr_rs2;
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;
 
     endgroup
 
     covergroup cov_R_SLL;
-        cvr_rs1_sll_values : coverpoint intf2.RMDATA[31:0] {
-            bins rs1_plus_shift[4] = {[0:$]}; //4 bins separados
-        bins rs1_neg_shift[4] = {[-2147483648:-1]}; // 2^31
+        // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
+        cvr_rs1_sll_values : coverpoint intf2.S1REG[31:0] {
+            bins rs1_pos_shift[3] = {[0:2147483647]};
+            bins rs1_neg_shift[3] = {[-2147483648:-1]};
         }
-        covr_rs2_sll_shift  : coverpoint intf2.S2REG[4:0] {bins rs2_shift[] = {[0:16]};} //No es suficiente cubrir los 5 bits LSB?
+        // Toma el valor de rs2 y determina si se pruebas todos los posibles corrimientos(shift)
+        covr_rs2_sll_shift  : coverpoint intf2.S2REG[4:0] {bins rs2_shift[] = {[0:31]};}
+    endgroup
+    covergroup cov_R_SRA;
+        // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
+        cvr_rs1_sra_values : coverpoint intf2.S1REG[31:0] {
+            bins rs1_pos_shift_arti[3] = {[0:2147483647]};
+            bins rs1_neg_shift_arti[3] = {[-2147483648:-1]};
+        }     
+        covr_rs2_sra_shift  : coverpoint intf2.S2REG[4:0] {bins rs2_shift_arit[] = {[0:31]};} //No es suficiente cubrir los 5 bits LSB?
+    endgroup
+    covergroup cov_R_SRL;
+        // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
+        cvr_rs1_srl_values : coverpoint intf2.S1REG[31:0] {
+            bins rs1_pos_shift_logic[3] = {[0:2147483647]};
+            bins rs1_neg_shift_logic[3] = {[-2147483648:-1]};
+        }            
+        covr_rs2_srl_shift  : coverpoint intf2.S2REG[4:0] {bins rs2_shift_logic[] = {[0:31]};} //No es suficiente cubrir los 5 bits LSB?
     endgroup
     //''''''''''''''''''''''''''''''''''''''''''
     // I-Load Instructions covergroup
@@ -56,6 +77,8 @@ class funct_coverage extends uvm_component;
         super.new (name, parent);
         cov_R = new();
         cov_R_SLL = new();
+        cov_R_SRA = new();
+        cov_R_SRL = new();
         //cov1 = new();
     endfunction
 
@@ -77,6 +100,10 @@ class funct_coverage extends uvm_component;
                 uvm_report_info(get_full_name(), $sformatf("\n Covergroup R sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h ", intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                
                 if(intf2.XIDATA[14:12]==SLL_FC)begin
                     cov_R_SLL.sample();
+                end else if({intf2.XIDATA[31:25], intf2.XIDATA[14:12]}==9'h105)begin
+                    cov_R_SRA.sample();
+                end else if({intf2.XIDATA[31:25], intf2.XIDATA[14:12]}==9'h005)begin
+                    cov_R_SRL.sample();
                 end
             end
         end
@@ -87,9 +114,11 @@ class funct_coverage extends uvm_component;
         super.report_phase(phase);
         //Report coverage
         `uvm_info("Coverage R type Report", 
-        $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall: %3.2f%% coverage achieved\ncov_R instruction type: %3.2f%% coverage achieved.\ncov_R rd registers: %3.2f%% coverage achieved.\ncov_R rs1 registers: %3.2f%% coverage achieved.\ncov_R rs2 registers: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
-                  cov_R.get_coverage(),cov_R.cvr_instr.get_coverage(),cov_R.cvr_rd.get_coverage(),cov_R.cvr_rs1.get_coverage(),cov_R.cvr_rs2.get_coverage()),UVM_MEDIUM);
+        $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall: %3.2f%% coverage achieved\ncov_R instruction type: %3.2f%% coverage achieved.\ncov_R rd registers: %3.2f%% coverage achieved.\ncov_R rs1 registers: %3.2f%% coverage achieved.\ncov_R rs2 registers: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs1: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs2: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rd: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+                  cov_R.get_coverage(),cov_R.cvr_instr.get_coverage(),cov_R.cvr_rd.get_coverage(),cov_R.cvr_rs1.get_coverage(),cov_R.cvr_rs2.get_coverage(), cov_R.cvrx_ints_rs1.get_coverage(), cov_R.cvrx_ints_rs2.get_coverage(), cov_R.cvrx_ints_rd.get_coverage()),UVM_MEDIUM);
         `uvm_info("SLL coverage", $sformatf("\nSLL : %3.2f%% coverage achieved\n rs1 shift : %3.2f%% coverage achieved\n rs2 5 LSB : %3.2f%% coverage achieved", cov_R_SLL.get_coverage(), cov_R_SLL.cvr_rs1_sll_values.get_coverage(),cov_R_SLL.covr_rs2_sll_shift.get_coverage()), UVM_MEDIUM);//, cov_R.cvr_rs1_sll_values.get_coverage("rs1_neg_shift"), cov_R.covr_rs2_sll_shift.get_coverage()
+        `uvm_info("SRA coverage", $sformatf("\nSRA : %3.2f%% coverage achieved\n rs1 shift : %3.2f%% coverage achieved\n rs2 5 LSB : %3.2f%% coverage achieved", cov_R_SRA.get_coverage(), cov_R_SRA.cvr_rs1_sra_values.get_coverage(),cov_R_SRA.covr_rs2_sra_shift.get_coverage()), UVM_MEDIUM);//, cov_R.cvr_rs1_sll_values.get_coverage("rs1_neg_shift"), cov_R.covr_rs2_sll_shift.get_coverage()
+        `uvm_info("SRL coverage", $sformatf("\nSRL : %3.2f%% coverage achieved\n rs1 shift : %3.2f%% coverage achieved\n rs2 5 LSB : %3.2f%% coverage achieved", cov_R_SRL.get_coverage(), cov_R_SRL.cvr_rs1_srl_values.get_coverage(),cov_R_SRL.covr_rs2_srl_shift.get_coverage()), UVM_MEDIUM);//, cov_R.cvr_rs1_sll_values.get_coverage("rs1_neg_shift"), cov_R.covr_rs2_sll_shift.get_coverage()
     endfunction
 
 endclass
