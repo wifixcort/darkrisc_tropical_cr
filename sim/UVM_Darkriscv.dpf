@@ -65,16 +65,36 @@ simulations:
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed 666
       +acc+b
+  - name: test_SB seed_01
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_SB  -timescale 1ns/1ps  -sv_seed 12345
+      +acc+b
+  - name: test_SB seed_02
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_SB -timescale 1ns/1ps  -sv_seed 666
+      +acc+b
+  - name: test_LOAD seed_01
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_LOAD  -timescale 1ns/1ps  -sv_seed
+      12345 +acc+b
+  - name: test_LUI_AUIPC seed_01
+    options: >-
+      -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_LUI_AUIPC  -timescale 1ns/1ps 
+      -sv_seed 12345 +acc+b
   - name: test_I seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_I  -timescale 1ns/1ps  -sv_seed 12345
       +acc+b
-  - name: test_R seed_03
+  - name: test_STORE seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
-      +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed
-      19824998 +acc+b
+      +UVM_NO_RELNOTES +UVM_TESTNAME=test_STORE  -timescale 1ns/1ps  -sv_seed
+      12345 +acc+b
 source_files:
   - language: verilog
     path: filelist_V.txt

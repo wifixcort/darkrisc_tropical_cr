@@ -16,7 +16,7 @@ class gen_sequence_I extends gen_sequence;
 
             //*** Seteando registros (instrucciones 0-30)
             if (i <= 30) begin
-                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
+                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i+1;};
                 //  todo: meter LUI para setear parte alta de registros y no solo primeros 12 bits
                 //Transaccion
                 start_item(item_0);
@@ -33,14 +33,14 @@ class gen_sequence_I extends gen_sequence;
                 $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
             end
 
-            // Instrucciones R
+            // Instrucciones I
             else begin
                 item_0.randomize() with {opcode==I_TYPE;};
 
                 start_item(item_0);
                 finish_item(item_0);
 
-                $display("\n(R type)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
+                $display("\n(I type)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
 
             end
         end
