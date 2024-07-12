@@ -24,7 +24,7 @@ class gen_sequence extends uvm_sequence;
             
             //*** Seteando registros (instrucciones 0-30)
             if (i <= 30) begin
-                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
+                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i+1;};
                 //Transaccion
                 start_item(item_0);
                 finish_item(item_0);

@@ -16,7 +16,7 @@ class gen_sequence_LUI_AUIPC extends gen_sequence;
 
         for(int i=0; i < 2**`MLEN/(4*2); i=i+1) begin 
 
-            // Metiendo loads con su respectivo control de direcciones
+            // Metiendo LUIs y AUIPCs
             if ( i <= 2**`MLEN/(4*2) - 4 ) begin
                 item_0.randomize() with {opcode inside {LUI_TYPE, AUIPC_TYPE};}; 
                 // Transaccion

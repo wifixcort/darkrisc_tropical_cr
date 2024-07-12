@@ -16,7 +16,7 @@ class gen_sequence_R extends gen_sequence;
 
             //*** Seteando registros (instrucciones 0-30)
             if (i <= 30) begin
-                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i;};
+                item_0.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==i+1;};
                 //  todo: meter LUI para setear parte alta de registros y no solo primeros 12 bits
                 //Transaccion
                 start_item(item_0);
