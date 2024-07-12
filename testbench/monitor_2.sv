@@ -28,7 +28,7 @@ typedef struct {
    logic [31:0]	risc_sdata;
    logic [31:0]	risc_ldata;
    logic [31:0]	risc_daddr;
-   logic [3:0]			be;
+   logic [3:0]	be;
    // logic [31:0]	sb_DATAI;
 }ExData;
 
@@ -147,7 +147,16 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                   ex_dbuf.risc_sdata = intf2.MEM[ex_dbuf.risc_daddr[`MLEN-1:2]];
                   // ex_dbuf.risc_sdata = intf2.SDATA;
                end			   
-			end
+			end else if(ex_dbuf.instruccion == LUI || ex_dbuf.instruccion == AUIPC) begin
+			   // $display("------------------------- IL type -------------------------");
+			   ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
+			end else if(ex_dbuf.instruccion == BEQ || ex_dbuf.instruccion == BGE || ex_dbuf.instruccion == BGEU ||
+          ex_dbuf.instruccion == BLT || ex_dbuf.instruccion == BLTU || ex_dbuf.instruccion == BNE)begin
+			   // $display("------------------------- I type -------------------------");
+			   ex_dbuf.risc_rs1_v = `CORE.REGS[ex_dbuf.risc_rs1_p];
+            ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rs2_p];
+			   //I_L TYPE
+			end 
 			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
 			mn_txn.inst         = this.ex_dbuf.inst;
@@ -160,7 +169,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mn_txn.risc_rs2_v   = this.ex_dbuf.risc_rs2_v;
 			mn_txn.risc_imm     = this.ex_dbuf.risc_imm;
 			mn_txn.inst_PC      = this.ex_dbuf.inst_PC;
-         mn_txn.inst_NXPC2   = intf2.NXPC2;
+			mn_txn.inst_NXPC2   = intf2.NXPC2;
 			mn_txn.inst_XIDATA  = this.ex_dbuf.inst_XIDATA;
 			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
 			mn_txn.risc_sdata   = ex_dbuf.risc_sdata;
@@ -411,44 +420,38 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               S_B_TYPE: begin
                  case(FCT3)
                    BEQ_FC: begin //beq
-                      `uvm_warning("ALERTA", "BEQ instruction found");
                       ex_dbuf.inst = "BEQ";
                       ex_dbuf.instruccion = BEQ;
                       //$display("*********************ALERTA**********************     BEQ    ");
                    end
                    BNE_FC: begin //bne 
                       //$display("-> func: BNE <-");
-                      `uvm_warning("ALERTA", "BNE instruction found");
                       ex_dbuf.inst = "BNE";
                       ex_dbuf.instruccion = BNE;
                       //$display("*********************ALERTA**********************     BNE    ");
                    end
                    BLT_FC: begin //blt
                       //$display("-> func: BLT <-");
-                      `uvm_warning("ALERTA", "BLT instruction found");
-                     ex_dbuf.inst = "BLT";
-                     ex_dbuf.instruccion = BLT;
+                      ex_dbuf.inst = "BLT";
+                      ex_dbuf.instruccion = BLT;
                       //$display("*********************ALERTA**********************     BLT    ");
                    end
                    BGE_FC: begin //beg
                       //$display("-> func: BEG <-");
-                      `uvm_warning("ALERTA", "BGE instruction found");
-                     ex_dbuf.inst = "BGE";
-                     ex_dbuf.instruccion = BGE;
+                      ex_dbuf.inst = "BGE";
+                      ex_dbuf.instruccion = BGE;
                       //$display("*********************ALERTA**********************     BEG    ");
                    end
                    BLTU_FC: begin //bltu
                       //$display("-> func: BLTU <-");
-                      `uvm_warning("ALERTA", "BLTU instruction found");
-                     ex_dbuf.inst = "BLTU";
-                     ex_dbuf.instruccion = BLTU;
+                      ex_dbuf.inst = "BLTU";
+                      ex_dbuf.instruccion = BLTU;
                       //$display("*********************ALERTA**********************     BLTU   ");
                    end
                    BGEU_FC: begin //bgeu
                       //$display("-> func: BGEU <-");
-                      `uvm_warning("ALERTA", "BGEU instruction found");
-                     ex_dbuf.inst = "BGEU";
-                     ex_dbuf.instruccion = BGEU;
+                      ex_dbuf.inst = "BGEU";
+                      ex_dbuf.instruccion = BGEU;
                       //$display("*********************ALERTA**********************     BGEU    ");
                    end
                    default: begin
@@ -462,7 +465,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               //          J-Type instruction was detected
               ////////////////////////////////////////////////////////////               
               J_TYPE: begin
-				 //   `uvm_warning("ALERTA", "J_TYPE instruction found");
                  // $display("JAL val RISC = %b", intf2.XIDATA[31:12]);
                  ex_dbuf.inst = "JAL";
                  ex_dbuf.instruccion = JAL;		
@@ -472,18 +474,16 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               //          LUI-Type instruction was detected
               ////////////////////////////////////////////////////////////               
               LUI_TYPE: begin
-                 `uvm_warning("ALERTA", "LUI_TYPE instruction found");
-               ex_dbuf.inst = "LUI";
-               ex_dbuf.instruccion = LUI;	
+				 ex_dbuf.inst = "LUI";
+				 ex_dbuf.instruccion = LUI;	
                  //  $display("*********************ALERTA**********************     LUI    ");
               end
               ////////////////////////////////////////////////////////////
               //          AUIPC-Type instruction was detected
               ////////////////////////////////////////////////////////////               
               AUIPC_TYPE: begin
-               `uvm_warning("ALERTA", "AUIPC_TYPE instruction found");
-               ex_dbuf.inst = "AUIPC";
-               ex_dbuf.instruccion = AUIPC;	
+				 ex_dbuf.inst = "AUIPC";
+				 ex_dbuf.instruccion = AUIPC;	
                  // $display("*********************ALERTA**********************     AUIPC    ");
               end	
               

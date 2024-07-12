@@ -389,7 +389,8 @@ class riscv_ref_model extends uvm_component;
 		BEQ  : begin
            if (!(|FLUSH)) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
-			  JREQ = REGS[rs1] == REGS[rs2];
+			  $display("BEQ imm = %h", imm_val);
+			  JREQ = (REGS[rs1] == REGS[rs2]);
 			  case(JREQ)
 				0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -401,7 +402,7 @@ class riscv_ref_model extends uvm_component;
 		BNE  : begin 
            if (!(|FLUSH)) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-			  JREQ = REGS[rs1] != REGS[rs2];
+			  JREQ = (REGS[rs1] != REGS[rs2]);
 			  case(JREQ)
 				0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -413,7 +414,7 @@ class riscv_ref_model extends uvm_component;
 		BLT  : begin 
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
-              JREQ = $signed(REGS[rs1]) < $signed(REGS[rs2]);
+              JREQ = ($signed(REGS[rs1]) < $signed(REGS[rs2]));
               case(JREQ)
 				0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -425,7 +426,7 @@ class riscv_ref_model extends uvm_component;
 		BGE  : begin 
            if (!(|FLUSH)) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-			  JREQ = $signed(REGS[rs1]) >= $signed(REGS[rs2]);
+			  JREQ = ($signed(REGS[rs1]) >= $signed(REGS[rs2]));
 			  case(JREQ)
 				0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -437,7 +438,7 @@ class riscv_ref_model extends uvm_component;
 		BLTU : begin 
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
-              JREQ = REGS[rs1] < REGS[rs2];
+              JREQ = (REGS[rs1] < REGS[rs2]);
               case(JREQ)
 				0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -449,7 +450,7 @@ class riscv_ref_model extends uvm_component;
 		BGEU : begin 
            if (!(|FLUSH)) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
-        	  JREQ = REGS[rs1] >= REGS[rs2];
+        	  JREQ = (REGS[rs1] >= REGS[rs2]);
         	  case(JREQ)
         		0 : pc_val = pc_val + 4;
 				1 : pc_val = pc_val + imm_val_sign_ext;
@@ -482,14 +483,14 @@ class riscv_ref_model extends uvm_component;
 		// U-Type
 		LUI  : begin 
            if (!(|FLUSH)) begin
-        	  imm_val_sign_ext = {imm_val[20:0], {11{1'b0}}}; 
+        	  imm_val_sign_ext = {imm_val[19:0], {12{1'b0}}}; 
            REGS[rdd] = imm_val_sign_ext;
         end
            pc_val = pc_val + 4;
 		end 
 		AUIPC: begin 
            if (!(|FLUSH)) begin
-        	  imm_val_sign_ext = {imm_val[20:0], {11{1'b0}}}; 
+        	  imm_val_sign_ext = {imm_val[19:0], {12{1'b0}}}; 
            REGS[rdd] = pc_val + imm_val_sign_ext;
         end
            pc_val = pc_val + 4;
