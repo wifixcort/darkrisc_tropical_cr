@@ -16,6 +16,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   rand bit [2:0]  funct3;
   rand bit [11:0] imm;
   rand bit [20:1] imm_jal;
+  rand bit [31:12] imm_U;
 
   // operation variables
   rand bit sign_bit;
@@ -49,21 +50,23 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     (opcode == I_JALR_TYPE)   -> full_inst == {imm,rs1,funct3,rd,opcode};
     (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
     (opcode == S_B_TYPE)      -> full_inst == {imm[11],imm[9:4],rs2,rs1,funct3,imm[3:0],imm[10],opcode};
+    (opcode == LUI_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
+    (opcode == AUIPC_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
    }
    
    //********************************************************
-  // constraint opcode_cases{
-  // soft opcode dist  {R_TYPE     :/ 44,
-  //                   I_TYPE      :/ 44,
-  //                   I_L_TYPE    :/ 5,
-  //                   S_TYPE      :/ 5,
-  //                   I_JALR_TYPE :/ 2,
-  //                   J_TYPE      :/ 2,
-  //                   S_B_TYPE    :/ 5
-  //                  // LUI_TYPE    :/ 0,
-  //                  // AUIPC_TYPE  :/ 0
-  //                 };
-  // }
+  constraint opcode_cases{
+  soft opcode dist  {R_TYPE     :/ 44,
+                    I_TYPE      :/ 44,
+                    I_L_TYPE    :/ 5,
+                    S_TYPE      :/ 5,
+                    I_JALR_TYPE :/ 2,
+                    J_TYPE      :/ 2,
+                    S_B_TYPE    :/ 5,
+                    LUI_TYPE    :/ 5,
+                    AUIPC_TYPE  :/ 5
+                  };
+  }
    
   // funct3
   //********************************************************
@@ -178,7 +181,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     }
 
     if (opcode == J_TYPE ) {  //Es mejor  generar las desde el gen sequence
-      imm_jal[1:0] == 2'b00;
+      imm_jal[2:1] == 2'b00;
       //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
     }
   }

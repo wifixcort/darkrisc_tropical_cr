@@ -33,14 +33,14 @@ class gen_sequence_I extends gen_sequence;
                 $display("\n(for JALR)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
             end
 
-            // Instrucciones R
+            // Instrucciones I
             else begin
                 item_0.randomize() with {opcode==I_TYPE;};
 
                 start_item(item_0);
                 finish_item(item_0);
 
-                $display("\n(R type)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
+                $display("\n(I type)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
 
             end
         end
