@@ -43,6 +43,7 @@ module top();
    assign intf2.HLT    = top.soc0.core0.HLT;
    assign intf2.IDLE   = top.soc0.core0.IDLE;
    assign intf2.PC     = top.soc0.core0.PC;
+   assign intf2.NXPC   = top.soc0.core0.NXPC;
    assign intf2.NXPC2  = top.soc0.core0.NXPC2;
    assign intf2.BE     = top.soc0.core0.BE;
    
