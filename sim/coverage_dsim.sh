@@ -1,0 +1,13 @@
+#!/bin/bash
+# Script to generate Coverage HTML files
+
+SIM_DIR="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+METRICS_DB="$SIM_DIR/metrics.db"
+OUT_DIR="$SIM_DIR/dir"
+INDEX_HTML="$OUT_DIR/index.html"
+
+# Commands to generate coverage html files
+echo "Creating Coverage HTML Files"
+rm -r "$OUT_DIR"
+dcreport -out_dir "$OUT_DIR" "$METRICS_DB"
+open "$INDEX_HTML"
