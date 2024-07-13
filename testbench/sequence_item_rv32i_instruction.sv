@@ -201,5 +201,30 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
 
 endclass
 
+class branch_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar algo diferente a sequence.
+  function new(string name = "branch_aux_vars");
+    super.new(name);
+  endfunction
+
+  // random variables 
+  rand logic [4:0] num_chunks; //Cuantos grupos de 6 instrucciones se usaran?
+  rand logic [2:0] tipo_branch; //Para generar uno de los 6 valores disponibles. 
+  rand logic [31:0] rs1_beq_val;
+  rand logic [31:0] rs2_beq_val;
+
+  rand logic [4:0] rs1_ptr;
+  rand logic [4:0] rs2_ptr;
+  
+
+  constraint valid_branches {6>tipo_branch; 0<=tipo_branch;}
+  constraint valid_rng_num_chunks {30>num_chunks; 1<=num_chunks;}
+
+//  constraint valid_rs1_beq_val {1000>rs1_beq_val; -1000<=rs1_beq_val;}
+//  constraint valid_rs2_beq_val {1000>rs2_beq_val; -1000<=rs1_beq_val;}  
+
+  //*******************************************************
+  `uvm_object_utils(branch_aux_vars)
+endclass
+
 //Excellent reference for conditional constraints:
 //  https://vlsiverify.com/system-verilog/if-else-in-constraints/
