@@ -23,6 +23,8 @@ typedef struct {
    // logic [31:0]   sb_rs2_v;   // sb rs1 register value
    // logic [31:0]   sb_imm;  // sb immidiate value
    logic [31:0]	inst_PC;
+   logic [31:0]	inst_NXPC;
+   logic [31:0]	inst_NXPC2;
    logic [31:0]	inst_XIDATA;
    logic [15:0]	inst_counter;
    logic [31:0]	risc_sdata;
@@ -75,7 +77,7 @@ function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    super.new (name, parent);
    // logic [31:0]	sb_rd_reg_value;
    this.ex_dbuf = '{ inst        : "",    instruccion  : '0, risc_rd_p  : '0, risc_rd_v   : '0, risc_rs1_p  : '0, 
-					 risc_rs1_v  : '0,    risc_rs2_p   : '0, risc_rs2_v : '0, risc_imm    : '0, inst_PC     : '0, 
+					 risc_rs1_v  : '0,    risc_rs2_p   : '0, risc_rs2_v : '0, risc_imm    : '0, inst_PC     : '0, inst_NXPC     : '0, inst_NXPC2     : '0,
 					 inst_XIDATA : '0,    inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr  : '0, be          : '0};//
 endfunction
 
@@ -150,13 +152,23 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			end else if(ex_dbuf.instruccion == LUI || ex_dbuf.instruccion == AUIPC) begin
 			   // $display("------------------------- IL type -------------------------");
 			   ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
-			end else if(ex_dbuf.instruccion == BEQ || ex_dbuf.instruccion == BGE || ex_dbuf.instruccion == BGEU ||
-          ex_dbuf.instruccion == BLT || ex_dbuf.instruccion == BLTU || ex_dbuf.instruccion == BNE)begin
+			end else if(ex_dbuf.instruccion == LB || ex_dbuf.instruccion == LH || ex_dbuf.instruccion == LW || ex_dbuf.instruccion == LBU || 
+						ex_dbuf.instruccion == LHU) begin
+			   // $display("------------------------- IL type -------------------------");
+			   ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
+			end  else if(ex_dbuf.instruccion == JAL)begin
 			   // $display("------------------------- I type -------------------------");
-			   ex_dbuf.risc_rs1_v = `CORE.REGS[ex_dbuf.risc_rs1_p];
-            ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rs2_p];
+               this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
+			   //I_L TYPE
+			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ))begin
+			   // $display("------------------------- I type -------------------------");
+            // this.ex_dbuf.inst_PC = intf2.PC;
+            this.ex_dbuf.inst_NXPC = intf2.NXPC;
+               this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
+               // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 			   //I_L TYPE
 			end 
+         $display("Mon 1 PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
 			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 
 			mn_txn.inst         = this.ex_dbuf.inst;
@@ -169,7 +181,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mn_txn.risc_rs2_v   = this.ex_dbuf.risc_rs2_v;
 			mn_txn.risc_imm     = this.ex_dbuf.risc_imm;
 			mn_txn.inst_PC      = this.ex_dbuf.inst_PC;
-			mn_txn.inst_NXPC2   = intf2.NXPC2;
+			mn_txn.inst_NXPC   =  this.ex_dbuf.inst_NXPC;
+			mn_txn.inst_NXPC2   = this.ex_dbuf.inst_NXPC2;
 			mn_txn.inst_XIDATA  = this.ex_dbuf.inst_XIDATA;
 			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
 			mn_txn.risc_sdata   = ex_dbuf.risc_sdata;
@@ -180,7 +193,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mon2_txn.write(mn_txn); // Transaction applied
 			//Clear this buffer
 			this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, 
+							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC     : '0, inst_NXPC2     : '0, 
 							 inst_XIDATA : '0, inst_counter : ex_dbuf.inst_counter, risc_sdata : '0, risc_ldata : '0, risc_daddr : '0, be : '0};//
          end
       end
@@ -504,8 +517,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
 						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
-						inst_PC : intf2.PC, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
-            
+						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
+                  $display("Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
          end         
          //  end//Work out of reset
       end

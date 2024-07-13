@@ -16,15 +16,15 @@ class funct_coverage extends uvm_component;
         // or SRA.
         cvr_instr : coverpoint fct7_fct3_conct {bins instructions[] = { [ADD_CVRG_ID:AND_CVRG_ID], SUB_CVRG_ID, SRA_CVRG_ID }; } 
         // Coverpoint register source 1. Check which value does rs1 take.
-        cvr_rs1 : coverpoint intf2.XIDATA[19:15] {bins rx_rs1[] = { [0:31] }; }
+        cvr_rs1 : coverpoint intf2.S1PTR {bins rx_rs1[] = { [0:31] }; }
         // Coverpoint register source 2. Check which value does rs2 take.
-        cvr_rs2 : coverpoint intf2.XIDATA[24:20] {bins rx_rs2[] = { [0:31] }; }
+        cvr_rs2 : coverpoint intf2.S2PTR {bins rx_rs2[] = { [0:31] }; }
         // Coverpoint register destination. Check which value does rd take.
-        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
+        cvr_rd  : coverpoint intf2.DPTR {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
         //Make an asertion to avoid save values in rd[0]
-        cvrx_ints_rs1: cross cvr_instr , cvr_rs1;
-        cvrx_ints_rs2: cross cvr_instr , cvr_rs2;
-        cvrx_ints_rd: cross cvr_instr , cvr_rd;
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rs2: cross cvr_instr , cvr_rs2; // Instrucción X reg fuente 2
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino
 
     endgroup
 
@@ -69,6 +69,21 @@ class funct_coverage extends uvm_component;
         //Hacer un cruce entre valores positivos y negativos de rs1 y rs2
         cvrx_slt_rs1_rs2 : cross cvr_rs1_slt_values, cvr_rs2_slt_values;
     endgroup
+
+    covergroup cov_R_SLTU;
+        // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
+        cvr_rs1_sltu_values : coverpoint intf2.S1REG[31:0] {
+            bins rs1_pos_values[2] = {[0:2147483647]};
+            bins rs1_neg_values[2] = {[-2147483648:-1]};
+        }
+        // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
+        cvr_rs2_sltu_values : coverpoint intf2.S2REG[31:0] {
+            bins rs2_pos_values[2] = {[0:2147483647]};
+            bins rs2_neg_values[2] = {[-2147483648:-1]};
+        }
+        //Hacer un cruce entre valores positivos y negativos de rs1 y rs2
+        cvrx_sltu_rs1_rs2 : cross cvr_rs1_sltu_values, cvr_rs2_sltu_values;
+    endgroup
     //''''''''''''''''''''''''''''''''''''''''''
     // I-Load Instructions covergroup
     //''''''''''''''''''''''''''''''''''''''''''
@@ -81,11 +96,11 @@ class funct_coverage extends uvm_component;
         // or SRA.
         cvr_instr : coverpoint intf2.XIDATA[14:12] {bins instructions[] = { [LB_FC:LHU_FC] }; } 
         // Coverpoint register source 1. Check which value does rs1 take.
-        cvr_rs1 : coverpoint intf2.XIDATA[19:15] {bins rx_rs1[] = { [0:31] }; }
+        cvr_rs1 : coverpoint intf2.S1PTR {bins rx_rs1[] = { [0:31] }; }
         // Coverpoint register source 2. Check which value does rs2 take.
         // cvr_rs2 : coverpoint intf2.XIDATA[24:20] {bins rx_rs2[] = { [0:31] }; }
         // Coverpoint register destination. Check which value does rd take.
-        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
+        cvr_rd  : coverpoint intf2.DPTR {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
         //Make an asertion to avoid save values in rd[0]
     endgroup
 
@@ -96,7 +111,9 @@ class funct_coverage extends uvm_component;
         cov_R_SRA = new();
         cov_R_SRL = new();
         cov_R_SLT = new();
+        cov_R_SLTU = new();
         //cov1 = new();
+        cov_Load = new();
     endfunction
 
     virtual function void build_phase (uvm_phase phase);
@@ -123,6 +140,8 @@ class funct_coverage extends uvm_component;
                     cov_R_SRL.sample();
                 end else if(intf2.XIDATA[14:12]==SLT_FC)begin
                     cov_R_SLT.sample();
+                end else if(intf2.XIDATA[14:12]==SLTU_FC)begin
+                    cov_R_SLTU.sample();
                 end
             end
         end
@@ -133,7 +152,7 @@ class funct_coverage extends uvm_component;
         super.report_phase(phase);
         //Report coverage
         `uvm_info("Coverage R type Report", 
-        $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall: %3.2f%% coverage achieved\ncov_R instruction type: %3.2f%% coverage achieved.\ncov_R rd registers: %3.2f%% coverage achieved.\ncov_R rs1 registers: %3.2f%% coverage achieved.\ncov_R rs2 registers: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs1: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs2: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rd: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+        $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall:                  %3.2f%% coverage achieved\ncov_R instruction type:         %3.2f%% coverage achieved.\ncov_R rd registers:             %3.2f%% coverage achieved.\ncov_R rs1 registers:            %3.2f%% coverage achieved.\ncov_R rs2 registers:            %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs1: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs2: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rd:  %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
                   cov_R.get_coverage(),cov_R.cvr_instr.get_coverage(),cov_R.cvr_rd.get_coverage(),cov_R.cvr_rs1.get_coverage(),cov_R.cvr_rs2.get_coverage(), cov_R.cvrx_ints_rs1.get_coverage(), cov_R.cvrx_ints_rs2.get_coverage(), cov_R.cvrx_ints_rd.get_coverage()),UVM_MEDIUM);
         `uvm_info("SLL coverage", $sformatf("\n\nSLL : %3.2f%% coverage achieved\n rs1 shift : %3.2f%% coverage achieved\n rs2 5 LSB : %3.2f%% coverage achieved\n", 
                   cov_R_SLL.get_coverage(), cov_R_SLL.cvr_rs1_sll_values.get_coverage(),cov_R_SLL.covr_rs2_sll_shift.get_coverage()), UVM_MEDIUM);
@@ -143,6 +162,8 @@ class funct_coverage extends uvm_component;
                   cov_R_SRL.get_coverage(), cov_R_SRL.cvr_rs1_srl_values.get_coverage(),cov_R_SRL.covr_rs2_srl_shift.get_coverage()), UVM_MEDIUM);
         `uvm_info("SLT coverage", $sformatf("\n\nSLT : %3.2f%% coverage achieved\n rs1 : %3.2f%% coverage achieved\n rs2 : %3.2f%% coverage achieved\n Cross cov rs1 x rs2 : %3.2f%% coverage achieved\n", 
                   cov_R_SLT.get_coverage(), cov_R_SLT.cvr_rs1_slt_values.get_coverage(),cov_R_SLT.cvr_rs2_slt_values.get_coverage(), cov_R_SLT.cvrx_slt_rs1_rs2.get_coverage()), UVM_MEDIUM);
+        `uvm_info("SLTU coverage", $sformatf("\n\nSLTU : %3.2f%% coverage achieved\n rs1 : %3.2f%% coverage achieved\n rs2 : %3.2f%% coverage achieved\n Cross cov rs1 x rs2 : %3.2f%% coverage achieved\n", 
+                  cov_R_SLTU.get_coverage(), cov_R_SLTU.cvr_rs1_sltu_values.get_coverage(),cov_R_SLTU.cvr_rs2_sltu_values.get_coverage(), cov_R_SLTU.cvrx_sltu_rs1_rs2.get_coverage()), UVM_MEDIUM);
     endfunction
 
 endclass
