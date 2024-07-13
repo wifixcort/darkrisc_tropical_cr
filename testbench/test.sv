@@ -28,7 +28,8 @@ class test_basic extends uvm_test;
     seq.start(env.uvc1_env.agent_active.seqr);
 
     // Tiempo de simulación
-    #10000
+    //#10000
+    #45000
     //#21000 //50 us
 
     phase.drop_objection (this);

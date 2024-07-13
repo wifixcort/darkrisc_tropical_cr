@@ -32,7 +32,7 @@ class gen_sequence_LUI_AUIPC extends gen_sequence;
 
             //  Ultima instruccion, que retroceda hasta el inicio
             else begin
-                 item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};       
+                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:5]==16'hffff ;};       
                 $display("\n(for JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
                 // Transaccion JAL
                 start_item(item_0);
