@@ -51,7 +51,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
     (opcode == S_B_TYPE)      -> full_inst == {imm[11],imm[9:4],rs2,rs1,funct3,imm[3:0],imm[10],opcode};
     (opcode == LUI_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
-    (opcode == AUIPC_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
+    (opcode == AUIPC_TYPE)    -> full_inst == {imm_U[31:12],rd,opcode};
    }
    
    //********************************************************
@@ -208,7 +208,7 @@ class branch_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar
 
   // random variables 
   rand logic [4:0] num_chunks; //Cuantos grupos de 6 instrucciones se usaran?
-  rand logic [2:0] tipo_branch; //Para generar uno de los 6 valores disponibles. 
+  //rand logic [2:0] tipo_branch; //Para generar uno de los 6 valores disponibles. 
   rand logic [31:0] rs1_beq_val;
   rand logic [31:0] rs2_beq_val;
 
@@ -216,7 +216,7 @@ class branch_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar
   rand logic [4:0] rs2_ptr;
   
 
-  constraint valid_branches {6>tipo_branch; 0<=tipo_branch;}
+  //constraint valid_branches {6>tipo_branch; 0<=tipo_branch;}
   constraint valid_rng_num_chunks {30>num_chunks; 1<=num_chunks;}
 
 //  constraint valid_rs1_beq_val {1000>rs1_beq_val; -1000<=rs1_beq_val;}
