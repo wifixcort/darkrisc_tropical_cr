@@ -64,7 +64,7 @@ endtask
     //Llenar memoria de datos con 0x00000000
     while (i <= 2**`MLEN/(4)) begin
       if (i < 2**`MLEN/(4))
-        MEM[i] = 32'h00000000; //Llenar memoria de datos con 0s
+        MEM[i] =  $urandom();  //Llenar memoria de datos con valores random
       //si ya era el ultimo espacio de memoria
       else if (i == 2**`MLEN/(4)) begin //-1
         $writememh("darksocv.mem", MEM);
