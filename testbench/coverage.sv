@@ -131,9 +131,33 @@ class funct_coverage extends uvm_component;
                 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
                
-        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
+        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig, cvr_rs1_value_sig {
             ignore_bins SLTIU_and_imm_sig = binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
-                                            binsof(cvr_imm_sig) intersect {[-2048:2047]};}        
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};   
+
+            ignore_bins SLLI_and_imm_sig =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+
+            ignore_bins SRLI_and_imm_sig =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+        } 
+ 
+        cross_instr_imm_un : cross cvr_instr, cvr_imm_un, cvr_rs1_value_un{
+            bins SLTIU_and_imm_un =  binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
+                                     binsof(cvr_imm_un) intersect {[0:4095]} &&
+                                     binsof(cvr_rs1_value_un) intersect { [0:4294967295] };   
+
+            bins SLLI_and_imm_un =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
+                                    binsof(cvr_imm_un) intersect {[0:4095]} &&
+                                    binsof(cvr_rs1_value_un) intersect { [0:4294967295] };
+
+            bins SRLI_and_imm_un =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
+                                    binsof(cvr_imm_un) intersect {[0:4095]} &&
+                                    binsof(cvr_rs1_value_un) intersect { [0:4294967295] };
+        }
     endgroup 
 
     covergroup cov_S;
