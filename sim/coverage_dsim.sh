@@ -1,7 +1,13 @@
 #!/bin/bash
 # Script to generate Coverage HTML files
 
-SIM_DIR="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+#SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+#SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+#SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+#SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+
+SIM_DIR="$SIM_HOME"
 METRICS_DB="$SIM_DIR/metrics.db"
 OUT_DIR="$SIM_DIR/dir"
 INDEX_HTML="$OUT_DIR/index.html"
