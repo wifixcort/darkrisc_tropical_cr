@@ -7,7 +7,7 @@
 `include "../testbench/sequence_item_rv32i_instruction.sv"
 `include "../testbench/gen_sequence.sv"
 `include "../testbench/gen_sequence_R.sv"
-`include "../testbench/gen_sequence_SB.sv"
+`include "../testbench/gen_sequence_BRANCH.sv"
 `include "../testbench/gen_sequence_LOAD.sv"
 `include "../testbench/gen_sequence_STORE.sv"
 `include "../testbench/gen_sequence_LUI_AUIPC.sv"
