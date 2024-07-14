@@ -163,11 +163,47 @@ class funct_coverage extends uvm_component;
         cvr_instr : coverpoint intf2.XIDATA[14:12] {bins instructions[] = { [LB_FC:LHU_FC] }; } 
         // Coverpoint register source 1. Check which value does rs1 take.
         cvr_rs1 : coverpoint intf2.S1PTR {bins rx_rs1[] = { [0:31] }; }
-        // Coverpoint register source 2. Check which value does rs2 take.
-        // cvr_rs2 : coverpoint intf2.XIDATA[24:20] {bins rx_rs2[] = { [0:31] }; }
+        // Coverpoint register source 1 value unsigned. max_v = 2^{32}-1 = 4294967295
+        cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
+        // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
+        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }
+        // Coverpoint DATAI
+        cvr_datai : coverpoint intf2.DATAI {bins datai[7] = { [0:4294967295] }; } 
+        // Coverpoint LDATA
+        cvr_ldata : coverpoint intf2.LDATA {bins ldata[7] = { [0:4294967295] }; }
         // Coverpoint register destination. Check which value does rd take.
-        cvr_rd  : coverpoint intf2.DPTR {bins         rx_rd[] = { [0:31] };} // illegal_bins il_rx_rd = { 0 }; // 0 is not ilegal but save a value in that directions is
-        //Make an asertion to avoid save values in rd[0]
+        cvr_rd  : coverpoint intf2.DPTR {bins rx_rd[] = { [0:31] }; }
+        // Coverpoint DADDR, DMEMORY [512:1023]
+        cvr_daddr : coverpoint intf2.DADDR {bins rx_rd[7] = { [512:1023] };  }
+
+        //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
+        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
+            bins SB_and_imm_sig = binsof(cvr_instr) intersect {SB_FC} &&
+                                  binsof(cvr_imm_sig) intersect {[-2048:2047]};   
+
+            bins SH_and_imm_sig =  binsof(cvr_instr) intersect {SH_FC} &&
+                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
+
+            bins SW_and_imm_sig =  binsof(cvr_instr) intersect {SW_FC} &&
+                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
+        } 
+
+        cross_instr_rs1_un : cross cvr_instr, cvr_rs1_value_un {
+            bins SB_and_rs1_sig = binsof(cvr_instr) intersect {SB_FC} &&
+                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+
+            bins SH_and_rs1_sig =  binsof(cvr_instr) intersect {SH_FC} &&
+                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+
+            bins SW_and_rs1_sig =  binsof(cvr_instr) intersect {SW_FC} &&
+                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+        } 
+        // DADDR
+        cross_imm_sig_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un {
+            bins imm_sig_and_rs1_sig = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                       binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+        } 
+
     endgroup
 
     covergroup cov_S;
@@ -188,8 +224,12 @@ class funct_coverage extends uvm_component;
         // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
         cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
-        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
-                
+        cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins rx_rd[] = { [0:31] };  }  
+        // Coverpoint SDATA == DATAO value unsigned. max_v = 2^{32}-1 = 4294967295
+        cvr_sdata : coverpoint intf2.SDATA {bins rx_rd[7] = { [0:4294967295] };  }
+        // Coverpoint DADDR, DMEMORY [512:1023]
+        cvr_daddr : coverpoint intf2.DADDR {bins rx_rd[7] = { [512:1023] };  }        
+
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
             bins SB_and_imm_sig = binsof(cvr_instr) intersect {SB_FC} &&
@@ -349,7 +389,6 @@ class funct_coverage extends uvm_component;
         cov_R_SRL = new();
         cov_R_SLT = new();
         cov_R_SLTU = new();
-        //cov1 = new();
         cov_Load = new();
         cov_CLK = new();
         cov_RST = new();
@@ -363,6 +402,7 @@ class funct_coverage extends uvm_component;
         end
     endfunction
 
+    /*
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
@@ -392,6 +432,21 @@ class funct_coverage extends uvm_component;
         @(negedge intf2.clk) begin
             cov_CLK.sample(); // CLK sample negative edge
             cov_RST.sample(); // RST sample negative edge
+        end
+        end
+    endtask
+    */
+
+    virtual task run_phase(uvm_phase phase);
+        super.run_phase(phase);
+        forever begin
+        fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
+        @(posedge intf2.clk) begin
+            if (intf2.XIDATA[6:0]==R_TYPE)begin
+                cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
+            end else if (intf2.XIDATA[6:0]==I_TYPE) begin
+                cov_I.sample();
+            end
         end
         end
     endtask
