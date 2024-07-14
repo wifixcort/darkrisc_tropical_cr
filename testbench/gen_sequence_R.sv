@@ -8,32 +8,28 @@ class gen_sequence_R extends gen_sequence;
 
     //rand logic [3:0] num_chunks; //Cuantos grupos de 6 instrucciones se usaran?
 
-    logic [6:0] total_chunks;               //Cuantos grupos de 6 instrucciones hay disponibles
-    logic [6:0] puntero_chunk;              //Por cual grupo de 6 instrucciones vamos?
-    logic       bndra_ncsto_inc;            //Bandera necesito incremento
-    logic [8:0] total_nops;                 //Numero total de nops por branch
+    logic [8:0]     jumps_sequence [$];         //Secuencia pura
+    logic [8:0]     jumps_sequence_final [$];   //Secuencia sin los JALR
 
-    logic [8:0] jumps_sequence [$];         //Secuencia pura
-    logic [8:0] jumps_sequence_final [$];   //Secuencia sin los JALR
+    logic [8:0]     jump_inst_id_list [$];      //Lista con el ID de instrucción de un jump o un ADDI
+    logic [8:0]     jump_ptr_list [$];          //Queue con el puntero del proximo salto
+    logic [8:0]     addi_list [$];              //Lista de las filas que deben tener un ADDI
+    logic [8:0]     max_num_instructions;       //Constante-Variable para indicar cuantos jumps generaremos
 
-    logic [8:0] jump_inst_id_list [$];      //Lista con el ID de instrucción de un jump o un ADDI
-    logic [8:0] jump_ptr_list [$];          //Queue con el puntero del proximo salto
-    logic [8:0] addi_list [$];              //Lista de las filas que deben tener un ADDI
-    logic       is_an_addi_mask [$];        //Posiciones en 1 representan un ADDI
-    logic       addi_coincidence;           //Bandera para indicar que la fila actual coincide con una que debe tener un ADDI
-    logic [8:0] max_num_instructions;       //Constante-Variable para indicar cuantos jumps generaremos
-
-    logic       this_is_an_addi;            //Bandera para indicar que esto es un ADDI que antecede a un jalr.
-    logic [8:0] instruction_counter;        //Contador de cual instrucción vamos generando
-    logic [10:0] destination_address;        //Valor de salto del jal
-    logic [11:0] destination_address_jalr;   //Valor de salto del jal
+    logic           this_is_an_addi;            //Bandera para indicar que esto es un ADDI que antecede a un jalr.
+    logic [8:0]     instruction_counter;        //Contador de cual instrucción vamos generando
+    logic [10:0]    destination_address;        //Valor de salto del jal
+    logic [11:0]    destination_address_jalr;   //Valor de salto del jal
 
     virtual task body();
-        sequence_item_rv32i_instruction item_0      = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i       
-        sequence_item_rv32i_instruction item_addi_jump = sequence_item_rv32i_instruction::type_id::create("item_addi_jump"); // Instruction ADDI to create branch offset.
+        sequence_item_rv32i_instruction item_0          = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i       
+        sequence_item_rv32i_instruction item_addi_jump  = sequence_item_rv32i_instruction::type_id::create("item_addi_jump"); // Instruction ADDI to create branch offset.
+        sequence_item_rv32i_instruction item_NOP        = sequence_item_rv32i_instruction::type_id::create("item_NOP"); // Instruction NOP
         jump_aux_vars jmp_aux_vars = jump_aux_vars::type_id::create("jmp_aux_vars"); // Instruction i
 
-        max_num_instructions = 500; //1 numero más que el constraint 512 nos sirve, necesitamos 511, pero eso deja al último siendo un JALR
+        item_NOP.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==0 && imm==0;};
+
+        max_num_instructions = 500; //Generemos 500 jumps porque arriba de este valor el compilador a veces se bugea
         instruction_counter  = 0;
         destination_address  = 0;
         //--------------------------------------
@@ -64,8 +60,7 @@ class gen_sequence_R extends gen_sequence;
         // Agrega los últimos elementos a las secuencias (El jump here)
         //--------------------------------------
         jumps_sequence_final.push_front(0); //Instroduce a donde salta el jump de la instrucción 0
-        jumps_sequence_final.push_back(max_num_instructions-1);
-        is_an_addi_mask.push_back(0);
+        jumps_sequence_final.push_back(max_num_instructions-1); //Hace que el último ID tenga como siguiente dirección la última dirección, es decir la 499, ahí debe haber un nop
 
         //Imprime la secuencia sin los jalr
         $display("\n Construccion de secuencia final ========================= \nLa secuencia final generada, con un tamaño=%d, es:", jumps_sequence_final.size());
@@ -120,21 +115,27 @@ class gen_sequence_R extends gen_sequence;
                 $display("Mi PC destino es %h", jump_ptr_list[kqt]*4);
                 $display("Mi offset para el JALR es %h:", destination_address_jalr);
 
-                instruction_counter = instruction_counter+2;
                 item_0.randomize() with {opcode==I_JALR_TYPE && imm[11:0]==destination_address_jalr; };
-                item_0.print();
                 item_addi_jump.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==item_0.rd && imm==jmp_aux_vars.addi_imm;};
-                item_addi_jump.print();
 
+                uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción ADDI al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);                
+                instruction_counter = instruction_counter+1;
+                item_addi_jump.print();
                 //start_item(item_addi_jump);
                 //finish_item(item_addi_jump);
+
+                uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JALR al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);
+                instruction_counter = instruction_counter+1;
+                item_0.print();            
                 //start_item(item_0);
                 //finish_item(item_0);
             end
             else begin
                 destination_address = ((jump_ptr_list[kqt]*4) - (jump_inst_id_list[kqt]*4));
                 $display("Generando JAL con salto hacia instrucción número %d, con PC=%d, con PC=%b", jump_ptr_list[kqt], destination_address, destination_address);
+                
                 item_0.randomize() with {opcode==J_TYPE && imm_jal[20:1]=={9'b0, destination_address} ;};
+                uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JAL al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);
                 item_0.print();
                 instruction_counter = instruction_counter+1;
 
@@ -143,25 +144,23 @@ class gen_sequence_R extends gen_sequence;
             end
         end
        //Fake body to run the simulation
-        for(int i=0; i < 10; i=i+1) begin             
+        for(int i=0; i < 13; i=i+1) begin             
             // Cuando llegue la ultima instruccion, meter jal para retroceder
-            if ( i == 9 ) begin
-                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};       
-                $display("\n(for JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
-                // Transaccion JAL
+            if ( i == 12 ) begin
+                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};                
+                uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JALR al driver Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);                
+                item_0.print();
                 start_item(item_0);
                 finish_item(item_0); 
             end
 
-            // Instrucciones R
+            // NOPs al final para optimizar la secuencia porque el compilador explota
             else begin
-                item_0.randomize() with {opcode==R_TYPE;};
-
-                start_item(item_0);
-                finish_item(item_0);
-
-                $display("\n(R type)\tInstruct #%d\t\tInstruction :%h\t", i[15:0], item_0.full_inst); 
-
+                uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción NOP al driver Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);                
+                instruction_counter = instruction_counter+1;
+                item_NOP.print();
+                start_item(item_NOP);
+                finish_item(item_NOP);
             end
         end        
     endtask
