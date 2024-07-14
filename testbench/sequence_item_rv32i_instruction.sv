@@ -24,13 +24,14 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //*******************************************************
   `uvm_object_utils_begin(sequence_item_rv32i_instruction)
     `uvm_field_int (full_inst, UVM_DEFAULT)
-    // `uvm_field_int (opcode, UVM_DEFAULT)
-    // `uvm_field_int (rs1, UVM_DEFAULT)
-    // `uvm_field_int (rs2, UVM_DEFAULT)
-    // `uvm_field_int (rd, UVM_DEFAULT)
-    // `uvm_field_int (funct7, UVM_DEFAULT)
-    // `uvm_field_int (funct3, UVM_DEFAULT)
-    // `uvm_field_int (imm, UVM_DEFAULT)
+    `uvm_field_int (opcode, UVM_DEFAULT)
+    //`uvm_field_int (rs1, UVM_DEFAULT)
+    //`uvm_field_int (rs2, UVM_DEFAULT)
+    //`uvm_field_int (rd, UVM_DEFAULT)
+    //`uvm_field_int (funct7, UVM_DEFAULT)
+    //`uvm_field_int (funct3, UVM_DEFAULT)
+    `uvm_field_int (imm, UVM_DEFAULT)
+    `uvm_field_int (imm_jal, UVM_DEFAULT)
   `uvm_object_utils_end
 
 
@@ -199,6 +200,22 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   //   }
   // }
 
+endclass
+
+class jump_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar algo diferente a sequence.
+  function new(string name = "jump_aux_vars");
+    super.new(name);
+  endfunction
+
+  // random variables 
+  randc logic [8:0] num_instruction; //Cuantos grupos de 6 instrucciones se usaran?
+  randc logic [11:0] addi_imm; //Cuantos grupos de 6 instrucciones se usaran?
+  rand logic is_jalr; // Ejemplo probado 35 aqui con 36 alla.
+  constraint valid_rng_num_instruction {num_instruction>0; 499>num_instruction;} //los valores 0 y max no se usan. Esas filas estarán al inicio y al final.
+  constraint valid_rng_addi_imm {addi_imm>0; 2048>addi_imm;} //los valores 0 y max no se usan. Esas filas estarán al inicio y al final.
+
+  //*******************************************************
+  `uvm_object_utils(jump_aux_vars)
 endclass
 
 //Excellent reference for conditional constraints:

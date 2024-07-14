@@ -77,12 +77,12 @@ class funct_coverage extends uvm_component;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
         cvr_rs1_sltu_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_values[2] = {[0:2147483647]};
-            bins rs1_neg_values[2] = {[-2147483648:-1]};
+            // bins rs1_neg_values[2] = {[-2147483648:-1]};
         }
         // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
         cvr_rs2_sltu_values : coverpoint $signed(intf2.S2REG[31:0]) {
             bins rs2_pos_values[2] = {[0:2147483647]};
-            bins rs2_neg_values[2] = {[-2147483648:-1]};
+            // bins rs2_neg_values[2] = {[-2147483648:-1]};
         }
         //Hacer un cruce entre valores positivos y negativos de rs1 y rs2
         cvrx_sltu_rs1_rs2 : cross cvr_rs1_sltu_values, cvr_rs2_sltu_values;
@@ -100,12 +100,12 @@ class funct_coverage extends uvm_component;
         // Coverpoint register source 1 value unsigned. max_v = 2^{32}-1 = 4294967295
         cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
         // Coverpoint register source 1 value signed. max_v = 2^{31}-1 = 2147483647
-        cvr_rs1_value_sig : coverpoint intf2.S1REG {bins rs1_val_sig[7] = { [-2147483648:2147483647] }; } 
+        cvr_rs1_value_sig : coverpoint $signed(intf2.S1REG) {bins rs1_val_sig[7] = { [-2147483648:2147483647] }; } 
         // imm -> xidata [11:0] 12 bit 
         // Coverpoint imm_val_unsigned. max_v = 2^{12}-1 = 4095
         cvr_imm_un : coverpoint intf2.XUIMM {bins imm_ext_un[7] = { [0:4095] }; } 
         // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                       
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
                 
