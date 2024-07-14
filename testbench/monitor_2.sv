@@ -407,7 +407,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                         ex_dbuf.instruccion = JALR;		
                    end
                    default: begin
-                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
+                      `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h, FCT3 = %h", intf2.XIDATA, intf2.PC, FCT3))
                       //   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
                       //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
                       //  err_count++;
