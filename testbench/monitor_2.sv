@@ -163,8 +163,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ))begin
 			   // $display("------------------------- I type -------------------------");
             // this.ex_dbuf.inst_PC = intf2.PC;
-            this.ex_dbuf.inst_NXPC = intf2.NXPC;
-               this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
+            //this.ex_dbuf.inst_NXPC = intf2.NXPC;
+            //   this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
                // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 			   //I_L TYPE
 			end 
