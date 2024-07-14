@@ -151,7 +151,7 @@ class gen_sequence_R extends gen_sequence;
         for(int i=0; i < 13; i=i+1) begin             
             // Cuando llegue la ultima instruccion, meter jal para retroceder
             if ( i == 12 ) begin
-                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};                
+                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:1]==20'hF_FFFE ;};                
                 uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JALR al driver Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);                
                 item_0.print();
                 start_item(item_0);
