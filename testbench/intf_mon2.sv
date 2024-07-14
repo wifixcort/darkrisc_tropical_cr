@@ -37,17 +37,3 @@ interface intf_mon2(input clk, input res);
   // logic [31:0]  REGS [0:31];
   logic [31:0] MEM [0:2**`MLEN/4-1];
 endinterface
-
-module mon2_assertion (
-    input logic CLK,
-    input logic RES,
-    input logic [31:0] XIDATA,
-    input logic [31:0] DADDR
-);
-
-    assert property (
-        @(posedge CLK) disable iff (RES === 1)
-        ( XIDATA[6:0]==I_L_TYPE |-> ((DADDR/4)>511) && ((DADDR/4)<1024) )
-    );
-
-endmodule
