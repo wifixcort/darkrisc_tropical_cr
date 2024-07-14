@@ -363,6 +363,7 @@ class funct_coverage extends uvm_component;
         end
     endfunction
 
+    /*
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
@@ -392,6 +393,21 @@ class funct_coverage extends uvm_component;
         @(negedge intf2.clk) begin
             cov_CLK.sample(); // CLK sample negative edge
             cov_RST.sample(); // RST sample negative edge
+        end
+        end
+    endtask
+    */
+
+    virtual task run_phase(uvm_phase phase);
+        super.run_phase(phase);
+        forever begin
+        fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
+        @(posedge intf2.clk) begin
+            if (intf2.XIDATA[6:0]==R_TYPE)begin
+                cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
+            end else if (intf2.XIDATA[6:0]==I_TYPE) begin
+                cov_I.sample();
+            end
         end
         end
     endtask
