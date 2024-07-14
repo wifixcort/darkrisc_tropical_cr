@@ -278,11 +278,11 @@ class funct_coverage extends uvm_component;
                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
                                   binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BEQ_FC};       
         }
-        cross_instr_rs1_un_rs2_un : cross cvr_rs2_value_un, cvr_rs1_value_un, cvr_instr{
-            bins imm_sig_and_pc = binsof(cvr_rs2_value_un) intersect {[0:4294967295]} &&
-                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
-                                  binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BEQ_FC};       
-        }
+        // cross_instr_rs1_un_rs2_un : cross cvr_rs2_value_un, cvr_rs1_value_un, cvr_instr{
+        //     bins imm_sig_and_pc = binsof(cvr_rs2_value_un) intersect {[0:4294967295]} &&
+        //                           binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
+        //                           binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BEQ_FC};       
+        // }
     endgroup 
 
     covergroup cov_U;
