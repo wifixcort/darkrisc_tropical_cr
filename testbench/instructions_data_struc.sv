@@ -156,7 +156,7 @@ package instructions_data_struc;
   localparam h20_FC7		=7'h20;
 
   //=============================
-  // {FCT7, FCT3} codes for coverage
+  // {FCT7, FCT3} codes for coverage R Type
   //=============================
   localparam ADD_CVRG_ID    = 0;
   localparam SLL_CVRG_ID    = 1;
@@ -169,6 +169,18 @@ package instructions_data_struc;
   localparam SUB_CVRG_ID    = 256; //Special case. Uses funct7=0x20
   localparam SRA_CVRG_ID    = 261; //Special case. Uses funct7=0x20
 
+  //=============================
+  // {FCT7, FCT3} codes for coverage I Type
+  //=============================
+  localparam ADDI_CVRG_ID       =0; //Start of I
+  localparam XORI_CVRG_ID       =4;
+  localparam ORI_CVRG_ID        =6;
+  localparam ANDI_CVRG_ID       =7;
+  localparam SLLI_CVRG_ID       =1; //Uses IMM=0x00
+  localparam SRLI_CVRG_ID       =5; //Uses IMM=0x00
+  localparam SRAI_CVRG_ID       =261; //Special case only if IMM= 0x20
+  localparam SLTI_CVRG_ID       =2;
+  localparam SLTIU_CVRG_ID      =3;
 
   //=============================
   //R type FC7 codes
