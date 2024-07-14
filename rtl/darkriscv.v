@@ -584,4 +584,9 @@ module darkriscv
     assign DEBUG = { XRES, IDLE, SCC, LCC };
 `endif
 
+
+    logic [31:0] PC_DENNIS;
+
+    assign PC_DENNIS = PC>>2;
+
 endmodule

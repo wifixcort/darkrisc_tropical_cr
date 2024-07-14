@@ -18,8 +18,9 @@ class gen_sequence_R extends gen_sequence;
 
     logic           this_is_an_addi;            //Bandera para indicar que esto es un ADDI que antecede a un jalr.
     logic [8:0]     instruction_counter;        //Contador de cual instrucción vamos generando
-    logic [10:0]    destination_address;        //Valor de salto del jal
+    logic [11:0]    destination_address;        //Valor de salto del jal
     logic [11:0]    destination_address_jalr;   //Valor de salto del jal
+    logic [19:0]    debug_destination_address_jal;    //Valor de salto del jal
 
     virtual task body();
         sequence_item_rv32i_instruction item_0          = sequence_item_rv32i_instruction::type_id::create("item_0"); // Instruction i       
@@ -111,36 +112,39 @@ class gen_sequence_R extends gen_sequence;
 
                 $display("Generando un ADDI, soy la fila %d:", jump_inst_id_list[kqt]);
                 $display("Generando JALR con salto hacia %d", jump_ptr_list[kqt]); 
-                $display("Mi valor inmediato para el ADDI es %h:", jmp_aux_vars.addi_imm);
+                $display("Mi valor inmediato para el ADDI es %h: == %d", jmp_aux_vars.addi_imm, $signed(jmp_aux_vars.addi_imm));
+                $display("Mi offset para el JALR es %h: == %d", destination_address_jalr,  $signed(destination_address_jalr));
                 $display("Mi PC destino es %h", jump_ptr_list[kqt]*4);
-                $display("Mi offset para el JALR es %h:", destination_address_jalr);
 
-                item_0.randomize() with {opcode==I_JALR_TYPE && imm[11:0]==destination_address_jalr; };
-                item_addi_jump.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==item_0.rd && imm==jmp_aux_vars.addi_imm;};
+                item_0.randomize() with {opcode==I_JALR_TYPE && imm[11:0]==destination_address_jalr && rs1>0 && rs1<32; };
+                item_addi_jump.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==item_0.rs1 && imm==jmp_aux_vars.addi_imm;};
 
                 uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción ADDI al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);                
                 instruction_counter = instruction_counter+1;
                 item_addi_jump.print();
-                //start_item(item_addi_jump);
-                //finish_item(item_addi_jump);
+                start_item(item_addi_jump);
+                finish_item(item_addi_jump);
 
                 uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JALR al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);
                 instruction_counter = instruction_counter+1;
                 item_0.print();            
-                //start_item(item_0);
-                //finish_item(item_0);
+                start_item(item_0);
+                finish_item(item_0);
             end
             else begin
                 destination_address = ((jump_ptr_list[kqt]*4) - (jump_inst_id_list[kqt]*4));
-                $display("Generando JAL con salto hacia instrucción número %d, con PC=%d, con PC=%b", jump_ptr_list[kqt], destination_address, destination_address);
-                
-                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:1]=={9'b0, destination_address} ;};
+                $display("Generando JAL con salto hacia instrucción número %d, con PC=%d, con PC=%b", jump_ptr_list[kqt], destination_address, destination_address);                
+                debug_destination_address_jal = destination_address>>1;
+                debug_destination_address_jal = { {9{(debug_destination_address_jal[10])}}, debug_destination_address_jal[10:0]};
+                $display("El offset dividido entre 2 es %d===%d==%b", debug_destination_address_jal, $signed(debug_destination_address_jal), debug_destination_address_jal );
+
+                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:1]==debug_destination_address_jal ;};
                 uvm_report_info(get_full_name(), $sformatf("\n Presentando la siguiente instrucción JAL al driver. Numero de instruccion/fila %d ", instruction_counter), UVM_LOW);
                 item_0.print();
                 instruction_counter = instruction_counter+1;
 
-                //start_item(item_0);
-                //finish_item(item_0); 
+                start_item(item_0);
+                finish_item(item_0); 
             end
         end
        //Fake body to run the simulation
