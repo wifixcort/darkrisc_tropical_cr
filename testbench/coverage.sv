@@ -381,6 +381,53 @@ class funct_coverage extends uvm_component;
     //     }
     // endgroup
 
+    covergroup cov_transition;
+        // Coverpoint for current instruction type
+        cvr_current_instr : coverpoint intf2.XIDATA[6:0] {
+            bins current_instr_bins[] = {R_TYPE, I_TYPE, I_L_TYPE, S_TYPE, S_B_TYPE, J_TYPE, I_JALR_TYPE, LUI_TYPE, AUIPC_TYPE};
+
+            // R-type to other type except L, S, B, J
+            bins t_R_to_R          = (R_TYPE => R_TYPE);
+            bins t_R_to_I          = (R_TYPE => I_TYPE);  
+            bins t_R_to_I_LUI      = (R_TYPE => LUI_TYPE);
+            bins t_R_to_AUIPC      = (R_TYPE => AUIPC_TYPE);
+
+            // I-type to other type except L, S, B, J
+            bins t_I_to_I          = (I_TYPE => I_TYPE);
+            bins t_I_to_R          = (I_TYPE => R_TYPE);
+            bins t_I_to_LUI        = (I_TYPE => LUI_TYPE);
+            bins t_I_to_AUIPC      = (I_TYPE => AUIPC_TYPE);
+
+            // LUI-type to other type except L, S, B, J
+            bins t_LUI_to_LUI      = (LUI_TYPE => LUI_TYPE);
+            bins t_LUI_to_R        = (LUI_TYPE => R_TYPE);
+            bins t_LUI_to_I        = (LUI_TYPE => I_TYPE);
+            bins t_LUI_to_AUIPC    = (LUI_TYPE => AUIPC_TYPE);
+
+            // AUIPC-type to other type except L, S, B, J
+            bins t_AUIPC_to_AUIPC  = (AUIPC_TYPE => AUIPC_TYPE);
+            bins t_AUIPC_to_R      = (AUIPC_TYPE => R_TYPE);
+            bins t_AUIPC_to_I      = (AUIPC_TYPE => I_TYPE);
+            bins t_AUIPC_to_LUI    = (AUIPC_TYPE => LUI_TYPE);
+
+            // Simulation takes into account, cases that dont break rtl, 
+            // so only the following transitions are valid when L, S, B, J
+            // are taken into account.
+
+            // L transitions
+            bins t_I_to_I_L        = (I_TYPE => I_L_TYPE);
+            bins t_I_L_to_I        = (I_L_TYPE => I_TYPE);
+
+            // B transitions 
+            bins t_I_to_S_B        = (I_TYPE => S_B_TYPE);
+            bins t_S_B_to_I        = (S_B_TYPE => I_TYPE);
+
+            // J transitions
+            bins t_J_to_S_B        = (J_TYPE => S_B_TYPE);
+        }
+    endgroup
+
+
     function new (string name = "funct_coverage", uvm_component parent = null);
         super.new (name, parent);
         cov_R = new();
