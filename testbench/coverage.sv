@@ -115,6 +115,7 @@ class funct_coverage extends uvm_component;
         //''''''''''''''''''''''''''''''''''''''''''
         // Coverpoint Funct3 and Funct7
         cvr_instr : coverpoint fct7_fct3_conct {bins instructions[] = { [ADDI_CVRG_ID:ANDI_CVRG_ID], SRAI_CVRG_ID }; } 
+        cvr_addi : coverpoint fct7_fct3_conct {bins instructions[] = { ADDI_CVRG_ID}; } 
         // Coverpoint register source 1 pointer. 
         cvr_rs1 : coverpoint intf2.XIDATA[19:15] {bins rs1_p[] = { [0:31] }; }
         // Coverpoint register source 1 value unsigned. max_v = 2^{32}-1 = 4294967295
@@ -130,34 +131,51 @@ class funct_coverage extends uvm_component;
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
                 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
-               
-        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig, cvr_rs1_value_sig {
+        
+        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
             ignore_bins SLTIU_and_imm_sig = binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
-                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
-                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};   
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]};   
 
             ignore_bins SLLI_and_imm_sig =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
-                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
-                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]};
 
             ignore_bins SRLI_and_imm_sig =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
-                                            binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
-                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+                                            binsof(cvr_imm_sig) intersect {[-2048:2047]};
         } 
- 
-        cross_instr_imm_un : cross cvr_instr, cvr_imm_un, cvr_rs1_value_un{
+        
+        cross_instr_imm_un : cross cvr_instr, cvr_imm_un{
             bins SLTIU_and_imm_un =  binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
-                                     binsof(cvr_imm_un) intersect {[0:4095]} &&
-                                     binsof(cvr_rs1_value_un) intersect { [0:4294967295] };   
+                                     binsof(cvr_imm_un) intersect {[0:4095]};   
 
             bins SLLI_and_imm_un =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
-                                    binsof(cvr_imm_un) intersect {[0:4095]} &&
-                                    binsof(cvr_rs1_value_un) intersect { [0:4294967295] };
+                                    binsof(cvr_imm_un) intersect {[0:4095]};
 
             bins SRLI_and_imm_un =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
-                                    binsof(cvr_imm_un) intersect {[0:4095]} &&
-                                    binsof(cvr_rs1_value_un) intersect { [0:4294967295] };
+                                    binsof(cvr_imm_un) intersect {[0:4095]};
         }
+
+        cross_instr_rs1_sig : cross cvr_instr, cvr_rs1_value_sig {
+            ignore_bins SLTIU_and_rs1_sig = binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};   
+
+            ignore_bins SLLI_and_rs1_sig =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+
+            ignore_bins SRLI_and_rs1_sig =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]};
+        } 
+
+        cross_instr_rs1_un : cross cvr_instr, cvr_rs1_value_un {
+            ignore_bins SLTIU_and_rs1_un = binsof(cvr_instr) intersect {SLTIU_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+
+            ignore_bins SLLI_and_rs1_un =  binsof(cvr_instr) intersect {SLL_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+
+            ignore_bins SRLI_and_rs1_un =  binsof(cvr_instr) intersect {SRL_CVRG_ID} &&
+                                            binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+        } 
+
     endgroup 
 
     covergroup cov_S;
@@ -181,7 +199,44 @@ class funct_coverage extends uvm_component;
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
                 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
-                  
+        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
+            bins SB_and_imm_sig = binsof(cvr_instr) intersect {SB_FC} &&
+                                  binsof(cvr_imm_sig) intersect {[-2048:2047]};   
+
+            bins SH_and_imm_sig =  binsof(cvr_instr) intersect {SH_FC} &&
+                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
+
+            bins SW_and_imm_sig =  binsof(cvr_instr) intersect {SW_FC} &&
+                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
+        } 
+
+        cross_instr_rs1_un : cross cvr_instr, cvr_rs1_value_un {
+            bins SB_and_rs1_sig = binsof(cvr_instr) intersect {SB_FC} &&
+                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+
+            bins SH_and_rs1_sig =  binsof(cvr_instr) intersect {SH_FC} &&
+                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+
+            bins SW_and_rs1_sig =  binsof(cvr_instr) intersect {SW_FC} &&
+                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+        } 
+
+        cross_instr_rs2_un : cross cvr_instr, cvr_rs2_value_un {
+            bins SB_and_rs2_sig = binsof(cvr_instr) intersect {SB_FC} &&
+                                  binsof(cvr_rs2_value_un) intersect {[0:4294967295]};   
+
+            bins SH_and_rs2_sig =  binsof(cvr_instr) intersect {SH_FC} &&
+                                   binsof(cvr_rs2_value_un) intersect {[0:4294967295]};
+
+            bins SW_and_rs2_sig =  binsof(cvr_instr) intersect {SW_FC} &&
+                                   binsof(cvr_rs2_value_un) intersect {[0:4294967295]};
+        } 
+        // DADDR
+        cross_imm_sig_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un {
+            bins imm_sig_and_rs1_sig = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                       binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+        } 
+
     endgroup
 
     covergroup cov_B;
@@ -210,10 +265,24 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        //cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
-        
+        cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
+            bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                  binsof(cvr_pc) intersect {[0:511]} &&
+                                  binsof(cvr_instr) intersect {[BEQ_FC:BGEU_FC]};         
+        }
+        cross_instr_rs1_un_rs2_un : cross cvr_rs2_value_un, cvr_rs1_value_un, cvr_instr{
+            bins imm_sig_and_pc = binsof(cvr_rs2_value_un) intersect {[0:4294967295]} &&
+                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
+                                  binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BEQ_FC};       
+        }
+        cross_instr_rs1_un_rs2_un : cross cvr_rs2_value_un, cvr_rs1_value_un, cvr_instr{
+            bins imm_sig_and_pc = binsof(cvr_rs2_value_un) intersect {[0:4294967295]} &&
+                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
+                                  binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BEQ_FC};       
+        }
     endgroup 
 
     covergroup cov_U;
@@ -227,9 +296,14 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        //cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
+        cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
+            bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                  binsof(cvr_pc) intersect {[0:511]} &&
+                                  binsof(cvr_instr) intersect {AUIPC_TYPE};   
+        } 
 
     endgroup
 
@@ -243,17 +317,24 @@ class funct_coverage extends uvm_component;
         cvr_rs1 : coverpoint intf2.XIDATA[19:15] {bins rs1_p[] = { [0:31] }; }
         // Coverpoint register source 1 value unsigned. 
         cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
-        // Coverpoint register source 1 value signed. // Sign: [-2048:2047]
-        cvr_rs1_value_sig : coverpoint intf2.S1REG {bins rs1_val_sig[7] = { [-2147483648:2147483647] }; }
         // Coverpoint imm_val_signed. // 2^{21}-1-1=2097150
         cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2097150:2097149] }; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        //cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
-
+        cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
+            bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
+                                  binsof(cvr_pc) intersect {[0:511]} &&
+                                  binsof(cvr_instr) intersect {J_TYPE};   
+        } 
+        cross_imm_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un, cvr_instr{
+            bins imm_sig_and_rs1_un = binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
+                                      binsof(cvr_pc) intersect {[0:511]} &&
+                                      binsof(cvr_instr) intersect {I_JALR_TYPE};   
+        } 
     endgroup 
 
     function new (string name = "funct_coverage", uvm_component parent = null);
@@ -323,9 +404,15 @@ class funct_coverage extends uvm_component;
         $sformatf("\n\n--------------Coverage I type instructions results-------------------\ncov_I Overall: %3.2f%% coverage achieved\ncov_I instruction type: %3.2f%% coverage achieved.\ncov_I rd registers: %3.2f%% coverage achieved.\ncov_I rs1 registers: %3.2f%% coverage achieved.\ncov_I rs1 value un: %3.2f%% coverage achieved.\ncov_I rs1 value sig: %3.2f%% coverage achieved.\ncov_I imm value un: %3.2f%% coverage achieved.\ncov_I imm value sig: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",cov_I.get_coverage(),cov_I.cvr_instr.get_coverage(),cov_I.cvr_rd.get_coverage(),cov_I.cvr_rs1.get_coverage(),cov_I.cvr_rs1_value_un.get_coverage(),cov_I.cvr_rs1_value_sig.get_coverage(), cov_I.cvr_imm_un.get_coverage(),cov_I.cvr_imm_sig.get_coverage()),UVM_MEDIUM);
         $display("Cross Coverage for inst_x_imm_sig: %0d%%", cov_I.cross_instr_imm_sig.get_coverage(cov_bins,num_bins));
         $display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
+
+        $display("Cross Coverage for cross_instr_imm_un: %0d%%", cov_I.cross_instr_imm_un.get_coverage(cov_bins,num_bins));
+        $display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
         
-        //$display("Coverage for ADDI_CVRG_ID: %0d%%", cov_I.cvr_instr.get_coverage(cov_bins,num_bins));
-        //$display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
+        $display("Cross Coverage for cross_instr_rs1_sig: %0d%%", cov_I.cross_instr_rs1_sig.get_coverage(cov_bins,num_bins));
+        $display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
+
+        $display("Cross Coverage for cross_instr_rs1_un: %0d%%", cov_I.cross_instr_rs1_un.get_coverage(cov_bins,num_bins));
+        $display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
     endfunction
 
 endclass
