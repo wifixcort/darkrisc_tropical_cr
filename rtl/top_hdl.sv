@@ -11,7 +11,7 @@ module top();
    
    // Interface
    intf_soc intf(CLK);
-   intf_mon2 intf2(CLK, RES);
+   intf_mon2 intf2(CLK, intf.rst);
    intf_mem_rd mem_rd_chan(CLK);
    intf_dmp int_dmp(CLK);
    //logic reset_x;

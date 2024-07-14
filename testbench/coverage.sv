@@ -33,7 +33,7 @@ class funct_coverage extends uvm_component;
 
     covergroup cov_R_SLL;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_sll_values : coverpoint intf2.S1REG[31:0] {
+        cvr_rs1_sll_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_shift[3] = {[0:2147483647]};
             bins rs1_neg_shift[3] = {[-2147483648:-1]};
         }
@@ -42,7 +42,7 @@ class funct_coverage extends uvm_component;
     endgroup
     covergroup cov_R_SRA;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_sra_values : coverpoint intf2.S1REG[31:0] {
+        cvr_rs1_sra_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_shift_arti[3] = {[0:2147483647]};
             bins rs1_neg_shift_arti[3] = {[-2147483648:-1]};
         }
@@ -51,7 +51,7 @@ class funct_coverage extends uvm_component;
     endgroup
     covergroup cov_R_SRL;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_srl_values : coverpoint intf2.S1REG[31:0] {
+        cvr_rs1_srl_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_shift_logic[3] = {[0:2147483647]};
             bins rs1_neg_shift_logic[3] = {[-2147483648:-1]};
         }
@@ -60,12 +60,12 @@ class funct_coverage extends uvm_component;
     endgroup
     covergroup cov_R_SLT;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_slt_values : coverpoint intf2.S1REG[31:0] {
+        cvr_rs1_slt_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_values[2] = {[0:2147483647]};
             bins rs1_neg_values[2] = {[-2147483648:-1]};
         }
         // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
-        cvr_rs2_slt_values : coverpoint intf2.S2REG[31:0] {
+        cvr_rs2_slt_values : coverpoint $signed(intf2.S2REG[31:0]) {
             bins rs2_pos_values[2] = {[0:2147483647]};
             bins rs2_neg_values[2] = {[-2147483648:-1]};
         }
@@ -75,12 +75,12 @@ class funct_coverage extends uvm_component;
 
     covergroup cov_R_SLTU;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_sltu_values : coverpoint intf2.S1REG[31:0] {
+        cvr_rs1_sltu_values : coverpoint $signed(intf2.S1REG[31:0]) {
             bins rs1_pos_values[2] = {[0:2147483647]};
             bins rs1_neg_values[2] = {[-2147483648:-1]};
         }
         // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
-        cvr_rs2_sltu_values : coverpoint intf2.S2REG[31:0] {
+        cvr_rs2_sltu_values : coverpoint $signed(intf2.S2REG[31:0]) {
             bins rs2_pos_values[2] = {[0:2147483647]};
             bins rs2_neg_values[2] = {[-2147483648:-1]};
         }
@@ -329,6 +329,18 @@ class funct_coverage extends uvm_component;
         } 
     endgroup 
 
+    covergroup  cov_CLK;
+        cvr_clock : coverpoint intf2.clk {
+            bins clk_trans[] = (0 => 1), (1 => 0 );
+        }
+    endgroup
+
+    covergroup  cov_RST;
+        cvr_reset : coverpoint intf2.res {
+            bins rst_trans[] = (0 => 1), (1 => 0 );
+        }
+    endgroup
+
     function new (string name = "funct_coverage", uvm_component parent = null);
         super.new (name, parent);
         cov_R = new();
@@ -339,6 +351,8 @@ class funct_coverage extends uvm_component;
         cov_R_SLTU = new();
         //cov1 = new();
         cov_Load = new();
+        cov_CLK = new();
+        cov_RST = new();
         cov_I = new();
     endfunction
 
@@ -354,6 +368,8 @@ class funct_coverage extends uvm_component;
         forever begin
         fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
         @(posedge intf2.clk) begin
+            cov_CLK.sample(); // Clock sample postive edge
+            cov_RST.sample(); // Reset sample postive edge
             if (intf2.XIDATA[6:0]==R_TYPE)begin
                 cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
                 // reg_cero assert property(top.soc0.core0.REGS[0] == '0) else $fatal("Error: REGS[0] value modified!");
@@ -373,11 +389,17 @@ class funct_coverage extends uvm_component;
                 cov_I.sample();
             end
         end
+        @(negedge intf2.clk) begin
+            cov_CLK.sample(); // CLK sample negative edge
+            cov_RST.sample(); // RST sample negative edge
+        end
         end
     endtask
 
     virtual function void report_phase(uvm_phase phase);
         super.report_phase(phase);
+        `uvm_info("Clock coverage", $sformatf("\n\n--------------Coverage CLK results-------------------\nCLK : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_CLK.get_coverage()), UVM_MEDIUM);
+        `uvm_info("Reset coverage", $sformatf("\n\n--------------Coverage RST results-------------------\nRST : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_RST.get_coverage()), UVM_MEDIUM);
         //Report coverage
         `uvm_info("Coverage R type Report", 
         $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall:                  %3.2f%% coverage achieved\ncov_R instruction type:         %3.2f%% coverage achieved.\ncov_R rd registers:             %3.2f%% coverage achieved.\ncov_R rs1 registers:            %3.2f%% coverage achieved.\ncov_R rs2 registers:            %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs1: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs2: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rd:  %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
