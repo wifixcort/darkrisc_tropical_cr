@@ -68,9 +68,9 @@ class gen_sequence_STORE extends gen_sequence;
                 i = i+2;
             end
 
-            //  Ultima instruccion, que retroceda hasta el inicio
+            //  Ultima instruccion, Jump here
             else begin
-                 item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};       
+                 item_0.randomize() with {opcode==J_TYPE && imm_jal==0;};       
                 $display("\n(for JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
                 // Transaccion JAL
                 start_item(item_0);
