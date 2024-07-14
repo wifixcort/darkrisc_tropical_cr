@@ -36,10 +36,17 @@ module assertions (
    // Aserción para verificar que el reloj tenga transiciones de 1 a 0
    check_clk_cero : assert property (@(negedge CLK) disable iff (RES) (CLK == 1));
 
+   // Aserción el valor al registro cero, siempre es cero
+   reg_cero : assert property( @(negedge CLK)  (`RTL_PATH.REGS[0] == '0));
+
+   // Aserción para verificar que si se levanta un jump también lo hace un JREQ
+   check_jump_jreq : assert property (@(posedge CLK) disable iff (RES) (`RTL_PATH.JAL || `RTL_PATH.JALR || (`RTL_PATH.BCC && `RTL_PATH.BMUX)) |-> (`RTL_PATH.JREQ == 1));
+  
+   // Aserción que dos ciclos después de un JREQ el PC cambia
+   check_jreq_pc_n : assert property (@(posedge CLK) (`RTL_PATH.JREQ == 1) |-> ##2 (`RTL_PATH.PC != $past(`RTL_PATH.PC, 2)));
 
    // ------------- Instrunction specific asertions ------------- 
    
-
 
    // Función para contar el número de señales en 1
    function automatic int count_ones(input logic [8:0] sig);

@@ -26,9 +26,11 @@ interface intf_mon2(input clk, input res);
   logic [31:0]  PC;
   logic [31:0]	NXPC;
   logic [31:0]  NXPC2;
+  logic [31:0]  JVAL;
   logic [3:0]   BE;
   bit           HLT;
   bit           IDLE;
+  logic [3:0]   FLUSH;
 
   //MEM Interface
   logic [31:0]  DADDR;

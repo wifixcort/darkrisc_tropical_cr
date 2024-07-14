@@ -25,6 +25,7 @@ typedef struct {
    logic [31:0]	inst_PC;
    logic [31:0]	inst_NXPC;
    logic [31:0]	inst_NXPC2;
+   logic [31:0]	inst_JVAL;
    logic [31:0]	inst_XIDATA;
    logic [15:0]	inst_counter;
    logic [31:0]	risc_sdata;
@@ -76,9 +77,9 @@ endclass:uvc2_mon
 function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    super.new (name, parent);
    // logic [31:0]	sb_rd_reg_value;
-   this.ex_dbuf = '{ inst        : "",    instruccion  : '0, risc_rd_p  : '0, risc_rd_v   : '0, risc_rs1_p  : '0, 
-					 risc_rs1_v  : '0,    risc_rs2_p   : '0, risc_rs2_v : '0, risc_imm    : '0, inst_PC     : '0, inst_NXPC     : '0, inst_NXPC2     : '0,
-					 inst_XIDATA : '0,    inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr  : '0, be          : '0};//
+   this.ex_dbuf = '{ inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
+					 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC : '0, inst_NXPC2 : '0,
+                inst_JVAL : '0, inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr  : '0, be : '0};//
 endfunction
 
 task uvc2_mon:: run_phase(uvm_phase phase);
@@ -96,7 +97,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
       FCT7 = intf2.XIDATA[31:25];
       
       if(`CORE.NXPC != 0)begin //Revisar un ciclo despues
-         if (intf2.HLT == 0) begin
+         if ((intf2.HLT == 0)) begin//&&(intf2.FLUSH == '0)
 			// mn_txn = monitor_tr::type_id::create("tr", this);
 			// mn_txn.data = '0; //Generar el dato a enviar
 
@@ -156,21 +157,28 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 						ex_dbuf.instruccion == LHU) begin
 			   // $display("------------------------- IL type -------------------------");
 			   ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
-			end  else if(ex_dbuf.instruccion == JAL)begin
+			end  else if((ex_dbuf.instruccion == JAL) || (ex_dbuf.instruccion == JALR))begin
 			   // $display("------------------------- I type -------------------------");
+            this.ex_dbuf.inst_NXPC = intf2.NXPC;
                this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
 			   //I_L TYPE
-			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ))begin
+			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ) || (ex_dbuf.instruccion == BGE))begin
 			   // $display("------------------------- I type -------------------------");
             // this.ex_dbuf.inst_PC = intf2.PC;
-            //this.ex_dbuf.inst_NXPC = intf2.NXPC;
-            //   this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
+            if((ex_dbuf.instruccion == BGE) && (this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v))begin
+               $display("MOD NX");
+               //this.ex_dbuf.inst_NXPC = intf2.NXPC;
+               // this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
+               this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+            end else begin
+            this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+            end
+
                // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 			   //I_L TYPE
 			end 
-         $display("Mon 1 PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
+         $display("WriteBack PC = %h, NXPC = %h, NXPC2 = %h", this.ex_dbuf.inst_PC, this.ex_dbuf.inst_NXPC, this.ex_dbuf.inst_NXPC2);
 			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-
 			mn_txn.inst         = this.ex_dbuf.inst;
 			mn_txn.instruction  = this.ex_dbuf.instruccion;
 			mn_txn.risc_rd_p    = this.ex_dbuf.risc_rd_p;
@@ -183,18 +191,20 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mn_txn.inst_PC      = this.ex_dbuf.inst_PC;
 			mn_txn.inst_NXPC   =  this.ex_dbuf.inst_NXPC;
 			mn_txn.inst_NXPC2   = this.ex_dbuf.inst_NXPC2;
+         mn_txn.inst_JVAL   = this.ex_dbuf.inst_JVAL;
 			mn_txn.inst_XIDATA  = this.ex_dbuf.inst_XIDATA;
 			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
 			mn_txn.risc_sdata   = ex_dbuf.risc_sdata;
 			mn_txn.risc_ldata   = ex_dbuf.risc_ldata;
 			mn_txn.risc_daddr = ex_dbuf.risc_daddr;
 			//  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
-
+         // if(intf2.FLUSH == '0)begin
 			mon2_txn.write(mn_txn); // Transaction applied
+         // end
 			//Clear this buffer
 			this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
-							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC     : '0, inst_NXPC2     : '0, 
-							 inst_XIDATA : '0, inst_counter : ex_dbuf.inst_counter, risc_sdata : '0, risc_ldata : '0, risc_daddr : '0, be : '0};//
+							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC : '0, inst_NXPC2 : '0, 
+							 inst_JVAL : '0, inst_XIDATA : '0, inst_counter : ex_dbuf.inst_counter, risc_sdata : '0, risc_ldata : '0, risc_daddr : '0, be : '0};//
          end
       end
       
@@ -393,6 +403,8 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    JALR_C: begin
                       // inst_counter++;
                       //  $display("*********************ALERTA**********************     I_JALR    ");
+                        ex_dbuf.inst = "JALR";
+                        ex_dbuf.instruccion = JALR;		
                    end
                    default: begin
                       `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
@@ -517,8 +529,10 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
 						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
-						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
-                  $display("Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
+						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_JVAL : intf2.JVAL, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
+                  $display("EX Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
+
+            // $display("JVAL = %h", top.soc0.core0.JVAL);
          end         
          //  end//Work out of reset
       end

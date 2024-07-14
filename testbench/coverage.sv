@@ -369,17 +369,17 @@ class funct_coverage extends uvm_component;
         } 
     endgroup 
 
-    covergroup  cov_CLK;
-        cvr_clock : coverpoint intf2.clk {
-            bins clk_trans[] = (0 => 1), (1 => 0 );
-        }
-    endgroup
+    // covergroup  cov_CLK;
+    //     cvr_clock : coverpoint intf2.clk {
+    //         bins clk_trans[] = (0 => 1), (1 => 0 );
+    //     }
+    // endgroup
 
-    covergroup  cov_RST;
-        cvr_reset : coverpoint intf2.res {
-            bins rst_trans[] = (0 => 1), (1 => 0 );
-        }
-    endgroup
+    // covergroup  cov_RST;
+    //     cvr_reset : coverpoint intf2.res {
+    //         bins rst_trans[] = (0 => 1), (1 => 0 );
+    //     }
+    // endgroup
 
     function new (string name = "funct_coverage", uvm_component parent = null);
         super.new (name, parent);
@@ -390,8 +390,8 @@ class funct_coverage extends uvm_component;
         cov_R_SLT = new();
         cov_R_SLTU = new();
         cov_Load = new();
-        cov_CLK = new();
-        cov_RST = new();
+        // cov_CLK = new();
+        // cov_RST = new();
         cov_I = new();
     endfunction
 
@@ -402,14 +402,14 @@ class funct_coverage extends uvm_component;
         end
     endfunction
 
-    /*
+    
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
         fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
         @(posedge intf2.clk) begin
-            cov_CLK.sample(); // Clock sample postive edge
-            cov_RST.sample(); // Reset sample postive edge
+            // cov_CLK.sample(); // Clock sample postive edge
+            // cov_RST.sample(); // Reset sample postive edge
             if (intf2.XIDATA[6:0]==R_TYPE)begin
                 cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
                 // reg_cero assert property(top.soc0.core0.REGS[0] == '0) else $fatal("Error: REGS[0] value modified!");
@@ -429,32 +429,18 @@ class funct_coverage extends uvm_component;
                 cov_I.sample();
             end
         end
-        @(negedge intf2.clk) begin
-            cov_CLK.sample(); // CLK sample negative edge
-            cov_RST.sample(); // RST sample negative edge
-        end
-        end
-    endtask
-    */
-
-    virtual task run_phase(uvm_phase phase);
-        super.run_phase(phase);
-        forever begin
-        fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
-        @(posedge intf2.clk) begin
-            if (intf2.XIDATA[6:0]==R_TYPE)begin
-                cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
-            end else if (intf2.XIDATA[6:0]==I_TYPE) begin
-                cov_I.sample();
-            end
-        end
+        // @(negedge intf2.clk) begin
+        //     cov_CLK.sample(); // CLK sample negative edge
+        //     cov_RST.sample(); // RST sample negative edge
+        // end
         end
     endtask
+    
 
     virtual function void report_phase(uvm_phase phase);
         super.report_phase(phase);
-        `uvm_info("Clock coverage", $sformatf("\n\n--------------Coverage CLK results-------------------\nCLK : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_CLK.get_coverage()), UVM_MEDIUM);
-        `uvm_info("Reset coverage", $sformatf("\n\n--------------Coverage RST results-------------------\nRST : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_RST.get_coverage()), UVM_MEDIUM);
+        // `uvm_info("Clock coverage", $sformatf("\n\n--------------Coverage CLK results-------------------\nCLK : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_CLK.get_coverage()), UVM_MEDIUM);
+        // `uvm_info("Reset coverage", $sformatf("\n\n--------------Coverage RST results-------------------\nRST : %3.2f%% coverage achieved\n-----------------------------------------------------", cov_RST.get_coverage()), UVM_MEDIUM);
         //Report coverage
         `uvm_info("Coverage R type Report", 
         $sformatf("\n\n--------------Coverage R type instructions results-------------------\ncov_R Overall:                  %3.2f%% coverage achieved\ncov_R instruction type:         %3.2f%% coverage achieved.\ncov_R rd registers:             %3.2f%% coverage achieved.\ncov_R rs1 registers:            %3.2f%% coverage achieved.\ncov_R rs2 registers:            %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs1: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rs2: %3.2f%% coverage achieved.\ncov_R Cross Instrucction X rd:  %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",

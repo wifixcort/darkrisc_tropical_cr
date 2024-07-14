@@ -46,6 +46,7 @@ module top();
    assign intf2.NXPC   = top.soc0.core0.NXPC;
    assign intf2.NXPC2  = top.soc0.core0.NXPC2;
    assign intf2.BE     = top.soc0.core0.BE;
+   assign intf2.FLUSH     = top.soc0.core0.FLUSH;
    
    assign intf2.DADDR    = top.soc0.core0.DADDR;
    assign intf2.MEM      = top.soc0.MEM;

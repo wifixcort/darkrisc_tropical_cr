@@ -125,7 +125,7 @@ class my_scoreboard extends uvm_scoreboard;
 		 //   $display("------------------------- JAL type -------------------------");
 		 j_type_cheker_rd_imm(tr.inst ,tr.instruction, tr.risc_rd_p, `CORE.REGS[tr.risc_rd_p],
 							  tr.risc_imm, tr.inst_NXPC2, this.rdd_val, ref_model.REGS[this.rdd_val], this.imm_val_sign_ext, this.pc_val, tr.inst_counter);
-							//   $display("PC = %h, NXPC = %h, NXPC2 = %h", tr.inst_PC, tr.inst_NXPC, tr.inst_NXPC2);
+							 
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
 	  end else if(tr.instruction == JALR) begin
@@ -146,9 +146,10 @@ class my_scoreboard extends uvm_scoreboard;
 				  (tr.instruction == BLT) || (tr.instruction == BLTU) || (tr.instruction == BNE)) begin
 		 //   $display("------------------------- LUI type -------------------------");
 		 sb_type_cheker_rs1_rs2_imm(tr.inst ,tr.instruction, tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_rs2_p,
-		  tr.risc_rs2_v, tr.risc_imm, tr.inst_NXPC2, this.rs1_val, ref_model.REGS[this.rs1_val], 
+		  tr.risc_rs2_v, tr.risc_imm, tr.inst_JVAL, this.rs1_val, ref_model.REGS[this.rs1_val], 
 		 	this.rs2_val, ref_model.REGS[this.rs2_val], this.imm_val_sign_ext, this.pc_val, tr.inst_counter);
 			//  $display("PC = %h, NXPC = %h, NXPC2 = %h", tr.inst_PC, tr.inst_NXPC, tr.inst_NXPC2);
+			 $display("CORE PC = %h, NXPC = %h, NXPC2 = %h", `CORE.PC, `CORE.NXPC, `CORE.NXPC2);
 		 //  $display("--------------------------------------------------------------------------------------------<");
 
 	  end
@@ -563,8 +564,8 @@ class my_scoreboard extends uvm_scoreboard;
 			`uvm_error("TEST NOT PASSED", $sformatf("\n     # | Type  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v  |  ST  | risc_rs2 | sb_rs2 |  ST  | risc_rs2_v | sb_rs2_v  |  ST  | risc_imm |  sb_imm  |  ST  | Branch risc |  Branch sb |  ST  |\n %d | %s | %s |    %h    |   %h   | %s |  %h  |  %h | %s |    %h    |   %h   | %s |  %h  |  %h | %s | %h | %h | %s |  %h   |  %h  | %s |", 
 													inst_counter, inst, function_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", risc_predpc, sb_predpc, predpc_check?"PASS":"X"))
 		 end else begin
-			`uvm_info("TEST PASS", $sformatf("\n     # | Type  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v  |  ST  | risc_rs2 | sb_rs2 |  ST  | risc_rs2_v | sb_rs2_v  |  ST  | risc_imm |  sb_imm  |  ST  | Branch risc |  Branch sb |  ST  |\n %d | %s | %s |    %h   |   %h  | %s |    %h   |   %h  | %s | %h  | %h | %s | %h | %h | %s | %h | %h | %s |", 
-											 inst_counter, inst, function_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", risc_predpc, sb_predpc, predpc_check?"PASS":"X"), UVM_LOW)
+			`uvm_info("TEST PASS", $sformatf("\n     # | Type  |  ST  | risc_rs1 | sb_rs1 |  ST  | risc_rs1_v | sb_rs1_v  |  ST  | risc_rs2 | sb_rs2 |  ST  | risc_rs2_v | sb_rs2_v  |  ST  | risc_imm |  sb_imm  |  ST  | Branch risc |  Branch sb |  ST  |\n %d | %s | %s |    %h    |   %h   | %s |  %h  |  %h | %s |    %h    |   %h   | %s |  %h  |  %h | %s | %h | %h | %s |  %h   |  %h  | %s |", 
+			inst_counter, inst, function_check?"PASS":"X", risc_rs1_p, sb_rs1_p, rs1_p_check?"PASS":"X", risc_rs1_v, sb_rs1_v, rs1_v_check?"PASS":"X", risc_rs2_p, sb_rs2_p, rs2_p_check?"PASS":"X", risc_rs2_v, sb_rs2_v, rs2_v_check?"PASS":"X", risc_imm, sb_imm, imm_check?"PASS":"X", risc_predpc, sb_predpc, predpc_check?"PASS":"X"), UVM_LOW)
 		 end
 	  end
    endfunction: sb_type_cheker_rs1_rs2_imm
