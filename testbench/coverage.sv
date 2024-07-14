@@ -75,12 +75,12 @@ class funct_coverage extends uvm_component;
 
     covergroup cov_R_SLTU;
         // Toma el valor de rs1 y determina si se cubre valor negativo y valor positivo
-        cvr_rs1_sltu_values : coverpoint $signed(intf2.S1REG[31:0]) {
+        cvr_rs1_sltu_values : coverpoint $unsigned(intf2.U1REG[31:0]) {
             bins rs1_pos_values[2] = {[0:2147483647]};
             // bins rs1_neg_values[2] = {[-2147483648:-1]};
         }
         // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
-        cvr_rs2_sltu_values : coverpoint $signed(intf2.S2REG[31:0]) {
+        cvr_rs2_sltu_values : coverpoint $unsigned(intf2.U2REG[31:0]) {
             bins rs2_pos_values[2] = {[0:2147483647]};
             // bins rs2_neg_values[2] = {[-2147483648:-1]};
         }
