@@ -207,10 +207,10 @@ class jump_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar a
   endfunction
 
   // random variables 
-  randc logic [3:0] num_instruction; //Cuantos grupos de 6 instrucciones se usaran?
+  randc logic [8:0] num_instruction; //Cuantos grupos de 6 instrucciones se usaran?
   randc logic [11:0] addi_imm; //Cuantos grupos de 6 instrucciones se usaran?
-  rand logic is_jalr;
-  constraint valid_rng_num_instruction {num_instruction>0; 15>num_instruction;}
+  rand logic is_jalr; // Ejemplo probado 35 aqui con 36 alla.
+  constraint valid_rng_num_instruction {num_instruction>0; 499>num_instruction;} //los valores 0 y max no se usan. Esas filas estarán al inicio y al final.
 
   //*******************************************************
   `uvm_object_utils(jump_aux_vars)

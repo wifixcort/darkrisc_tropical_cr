@@ -33,7 +33,7 @@ class gen_sequence_R extends gen_sequence;
         sequence_item_rv32i_instruction item_addi_jump = sequence_item_rv32i_instruction::type_id::create("item_addi_jump"); // Instruction ADDI to create branch offset.
         jump_aux_vars jmp_aux_vars = jump_aux_vars::type_id::create("jmp_aux_vars"); // Instruction i
 
-        max_num_instructions = 16;
+        max_num_instructions = 500; //1 numero más que el constraint 512 nos sirve, necesitamos 511, pero eso deja al último siendo un JALR
         instruction_counter  = 0;
         destination_address  = 0;
         //--------------------------------------
@@ -44,7 +44,6 @@ class gen_sequence_R extends gen_sequence;
         for(int i=0; i < max_num_instructions-2; i=i+1) begin             
             jmp_aux_vars.randomize();
             jumps_sequence.push_back(jmp_aux_vars.num_instruction);
-            $display("Numero de instruccion generado es: %d", jmp_aux_vars.num_instruction);
         end
         //--------------------------------------
         // Exclusión de JALR de la secuencia numérica
@@ -67,6 +66,18 @@ class gen_sequence_R extends gen_sequence;
         jumps_sequence_final.push_front(0); //Instroduce a donde salta el jump de la instrucción 0
         jumps_sequence_final.push_back(max_num_instructions-1);
         is_an_addi_mask.push_back(0);
+
+        //Imprime la secuencia sin los jalr
+        $display("\n Construccion de secuencia final ========================= \nLa secuencia final generada, con un tamaño=%d, es:", jumps_sequence_final.size());
+        for(int i=0; i < jumps_sequence_final.size(); i=i+1) begin             
+            $display("%d", jumps_sequence_final[i]);
+        end
+
+        //Imprime las filas que almacenaran addis
+        $display("\n Construccion de ADDIS ========================= \nLas siguientes filas tendran addis:");
+        for(int i=0; i < addi_list.size(); i=i+1) begin             
+            $display("%d", addi_list[i]);
+        end        
 
         //--------------------------------------
         // Construccion de dos queues (o un array de dos columnas)
