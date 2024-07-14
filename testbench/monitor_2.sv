@@ -166,12 +166,11 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			   // $display("------------------------- I type -------------------------");
             // this.ex_dbuf.inst_PC = intf2.PC;
             if((ex_dbuf.instruccion == BGE) && (this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v))begin
-               $display("MOD NX");
                //this.ex_dbuf.inst_NXPC = intf2.NXPC;
                // this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
                this.ex_dbuf.inst_JVAL = intf2.NXPC2;
             end else begin
-            this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
             end
 
                // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];

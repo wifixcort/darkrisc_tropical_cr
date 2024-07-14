@@ -173,14 +173,14 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   } 
 
 
-  // // offset for jumps
-  // //*******************************************************
-  // constraint offset_jumps {
-  //   if (opcode == I_JALR_TYPE ) {
-  //     funct3 == 3'b000;
-  //     imm[1:0] == 2'b00;
-  //   }
-
+  // offset for jumps
+  //*******************************************************
+  constraint offset_jumps {
+    if (opcode == I_JALR_TYPE ) {
+      funct3 == 3'b000;
+      // imm[1:0] == 2'b00;
+    }
+  }
   //   if (opcode == J_TYPE ) {  //Es mejor  generar las desde el gen sequence
   //     imm_jal[2:1] == 2'b00;
   //     //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
