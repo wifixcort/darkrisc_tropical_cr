@@ -52,7 +52,7 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
     (opcode == J_TYPE)        -> full_inst == {imm_jal[20],imm_jal[10:1],imm_jal[11],imm_jal[19:12],rd,opcode};
     (opcode == S_B_TYPE)      -> full_inst == {imm[11],imm[9:4],rs2,rs1,funct3,imm[3:0],imm[10],opcode};
     (opcode == LUI_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
-    (opcode == AUIPC_TYPE)      -> full_inst == {imm_U[31:12],rd,opcode};
+    (opcode == AUIPC_TYPE)    -> full_inst == {imm_U[31:12],rd,opcode};
    }
    
    //********************************************************
@@ -64,8 +64,8 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
                     I_JALR_TYPE :/ 2,
                     J_TYPE      :/ 2,
                     S_B_TYPE    :/ 5,
-                    LUI_TYPE    :/ 5,
-                    AUIPC_TYPE  :/ 5
+                    LUI_TYPE    :/ 8,
+                    AUIPC_TYPE  :/ 8
                   };
   }
    

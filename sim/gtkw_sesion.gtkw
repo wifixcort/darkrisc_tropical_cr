@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Jul  7 01:15:56 2024
+[*] Mon Jul 15 19:02:57 2024
 [*]
 [dumpfile] "/home/jesus/Code/darkrisc_tropical_cr/sim/darksocv.vcd"
-[dumpfile_mtime] "Sun Jul  7 01:14:10 2024"
-[dumpfile_size] 1275721
+[dumpfile_mtime] "Mon Jul 15 18:55:19 2024"
+[dumpfile_size] 1543754
 [savefile] "/home/jesus/Code/darkrisc_tropical_cr/sim/gtkw_sesion.gtkw"
-[timestart] 7579000
+[timestart] 0
 [size] 1274 800
-[pos] 232 1
-*-16.000000 2610000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 134 -32
+*-22.000000 1840000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.soc0.
 [sst_width] 233
@@ -45,10 +45,17 @@ top.soc0.DATAO[31:0]
 @22
 top.soc0.core0.PC[31:0]
 @28
+top.soc0.core0.LUI
+top.soc0.core0.AUIPC
+top.soc0.core0.JAL
+top.soc0.core0.JALR
+top.soc0.core0.BCC
+top.soc0.core0.LCC
+top.soc0.core0.SCC
 top.soc0.core0.MCC
 top.soc0.core0.RCC
-top.soc0.core0.JAL
+top.soc0.core0.CCC
 @29
-top.soc0.core0.IDLE
+top.soc0.core0.FLUSH[1:0]
 [pattern_trace] 1
 [pattern_trace] 0

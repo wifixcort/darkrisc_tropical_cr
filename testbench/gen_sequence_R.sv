@@ -12,7 +12,7 @@ class gen_sequence_R extends gen_sequence;
         //********* Inicio de generacion de secuencia (Programa para arquitectura rv32i) ***********
         //`uvm_info("SEQUENCE", $sformatf("Generate instructions:"), UVM_MEDIUM)
         // Para la cantidad de instrucciones correspondiente (512 actualmente)
-        for(int i=0; i < 2**`MLEN/(4*2); i=i+1) begin 
+        for(int i=1; i < 2**`MLEN/(4*2); i=i+1) begin 
 
             //*** Seteando registros (instrucciones 1-62)
             if (i <= 62) begin

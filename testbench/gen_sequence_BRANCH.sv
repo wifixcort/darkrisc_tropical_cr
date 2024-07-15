@@ -68,7 +68,7 @@ class gen_sequence_BRANCH extends gen_sequence;
                 item_ADDI_2.randomize() with {opcode==I_TYPE && funct3==ADDI_FC && rs1==0 && rd==item_BRANCH.rs2 && imm==addi2_imm_val;};
                 // Info
                 $display("\n(ADDI_1)\t\tPC: 0x%h\t\tInstruction: %h\timm: 0x%h", instruction_counter[9:0]*4, item_ADDI_1.full_inst, item_ADDI_1.imm);
-                $display("(ADDI_2)\t\tPC: 0x%h\t\tInstruction: %h\timm: 0x%h", instruction_counter[9:0]*4+1'b1, item_ADDI_2.full_inst, item_ADDI_2.imm);
+                $display("(ADDI_2)\t\tPC: 0x%h\t\tInstruction: %h\timm: 0x%h", (instruction_counter[9:0]+1'b1)*4, item_ADDI_2.full_inst, item_ADDI_2.imm);
                 // Transactions
                 start_item(item_ADDI_1);
                 finish_item(item_ADDI_1);
