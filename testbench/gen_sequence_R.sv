@@ -12,7 +12,7 @@ class gen_sequence_R extends gen_sequence;
         //********* Inicio de generacion de secuencia (Programa para arquitectura rv32i) ***********
         //`uvm_info("SEQUENCE", $sformatf("Generate instructions:"), UVM_MEDIUM)
         // Para la cantidad de instrucciones correspondiente (512 actualmente)
-        for(int i=0; i < 2**`MLEN/(4*2); i=i+1) begin 
+        for(int i=1; i <= 2**`MLEN/(4*2); i=i+1) begin 
 
             //*** Seteando registros (instrucciones 1-62)
             if (i <= 62) begin
@@ -32,9 +32,9 @@ class gen_sequence_R extends gen_sequence;
                 i++; // compensar por instruccion extra
             end
             
-            // Cuando llegue la ultima instruccion, meter jal para retroceder
-            else if ( i == 2**`MLEN/(4*2) - 1 ) begin
-                item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};       
+            // Cuando llegue la ultima instruccion, meter jump here
+            else if ( i == 2**`MLEN/(4*2) - 2 ) begin
+                item_0.randomize() with {opcode==J_TYPE && imm_jal==0;};       
                 $display("\n(for JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
                 // Transaccion JAL
                 start_item(item_0);
