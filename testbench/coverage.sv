@@ -311,8 +311,8 @@ class funct_coverage extends uvm_component;
                                   binsof(cvr_instr) intersect {BEQ_FC, BLTU_FC, BNE_FC, BGEU_FC};       
         }
         cross_instr_rs1_sig_rs2_sig : cross cvr_rs1_value_sig, cvr_rs2_value_sig, cvr_instr{
-            bins imm_sig_and_pc = binsof(cvr_rs1_value_un) intersect {[-2147483648:2147483647]} &&
-                                  binsof(cvr_rs2_value_un) intersect {[-2147483648:2147483647]} &&
+            bins imm_sig_and_pc = binsof(cvr_rs1_value_sig) intersect {[-2147483648:2147483647]} &&
+                                  binsof(cvr_rs2_value_sig) intersect {[-2147483648:2147483647]} &&
                                   binsof(cvr_instr) intersect {BGE_FC, BLT_FC};       
         }
     endgroup 
@@ -356,7 +356,7 @@ class funct_coverage extends uvm_component;
         // Coverpoint PC Value
         cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
 
-        //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
+        // todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
             bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
                                   binsof(cvr_pc) intersect {[0:511]} &&
@@ -364,7 +364,7 @@ class funct_coverage extends uvm_component;
         } 
         cross_imm_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un, cvr_instr{
             bins imm_sig_and_rs1_un = binsof(cvr_rs1_value_un) intersect {[0:4294967295]} &&
-                                      binsof(cvr_pc) intersect {[0:511]} &&
+                                      binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
                                       binsof(cvr_instr) intersect {I_JALR_TYPE};   
         } 
     endgroup 
@@ -437,9 +437,12 @@ class funct_coverage extends uvm_component;
         cov_R_SLT = new();
         cov_R_SLTU = new();
         cov_Load = new();
-        // cov_CLK = new();
-        // cov_RST = new();
         cov_I = new();
+        cov_S = new();
+        cov_B = new();
+        cov_U = new();
+        cov_J = new();
+        cov_transition = new();
     endfunction
 
     virtual function void build_phase (uvm_phase phase);
@@ -458,9 +461,9 @@ class funct_coverage extends uvm_component;
             // cov_CLK.sample(); // Clock sample postive edge
             // cov_RST.sample(); // Reset sample postive edge
             if (intf2.XIDATA[6:0]==R_TYPE)begin
-                cov_R.sample(); //TODO: Recomended to add here a print to check what data is processed to compare it against the coverage results.
-                // reg_cero assert property(top.soc0.core0.REGS[0] == '0) else $fatal("Error: REGS[0] value modified!");
-                uvm_report_info(get_full_name(), $sformatf("\n Covergroup R sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h ", intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                
+                cov_R.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup R sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                
                 if(intf2.XIDATA[14:12]==SLL_FC)begin
                     cov_R_SLL.sample();
                 end else if({intf2.XIDATA[31:25], intf2.XIDATA[14:12]}==9'h105)begin
@@ -474,12 +477,31 @@ class funct_coverage extends uvm_component;
                 end
             end else if (intf2.XIDATA[6:0]==I_TYPE) begin
                 cov_I.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup I sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
+            end else if (intf2.XIDATA[6:0]==I_L_TYPE) begin
+                cov_Load.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup L sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
+            end else if (intf2.XIDATA[6:0]==S_TYPE) begin
+                cov_S.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup S sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
+            end else if (intf2.XIDATA[6:0]==S_B_TYPE) begin
+                cov_B.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup S_B sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
+            end else if (intf2.XIDATA[6:0]==(LUI_TYPE || AUIPC_TYPE)) begin
+                cov_U.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup U sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
+            end else if (intf2.XIDATA[6:0]==J_TYPE) begin
+                cov_J.sample();
+                uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup J sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
+                intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
             end
         end
-        // @(negedge intf2.clk) begin
-        //     cov_CLK.sample(); // CLK sample negative edge
-        //     cov_RST.sample(); // RST sample negative edge
-        // end
+ 
         end
     endtask
     
