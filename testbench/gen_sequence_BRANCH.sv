@@ -156,7 +156,7 @@ class gen_sequence_BRANCH extends gen_sequence;
 
             // Jump here final
             else begin
-                item_JAL.randomize() with {opcode==J_TYPE && imm_jal[20:5]==16'hffff ;};  
+                item_JAL.randomize() with {opcode==J_TYPE && imm_jal==0 ;};  
                 // Info     
                 $display("(JAL)\t\t\tPC: 0x%h\t\tInstruction: %h\tOffset: %d", instruction_counter[9:0]*4, item_JAL.full_inst, $signed(item_JAL.imm_jal)*2);
                 // Transaccion JAL
