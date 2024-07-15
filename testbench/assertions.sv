@@ -70,39 +70,24 @@ module assertions (
 													 ( `RTL_PATH.JREQ == 1 |-> ((0 <= `RTL_PATH.JVAL/4)) && ((`RTL_PATH.JVAL/4) <= 511) )
 													 );
 
-   // Aserción Overflow u1+u2
-
-   // Aserción Overflow u1+s2
-
-   // Aserción Overflow s1+u2
-
-   // Aserción Overflow s1+s2
-
-   // Aserción Overflow u1+simm
-
-   // Aserción Overflow u1+uimm
-
-   // Aserción Overflow s1+simm
-
-   // Aserción Overflow s1+uimm
-
-   /*
-   check_overflow : assert property (@(posedge CLK) disable iff (RES) $rose(`RTL_PATH.HLT) |-> $stable(`RTL_PATH.FLUSH));
-   */
-
    // Aserción Maximo y minimo valor PC 
-   /*
    check_pc_within_valid_ranges: assert property (
-													 @(posedge CLK) disable iff (RES || |`RTL_PATH.FLUSH)
-													 (  ((0 <= (`RTL_PATH.PC/4)) && ((`RTL_PATH.PC/4) <= 511) )
-													 ));
-   
+													 @(posedge CLK) disable iff (|(`RTL_PATH.FLUSH))
+													 (((`RTL_PATH.PC/4) >= 0) && ((`RTL_PATH.PC/4) <= 511))
+                                        )
+                                        else 
+  $error("Assertion failed: PC value out of valid range (0 to 511) at time %0t. PC = %0d", $time, `RTL_PATH.PC/4);
+                                        ;
+
    // Aserción para cumplir que las instrucciones se encuentren dentro de su rango de memoria asignado 
    check_iaddr_within_valid_ranges: assert property (
 													 @(posedge CLK) disable iff (RES || |`RTL_PATH.FLUSH)
 													 (  ((0 <= (`RTL_PATH.IADDR/4)) && ((`RTL_PATH.IADDR/4) <= 511) )
 													 ));
-   */
+
+   // Aserción para overflow no se implemento por falta de tiempo
+      //se planeaba revisar la estabildidad del msb en operaciones aritmeticas de suma   
+
    // Función para contar el número de señales en 1
    function automatic int count_ones(input logic [8:0] sig);
       int					   count;
