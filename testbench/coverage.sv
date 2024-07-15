@@ -191,26 +191,21 @@ class funct_coverage extends uvm_component;
         cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
-        cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
-            bins SB_and_imm_sig = binsof(cvr_instr) intersect {SB_FC} &&
-                                  binsof(cvr_imm_sig) intersect {[-2048:2047]};   
+        cross_instr_datai : cross cvr_instr, cvr_datai {
+            bins LB_and_datai = binsof(cvr_instr) intersect {LB_FC} &&
+                                  binsof(cvr_datai) intersect {[0:4294967295]};   
 
-            bins SH_and_imm_sig =  binsof(cvr_instr) intersect {SH_FC} &&
-                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
+            bins LH_and_datai =  binsof(cvr_instr) intersect {LH_FC} &&
+                                   binsof(cvr_datai) intersect {[0:4294967295]};
 
-            bins SW_and_imm_sig =  binsof(cvr_instr) intersect {SW_FC} &&
-                                   binsof(cvr_imm_sig) intersect {[-2048:2047]};
-        } 
+            bins LBU_and_datai = binsof(cvr_instr) intersect {LBU_FC} &&
+                                  binsof(cvr_datai) intersect {[0:4294967295]};   
 
-        cross_instr_rs1_un : cross cvr_instr, cvr_rs1_value_un {
-            bins SB_and_rs1_sig = binsof(cvr_instr) intersect {SB_FC} &&
-                                  binsof(cvr_rs1_value_un) intersect {[0:4294967295]};   
+            bins LHU_and_datai =  binsof(cvr_instr) intersect {LHU_FC} &&
+                                   binsof(cvr_datai) intersect {[0:4294967295]};
 
-            bins SH_and_rs1_sig =  binsof(cvr_instr) intersect {SH_FC} &&
-                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
-
-            bins SW_and_rs1_sig =  binsof(cvr_instr) intersect {SW_FC} &&
-                                   binsof(cvr_rs1_value_un) intersect {[0:4294967295]};
+            bins LW_and_datai =  binsof(cvr_instr) intersect {LW_FC} &&
+                                   binsof(cvr_datai) intersect {[0:4294967295]};
         } 
         // DADDR
         cross_imm_sig_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un {
@@ -549,10 +544,10 @@ class funct_coverage extends uvm_component;
                             cov_I.cvr_imm_sig.get_coverage(), cov_I.cvr_rd.get_coverage(), cov_I.cross_instr_imm_sig_rs1_sig.get_coverage(),
                             cov_I.cross_instr_imm_un_rs1_sig.get_coverage(), cov_I.cross_instr_imm_un_rs1_un.get_coverage(), cov_I.cross_instr_imm_sig_rs1_un.get_coverage()), UVM_MEDIUM);
               `uvm_info("Coverage Load type Report", 
-              $sformatf("\n\n--------------Coverage Load type instructions results-------------------\ncov_Load Overall:                  %3.2f%% coverage achieved\ncov_Load instruction type:         %3.2f%% coverage achieved.\ncov_Load rs1 registers:            %3.2f%% coverage achieved.\ncov_Load rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_Load imm values signed:        %3.2f%% coverage achieved.\ncov_Load datai:                    %3.2f%% coverage achieved.\ncov_Load ldata:                    %3.2f%% coverage achieved.\ncov_Load rd registers:             %3.2f%% coverage achieved.\ncov_Load daddr:                    %3.2f%% coverage achieved.\ncov_Load Cross Instrucction X imm signed: %3.2f%% coverage achieved.\ncov_Load Cross Instrucction X rs1 unsigned: %3.2f%% coverage achieved.\ncov_Load Cross imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+              $sformatf("\n\n--------------Coverage Load type instructions results-------------------\ncov_Load Overall:                  %3.2f%% coverage achieved\ncov_Load instruction type:         %3.2f%% coverage achieved.\ncov_Load rs1 registers:            %3.2f%% coverage achieved.\ncov_Load rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_Load imm values signed:        %3.2f%% coverage achieved.\ncov_Load datai:                    %3.2f%% coverage achieved.\ncov_Load ldata:                    %3.2f%% coverage achieved.\ncov_Load rd registers:             %3.2f%% coverage achieved.\ncov_Load daddr:                    %3.2f%% coverage achieved.\ncov_Load Cross Instrucction X datai: %3.2f%% coverage achieved.\ncov_Load Cross imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
                         cov_Load.get_coverage(), cov_Load.cvr_instr.get_coverage(), cov_Load.cvr_rs1.get_coverage(), cov_Load.cvr_rs1_value_un.get_coverage(),
                         cov_Load.cvr_imm_sig.get_coverage(), cov_Load.cvr_datai.get_coverage(), cov_Load.cvr_ldata.get_coverage(), cov_Load.cvr_rd.get_coverage(),
-                        cov_Load.cvr_daddr.get_coverage(), cov_Load.cross_instr_imm_sig.get_coverage(), cov_Load.cross_instr_rs1_un.get_coverage(),
+                        cov_Load.cvr_daddr.get_coverage(), cov_Load.cross_instr_datai.get_coverage(), cov_Load.cross_imm_sig_rs1_un.get_coverage(),
                         cov_Load.cross_imm_sig_rs1_un.get_coverage()), UVM_MEDIUM );      
           `uvm_info("Coverage Store type Report", 
           $sformatf("\n\n--------------Coverage Store type instructions results-------------------\ncov_S Overall:                  %3.2f%% coverage achieved\ncov_S instruction type:         %3.2f%% coverage achieved.\ncov_S rs1 registers:            %3.2f%% coverage achieved.\ncov_S rs2 registers:            %3.2f%% coverage achieved.\ncov_S rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_S rs2 values unsigned:      %3.2f%% coverage achieved.\ncov_S imm values signed:        %3.2f%% coverage achieved.\ncov_S rd registers:             %3.2f%% coverage achieved.\ncov_S sdata:                    %3.2f%% coverage achieved.\ncov_S daddr:                    %3.2f%% coverage achieved.\ncov_S Cross Instrucction X imm signed: %3.2f%% coverage achieved.\ncov_S Cross Instrucction X rs1 unsigned: %3.2f%% coverage achieved.\ncov_S Cross Instrucction X rs2 unsigned: %3.2f%% coverage achieved.\ncov_S Cross imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
