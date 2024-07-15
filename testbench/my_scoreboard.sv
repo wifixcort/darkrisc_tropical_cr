@@ -7,13 +7,13 @@ class my_scoreboard extends uvm_scoreboard;
    uvm_analysis_imp_mon2#(monitor_tr, my_scoreboard) txn_mon2;
 
    // Queue for STORING decoded instructions from Monitor
-   logic [75:0] decoded_inst_q [$]; // Data in queue: rx_funct, rs1_val, rs2_val, rdd_val, imm_val
+   logic [76:0] decoded_inst_q [$]; // Data in queue: rx_funct, rs1_val, rs2_val, rdd_val, imm_val
    
    // Handle of Reference Model
    riscv_ref_model ref_model;
 
    // Internal Signals for decoded_inst proccessing
-   logic [75:0]	decoded_inst_x;
+   logic [76:0]	decoded_inst_x;
    logic [7:0]	rx_funct;
    logic signed [20:0] imm_val;
    logic signed [31:0] imm_val_sign_ext;
@@ -24,6 +24,7 @@ class my_scoreboard extends uvm_scoreboard;
    logic [31:0]		   DATAO;
    logic [31:0]		   DADDR;
    logic [31:0]		   pc_val;
+   logic 			   RESET;
 
    logic [31:0]		   rs1_val_final;
    logic [31:0]		   rs2_val_final;
@@ -158,12 +159,12 @@ class my_scoreboard extends uvm_scoreboard;
 
    function void  write_mon1(monitor_tr tr);
       // Procesar la transacción recibida
-      push_instruction(tr.pc_val_mon1, tr.rx_funct_mon1, tr.imm_val_mon1, tr.rs1_val_mon1, tr.rs2_val_mon1, tr.rdd_val_mon1);
+      push_instruction(tr.pc_val_mon1, tr.rx_funct_mon1, tr.imm_val_mon1, tr.rs1_val_mon1, tr.rs2_val_mon1, tr.rdd_val_mon1, tr.RESET);
    endfunction
 
    // Function to push instruction to the queue
-   function push_instruction(logic [31:0] pc_val_in, logic [7:0] rx_funct_in, logic signed [20:0] imm_val_in, logic [4:0] rs1_val_in, logic [4:0] rs2_val_in, logic [4:0] rdd_val_in);
-      decoded_inst_q.push_back({pc_val_in, rx_funct_in, imm_val_in, rs1_val_in, rs2_val_in, rdd_val_in});
+   function push_instruction(logic [31:0] pc_val_in, logic [7:0] rx_funct_in, logic signed [20:0] imm_val_in, logic [4:0] rs1_val_in, logic [4:0] rs2_val_in, logic [4:0] rdd_val_in, logic RESET);
+      decoded_inst_q.push_back({pc_val_in, rx_funct_in, imm_val_in, rs1_val_in, rs2_val_in, rdd_val_in, RESET});
    endfunction
 
    // Function to get values from the queue and procces instruction in our model
@@ -172,15 +173,16 @@ class my_scoreboard extends uvm_scoreboard;
          // Send transaction to Reference Model
          decoded_inst_x = decoded_inst_q.pop_front();
 
-         pc_val = decoded_inst_x[75:44];
-         rx_funct = decoded_inst_x[43:36];
-         imm_val  = decoded_inst_x[35:15];
-         rs1_val  = decoded_inst_x[14:10];
-         rs2_val  = decoded_inst_x[9:5];
-         rdd_val  = decoded_inst_x[4:0];
+         pc_val = decoded_inst_x[76:45];
+         rx_funct = decoded_inst_x[44:37];
+         imm_val  = decoded_inst_x[36:16];
+         rs1_val  = decoded_inst_x[15:11];
+         rs2_val  = decoded_inst_x[10:6];
+         rdd_val  = decoded_inst_x[5:1];
+		 RESET    = decoded_inst_x[0];
 
          // Predict function 
-         ref_model.predict(pc_val,rx_funct,imm_val,rs1_val,rs2_val,rdd_val);
+         ref_model.predict(pc_val,rx_funct,imm_val,rs1_val,rs2_val,rdd_val, RESET);
 
          imm_val_sign_ext = ref_model.imm_val_sign_ext;
          rs1_val = ref_model.rs1_val_upd;

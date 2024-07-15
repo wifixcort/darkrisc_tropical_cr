@@ -79,7 +79,7 @@ class riscv_ref_model extends uvm_component;
 	endtask
 
 
-   function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1,logic [4:0] rs2,logic [4:0] rdd);
+   function predict(logic [31:0] pc_val, logic [7:0] rx_funct,logic signed [20:0] imm_val,logic [4:0] rs1,logic [4:0] rs2,logic [4:0] rdd, logic RESET);
 	
       // L/S: DADDR[31] must equal 0, if not we access I/O peripherals.
       // All instructions shouldnt be allowed to modify register 0 value
@@ -95,124 +95,124 @@ class riscv_ref_model extends uvm_component;
       case (rx_funct)
 		// R Type
 		ADD  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  REGS[rdd] = REGS[rs1] + REGS[rs2];
            end
            pc_val = pc_val + 4;
 		end
 		SUB  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  REGS[rdd] = REGS[rs1] - REGS[rs2];
            end
            pc_val = pc_val + 4;
 		end
 		XOR  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = REGS[rs1] ^ REGS[rs2];
            end
            pc_val = pc_val + 4;
 		end
 		OR   : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = REGS[rs1] | REGS[rs2];
            end
            pc_val = pc_val + 4;
 		end
 		AND  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = REGS[rs1] & REGS[rs2];
            end
            pc_val = pc_val + 4;
 		end
 		SLL  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = REGS[rs1] << (REGS[rs2][4:0]);
            end
            pc_val = pc_val + 4;
 		end
 		SRL  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = REGS[rs1] >> (REGS[rs2][4:0]);
            end
            pc_val = pc_val + 4;
 		end
 		SRA  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = $signed(REGS[rs1]) >>> (REGS[rs2][4:0]);
            end
            pc_val = pc_val + 4;
 		end
 		SLT  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = ($signed(REGS[rs1]) < $signed(REGS[rs2])) ? 1'b1 : 1'b0;
            end
            pc_val = pc_val + 4;
 		end
 		SLTU : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  REGS[rdd] = (REGS[rs1] < REGS[rs2]) ? 1'b1 : 1'b0;
            end
            pc_val = pc_val + 4;
 		end
 		// I Type 
 		ADDI : begin //This Operation is always signed
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
         	  REGS[rdd] = (REGS[rs1]) + (imm_val_sign_ext);
            end
            pc_val = pc_val + 4;
 		end
 		XORI : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = REGS[rs1] ^ imm_val_sign_ext;
            end      	
            pc_val = pc_val + 4;
 		end
 		ORI  : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
         	  REGS[rdd] = REGS[rs1] | imm_val_sign_ext;
            end
            pc_val = pc_val + 4;
 		end
 		ANDI : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};  
       		  REGS[rdd] = REGS[rs1] & imm_val_sign_ext;
            end
            pc_val = pc_val + 4;
 		end
 		SLLI : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = REGS[rs1] << (imm_val_sign_ext[4:0]);
            end
            pc_val = pc_val + 4;
 		end
 		SRLI : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = REGS[rs1] >> (imm_val_sign_ext[4:0]); 
            end
            pc_val = pc_val + 4;
 		end
 		SRAI : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = $signed(REGS[rs1]) >>> (imm_val_sign_ext[4:0]);
            end
            pc_val = pc_val + 4;
 		end
 		SLTI : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = ($signed(REGS[rs1]) < imm_val_sign_ext) ? 1'b1 : 1'b0;
            end
            pc_val = pc_val + 4;
 		end
 		SLTIU: begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{20{1'b0}}, imm_val[11:0]}; // No sign extension required
         	  REGS[rdd] = (REGS[rs1] < imm_val_sign_ext) ? 1'b1 : 1'b0;
            end
@@ -220,7 +220,7 @@ class riscv_ref_model extends uvm_component;
 		end
 		// I-L(load) Type - DADDR[31] must equal 0, if not we access I/O peripherals.
 		LB   : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]]; 
@@ -243,7 +243,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		LH   : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
@@ -263,7 +263,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		LW   : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
@@ -275,7 +275,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		LBU  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
@@ -298,7 +298,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		LHU  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]];
@@ -318,7 +318,7 @@ class riscv_ref_model extends uvm_component;
 		end 
 		// S-Type - DADDR[31] must equal 0, if not we access I/O peripherals.
 		SB   : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  case (DADDR[1:0])
@@ -353,7 +353,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		SH   : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  case (DADDR[1])
@@ -376,7 +376,7 @@ class riscv_ref_model extends uvm_component;
            pc_val = pc_val + 4;
 		end
 		SW   : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAO = REGS[rs2];
@@ -388,7 +388,7 @@ class riscv_ref_model extends uvm_component;
 		end
 		// S-B-Type // Stimulus should have a constrain of making imm 4 bit multiple -> 2 LSB=0, for memory alignment
 		BEQ  : begin
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
 			  $display("BEQ imm = %h", imm_val);
 			  JREQ = (REGS[rs1] == REGS[rs2]);
@@ -401,7 +401,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end
 		BNE  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  JREQ = (REGS[rs1] != REGS[rs2]);
 			  case(JREQ)
@@ -413,7 +413,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end
 		BLT  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
               JREQ = ($signed(REGS[rs1]) < $signed(REGS[rs2]));
               case(JREQ)
@@ -425,7 +425,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end
 		BGE  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  JREQ = ($signed(REGS[rs1]) >= $signed(REGS[rs2]));
 			  case(JREQ)
@@ -437,7 +437,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end
 		BLTU : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
               JREQ = (REGS[rs1] < REGS[rs2]);
               case(JREQ)
@@ -449,7 +449,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end
 		BGEU : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]};
         	  JREQ = (REGS[rs1] >= REGS[rs2]);
         	  case(JREQ)
@@ -462,7 +462,7 @@ class riscv_ref_model extends uvm_component;
 		end
 		// J-Type // Stimulus should have a constrain of making imm 4 bit multiple -> 2 LSB=0, for memory alignment
 		JAL  : begin  // JAL with rd = 0x is a plain jump
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
         	  REGS[rdd] = pc_val+ 4;
         	  pc_val = pc_val + imm_val_sign_ext;
@@ -472,7 +472,7 @@ class riscv_ref_model extends uvm_component;
            end
 		end 
 		JALR : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
               REGS[rdd] = pc_val+4;
               pc_val = REGS[rs1] + imm_val_sign_ext;
@@ -483,14 +483,14 @@ class riscv_ref_model extends uvm_component;
 		end
 		// U-Type
 		LUI  : begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {imm_val[19:0], {12{1'b0}}}; 
            REGS[rdd] = imm_val_sign_ext;
         end
            pc_val = pc_val + 4;
 		end 
 		AUIPC: begin 
-           if (!(|FLUSH)) begin
+           if (!(|FLUSH) && RESET == 0) begin
         	  imm_val_sign_ext = {imm_val[19:0], {12{1'b0}}}; 
            REGS[rdd] = pc_val + imm_val_sign_ext;
         end
@@ -513,7 +513,12 @@ class riscv_ref_model extends uvm_component;
 		begin 
       	   FLUSH = 2;
 		end
-      /*
+	  if(RESET == 1)
+	  begin
+		FLUSH = 2;
+		pc_val_upd = pc_val_in;
+	  end
+       /*
        The following are also Predicted: 
        imm_val_sign_ext
        DATAI
