@@ -73,6 +73,7 @@ class riscv_ref_model extends uvm_component;
    virtual task run_phase(uvm_phase phase);
    		super.run_phase(phase);
 		// Intialize Memory
+		#10;
    		$readmemh("darksocv.mem",MEM,0);
 		// int_dmp.sb_dump =  MEM[465];
 	endtask
