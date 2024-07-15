@@ -79,7 +79,7 @@ function uvc2_mon::new (string name = "uvc2_mon", uvm_component parent = null);
    // logic [31:0]	sb_rd_reg_value;
    this.ex_dbuf = '{ inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
 					 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC : '0, inst_NXPC2 : '0,
-                inst_JVAL : '0, inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr  : '0, be : '0};//
+					 inst_JVAL : '0, inst_XIDATA : '0, inst_counter : '0, risc_sdata : '0, risc_ldata : '0, risc_daddr  : '0, be : '0};//
 endfunction
 
 task uvc2_mon:: run_phase(uvm_phase phase);
@@ -159,25 +159,54 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			   ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];			   
 			end  else if((ex_dbuf.instruccion == JAL) || (ex_dbuf.instruccion == JALR))begin
 			   // $display("------------------------- I type -------------------------");
-            this.ex_dbuf.inst_NXPC = intf2.NXPC;
+               this.ex_dbuf.inst_NXPC = intf2.NXPC;
                this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
 			   //I_L TYPE
-			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ) || (ex_dbuf.instruccion == BGE))begin
-			   // $display("------------------------- I type -------------------------");
-            // this.ex_dbuf.inst_PC = intf2.PC;
-            if((ex_dbuf.instruccion == BGE) && (this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v))begin
-               $display("MOD NX");
-               //this.ex_dbuf.inst_NXPC = intf2.NXPC;
-               // this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
-               this.ex_dbuf.inst_JVAL = intf2.NXPC2;
-            end else begin
-            this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
-            end
-
-               // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-			   //I_L TYPE
+			end  else if(ex_dbuf.instruccion == BGE)begin // Si se tratan todas las Branch juntas no muestrea bien
+               if($signed(this.ex_dbuf.risc_rs1_v) >= $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end
+			end else if(ex_dbuf.instruccion == BEQ)begin
+               if ($signed(this.ex_dbuf.risc_rs1_v) == $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end
+			end else if(ex_dbuf.instruccion == BLT) begin
+               if($signed(this.ex_dbuf.risc_rs1_v) < $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end                  
+			end else if(ex_dbuf.instruccion == BLTU)begin
+               if(this.ex_dbuf.risc_rs1_v < this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+			end else if(ex_dbuf.instruccion == BNE)begin
+               if(this.ex_dbuf.risc_rs1_v != this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+			end else if(ex_dbuf.instruccion == BGEU)begin
+               if(this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+			end else if(ex_dbuf.instruccion == BLTU)begin
+               if(this.ex_dbuf.risc_rs1_v < this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+               // end            
 			end 
-         $display("WriteBack PC = %h, NXPC = %h, NXPC2 = %h", this.ex_dbuf.inst_PC, this.ex_dbuf.inst_NXPC, this.ex_dbuf.inst_NXPC2);
+			// $display("WriteBack PC = %h, NXPC = %h, NXPC2 = %h", this.ex_dbuf.inst_PC, this.ex_dbuf.inst_NXPC, this.ex_dbuf.inst_NXPC2);
 			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
 			mn_txn.inst         = this.ex_dbuf.inst;
 			mn_txn.instruction  = this.ex_dbuf.instruccion;
@@ -191,16 +220,16 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mn_txn.inst_PC      = this.ex_dbuf.inst_PC;
 			mn_txn.inst_NXPC   =  this.ex_dbuf.inst_NXPC;
 			mn_txn.inst_NXPC2   = this.ex_dbuf.inst_NXPC2;
-         mn_txn.inst_JVAL   = this.ex_dbuf.inst_JVAL;
+			mn_txn.inst_JBVAL   = this.ex_dbuf.inst_JVAL;
 			mn_txn.inst_XIDATA  = this.ex_dbuf.inst_XIDATA;
 			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
 			mn_txn.risc_sdata   = ex_dbuf.risc_sdata;
 			mn_txn.risc_ldata   = ex_dbuf.risc_ldata;
 			mn_txn.risc_daddr = ex_dbuf.risc_daddr;
 			//  $display("%s, %h", mn_txn.instruction, this.ex_dbuf.instruccion);
-         // if(intf2.FLUSH == '0)begin
+			// if(intf2.FLUSH == '0)begin
 			mon2_txn.write(mn_txn); // Transaction applied
-         // end
+			// end
 			//Clear this buffer
 			this.ex_dbuf = '{inst : "", instruccion : '0, risc_rd_p : '0, risc_rd_v : '0, risc_rs1_p : '0, 
 							 risc_rs1_v : '0, risc_rs2_p : '0, risc_rs2_v : '0, risc_imm : '0, inst_PC : '0, inst_NXPC : '0, inst_NXPC2 : '0, 
@@ -210,18 +239,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
       
       if (`CORE.IADDR != 0)begin //Waits for first instruction out of reset. // !top.soc0.core0.XRES && |top.soc0.core0.IADDR
          if ((intf2.HLT == 0)&&(intf2.IDLE == 0)) begin //For get correct values from two clock cicle instructions
-            // if (inst_counter == 0)begin
-            //  sb.process_inst(); 		//Fixes a bug which requires initializing the SB by processing the very first instruction
-            //  inst_counter++;
-            //  continue; //Jump to the start of forever to avoid first invalid instruction from the scoreboard
-            // end
-            // sb.process_inst();						//Pop scoreboard info to compare it against actual instruction.
-            // if(this.display_one == 1)begin
-            //  $display(" # | Type | Stat | risv rd p | SB   rd p  | Stat |  Riscv rs1 p | SB   rs1 p | Stat |  Riscv rs2 p | SB   rs2 p | Stat |  Riscv rs2 v | SB   rs2 v | Stat |  Riscv imm v | SB   imm v | Stat | Gen. STATUS ");
-            //  this.display_one = 0;
-            // end
-            // sb_rd_reg_value = sb.ref_model.REGS[sb.rdd];//(top.soc0.core0.DPTR==0)? sb.ref_model.fake_reg0 : sb.ref_model.REGS[sb.rdd];
-            // // end 
             case (intf2.XIDATA[6:0])
               ////////////////////////////////////////////////////////////
               //          R-Type instruction was detected
@@ -307,7 +324,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                       default: begin
                          //  `ifdef __DB_ENABLE__ 
                          //  $display("**** Instruccion type I not found = %b PC:%h, sb_pc:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC, sb.pc_val);
-                         $display("FC3 = %b", intf2.XIDATA[14:12]);
                          //  err_count++;
                          // inst_counter++;
                       end
@@ -353,9 +369,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                       end
                       default: begin
                          `uvm_error("Instruction type I not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
-                         //  $display("**** Instruccion type I not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-                         //  $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-                         //  err_count++;
                       end
                     endcase                  
                     
@@ -389,9 +402,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    end
                    default: begin
                       `uvm_error("Instruction type L not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
-                      //   $display("**** Instruccion type IL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-                      //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-                      //  err_count++;
                    end
                  endcase
               end //End I_L_TYPE
@@ -403,14 +413,11 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    JALR_C: begin
                       // inst_counter++;
                       //  $display("*********************ALERTA**********************     I_JALR    ");
-                        ex_dbuf.inst = "JALR";
-                        ex_dbuf.instruccion = JALR;		
+                      ex_dbuf.inst = "JALR";
+                      ex_dbuf.instruccion = JALR;		
                    end
                    default: begin
                       `uvm_error("Instruction type I_JARL not found", $sformatf("\nIDATA = %b PC:%h, FCT3 = %h", intf2.XIDATA, intf2.PC, FCT3))
-                      //   $display("**** Instruccion type I_JARL not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-                      //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-                      //  err_count++;
                    end
                  endcase
               end //End I_JALR_TYPE
@@ -433,9 +440,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    end
                    default: begin
                       `uvm_error("Instruction type S not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
-                      //   $display("**** Instruccion type S not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-                      //   $display("OPCODE = %b, FC3 = %b", top.soc0.core0.XIDATA[6:0], top.soc0.core0.XIDATA[14:12]);
-                      //  err_count++;
                    end
                  endcase  
               end //End S_TYPE
@@ -481,8 +485,6 @@ task uvc2_mon:: run_phase(uvm_phase phase);
                    end
                    default: begin
                       `uvm_error("Instruction type S_B not found", $sformatf("\nIDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
-                      //$display("**** Instruccion type S_B not found = %b PC:%h****", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-                      //  err_count++;
                    end
                  endcase
               end //End S_B_TYPE
@@ -515,24 +517,26 @@ task uvc2_mon:: run_phase(uvm_phase phase);
               default: begin
                  if(intf2.XIDATA != 0) begin
                     `uvm_error("Instruction UNKOWN", $sformatf("\n IDATA = %b PC:%h", intf2.XIDATA, intf2.PC))
-                    // $display("**** Instruccion not found ****");
-                    // $display("-> UNKOWN: %b , PC : %h<-", top.soc0.core0.XIDATA, top.soc0.core0.PC);
-					//   err_count++; 
                  end				 
               end              
             endcase
             
-            this.ex_dbuf.inst_counter++;
-            // ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : `DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : `S1PTR, 
-            //       risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM), sb_rd_p : sb.rdd, sb_rd_v : sb_rd_reg_value,
-            //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
-            //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
-            ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
-						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
-						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_JVAL : intf2.JVAL, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
-                  $display("EX Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
+            this.ex_dbuf.inst_counter++; //Count the last instruction processed 
 
-            // $display("JVAL = %h", top.soc0.core0.JVAL);
+            //Update register value acording to its sign
+            if((this.ex_dbuf.instruccion == SLTU) || (this.ex_dbuf.instruccion == BLTU )|| (this.ex_dbuf.instruccion == BGEU) || (this.ex_dbuf.instruccion == SLTU))begin
+               this.ex_dbuf.risc_rs1_v = intf2.U1REG;
+               this.ex_dbuf.risc_rs2_v = intf2.U2REG;
+            end else begin
+               this.ex_dbuf.risc_rs1_v = intf2.S1REG;
+               this.ex_dbuf.risc_rs2_v = intf2.S2REG;
+            end
+            //Update buffer to apply in writeback
+            ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
+						risc_rs1_v : ex_dbuf.risc_rs1_v, risc_rs2_p : intf2.S2PTR, risc_rs2_v : ex_dbuf.risc_rs2_v, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
+						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_JVAL : intf2.JVAL, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
+            // $display("EX Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
+
          end         
          //  end//Work out of reset
       end

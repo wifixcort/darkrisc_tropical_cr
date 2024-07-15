@@ -173,14 +173,14 @@ class sequence_item_rv32i_instruction extends uvm_sequence_item;
   } 
 
 
-  // // offset for jumps
-  // //*******************************************************
-  // constraint offset_jumps {
-  //   if (opcode == I_JALR_TYPE ) {
-  //     funct3 == 3'b000;
-  //     imm[1:0] == 2'b00;
-  //   }
-
+  // offset for jumps
+  //*******************************************************
+  constraint offset_jumps {
+    if (opcode == I_JALR_TYPE ) {
+      funct3 == 3'b000;
+      // imm[1:0] == 2'b00;
+    }
+  }
   //   if (opcode == J_TYPE ) {  //Es mejor  generar las desde el gen sequence
   //     imm_jal[2:1] == 2'b00;
   //     //imm_jal[20:11] == 10'h000; // Acotador de offset. Es demasiado grande //Randomization error
@@ -217,6 +217,17 @@ class jump_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar a
   //*******************************************************
   `uvm_object_utils(jump_aux_vars)
 endclass
+
+
+// class branch_aux_vars extends uvm_sequence_item;
+//   function new(string name = "branch_aux_vars");
+//     super.new(name);
+//   endfunction
+
+//   //random variables
+//   rand logic [] total_nops;
+//   rand logic [] addi2_imm_val;
+// endclass
 
 //Excellent reference for conditional constraints:
 //  https://vlsiverify.com/system-verilog/if-else-in-constraints/

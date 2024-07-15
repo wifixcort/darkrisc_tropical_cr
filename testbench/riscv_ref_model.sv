@@ -73,6 +73,7 @@ class riscv_ref_model extends uvm_component;
    virtual task run_phase(uvm_phase phase);
    		super.run_phase(phase);
 		// Intialize Memory
+		#10;
    		$readmemh("darksocv.mem",MEM,0);
 		// int_dmp.sb_dump =  MEM[465];
 	endtask
@@ -223,7 +224,7 @@ class riscv_ref_model extends uvm_component;
 			  imm_val_sign_ext = {{11{imm_val[20]}}, imm_val[20:0]}; 
 			  DADDR = REGS[rs1] + imm_val_sign_ext;
 			  DATAI = MEM[DADDR[`MLEN-1:2]]; 
-			  $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
+			//   $display("MEM ADDR = %d, MEM = %h", DADDR[`MLEN-1:2], DATAI);
 			  case (DADDR[1:0])
 				3: BE = 4'b1000;
 				2: BE = 4'b0100;

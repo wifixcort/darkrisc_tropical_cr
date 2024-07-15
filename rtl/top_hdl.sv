@@ -75,6 +75,15 @@ module top();
          assign reg_dmpd = soc0.core0.REGS[q];
       end
    endgenerate
+
+   genvar zkp;
+   generate 
+      for(zkp=0; zkp<32; zkp=zkp+1)begin 
+    	 logic [31:0] inst_dmpd;
+         assign inst_dmpd = soc0.MEM[zkp];
+      end
+   endgenerate
+
     /*  
    genvar			  inst;
    generate
