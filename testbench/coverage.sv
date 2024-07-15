@@ -244,6 +244,10 @@ class funct_coverage extends uvm_component;
         // Coverpoint DADDR, DMEMORY [512:1023]
         cvr_daddr : coverpoint intf2.DADDR {bins rx_rd[7] = { [512:1023] };  }        
 
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rs2: cross cvr_instr , cvr_rs2; // Instrucción X reg fuente 1
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino
+
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
             bins SB_and_imm_sig = binsof(cvr_instr) intersect {SB_FC} &&
@@ -311,7 +315,11 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:2044] };  }
+        
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rs2: cross cvr_instr , cvr_rs2; // Instrucción X reg fuente 1
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino        
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
@@ -342,12 +350,14 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:2044] };  }  
+
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino 
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
             bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
-                                  binsof(cvr_pc) intersect {[0:511]} &&
+                                  binsof(cvr_pc) intersect {[0:2044]} &&
                                   binsof(cvr_instr) intersect {AUIPC_TYPE};   
         } 
 
@@ -368,12 +378,15 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
-        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:511] };  }  
+        cvr_pc  : coverpoint intf2.NXPC {bins  pc_val[10] = { [0:2044] };  }  
+
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino 
 
         // todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_imm_sig_pc : cross cvr_imm_sig, cvr_pc, cvr_instr{
             bins imm_sig_and_pc = binsof(cvr_imm_sig) intersect {[-2048:2047]} &&
-                                  binsof(cvr_pc) intersect {[0:511]} &&
+                                  binsof(cvr_pc) intersect {[0:2044]} &&
                                   binsof(cvr_instr) intersect {J_TYPE};   
         } 
         cross_imm_rs1_un : cross cvr_imm_sig, cvr_rs1_value_un, cvr_instr{
