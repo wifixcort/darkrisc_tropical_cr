@@ -6,9 +6,9 @@ module top();
    reg CLK = 1;
    `ifdef TEST_CLK
    always begin
-     if (`RANDOM_CLK >= 5) #(500e6/(1)) CLK = !CLK;
-     else if (`RANDOM_CLK >= 10) #(500e6/(2)) CLK = !CLK;
-     else if (`RANDOM_CLK >= 15) #(500e6/(3)) CLK = !CLK;
+     if (`RANDOM_CLK >= 5) #(500e6/(`BOARD_CK/3)) CLK = !CLK;
+     else if (`RANDOM_CLK >= 10) #(500e6/(`BOARD_CK/4)) CLK = !CLK;
+     else if (`RANDOM_CLK >= 15) #(500e6/(`BOARD_CK/5)) CLK = !CLK;
      else #(500e6/(`BOARD_CK/2)) CLK = !CLK;
    end
  `else
