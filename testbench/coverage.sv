@@ -369,18 +369,6 @@ class funct_coverage extends uvm_component;
         } 
     endgroup 
 
-    // covergroup  cov_CLK;
-    //     cvr_clock : coverpoint intf2.clk {
-    //         bins clk_trans[] = (0 => 1), (1 => 0 );
-    //     }
-    // endgroup
-
-    // covergroup  cov_RST;
-    //     cvr_reset : coverpoint intf2.res {
-    //         bins rst_trans[] = (0 => 1), (1 => 0 );
-    //     }
-    // endgroup
-
     covergroup cov_transition;
         // Coverpoint for current instruction type
         cvr_current_instr : coverpoint intf2.XIDATA[6:0] {
