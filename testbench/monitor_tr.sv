@@ -41,6 +41,9 @@ class monitor_tr extends uvm_sequence_item;
    logic [4:0]		   rs2_val_mon1 = 0;
    logic [4:0]		   rdd_val_mon1 = 0;
 
+   // reset Mon1
+   logic RESET = 0;
+
    `uvm_object_utils(monitor_tr)
    
    function new(string name = "monitor_tr");

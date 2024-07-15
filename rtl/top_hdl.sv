@@ -30,6 +30,7 @@ module top();
    //Assign data to the virtual interface used by the monitor 1
    assign mem_rd_chan.IADDR = soc0.IADDR;
    assign mem_rd_chan.IDATA = soc0.IDATA;
+   assign mem_rd_chan.RESET = top.soc0.core0.XRES;
 
 
    //Assign data to the virtual interface used by the monitor 2
