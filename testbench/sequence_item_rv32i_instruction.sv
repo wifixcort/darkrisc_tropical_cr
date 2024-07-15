@@ -218,5 +218,16 @@ class jump_aux_vars extends uvm_sequence_item; //TODO Revisar si se puede usar a
   `uvm_object_utils(jump_aux_vars)
 endclass
 
+
+// class branch_aux_vars extends uvm_sequence_item;
+//   function new(string name = "branch_aux_vars");
+//     super.new(name);
+//   endfunction
+
+//   //random variables
+//   rand logic [] total_nops;
+//   rand logic [] addi2_imm_val;
+// endclass
+
 //Excellent reference for conditional constraints:
 //  https://vlsiverify.com/system-verilog/if-else-in-constraints/
