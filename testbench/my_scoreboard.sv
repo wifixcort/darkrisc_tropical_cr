@@ -98,10 +98,10 @@ class my_scoreboard extends uvm_scoreboard;
          $display("R DADDR = %h, SB DADDR = %h", tr.risc_daddr, this.DADDR);
 		 $display("R LDATA = %h, SB LDATA = %h", tr.risc_ldata, this.ldata);
 		 $display("PC = %h", tr.inst_PC);
-
+		 this.dbg_efctv_addr = this.DADDR[12:2];
 		 $display("Direccion efectiva: %d", this.dbg_efctv_addr);
 		 
-		 this.dbg_efctv_addr = this.DADDR[12:2];
+		
 		 if (this.dbg_efctv_addr<513) begin
 			$display("WARNINCITO: SU EFECTIVE ADDR ESTA ROTO ||| %h", this.dbg_efctv_addr);
 		 end
@@ -145,8 +145,9 @@ class my_scoreboard extends uvm_scoreboard;
 	  end else if((tr.instruction == BEQ) || (tr.instruction == BGE) || (tr.instruction == BGEU) ||
 				  (tr.instruction == BLT) || (tr.instruction == BLTU) || (tr.instruction == BNE)) begin
 		 //   $display("------------------------- LUI type -------------------------");
+		$display("get = %h", tr.inst_JBVAL);
 		 sb_type_cheker_rs1_rs2_imm(tr.inst ,tr.instruction, tr.risc_rs1_p, tr.risc_rs1_v, tr.risc_rs2_p,
-		  tr.risc_rs2_v, tr.risc_imm, tr.inst_JVAL, this.rs1_val, ref_model.REGS[this.rs1_val], 
+		  tr.risc_rs2_v, tr.risc_imm, tr.inst_JBVAL, this.rs1_val, ref_model.REGS[this.rs1_val], 
 		 	this.rs2_val, ref_model.REGS[this.rs2_val], this.imm_val_sign_ext, this.pc_val, tr.inst_counter);
 			//  $display("PC = %h, NXPC = %h, NXPC2 = %h", tr.inst_PC, tr.inst_NXPC, tr.inst_NXPC2);
 			 $display("CORE PC = %h, NXPC = %h, NXPC2 = %h", `CORE.PC, `CORE.NXPC, `CORE.NXPC2);

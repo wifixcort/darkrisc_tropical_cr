@@ -166,7 +166,7 @@ class funct_coverage extends uvm_component;
         // Coverpoint register source 1 value unsigned. max_v = 2^{32}-1 = 4294967295
         cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
         // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [-2048:2047] }; }
         // Coverpoint DATAI
         cvr_datai : coverpoint intf2.DATAI {bins datai[7] = { [0:4294967295] }; } 
         // Coverpoint LDATA
@@ -222,7 +222,7 @@ class funct_coverage extends uvm_component;
         cvr_rs2_value_un : coverpoint intf2.U2REG {bins rs2_val_un[7] = { [0:4294967295] }; }
         // imm -> xidata [11:0] 12 bit 
         // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                       
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins rx_rd[] = { [0:31] };  }  
         // Coverpoint SDATA == DATAO value unsigned. max_v = 2^{32}-1 = 4294967295
@@ -284,16 +284,16 @@ class funct_coverage extends uvm_component;
         // Coverpoint register source 1 value unsigned. max_v = 2^{32}-1 = 4294967295
         cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
         // Coverpoint register source 1 value signed. max_v = 2^{31}-1 = 2147483647
-        cvr_rs1_value_sig : coverpoint intf2.S1REG {bins rs1_val_sig[7] = { [-2147483648:2147483647] }; }
+        cvr_rs1_value_sig : coverpoint $signed(intf2.S1REG) {bins rs1_val_sig[7] = { [-2147483648:2147483647] }; }
         // Coverpoint register source 2 value unsigned. max_v = 2^{32}-1 = 4294967295
         cvr_rs2_value_un : coverpoint intf2.U2REG {bins rs2_val_un[7] = { [0:4294967295] }; }
         // Coverpoint register source 2 value signed. max_v = 2^{31}-1 = 2147483647
-        cvr_rs2_value_sig : coverpoint intf2.S2REG {bins rs2_val_sig[7] = { [-2147483648:2147483647] }; }
+        cvr_rs2_value_sig : coverpoint $signed(intf2.S2REG) {bins rs2_val_sig[7] = { [-2147483648:2147483647] }; }
         // imm -> xidata [11:0] 12 bit 
         // Coverpoint imm_val_unsigned. max_v = 2^{12}-1 = 4095
         cvr_imm_un : coverpoint intf2.XUIMM {bins imm_ext_un[7] = { [0:4095] }; } 
         // Coverpoint imm_val_signed. // Sign: [-2048:2047], max_v = 2^{11}-1 = 2047
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                      
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [-2048:2047] }; }                                                                      
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
@@ -324,7 +324,7 @@ class funct_coverage extends uvm_component;
         // Coverpoint OPCODE
         cvr_instr : coverpoint intf2.XIDATA[6:0] {bins instructions[] = {LUI_TYPE, AUIPC_TYPE}; } 
         // Coverpoint imm_val_signed. // max_val = 2^{31}-1-2^{12}-1 = 2147479550
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [4096:2147479549], [-2147479550:-4096], 0}; }                                                                       
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [4096:2147479549], [-2147479550:-4096], 0}; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value
@@ -350,7 +350,7 @@ class funct_coverage extends uvm_component;
         // Coverpoint register source 1 value unsigned. 
         cvr_rs1_value_un : coverpoint intf2.U1REG {bins rs1_val_un[7] = { [0:4294967295] }; }
         // Coverpoint imm_val_signed. // 2^{21}-1-1=2097150
-        cvr_imm_sig : coverpoint intf2.XSIMM {bins imm_ext_sig[7] = { [-2097150:2097149] }; }                                                                       
+        cvr_imm_sig : coverpoint $signed(intf2.XSIMM) {bins imm_ext_sig[7] = { [-2097150:2097149] }; }                                                                       
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
         // Coverpoint PC Value

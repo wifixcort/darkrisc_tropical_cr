@@ -162,19 +162,49 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             this.ex_dbuf.inst_NXPC = intf2.NXPC;
                this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
 			   //I_L TYPE
-			end  else if((ex_dbuf.instruccion == BLT) || (ex_dbuf.instruccion == BLTU) || (ex_dbuf.instruccion == BEQ) || (ex_dbuf.instruccion == BGE))begin
-			   // $display("------------------------- I type -------------------------");
-            // this.ex_dbuf.inst_PC = intf2.PC;
-            if((ex_dbuf.instruccion == BGE) && (this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v))begin
-               //this.ex_dbuf.inst_NXPC = intf2.NXPC;
-               // this.ex_dbuf.inst_NXPC2 = intf2.NXPC2;
-               this.ex_dbuf.inst_JVAL = intf2.NXPC2;
-            end else begin
-               this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
-            end
-
-               // ex_dbuf.risc_rs2_v = `CORE.REGS[ex_dbuf.risc_rd_p];
-			   //I_L TYPE
+			end  else if(ex_dbuf.instruccion == BGE)begin
+               if($signed(this.ex_dbuf.risc_rs1_v) >= $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end
+            end else if(ex_dbuf.instruccion == BEQ)begin
+                  if ($signed(this.ex_dbuf.risc_rs1_v) == $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end
+            end else if(ex_dbuf.instruccion == BLT) begin
+               if($signed(this.ex_dbuf.risc_rs1_v) < $signed(this.ex_dbuf.risc_rs2_v))begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end                  
+            end else if(ex_dbuf.instruccion == BLTU)begin
+               if(this.ex_dbuf.risc_rs1_v < this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+            end else if(ex_dbuf.instruccion == BNE)begin
+               if(this.ex_dbuf.risc_rs1_v != this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+            end else if(ex_dbuf.instruccion == BGEU)begin
+               if(this.ex_dbuf.risc_rs1_v >= this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+            end else if(ex_dbuf.instruccion == BLTU)begin
+               if(this.ex_dbuf.risc_rs1_v < this.ex_dbuf.risc_rs2_v)begin
+                  this.ex_dbuf.inst_JVAL = intf2.NXPC2;
+               end else begin
+                  this.ex_dbuf.inst_JVAL = this.ex_dbuf.inst_NXPC;
+               end               
+            // end            
 			end 
          $display("WriteBack PC = %h, NXPC = %h, NXPC2 = %h", this.ex_dbuf.inst_PC, this.ex_dbuf.inst_NXPC, this.ex_dbuf.inst_NXPC2);
 			// ex_dbuf.risc_rd_v = `CORE.REGS[ex_dbuf.risc_rd_p];
@@ -190,7 +220,7 @@ task uvc2_mon:: run_phase(uvm_phase phase);
 			mn_txn.inst_PC      = this.ex_dbuf.inst_PC;
 			mn_txn.inst_NXPC   =  this.ex_dbuf.inst_NXPC;
 			mn_txn.inst_NXPC2   = this.ex_dbuf.inst_NXPC2;
-         mn_txn.inst_JVAL   = this.ex_dbuf.inst_JVAL;
+         mn_txn.inst_JBVAL   = this.ex_dbuf.inst_JVAL;
 			mn_txn.inst_XIDATA  = this.ex_dbuf.inst_XIDATA;
 			mn_txn.inst_counter = this.ex_dbuf.inst_counter;
 			mn_txn.risc_sdata   = ex_dbuf.risc_sdata;
@@ -526,8 +556,15 @@ task uvc2_mon:: run_phase(uvm_phase phase);
             //       risc_rs1_v : `S1REG, risc_rs2_p : `S2PTR, risc_rs2_v : `S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? `XUIMM : `XSIMM), sb_rd_p : sb.rdd, sb_rd_v : sb_rd_reg_value,
             //       sb_rs1_p : sb.rs1, sb_rs1_v : sb.rs1_val_ini, sb_rs2_p : sb.rs2, sb_rs2_v : sb.rs2_val_ini, sb_imm : sb.imm_val_sign_ext,
             //       inst_PC : `CORE.PC, inst_XIDATA : `CORE.XIDATA, sb_DADDR : sb.DADDR, sb_DATAI : sb.DATAI};
+            if((this.ex_dbuf.instruccion == SLTU) || (this.ex_dbuf.instruccion == BLTU )|| (this.ex_dbuf.instruccion == BGEU) || (this.ex_dbuf.instruccion == SLTU))begin
+               this.ex_dbuf.risc_rs1_v = intf2.U1REG;
+               this.ex_dbuf.risc_rs2_v = intf2.U2REG;
+            end else begin
+               this.ex_dbuf.risc_rs1_v = intf2.S1REG;
+               this.ex_dbuf.risc_rs2_v = intf2.S2REG;
+            end
             ex_dbuf = '{inst: ex_dbuf.inst, instruccion : ex_dbuf.instruccion, risc_rd_p : intf2.DPTR, risc_rd_v : risc_rd_reg_value, risc_rs1_p : intf2.S1PTR, 
-						risc_rs1_v : intf2.S1REG, risc_rs2_p : intf2.S2PTR, risc_rs2_v : intf2.S2REG, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
+						risc_rs1_v : ex_dbuf.risc_rs1_v, risc_rs2_p : intf2.S2PTR, risc_rs2_v : ex_dbuf.risc_rs2_v, risc_imm : (ex_dbuf.instruccion == SLTIU ? intf2.XUIMM : intf2.XSIMM),
 						inst_PC : intf2.PC, inst_NXPC : intf2.NXPC, inst_NXPC2 : intf2.NXPC2, inst_JVAL : intf2.JVAL, inst_XIDATA : intf2.XIDATA, inst_counter : ex_dbuf.inst_counter, risc_sdata : intf2.SDATA, risc_ldata : intf2.LDATA, risc_daddr : intf2.DADDR, be : intf2.BE};//
                   $display("EX Mon PC = %h, NXPC = %h, NXPC2 = %h", intf2.PC, intf2.NXPC, intf2.NXPC2);
 
