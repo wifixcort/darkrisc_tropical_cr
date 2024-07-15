@@ -458,6 +458,7 @@ class funct_coverage extends uvm_component;
         forever begin
         fct7_fct3_conct = {intf2.XIDATA[31:25], intf2.XIDATA[14:12]}; //Concatenates {fct7, fct3}
         @(posedge intf2.clk) begin
+            cov_transition.sample();
             // cov_CLK.sample(); // Clock sample postive edge
             // cov_RST.sample(); // Reset sample postive edge
             if (intf2.XIDATA[6:0]==R_TYPE)begin
@@ -491,7 +492,7 @@ class funct_coverage extends uvm_component;
                 cov_B.sample();
                 uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup S_B sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
                 intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
-            end else if (intf2.XIDATA[6:0]==(LUI_TYPE || AUIPC_TYPE)) begin
+            end else if ((intf2.XIDATA[6:0]== LUI_TYPE) || (intf2.XIDATA[6:0]== AUIPC_TYPE)) begin
                 cov_U.sample();
                 uvm_report_info(get_full_name(), $sformatf("\n\n Covergroup U sampled instruction %h the following: Function 7: %h || Function 3: %h || rs1: %h || rs2: %h || rsd: %h \n\n", 
                 intf2.XIDATA, intf2.XIDATA[31:25], intf2.XIDATA[14:12], intf2.XIDATA[19:15], intf2.XIDATA[24:20], intf2.XIDATA[11:7]), UVM_LOW);                   
@@ -524,9 +525,49 @@ class funct_coverage extends uvm_component;
                   cov_R_SLT.get_coverage(), cov_R_SLT.cvr_rs1_slt_values.get_coverage(),cov_R_SLT.cvr_rs2_slt_values.get_coverage(), cov_R_SLT.cvrx_slt_rs1_rs2.get_coverage()), UVM_MEDIUM);
         `uvm_info("SLTU coverage", $sformatf("\n\nSLTU : %3.2f%% coverage achieved\n rs1 : %3.2f%% coverage achieved\n rs2 : %3.2f%% coverage achieved\n Cross cov rs1 x rs2 : %3.2f%% coverage achieved\n", 
                   cov_R_SLTU.get_coverage(), cov_R_SLTU.cvr_rs1_sltu_values.get_coverage(),cov_R_SLTU.cvr_rs2_sltu_values.get_coverage(), cov_R_SLTU.cvrx_sltu_rs1_rs2.get_coverage()), UVM_MEDIUM);
-        `uvm_info("Coverage I type Report",
-        $sformatf("\n\n--------------Coverage I type instructions results-------------------\ncov_I Overall: %3.2f%% coverage achieved\ncov_I instruction type: %3.2f%% coverage achieved.\ncov_I rd registers: %3.2f%% coverage achieved.\ncov_I rs1 registers: %3.2f%% coverage achieved.\ncov_I rs1 value un: %3.2f%% coverage achieved.\ncov_I rs1 value sig: %3.2f%% coverage achieved.\ncov_I imm value un: %3.2f%% coverage achieved.\ncov_I imm value sig: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",cov_I.get_coverage(),cov_I.cvr_instr.get_coverage(),cov_I.cvr_rd.get_coverage(),cov_I.cvr_rs1.get_coverage(),cov_I.cvr_rs1_value_un.get_coverage(),cov_I.cvr_rs1_value_sig.get_coverage(), cov_I.cvr_imm_un.get_coverage(),cov_I.cvr_imm_sig.get_coverage()),UVM_MEDIUM);
-        /*
+        // `uvm_info("Coverage I type Report",
+        // $sformatf("\n\n--------------Coverage I type instructions results-------------------\ncov_I Overall: %3.2f%% coverage achieved\ncov_I instruction type: %3.2f%% coverage achieved.\ncov_I rd registers: %3.2f%% coverage achieved.\ncov_I rs1 registers: %3.2f%% coverage achieved.\ncov_I rs1 value un: %3.2f%% coverage achieved.\ncov_I rs1 value sig: %3.2f%% coverage achieved.\ncov_I imm value un: %3.2f%% coverage achieved.\ncov_I imm value sig: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",cov_I.get_coverage(),cov_I.cvr_instr.get_coverage(),cov_I.cvr_rd.get_coverage(),cov_I.cvr_rs1.get_coverage(),cov_I.cvr_rs1_value_un.get_coverage(),cov_I.cvr_rs1_value_sig.get_coverage(), cov_I.cvr_imm_un.get_coverage(),cov_I.cvr_imm_sig.get_coverage()),UVM_MEDIUM);
+                  `uvm_info("Coverage I type Report", 
+                  $sformatf("\n\n--------------Coverage I type instructions results-------------------\ncov_I Overall:                  %3.2f%% coverage achieved\ncov_I instruction type:         %3.2f%% coverage achieved.\ncov_I addi instruction:         %3.2f%% coverage achieved.\ncov_I rs1 pointers:             %3.2f%% coverage achieved.\ncov_I rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_I rs1 values signed:        %3.2f%% coverage achieved.\ncov_I imm values unsigned:      %3.2f%% coverage achieved.\ncov_I imm values signed:        %3.2f%% coverage achieved.\ncov_I rd registers:             %3.2f%% coverage achieved.\ncov_I Cross Instrucction X imm signed X rs1 signed: %3.2f%% coverage achieved.\ncov_I Cross Instrucction X imm unsigned X rs1 signed: %3.2f%% coverage achieved.\ncov_I Cross Instrucction X imm unsigned X rs1 unsigned: %3.2f%% coverage achieved.\ncov_I Cross Instrucction X imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+                            cov_I.get_coverage(), cov_I.cvr_instr.get_coverage(), cov_I.cvr_addi.get_coverage(), cov_I.cvr_rs1.get_coverage(),
+                            cov_I.cvr_rs1_value_un.get_coverage(), cov_I.cvr_rs1_value_sig.get_coverage(), cov_I.cvr_imm_un.get_coverage(),
+                            cov_I.cvr_imm_sig.get_coverage(), cov_I.cvr_rd.get_coverage(), cov_I.cross_instr_imm_sig_rs1_sig.get_coverage(),
+                            cov_I.cross_instr_imm_un_rs1_sig.get_coverage(), cov_I.cross_instr_imm_un_rs1_un.get_coverage(), cov_I.cross_instr_imm_sig_rs1_un.get_coverage()), UVM_MEDIUM);
+              `uvm_info("Coverage Load type Report", 
+              $sformatf("\n\n--------------Coverage Load type instructions results-------------------\ncov_Load Overall:                  %3.2f%% coverage achieved\ncov_Load instruction type:         %3.2f%% coverage achieved.\ncov_Load rs1 registers:            %3.2f%% coverage achieved.\ncov_Load rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_Load imm values signed:        %3.2f%% coverage achieved.\ncov_Load datai:                    %3.2f%% coverage achieved.\ncov_Load ldata:                    %3.2f%% coverage achieved.\ncov_Load rd registers:             %3.2f%% coverage achieved.\ncov_Load daddr:                    %3.2f%% coverage achieved.\ncov_Load Cross Instrucction X imm signed: %3.2f%% coverage achieved.\ncov_Load Cross Instrucction X rs1 unsigned: %3.2f%% coverage achieved.\ncov_Load Cross imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+                        cov_Load.get_coverage(), cov_Load.cvr_instr.get_coverage(), cov_Load.cvr_rs1.get_coverage(), cov_Load.cvr_rs1_value_un.get_coverage(),
+                        cov_Load.cvr_imm_sig.get_coverage(), cov_Load.cvr_datai.get_coverage(), cov_Load.cvr_ldata.get_coverage(), cov_Load.cvr_rd.get_coverage(),
+                        cov_Load.cvr_daddr.get_coverage(), cov_Load.cross_instr_imm_sig.get_coverage(), cov_Load.cross_instr_rs1_un.get_coverage(),
+                        cov_Load.cross_imm_sig_rs1_un.get_coverage()), UVM_MEDIUM );      
+          `uvm_info("Coverage Store type Report", 
+          $sformatf("\n\n--------------Coverage Store type instructions results-------------------\ncov_S Overall:                  %3.2f%% coverage achieved\ncov_S instruction type:         %3.2f%% coverage achieved.\ncov_S rs1 registers:            %3.2f%% coverage achieved.\ncov_S rs2 registers:            %3.2f%% coverage achieved.\ncov_S rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_S rs2 values unsigned:      %3.2f%% coverage achieved.\ncov_S imm values signed:        %3.2f%% coverage achieved.\ncov_S rd registers:             %3.2f%% coverage achieved.\ncov_S sdata:                    %3.2f%% coverage achieved.\ncov_S daddr:                    %3.2f%% coverage achieved.\ncov_S Cross Instrucction X imm signed: %3.2f%% coverage achieved.\ncov_S Cross Instrucction X rs1 unsigned: %3.2f%% coverage achieved.\ncov_S Cross Instrucction X rs2 unsigned: %3.2f%% coverage achieved.\ncov_S Cross imm signed X rs1 unsigned: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+                    cov_S.get_coverage(), cov_S.cvr_instr.get_coverage(), cov_S.cvr_rs1.get_coverage(), cov_S.cvr_rs2.get_coverage(),
+                    cov_S.cvr_rs1_value_un.get_coverage(), cov_S.cvr_rs2_value_un.get_coverage(), cov_S.cvr_imm_sig.get_coverage(),
+                    cov_S.cvr_rd.get_coverage(), cov_S.cvr_sdata.get_coverage(), cov_S.cvr_daddr.get_coverage(), cov_S.cross_instr_imm_sig.get_coverage(),
+                    cov_S.cross_instr_rs1_un.get_coverage(), cov_S.cross_instr_rs2_un.get_coverage(), cov_S.cross_imm_sig_rs1_un.get_coverage()), UVM_MEDIUM );                  
+      `uvm_info("Coverage Branch type Report", 
+      $sformatf("\n\n--------------Coverage Branch type instructions results-------------------\ncov_B Overall:                  %3.2f%% coverage achieved\ncov_B instruction type:         %3.2f%% coverage achieved.\ncov_B rs1 registers:            %3.2f%% coverage achieved.\ncov_B rs2 registers:            %3.2f%% coverage achieved.\ncov_B rs1 values unsigned:      %3.2f%% coverage achieved.\ncov_B rs1 values signed:        %3.2f%% coverage achieved.\ncov_B rs2 values unsigned:      %3.2f%% coverage achieved.\ncov_B rs2 values signed:        %3.2f%% coverage achieved.\ncov_B imm values unsigned:      %3.2f%% coverage achieved.\ncov_B imm values signed:        %3.2f%% coverage achieved.\ncov_B rd registers:             %3.2f%% coverage achieved.\ncov_B PC values:                %3.2f%% coverage achieved.\ncov_B Cross imm signed X PC:    %3.2f%% coverage achieved.\ncov_B Cross rs1 unsigned X rs2 unsigned: %3.2f%% coverage achieved.\ncov_B Cross rs1 signed X rs2 signed: %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+                cov_B.get_coverage(), cov_B.cvr_instr.get_coverage(), cov_B.cvr_rs1.get_coverage(), cov_B.cvr_rs2.get_coverage(),
+                cov_B.cvr_rs1_value_un.get_coverage(), cov_B.cvr_rs1_value_sig.get_coverage(), cov_B.cvr_rs2_value_un.get_coverage(),
+                cov_B.cvr_rs2_value_sig.get_coverage(), cov_B.cvr_imm_un.get_coverage(), cov_B.cvr_imm_sig.get_coverage(),
+                cov_B.cvr_rd.get_coverage(), cov_B.cvr_pc.get_coverage(), cov_B.cross_imm_sig_pc.get_coverage(), cov_B.cross_instr_rs1_un_rs2_un.get_coverage(),
+                cov_B.cross_instr_rs1_sig_rs2_sig.get_coverage()),  UVM_MEDIUM );      
+  `uvm_info("Coverage U type Report", 
+  $sformatf("\n\n--------------Coverage U type instructions results-------------------\ncov_U Overall:                  %3.2f%% coverage achieved\ncov_U instruction type:         %3.2f%% coverage achieved.\ncov_U imm values signed:        %3.2f%% coverage achieved.\ncov_U rd registers:             %3.2f%% coverage achieved.\ncov_U PC values:                %3.2f%% coverage achieved.\ncov_U Cross imm signed X PC:    %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+            cov_U.get_coverage(), cov_U.cvr_instr.get_coverage(), cov_U.cvr_imm_sig.get_coverage(), cov_U.cvr_rd.get_coverage(),
+            cov_U.cvr_pc.get_coverage(), cov_U.cross_imm_sig_pc.get_coverage()), UVM_MEDIUM );
+`uvm_info("Coverage J type Report", 
+    $sformatf("\n\n--------------Coverage J type instructions results-------------------\ncov_J Overall:                  %3.2f%% coverage achieved\ncov_J instruction type:         %3.2f%% coverage achieved.\ncov_J imm values signed:        %3.2f%% coverage achieved.\ncov_J rs1 pointer:              %3.2f%% coverage achieved.\ncov_J rs1 value unsigned:       %3.2f%% coverage achieved.\ncov_J rd registers:             %3.2f%% coverage achieved.\ncov_J PC values:                %3.2f%% coverage achieved.\ncov_J Cross imm signed X PC:    %3.2f%% coverage achieved.\ncov_J Cross imm signed X rs1:   %3.2f%% coverage achieved.\n---------------------------------------------------------------------\n",
+              cov_J.get_coverage(), cov_J.cvr_instr.get_coverage(), cov_J.cvr_imm_sig.get_coverage(), cov_J.cvr_rs1.get_coverage(),
+              cov_J.cvr_rs1_value_un.get_coverage(), cov_J.cvr_rd.get_coverage(), cov_J.cvr_pc.get_coverage(), cov_J.cross_imm_sig_pc.get_coverage(),
+              cov_J.cross_imm_rs1_un.get_coverage()), UVM_MEDIUM);
+`uvm_info("Coverage Transition Report",
+    $sformatf("\n\n--------------Coverage Transition results-------------------\ncov_transition Overall:                  %3.2f%% coverage achieved\n---------------------------------------------------------------------\n",
+              cov_transition.get_coverage()),
+    UVM_MEDIUM
+);
+
+                  /*
         $display("Cross Coverage for inst_x_imm_sig: %0d%%", cov_I.cross_instr_imm_sig.get_coverage(cov_bins,num_bins));
         $display("Covered bins: %d, Total bins: %d", cov_bins, num_bins);
 
