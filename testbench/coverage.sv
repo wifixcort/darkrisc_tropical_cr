@@ -87,6 +87,14 @@ class funct_coverage extends uvm_component;
         //Hacer un cruce entre valores positivos y negativos de rs1 y rs2
         cvrx_sltu_rs1_rs2 : cross cvr_rs1_sltu_values, cvr_rs2_sltu_values;
     endgroup
+
+    covergroup cov_R_SUB;
+        // Toma el valor de rs2 y determina si se cubre valor negativo y valor positivo
+        cvr_rs1_ssub_values : coverpoint $signed(intf2.S2REG[31:0]) {
+            bins rs1_pos_shift_logic[3] = {[0:2147483647]};
+            bins rs1_neg_shift_logic[3] = {[-2147483648:-1]};
+        }
+    endgroup    
     
     covergroup cov_I;
         //''''''''''''''''''''''''''''''''''''''''''
@@ -109,6 +117,9 @@ class funct_coverage extends uvm_component;
         // Coverpoint register destination. Check which value does rd take.
         cvr_rd  : coverpoint intf2.XIDATA[11:7] {bins  rx_rd[] = { [0:31] };  }  
                 
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino
+
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         
         cross_instr_imm_sig_rs1_sig : cross cvr_instr, cvr_rs1_value_sig, cvr_imm_sig {
@@ -175,6 +186,9 @@ class funct_coverage extends uvm_component;
         cvr_rd  : coverpoint intf2.DPTR {bins rx_rd[] = { [0:31] }; }
         // Coverpoint DADDR, DMEMORY [512:1023]
         cvr_daddr : coverpoint intf2.DADDR {bins rx_rd[7] = { [512:1023] };  }
+
+        cvrx_ints_rs1: cross cvr_instr , cvr_rs1; // Instrucción X reg fuente 1
+        cvrx_ints_rd: cross cvr_instr , cvr_rd;   // Instrucción X reg destino
 
         //todo: make cross more especific (make especial corsses or weight = 0 for especific ones)
         cross_instr_imm_sig : cross cvr_instr, cvr_imm_sig {
