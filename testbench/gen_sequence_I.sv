@@ -33,7 +33,7 @@ class gen_sequence_I extends gen_sequence;
             end
             
             // Cuando llegue la ultima instruccion, meter jal para retroceder
-            else if ( i == 2**`MLEN/(4*2) ) begin
+            else if ( i == 2**`MLEN/(4*2) - 2 ) begin
                 item_0.randomize() with {opcode==J_TYPE && imm_jal[20:10]==11'hfff ;};       
                 // Transaccion JALR
                 start_item(item_0);

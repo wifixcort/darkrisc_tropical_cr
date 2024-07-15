@@ -237,7 +237,7 @@ class gen_sequence extends uvm_sequence;
 
 
             // Cuando llegue la ultima instruccion, retroceder minimo unas  posiciones ( instrucciones)
-            else if ( i == 2**`MLEN/(4*2)) begin
+            else if ( i == 2**`MLEN/(4*2) - 2 ) begin
                 item_0.randomize() with {opcode==J_TYPE && imm_jal==0 ;};
                 $display("\n(JAL)\t\tInstruct #%d\t\tinstruct: %h\tOffset: %b   (bin)", i[15:0], item_0.full_inst, item_0.imm_jal);
                 // Transaccion JALR
