@@ -1,13 +1,24 @@
 `include "uvm_macros.svh"
 import uvm_pkg::*;
+`define RANDOM_CLK $urandom_range(0, 20)
 
 module top();
-
-   // external clk generator
    reg CLK = 1;
+   `ifdef TEST_CLK
    always begin
-      #(500e6/`BOARD_CK) CLK = !CLK;
-   end 
+     if (`RANDOM_CLK >= 5) #(500e6/(1)) CLK = !CLK;
+     else if (`RANDOM_CLK >= 10) #(500e6/(2)) CLK = !CLK;
+     else if (`RANDOM_CLK >= 15) #(500e6/(3)) CLK = !CLK;
+     else #(500e6/(`BOARD_CK/2)) CLK = !CLK;
+   end
+ `else
+   always begin
+     #(500e6/`BOARD_CK) CLK = !CLK;
+   end
+ `endif
+   // external clk generator
+
+
    
    // Interface
    intf_soc intf(CLK);

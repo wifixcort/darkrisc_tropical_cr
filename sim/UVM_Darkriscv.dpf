@@ -14,7 +14,7 @@ simulations:
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_basic  -timescale 1ns/1ps  -sv_seed
-      666 +acc+b
+      666 +acc+b -code-cov t
   - name: test_basic seed_03
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
@@ -59,52 +59,57 @@ simulations:
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
+      +acc+b -code-cov t
   - name: test_R seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_R  -timescale 1ns/1ps  -sv_seed 666
-      +acc+b
+      +acc+b -code-cov t
   - name: test_BRANCH seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_BRANCH  -timescale 1ns/1ps  -sv_seed
-      12345 +acc+b
+      12345 +acc+b -code-cov t
   - name: test_BRANCH seed_02
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_BRANCH -timescale 1ns/1ps  -sv_seed
-      666 +acc+b
+      666 +acc+b -code-cov t
   - name: test_LOAD seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_LOAD  -timescale 1ns/1ps  -sv_seed
-      12345 +acc+b
+      12345 +acc+b -code-cov t
   - name: test_LUI_AUIPC seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_LUI_AUIPC  -timescale 1ns/1ps 
-      -sv_seed 12345 +acc+b
+      -sv_seed 12345 +acc+b -code-cov t
   - name: test_I seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_I  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
+      +acc+b -code-cov t
   - name: test_STORE seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_STORE  -timescale 1ns/1ps  -sv_seed
-      12345 +acc+b
+      12345 +acc+b -code-cov t
   - name: test_J_seed_01
     options: >-
       -top testbench.top_hvl -top dut.top -L dut -L testbench -uvm 1.2
       +UVM_NO_RELNOTES +UVM_TESTNAME=test_J  -timescale 1ns/1ps  -sv_seed 12345
-      +acc+b
+      +acc+b -code-cov t
 source_files:
   - language: verilog
     path: filelist_V.txt
     library_name: dut
     options: '-uvm 1.2'
+    file_list: relative-to-file
+  - language: verilog
+    path: filelist_V_clk.txt
+    library_name: DUT_CLK
+    options: '-uvm 1.2 -define TEST_CLK=1'
     file_list: relative-to-file
   - language: verilog
     path: filelist.txt

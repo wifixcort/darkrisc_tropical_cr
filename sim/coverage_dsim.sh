@@ -1,8 +1,8 @@
 #!/bin/bash
 # Script to generate Coverage HTML files
 
-# SIM_HOME="$HOME/Documents/UCR/2024/Verif/verif_darkrisc (copy)_com_to_m2/sim"
-SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
+SIM_HOME="$HOME/Documents/UCR/2024/Verif/verif_darkrisc (copy)_com_to_m2/sim"
+#SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
 #SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
 #SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
 #SIM_HOME="$HOME/Desktop/Project_Dsim/darkrisc_tropical_cr/sim"
