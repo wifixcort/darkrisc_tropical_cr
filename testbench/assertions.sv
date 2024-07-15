@@ -4,7 +4,7 @@ module assertions (
 				   input logic CLK,
 				   input logic RES
 				   );
-   // Aserción para cumplir que las instrucciones se encuentren dentro de su rango de memoria asignado 
+   // Aserción de que solo se acceden a datos en direcciones validas
    check_daddr_within_valid_ranges: assert property (
 													 @(posedge CLK) disable iff (RES === 1)
 													 ( `RTL_PATH.XIDATA[6:0]==I_L_TYPE |-> ((`RTL_PATH.DADDR/4)>511) && ((`RTL_PATH.DADDR/4)<1023) )
@@ -22,7 +22,7 @@ module assertions (
    // 9 aserstion en 1
 
    // Aserción conflicto de instrucciones. No se puede hacer WB de ninguna instrucción en FLUSH
-   check_no_instruction_on_flush: assert property (@(posedge CLK) ((`RTL_PATH.FLUSH == 1) |-> (!`RTL_PATH.RCC && !`RTL_PATH.LCC && !`RTL_PATH.SCC && !`RTL_PATH.MCC && !`RTL_PATH.LUI && !`RTL_PATH.AUIPC && !`RTL_PATH.JAL && !`RTL_PATH.JALR && !`RTL_PATH.BCC)));
+   check_no_instruction_on_flush: assert property (@(posedge CLK) ((|(`RTL_PATH.FLUSH)) |-> (!`RTL_PATH.RCC && !`RTL_PATH.LCC && !`RTL_PATH.SCC && !`RTL_PATH.MCC && !`RTL_PATH.LUI && !`RTL_PATH.AUIPC && !`RTL_PATH.JAL && !`RTL_PATH.JALR && !`RTL_PATH.BCC)));
    // 9 aserstion en 1
 
    // Aserción para verificar que cuando RD esté en 1, indica LCC(carga de datos)
@@ -46,6 +46,9 @@ module assertions (
    // Aserción para verificar que cuando se cumple condicion de salto se pida un JREQ
    check_jump_jreq : assert property (@(posedge CLK) disable iff (RES) (`RTL_PATH.JAL || `RTL_PATH.JALR || (`RTL_PATH.BCC && `RTL_PATH.BMUX)) |-> (`RTL_PATH.JREQ == 1));
   
+   // Aserción para verificar que cuando no se cumple condicion de salto no se pida un JREQ
+   check_jump_jreq_n : assert property (@(posedge CLK) disable iff (RES) !(`RTL_PATH.JAL || `RTL_PATH.JALR || (`RTL_PATH.BCC && `RTL_PATH.BMUX)) |-> (`RTL_PATH.JREQ == 0));
+
    // Aserción que dos ciclos después de un JREQ el PC cambia
    check_jreq_pc_n : assert property (@(posedge CLK) (`RTL_PATH.JREQ == 1) |-> ##2 (`RTL_PATH.PC != $past(`RTL_PATH.PC, 2)));
 
@@ -53,20 +56,53 @@ module assertions (
    check_pc_hlt : assert property (@(posedge CLK) disable iff (RES) $rose(`RTL_PATH.HLT) |-> ##1 (`RTL_PATH.PC == $past(`RTL_PATH.PC, 1)));
 
    // Aserción PC changes after reset
-   check_pc_res_fall : assert property (@(posedge CLK) $fell(`RTL_PATH.XRES) |-> ##3 (`RTL_PATH.PC != 0)) ;
+   check_pc_res_fall : assert property (@(posedge CLK) $fell(`RTL_PATH.XRES) |-> ##3 (`RTL_PATH.PC != 0));
 
-   // Aserción PC goes to 0 when reset activates
-   check_pc_init_res : assert property (@(posedge CLK) (`RTL_PATH.XRES == 1) |-> ##3 (`RTL_PATH.PC == 0)) ;
+   // Aserción PC goes to 0 when reset activates, and remain 0 as long as reset is 1
+   check_pc_init_res : assert property (@(posedge CLK) (`RTL_PATH.XRES == 1) |-> ##3 (`RTL_PATH.PC == 0));
 
    // Aserción FLUSH no cambia dentro de HLT
    check_flush_hlt : assert property (@(posedge CLK) disable iff (RES) $rose(`RTL_PATH.HLT) |-> $stable(`RTL_PATH.FLUSH));
+
+   // Aserción valor minimo y maximo de JVAL
+   check_jval_within_valid_ranges: assert property (
+													 @(posedge CLK) disable iff (RES === 1)
+													 ( `RTL_PATH.JREQ == 1 |-> ((0 <= `RTL_PATH.JVAL/4)) && ((`RTL_PATH.JVAL/4) <= 511) )
+													 );
+
+   // Aserción Overflow u1+u2
+
+   // Aserción Overflow u1+s2
+
+   // Aserción Overflow s1+u2
+
+   // Aserción Overflow s1+s2
+
+   // Aserción Overflow u1+simm
+
+   // Aserción Overflow u1+uimm
+
+   // Aserción Overflow s1+simm
+
+   // Aserción Overflow s1+uimm
+
+   /*
+   check_overflow : assert property (@(posedge CLK) disable iff (RES) $rose(`RTL_PATH.HLT) |-> $stable(`RTL_PATH.FLUSH));
+   */
+
+   // Aserción Maximo y minimo valor PC 
+   /*
+   check_pc_within_valid_ranges: assert property (
+													 @(posedge CLK) disable iff (RES || |`RTL_PATH.FLUSH)
+													 (  ((0 <= (`RTL_PATH.PC/4)) && ((`RTL_PATH.PC/4) <= 511) )
+													 ));
    
-   // Aserción PC is stable during reset after 3 cycles, if reset keeps being 1
-
-
-   // Aserción Overflow
-   
-
+   // Aserción para cumplir que las instrucciones se encuentren dentro de su rango de memoria asignado 
+   check_iaddr_within_valid_ranges: assert property (
+													 @(posedge CLK) disable iff (RES || |`RTL_PATH.FLUSH)
+													 (  ((0 <= (`RTL_PATH.IADDR/4)) && ((`RTL_PATH.IADDR/4) <= 511) )
+													 ));
+   */
    // Función para contar el número de señales en 1
    function automatic int count_ones(input logic [8:0] sig);
       int					   count;
