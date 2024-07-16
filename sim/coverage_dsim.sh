@@ -14,7 +14,7 @@ SIM_DIR="$SIM_HOME"
 
 #Para abrir una base de datos diferente solo cambiar el nombre con la base de datos que quiere ver
 
-METRICS_DB="$SIM_DIR/metrics_U.db"
+METRICS_DB="$SIM_DIR/metrics.db"
 OUT_DIR="$SIM_DIR/dir"
 INDEX_HTML="$OUT_DIR/index.html"
 
